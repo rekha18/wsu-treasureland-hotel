@@ -6,7 +6,7 @@
 <asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
     <h2>
         Ghana group. 
-    </h2>
+    </h2> <!-- Alex Harris added this comment -->
     <p>
         <asp:LinqDataSource ID="LinqDataSource1" runat="server" 
             ContextTypeName="TreasureLand.TreasureLandDataClassesDataContext" 
