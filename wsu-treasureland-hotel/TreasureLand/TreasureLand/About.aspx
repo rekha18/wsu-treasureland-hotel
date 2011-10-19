@@ -8,6 +8,6 @@
         About 
     </h2>
     <p><!-- This is a test note -->
-        Put content here.aaa
+        Put content here.
     </p>
 </asp:Content>
