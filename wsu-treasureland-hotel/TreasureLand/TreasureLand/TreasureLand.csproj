@@ -61,6 +61,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Admin\Default.aspx" />
     <Content Include="App_Data\ghana.mdf" />
     <Content Include="App_Data\ghana_log.ldf">
       <DependentUpon>ghana.mdf</DependentUpon>
@@ -72,7 +73,9 @@
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="Test.aspx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -116,6 +119,13 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -126,6 +136,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LoginRedirectByRoleSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -149,6 +160,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
+    <Folder Include="Clerk\" />
+    <Folder Include="HouseKeeping\" />
+    <Folder Include="Maintenance\" />
+    <Folder Include="Manager\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
@@ -158,6 +173,7 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Web.config" />
     <None Include="TreasureLandDataClasses.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>TreasureLandDataClasses.designer.cs</LastGenOutput>
