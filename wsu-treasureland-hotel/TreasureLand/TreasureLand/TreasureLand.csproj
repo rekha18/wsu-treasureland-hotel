@@ -66,6 +66,7 @@
     <Content Include="App_Data\ghana_log.ldf">
       <DependentUpon>ghana.mdf</DependentUpon>
     </Content>
+    <Content Include="Clerk\Default.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -126,6 +127,13 @@
     <Compile Include="Admin\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Clerk\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -160,7 +168,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
-    <Folder Include="Clerk\" />
     <Folder Include="HouseKeeping\" />
     <Folder Include="Maintenance\" />
     <Folder Include="Manager\" />
@@ -174,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Web.config" />
+    <Content Include="Clerk\Web.config" />
     <None Include="TreasureLandDataClasses.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>TreasureLandDataClasses.designer.cs</LastGenOutput>
