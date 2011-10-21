@@ -13,30 +13,18 @@ namespace TreasureLand.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            RegisterHyperLink.NavigateUrl = "Register.aspx?ReturnUrl=" + HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
+            if (Request.IsAuthenticated && !string.IsNullOrEmpty(Request.QueryString["ReturnUrl"]))
+            {
+                Response.Redirect("~/Unauthorized.aspx");
+            }
+
         }
 
         protected void LoginUser_LoggedIn(object sender, EventArgs e)
         {
-            RedirectLogin(LoginUser.UserName);
+           
         }
 
-        /// <summary>
-        /// Redirect the user to a specific URL, as specified in the web.config, depending on their role.
-        /// If a user belongs to multiple roles, the first matching role in the web.config is used.
-        /// Prioritize the role list by listing higher-level roles at the top.
-        /// </summary>
-        /// <param name="username">Username to check the roles for</param>
-        private void RedirectLogin(string username)
-        {
-            LoginRedirectByRoleSection roleRedirectSection = (LoginRedirectByRoleSection)ConfigurationManager.GetSection("loginRedirectByRole");
-            foreach (RoleRedirect roleRedirect in roleRedirectSection.RoleRedirects)
-            {
-                if (Roles.IsUserInRole(username, roleRedirect.Role))
-                {
-                    Response.Redirect(roleRedirect.Url);
-                }
-            }
-        }
+       
     }
 }
