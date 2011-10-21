@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TreasureLand.Account {
+namespace TreasureLand.Admin {
     
     
-    public partial class Login {
+    public partial class ManageUsers {
         
         /// <summary>
-        /// LoginUser control.
+        /// ListBox_Users control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Login LoginUser;
+        protected global::System.Web.UI.WebControls.ListBox ListBox_Users;
     }
 }

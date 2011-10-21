@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.Linq;
+using System.Web.Security;
+using System.Configuration;
 
 namespace TreasureLand
 {
@@ -12,11 +14,25 @@ namespace TreasureLand
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-             ///This is just a test to make sure I can get some data
-            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            var customersInDb = from c in db.Guests select c;
-            int customerCount = customersInDb.Count();
-            ///This is just a test to make sure I can get some data
+            RedirectLogin(User.Identity.Name);
+        }
+
+        /// <summary>
+        /// Redirect the user to a specific URL, as specified in the web.config, depending on their role.
+        /// If a user belongs to multiple roles, the first matching role in the web.config is used.
+        /// Prioritize the role list by listing higher-level roles at the top.
+        /// </summary>
+        /// <param name="username">Username to check the roles for</param>
+        private void RedirectLogin(string username)
+        {
+            LoginRedirectByRoleSection roleRedirectSection = (LoginRedirectByRoleSection)ConfigurationManager.GetSection("loginRedirectByRole");
+            foreach (RoleRedirect roleRedirect in roleRedirectSection.RoleRedirects)
+            {
+                if (Roles.IsUserInRole(username, roleRedirect.Role))
+                {
+                    Response.Redirect(roleRedirect.Url);
+                }
+            }
         }
     }
 }
