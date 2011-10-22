@@ -10,6 +10,6 @@
 namespace TreasureLand.Admin {
     
     
-    public partial class ManageRooms {
+    public partial class WebForm1 {
     }
 }
