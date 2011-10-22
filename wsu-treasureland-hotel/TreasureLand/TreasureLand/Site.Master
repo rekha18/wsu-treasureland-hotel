@@ -14,8 +14,10 @@
         <div class="header">
             <div class="title">
                 <h1>
-                    Ghana's Treasure Land Hotel Booking Application
-                </h1>
+                    &nbsp;<asp:Image ID="imageLogo" runat="server" Height="103px" 
+                        ImageAlign="Middle" ImageUrl="~/Images/CompanyLogo.png" 
+                        style="margin-left: 0px" Width="694px" />
+&nbsp;</h1>
             </div>
             <div class="loginDisplay">
                 <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
