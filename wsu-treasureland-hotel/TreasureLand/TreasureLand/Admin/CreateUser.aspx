@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMasterPage.master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMaster.master" AutoEventWireup="true"
     CodeBehind="CreateUser.aspx.cs" Inherits="TreasureLand.Admin.CreateUser" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder_Admin_Main" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="AdminContentHolder" runat="server">
     <asp:CreateUserWizard ID="RegisterUser" runat="server" EnableViewState="False" 
         OnCreatedUser="RegisterUser_CreatedUser">
         <LayoutTemplate>
