@@ -69,7 +69,20 @@
     <Content Include="App_Data\ghana_log.ldf">
       <DependentUpon>ghana.mdf</DependentUpon>
     </Content>
+    <Content Include="Clerk\CheckIn.aspx" />
+    <Content Include="Clerk\CheckOut.aspx" />
+    <Content Include="Clerk\ClerkDefault.aspx" />
+    <Content Include="Clerk\CreateReservation.aspx" />
     <Content Include="Clerk\Default.aspx" />
+    <Content Include="Clerk\LocateGuest.aspx" />
+    <Content Include="Clerk\LocateReservation.aspx" />
+    <Content Include="Clerk\Reports.aspx" />
+    <Content Include="Clerk\UpdateGuestFolio.aspx" />
+    <Content Include="Clerk\UpdateReservation.aspx" />
+    <Content Include="Clerk\ViewGuests.aspx" />
+    <Content Include="HouseKeeping\HouseKeepingDefault.aspx" />
+    <Content Include="HouseKeeping\HouseKeepingReports.aspx" />
+    <Content Include="HouseKeeping\Inventory.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -159,12 +172,83 @@
     <Compile Include="Admin\ManageUsers.aspx.designer.cs">
       <DependentUpon>ManageUsers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Clerk\CheckIn.aspx.cs">
+      <DependentUpon>CheckIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\CheckIn.aspx.designer.cs">
+      <DependentUpon>CheckIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\CheckOut.aspx.cs">
+      <DependentUpon>CheckOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\CheckOut.aspx.designer.cs">
+      <DependentUpon>CheckOut.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\ClerkDefault.aspx.cs">
+      <DependentUpon>ClerkDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\ClerkDefault.aspx.designer.cs">
+      <DependentUpon>ClerkDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\ClerkMasterPage.master.cs">
+      <DependentUpon>ClerkMasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\ClerkMasterPage.master.designer.cs">
+      <DependentUpon>ClerkMasterPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\CreateReservation.aspx.cs">
+      <DependentUpon>CreateReservation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\CreateReservation.aspx.designer.cs">
+      <DependentUpon>CreateReservation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Clerk\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Clerk\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\LocateGuest.aspx.cs">
+      <DependentUpon>LocateGuest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\LocateReservation.aspx.cs">
+      <DependentUpon>LocateReservation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\Reports.aspx.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\Reports.aspx.designer.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\UpdateGuestFolio.aspx.cs">
+      <DependentUpon>UpdateGuestFolio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\UpdateGuestFolio.aspx.designer.cs">
+      <DependentUpon>UpdateGuestFolio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\UpdateReservation.aspx.cs">
+      <DependentUpon>UpdateReservation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\UpdateReservation.aspx.designer.cs">
+      <DependentUpon>UpdateReservation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\ViewGuests.aspx.cs">
+      <DependentUpon>ViewGuests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\ViewGuests.aspx.designer.cs">
+      <DependentUpon>ViewGuests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -175,6 +259,34 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HouseKeeping\HouseKeepingDefault.aspx.cs">
+      <DependentUpon>HouseKeepingDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HouseKeeping\HouseKeepingDefault.aspx.designer.cs">
+      <DependentUpon>HouseKeepingDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HouseKeeping\HouseKeepingMasterPage.master.cs">
+      <DependentUpon>HouseKeepingMasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HouseKeeping\HouseKeepingMasterPage.master.designer.cs">
+      <DependentUpon>HouseKeepingMasterPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="HouseKeeping\HouseKeepingReports.aspx.cs">
+      <DependentUpon>HouseKeepingReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HouseKeeping\HouseKeepingReports.aspx.designer.cs">
+      <DependentUpon>HouseKeepingReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HouseKeeping\Inventory.aspx.cs">
+      <DependentUpon>Inventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HouseKeeping\Inventory.aspx.designer.cs">
+      <DependentUpon>Inventory.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoginRedirectByRoleSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -207,7 +319,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
-    <Folder Include="HouseKeeping\" />
     <Folder Include="Maintenance\" />
     <Folder Include="Manager\" />
   </ItemGroup>
@@ -222,6 +333,8 @@
     <Content Include="Admin\Web.config" />
     <Content Include="Clerk\Web.config" />
     <Content Include="Admin\AdminMasterPage.master" />
+    <Content Include="Clerk\ClerkMasterPage.master" />
+    <Content Include="HouseKeeping\HouseKeepingMasterPage.master" />
     <None Include="TreasureLandDataClasses.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>TreasureLandDataClasses.designer.cs</LastGenOutput>
