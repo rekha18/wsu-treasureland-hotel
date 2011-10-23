@@ -67,6 +67,7 @@
     <Content Include="Admin\ManageServices.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
     <Content Include="Admin\ReportsAdmin.aspx" />
+    <Content Include="Admin\ManageDiscounts.aspx" />
     <Content Include="App_Data\ghana.mdf" />
     <Content Include="App_Data\ghana_log.ldf">
       <DependentUpon>ghana.mdf</DependentUpon>
@@ -178,6 +179,14 @@
     <Compile Include="Admin\ReportsAdmin.aspx.designer.cs">
       <DependentUpon>ReportsAdmin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ManageDiscounts.aspx.cs">
+      <DependentUpon>ManageDiscounts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageDiscounts.aspx.designer.cs">
+      <DependentUpon>ManageDiscounts.aspx</DependentUpon>
+    </Compile>
+    <Content Include="App_Code\LocateGuestDB.cs" />
     <Compile Include="Clerk\ClerkDefault.aspx.cs">
       <DependentUpon>ClerkDefault.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -296,7 +305,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Code\" />
     <Folder Include="Maintenance\" />
     <Folder Include="Manager\" />
   </ItemGroup>
