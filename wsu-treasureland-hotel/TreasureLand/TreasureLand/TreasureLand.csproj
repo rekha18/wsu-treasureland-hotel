@@ -71,8 +71,6 @@
     <Content Include="App_Data\ghana_log.ldf">
       <DependentUpon>ghana.mdf</DependentUpon>
     </Content>
-    <Content Include="Clerk\CheckIn.aspx" />
-    <Content Include="Clerk\CheckOut.aspx" />
     <Content Include="Clerk\ClerkDefault.aspx" />
     <Content Include="Clerk\CreateReservation.aspx" />
     <Content Include="Clerk\LocateGuest.aspx" />
@@ -133,12 +131,14 @@
     </Compile>
     <Compile Include="Admin\AdminDefault.aspx.cs">
       <DependentUpon>AdminDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\AdminDefault.aspx.designer.cs">
       <DependentUpon>AdminDefault.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\AdminMaster.master.cs">
       <DependentUpon>AdminMaster.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\AdminMaster.master.designer.cs">
       <DependentUpon>AdminMaster.master</DependentUpon>
@@ -173,23 +173,10 @@
     </Compile>
     <Compile Include="Admin\ReportsAdmin.aspx.cs">
       <DependentUpon>ReportsAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\ReportsAdmin.aspx.designer.cs">
       <DependentUpon>ReportsAdmin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Clerk\CheckIn.aspx.cs">
-      <DependentUpon>CheckIn.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Clerk\CheckIn.aspx.designer.cs">
-      <DependentUpon>CheckIn.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Clerk\CheckOut.aspx.cs">
-      <DependentUpon>CheckOut.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Clerk\CheckOut.aspx.designer.cs">
-      <DependentUpon>CheckOut.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clerk\ClerkDefault.aspx.cs">
       <DependentUpon>ClerkDefault.aspx</DependentUpon>
