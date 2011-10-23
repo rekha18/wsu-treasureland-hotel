@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdminMaster.master.cs" Inherits="TreasureLand.Admin.AdminMasterPage1" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <style type="text/css">
+
+        .style4
+        {
+            width: 100%;
+            height: 170px;
+        }
+        .style6
+        {
+            width: 113px;
+            height: 35px;
+        }
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_RoleMenu" runat="server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    <table class="style4">
+        <tr>
+            <td align="center" class="style6">
+                <asp:Button ID="btnHome" runat="server" Text="Home" Width="125px" 
+                    onclick="btnHome_Click" />
+            </td>
+            <td rowspan="8" valign="top">
+                <asp:ContentPlaceHolder id="adminContentHolder" runat="server">
+                </asp:ContentPlaceHolder>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" class="style6">
+                <asp:Button ID="btnReports" runat="server" Text="Reports" Width="125px" 
+                    onclick="btnReports_Click" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center" class="style6">
+                <asp:Button ID="btnManageRooms" runat="server" Text="Manage Rooms" 
+                    Width="125px" onclick="btnManageRooms_Click" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center" class="style6">
+                <asp:Button ID="btnManageDiscounts" runat="server" Text="Manage Discounts" 
+                    Width="125px" onclick="btnManageDiscounts_Click" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center" class="style6">
+                <asp:Button ID="btnManageUsers" runat="server" Text="Manage Users" 
+                    Width="125px" onclick="btnManageUsers_Click" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center" class="style6">
+                <asp:Button ID="btnCreateUser" runat="server" Text="Create User" Width="125px" 
+                    Height="27px" onclick="btnCreateUser_Click" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center" class="style6">
+                <asp:Button ID="btnManageServices" runat="server" Text="Manage Services" 
+                    Width="125px" onclick="btnManageServices_Click" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center" class="style6" valign="middle">
+                <asp:Button ID="btnLogout" runat="server" Text="Logout" Width="126px" />
+            </td>
+        </tr>
+    </table>
+</asp:Content>
