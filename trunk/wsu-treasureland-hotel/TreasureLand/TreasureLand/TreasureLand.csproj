@@ -73,7 +73,6 @@
     <Content Include="Clerk\CheckOut.aspx" />
     <Content Include="Clerk\ClerkDefault.aspx" />
     <Content Include="Clerk\CreateReservation.aspx" />
-    <Content Include="Clerk\Default.aspx" />
     <Content Include="Clerk\LocateGuest.aspx" />
     <Content Include="Clerk\LocateReservation.aspx" />
     <Content Include="Clerk\Reports.aspx" />
@@ -205,13 +204,6 @@
     </Compile>
     <Compile Include="Clerk\CreateReservation.aspx.designer.cs">
       <DependentUpon>CreateReservation.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Clerk\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Clerk\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clerk\LocateGuest.aspx.cs">
       <DependentUpon>LocateGuest.aspx</DependentUpon>
