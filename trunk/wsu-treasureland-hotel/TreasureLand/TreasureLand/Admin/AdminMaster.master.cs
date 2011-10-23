@@ -43,5 +43,10 @@ namespace TreasureLand.Admin
         {
             Response.Redirect("ManageServices.aspx");
         }
+
+        protected void btnManageDiscounts_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ManageDiscounts.aspx");
+        }
     }
 }
