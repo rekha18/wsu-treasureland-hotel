@@ -301,13 +301,13 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.Label lblResFirstName;
         
         /// <summary>
-        /// ddlDiscounts control.
+        /// DetailsView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDiscounts;
+        protected global::System.Web.UI.WebControls.DetailsView DetailsView1;
         
         /// <summary>
         /// lblResPhone control.
@@ -319,22 +319,13 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.Label lblResPhone;
         
         /// <summary>
-        /// lblDiscountAmount control.
+        /// ddlDiscounts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDiscountAmount;
-        
-        /// <summary>
-        /// lblDiscountRules control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDiscountRules;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDiscounts;
         
         /// <summary>
         /// ldsDiscout control.
@@ -353,6 +344,15 @@ namespace TreasureLand.Clerk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinqDataSource ldsRoomType;
+        
+        /// <summary>
+        /// ldsDiscountsInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource ldsDiscountsInfo;
         
         /// <summary>
         /// calDateFrom control.
