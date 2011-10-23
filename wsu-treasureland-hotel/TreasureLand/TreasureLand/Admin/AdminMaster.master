@@ -23,7 +23,7 @@
                 <asp:Button ID="btnHome" runat="server" Text="Home" Width="125px" 
                     onclick="btnHome_Click" />
             </td>
-            <td rowspan="7" valign="top">
+            <td rowspan="8" valign="top">
                 <asp:ContentPlaceHolder id="adminContentHolder" runat="server">
                 </asp:ContentPlaceHolder>
             </td>
@@ -38,6 +38,12 @@
             <td align="center" class="style6">
                 <asp:Button ID="btnManageRooms" runat="server" Text="Manage Rooms" 
                     Width="125px" onclick="btnManageRooms_Click" />
+            </td>
+        </tr>
+        <tr>
+            <td align="center" class="style6">
+                <asp:Button ID="btnManageDiscounts" runat="server" Text="Manage Discounts" 
+                    Width="125px" onclick="btnManageDiscounts_Click" />
             </td>
         </tr>
         <tr>
