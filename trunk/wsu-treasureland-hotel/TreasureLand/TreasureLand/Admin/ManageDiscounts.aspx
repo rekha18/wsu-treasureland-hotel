@@ -58,7 +58,8 @@
                         <asp:RequiredFieldValidator ID="rfvDiscountAmount" runat="server" 
                             ControlToValidate="txtDiscountAmount" Display="Dynamic" 
                             ErrorMessage="Discount amount is required" ForeColor="Red"></asp:RequiredFieldValidator>
-                        <asp:CompareValidator ID="cvDiscountAmount" runat="server" Display="Dynamic" 
+                        <asp:CompareValidator ID="cvDiscountAmount" runat="server" Display="Dynamic"
+                             ControlToValidate="txtDiscountAmount" 
                             ErrorMessage="Please Enter a Decimal Number" ForeColor="Red" Type="Double"></asp:CompareValidator>
                     </td>
                 </tr>
