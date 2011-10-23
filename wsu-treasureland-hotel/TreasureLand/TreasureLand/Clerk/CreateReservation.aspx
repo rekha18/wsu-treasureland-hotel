@@ -199,10 +199,24 @@
                             </td>
                             <td style="width: 129px">
                                 Discount:</td>
-                            <td>
-                                <asp:DropDownList ID="ddlDiscounts" runat="server" DataSourceID="ldsDiscout" 
-                                    DataTextField="DiscountDescription" DataValueField="DiscountID">
-                                </asp:DropDownList>
+                            <td rowspan="4">
+                                <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" 
+                                    DataKeyNames="DiscountID" DataSourceID="ldsDiscout" Height="50px" Width="306px">
+                                    <Fields>
+                                        <asp:BoundField DataField="DiscountID" HeaderText="DiscountID" 
+                                            InsertVisible="False" ReadOnly="True" SortExpression="DiscountID" />
+                                        <asp:BoundField DataField="DiscountDescription" 
+                                            HeaderText="DiscountDescription" SortExpression="DiscountDescription" />
+                                        <asp:BoundField DataField="DiscountExpiration" HeaderText="DiscountExpiration" 
+                                            SortExpression="DiscountExpiration" />
+                                        <asp:BoundField DataField="DiscountRules" HeaderText="DiscountRules" 
+                                            SortExpression="DiscountRules" />
+                                        <asp:BoundField DataField="DiscountAmount" HeaderText="DiscountAmount" 
+                                            SortExpression="DiscountAmount" />
+                                        <asp:CheckBoxField DataField="IsPrecentage" HeaderText="IsPrecentage" 
+                                            SortExpression="IsPrecentage" />
+                                    </Fields>
+                                </asp:DetailsView>
                             </td>
                         </tr>
                         <tr>
@@ -212,9 +226,9 @@
                                 <asp:Label ID="lblResPhone" runat="server"></asp:Label>
                             </td>
                             <td ID="Discont" style="width: 129px">
-                                Dicount Amount:</td>
-                            <td>
-                                <asp:Label ID="lblDiscountAmount" runat="server"></asp:Label>
+                                <asp:DropDownList ID="ddlDiscounts" runat="server" AutoPostBack="True" 
+                                    DataTextField="DiscountDescription" DataValueField="DiscountID">
+                                </asp:DropDownList>
                             </td>
                         </tr>
                         <tr>
@@ -223,10 +237,7 @@
                             <td style="width: 176px">
                                 &nbsp;</td>
                             <td rowspan="2" style="width: 129px">
-                                Dicsount Rules:</td>
-                            <td rowspan="2">
-                                <asp:Label ID="lblDiscountRules" runat="server"></asp:Label>
-                            </td>
+                                &nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 73px">
@@ -237,16 +248,19 @@
                     </table>
                     <asp:LinqDataSource ID="ldsDiscout" runat="server" 
                         ContextTypeName="TreasureLand.TreasureLandDataClassesDataContext" 
-                        EntityTypeName="" TableName="Discounts" 
-                        Where="DiscountExpiration &lt; @DiscountExpiration">
-                        <WhereParameters>
-                            <asp:ControlParameter ControlID="lblDateToday" Name="DiscountExpiration" 
-                                PropertyName="Text" Type="DateTime" />
-                        </WhereParameters>
+                        EntityTypeName="" TableName="Discounts">
                     </asp:LinqDataSource>
                     <asp:LinqDataSource ID="ldsRoomType" runat="server" 
                         ContextTypeName="TreasureLand.TreasureLandDataClassesDataContext" 
                         EntityTypeName="" TableName="HotelRoomTypes">
+                    </asp:LinqDataSource>
+                    <asp:LinqDataSource ID="ldsDiscountsInfo" runat="server" 
+                        ContextTypeName="TreasureLand.TreasureLandDataClassesDataContext" 
+                        EntityTypeName="" TableName="Discounts" Where="DiscountID == @DiscountID">
+                        <WhereParameters>
+                            <asp:ControlParameter ControlID="ddlDiscounts" Name="DiscountID" 
+                                PropertyName="SelectedValue" Type="Int16" />
+                        </WhereParameters>
                     </asp:LinqDataSource>
                     <br />
                     <table style="width:100%;">
