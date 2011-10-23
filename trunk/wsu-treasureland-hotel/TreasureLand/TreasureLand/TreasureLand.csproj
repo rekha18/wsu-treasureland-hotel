@@ -60,11 +60,13 @@
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
+    <Content Include="Admin\AdminDefault.aspx" />
+    <Content Include="Admin\AdminMaster.master" />
     <Content Include="Admin\CreateUser.aspx" />
-    <Content Include="Admin\Default.aspx" />
     <Content Include="Admin\ManageRooms.aspx" />
     <Content Include="Admin\ManageServices.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
+    <Content Include="Admin\ReportsAdmin.aspx" />
     <Content Include="App_Data\ghana.mdf" />
     <Content Include="App_Data\ghana_log.ldf">
       <DependentUpon>ghana.mdf</DependentUpon>
@@ -82,6 +84,7 @@
     <Content Include="HouseKeeping\HouseKeepingDefault.aspx" />
     <Content Include="HouseKeeping\HouseKeepingReports.aspx" />
     <Content Include="HouseKeeping\Inventory.aspx" />
+    <Content Include="Images\CompanyLogo.png" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -128,12 +131,17 @@
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\AdminMasterPage.master.cs">
-      <DependentUpon>AdminMasterPage.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="Admin\AdminDefault.aspx.cs">
+      <DependentUpon>AdminDefault.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\AdminMasterPage.master.designer.cs">
-      <DependentUpon>AdminMasterPage.master</DependentUpon>
+    <Compile Include="Admin\AdminDefault.aspx.designer.cs">
+      <DependentUpon>AdminDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminMaster.master.cs">
+      <DependentUpon>AdminMaster.master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdminMaster.master.designer.cs">
+      <DependentUpon>AdminMaster.master</DependentUpon>
     </Compile>
     <Compile Include="Admin\CreateUser.aspx.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>
@@ -141,13 +149,6 @@
     </Compile>
     <Compile Include="Admin\CreateUser.aspx.designer.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManageRooms.aspx.cs">
       <DependentUpon>ManageRooms.aspx</DependentUpon>
@@ -169,6 +170,12 @@
     </Compile>
     <Compile Include="Admin\ManageUsers.aspx.designer.cs">
       <DependentUpon>ManageUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ReportsAdmin.aspx.cs">
+      <DependentUpon>ReportsAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ReportsAdmin.aspx.designer.cs">
+      <DependentUpon>ReportsAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clerk\CheckIn.aspx.cs">
       <DependentUpon>CheckIn.aspx</DependentUpon>
@@ -316,7 +323,6 @@
   <ItemGroup>
     <Content Include="Admin\Web.config" />
     <Content Include="Clerk\Web.config" />
-    <Content Include="Admin\AdminMasterPage.master" />
     <Content Include="Clerk\ClerkMasterPage.master" />
     <Content Include="HouseKeeping\HouseKeepingMasterPage.master" />
     <None Include="TreasureLandDataClasses.dbml">
