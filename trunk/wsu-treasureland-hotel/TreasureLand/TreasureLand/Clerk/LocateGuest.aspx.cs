@@ -13,5 +13,15 @@ namespace TreasureLand.Clerk
         {
 
         }
+
+        protected void btnLocateGuest_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSelectGuest_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
