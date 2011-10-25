@@ -18,8 +18,10 @@
                     onclick="btnHome_Click" />
             </td>
             <td rowspan="4" valign="top">
+               <div style="position:absolute; overflow:auto; top: 158px; left: 228px; width: 187px;">
                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
+                </div>
             </td>
         </tr>
         <tr>
