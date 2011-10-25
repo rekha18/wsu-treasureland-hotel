@@ -19,8 +19,8 @@
                 <asp:Button ID="btnHome" runat="server" Text="Home" Width="180px" 
                     onclick="btnHome_Click" />
             </td>
-            <td rowspan="9">
-                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+            <td rowspan="9" valign="top">
+                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server" >
                 </asp:ContentPlaceHolder>
             </td>
         </tr>
