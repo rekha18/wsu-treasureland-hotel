@@ -1,0 +1,43 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManagerMasterPage.master.cs" Inherits="TreasureLand.Manager.ManagerMasterPage" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <style type="text/css">
+
+        .style1
+        {
+            width: 200px;
+        }
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_RoleMenu" runat="server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+    <table style="width:100%;">
+        <tr>
+            <td class="style1">
+                <asp:Button ID="btnHome" runat="server" Text="Home" Width="180px" 
+                    onclick="btnHome_Click" />
+            </td>
+            <td rowspan="4">
+                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </td>
+        </tr>
+        <tr>
+            <td class="style1">
+                <asp:Button ID="btnInventory" runat="server" Text="Inventory" Width="180px" 
+                    onclick="btnInventory_Click" />
+            </td>
+        </tr>
+        <tr>
+            <td class="style1">
+                <asp:Button ID="btnReports" runat="server" Text="Reports" Width="180px" 
+                    onclick="btnReports_Click" />
+            </td>
+        </tr>
+        <tr>
+            <td class="style1">
+                <asp:Button ID="btnLogout" runat="server" Text="Logout" Width="180px" />
+            </td>
+        </tr>
+    </table>
+</asp:Content>
