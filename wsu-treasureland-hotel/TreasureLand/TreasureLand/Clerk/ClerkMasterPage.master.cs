@@ -21,12 +21,12 @@ namespace TreasureLand.Clerk
 
         protected void btnCheckIn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CheckIn.aspx");
+            Response.Redirect("LocateGuest.aspx");
         }
 
         protected void Checkout_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CheckOut.aspx");
+            Response.Redirect("LocateReservation.aspx");
         }
 
         protected void btnUpdateGuestFolio_Click(object sender, EventArgs e)
