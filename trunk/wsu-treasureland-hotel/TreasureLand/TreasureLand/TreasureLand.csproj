@@ -378,7 +378,9 @@
       <LastGenOutput>TreasureLandDataClasses.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Web.sitemap" />
+    <Content Include="Web.sitemap">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="TreasureLandDataClasses.dbml.layout">
