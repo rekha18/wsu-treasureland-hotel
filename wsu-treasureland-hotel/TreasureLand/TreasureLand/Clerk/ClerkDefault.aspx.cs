@@ -32,7 +32,7 @@ namespace TreasureLand.Clerk
             lbtnDatePrevious.Text = "Previous " + GridRangeView.DaysDisplayed + " Days";
             lbtnDateFuture.Text = "Next " + GridRangeView.DaysDisplayed + " Days";
             lbtnPageNext.Text = "Next " + GridRangeView.PageSize + " Rooms";
-            lbtnPagePrevious.Text = "Next " + GridRangeView.PageSize + " Rooms";
+            lbtnPagePrevious.Text = "Previous " + GridRangeView.PageSize + " Rooms";
 
             if (GridRangeView.RoomIndex < GridRangeView.PageSize)
                 lbtnPagePrevious.Enabled = false;
