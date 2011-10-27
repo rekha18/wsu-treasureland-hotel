@@ -26,13 +26,23 @@ namespace TreasureLand.Clerk
         protected void generateTable(object sender, EventArgs e)
         {
             cHome.update();
-            lblTable.Text = cHome.generateTableHTML();
+            lblTable.Text = cHome.generateTableHTML(true);
 
             //Generate label information
             lbtnDatePrevious.Text = "Previous " + GridRangeView.DaysDisplayed + " Days";
             lbtnDateFuture.Text = "Next " + GridRangeView.DaysDisplayed + " Days";
             lbtnPageNext.Text = "Next " + GridRangeView.PageSize + " Rooms";
             lbtnPagePrevious.Text = "Next " + GridRangeView.PageSize + " Rooms";
+
+            if (GridRangeView.RoomIndex < GridRangeView.PageSize)
+                lbtnPagePrevious.Enabled = false;
+            else
+                lbtnPagePrevious.Enabled = true;
+
+            if (GridRangeView.RoomIndex + GridRangeView.PageSize >= GridRangeView.MaxRooms)
+                lbtnPageNext.Enabled = false;
+            else
+                lbtnPagePrevious.Enabled = true;
         }
 
         /// <summary>
