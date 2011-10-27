@@ -22,15 +22,6 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnHome;
         
         /// <summary>
-        /// adminContentHolder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder adminContentHolder;
-        
-        /// <summary>
         /// btnReports control.
         /// </summary>
         /// <remarks>
@@ -85,12 +76,12 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnManageServices;
         
         /// <summary>
-        /// btnLogout control.
+        /// adminContentHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnLogout;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder adminContentHolder;
     }
 }
