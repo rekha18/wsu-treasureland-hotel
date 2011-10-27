@@ -1,22 +1,24 @@
 ﻿<%@ Page Title="Home Screen" Language="C#" MasterPageFile="~/Clerk/ClerkMasterPage.master" AutoEventWireup="true" CodeBehind="ClerkDefault.aspx.cs" Inherits="TreasureLand.Clerk.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div id="dateselectors">
-        <span style="float:left;">
+    <div id="dateselectors" style="width:inherit; margin-left: auto; margin-right: auto; text-align:center;">
+        <span style="padding: 0px 5px 5px 5px;">
             <asp:LinkButton ID="lbtnDatePrevious" runat="server" onclick="lbtnPrevious_Click"></asp:LinkButton>
         </span>
-        <span style="float:left;">
+        <span style="padding: 0px 5px 5px 5px;">
             <asp:LinkButton ID="lbtnToday" runat="server" onclick="lbtnToday_Click">Today</asp:LinkButton>
         </span>
-        <span style="float:left; height: 17px;">
+        <span style="padding: 0px 5px 5px 5px;">
             <asp:LinkButton ID="lbtnDateFuture" runat="server" onclick="lbtnFuture_Click"></asp:LinkButton>
         </span>
     </div>
-    <div id="table">
+    <div id="table" style="width:inherit; margin-left: auto; margin-right: auto; text-align:center;">
         <asp:Label ID="lblTable" runat="server" onprerender="generateTable"></asp:Label>
     </div>
-    <div id="pageselectors">
-        <span style="text-align:center;">
+    <div id="pageselectors" style="width:inherit; margin-left: auto; margin-right: auto; text-align:center;">
+        <span style="padding: 0px 5px 5px 5px;">
             <asp:LinkButton ID="lbtnPagePrevious" runat="server"></asp:LinkButton>
+        </span>
+        <span style="padding: 0px 5px 5px 5px;">
             <asp:LinkButton ID="lbtnPageNext" runat="server"></asp:LinkButton>
         </span>
     </div>
