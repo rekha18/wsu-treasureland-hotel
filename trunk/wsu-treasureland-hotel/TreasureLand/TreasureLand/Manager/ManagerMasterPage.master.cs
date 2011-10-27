@@ -13,5 +13,20 @@ namespace TreasureLand.Manager
         {
 
         }
+
+        protected void btnHome_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnInventory_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnReports_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
