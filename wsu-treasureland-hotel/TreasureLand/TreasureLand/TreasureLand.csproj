@@ -192,6 +192,8 @@
       <DependentUpon>ManageDiscounts.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\LocateGuestDB.cs" />
+    <Compile Include="App_Code\GridRangeView.cs" />
+    <Compile Include="App_Code\RoomDB.cs" />
     <Compile Include="Clerk\ClerkDefault.aspx.cs">
       <DependentUpon>ClerkDefault.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
