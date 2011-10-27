@@ -13,5 +13,15 @@ namespace TreasureLand.Maintenance
         {
 
         }
+
+        protected void btnHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MaintenanceDefault.aspx");
+        }
+
+        protected void btnReports_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MaintenanceReports.aspx");
+        }
     }
 }
