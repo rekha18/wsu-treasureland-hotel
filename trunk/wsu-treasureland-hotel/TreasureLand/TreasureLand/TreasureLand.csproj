@@ -68,6 +68,8 @@
     <Content Include="Admin\ManageUsers.aspx" />
     <Content Include="Admin\ReportsAdmin.aspx" />
     <Content Include="Admin\ManageDiscounts.aspx" />
+    <Content Include="Admin\UserInformation.aspx" />
+    <Content Include="Admin\Controls\UserStatusAndApproval.ascx" />
     <Content Include="App_Data\ghana.mdf" />
     <Content Include="App_Data\ghana_log.ldf">
       <DependentUpon>ghana.mdf</DependentUpon>
@@ -192,6 +194,20 @@
       <DependentUpon>ManageDiscounts.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\LocateGuestDB.cs" />
+    <Compile Include="Admin\UserInformation.aspx.cs">
+      <DependentUpon>UserInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserInformation.aspx.designer.cs">
+      <DependentUpon>UserInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Controls\UserStatusAndApproval.ascx.cs">
+      <DependentUpon>UserStatusAndApproval.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Controls\UserStatusAndApproval.ascx.designer.cs">
+      <DependentUpon>UserStatusAndApproval.ascx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\GridRangeView.cs" />
     <Compile Include="App_Code\RoomDB.cs" />
     <Compile Include="Clerk\ClerkDefault.aspx.cs">
