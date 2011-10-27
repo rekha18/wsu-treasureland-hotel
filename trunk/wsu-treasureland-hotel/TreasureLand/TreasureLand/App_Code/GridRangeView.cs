@@ -164,7 +164,9 @@ namespace TreasureLand.App_Code
         /// This function generates two javascript methods into each table cell.
         /// select(i) and deselect(i) must be present in the base HTML file
         /// </summary>
-        public string generateTableHTML()
+        /// <param name="centerTable">Whether or not the table will include CSS to center it</param>
+        /// <returns>An HTML string containing definitions for a table</returns>
+        public string generateTableHTML(bool centerTable)
         {
             string tableRows = String.Empty; //Represents the row portion of the table
             string[, ,] StringColData = new string[MAX_ROOMS, DaysDisplayed, 2]; //row, col, layer info (color, info)
@@ -178,7 +180,8 @@ namespace TreasureLand.App_Code
             //can start being crafted
 
             //Generate the row headers
-            string table = "<table>" + generateRowHeaders();
+            string table = "<table" + 
+                (centerTable ? " style='margin-left:auto;margin-right:auto;'>" : ">") + generateRowHeaders();
 
             //Generate the data rows
             for (int rowIndex = RoomIndex-1; rowIndex < RoomIndex + PageSize && rowIndex < MAX_ROOMS; rowIndex++)
