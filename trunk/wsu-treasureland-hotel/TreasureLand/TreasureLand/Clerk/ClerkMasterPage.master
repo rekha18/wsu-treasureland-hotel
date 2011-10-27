@@ -15,62 +15,43 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <table style="width:100%;">
         <tr>
-            <td class="style1">
+            <td class="style1" valign="top">
                 <asp:Button ID="btnHome" runat="server" Text="Home" Width="180px" 
                     onclick="btnHome_Click" />
+                <br />
+                <br />
+                <asp:Button ID="btnCheckIn" runat="server" Text="Check-in" Width="180px" 
+                    onclick="btnCheckIn_Click" />
+                <br />
+                <br />
+                <asp:Button ID="Checkout" runat="server" Text="Check-out" Width="180px" 
+                    onclick="Checkout_Click" />
+                <br />
+                <br />
+                <asp:Button ID="btnUpdateGuestFolio" runat="server" Text="Update Guest-folio" 
+                        Width="180px" onclick="btnUpdateGuestFolio_Click" />
+                <br />
+                <br />
+                <asp:Button ID="btnCreateReservation" runat="server" Text="Create Reservation" 
+                        Width="180px" onclick="btnCreateReservation_Click" />
+                <br />
+                <br />
+                <asp:Button ID="btnUpdateReservation" runat="server" 
+                        Text="Update/Delete Reservation" Width="180px" 
+                    onclick="btnUpdateReservation_Click" />
+                <br />
+                <br />
+                <asp:Button ID="btnViewGuest" runat="server" Text="View Current Guests" 
+                        Width="180px" onclick="btnViewGuest_Click" />
+                <br />
+                <br />
+                <asp:Button ID="btnReports" runat="server" Text="Reports" Width="180px" 
+                    onclick="btnReports_Click" />
             </td>
-            <td rowspan="9" valign="top">
+            <td valign="top">
                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server" >
                 </asp:ContentPlaceHolder>
             </td>
         </tr>
-        <tr>
-            <td class="style1">
-                <asp:Button ID="btnCheckIn" runat="server" Text="Check-in" Width="180px" 
-                    onclick="btnCheckIn_Click" />
-            </td>
-        </tr>
-        <tr>
-            <td class="style1">
-                <asp:Button ID="Checkout" runat="server" Text="Check-out" Width="180px" 
-                    onclick="Checkout_Click" />
-            </td>
-        </tr>
-        <tr>
-            <td class="style1">
-                <asp:Button ID="btnUpdateGuestFolio" runat="server" Text="Update Guest-folio" 
-                        Width="180px" onclick="btnUpdateGuestFolio_Click" />
-            </td>
-        </tr>
-        <tr>
-            <td class="style1">
-                <asp:Button ID="btnCreateReservation" runat="server" Text="Create Reservation" 
-                        Width="180px" onclick="btnCreateReservation_Click" />
-            </td>
-        </tr>
-        <tr>
-            <td class="style1">
-                <asp:Button ID="btnUpdateReservation" runat="server" 
-                        Text="Update/Delete Reservation" Width="180px" 
-                    onclick="btnUpdateReservation_Click" />
-            </td>
-        </tr>
-        <tr>
-            <td class="style1">
-                <asp:Button ID="btnViewGuest" runat="server" Text="View Current Guests" 
-                        Width="180px" onclick="btnViewGuest_Click" />
-            </td>
-        </tr>
-        <tr>
-            <td class="style1">
-                <asp:Button ID="btnReports" runat="server" Text="Reports" Width="180px" 
-                    onclick="btnReports_Click" />
-            </td>
-        </tr>
-        <tr>
-            <td class="style1">
-                <asp:Button ID="btnLogout" runat="server" Text="Logout" Width="180px" />
-            </td>
-        </tr>
-    </table>
+        </table>
 </asp:Content>
