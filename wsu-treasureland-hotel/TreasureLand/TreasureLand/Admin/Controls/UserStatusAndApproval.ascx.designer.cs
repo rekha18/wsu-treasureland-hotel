@@ -10,60 +10,69 @@
 namespace TreasureLand.Admin {
     
     
-    public partial class ManageUsers {
+    public partial class UserStatusAndApproval {
         
         /// <summary>
-        /// Repeater_FilteringUI control.
+        /// Label_UserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater_FilteringUI;
+        protected global::System.Web.UI.WebControls.Label Label_UserName;
         
         /// <summary>
-        /// GridView_UserAccounts control.
+        /// CheckBox_IsEnabled control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView_UserAccounts;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox_IsEnabled;
         
         /// <summary>
-        /// lnkFirst control.
+        /// Label_LastLockedOutDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkFirst;
+        protected global::System.Web.UI.WebControls.Label Label_LastLockedOutDate;
         
         /// <summary>
-        /// lnkPrev control.
+        /// Button_UnlockUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkPrev;
+        protected global::System.Web.UI.WebControls.Button Button_UnlockUser;
         
         /// <summary>
-        /// lnkNext control.
+        /// CheckBoxList_Roles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkNext;
+        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList_Roles;
         
         /// <summary>
-        /// lnkLast control.
+        /// Button_UpdateRoles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkLast;
+        protected global::System.Web.UI.WebControls.Button Button_UpdateRoles;
+        
+        /// <summary>
+        /// Label_StatusMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label_StatusMsg;
     }
 }
