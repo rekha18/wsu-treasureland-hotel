@@ -8,6 +8,23 @@
       <siteMapNode title="Manage Users" url="/Admin/ManageUsers.aspx" roles="Admin" />
     </siteMapNode>
     <siteMapNode title="Clerk" url="/Clerk/Default.aspx" roles="Clerk,Admin">
+      <siteMapNode title="Create Reservation" url=""/>
+      <siteMapNode title="Locate Guests" url="" />
+      <siteMapNode title="Reservations" />
+      <siteMapNode title="Reports" />
+      <siteMapNode title="Guest Folios" />
+      <siteMapNode title="Reservations" />
+      <siteMapNode title="View Guests" />
+    </siteMapNode>
+    <siteMapNode title="Housekeeping" url="/HouseKeeping/Default.aspx" roles="Housekeeping,Admin">
+      <siteMapNode title="Reports" />
+      <siteMapNode title="Inventory" />
+    </siteMapNode>
+    <siteMapNode title="Maintenance" url="/Maintenance/MaintenanceDefault.aspx" roles="Housekeeping,Maintenance">
+      <siteMapNode title="Reports"/>
+    </siteMapNode>
+    <siteMapNode title="Manager" url="ManagerDefault.aspx" roles="Admin,Manager">
+      <siteMapNode title="Inventory" />
     </siteMapNode>
     <siteMapNode title="My Account" url="~/Account/ChangePassword.aspx" roles="*"/>
   </siteMapNode>
