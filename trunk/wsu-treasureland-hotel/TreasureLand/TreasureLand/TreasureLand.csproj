@@ -391,6 +391,9 @@
     <Content Include="HouseKeeping\HouseKeepingMasterPage.master" />
     <Content Include="Maintenance\MaintenanceMasterPage.master" />
     <Content Include="Manager\ManagerMasterPage.master" />
+    <Content Include="Maintenance\Web.config" />
+    <Content Include="Manager\Web.config" />
+    <Content Include="HouseKeeping\Web.config" />
     <None Include="TreasureLandDataClasses.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>TreasureLandDataClasses.designer.cs</LastGenOutput>
