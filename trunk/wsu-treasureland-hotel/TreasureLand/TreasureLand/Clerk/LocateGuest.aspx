@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Locate Guest" Language="C#" MasterPageFile="~/Clerk/ClerkMasterPage.master" AutoEventWireup="true" CodeBehind="LocateGuest.aspx.cs" Inherits="TreasureLand.Clerk.WebForm4" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:MultiView ID="mvLocateGuest" runat="server">
+    <asp:MultiView ID="mvLocateGuest" runat="server" ActiveViewIndex="0">
         <asp:View ID="vLocateGuest" runat="server">
             <table class="style1">
                 <tr>
@@ -35,7 +35,7 @@
                 </tr>
                 <tr>
                     <td class="style19">
-                        <asp:Button ID="btnLocateGuest" runat="server" onclick="btnLocateGuest_Click" 
+                        <asp:Button ID="btnLocateGuest" runat="server" 
                             Text="Locate Guest" ValidationGroup="lookup" />
                     </td>
                     <td class="style25">
@@ -53,20 +53,24 @@
             CHECK IN:<asp:GridView ID="gvGuest" runat="server" AutoGenerateColumns="False" 
                 DataKeyNames="ReservationID" DataSourceID="odsLocateGuest">
                 <Columns>
-                    <asp:BoundField DataField="ReservationID" HeaderText="ReservationID" 
+                    <asp:BoundField DataField="ReservationID" HeaderText="Reservation ID" 
                         InsertVisible="False" ReadOnly="True" SortExpression="ReservationID" />
-                    <asp:BoundField DataField="GuestID" HeaderText="GuestID" 
-                        SortExpression="GuestID" />
-                    <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
+                    <asp:BoundField DataField="GuestFirstName" HeaderText="Guest First Name" 
+                        SortExpression="GuestFirstName" />
+                    <asp:BoundField DataField="GuestSurName" HeaderText="Guest Sur Name" 
+                        SortExpression="GuestSurName" />
+                    <asp:BoundField DataField="GuestPhone" HeaderText="Guest Phone Number" 
+                        SortExpression="GuestPhone" />
                 </Columns>
             </asp:GridView>
             <asp:SqlDataSource ID="odsLocateGuest" runat="server" 
                 ConnectionString="<%$ ConnectionStrings:TreasureLandDB %>" 
-                SelectCommand="SELECT [ReservationID], [GuestID] FROM [Reservation]">
+                
+                SelectCommand="SELECT Reservation.ReservationID, Guest.GuestFirstName, Guest.GuestSurName, Guest.GuestPhone FROM Reservation INNER JOIN Guest ON Reservation.GuestID = Guest.GuestID">
             </asp:SqlDataSource>
             <br />
             &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnSelectGuest" runat="server" onclick="btnSelectGuest_Click" 
+            <asp:Button ID="btnSelectGuest" runat="server" 
                 Text="Select Guest" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" 
@@ -78,43 +82,43 @@
                     <td style="width: 133px">
                         Reservation Number:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtReservationNum1" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtReservationNum1" runat="server" ReadOnly="True"></asp:TextBox>
                     </td>
                     <td style="width: 99px">
                         First Name:</td>
                     <td style="width: 134px">
-                        <asp:TextBox ID="txtFirstName0" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtFirstName0" runat="server" ReadOnly="True"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 133px">
                         Room Type:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtRoomType" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtRoomType" runat="server" ReadOnly="True"></asp:TextBox>
                     </td>
                     <td style="width: 99px">
                         Surname:</td>
                     <td style="width: 134px">
-                        <asp:TextBox ID="txtSurname0" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtSurname0" runat="server" ReadOnly="True"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 133px">
                         Room Number:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtRoomNumber" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtRoomNumber" runat="server" ReadOnly="True"></asp:TextBox>
                     </td>
                     <td style="width: 99px">
                         Phone Number:</td>
                     <td style="width: 134px">
-                        <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtPhone" runat="server" ReadOnly="True"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 133px">
                         Check out:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtCheckOut" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtCheckOut" runat="server" ReadOnly="True"></asp:TextBox>
                     </td>
                     <td style="width: 99px">
                         Email:</td>
@@ -126,7 +130,7 @@
                     <td style="width: 133px">
                         Number of Guests</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtNumGuests" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtNumGuests" runat="server" ReadOnly="True"></asp:TextBox>
                     </td>
                     <td style="width: 99px">
                         &nbsp;</td>
