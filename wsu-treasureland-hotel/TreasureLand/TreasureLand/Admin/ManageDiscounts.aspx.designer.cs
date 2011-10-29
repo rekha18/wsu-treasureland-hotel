@@ -22,31 +22,22 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.MultiView mvDiscounts;
         
         /// <summary>
-        /// vDiscountsMain control.
+        /// vDiscountsUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View vDiscountsMain;
+        protected global::System.Web.UI.WebControls.View vDiscountsUpdate;
         
         /// <summary>
-        /// btnAddDiscounts control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddDiscounts;
-        
-        /// <summary>
-        /// btnEditOrDeleteDisconts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditOrDeleteDisconts;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
         /// ldsDiscounts control.
@@ -56,6 +47,15 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinqDataSource ldsDiscounts;
+        
+        /// <summary>
+        /// btnAddDiscountItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddDiscountItem;
         
         /// <summary>
         /// vDiscountAdd control.
@@ -182,32 +182,5 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBackFromAdd;
-        
-        /// <summary>
-        /// vDiscountsUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View vDiscountsUpdate;
-        
-        /// <summary>
-        /// GridView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
-        
-        /// <summary>
-        /// btnBackFromEdit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBackFromEdit;
     }
 }
