@@ -24,12 +24,11 @@
                 <br />
                 <asp:Button ID="btnReports" runat="server" Text="Reports" Width="180px" 
                     onclick="btnReports_Click" />
+                <br />
             </td>
-            <td valign="top">
-               <div style="position:absolute; overflow:auto; top: 158px; left: 228px; width: 187px;">
+            <td  valign="top">
                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
-                </div>
             </td>
         </tr>
         </table>
