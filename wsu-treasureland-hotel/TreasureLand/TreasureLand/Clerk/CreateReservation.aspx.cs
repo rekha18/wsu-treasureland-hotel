@@ -9,14 +9,13 @@ using System.Web.UI.WebControls;
 
 namespace TreasureLand.Clerk
 {
-    /*Items that still need to be addressed.
-     * Discounts need to be attached 
-     * RoomTypes need to be attached
+    /*Items that still need to be addressed. 
      * Select Rooms need to be enabled
      * Total Quoted Cost needs to be calculated
      * Resever button needs to be enabled and programmed
      * Add Guest needs to have check against duplicate entries
      */ 
+
     public partial class CreateReservation : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)

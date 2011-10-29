@@ -251,20 +251,16 @@
                                     onselectionchanged="calDateFrom_SelectionChanged" />
                             </td>
                             <td style="width: 239px">
-                                RoomType:</td>
-                            <td>
-                                <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" 
-                                    DataSourceID="ldsRoomType" DataTextField="RoomType" 
-                                    DataValueField="HotelRoomTypeID">
-                                </asp:DropDownList>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 239px">
                                 Select Room:</td>
                             <td>
                                 <asp:Button ID="btnSelectRoom" runat="server" Text="Select Room" />
                             </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 239px">
+                                &nbsp;</td>
+                            <td>
+                                &nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 239px">
@@ -282,11 +278,11 @@
                         </tr>
                         <tr>
                             <td style="width: 244px">
-                                Date From:</td>
+                                Checkin Date:</td>
                             <td style="width: 239px">
                                 Number of Days:</td>
                             <td>
-                                Date To:</td>
+                                Checkout Date:</td>
                         </tr>
                         <tr>
                             <td style="width: 244px">
