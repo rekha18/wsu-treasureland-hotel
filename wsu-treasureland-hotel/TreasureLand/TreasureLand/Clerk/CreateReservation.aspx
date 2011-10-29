@@ -58,7 +58,6 @@
                     </table>
                     <br />
                     <asp:GridView ID="gvGuest" runat="server" AutoGenerateColumns="False" 
-                        DataSourceID="odsLocateGuest" 
                         onselectedindexchanged="gvGuest_SelectedIndexChanged">
                         <Columns>
                             <asp:BoundField DataField="GuestSurName" HeaderText="Sur Name" ReadOnly="True" 
@@ -76,24 +75,6 @@
                         onclick="btnSelectGuest_Click" Text="Select Guest" />
                     <br />
                     <br />
-                    <asp:ObjectDataSource ID="odsLocateGuest" runat="server" 
-                        ConflictDetection="CompareAllValues" 
-                        OldValuesParameterFormatString="original_{0}" SelectMethod="LocateGuest" 
-                        TypeName="LocateGuestDB" InsertMethod="AddGuest">
-                        <InsertParameters>
-                            <asp:Parameter Name="FirstName" Type="String" />
-                            <asp:Parameter Name="SurName" Type="String" />
-                            <asp:Parameter Name="Phone" Type="String" />
-                        </InsertParameters>
-                        <SelectParameters>
-                            <asp:ControlParameter ControlID="txtFirstName" DefaultValue="" Name="FirstName" 
-                                PropertyName="Text" Type="String" />
-                            <asp:ControlParameter ControlID="txtSurName" Name="SurName" PropertyName="Text" 
-                                Type="String" />
-                            <asp:ControlParameter ControlID="txtPhone" Name="Phone" PropertyName="Text" 
-                                Type="String" />
-                        </SelectParameters>
-                    </asp:ObjectDataSource>
                 </asp:Panel>
             </asp:View>
             <asp:View ID="vNewGuest" runat="server">
