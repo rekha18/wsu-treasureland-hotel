@@ -46,7 +46,13 @@ namespace TreasureLand.Clerk
         protected void btnLocateGuest_Click(object sender, EventArgs e)
         {
             //Locates guest in database based on the values given
-            odsLocateGuest.Select();
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            var guest = from g in db.Guests
+                        where g.GuestFirstName == txtFirstName.Text || g.GuestSurName == txtSurName.Text || g.GuestPhone == txtPhone.Text
+                        select g;
+            gvGuest.DataSource = guest.ToList();
+            gvGuest.DataBind();
+           
         }
 
         protected void btnAddGuest_Click(object sender, EventArgs e)
