@@ -1,19 +1,35 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/AdminMaster.master" AutoEventWireup="true" CodeBehind="ManageDiscounts.aspx.cs" Inherits="TreasureLand.Admin.ManageDiscounts" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="adminContentHolder" runat="server">
     <asp:MultiView ID="mvDiscounts" runat="server" ActiveViewIndex="0">
-        <asp:View ID="vDiscountsMain" runat="server">
-            <asp:Button ID="btnAddDiscounts" runat="server" CausesValidation="False" 
-                CommandArgument="1" CommandName="SwitchViewByIndex" Text="Add Discounts" />
-            <br />
-            <br />
-            <asp:Button ID="btnEditOrDeleteDisconts" runat="server" 
-                CausesValidation="False" CommandArgument="2" CommandName="SwitchViewByIndex" 
-                Text="Update or Delete Discounts" />
+        <asp:View ID="vDiscountsUpdate" runat="server">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
+                DataKeyNames="DiscountID" DataSourceID="ldsDiscounts">
+                <Columns>
+                    <asp:BoundField DataField="DiscountID" HeaderText="ID" InsertVisible="False" 
+                        ReadOnly="True" SortExpression="DiscountID" />
+                    <asp:BoundField DataField="DiscountDescription" HeaderText="Description" 
+                        ReadOnly="True" SortExpression="DiscountDescription" />
+                    <asp:BoundField DataField="DiscountExpiration" DataFormatString="{0:d}" 
+                        HeaderText="Expiration" SortExpression="DiscountExpiration" />
+                    <asp:BoundField DataField="DiscountRules" HeaderText="Rules" 
+                        SortExpression="DiscountRules" />
+                    <asp:BoundField DataField="DiscountAmount" HeaderText="Amount" ReadOnly="True" 
+                        SortExpression="DiscountAmount" />
+                    <asp:CheckBoxField DataField="IsPrecentage" HeaderText="Precentage" 
+                        ReadOnly="True" SortExpression="IsPrecentage" />
+                    <asp:CommandField ButtonType="Button" ShowEditButton="True" />
+                    <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
+                </Columns>
+            </asp:GridView>
             <asp:LinqDataSource ID="ldsDiscounts" runat="server" 
                 ContextTypeName="TreasureLand.TreasureLandDataClassesDataContext" 
                 EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" 
                 OrderBy="DiscountID" TableName="Discounts">
             </asp:LinqDataSource>
+            <br />
+            <br />
+            <asp:Button ID="btnAddDiscountItem" runat="server" CausesValidation="False" 
+                CommandArgument="1" CommandName="SwitchViewByIndex" Text="Add Discount" />
         </asp:View>
         <asp:View ID="vDiscountAdd" runat="server">
             <table style="width: 100%;">
@@ -72,37 +88,12 @@
                 </tr>
             </table>
             <br />
-            <asp:Button ID="btnInsertDiscount" runat="server" CommandArgument="2" 
+            <asp:Button ID="btnInsertDiscount" runat="server" CommandArgument="0" 
                 CommandName="SwitchViewByIndex" onclick="btnInsertDiscount_Click" 
                 Text="Add Discount" />
             <br />
             <br />
             <asp:Button ID="btnBackFromAdd" runat="server" CausesValidation="False" 
-                CommandArgument="0" CommandName="SwitchViewByIndex" Text="Back" />
-        </asp:View>
-        <asp:View ID="vDiscountsUpdate" runat="server">
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
-                DataKeyNames="DiscountID" DataSourceID="ldsDiscounts">
-                <Columns>
-                    <asp:BoundField DataField="DiscountID" HeaderText="DiscountID" 
-                        InsertVisible="False" ReadOnly="True" SortExpression="DiscountID" />
-                    <asp:BoundField DataField="DiscountDescription" 
-                        HeaderText="DiscountDescription" SortExpression="DiscountDescription" />
-                    <asp:BoundField DataField="DiscountExpiration" DataFormatString="{0:d}" 
-                        HeaderText="DiscountExpiration" SortExpression="DiscountExpiration" />
-                    <asp:BoundField DataField="DiscountRules" HeaderText="DiscountRules" 
-                        SortExpression="DiscountRules" />
-                    <asp:BoundField DataField="DiscountAmount" HeaderText="DiscountAmount" 
-                        SortExpression="DiscountAmount" />
-                    <asp:CheckBoxField DataField="IsPrecentage" HeaderText="IsPrecentage" 
-                        SortExpression="IsPrecentage" />
-                    <asp:CommandField ButtonType="Button" ShowEditButton="True" />
-                    <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
-                </Columns>
-            </asp:GridView>
-            <br />
-            <br />
-            <asp:Button ID="btnBackFromEdit" runat="server" CausesValidation="False" 
                 CommandArgument="0" CommandName="SwitchViewByIndex" Text="Back" />
         </asp:View>
         <br />
