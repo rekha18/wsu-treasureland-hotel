@@ -55,6 +55,42 @@ namespace TreasureLand.App_Code
         }
 
         /// <summary>
+        /// Because of the nature of the hashtable, a list of all of the
+        /// roomNumbers must be returned to generate a complete table even
+        /// if a room lacks any records for it
+        /// </summary>
+        /// <returns>Linked list of all of the room names</returns>
+        public static List<string> getRoomNumbers()
+        {
+            SqlConnection conn = new SqlConnection(getConnectionString());
+
+            try
+            {
+                conn.Open(); //Open the connection
+
+                string command = "SELECT RoomNumbers FROM Room " +
+                                 "ORDER BY RoomNumbers";
+
+                SqlCommand connCommand = new SqlCommand(command, conn);
+
+                SqlDataReader rt = connCommand.ExecuteReader();
+
+                List<string> rooms = new List<string>();
+                while (rt.Read())
+                {
+                    rooms.Add(rt[0].ToString());
+                }
+                rt.Close();
+
+                return rooms;
+            }
+            catch (Exception e)
+            {
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Retrieves all reservations in the database and packages
         /// </summary>
         /// <param name="beginRange">Ending dates before this time will be skipped</param>
@@ -71,7 +107,7 @@ namespace TreasureLand.App_Code
                                  "room.RoomID, room.RoomNumbers FROM Reservation res INNER JOIN ReservationDetail rd " +
                                  "ON res.ReservationID = rd.ReservationID " +
                                  "INNER JOIN Room room ON rd.RoomID = room.RoomID " +
-                                 "ORDER BY room.RoomID";
+                                 "ORDER BY room.RoomNumbers";
 
                 SqlCommand connCommand = new SqlCommand(command, conn);
 
@@ -85,8 +121,8 @@ namespace TreasureLand.App_Code
                     //string debug = dateTemp.Substring(0, dateTemp.IndexOf(' '));
                     DateTime begin = DateTime.Parse(dateTemp.Substring(0,dateTemp.IndexOf(' ')));
                     DateTime end = begin.AddDays(Double.Parse(rt[2].ToString()));
-                    if ((end - beginRange).Days < 0 || (begin - endRange).Days > 0)
-                        continue; //Skip the rest and go to the next record
+                    //if ((end - beginRange).Days < 0 || (begin - endRange).Days > 0)
+                        //continue; //Skip the rest and go to the next record
 
                     char resStatus = Char.Parse(rt[1].ToString());
                     short id = Int16.Parse(rt[3].ToString());
