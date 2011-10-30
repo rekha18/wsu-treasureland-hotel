@@ -220,6 +220,7 @@
       <DependentUpon>ManageBillingCategories.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\GridRangeView.cs" />
+    <Content Include="App_Code\GuestDB.cs" />
     <Compile Include="App_Code\RoomDB.cs" />
     <Compile Include="Clerk\CheckIn.aspx.designer.cs">
       <DependentUpon>CheckIn.aspx</DependentUpon>
