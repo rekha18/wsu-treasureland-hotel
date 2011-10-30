@@ -27,16 +27,16 @@ namespace TreasureLand.Clerk
                 calDateFrom.SelectedDate = DateTime.Today.Date;
                 lblDateFrom.Text = calDateFrom.SelectedDate.Date.ToShortDateString();
 
-                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-                var discounts = from d in db.Discounts
-                                where d.DiscountExpiration > DateTime.Today.Date
-                                select d;
-
-                ddlDiscounts.DataSource = discounts.ToList();
-                ddlDiscounts.DataBind();
             }
 
-           
+            //Sets Discounts in drop down list
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            var discounts = from d in db.Discounts
+                            where d.DiscountExpiration > DateTime.Today.Date
+                            select d;
+
+            ddlDiscounts.DataSource = discounts.ToList();
+            ddlDiscounts.DataBind();
 
             //Changes date based on number of days changed
             lblDateTo.Text = calDateFrom.SelectedDate.Date.AddDays(Convert.ToInt32(ddlNumberOfDays.SelectedValue)).ToShortDateString();
