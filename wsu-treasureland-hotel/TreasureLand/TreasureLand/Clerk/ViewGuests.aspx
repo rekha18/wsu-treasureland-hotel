@@ -35,10 +35,14 @@
                         </td>
                         <td>
                             <asp:Button ID="btnLocate" runat="server" onclick="btnLocate_Click" 
-                                Text="Locate Guest" Width="121px" />
+                                Text="Locate Guest" Width="121px" ValidationGroup="vgView" />
                         </td>
                     </tr>
                 </table>
+                <asp:CompareValidator ID="cvLocate" runat="server" 
+                    ControlToValidate="txtRoomNumber" Enabled="False" 
+                    ErrorMessage="Room ID must be a number" ForeColor="Red" 
+                    Operator="DataTypeCheck" Type="Integer" ValidationGroup="vgView"></asp:CompareValidator>
                 <br />
                 <br />
                 <asp:GridView ID="gvGuest" runat="server" AutoGenerateColumns="False" 
@@ -116,10 +120,15 @@
                         </td>
                         <td style="width: 177px">
                             <asp:Button ID="btnAddService" runat="server" Text="Add Service" 
-                                onclick="btnAddService_Click" />
+                                onclick="btnAddService_Click" ValidationGroup="vgGuest" />
                         </td>
                     </tr>
                 </table>
+                <asp:CompareValidator ID="cvCost" runat="server" 
+                    ControlToCompare="txtCostofService" Enabled="False" 
+                    ErrorMessage="You must enter a monetary value." ForeColor="Red" 
+                    Operator="DataTypeCheck" Type="Currency" ValidationGroup="vgGuest" 
+                    Visible="False"></asp:CompareValidator>
                 <br />
                 <br />
                 <asp:Button ID="btnPrevious" runat="server" Text="Previous" />
