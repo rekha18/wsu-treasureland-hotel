@@ -226,6 +226,7 @@
     </Compile>
     <Compile Include="Clerk\CheckOut.aspx.cs">
       <DependentUpon>CheckOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Clerk\ClerkDefault.aspx.cs">
       <DependentUpon>ClerkDefault.aspx</DependentUpon>
@@ -254,6 +255,7 @@
     </Compile>
     <Compile Include="Clerk\LocateGuestFolio.aspx.cs">
       <DependentUpon>LocateGuestFolio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Clerk\LocateReservation.aspx.cs">
       <DependentUpon>LocateReservation.aspx</DependentUpon>
