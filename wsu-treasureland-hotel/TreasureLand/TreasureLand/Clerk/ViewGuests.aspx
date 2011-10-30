@@ -9,13 +9,13 @@
                             <asp:Label ID="lblReservation" runat="server" Text="Reservation #:"></asp:Label>
                         </td>
                         <td style="width: 177px">
-                            <asp:TextBox ID="txtReservation" runat="server">3</asp:TextBox>
+                            <asp:TextBox ID="txtReservation" runat="server"></asp:TextBox>
                         </td>
                         <td class="style1" style="width: 83px">
                             <asp:Label ID="lblFirst" runat="server" Text="First Name:"></asp:Label>
                         </td>
                         <td class="style1" style="width: 236px">
-                            <asp:TextBox ID="txtFirstName" runat="server" Width="200px">jason</asp:TextBox>
+                            <asp:TextBox ID="txtFirstName" runat="server" Width="200px"></asp:TextBox>
                         </td>
                         <td>
                             &nbsp;</td>
@@ -25,13 +25,13 @@
                             <asp:Label ID="lblRoom" runat="server" Text="Room #:"></asp:Label>
                         </td>
                         <td style="width: 177px">
-                            <asp:TextBox ID="txtRoomNumber" runat="server">3</asp:TextBox>
+                            <asp:TextBox ID="txtRoomNumber" runat="server"></asp:TextBox>
                         </td>
                         <td class="style1" style="width: 83px">
                             <asp:Label ID="lblSurName" runat="server" Text="Sur Name:"></asp:Label>
                         </td>
                         <td class="style1" style="width: 236px">
-                            <asp:TextBox ID="txtSurName" runat="server" Width="200px">night</asp:TextBox>
+                            <asp:TextBox ID="txtSurName" runat="server" Width="200px"></asp:TextBox>
                         </td>
                         <td>
                             <asp:Button ID="btnLocate" runat="server" onclick="btnLocate_Click" 
@@ -42,7 +42,8 @@
                 <br />
                 <br />
                 <asp:GridView ID="gvGuest" runat="server" AutoGenerateColumns="False" 
-                    onselectedindexchanged="gvGuest_SelectedIndexChanged">
+                    onselectedindexchanged="gvGuest_SelectedIndexChanged" 
+                    onselectedindexchanging="gvGuest_SelectedIndexChanging">
                     <Columns>
                         <asp:BoundField DataField="ReservationID" HeaderText="ReservationID" />
                         <asp:BoundField DataField="GuestFirstName" HeaderText="FirstName" />
@@ -51,6 +52,11 @@
                         <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                     </Columns>
                 </asp:GridView>
+                <br />
+                <asp:Button ID="btnNext" runat="server" onclick="btnNext_Click" Text="Next" 
+                    Visible="False" Width="59px" />
+                <br />
+                <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
             </asp:View>
             <asp:View ID="viewGuest" runat="server">
                 <table style="width: 100%">
@@ -101,17 +107,25 @@
                 <table style="width: 100%">
                     <tr>
                         <td style="width: 135px">
-                            <asp:DropDownList ID="ce" runat="server" TabIndex="-1">
+                            <asp:DropDownList ID="ddlServices" runat="server" TabIndex="-1" 
+                                AutoPostBack="True">
                             </asp:DropDownList>
                         </td>
                         <td style="width: 94px">
                             <asp:TextBox ID="txtCostofService" runat="server">$0.00</asp:TextBox>
                         </td>
                         <td style="width: 177px">
-                            <asp:Button ID="btnAddService" runat="server" Text="Add Service" />
+                            <asp:Button ID="btnAddService" runat="server" Text="Add Service" 
+                                onclick="btnAddService_Click" />
                         </td>
                     </tr>
                 </table>
+                <br />
+                <br />
+                <asp:Button ID="btnPrevious" runat="server" Text="Previous" />
+                <br />
+                <br />
+                <asp:Label ID="lblErrorGuest" runat="server" ForeColor="Red"></asp:Label>
                 <br />
             </asp:View>
         </asp:MultiView>
