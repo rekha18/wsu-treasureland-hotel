@@ -19,7 +19,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
     <table class="style4">
         <tr>
-            <td align="center" class="style6" height="35" valign="top">
+            <td align="center" class="style6"  height="35" valign="top">
                 <asp:Button ID="btnHome" runat="server" Text="Home" Width="125px" 
                     onclick="btnHome_Click" />
                 <br />
@@ -46,13 +46,18 @@
                 <br />
                 <asp:Button ID="btnManageServices" runat="server" Text="Manage Services" 
                     Width="125px" onclick="btnManageServices_Click" />
+                <br />
+                <br />
+                <asp:Button ID="btnManageBillingCategories" runat="server" 
+                    Text="Manage Billing Cat." Width="125px" 
+                    onclick="btnManageBillingCategories_Click" />
             </td>
-            <td valign="top">
+            <td valign="top" rowspan="2">
             <div>
                 <asp:ContentPlaceHolder id="adminContentHolder" runat="server">
                 </asp:ContentPlaceHolder>
             </div >
             </td>
-        </tr>
+            </tr>
         </table>
 </asp:Content>
