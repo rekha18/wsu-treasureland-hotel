@@ -70,13 +70,17 @@
     <Content Include="Admin\ManageDiscounts.aspx" />
     <Content Include="Admin\UserInformation.aspx" />
     <Content Include="Admin\Controls\UserStatusAndApproval.ascx" />
+    <Content Include="Admin\ManageBillingCategories.aspx" />
     <Content Include="App_Data\ghana.mdf" />
     <Content Include="App_Data\ghana_log.ldf">
       <DependentUpon>ghana.mdf</DependentUpon>
     </Content>
+    <Content Include="Clerk\CheckIn.aspx" />
+    <Content Include="Clerk\CheckOut.aspx" />
     <Content Include="Clerk\ClerkDefault.aspx" />
     <Content Include="Clerk\CreateReservation.aspx" />
     <Content Include="Clerk\LocateGuest.aspx" />
+    <Content Include="Clerk\LocateGuestFolio.aspx" />
     <Content Include="Clerk\LocateReservation.aspx" />
     <Content Include="Clerk\Reports.aspx" />
     <Content Include="Clerk\UpdateGuestFolio.aspx" />
@@ -208,8 +212,21 @@
     <Compile Include="Admin\Controls\UserStatusAndApproval.ascx.designer.cs">
       <DependentUpon>UserStatusAndApproval.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ManageBillingCategories.aspx.cs">
+      <DependentUpon>ManageBillingCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageBillingCategories.aspx.designer.cs">
+      <DependentUpon>ManageBillingCategories.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\GridRangeView.cs" />
     <Compile Include="App_Code\RoomDB.cs" />
+    <Compile Include="Clerk\CheckIn.aspx.designer.cs">
+      <DependentUpon>CheckIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\CheckOut.aspx.cs">
+      <DependentUpon>CheckOut.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Clerk\ClerkDefault.aspx.cs">
       <DependentUpon>ClerkDefault.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -234,6 +251,9 @@
     <Compile Include="Clerk\LocateGuest.aspx.cs">
       <DependentUpon>LocateGuest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\LocateGuestFolio.aspx.cs">
+      <DependentUpon>LocateGuestFolio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clerk\LocateReservation.aspx.cs">
       <DependentUpon>LocateReservation.aspx</DependentUpon>
