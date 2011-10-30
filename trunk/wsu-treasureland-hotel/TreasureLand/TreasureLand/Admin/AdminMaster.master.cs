@@ -48,5 +48,10 @@ namespace TreasureLand.Admin
         {
             Response.Redirect("ManageDiscounts.aspx");
         }
+
+        protected void btnManageBillingCategories_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ManageBillingCategories.aspx");
+        }
     }
 }
