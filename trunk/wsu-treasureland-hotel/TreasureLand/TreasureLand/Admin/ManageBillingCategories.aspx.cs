@@ -13,5 +13,24 @@ namespace TreasureLand.Admin
         {
 
         }
+
+        protected void btnAddBilling_Click(object sender, EventArgs e)
+        {
+            //Insert Values into discounts table using linq
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            BillingCategory addBilling = new BillingCategory();
+            addBilling.BillingCategoryDescription = txtDesciption.Text;
+            
+            if (cbTaxable.Checked)
+            {
+                addBilling.BillingCategoryTaxable = true;
+            }
+            else
+            {
+                addBilling.BillingCategoryTaxable = false;
+            }
+            db.BillingCategories.InsertOnSubmit(addBilling);
+            db.SubmitChanges();
+        }
     }
 }
