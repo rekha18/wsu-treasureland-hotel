@@ -45,7 +45,8 @@
             </table>
             <br />
             <asp:Button ID="btnAddBilling" runat="server" CommandArgument="0" 
-                CommandName="SwitchViewByIndex" Text="Add Billing Category" />
+                CommandName="SwitchViewByIndex" Text="Add Billing Category" 
+                onclick="btnAddBilling_Click" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnBack" runat="server" CommandArgument="0" 
                 CommandName="SwitchViewByIndex" Text="Back" />
