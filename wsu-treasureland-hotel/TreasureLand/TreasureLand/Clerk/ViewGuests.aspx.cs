@@ -45,7 +45,7 @@ namespace TreasureLand.Clerk
                 txtReservation.Text = "0";
             
             //Gridview is populated with data
-            gvGuest.DataSource = App_Code.UserDB.LocateGuestRoom(txtFirstName.Text, txtSurName.Text, txtReservation.Text, Convert.ToInt32(txtRoomNumber.Text));
+            gvGuest.DataSource = App_Code.GuestDB.LocateGuestRoom(txtFirstName.Text, txtSurName.Text, txtReservation.Text, Convert.ToInt32(txtRoomNumber.Text));
             gvGuest.DataBind();
 
 
@@ -66,7 +66,7 @@ namespace TreasureLand.Clerk
             }
             else
             {
-                ddlServices.DataSource = App_Code.UserDB.getGuestServices();
+                ddlServices.DataSource = App_Code.GuestDB.getGuestServices();
                 ddlServices.DataBind();
 
                 lblError.Text = "";
@@ -98,7 +98,7 @@ namespace TreasureLand.Clerk
                 txtShowRoom.Text = gvGuest.SelectedRow.Cells[3].Text;
 
                 //gets the data for the drop down list
-                ddlServices.DataSource = App_Code.UserDB.getGuestServices();
+                ddlServices.DataSource = App_Code.GuestDB.getGuestServices();
                 ddlServices.DataBind();
 
                 //clears the error label
