@@ -11,6 +11,7 @@ namespace TreasureLand.Clerk
     public partial class WebForm1 : System.Web.UI.Page
     {
         private GridRangeView cHome = new GridRangeView();
+        private bool requiresUpdate = true;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,8 +26,9 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void generateTable(object sender, EventArgs e)
         {
-            cHome.update();
-            lblTable.Text = cHome.generateTableHTML(true);
+            if(requiresUpdate)
+                cHome.update();
+            lblTable.Text = cHome.generateTableHTMLv2(true);
 
             //Generate label information
             lbtnDatePrevious.Text = "Previous " + GridRangeView.DaysDisplayed + " Days";
@@ -43,6 +45,8 @@ namespace TreasureLand.Clerk
                 lbtnPageNext.Enabled = false;
             else
                 lbtnPagePrevious.Enabled = true;
+
+            requiresUpdate = false;
         }
 
         /// <summary>
@@ -53,6 +57,7 @@ namespace TreasureLand.Clerk
         public void lbtnPrevious_Click(object sender, EventArgs e)
         {
             GridRangeView.current = GridRangeView.current.AddDays(-GridRangeView.DaysDisplayed);
+            requiresUpdate = true;
         }
 
         /// <summary>
@@ -63,6 +68,7 @@ namespace TreasureLand.Clerk
         public void lbtnFuture_Click(object sender, EventArgs e)
         {
             GridRangeView.current = GridRangeView.current.AddDays(GridRangeView.DaysDisplayed);
+            requiresUpdate = true;
         }
 
         /// <summary>
@@ -73,6 +79,41 @@ namespace TreasureLand.Clerk
         public void lbtnToday_Click(object sender, EventArgs e)
         {
             GridRangeView.current = DateTime.Now.Date;
+            requiresUpdate = true;
+        }
+
+        /// <summary>
+        /// Sets the paging controls back by the number of room defined in the GridRangeView class
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lbtnPagePrevious_Click(object sender, EventArgs e)
+        {
+            GridRangeView.RoomIndex -= GridRangeView.PageSize;
+            requiresUpdate = true;
+        }
+
+        /// <summary>
+        /// Sets the paging controls forward by the number of room defined in 
+        /// the GridRangeView class
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lbtnPageNext_Click(object sender, EventArgs e)
+        {
+            GridRangeView.RoomIndex += GridRangeView.PageSize;
+            requiresUpdate = true;
+        }
+
+        /// <summary>
+        /// Sets the GridRangeView table to display a specific date
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void calDatePicker_SelectionChanged(object sender, EventArgs e)
+        {
+            GridRangeView.current = calDatePicker.SelectedDate;
+            requiresUpdate = true;
         }
     }
 }
