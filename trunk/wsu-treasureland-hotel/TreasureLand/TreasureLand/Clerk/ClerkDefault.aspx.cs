@@ -28,7 +28,7 @@ namespace TreasureLand.Clerk
         {
             if(requiresUpdate)
                 cHome.update();
-            lblTable.Text = cHome.generateTableHTMLv2(true);
+            lblTable.Text = cHome.generateHTMLTablev3(true);
 
             //Generate label information
             lbtnDatePrevious.Text = "Previous " + GridRangeView.DaysDisplayed + " Days";
@@ -79,6 +79,7 @@ namespace TreasureLand.Clerk
         public void lbtnToday_Click(object sender, EventArgs e)
         {
             GridRangeView.current = DateTime.Now.Date;
+            calDatePicker.SelectedDate = GridRangeView.current;
             requiresUpdate = true;
         }
 
