@@ -41,9 +41,12 @@
             document.getElementById("row" + room).style.backgroundColor = "#7CC4FF";
 
             for (var i = 0; i < 7; i++) {
-                var id = document.getElementById("room" + room + "col" + i);
-                id.style.color = "#008CFF";
-                //id.style.fontWeight = 'bold';
+                var id = document.getElementById("room" + room + "col" + i + "a");
+                if(id != null)
+                    id.style.color = "#008CFF";
+                id = document.getElementById("room" + room + "col" + i + "b");
+                if (id != null)
+                    id.style.color = "#008CFF";
             }
         }
 
@@ -51,9 +54,12 @@
             document.getElementById("row" + room).style.backgroundColor = "#AAAAAA";
 
             for (var i = 0; i < 7; i++) {
-                var id = document.getElementById("room" + room + "col" + i);
-                id.style.color = "#696969";
-                //id.style.fontWeight = 'normal';
+                var id = document.getElementById("room" + room + "col" + i + "a");
+                if (id != null)
+                    id.style.color = "#696969";
+                id = document.getElementById("room" + room + "col" + i + "b");
+                if (id != null)
+                    id.style.color = "#696969";
             }
         }
     -->
