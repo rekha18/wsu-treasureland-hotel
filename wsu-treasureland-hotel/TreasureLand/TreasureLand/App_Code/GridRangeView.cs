@@ -18,6 +18,11 @@ namespace TreasureLand.App_Code
         private short id;
 
         /// <summary>
+        /// ReservationID of the row
+        /// </summary>
+        private int ResID;
+
+        /// <summary>
         /// Gets the row's room ID
         /// </summary>
         public short ID
@@ -25,6 +30,17 @@ namespace TreasureLand.App_Code
             get
             {
                 return id;
+            }
+        }
+
+        /// <summary>
+        /// Gets the ReservationID of the row
+        /// </summary>
+        public int ReservationID
+        {
+            get
+            {
+                return ResID;
             }
         }
 
@@ -52,9 +68,11 @@ namespace TreasureLand.App_Code
         /// Constructs a Row object
         /// </summary>
         /// <param name="ID">RoomID of the row</param>
-        public Row(short ID)
+        /// <param name="ReservationID">ReservationID of the row</param>
+        public Row(short ID, int ReservationID)
         {
             id = ID;
+            ResID = ReservationID;
         }
     }
 
@@ -164,6 +182,111 @@ namespace TreasureLand.App_Code
             roomNames = RoomDB.getRoomNumbers();
         }
 
+
+        public string generateHTMLTablev3(bool centerTable)
+        {
+            Hashtable roomData = new Hashtable();
+
+            #region Hashtable fill
+            foreach (string s in roomNames)
+                roomData.Add(s, new string[DaysDisplayed, 3]); //Color for each day, data to display
+
+
+            foreach (Row r in rows)
+            {
+                //For simplicity, I don't want duplicate string array data under
+                //the same key. In this case, remove the key, concatenate the
+                //string data, and insert the key and value back in.
+                string[,] oldData = (string[,])roomData[r.RoomNumber];
+                roomData.Remove(r.RoomNumber);
+
+                fillCell(r, oldData);
+                roomData.Add(r.RoomNumber, oldData);
+            }
+            #endregion
+
+            string table = "<table" +
+                (centerTable ? " style='margin-left:auto;margin-right:auto;'>" : ">") + generateRowHeaders();
+
+            bool rowEven = false;
+            int rowCount = 1;
+            foreach (string key in roomNames) //Assuming the rooms were sorted in order
+            {
+                #region Paging Logic
+                if (rowCount < RoomIndex)
+                {
+                    rowCount++;
+                    continue;
+                }
+                if (rowCount > RoomIndex + PageSize || rowCount > MAX_ROOMS)
+                    break;
+                #endregion
+
+                string[,] row = (string[,])roomData[key];
+                //Create the left-most cell with the room number
+                table += "<tr>"; //Open a row
+                table += "<td id='row" + key + "' style='background: #AAAAAA' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")'>" +
+                    key + "</td>";
+
+                string backColor = rowEven ? "#CCCCCC" : "#FFFFFF";
+
+                //Create the row data
+                for(int i = 0; i < DaysDisplayed; i++)
+                {
+                    if(row[i, 0] == null && row[i, 1] == null && row[i, 2] == null) //No data for this cell
+                    {
+                        table += "<td id='row" + key + "col" + i + "a' style='background-color:" + backColor + 
+                            ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' colspan='2'>-</td>";
+                    }
+                    else if (row[i, 1] != null) //Full day of a guest
+                    {
+                        table += row[i, 1];
+                    }
+                    else //Cell contains a customer that checks out and/or checks in
+                    {
+                        table += "<td id='row" + key + "col" + i + "a' width='40px' style='background-color:" + (row[i, 0] == null ? backColor : row[i, 0]) +
+                            ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")'>&nbsp;</td>";
+                        table += "<td id='row" + key + "col" + i + "b' width='40px' style='background-color:" + (row[i, 2] == null ? backColor : row[i, 2]) +
+                            ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")'>&nbsp;</td>";
+                    }
+                }
+                table += "</tr>"; //Close the row
+
+                rowEven = !rowEven;
+                rowCount++;
+            }
+
+            return table + "</table>";
+        }
+
+
+        public void fillCell(Row r, string[,] data)
+        {
+            //The cells to insert will calculated in terms of the array bounds.
+            //If negative or exceeding DaysDisplayed-1, then the information
+            //is not added.
+            int startIndex = (r.Begin - current).Days; //If the same, then it will start in column 1 (arr[0])
+            int endIndex = (r.End - current).Days;
+
+            string color = getColor(r.ReservationType);
+            if (endIndex >= 0 && endIndex < DaysDisplayed)//Add the first td tag
+                data[endIndex, 0] = color;
+            if (startIndex >= 0 && startIndex < DaysDisplayed)//Add the second td tag
+                data[startIndex, 2] = color;
+
+            for (int i = startIndex; i < endIndex; i++)
+            {
+                //If the index is valid
+                if (i >= 0 && i < DaysDisplayed)
+                {
+                    if(data[i, 2] == null) //Don't overwrite the start date when it comes time to generate the table
+                        data[i, 1] = "<td id='row" + r.RoomNumber + "col" + i + "a' colspan='2' style='background-color:" + color +
+                                ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")'>RS #" + r.ReservationID + "</td>";
+                }
+            }
+        }
+
+        #region Old V2
         /// <summary>
         /// Generates an HTML table containing the data values returned
         /// from the update() command. This updated version differs from
@@ -179,14 +302,15 @@ namespace TreasureLand.App_Code
 
             #region Hashtable fill
             foreach (string s in roomNames)
-                roomData.Add(s, new string[DaysDisplayed]);
+                roomData.Add(s, new string[DaysDisplayed,2]); //Color for each day, data to display
+
 
             foreach (Row r in rows)
             {
                 //For simplicity, I don't want duplicate string array data under
                 //the same key. In this case, remove the key, concatenate the
                 //string data, and insert the key and value back in.
-                string[] oldData = (string[])roomData[r.RoomNumber];
+                string[,] oldData = (string[,])roomData[r.RoomNumber];
                 roomData.Remove(r.RoomNumber);
 
                 fillColors(r, oldData);
@@ -210,7 +334,7 @@ namespace TreasureLand.App_Code
                     rowCount++;
                     continue;
                 }
-                if (rowCount > RoomIndex + PageSize)
+                if (rowCount > RoomIndex + PageSize || rowCount >= MAX_ROOMS)
                     break;
                 #endregion
 
@@ -219,12 +343,9 @@ namespace TreasureLand.App_Code
                 table += "<td id='row" + key + "' style='background: #AAAAAA' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")'>" +
                     key + "</td>";
                 //Create the row data
-                string[] rowData = (string[])roomData[key];
+                string[,] rowData = (string[,])roomData[key];
                 for (int j = 0; j < DaysDisplayed; j++)
-                    table += "<td id='room" + key + "col" + j + "' style='background:" +
-                        (rowData[j] == null ? (rowEven ? "#CCCCCC" : "FFFFFF") : rowData[j]) + ";' " +
-                        "onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")'" + ">" + 
-                        (rowData[j] == null ? "-" : "RN# " + key) + "</td>";
+                    table += generateRow(rowData, key, j, rowEven);
                 table += "</tr>"; //Close the row
 
                 rowEven = !rowEven;
@@ -234,15 +355,24 @@ namespace TreasureLand.App_Code
 
             return table + "</table>";
         }
+        #endregion
 
 
+        private string generateRow(string[,] rowData, string key, int j, bool rowEven)
+        {
+            string RT = "<td id='room" + key + "col" + j + "'>" + 
+                "<table><tr>" +
+                (rowData[j, 1] == null ? (rowData[j, 0] == null ? (rowEven ? "<td style='background-color:#CCCCCC'>-</td>" : "<td style='background-color:#FFFFFF'>-</td>") : rowData[j, 0]) : rowData[j, 0] + rowData[j, 1]) +
+                "</tr></table>";
+            return RT;
+        }
 
         /// <summary>
         /// Fills a single string array with a CSS hex color value
         /// </summary>
         /// <param name="r">Reservation</param>
         /// <param name="colorData">string to fill with color data</param>
-        private void fillColors(Row r, string[] colorData)
+        private void fillColors(Row r, string[,] colorData)
         {
             //The cells to insert will calculated in terms of the array bounds.
             //If negative or exceeding DaysDisplayed-1, then the information
@@ -251,11 +381,18 @@ namespace TreasureLand.App_Code
             int endIndex = (r.End - current).Days;
 
             string color = getColor(r.ReservationType);
-            for (int i = startIndex; i < endIndex; i++)
+            if (endIndex >= 0 || endIndex < DaysDisplayed)//Add the first td tag
+                colorData[endIndex, 0] = "<td width='50%' style='background-color:" + color + ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")'" + "></td>";
+            else if (startIndex >= 0 || startIndex < DaysDisplayed)//Add the second td tag
+                colorData[startIndex, 1] = "<td width='50%' style='background-color:" + color + ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")'" + "></td>";
+
+            for (int i = startIndex+1; i < endIndex; i++)
             {
                 //If the index is valid
                 if (i >= 0 && i < DaysDisplayed)
-                    colorData[i] = color;
+                {
+                    colorData[i, 0] = "<td style='background-color:" + color + ";'>RS #" + r.ReservationID + "</td>";
+                }
             }
         }
 
@@ -378,7 +515,7 @@ namespace TreasureLand.App_Code
             string RT = "<tr><th>Room<br />#</th>";
             for (int i = 0; i < DaysDisplayed; i++)
             {
-                RT += "<th style='background: #AAAAAA'>" + temp.ToString("dddd") + "<br />";
+                RT += "<th style='background: #AAAAAA' width='80px' colspan='2'>" + temp.ToString("dddd") + "<br />";
                 RT += temp.ToString("dd/MM/yyyy");
                 RT += "</th>";
                 temp = temp.AddDays(1.0); //Go to the next day
