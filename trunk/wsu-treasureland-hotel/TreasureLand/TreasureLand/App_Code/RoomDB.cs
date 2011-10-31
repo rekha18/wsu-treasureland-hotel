@@ -104,7 +104,7 @@ namespace TreasureLand.App_Code
                 conn.Open(); //Open the connection
 
                 string command = "SELECT res.ReservationDate, rd.Status, rd.Nights, " +
-                                 "room.RoomID, room.RoomNumbers FROM Reservation res INNER JOIN ReservationDetail rd " +
+                                 "room.RoomID, room.RoomNumbers, res.ReservationID FROM Reservation res INNER JOIN ReservationDetail rd " +
                                  "ON res.ReservationID = rd.ReservationID " +
                                  "INNER JOIN Room room ON rd.RoomID = room.RoomID " +
                                  "ORDER BY room.RoomNumbers";
@@ -127,8 +127,9 @@ namespace TreasureLand.App_Code
                     char resStatus = Char.Parse(rt[1].ToString());
                     short id = Int16.Parse(rt[3].ToString());
                     string roomNumber = rt[4].ToString();
+                    int resID = Int32.Parse(rt[5].ToString());
 
-                    Row temp = new Row(id); //Create and fill a Row object
+                    Row temp = new Row(id, resID); //Create and fill a Row object
                     temp.Begin = begin;
                     temp.End = end;
                     temp.ReservationType = resStatus;
