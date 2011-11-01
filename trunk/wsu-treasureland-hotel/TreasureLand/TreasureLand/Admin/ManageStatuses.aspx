@@ -33,6 +33,16 @@
                         </tr>
                         <tr>
                             <td style="width: 81px">
+                                Status:</td>
+                            <td>
+                                <asp:TextBox ID="txtStatus" runat="server" MaxLength="1" Width="50px"></asp:TextBox>
+                                &nbsp;
+                                <asp:RequiredFieldValidator ID="rfvStatus" runat="server" 
+                                    ControlToValidate="txtStatus" ErrorMessage="Status is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 81px">
                                 Description:</td>
                             <td>
                                 <asp:TextBox ID="txtDescription" runat="server" Width="187px"></asp:TextBox>
