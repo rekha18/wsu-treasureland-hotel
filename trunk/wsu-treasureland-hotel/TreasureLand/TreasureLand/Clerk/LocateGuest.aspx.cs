@@ -11,6 +11,13 @@ namespace TreasureLand.Clerk
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+//            lblErrorMessage.Text = "";
+//            lblErrorMessage2.Text = "";
+
+        }
+
+        protected void gvIncidents_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
 

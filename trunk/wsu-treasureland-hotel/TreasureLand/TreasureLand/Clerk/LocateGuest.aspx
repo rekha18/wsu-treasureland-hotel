@@ -1,33 +1,33 @@
-﻿<%@ Page Title="Locate Guest" Language="C#" MasterPageFile="~/Clerk/ClerkMasterPage.master" AutoEventWireup="true" CodeBehind="LocateGuest.aspx.cs" Inherits="TreasureLand.Clerk.WebForm4" %>
+﻿<%@ Page Title="Locate Guest" Language="C#" MasterPageFile="~/Clerk/ClerkMasterPage.master" AutoEventWireup="True" CodeBehind="LocateGuest.aspx.cs" Inherits="TreasureLand.Clerk.WebForm4" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:MultiView ID="mvLocateGuest" runat="server" ActiveViewIndex="0">
         <asp:View ID="vLocateGuest" runat="server">
-            <table class="style1">
+            <table class="style1" style="width: 676px">
                 <tr>
                     <td class="style18">
-                        Reservation Number:</td>
+                        Reservation #:</td>
                     <td class="style24">
                         <asp:TextBox ID="txtReservationNum" runat="server"></asp:TextBox>
                     </td>
-                    <td class="style12">
+                    <td class="style12" style="width: 80px">
                         First Name:</td>
-                    <td class="style22">
+                    <td class="style22" style="width: 136px">
                         <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
                     </td>
                     <td class="style13">
-                        <asp:Label ID="Label1" runat="server" ForeColor="Red" 
-                            Text="You must enter a first/surname/email"></asp:Label>
+                        <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" 
+                            Text="You must enter a first/surname/email" Visible="False"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="style19">
-                        Room Number:</td>
+                        Room #:</td>
                     <td class="style25">
                         <asp:TextBox ID="txtRoomNum" runat="server"></asp:TextBox>
                     </td>
-                    <td class="style4">
+                    <td class="style4" style="width: 80px">
                         Surname:</td>
-                    <td class="style23">
+                    <td class="style23" style="width: 136px">
                         <asp:TextBox ID="txtSurname" runat="server"></asp:TextBox>
                     </td>
                     <td class="style5">
@@ -40,9 +40,9 @@
                     </td>
                     <td class="style25">
                         &nbsp;</td>
-                    <td class="style4">
+                    <td class="style4" style="width: 80px">
                         Email:</td>
-                    <td class="style23">
+                    <td class="style23" style="width: 136px">
                         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                     </td>
                     <td class="style5">
@@ -50,31 +50,35 @@
                 </tr>
             </table>
             <br />
-            CHECK IN:<asp:GridView ID="gvGuest" runat="server" AutoGenerateColumns="False" 
-                DataKeyNames="ReservationID" DataSourceID="odsLocateGuest">
+            <asp:GridView ID="gvGuest" runat="server" AutoGenerateColumns="False" CellPadding="4" 
+                DataKeyNames="ReservationID" DataSourceID="odsLocateGuest" 
+                >
                 <Columns>
-                    <asp:BoundField DataField="ReservationID" HeaderText="Reservation ID" 
+                    <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
+                    <asp:BoundField DataField="ReservationID" HeaderText="Reservation #" 
                         InsertVisible="False" ReadOnly="True" SortExpression="ReservationID" />
-                    <asp:BoundField DataField="GuestFirstName" HeaderText="Guest First Name" 
+                    <asp:BoundField DataField="GuestFirstName" HeaderText="First Name" 
                         SortExpression="GuestFirstName" />
-                    <asp:BoundField DataField="GuestSurName" HeaderText="Guest Sur Name" 
+                    <asp:BoundField DataField="GuestSurName" HeaderText="Surname" 
                         SortExpression="GuestSurName" />
-                    <asp:BoundField DataField="GuestPhone" HeaderText="Guest Phone Number" 
+                    <asp:BoundField DataField="GuestPhone" HeaderText="Phone #" 
                         SortExpression="GuestPhone" />
                 </Columns>
             </asp:GridView>
             <asp:SqlDataSource ID="odsLocateGuest" runat="server" 
                 ConnectionString="<%$ ConnectionStrings:TreasureLandDB %>" 
                 
-                SelectCommand="SELECT Reservation.ReservationID, Guest.GuestFirstName, Guest.GuestSurName, Guest.GuestPhone FROM Reservation INNER JOIN Guest ON Reservation.GuestID = Guest.GuestID">
+                SelectCommand="SELECT Reservation.ReservationID, Guest.GuestFirstName, Guest.GuestSurName, Guest.GuestPhone 
+                               FROM Reservation 
+                               INNER JOIN Guest ON Reservation.GuestID = Guest.GuestID">
             </asp:SqlDataSource>
             <br />
             &nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnSelectGuest" runat="server" 
-                Text="Select Guest" />
+                Text="Select Guest" CommandArgument="1" CommandName="SwitchViewByIndex" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red" 
-                Text="You must select a guest"></asp:Label>
+            <asp:Label ID="lblErrorMessage2" runat="server" ForeColor="Red" 
+                Text="You must select a guest" Visible="False"></asp:Label>
         </asp:View>
         <asp:View ID="vCheckInGuest" runat="server">
             <table style="width: 78%">
@@ -150,7 +154,8 @@
             </table>
             <br />
             &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnBack" runat="server" Text="Back" />
+            <asp:Button ID="btnBack" runat="server" Text="Back" CommandArgument="1" 
+                CommandName="PreviousViewCommandName" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnCheckIn" runat="server" Text="Check in" />
         </asp:View>
