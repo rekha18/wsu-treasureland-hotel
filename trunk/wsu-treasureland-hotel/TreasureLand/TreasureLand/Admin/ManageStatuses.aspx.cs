@@ -12,16 +12,18 @@ namespace TreasureLand.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         protected void btnAddStatuses_Click(object sender, EventArgs e)
         {
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
             RoomStatus status = new RoomStatus();
+            status.Status = Convert.ToChar(txtStatus.Text);
             status.Description = txtDescription.Text;
             db.RoomStatus.InsertOnSubmit(status);
             db.SubmitChanges();
+            GridView1.DataBind();
         }
     }
 }
