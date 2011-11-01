@@ -31,6 +31,15 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.View vUpdateBillingCategory;
         
         /// <summary>
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
         /// gvBilling control.
         /// </summary>
         /// <remarks>
@@ -38,15 +47,6 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvBilling;
-        
-        /// <summary>
-        /// btnAddBillingCategory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddBillingCategory;
         
         /// <summary>
         /// ldsBilling control.
@@ -58,6 +58,15 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.LinqDataSource ldsBilling;
         
         /// <summary>
+        /// btnAddBillingCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddBillingCategory;
+        
+        /// <summary>
         /// vAddBillingCategory control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View vAddBillingCategory;
+        
+        /// <summary>
+        /// Panel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
         /// txtDesciption control.
@@ -94,15 +112,6 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.CheckBox cbTaxable;
         
         /// <summary>
-        /// btnAddBilling control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddBilling;
-        
-        /// <summary>
         /// btnBack control.
         /// </summary>
         /// <remarks>
@@ -110,5 +119,14 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBack;
+        
+        /// <summary>
+        /// btnAddBilling control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddBilling;
     }
 }
