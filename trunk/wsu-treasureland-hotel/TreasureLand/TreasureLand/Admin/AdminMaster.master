@@ -44,8 +44,8 @@
                     onclick="btnCreateUser_Click" />
                 <br />
                 <br />
-                <asp:Button ID="btnManageServices" runat="server" Text="Manage Services" 
-                    Width="125px" onclick="btnManageServices_Click" />
+                <asp:Button ID="btnManageStatuses" runat="server" Text="Manage Statuses" 
+                    Width="125px" onclick="btnManageStatuses_Click" />
                 <br />
                 <br />
                 <asp:Button ID="btnManageBillingCategories" runat="server" 
