@@ -84,6 +84,7 @@
     <Content Include="Clerk\Reports.aspx" />
     <Content Include="Clerk\UpdateGuestFolio.aspx" />
     <Content Include="Clerk\UpdateReservation.aspx" />
+    <Content Include="Clerk\ViewGuests.aspx" />
     <Content Include="HouseKeeping\HouseKeepingDefault.aspx" />
     <Content Include="HouseKeeping\HouseKeepingReports.aspx" />
     <Content Include="HouseKeeping\Inventory.aspx" />
@@ -218,7 +219,7 @@
       <DependentUpon>ManageBillingCategories.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\GridRangeView.cs" />
-    <Content Include="App_Code\GuestDB.cs" />
+    <Compile Include="App_Code\GuestDB.cs" />
     <Compile Include="App_Code\RoomDB.cs" />
     <Compile Include="Clerk\CheckIn.aspx.designer.cs">
       <DependentUpon>CheckIn.aspx</DependentUpon>
@@ -280,6 +281,12 @@
     </Compile>
     <Compile Include="Clerk\UpdateReservation.aspx.designer.cs">
       <DependentUpon>UpdateReservation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\ViewGuests.aspx.cs">
+      <DependentUpon>ViewGuests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\ViewGuests.aspx.designer.cs">
+      <DependentUpon>ViewGuests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
