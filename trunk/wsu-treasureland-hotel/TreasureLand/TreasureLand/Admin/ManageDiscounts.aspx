@@ -23,7 +23,7 @@
                     </Columns>
                 </asp:GridView>
                 <asp:LinqDataSource ID="ldsDiscounts" runat="server" 
-                    ContextTypeName="TreasureLand.TreasureLandDataClassesDataContext" 
+                    ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
                     EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" 
                     OrderBy="DiscountID" TableName="Discounts">
                 </asp:LinqDataSource>
