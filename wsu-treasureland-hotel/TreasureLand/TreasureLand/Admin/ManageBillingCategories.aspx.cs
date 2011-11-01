@@ -32,6 +32,7 @@ namespace TreasureLand.Admin
             }
             db.BillingCategories.InsertOnSubmit(addBilling);
             db.SubmitChanges();
+            gvBilling.DataBind();
         }
     }
 }
