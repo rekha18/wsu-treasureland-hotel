@@ -31,6 +31,15 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.View vStatuses;
         
         /// <summary>
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
         /// GridView1 control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.View vAddStatuses;
         
         /// <summary>
+        /// Panel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel2;
+        
+        /// <summary>
         /// txtDescription control.
         /// </summary>
         /// <remarks>
@@ -76,13 +94,13 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
         
         /// <summary>
-        /// btnAddStatuses control.
+        /// rfvDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddStatuses;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDescription;
         
         /// <summary>
         /// btnBack control.
@@ -92,5 +110,14 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnBack;
+        
+        /// <summary>
+        /// btnAddStatuses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddStatuses;
     }
 }
