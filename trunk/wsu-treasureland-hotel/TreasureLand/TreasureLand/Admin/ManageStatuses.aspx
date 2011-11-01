@@ -14,7 +14,7 @@
                         </Columns>
                     </asp:GridView>
                     <asp:LinqDataSource ID="ldsStatuses" runat="server" 
-                        ContextTypeName="TreasureLand.TreasureLandDataClassesDataContext" 
+                        ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
                         EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" 
                         OrderBy="Status" TableName="RoomStatus">
                     </asp:LinqDataSource>
