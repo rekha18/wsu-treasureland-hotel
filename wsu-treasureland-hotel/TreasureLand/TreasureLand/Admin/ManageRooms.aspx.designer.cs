@@ -11,5 +11,23 @@ namespace TreasureLand.Admin {
     
     
     public partial class ManageRooms {
+        
+        /// <summary>
+        /// ListView_Rooms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView ListView_Rooms;
+        
+        /// <summary>
+        /// EntityDataSource_Rooms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSource_Rooms;
     }
 }
