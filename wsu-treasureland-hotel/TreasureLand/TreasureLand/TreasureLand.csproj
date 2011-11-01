@@ -74,10 +74,6 @@
     <Content Include="Admin\UserInformation.aspx" />
     <Content Include="Admin\Controls\UserStatusAndApproval.ascx" />
     <Content Include="Admin\ManageBillingCategories.aspx" />
-    <Content Include="App_Data\ghana.mdf" />
-    <Content Include="App_Data\ghana_log.ldf">
-      <DependentUpon>ghana.mdf</DependentUpon>
-    </Content>
     <Content Include="Clerk\CheckIn.aspx" />
     <Content Include="Clerk\CheckOut.aspx" />
     <Content Include="Clerk\ClerkDefault.aspx" />
@@ -399,7 +395,9 @@
       <DependentUpon>Unauthorized.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
