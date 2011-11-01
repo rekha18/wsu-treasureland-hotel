@@ -7,12 +7,10 @@ using System.Web.UI.WebControls;
 using TreasureLand.App_Code;
 
 namespace TreasureLand.Clerk
-{
-    
+{    
     public partial class WebForm7 : System.Web.UI.Page
     {
-      
-        protected void Page_Load(object sender, EventArgs e)
+         protected void Page_Load(object sender, EventArgs e)
         {
         
         }
@@ -28,6 +26,7 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void btnLocate_Click(object sender, EventArgs e)
         {
+            
             if (txtFirstName.Text == "" && txtShowSurName.Text == "" && txtRoomNumber.Text == "" && txtReservation.Text == "")
             {
                 lblError.Text = "You must Enter information in at least one box";
@@ -44,6 +43,7 @@ namespace TreasureLand.Clerk
             if (txtReservation.Text == "")
                 txtReservation.Text = "0";
             
+   
             //Gridview is populated with data
             gvGuest.DataSource = App_Code.GuestDB.LocateGuestRoom(txtFirstName.Text, txtSurName.Text, txtReservation.Text, Convert.ToInt32(txtRoomNumber.Text));
             gvGuest.DataBind();
@@ -72,7 +72,6 @@ namespace TreasureLand.Clerk
                 lblError.Text = "";
             }
             }
-            
 
         }
 
@@ -96,10 +95,17 @@ namespace TreasureLand.Clerk
                 txtShowFirstName.Text = gvGuest.SelectedRow.Cells[1].Text;
                 txtShowSurName.Text = gvGuest.SelectedRow.Cells[2].Text;
                 txtShowRoom.Text = gvGuest.SelectedRow.Cells[3].Text;
-
+                txtTotal.Text = GuestDB.getTotal(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text)).ToString();
+                
                 //gets the data for the drop down list
                 ddlServices.DataSource = App_Code.GuestDB.getGuestServices();
+                ddlServices.DataTextField = "BillingCategoryDescription";
+                ddlServices.DataValueField = "BillingCategoryID";
                 ddlServices.DataBind();
+
+
+                gvGuestServices.DataSource = GuestDB.getGuestServices(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
+                gvGuestServices.DataBind();
 
                 //clears the error label
                 lblError.Text = "";
@@ -142,7 +148,31 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void btnAddService_Click(object sender, EventArgs e)
         {
-            //
+        gvGuestServices.Dispose();
+        GuestDB.insertGuestServices(Convert.ToDouble(txtCostofService.Text), Convert.ToInt32(ddlQuantity.SelectedValue), ddlServices.SelectedItem.Text, Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
+        gvGuestServices.DataSource = GuestDB.getGuestServices(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
+        gvGuestServices.DataBind();
+        txtTotal.Text = GuestDB.getTotal(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text)).ToString();
+        }
+
+        protected void btnPrevious_Click(object sender, EventArgs e)
+        {
+            mvViewGuest.ActiveViewIndex = 0;
+        }
+
+        protected void gvGuestServices_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void gvGuestServices_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
+        }
+
+        protected void gvGuestServices_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
         }
     }
 }
