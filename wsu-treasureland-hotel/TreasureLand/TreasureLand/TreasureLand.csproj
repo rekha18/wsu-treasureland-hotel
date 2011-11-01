@@ -42,7 +42,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -289,6 +292,11 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EDM\TreasureLandModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TreasureLandModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -378,7 +386,7 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="TreasureLandDataClasses.designer.cs">
+    <Compile Include="DBM\TreasureLandDataClasses.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TreasureLandDataClasses.dbml</DependentUpon>
@@ -409,7 +417,7 @@
     <Content Include="Maintenance\Web.config" />
     <Content Include="Manager\Web.config" />
     <Content Include="HouseKeeping\Web.config" />
-    <None Include="TreasureLandDataClasses.dbml">
+    <None Include="DBM\TreasureLandDataClasses.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>TreasureLandDataClasses.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -417,9 +425,13 @@
     <Content Include="Web.sitemap">
       <SubType>Designer</SubType>
     </Content>
+    <EntityDeploy Include="EDM\TreasureLandModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TreasureLandModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="TreasureLandDataClasses.dbml.layout">
+    <None Include="DBM\TreasureLandDataClasses.dbml.layout">
       <DependentUpon>TreasureLandDataClasses.dbml</DependentUpon>
     </None>
   </ItemGroup>

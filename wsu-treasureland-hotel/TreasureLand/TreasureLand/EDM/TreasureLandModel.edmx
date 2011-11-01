@@ -1,0 +1,897 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TreasureLandModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="TreasureLandModelStoreContainer">
+          <EntitySet Name="BillingCategory" EntityType="TreasureLandModel.Store.BillingCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Discount" EntityType="TreasureLandModel.Store.Discount" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Guest" EntityType="TreasureLandModel.Store.Guest" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Hotel" EntityType="TreasureLandModel.Store.Hotel" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HotelRoomType" EntityType="TreasureLandModel.Store.HotelRoomType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Reservation" EntityType="TreasureLandModel.Store.Reservation" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ReservationDetail" EntityType="TreasureLandModel.Store.ReservationDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ReservationDetailBilling" EntityType="TreasureLandModel.Store.ReservationDetailBilling" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Revenue" EntityType="TreasureLandModel.Store.Revenue" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RevenueCategory" EntityType="TreasureLandModel.Store.RevenueCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Room" EntityType="TreasureLandModel.Store.Room" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RoomStatus" EntityType="TreasureLandModel.Store.RoomStatus" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_HotelRoomType_Must_Have_HotelID" Association="TreasureLandModel.Store.FK_HotelRoomType_Must_Have_HotelID">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="HotelRoomType" EntitySet="HotelRoomType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Guest" Association="TreasureLandModel.Store.FK_Reservation_Guest">
+            <End Role="Guest" EntitySet="Guest" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservationDetail_Must_Have_DiscountID" Association="TreasureLandModel.Store.FK_ReservationDetail_Must_Have_DiscountID">
+            <End Role="Discount" EntitySet="Discount" />
+            <End Role="ReservationDetail" EntitySet="ReservationDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservationDetail_Must_Have_ReservationID" Association="TreasureLandModel.Store.FK_ReservationDetail_Must_Have_ReservationID">
+            <End Role="Reservation" EntitySet="Reservation" />
+            <End Role="ReservationDetail" EntitySet="ReservationDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservationDetail_Must_Have_RoomID" Association="TreasureLandModel.Store.FK_ReservationDetail_Must_Have_RoomID">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="ReservationDetail" EntitySet="ReservationDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservationDetailBilling_Must_Have_BillingCategoryID" Association="TreasureLandModel.Store.FK_ReservationDetailBilling_Must_Have_BillingCategoryID">
+            <End Role="BillingCategory" EntitySet="BillingCategory" />
+            <End Role="ReservationDetailBilling" EntitySet="ReservationDetailBilling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservationDetailBilling_Must_Have_ReservationDetailID" Association="TreasureLandModel.Store.FK_ReservationDetailBilling_Must_Have_ReservationDetailID">
+            <End Role="ReservationDetail" EntitySet="ReservationDetail" />
+            <End Role="ReservationDetailBilling" EntitySet="ReservationDetailBilling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Revenue_Must_Have_HotelID" Association="TreasureLandModel.Store.FK_Revenue_Must_Have_HotelID">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="Revenue" EntitySet="Revenue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Revenue_Must_Have_RevenueCategoryID" Association="TreasureLandModel.Store.FK_Revenue_Must_Have_RevenueCategoryID">
+            <End Role="RevenueCategory" EntitySet="RevenueCategory" />
+            <End Role="Revenue" EntitySet="Revenue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_Must_Have_HotelRoomTypeID" Association="TreasureLandModel.Store.FK_Room_Must_Have_HotelRoomTypeID">
+            <End Role="HotelRoomType" EntitySet="HotelRoomType" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_RoomStatus" Association="TreasureLandModel.Store.FK_Room_RoomStatus">
+            <End Role="RoomStatus" EntitySet="RoomStatus" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BillingCategory">
+          <Key>
+            <PropertyRef Name="BillingCategoryID" />
+          </Key>
+          <Property Name="BillingCategoryID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BillingCategoryDescription" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="BillingCategoryTaxable" Type="bit" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="DiscountID" />
+          </Key>
+          <Property Name="DiscountID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountDescription" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="DiscountExpiration" Type="smalldatetime" Nullable="false" />
+          <Property Name="DiscountRules" Type="varchar" MaxLength="100" />
+          <Property Name="DiscountAmount" Type="decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="IsPrecentage" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="GuestID" />
+          </Key>
+          <Property Name="GuestID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GuestSalutation" Type="varchar" MaxLength="5" />
+          <Property Name="GuestFirstName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="GuestSurName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="GuestCompany" Type="varchar" MaxLength="50" />
+          <Property Name="GuestAddress" Type="varchar" MaxLength="50" />
+          <Property Name="GuestCity" Type="varchar" MaxLength="50" />
+          <Property Name="GuestRegion" Type="varchar" MaxLength="50" />
+          <Property Name="GuestPostalCode" Type="varchar" MaxLength="50" />
+          <Property Name="GuestCountry" Type="varchar" MaxLength="20" />
+          <Property Name="GuestFax" Type="varchar" MaxLength="20" />
+          <Property Name="GuestPhone" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="GuestEmail" Type="varchar" MaxLength="30" />
+          <Property Name="GuestComments" Type="varchar" MaxLength="200" />
+          <Property Name="GuestIDNumber" Type="varchar" MaxLength="50" />
+          <Property Name="GuestIDIssueCountry" Type="varchar" MaxLength="50" />
+          <Property Name="GuestIDComment" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="HotelID" />
+          </Key>
+          <Property Name="HotelID" Type="smallint" Nullable="false" />
+          <Property Name="HotelName" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="HotelAddress" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="HotelCity" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="HotelState" Type="char" MaxLength="2" />
+          <Property Name="HotelCountry" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="HotelRegion" Type="varchar" MaxLength="50" />
+          <Property Name="HotelPostalCode" Type="char" Nullable="false" MaxLength="10" />
+          <Property Name="TaxLocationID" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HotelRoomType">
+          <Key>
+            <PropertyRef Name="HotelRoomTypeID" />
+          </Key>
+          <Property Name="HotelRoomTypeID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HotelID" Type="smallint" Nullable="false" />
+          <Property Name="RoomType" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="RoomTypeRackRate" Type="smallmoney" Nullable="false" />
+          <Property Name="RoomTypeDescription" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="ReservationID" />
+          </Key>
+          <Property Name="ReservationID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GuestID" Type="smallint" Nullable="false" />
+          <Property Name="ReservationDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="ReservationStatus" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="ReservationComments" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ReservationDetail">
+          <Key>
+            <PropertyRef Name="ReservationDetailID" />
+          </Key>
+          <Property Name="ReservationDetailID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoomID" Type="smallint" Nullable="false" />
+          <Property Name="ReservationID" Type="smallint" Nullable="false" />
+          <Property Name="QuotedRate" Type="smallmoney" Nullable="false" />
+          <Property Name="CheckinDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="Nights" Type="tinyint" Nullable="false" />
+          <Property Name="Status" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="Comments" Type="varchar(max)" />
+          <Property Name="DiscountID" Type="smallint" Nullable="false" />
+          <Property Name="NumberOfAdults" Type="tinyint" Nullable="false" />
+          <Property Name="NumberOfChildren" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReservationDetailBilling">
+          <Key>
+            <PropertyRef Name="ReservationBillingID" />
+          </Key>
+          <Property Name="ReservationBillingID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ReservationDetailID" Type="smallint" Nullable="false" />
+          <Property Name="BillingCategoryID" Type="smallint" Nullable="false" />
+          <Property Name="BillingDescription" Type="char" Nullable="false" MaxLength="30" />
+          <Property Name="BillingAmount" Type="smallmoney" Nullable="false" />
+          <Property Name="BillingItemQty" Type="tinyint" Nullable="false" />
+          <Property Name="BillingItemDate" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Revenue">
+          <Key>
+            <PropertyRef Name="RevenueID" />
+          </Key>
+          <Property Name="RevenueID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RevenueDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="RevenueAmount" Type="smallmoney" Nullable="false" />
+          <Property Name="RevenueType" Type="char" Nullable="false" MaxLength="30" />
+          <Property Name="HotelID" Type="smallint" Nullable="false" />
+          <Property Name="RevenueCategoryID" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RevenueCategory">
+          <Key>
+            <PropertyRef Name="RevenueCategoryID" />
+          </Key>
+          <Property Name="RevenueCategoryID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RevenueCategoryDescription" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomID" />
+          </Key>
+          <Property Name="RoomID" Type="smallint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="HotelRoomTypeID" Type="smallint" Nullable="false" />
+          <Property Name="RoomNumbers" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="RoomDescription" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="RoomSmoking" Type="bit" Nullable="false" />
+          <Property Name="RoomBedConfiguration" Type="varchar" Nullable="false" MaxLength="30" />
+          <Property Name="RoomHandicap" Type="bit" Nullable="false" />
+          <Property Name="RoomStatus" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="RoomStatus">
+          <Key>
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="Status" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <Association Name="FK_HotelRoomType_Must_Have_HotelID">
+          <End Role="Hotel" Type="TreasureLandModel.Store.Hotel" Multiplicity="1" />
+          <End Role="HotelRoomType" Type="TreasureLandModel.Store.HotelRoomType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelID" />
+            </Principal>
+            <Dependent Role="HotelRoomType">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Guest">
+          <End Role="Guest" Type="TreasureLandModel.Store.Guest" Multiplicity="1" />
+          <End Role="Reservation" Type="TreasureLandModel.Store.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="GuestID" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="GuestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservationDetail_Must_Have_DiscountID">
+          <End Role="Discount" Type="TreasureLandModel.Store.Discount" Multiplicity="1" />
+          <End Role="ReservationDetail" Type="TreasureLandModel.Store.ReservationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="DiscountID" />
+            </Principal>
+            <Dependent Role="ReservationDetail">
+              <PropertyRef Name="DiscountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservationDetail_Must_Have_ReservationID">
+          <End Role="Reservation" Type="TreasureLandModel.Store.Reservation" Multiplicity="1" />
+          <End Role="ReservationDetail" Type="TreasureLandModel.Store.ReservationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="ReservationID" />
+            </Principal>
+            <Dependent Role="ReservationDetail">
+              <PropertyRef Name="ReservationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservationDetail_Must_Have_RoomID">
+          <End Role="Room" Type="TreasureLandModel.Store.Room" Multiplicity="1" />
+          <End Role="ReservationDetail" Type="TreasureLandModel.Store.ReservationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomID" />
+            </Principal>
+            <Dependent Role="ReservationDetail">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservationDetailBilling_Must_Have_BillingCategoryID">
+          <End Role="BillingCategory" Type="TreasureLandModel.Store.BillingCategory" Multiplicity="1" />
+          <End Role="ReservationDetailBilling" Type="TreasureLandModel.Store.ReservationDetailBilling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillingCategory">
+              <PropertyRef Name="BillingCategoryID" />
+            </Principal>
+            <Dependent Role="ReservationDetailBilling">
+              <PropertyRef Name="BillingCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservationDetailBilling_Must_Have_ReservationDetailID">
+          <End Role="ReservationDetail" Type="TreasureLandModel.Store.ReservationDetail" Multiplicity="1" />
+          <End Role="ReservationDetailBilling" Type="TreasureLandModel.Store.ReservationDetailBilling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReservationDetail">
+              <PropertyRef Name="ReservationDetailID" />
+            </Principal>
+            <Dependent Role="ReservationDetailBilling">
+              <PropertyRef Name="ReservationDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Revenue_Must_Have_HotelID">
+          <End Role="Hotel" Type="TreasureLandModel.Store.Hotel" Multiplicity="1" />
+          <End Role="Revenue" Type="TreasureLandModel.Store.Revenue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelID" />
+            </Principal>
+            <Dependent Role="Revenue">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Revenue_Must_Have_RevenueCategoryID">
+          <End Role="RevenueCategory" Type="TreasureLandModel.Store.RevenueCategory" Multiplicity="1" />
+          <End Role="Revenue" Type="TreasureLandModel.Store.Revenue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RevenueCategory">
+              <PropertyRef Name="RevenueCategoryID" />
+            </Principal>
+            <Dependent Role="Revenue">
+              <PropertyRef Name="RevenueCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_Must_Have_HotelRoomTypeID">
+          <End Role="HotelRoomType" Type="TreasureLandModel.Store.HotelRoomType" Multiplicity="1" />
+          <End Role="Room" Type="TreasureLandModel.Store.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelRoomType">
+              <PropertyRef Name="HotelRoomTypeID" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="HotelRoomTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_RoomStatus">
+          <End Role="RoomStatus" Type="TreasureLandModel.Store.RoomStatus" Multiplicity="1" />
+          <End Role="Room" Type="TreasureLandModel.Store.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomStatus">
+              <PropertyRef Name="Status" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="RoomStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TreasureLandModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TreasureLandEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BillingCategories" EntityType="TreasureLandModel.BillingCategory" />
+          <EntitySet Name="Discounts" EntityType="TreasureLandModel.Discount" />
+          <EntitySet Name="Guests" EntityType="TreasureLandModel.Guest" />
+          <EntitySet Name="Hotels" EntityType="TreasureLandModel.Hotel" />
+          <EntitySet Name="HotelRoomTypes" EntityType="TreasureLandModel.HotelRoomType" />
+          <EntitySet Name="Reservations" EntityType="TreasureLandModel.Reservation" />
+          <EntitySet Name="ReservationDetails" EntityType="TreasureLandModel.ReservationDetail" />
+          <EntitySet Name="ReservationDetailBillings" EntityType="TreasureLandModel.ReservationDetailBilling" />
+          <EntitySet Name="Revenues" EntityType="TreasureLandModel.Revenue" />
+          <EntitySet Name="RevenueCategories" EntityType="TreasureLandModel.RevenueCategory" />
+          <EntitySet Name="Rooms" EntityType="TreasureLandModel.Room" />
+          <EntitySet Name="RoomStatus" EntityType="TreasureLandModel.RoomStatu" />
+          <AssociationSet Name="FK_ReservationDetailBilling_Must_Have_BillingCategoryID" Association="TreasureLandModel.FK_ReservationDetailBilling_Must_Have_BillingCategoryID">
+            <End Role="BillingCategory" EntitySet="BillingCategories" />
+            <End Role="ReservationDetailBilling" EntitySet="ReservationDetailBillings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservationDetail_Must_Have_DiscountID" Association="TreasureLandModel.FK_ReservationDetail_Must_Have_DiscountID">
+            <End Role="Discount" EntitySet="Discounts" />
+            <End Role="ReservationDetail" EntitySet="ReservationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reservation_Guest" Association="TreasureLandModel.FK_Reservation_Guest">
+            <End Role="Guest" EntitySet="Guests" />
+            <End Role="Reservation" EntitySet="Reservations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HotelRoomType_Must_Have_HotelID" Association="TreasureLandModel.FK_HotelRoomType_Must_Have_HotelID">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="HotelRoomType" EntitySet="HotelRoomTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Revenue_Must_Have_HotelID" Association="TreasureLandModel.FK_Revenue_Must_Have_HotelID">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="Revenue" EntitySet="Revenues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_Must_Have_HotelRoomTypeID" Association="TreasureLandModel.FK_Room_Must_Have_HotelRoomTypeID">
+            <End Role="HotelRoomType" EntitySet="HotelRoomTypes" />
+            <End Role="Room" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservationDetail_Must_Have_ReservationID" Association="TreasureLandModel.FK_ReservationDetail_Must_Have_ReservationID">
+            <End Role="Reservation" EntitySet="Reservations" />
+            <End Role="ReservationDetail" EntitySet="ReservationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservationDetail_Must_Have_RoomID" Association="TreasureLandModel.FK_ReservationDetail_Must_Have_RoomID">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="ReservationDetail" EntitySet="ReservationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReservationDetailBilling_Must_Have_ReservationDetailID" Association="TreasureLandModel.FK_ReservationDetailBilling_Must_Have_ReservationDetailID">
+            <End Role="ReservationDetail" EntitySet="ReservationDetails" />
+            <End Role="ReservationDetailBilling" EntitySet="ReservationDetailBillings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Revenue_Must_Have_RevenueCategoryID" Association="TreasureLandModel.FK_Revenue_Must_Have_RevenueCategoryID">
+            <End Role="RevenueCategory" EntitySet="RevenueCategories" />
+            <End Role="Revenue" EntitySet="Revenues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Room_RoomStatus" Association="TreasureLandModel.FK_Room_RoomStatus">
+            <End Role="RoomStatus" EntitySet="RoomStatus" />
+            <End Role="Room" EntitySet="Rooms" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BillingCategory">
+          <Key>
+            <PropertyRef Name="BillingCategoryID" />
+          </Key>
+          <Property Name="BillingCategoryID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillingCategoryDescription" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="BillingCategoryTaxable" Type="Boolean" />
+          <NavigationProperty Name="ReservationDetailBillings" Relationship="TreasureLandModel.FK_ReservationDetailBilling_Must_Have_BillingCategoryID" FromRole="BillingCategory" ToRole="ReservationDetailBilling" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="DiscountID" />
+          </Key>
+          <Property Name="DiscountID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountDescription" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DiscountExpiration" Type="DateTime" Nullable="false" />
+          <Property Name="DiscountRules" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="DiscountAmount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="IsPrecentage" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ReservationDetails" Relationship="TreasureLandModel.FK_ReservationDetail_Must_Have_DiscountID" FromRole="Discount" ToRole="ReservationDetail" />
+        </EntityType>
+        <EntityType Name="Guest">
+          <Key>
+            <PropertyRef Name="GuestID" />
+          </Key>
+          <Property Name="GuestID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuestSalutation" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="GuestFirstName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="GuestSurName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="GuestCompany" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="GuestAddress" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="GuestCity" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="GuestRegion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="GuestPostalCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="GuestCountry" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="GuestFax" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="GuestPhone" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="GuestEmail" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="GuestComments" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="GuestIDNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="GuestIDIssueCountry" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="GuestIDComment" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Reservations" Relationship="TreasureLandModel.FK_Reservation_Guest" FromRole="Guest" ToRole="Reservation" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="HotelID" />
+          </Key>
+          <Property Name="HotelID" Type="Int16" Nullable="false" />
+          <Property Name="HotelName" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="HotelAddress" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="HotelCity" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="HotelState" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
+          <Property Name="HotelCountry" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="HotelRegion" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="HotelPostalCode" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="true" />
+          <Property Name="TaxLocationID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="HotelRoomTypes" Relationship="TreasureLandModel.FK_HotelRoomType_Must_Have_HotelID" FromRole="Hotel" ToRole="HotelRoomType" />
+          <NavigationProperty Name="Revenues" Relationship="TreasureLandModel.FK_Revenue_Must_Have_HotelID" FromRole="Hotel" ToRole="Revenue" />
+        </EntityType>
+        <EntityType Name="HotelRoomType">
+          <Key>
+            <PropertyRef Name="HotelRoomTypeID" />
+          </Key>
+          <Property Name="HotelRoomTypeID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelID" Type="Int16" Nullable="false" />
+          <Property Name="RoomType" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="RoomTypeRackRate" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="RoomTypeDescription" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Hotel" Relationship="TreasureLandModel.FK_HotelRoomType_Must_Have_HotelID" FromRole="HotelRoomType" ToRole="Hotel" />
+          <NavigationProperty Name="Rooms" Relationship="TreasureLandModel.FK_Room_Must_Have_HotelRoomTypeID" FromRole="HotelRoomType" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="ReservationID" />
+          </Key>
+          <Property Name="ReservationID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GuestID" Type="Int16" Nullable="false" />
+          <Property Name="ReservationDate" Type="DateTime" Nullable="false" />
+          <Property Name="ReservationStatus" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="ReservationComments" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Guest" Relationship="TreasureLandModel.FK_Reservation_Guest" FromRole="Reservation" ToRole="Guest" />
+          <NavigationProperty Name="ReservationDetails" Relationship="TreasureLandModel.FK_ReservationDetail_Must_Have_ReservationID" FromRole="Reservation" ToRole="ReservationDetail" />
+        </EntityType>
+        <EntityType Name="ReservationDetail">
+          <Key>
+            <PropertyRef Name="ReservationDetailID" />
+          </Key>
+          <Property Name="ReservationDetailID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoomID" Type="Int16" Nullable="false" />
+          <Property Name="ReservationID" Type="Int16" Nullable="false" />
+          <Property Name="QuotedRate" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="CheckinDate" Type="DateTime" Nullable="false" />
+          <Property Name="Nights" Type="Byte" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="DiscountID" Type="Int16" Nullable="false" />
+          <Property Name="NumberOfAdults" Type="Byte" Nullable="false" />
+          <Property Name="NumberOfChildren" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Discount" Relationship="TreasureLandModel.FK_ReservationDetail_Must_Have_DiscountID" FromRole="ReservationDetail" ToRole="Discount" />
+          <NavigationProperty Name="Reservation" Relationship="TreasureLandModel.FK_ReservationDetail_Must_Have_ReservationID" FromRole="ReservationDetail" ToRole="Reservation" />
+          <NavigationProperty Name="Room" Relationship="TreasureLandModel.FK_ReservationDetail_Must_Have_RoomID" FromRole="ReservationDetail" ToRole="Room" />
+          <NavigationProperty Name="ReservationDetailBillings" Relationship="TreasureLandModel.FK_ReservationDetailBilling_Must_Have_ReservationDetailID" FromRole="ReservationDetail" ToRole="ReservationDetailBilling" />
+        </EntityType>
+        <EntityType Name="ReservationDetailBilling">
+          <Key>
+            <PropertyRef Name="ReservationBillingID" />
+          </Key>
+          <Property Name="ReservationBillingID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReservationDetailID" Type="Int16" Nullable="false" />
+          <Property Name="BillingCategoryID" Type="Int16" Nullable="false" />
+          <Property Name="BillingDescription" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="true" />
+          <Property Name="BillingAmount" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="BillingItemQty" Type="Byte" Nullable="false" />
+          <Property Name="BillingItemDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="BillingCategory" Relationship="TreasureLandModel.FK_ReservationDetailBilling_Must_Have_BillingCategoryID" FromRole="ReservationDetailBilling" ToRole="BillingCategory" />
+          <NavigationProperty Name="ReservationDetail" Relationship="TreasureLandModel.FK_ReservationDetailBilling_Must_Have_ReservationDetailID" FromRole="ReservationDetailBilling" ToRole="ReservationDetail" />
+        </EntityType>
+        <EntityType Name="Revenue">
+          <Key>
+            <PropertyRef Name="RevenueID" />
+          </Key>
+          <Property Name="RevenueID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RevenueDate" Type="DateTime" Nullable="false" />
+          <Property Name="RevenueAmount" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="RevenueType" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="true" />
+          <Property Name="HotelID" Type="Int16" Nullable="false" />
+          <Property Name="RevenueCategoryID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Hotel" Relationship="TreasureLandModel.FK_Revenue_Must_Have_HotelID" FromRole="Revenue" ToRole="Hotel" />
+          <NavigationProperty Name="RevenueCategory" Relationship="TreasureLandModel.FK_Revenue_Must_Have_RevenueCategoryID" FromRole="Revenue" ToRole="RevenueCategory" />
+        </EntityType>
+        <EntityType Name="RevenueCategory">
+          <Key>
+            <PropertyRef Name="RevenueCategoryID" />
+          </Key>
+          <Property Name="RevenueCategoryID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RevenueCategoryDescription" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Revenues" Relationship="TreasureLandModel.FK_Revenue_Must_Have_RevenueCategoryID" FromRole="RevenueCategory" ToRole="Revenue" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomID" />
+          </Key>
+          <Property Name="RoomID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HotelRoomTypeID" Type="Int16" Nullable="false" />
+          <Property Name="RoomNumbers" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="RoomDescription" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="RoomSmoking" Type="Boolean" Nullable="false" />
+          <Property Name="RoomBedConfiguration" Type="String" Nullable="false" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="RoomHandicap" Type="Boolean" Nullable="false" />
+          <Property Name="RoomStatus" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="HotelRoomType" Relationship="TreasureLandModel.FK_Room_Must_Have_HotelRoomTypeID" FromRole="Room" ToRole="HotelRoomType" />
+          <NavigationProperty Name="ReservationDetails" Relationship="TreasureLandModel.FK_ReservationDetail_Must_Have_RoomID" FromRole="Room" ToRole="ReservationDetail" />
+          <NavigationProperty Name="RoomStatu" Relationship="TreasureLandModel.FK_Room_RoomStatus" FromRole="Room" ToRole="RoomStatus" />
+        </EntityType>
+        <EntityType Name="RoomStatu">
+          <Key>
+            <PropertyRef Name="Status" />
+          </Key>
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Rooms" Relationship="TreasureLandModel.FK_Room_RoomStatus" FromRole="RoomStatus" ToRole="Room" />
+        </EntityType>
+        <Association Name="FK_ReservationDetailBilling_Must_Have_BillingCategoryID">
+          <End Role="BillingCategory" Type="TreasureLandModel.BillingCategory" Multiplicity="1" />
+          <End Role="ReservationDetailBilling" Type="TreasureLandModel.ReservationDetailBilling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillingCategory">
+              <PropertyRef Name="BillingCategoryID" />
+            </Principal>
+            <Dependent Role="ReservationDetailBilling">
+              <PropertyRef Name="BillingCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservationDetail_Must_Have_DiscountID">
+          <End Role="Discount" Type="TreasureLandModel.Discount" Multiplicity="1" />
+          <End Role="ReservationDetail" Type="TreasureLandModel.ReservationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="DiscountID" />
+            </Principal>
+            <Dependent Role="ReservationDetail">
+              <PropertyRef Name="DiscountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reservation_Guest">
+          <End Role="Guest" Type="TreasureLandModel.Guest" Multiplicity="1" />
+          <End Role="Reservation" Type="TreasureLandModel.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Guest">
+              <PropertyRef Name="GuestID" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="GuestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HotelRoomType_Must_Have_HotelID">
+          <End Role="Hotel" Type="TreasureLandModel.Hotel" Multiplicity="1" />
+          <End Role="HotelRoomType" Type="TreasureLandModel.HotelRoomType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelID" />
+            </Principal>
+            <Dependent Role="HotelRoomType">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Revenue_Must_Have_HotelID">
+          <End Role="Hotel" Type="TreasureLandModel.Hotel" Multiplicity="1" />
+          <End Role="Revenue" Type="TreasureLandModel.Revenue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="HotelID" />
+            </Principal>
+            <Dependent Role="Revenue">
+              <PropertyRef Name="HotelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_Must_Have_HotelRoomTypeID">
+          <End Role="HotelRoomType" Type="TreasureLandModel.HotelRoomType" Multiplicity="1" />
+          <End Role="Room" Type="TreasureLandModel.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HotelRoomType">
+              <PropertyRef Name="HotelRoomTypeID" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="HotelRoomTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservationDetail_Must_Have_ReservationID">
+          <End Role="Reservation" Type="TreasureLandModel.Reservation" Multiplicity="1" />
+          <End Role="ReservationDetail" Type="TreasureLandModel.ReservationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reservation">
+              <PropertyRef Name="ReservationID" />
+            </Principal>
+            <Dependent Role="ReservationDetail">
+              <PropertyRef Name="ReservationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservationDetail_Must_Have_RoomID">
+          <End Role="Room" Type="TreasureLandModel.Room" Multiplicity="1" />
+          <End Role="ReservationDetail" Type="TreasureLandModel.ReservationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomID" />
+            </Principal>
+            <Dependent Role="ReservationDetail">
+              <PropertyRef Name="RoomID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReservationDetailBilling_Must_Have_ReservationDetailID">
+          <End Role="ReservationDetail" Type="TreasureLandModel.ReservationDetail" Multiplicity="1" />
+          <End Role="ReservationDetailBilling" Type="TreasureLandModel.ReservationDetailBilling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReservationDetail">
+              <PropertyRef Name="ReservationDetailID" />
+            </Principal>
+            <Dependent Role="ReservationDetailBilling">
+              <PropertyRef Name="ReservationDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Revenue_Must_Have_RevenueCategoryID">
+          <End Role="RevenueCategory" Type="TreasureLandModel.RevenueCategory" Multiplicity="1" />
+          <End Role="Revenue" Type="TreasureLandModel.Revenue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RevenueCategory">
+              <PropertyRef Name="RevenueCategoryID" />
+            </Principal>
+            <Dependent Role="Revenue">
+              <PropertyRef Name="RevenueCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Room_RoomStatus">
+          <End Role="RoomStatus" Type="TreasureLandModel.RoomStatu" Multiplicity="1" />
+          <End Role="Room" Type="TreasureLandModel.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoomStatus">
+              <PropertyRef Name="Status" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="RoomStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TreasureLandModelStoreContainer" CdmEntityContainer="TreasureLandEntities">
+          <EntitySetMapping Name="BillingCategories"><EntityTypeMapping TypeName="TreasureLandModel.BillingCategory"><MappingFragment StoreEntitySet="BillingCategory">
+            <ScalarProperty Name="BillingCategoryID" ColumnName="BillingCategoryID" />
+            <ScalarProperty Name="BillingCategoryDescription" ColumnName="BillingCategoryDescription" />
+            <ScalarProperty Name="BillingCategoryTaxable" ColumnName="BillingCategoryTaxable" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Discounts"><EntityTypeMapping TypeName="TreasureLandModel.Discount"><MappingFragment StoreEntitySet="Discount">
+            <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+            <ScalarProperty Name="DiscountDescription" ColumnName="DiscountDescription" />
+            <ScalarProperty Name="DiscountExpiration" ColumnName="DiscountExpiration" />
+            <ScalarProperty Name="DiscountRules" ColumnName="DiscountRules" />
+            <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+            <ScalarProperty Name="IsPrecentage" ColumnName="IsPrecentage" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Guests"><EntityTypeMapping TypeName="TreasureLandModel.Guest"><MappingFragment StoreEntitySet="Guest">
+            <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+            <ScalarProperty Name="GuestSalutation" ColumnName="GuestSalutation" />
+            <ScalarProperty Name="GuestFirstName" ColumnName="GuestFirstName" />
+            <ScalarProperty Name="GuestSurName" ColumnName="GuestSurName" />
+            <ScalarProperty Name="GuestCompany" ColumnName="GuestCompany" />
+            <ScalarProperty Name="GuestAddress" ColumnName="GuestAddress" />
+            <ScalarProperty Name="GuestCity" ColumnName="GuestCity" />
+            <ScalarProperty Name="GuestRegion" ColumnName="GuestRegion" />
+            <ScalarProperty Name="GuestPostalCode" ColumnName="GuestPostalCode" />
+            <ScalarProperty Name="GuestCountry" ColumnName="GuestCountry" />
+            <ScalarProperty Name="GuestFax" ColumnName="GuestFax" />
+            <ScalarProperty Name="GuestPhone" ColumnName="GuestPhone" />
+            <ScalarProperty Name="GuestEmail" ColumnName="GuestEmail" />
+            <ScalarProperty Name="GuestComments" ColumnName="GuestComments" />
+            <ScalarProperty Name="GuestIDNumber" ColumnName="GuestIDNumber" />
+            <ScalarProperty Name="GuestIDIssueCountry" ColumnName="GuestIDIssueCountry" />
+            <ScalarProperty Name="GuestIDComment" ColumnName="GuestIDComment" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Hotels"><EntityTypeMapping TypeName="TreasureLandModel.Hotel"><MappingFragment StoreEntitySet="Hotel">
+            <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+            <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+            <ScalarProperty Name="HotelAddress" ColumnName="HotelAddress" />
+            <ScalarProperty Name="HotelCity" ColumnName="HotelCity" />
+            <ScalarProperty Name="HotelState" ColumnName="HotelState" />
+            <ScalarProperty Name="HotelCountry" ColumnName="HotelCountry" />
+            <ScalarProperty Name="HotelRegion" ColumnName="HotelRegion" />
+            <ScalarProperty Name="HotelPostalCode" ColumnName="HotelPostalCode" />
+            <ScalarProperty Name="TaxLocationID" ColumnName="TaxLocationID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="HotelRoomTypes"><EntityTypeMapping TypeName="TreasureLandModel.HotelRoomType"><MappingFragment StoreEntitySet="HotelRoomType">
+            <ScalarProperty Name="HotelRoomTypeID" ColumnName="HotelRoomTypeID" />
+            <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+            <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+            <ScalarProperty Name="RoomTypeRackRate" ColumnName="RoomTypeRackRate" />
+            <ScalarProperty Name="RoomTypeDescription" ColumnName="RoomTypeDescription" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Reservations"><EntityTypeMapping TypeName="TreasureLandModel.Reservation"><MappingFragment StoreEntitySet="Reservation">
+            <ScalarProperty Name="ReservationID" ColumnName="ReservationID" />
+            <ScalarProperty Name="GuestID" ColumnName="GuestID" />
+            <ScalarProperty Name="ReservationDate" ColumnName="ReservationDate" />
+            <ScalarProperty Name="ReservationStatus" ColumnName="ReservationStatus" />
+            <ScalarProperty Name="ReservationComments" ColumnName="ReservationComments" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ReservationDetails"><EntityTypeMapping TypeName="TreasureLandModel.ReservationDetail"><MappingFragment StoreEntitySet="ReservationDetail">
+            <ScalarProperty Name="ReservationDetailID" ColumnName="ReservationDetailID" />
+            <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+            <ScalarProperty Name="ReservationID" ColumnName="ReservationID" />
+            <ScalarProperty Name="QuotedRate" ColumnName="QuotedRate" />
+            <ScalarProperty Name="CheckinDate" ColumnName="CheckinDate" />
+            <ScalarProperty Name="Nights" ColumnName="Nights" />
+            <ScalarProperty Name="Status" ColumnName="Status" />
+            <ScalarProperty Name="Comments" ColumnName="Comments" />
+            <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+            <ScalarProperty Name="NumberOfAdults" ColumnName="NumberOfAdults" />
+            <ScalarProperty Name="NumberOfChildren" ColumnName="NumberOfChildren" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ReservationDetailBillings"><EntityTypeMapping TypeName="TreasureLandModel.ReservationDetailBilling"><MappingFragment StoreEntitySet="ReservationDetailBilling">
+            <ScalarProperty Name="ReservationBillingID" ColumnName="ReservationBillingID" />
+            <ScalarProperty Name="ReservationDetailID" ColumnName="ReservationDetailID" />
+            <ScalarProperty Name="BillingCategoryID" ColumnName="BillingCategoryID" />
+            <ScalarProperty Name="BillingDescription" ColumnName="BillingDescription" />
+            <ScalarProperty Name="BillingAmount" ColumnName="BillingAmount" />
+            <ScalarProperty Name="BillingItemQty" ColumnName="BillingItemQty" />
+            <ScalarProperty Name="BillingItemDate" ColumnName="BillingItemDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Revenues"><EntityTypeMapping TypeName="TreasureLandModel.Revenue"><MappingFragment StoreEntitySet="Revenue">
+            <ScalarProperty Name="RevenueID" ColumnName="RevenueID" />
+            <ScalarProperty Name="RevenueDate" ColumnName="RevenueDate" />
+            <ScalarProperty Name="RevenueAmount" ColumnName="RevenueAmount" />
+            <ScalarProperty Name="RevenueType" ColumnName="RevenueType" />
+            <ScalarProperty Name="HotelID" ColumnName="HotelID" />
+            <ScalarProperty Name="RevenueCategoryID" ColumnName="RevenueCategoryID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="RevenueCategories"><EntityTypeMapping TypeName="TreasureLandModel.RevenueCategory"><MappingFragment StoreEntitySet="RevenueCategory">
+            <ScalarProperty Name="RevenueCategoryID" ColumnName="RevenueCategoryID" />
+            <ScalarProperty Name="RevenueCategoryDescription" ColumnName="RevenueCategoryDescription" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Rooms"><EntityTypeMapping TypeName="TreasureLandModel.Room"><MappingFragment StoreEntitySet="Room">
+            <ScalarProperty Name="RoomID" ColumnName="RoomID" />
+            <ScalarProperty Name="HotelRoomTypeID" ColumnName="HotelRoomTypeID" />
+            <ScalarProperty Name="RoomNumbers" ColumnName="RoomNumbers" />
+            <ScalarProperty Name="RoomDescription" ColumnName="RoomDescription" />
+            <ScalarProperty Name="RoomSmoking" ColumnName="RoomSmoking" />
+            <ScalarProperty Name="RoomBedConfiguration" ColumnName="RoomBedConfiguration" />
+            <ScalarProperty Name="RoomHandicap" ColumnName="RoomHandicap" />
+            <ScalarProperty Name="RoomStatus" ColumnName="RoomStatus" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="RoomStatus"><EntityTypeMapping TypeName="TreasureLandModel.RoomStatu"><MappingFragment StoreEntitySet="RoomStatus">
+            <ScalarProperty Name="Status" ColumnName="Status" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="TreasureLandModel">
+        <EntityTypeShape EntityType="TreasureLandModel.BillingCategory" Width="1.5" PointX="7.5" PointY="1.125" Height="1.7879850260416672" IsExpanded="true" />
+        <EntityTypeShape EntityType="TreasureLandModel.Discount" Width="1.5" PointX="5.25" PointY="1.25" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TreasureLandModel.Guest" Width="1.5" PointX="3" PointY="11.375" Height="4.480205078125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TreasureLandModel.Hotel" Width="1.5" PointX="0.75" PointY="4.5" Height="3.1340950520833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="TreasureLandModel.HotelRoomType" Width="1.5" PointX="3" PointY="4.875" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="TreasureLandModel.Reservation" Width="1.5" PointX="5.25" PointY="12.375" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TreasureLandModel.ReservationDetail" Width="1.5" PointX="7.5" PointY="4.125" Height="3.9033007812499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TreasureLandModel.ReservationDetailBilling" Width="1.5" PointX="9.75" PointY="4.625" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TreasureLandModel.Revenue" Width="1.5" PointX="3" PointY="0.75" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="TreasureLandModel.RevenueCategory" Width="1.5" PointX="0.75" PointY="1.375" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TreasureLandModel.Room" Width="1.5" PointX="5.25" PointY="4.5" Height="3.1340950520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="TreasureLandModel.RoomStatu" Width="1.5" PointX="3" PointY="8.25" Height="1.5956835937500031" IsExpanded="true" />
+        <AssociationConnector Association="TreasureLandModel.FK_ReservationDetailBilling_Must_Have_BillingCategoryID" ManuallyRouted="false">
+          <ConnectorPoint PointX="9" PointY="2.0189925130208337" />
+          <ConnectorPoint PointX="10.5" PointY="2.0189925130208337" />
+          <ConnectorPoint PointX="10.5" PointY="4.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="TreasureLandModel.FK_ReservationDetail_Must_Have_DiscountID" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="3.6148893229166674" />
+          <ConnectorPoint PointX="7.125" PointY="3.9898893229166674" />
+          <ConnectorPoint PointX="7.125" PointY="3.75" />
+          <ConnectorPoint PointX="7.5" PointY="4.125" />
+        </AssociationConnector>
+        <AssociationConnector Association="TreasureLandModel.FK_Reservation_Guest" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="13.557444661458334" />
+          <ConnectorPoint PointX="5.25" PointY="13.557444661458334" />
+        </AssociationConnector>
+        <AssociationConnector Association="TreasureLandModel.FK_HotelRoomType_Must_Have_HotelID" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.0574446614583328" />
+          <ConnectorPoint PointX="3" PointY="6.0574446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="TreasureLandModel.FK_Revenue_Must_Have_HotelID" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.5" />
+          <ConnectorPoint PointX="2.625" PointY="4.125" />
+          <ConnectorPoint PointX="2.625" PointY="2.0285953776041659" />
+          <ConnectorPoint PointX="3" PointY="2.0285953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="TreasureLandModel.FK_Room_Must_Have_HotelRoomTypeID" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.0574446614583328" />
+          <ConnectorPoint PointX="5.25" PointY="6.0574446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="TreasureLandModel.FK_ReservationDetail_Must_Have_ReservationID" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="13.557444661458334" />
+          <ConnectorPoint PointX="8.25" PointY="13.557444661458334" />
+          <ConnectorPoint PointX="8.25" PointY="8.02830078125" />
+        </AssociationConnector>
+        <AssociationConnector Association="TreasureLandModel.FK_ReservationDetail_Must_Have_RoomID" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="6.0670475260416659" />
+          <ConnectorPoint PointX="7.5" PointY="6.0670475260416659" />
+        </AssociationConnector>
+        <AssociationConnector Association="TreasureLandModel.FK_ReservationDetailBilling_Must_Have_ReservationDetailID" ManuallyRouted="false">
+          <ConnectorPoint PointX="9" PointY="5.99974609375" />
+          <ConnectorPoint PointX="9.75" PointY="5.99974609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="TreasureLandModel.FK_Revenue_Must_Have_RevenueCategoryID" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.5621394856770827" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="2.5621394856770823" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="2.5621394856770827" />
+          <ConnectorPoint PointX="3" PointY="2.5621394856770827" />
+        </AssociationConnector>
+        <AssociationConnector Association="TreasureLandModel.FK_Room_RoomStatus" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="9.0478417968750016" />
+          <ConnectorPoint PointX="6" PointY="9.0478417968750016" />
+          <ConnectorPoint PointX="6" PointY="7.6340950520833317" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
