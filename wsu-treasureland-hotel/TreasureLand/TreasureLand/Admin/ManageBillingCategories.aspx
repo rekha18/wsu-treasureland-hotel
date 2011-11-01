@@ -16,7 +16,7 @@
                     </Columns>
                 </asp:GridView>
                 <asp:LinqDataSource ID="ldsBilling" runat="server" 
-                    ContextTypeName="TreasureLand.TreasureLandDataClassesDataContext" 
+                    ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
                     EnableInsert="True" EnableUpdate="True" EntityTypeName="" 
                     OrderBy="BillingCategoryID" TableName="BillingCategories">
                 </asp:LinqDataSource>
