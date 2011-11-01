@@ -50,7 +50,7 @@
                 <br />
                 <asp:Button ID="btnManageServicesFees" runat="server" 
                     Text="Manage Services & Fees" Width="125px" 
-                    onclick="btnManageServicesFees_Click" />
+                    onclick="btnManageBillingCategories_Click" />
             </td>
             <td valign="top" rowspan="2">
             <div>
