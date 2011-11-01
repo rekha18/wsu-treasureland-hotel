@@ -284,6 +284,7 @@
     </Compile>
     <Compile Include="Clerk\ViewGuests.aspx.cs">
       <DependentUpon>ViewGuests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Clerk\ViewGuests.aspx.designer.cs">
       <DependentUpon>ViewGuests.aspx</DependentUpon>
