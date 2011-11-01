@@ -64,7 +64,7 @@
     <Content Include="Admin\AdminMaster.master" />
     <Content Include="Admin\CreateUser.aspx" />
     <Content Include="Admin\ManageRooms.aspx" />
-    <Content Include="Admin\ManageServices.aspx" />
+    <Content Include="Admin\ManageStatuses.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
     <Content Include="Admin\ReportsAdmin.aspx" />
     <Content Include="Admin\ManageDiscounts.aspx" />
@@ -85,7 +85,6 @@
     <Content Include="Clerk\Reports.aspx" />
     <Content Include="Clerk\UpdateGuestFolio.aspx" />
     <Content Include="Clerk\UpdateReservation.aspx" />
-    <Content Include="Clerk\ViewGuests.aspx" />
     <Content Include="HouseKeeping\HouseKeepingDefault.aspx" />
     <Content Include="HouseKeeping\HouseKeepingReports.aspx" />
     <Content Include="HouseKeeping\Inventory.aspx" />
@@ -169,12 +168,12 @@
     <Compile Include="Admin\ManageRooms.aspx.designer.cs">
       <DependentUpon>ManageRooms.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ManageServices.aspx.cs">
-      <DependentUpon>ManageServices.aspx</DependentUpon>
+    <Compile Include="Admin\ManageStatuses.aspx.cs">
+      <DependentUpon>ManageStatuses.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Admin\ManageServices.aspx.designer.cs">
-      <DependentUpon>ManageServices.aspx</DependentUpon>
+    <Compile Include="Admin\ManageStatuses.aspx.designer.cs">
+      <DependentUpon>ManageStatuses.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManageUsers.aspx.cs">
       <DependentUpon>ManageUsers.aspx</DependentUpon>
@@ -282,13 +281,6 @@
     </Compile>
     <Compile Include="Clerk\UpdateReservation.aspx.designer.cs">
       <DependentUpon>UpdateReservation.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Clerk\ViewGuests.aspx.cs">
-      <DependentUpon>ViewGuests.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Clerk\ViewGuests.aspx.designer.cs">
-      <DependentUpon>ViewGuests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
