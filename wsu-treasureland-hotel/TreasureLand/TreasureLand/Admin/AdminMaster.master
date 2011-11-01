@@ -48,9 +48,9 @@
                     Width="125px" onclick="btnManageStatuses_Click" />
                 <br />
                 <br />
-                <asp:Button ID="btnManageServices" runat="server" 
-                    Text="Manage Services" Width="125px" 
-                    onclick="btnManageServices_Click" />
+                <asp:Button ID="btnManageServicesFees" runat="server" 
+                    Text="Manage Services & Fees" Width="125px" 
+                    onclick="btnManageServicesFees_Click" />
             </td>
             <td valign="top" rowspan="2">
             <div>
