@@ -49,22 +49,13 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button Button_UnlockUser;
         
         /// <summary>
-        /// CheckBoxList_Roles control.
+        /// Repeater_UsersRoleList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList_Roles;
-        
-        /// <summary>
-        /// Button_UpdateRoles control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button_UpdateRoles;
+        protected global::System.Web.UI.WebControls.Repeater Repeater_UsersRoleList;
         
         /// <summary>
         /// Label_StatusMsg control.

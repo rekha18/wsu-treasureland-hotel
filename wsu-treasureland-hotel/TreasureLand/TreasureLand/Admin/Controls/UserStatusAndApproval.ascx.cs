@@ -48,6 +48,8 @@ namespace TreasureLand.Admin
 
                 //get the list of user roles
                 Bind_CheckBoxList_Roles();
+                //check off the roles that the user is already a member of
+                CheckRolesForSelectedUser();
             }
         }
         protected void CheckBox_IsEnabled_CheckedChanged(object sender, EventArgs e)
@@ -78,37 +80,54 @@ namespace TreasureLand.Admin
         protected void Bind_CheckBoxList_Roles()
         {
             string[] roles = Roles.GetAllRoles();
-            CheckBoxList_Roles.DataSource = roles;
-            CheckBoxList_Roles.DataBind();
+            Repeater_UsersRoleList.DataSource = roles;
+            Repeater_UsersRoleList.DataBind();
 
-            string userName = Request.QueryString["user"];
-            MembershipUser user = Membership.GetUser(userName);
-
-            foreach (ListItem box in CheckBoxList_Roles.Items)
-            {
-                box.Selected = Roles.GetRolesForUser(userName).Contains(box.Text);
-            }
         }
-        protected void Button_UpdateRoles_Click(object sender, EventArgs e)
+        
+        protected void CheckRolesForSelectedUser()
         {
-            string userName = Request.QueryString["user"];
-            MembershipUser user = Membership.GetUser(userName);
-            /*2011/10/27 Ryan Diener: This part of the method is not yet finished.
-            foreach (ListItem box in CheckBoxList_Roles.Items)
+            //get the user's roles
+            string selectedUserName =  Request.QueryString["user"];
+            string[] selectedUsersRoles = Roles.GetRolesForUser(selectedUserName);
+
+            //check or uncheck boxes as needed
+            foreach (RepeaterItem item in Repeater_UsersRoleList.Items)
             {
-                if (box.Selected)
+                //reference the checkbox
+                CheckBox RoleCheckBox = item.FindControl("RoleCheckBox") as CheckBox;
+                //see if the rolecheckbox.text is in teh selectedusersroles
+                if (selectedUsersRoles.Contains<string>(RoleCheckBox.Text))
                 {
-                    if (!Roles.IsUserInRole(box.Text))
-                        Roles.AddUserToRole(userName, box.Text);
+                    RoleCheckBox.Checked = true;
                 }
                 else
                 {
-                    if (Roles.IsUserInRole(box.Text))
-                        Roles.RemoveUserFromRole(userName, box.Text);
+                    RoleCheckBox.Checked = false;
                 }
             }
-             * */
-            Label_StatusMsg.Text = "User roles updated.";
+        }
+        protected void RoleCheckBox_CheckChanged(object sender, EventArgs e)
+        {
+            CheckBox roleCheckBox = sender as CheckBox;
+            string selectedUserName = Request.QueryString["user"];
+
+            string roleName = roleCheckBox.Text;
+
+            //check if we need to add or remove the user from the role
+            if (roleCheckBox.Checked)
+            {
+                //add the user to the role
+                Roles.AddUserToRole(selectedUserName, roleName);
+                Label_StatusMsg.Text = string.Format("User {0} was added to role {1}.", selectedUserName, roleName);
+            }
+            else
+            {
+                //remove the user from the role
+                Roles.RemoveUserFromRole(selectedUserName, roleName);
+                //update the status
+                Label_StatusMsg.Text = string.Format("User {0} was removed from role {1}.", selectedUserName, roleName);
+            }
         }
         #endregion Work methods
 

@@ -2,6 +2,7 @@
     CodeBehind="ManageUsers.aspx.cs" Inherits="TreasureLand.Admin.ManageUsers" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminContentHolder" runat="server">
+    <h1>User Management</h1>
     <asp:Repeater ID="Repeater_FilteringUI" runat="server" OnItemCommand="Repeater_FilteringUI_ItemCommand">
         <ItemTemplate>
             <asp:LinkButton runat="server" ID="lnkFilter" Text="<%#Container.DataItem %>" CommandName="<%#Container.DataItem %>" />
