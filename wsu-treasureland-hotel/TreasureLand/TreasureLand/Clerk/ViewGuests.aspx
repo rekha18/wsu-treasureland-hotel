@@ -22,11 +22,9 @@
                     </tr>
                     <tr>
                         <td class="style1" style="width: 100px">
-                            <asp:Label ID="lblRoom" runat="server" Text="Room #:"></asp:Label>
-                        </td>
+                            &nbsp;</td>
                         <td style="width: 177px">
-                            <asp:TextBox ID="txtRoomNumber" runat="server"></asp:TextBox>
-                        </td>
+                            &nbsp;</td>
                         <td class="style1" style="width: 83px">
                             <asp:Label ID="lblSurName" runat="server" Text="Sur Name:"></asp:Label>
                         </td>
@@ -39,11 +37,6 @@
                         </td>
                     </tr>
                 </table>
-                <asp:CompareValidator ID="cvLocate" runat="server" 
-                    ControlToValidate="txtRoomNumber" 
-                    ErrorMessage="Room ID must be a number" ForeColor="Red" 
-                    Operator="DataTypeCheck" Type="Integer" ValidationGroup="vgView" 
-                    Display="None"></asp:CompareValidator>
                 <asp:CompareValidator ID="cvReservationID" runat="server" 
                     ControlToValidate="txtReservation" Display="None" 
                     ErrorMessage="Reservation must be a number" ForeColor="Red" 
@@ -115,6 +108,14 @@
                             &nbsp;</td>
                     </tr>
                 </table>
+                <asp:GridView ID="gvRoomCost" runat="server" AutoGenerateColumns="False" 
+                    Width="658px">
+                    <Columns>
+                        <asp:BoundField DataField="RoomDescription" HeaderText="Room Type" />
+                        <asp:BoundField DataField="Nights" HeaderText="Number of Nights" />
+                        <asp:BoundField DataField="QuotedRate" HeaderText="Cost Per Night" />
+                    </Columns>
+                </asp:GridView>
                 <br />
                 <asp:GridView ID="gvGuestServices" runat="server" AutoGenerateColumns="False" 
                     onrowdeleting="gvGuestServices_RowDeleting" 
@@ -124,18 +125,20 @@
                     <Columns>
                         <asp:BoundField DataField="BillingDescription" HeaderText="Service" />
                         <asp:BoundField DataField="BillingItemQty" HeaderText="Quantity" />
-                        <asp:BoundField DataField="BillingAmount" HeaderText="Price" />
-                        <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
+                        <asp:BoundField DataField="BillingAmount" HeaderText="Price" 
+                            DataFormatString="{0:c}" />
+                        <asp:CommandField ButtonType="Button" ShowDeleteButton="True" Visible="False" />
+                        <asp:CommandField ButtonType="Button" ShowEditButton="True" Visible="False" />
                     </Columns>
                 </asp:GridView>
                 <br />
                 <br />
                 <table style="width: 100%">
                     <tr>
-                        <td style="width: 49px">
-                            Service:</td>
-                        <td style="width: 135px">
-                            <asp:DropDownList ID="ddlServices" runat="server" AutoPostBack="True" 
+                        <td style="width: 126px">
+                            Services and Fees:</td>
+                        <td style="width: 115px">
+                            <asp:DropDownList ID="ddlServices" runat="server" 
                                 TabIndex="-1">
                             </asp:DropDownList>
                         </td>
@@ -164,11 +167,10 @@
                         </td>
                     </tr>
                 </table>
-                <asp:CompareValidator ID="cvCost" runat="server" 
-                    ControlToCompare="txtCostofService" Display="Dynamic" Enabled="False" 
+                <asp:CompareValidator ID="cvCost" runat="server" Display="Dynamic" 
                     ErrorMessage="You must enter a monetary value." ForeColor="Red" 
                     Operator="DataTypeCheck" Type="Currency" ValidationGroup="vgGuest" 
-                    Visible="False"></asp:CompareValidator>
+                    ControlToValidate="txtCostofService"></asp:CompareValidator>
                 <br />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                     ControlToValidate="txtCostofService" Display="Dynamic" 
