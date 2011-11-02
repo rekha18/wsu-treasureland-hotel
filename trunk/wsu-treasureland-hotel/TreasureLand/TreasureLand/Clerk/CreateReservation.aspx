@@ -1,6 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Clerk/ClerkMasterPage.master" AutoEventWireup="true" CodeBehind="CreateReservation.aspx.cs" Inherits="TreasureLand.Clerk.CreateReservation" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
    
+   function clearTextBox(textBoxID)
+{
+   document.getElementById(textBoxID).value = "";
+}
         <asp:MultiView ID="mvReservation" runat="server" ActiveViewIndex="0" >
             <asp:View ID="vLocateGuest" runat="server">
                 <asp:Panel ID="Panel1" runat="server" BackColor="Silver" BorderStyle="Solid">
@@ -9,7 +14,8 @@
                             <td style="width: 73px">
                                 First Name:</td>
                             <td class="style1" style="width: 155px">
-                                <asp:TextBox ID="txtFirstName" runat="server">-Enter Name-</asp:TextBox>
+
+                                <asp:TextBox ID="txtFirstName" runat="server" OnClick="this.value=''">-Enter Name-</asp:TextBox>
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" 
@@ -68,6 +74,7 @@
                                 ReadOnly="True" SortExpression="GuestPhone" />
                             <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                         </Columns>
+                        <SelectedRowStyle BackColor="#FFFF66" ForeColor="Black" />
                     </asp:GridView>
                     <br />
                     <asp:Button ID="btnSelectGuest" runat="server" CommandArgument="2" 
@@ -227,23 +234,24 @@
                                 &nbsp;</td>
                         </tr>
                     </table>
-                    <asp:LinqDataSource ID="ldsDiscout" runat="server" 
-                        ContextTypeName="TreasureLand.TreasureLandDataClassesDataContext" 
-                        EntityTypeName="" TableName="Discounts">
-                    </asp:LinqDataSource>
-                    <asp:LinqDataSource ID="ldsRoomType" runat="server" 
-                        ContextTypeName="TreasureLand.TreasureLandDataClassesDataContext" 
-                        EntityTypeName="" TableName="HotelRoomTypes">
-                    </asp:LinqDataSource>
-                    <asp:LinqDataSource ID="ldsDiscountsInfo" runat="server" 
-                        ContextTypeName="TreasureLand.TreasureLandDataClassesDataContext" 
-                        EntityTypeName="" TableName="Discounts" Where="DiscountID == @DiscountID">
-                        <WhereParameters>
-                            <asp:ControlParameter ControlID="ddlDiscounts" Name="DiscountID" 
-                                PropertyName="SelectedValue" Type="Int16" />
-                        </WhereParameters>
-                    </asp:LinqDataSource>
-                    <br />
+                    <table style="width:100%;">
+                        <tr>
+                            <td class="style1" style="width: 199px">
+                                <asp:LinqDataSource ID="ldsDiscout" runat="server" 
+                                    ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
+                                    EntityTypeName="" TableName="Discounts" Where="DiscountID == @DiscountID">
+                                    <WhereParameters>
+                                        <asp:ControlParameter ControlID="ddlDiscounts" Name="DiscountID" 
+                                            PropertyName="SelectedValue" Type="Int16" />
+                                    </WhereParameters>
+                                </asp:LinqDataSource>
+                            </td>
+                            <td>
+                                <asp:DetailsView ID="dvRoom" runat="server" Height="50px" Width="125px">
+                                </asp:DetailsView>
+                            </td>
+                        </tr>
+                    </table>
                     <table style="width:100%;">
                         <tr>
                             <td style="width: 244px" rowspan="4">

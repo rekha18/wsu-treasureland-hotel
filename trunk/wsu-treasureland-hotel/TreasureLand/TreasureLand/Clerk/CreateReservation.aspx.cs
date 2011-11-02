@@ -19,6 +19,7 @@ namespace TreasureLand.Clerk
 
     public partial class CreateReservation : System.Web.UI.Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -28,16 +29,27 @@ namespace TreasureLand.Clerk
                 calDateFrom.SelectedDate = DateTime.Today.Date;
                 lblDateFrom.Text = calDateFrom.SelectedDate.Date.ToShortDateString();
 
+                TreasureLandDataClassesDataContext ab = new TreasureLandDataClassesDataContext();
+                //Sets Discounts in drop down list
+                var discounts = from d in ab.Discounts
+                                where d.DiscountExpiration > DateTime.Today.Date
+                                select d;
+
+                ddlDiscounts.DataSource = discounts.ToList();
+                ddlDiscounts.DataBind();
+
             }
 
-            //Sets Discounts in drop down list
-            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            var discounts = from d in db.Discounts
-                            where d.DiscountExpiration > DateTime.Today.Date
-                            select d;
 
-            ddlDiscounts.DataSource = discounts.ToList();
-            ddlDiscounts.DataBind();
+            short roomID = GetRoomNumber();
+
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            var room = from r in db.Rooms
+                       where (r.RoomID == roomID)
+                       select r;
+            dvRoom.DataSource = room.ToList();
+            dvRoom.DataBind();
+
 
             //Changes date based on number of days changed
             lblDateTo.Text = calDateFrom.SelectedDate.Date.AddDays(Convert.ToInt32(ddlNumberOfDays.SelectedValue)).ToShortDateString();
@@ -91,6 +103,13 @@ namespace TreasureLand.Clerk
         {
             //Allows user to proceed to reservation only after guest is selected
             btnSelectGuest.Enabled = true;
+        }
+
+        private short GetRoomNumber()
+        {
+            if (Session["Room"] == null)
+                Session.Add("Room", new short());
+            return (short)Session["Room"];
         }
     }
 }
