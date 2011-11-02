@@ -38,12 +38,12 @@ namespace TreasureLand.App_Code
         /// <param name="ReservationID">Reservation ID numbmer</param>
         /// <param name="RoomNumber">Room Number</param>
         /// <returns></returns>
-        public static IEnumerable LocateGuestRoom(string FirstName, string SurName, string ReservationID, int RoomID)
+        public static IEnumerable LocateGuestRoom(string FirstName, string SurName, string ReservationID)
         {
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel =
-                "SELECT Reservation.ReservationID, Guest.GuestFirstName, Guest.GuestSurName, ReservationDetail.ReservationDetailID, ReservationDetail.RoomID FROM Reservation INNER JOIN Guest ON Reservation.GuestID = Guest.GuestID INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID " +
-                "WHERE Guest.GuestFirstName = '" + FirstName + "' OR Guest.GuestSurName = '" + SurName +"' OR Reservation.ReservationID = '" + ReservationID + "' OR ReservationDetail.RoomID = '" + RoomID + "'";
+                "SELECT Reservation.ReservationID, Guest.GuestFirstName, Guest.GuestSurName, ReservationDetail.ReservationDetailID, ReservationDetail.RoomID, ReservationDetail.Status FROM Reservation INNER JOIN Guest ON Reservation.GuestID = Guest.GuestID INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID " +
+                "WHERE (Guest.GuestFirstName = '" + FirstName + "' OR Guest.GuestSurName = '" + SurName +"' OR Reservation.ReservationID = '" + ReservationID + "') AND ReservationDetail.Status ='A'";
             SqlCommand cmd =
             new SqlCommand(sel, con);
             con.Open();
@@ -90,7 +90,12 @@ namespace TreasureLand.App_Code
                 // add the column value to the ArrayList 
                 myArrList.Add(dr["BillTotal"].ToString());
             }
-            return Convert.ToDouble(myArrList[0]);
+            if (myArrList[0] != "")
+            {
+                return Convert.ToDouble(myArrList[0]);
+            }
+            else
+                return 0;
         }
                 
         /// <summary>
@@ -114,6 +119,24 @@ namespace TreasureLand.App_Code
             
             return dr;
         }
+
+
+        public static IEnumerable getGuestRoom(int roomID)
+        {
+            SqlConnection con = new SqlConnection(getConnectionString());
+            string sel = "SELECT Reservation.ReservationID, ReservationDetail.Nights, ReservationDetail.QuotedRate, Room.RoomDescription " +
+                         "FROM Reservation INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID INNER JOIN " +
+                         "Room ON ReservationDetail.RoomID = Room.RoomID WHERE ReservationDetail.RoomID = '" + roomID + "'";
+            SqlCommand cmd =
+            new SqlCommand(sel, con);
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            return dr;
+        
+        }
+
+
 
         /// <summary>
         /// Gets all transaction for a specific reservationDetailBilling ID

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TreasureLand.App_Code;
+using System.Security;
+using System.Web.Security;
 
 namespace TreasureLand.Clerk
 {    
@@ -27,7 +29,7 @@ namespace TreasureLand.Clerk
         protected void btnLocate_Click(object sender, EventArgs e)
         {
             
-            if (txtFirstName.Text == "" && txtShowSurName.Text == "" && txtRoomNumber.Text == "" && txtReservation.Text == "")
+            if (txtFirstName.Text == "" && txtShowSurName.Text == "" && txtReservation.Text == "")
             {
                 lblError.Text = "You must Enter information in at least one box";
             }
@@ -38,14 +40,12 @@ namespace TreasureLand.Clerk
                 txtFirstName.Text = "none";
             if (txtSurName.Text == "")
                 txtSurName.Text = "none";
-            if (txtRoomNumber.Text == "")
-                txtRoomNumber.Text = "0";
             if (txtReservation.Text == "")
                 txtReservation.Text = "0";
             
    
             //Gridview is populated with data
-            gvGuest.DataSource = App_Code.GuestDB.LocateGuestRoom(txtFirstName.Text, txtSurName.Text, txtReservation.Text, Convert.ToInt32(txtRoomNumber.Text));
+            gvGuest.DataSource = App_Code.GuestDB.LocateGuestRoom(txtFirstName.Text, txtSurName.Text, txtReservation.Text);
             gvGuest.DataBind();
 
 
@@ -55,8 +55,6 @@ namespace TreasureLand.Clerk
                 txtFirstName.Text = "";
             if (txtSurName.Text == "none")
                 txtSurName.Text = "";
-            if (txtRoomNumber.Text == "0")
-                txtRoomNumber.Text = "";
             if (txtReservation.Text == "0")
                 txtReservation.Text = "";
 
@@ -104,8 +102,17 @@ namespace TreasureLand.Clerk
                 ddlServices.DataBind();
 
 
+                gvRoomCost.DataSource = GuestDB.getGuestRoom(Convert.ToInt32(txtShowRoom.Text));
+                gvRoomCost.DataBind();
+
                 gvGuestServices.DataSource = GuestDB.getGuestServices(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
                 gvGuestServices.DataBind();
+
+                if (Roles.IsUserInRole("Admin")==true)
+                {
+                    gvGuestServices.Columns[3].Visible = true;
+                    gvGuestServices.Columns[4].Visible = true;
+                }
 
                 //clears the error label
                 lblError.Text = "";
