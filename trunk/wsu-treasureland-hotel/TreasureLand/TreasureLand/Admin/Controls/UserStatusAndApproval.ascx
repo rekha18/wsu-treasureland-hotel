@@ -19,7 +19,7 @@
     </tr>
     <tr>
         <td>
-     Locked Out: </strong>
+            Locked Out:
         </td>
         <td>
             <asp:Label ID="Label_LastLockedOutDate" runat="server" Text=""></asp:Label>
@@ -29,9 +29,12 @@
         </td>
     </tr>
 </table>
-<asp:CheckBoxList ID="CheckBoxList_Roles" runat="server">
-</asp:CheckBoxList>
-<asp:Button ID="Button_UpdateRoles" runat="server" Text="Update Roles" 
-    onclick="Button_UpdateRoles_Click" />
+<asp:Repeater ID="Repeater_UsersRoleList" runat="server">
+    <ItemTemplate>
+        <asp:CheckBox runat="server" ID="RoleCheckBox" AutoPostBack="true" Text="<%#Container.DataItem %>"
+            OnCheckedChanged="RoleCheckBox_CheckChanged" />
+        <br />
+    </ItemTemplate>
+</asp:Repeater>
 <br />
 <asp:Label ID="Label_StatusMsg" runat="server" ForeColor="Red" Font-Size="Large" />
