@@ -80,6 +80,7 @@
     <Content Include="Clerk\CreateReservation.aspx" />
     <Content Include="Clerk\LocateGuestFolio.aspx" />
     <Content Include="Clerk\Reports.aspx" />
+    <Content Include="Clerk\SelectRoom.aspx" />
     <Content Include="Clerk\UpdateReservation.aspx" />
     <Content Include="Clerk\ViewGuests.aspx" />
     <Content Include="HouseKeeping\HouseKeepingDefault.aspx" />
@@ -256,6 +257,13 @@
     </Compile>
     <Compile Include="Clerk\Reports.aspx.designer.cs">
       <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\SelectRoom.aspx.cs">
+      <DependentUpon>SelectRoom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\SelectRoom.aspx.designer.cs">
+      <DependentUpon>SelectRoom.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clerk\UpdateReservation.aspx.cs">
       <DependentUpon>UpdateReservation.aspx</DependentUpon>
