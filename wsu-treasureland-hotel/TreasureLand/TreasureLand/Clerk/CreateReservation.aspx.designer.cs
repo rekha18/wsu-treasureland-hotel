@@ -328,22 +328,13 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.LinqDataSource ldsDiscout;
         
         /// <summary>
-        /// ldsRoomType control.
+        /// dvRoom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource ldsRoomType;
-        
-        /// <summary>
-        /// ldsDiscountsInfo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource ldsDiscountsInfo;
+        protected global::System.Web.UI.WebControls.DetailsView dvRoom;
         
         /// <summary>
         /// calDateFrom control.
