@@ -28,7 +28,7 @@ namespace TreasureLand.Clerk
         {
             if (requiresUpdate)
                 cHome.update();
-            lblTable.Text = cHome.generateTableHTMLv2(true);
+            lblTable.Text = cHome.generateHTMLTablev3(true, "None");
 
             //Generate label information
             lbtnDatePrevious.Text = "Previous " + GridRangeView.DaysDisplayed + " Days";
