@@ -78,11 +78,8 @@
     <Content Include="Clerk\CheckOut.aspx" />
     <Content Include="Clerk\ClerkDefault.aspx" />
     <Content Include="Clerk\CreateReservation.aspx" />
-    <Content Include="Clerk\LocateGuest.aspx" />
     <Content Include="Clerk\LocateGuestFolio.aspx" />
-    <Content Include="Clerk\LocateReservation.aspx" />
     <Content Include="Clerk\Reports.aspx" />
-    <Content Include="Clerk\UpdateGuestFolio.aspx" />
     <Content Include="Clerk\UpdateReservation.aspx" />
     <Content Include="Clerk\ViewGuests.aspx" />
     <Content Include="HouseKeeping\HouseKeepingDefault.aspx" />
@@ -249,16 +246,8 @@
     <Compile Include="Clerk\CreateReservation.aspx.designer.cs">
       <DependentUpon>CreateReservation.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Clerk\LocateGuest.aspx.cs">
-      <DependentUpon>LocateGuest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Clerk\LocateGuestFolio.aspx.cs">
       <DependentUpon>LocateGuestFolio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Clerk\LocateReservation.aspx.cs">
-      <DependentUpon>LocateReservation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Clerk\Reports.aspx.cs">
@@ -267,10 +256,6 @@
     </Compile>
     <Compile Include="Clerk\Reports.aspx.designer.cs">
       <DependentUpon>Reports.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Clerk\UpdateGuestFolio.aspx.cs">
-      <DependentUpon>UpdateGuestFolio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Clerk\UpdateReservation.aspx.cs">
       <DependentUpon>UpdateReservation.aspx</DependentUpon>
