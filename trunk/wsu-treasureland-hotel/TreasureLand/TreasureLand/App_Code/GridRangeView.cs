@@ -23,6 +23,13 @@ namespace TreasureLand.App_Code
         private int ResID;
 
         /// <summary>
+        /// Defines the unique HotelRoomTypeID as in the database
+        /// </summary>
+        private int hotelRoomTypeID;
+
+        private int reservationDetailID;
+
+        /// <summary>
         /// Gets the row's room ID
         /// </summary>
         public short ID
@@ -65,14 +72,45 @@ namespace TreasureLand.App_Code
         public string RoomNumber;
 
         /// <summary>
+        /// Gets or sets the RoomType of the row
+        /// </summary>
+        public string RoomType;
+
+        /// <summary>
+        /// Gets the HotelRoomTypeID of the row
+        /// </summary>
+        public int HotelRoomTypeID
+        {
+            get
+            {
+                return hotelRoomTypeID;
+            }
+        }
+
+        /// <summary>
+        /// Gets the reservation detail ID
+        /// </summary>
+        public int ReservationDetailID
+        {
+            get
+            {
+                return reservationDetailID;
+            }
+        }
+
+        /// <summary>
         /// Constructs a Row object
         /// </summary>
         /// <param name="ID">RoomID of the row</param>
         /// <param name="ReservationID">ReservationID of the row</param>
-        public Row(short ID, int ReservationID)
+        /// <param name="HotelRoomTypeID">Room type of the row</param>
+        /// <param name="ReservationDetailID">ReservationDetailID of the row</param>
+        public Row(short ID, int ReservationID, int HotelRoomTypeID, int ReservationDetailID)
         {
             id = ID;
             ResID = ReservationID;
+            reservationDetailID = ReservationDetailID;
+            hotelRoomTypeID = HotelRoomTypeID;
         }
     }
 
@@ -107,7 +145,7 @@ namespace TreasureLand.App_Code
         /// Color denoting a reservation that has been cancelled by the holder
         /// or from failure to call back and confirm
         /// </summary>
-        public string Canceled = "#CC2B28"; //Crimson
+        public string Canceled = "#FF5526"; //
         #endregion
         #region Static Attributes
         /// <summary>
@@ -150,6 +188,11 @@ namespace TreasureLand.App_Code
         /// Defines the reservation type char in the database
         /// </summary>
         private enum COLORS { ACTIVE = 'A', UNCONFIRMED = 'U', CONFIRMED = 'C', CANCELED = 'X' };
+
+        /// <summary>
+        /// Color that the row is highlighted if the room type value is the same as the row's room number
+        /// </summary>
+        public static string highlightColor = "#FFF18E";
         #endregion
 
         /// <summary>
@@ -160,7 +203,7 @@ namespace TreasureLand.App_Code
         /// <summary>
         /// A Linked list of room names to help the hast table
         /// </summary>
-        private List<string> roomNames;
+        private List<string[]> roomNames;
         #endregion
 
         /// <summary>
@@ -182,15 +225,24 @@ namespace TreasureLand.App_Code
             roomNames = RoomDB.getRoomNumbers();
         }
 
-
-        public string generateHTMLTablev3(bool centerTable)
+        /// <summary>
+        /// Generates an HTML range view of the specified dates.
+        /// Highlights the rows of the 
+        /// </summary>
+        /// <param name="centerTable"></param>
+        /// <param name="roomType"></param>
+        /// <returns></returns>
+        public string generateHTMLTablev3(bool centerTable, string roomType)
         {
             Hashtable roomData = new Hashtable();
 
             #region Hashtable fill
-            foreach (string s in roomNames)
-                roomData.Add(s, new string[DaysDisplayed, 3]); //Color for each day, data to display
-
+            foreach (string[] s in roomNames)
+            {
+                string[,] room = new string[DaysDisplayed + 1, 3];
+                room[DaysDisplayed,0] = s[1];
+                roomData.Add(s[0], room); //Color for each day, data to display
+            }
 
             foreach (Row r in rows)
             {
@@ -210,7 +262,7 @@ namespace TreasureLand.App_Code
 
             bool rowEven = false;
             int rowCount = 1;
-            foreach (string key in roomNames) //Assuming the rooms were sorted in order
+            foreach (string[] room in roomNames) //Assuming the rooms were sorted in order
             {
                 #region Paging Logic
                 if (rowCount < RoomIndex)
@@ -222,13 +274,14 @@ namespace TreasureLand.App_Code
                     break;
                 #endregion
 
+                string key = room[0];
                 string[,] row = (string[,])roomData[key];
                 //Create the left-most cell with the room number
                 table += "<tr>"; //Open a row
-                table += "<td id='row" + key + "' style='background: #AAAAAA' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")'>" +
-                    key + "</td>";
+                table += "<td id='row" + key + "' style='background-color: "+ (roomType == row[DaysDisplayed, 0] ? highlightColor : "#AAAAAA") + 
+                    ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")'>" + key + "</td>";
 
-                string backColor = rowEven ? "#CCCCCC" : "#FFFFFF";
+                string backColor = roomType == row[DaysDisplayed,0] ? highlightColor : (rowEven ? "#CCCCCC" : "#FFFFFF");
 
                 //Create the row data
                 for(int i = 0; i < DaysDisplayed; i++)
@@ -259,7 +312,12 @@ namespace TreasureLand.App_Code
             return table + "</table>";
         }
 
-
+        /// <summary>
+        /// Fills a row of table cells with the correct color and divides the cell in half
+        /// if needed
+        /// </summary>
+        /// <param name="r">Row to analyze</param>
+        /// <param name="data">Ragged 2D string array to return color data in</param>
         public void fillCell(Row r, string[,] data)
         {
             //The cells to insert will calculated in terms of the array bounds.
@@ -274,6 +332,7 @@ namespace TreasureLand.App_Code
             if (startIndex >= 0 && startIndex < DaysDisplayed)//Add the second td tag
                 data[startIndex, 2] = color;
 
+            //data[DaysDisplayed, 0] = r.RoomType;
             for (int i = startIndex; i < endIndex; i++)
             {
                 //If the index is valid
@@ -281,13 +340,61 @@ namespace TreasureLand.App_Code
                 {
                     if(data[i, 2] == null) //Don't overwrite the start date when it comes time to generate the table
                         data[i, 1] = "<td id='row" + r.RoomNumber + "col" + i + "a' colspan='2' style='background-color:" + color +
-                                ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")'>RS #" + r.ReservationID + "</td>";
+                                ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")'>RS #" + r.ReservationDetailID + "</td>";
                 }
             }
         }
 
-        #region Old V2
         /// <summary>
+        /// Tests a specific ReservationID against all records except itself
+        /// to test against existing date ranges to make sure a record will
+        /// not overlap a currently existing one
+        /// </summary>
+        /// <param name="ReservationID">ID of the reservation</param>
+        /// <param name="RoomNumber">Intended/New RoomNumber of the reservation</param>
+        /// <returns>Null if no collision. Returns error messages</returns>
+        public string testDateRangeCollision(int ReservationID, string RoomNumber)
+        {
+            //Find the row
+            Row test = null;
+            update();
+            foreach (Row r in rows)
+                if (r.ReservationDetailID == ReservationID)
+                {
+                    test = r;
+                    break;
+                }
+
+            if (test == null) //ReservationID did not match any existing record
+                return "No existing records for Reservation # " + ReservationID; 
+
+            bool roomFound = false;
+            foreach (string[] s in roomNames)
+                if (s[0] == RoomNumber)
+                {
+                    roomFound = true;
+                    break;
+                }
+
+            if (!roomFound) //Room does not exist
+                return "Specified room number does not exist";
+
+            //Test the row against every other row
+            foreach (Row r in rows)
+            {
+                if (((test.Begin >= r.Begin && test.Begin < r.End) ||
+                    (test.End > r.Begin && test.End <= r.End)) &&
+                    RoomNumber == r.RoomNumber)
+                {
+                    return "The selected room already has a guest for this time"; //A collision was detected
+                }
+            }
+
+            return null;
+        }
+
+        #region Old V2
+        /*// <summary>
         /// Generates an HTML table containing the data values returned
         /// from the update() command. This updated version differs from
         /// the last in the sense that it now stores the RoomNumber attribute
@@ -354,10 +461,17 @@ namespace TreasureLand.App_Code
             #endregion
 
             return table + "</table>";
-        }
+        }*/
         #endregion
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="rowData"></param>
+        /// <param name="key"></param>
+        /// <param name="j"></param>
+        /// <param name="rowEven"></param>
+        /// <returns></returns>
         private string generateRow(string[,] rowData, string key, int j, bool rowEven)
         {
             string RT = "<td id='room" + key + "col" + j + "'>" + 
