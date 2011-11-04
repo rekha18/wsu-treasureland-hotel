@@ -393,6 +393,47 @@ namespace TreasureLand.App_Code
             return null;
         }
 
+        /// <summary>
+        /// Tests a specific ReservationID against all records except itself
+        /// to test against existing date ranges to make sure a record will
+        /// not overlap a currently existing one
+        /// </summary>
+        /// <param name="begin">Beginning date of the reservation</param>
+        /// <param name="nightsStayed">Number of nights the guest is planning on staying</param>
+        /// <param name="RoomNumber">Intended/New RoomNumber of the reservation</param>
+        /// <returns>Null if no collision. Returns error messages</returns>
+        public string testDateRangeCollision(string sBegin, int nightsStayed, string RoomNumber)
+        {
+            update();
+            
+            DateTime begin = DateTime.Parse(sBegin); //Assuming sBegin is in the proper format
+            DateTime end = begin.AddDays(nightsStayed);
+
+            bool roomFound = false;
+            foreach (string[] s in roomNames)
+                if (s[0] == RoomNumber)
+                {
+                    roomFound = true;
+                    break;
+                }
+
+            if (!roomFound) //Room does not exist
+                return "Specified room number does not exist";
+
+            //Test the row against every other row
+            foreach (Row r in rows)
+            {
+                if (((begin >= r.Begin && begin < r.End) ||
+                    (end > r.Begin && end <= r.End)) &&
+                    RoomNumber == r.RoomNumber)
+                {
+                    return "The selected room already has a guest for this time"; //A collision was detected
+                }
+            }
+
+            return null;
+        }
+
         #region Old V2
         /*// <summary>
         /// Generates an HTML table containing the data values returned
