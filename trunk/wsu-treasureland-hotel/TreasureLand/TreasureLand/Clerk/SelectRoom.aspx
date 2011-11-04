@@ -81,6 +81,7 @@
                         <span style="padding: 5px 15px 0px 0px"></span>
                         <asp:Button ID="btnSelectRoom" runat="server" Text="Select Room" 
                             onclick="btnSelectRoom_Click" />
+                        <br />
                         <asp:Label ID="lblSelectError" runat="server" ForeColor="Red"></asp:Label>
                     </div>
                 </asp:View>
