@@ -13,17 +13,24 @@ namespace TreasureLand.Clerk
         private GridRangeView cHome = new GridRangeView();
         private bool requiresUpdate = true;
         private ListItem selectRoomType = new ListItem("-- Select a room type --", "None");
+        private static string CheckInDate;
+        private static int Nights;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)
                 return;
+            //else
+            //{
+                //Session.Add("CheckInDate", "10/31/2011");
+                //Session.Add("Nights", 5);
+            //}
             
             //SESSION key = "Room". ReservationID
             //Assuming that if a room is passed in the clerk is selecting a room
             //for a reservation. If no room value exists, then the clerk is updating
             //an existing reservation by removing it to a different room
-            if (Session["Room"] == null)
+            if (Session["CheckInDate"] == null)
             {
                 mvRooms.ActiveViewIndex = 0; //Update room display
                 lblPageStatus.Text = "Move Reservation to a Different Room:";
@@ -32,6 +39,11 @@ namespace TreasureLand.Clerk
             {
                 mvRooms.ActiveViewIndex = 1; //Select room display
                 lblPageStatus.Text = "Add Current Reservation:";
+
+                CheckInDate = Session["CheckInDate"].ToString();
+                Nights = Int32.Parse(Session["Nights"].ToString());
+                Session.Remove("CheckInDate");
+                Session.Remove("Nights");
             }
         }
 
@@ -211,8 +223,8 @@ namespace TreasureLand.Clerk
                 return;
             }
             
-            int ReservationID = Int32.Parse(Session["Room"].ToString());
-            string errors = testDateRangeCollision(ReservationID, txtRoomNumberSelect.Text);
+            //int ReservationID = Int32.Parse(Session["Room"].ToString());
+            string errors = cHome.testDateRangeCollision(CheckInDate, Nights, txtRoomNumberSelect.Text);
             if (errors != null)
             {
                 lblSelectError.Text = errors;
@@ -229,7 +241,6 @@ namespace TreasureLand.Clerk
                 Session["RoomID"] = RoomID;
 
             requiresUpdate = true;
-            Session.Remove("Room");
             Response.Redirect("~/Clerk/CreateReservation.aspx");
         }
     }
