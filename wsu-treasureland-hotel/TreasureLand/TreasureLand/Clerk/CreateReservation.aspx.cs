@@ -19,11 +19,14 @@ namespace TreasureLand.Clerk
 
     public partial class CreateReservation : System.Web.UI.Page
     {
-        
+        public App_Code.Reserve reserving = new App_Code.Reserve();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                reserving.roomID = 0;
+
                 //Initial set up of dates for the reservation page
                 lblDateToday.Text = DateTime.Today.Date.ToShortDateString();
                 calDateFrom.SelectedDate = DateTime.Today.Date;
@@ -41,14 +44,19 @@ namespace TreasureLand.Clerk
             }
 
 
-            short roomID = GetRoomNumber();
+            //Get session roomID for room selection
+            reserving = GetRoomNumber();
 
-            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            var room = from r in db.Rooms
-                       where (r.RoomID == roomID)
-                       select r;
-            dvRoom.DataSource = room.ToList();
-            dvRoom.DataBind();
+            if (reserving.roomID != 0)
+            {
+                mvReservation.ActiveViewIndex = 2;
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                var room = from r in db.Rooms
+                           where (r.RoomID == reserving.roomID)
+                           select r;
+                dvRoom.DataSource = room.ToList();
+                dvRoom.DataBind();
+            }
 
 
             //Changes date based on number of days changed
@@ -105,11 +113,25 @@ namespace TreasureLand.Clerk
             btnSelectGuest.Enabled = true;
         }
 
-        private short GetRoomNumber()
+        protected void btnSelectRoom_Click(object sender, EventArgs e)
+        {
+            //Collects data for session and sends to select room page
+            reserving.reserveDate = lblDateFrom.Text;
+            reserving.daysStaying = Convert.ToInt32(ddlNumberOfDays.SelectedValue);
+            reserving.view = 0;
+
+            Response.Redirect("SelectRoom.aspx");
+        }
+
+
+        //Create of retrive session
+        private App_Code.Reserve GetRoomNumber()
         {
             if (Session["Room"] == null)
-                Session.Add("Room", new short());
-            return (short)Session["Room"];
+                Session.Add("Room", reserving);
+            return (App_Code.Reserve)Session["Room"];
         }
+
+
     }
 }

@@ -226,6 +226,7 @@
     </Compile>
     <Compile Include="App_Code\GridRangeView.cs" />
     <Compile Include="App_Code\GuestDB.cs" />
+    <Compile Include="App_Code\Reserve.cs" />
     <Compile Include="App_Code\RoomDB.cs" />
     <Compile Include="Clerk\CheckIn.aspx.designer.cs">
       <DependentUpon>CheckIn.aspx</DependentUpon>

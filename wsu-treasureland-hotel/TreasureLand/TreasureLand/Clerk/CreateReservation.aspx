@@ -261,7 +261,8 @@
                             <td style="width: 239px">
                                 Select Room:</td>
                             <td>
-                                <asp:Button ID="btnSelectRoom" runat="server" Text="Select Room" />
+                                <asp:Button ID="btnSelectRoom" runat="server" Text="Select Room" 
+                                    onclick="btnSelectRoom_Click" />
                             </td>
                         </tr>
                         <tr>
