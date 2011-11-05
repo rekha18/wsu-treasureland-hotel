@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using System.Data.Linq.Mapping;
 
 namespace TreasureLand
 {
@@ -13,7 +14,6 @@ namespace TreasureLand
         void Application_Start(object sender, EventArgs e)
         {
             // Code that runs on application startup
-
         }
 
         void Application_End(object sender, EventArgs e)

@@ -94,7 +94,6 @@ namespace TreasureLand.Admin
             Repeater_FilteringUI.DataBind();
         }
         #endregion Work Methods
-
         #region Events
         protected void Page_Load(object sender, EventArgs e)
         {
