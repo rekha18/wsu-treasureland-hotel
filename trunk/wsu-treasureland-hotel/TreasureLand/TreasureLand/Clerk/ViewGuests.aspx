@@ -157,7 +157,7 @@
                         <asp:TemplateField HeaderText="Qty">
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtQty" runat="server" Text='<%# Bind("BillingItemQty") %>' 
-                                    Width="41px"></asp:TextBox>
+                                    Width="41px" CausesValidation="True"></asp:TextBox>
                                 <asp:CompareValidator ID="cvQty" runat="server" ControlToValidate="txtQty" 
                                     Display="Dynamic" ErrorMessage="Qty must be a number" ForeColor="Red" 
                                     Operator="DataTypeCheck" Type="Integer" ValidationGroup="vgService">*</asp:CompareValidator>
@@ -173,7 +173,8 @@
                         <asp:TemplateField HeaderText="Price">
                             <EditItemTemplate>
                                 <asp:TextBox ID="txtPrice" runat="server" 
-                                    Text='<%# Bind("BillingAmount", "{0:0.00}") %>' Width="64px"></asp:TextBox>
+                                    Text='<%# Bind("BillingAmount", "{0:0.00}") %>' Width="64px" 
+                                    CausesValidation="True"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rvPrice" runat="server" 
                                     ControlToValidate="txtPrice" ErrorMessage="Price is a required field" 
                                     ForeColor="Red" ValidationGroup="vgService">*</asp:RequiredFieldValidator>
@@ -201,7 +202,7 @@
                         <asp:CommandField ButtonType="Button" ShowDeleteButton="True" Visible="False" />
                     </Columns>
                 </asp:GridView>
-                <asp:ValidationSummary ID="ValidationSummary2" runat="server" ForeColor="Red" 
+                <asp:ValidationSummary ID="vsGuestServices" runat="server" ForeColor="Red" 
                     ValidationGroup="vgService" />
                 <br />
                 <br />

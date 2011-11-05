@@ -194,20 +194,26 @@ namespace TreasureLand.Clerk
 
         protected void gvGuestServices_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {   
+            try
             {
                 //Gets the values from the selected row and sends an update call to the database
                 //Data is rebinded to gridview and the totals are updated
+                    GridViewRow row = gvGuestServices.Rows[e.RowIndex];
+                    int itemQty = Convert.ToInt32((row.FindControl("txtQty") as TextBox).Text);
+                    double itemPrice = Convert.ToDouble((row.FindControl("txtPrice") as TextBox).Text);
+                    int transactionID = Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text);
+                    string comments = (row.FindControl("txtComments") as TextBox).Text;
+                    App_Code.GuestDB.updateService(transactionID, itemQty, itemPrice, comments);
+                    gvGuestServices.EditIndex = -1;
+                    gvGuestServiesDataBind();
+                    updateGuestPriceTotals();
                 
-                GridViewRow row = gvGuestServices.Rows[e.RowIndex];
-                int itemQty = Convert.ToInt32((row.FindControl("txtQty") as TextBox).Text);
-                double itemPrice = Convert.ToDouble((row.FindControl("txtPrice") as TextBox).Text);
-                int transactionID = Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text);
-                string comments = (row.FindControl("txtComments") as TextBox).Text;
-                App_Code.GuestDB.updateService(transactionID, itemQty, itemPrice, comments);
-                gvGuestServices.EditIndex = -1;
-                gvGuestServiesDataBind();
-                updateGuestPriceTotals();
             }
+        catch (Exception)
+        {
+            lblErrorGuest.Text = "Cannot update information, insertion failed";
+        }
+            
         }
 
         /// <summary>
@@ -217,11 +223,19 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void gvGuestServices_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            GridViewRow row = gvGuestServices.Rows[e.RowIndex];
-            int transactionID = Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text);
-            App_Code.GuestDB.deleteService(transactionID);
-            gvGuestServiesDataBind();
-            updateGuestPriceTotals();
+
+            try
+            {
+                GridViewRow row = gvGuestServices.Rows[e.RowIndex];
+                int transactionID = Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text);
+                App_Code.GuestDB.deleteService(transactionID);
+                gvGuestServiesDataBind();
+                updateGuestPriceTotals();
+            }
+            catch (Exception)
+            {
+                lblErrorGuest.Text = "Deletion Failed";
+            }
         }
 
         /// <summary>
@@ -248,7 +262,7 @@ namespace TreasureLand.Clerk
                 lblErrorGuest.Text = "An error occurred while attempting to update the row.";
             }
 
-
+            
         }
         #endregion
 
