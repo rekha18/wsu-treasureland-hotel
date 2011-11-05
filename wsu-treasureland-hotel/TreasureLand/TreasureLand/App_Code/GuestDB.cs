@@ -131,12 +131,8 @@ namespace TreasureLand.App_Code
             new SqlCommand(sel, con);
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
-
-            return dr;
-        
+            return dr;        
         }
-
-
 
         /// <summary>
         /// Gets all transaction for a specific reservationDetailBilling ID
@@ -146,13 +142,94 @@ namespace TreasureLand.App_Code
         public static IEnumerable getGuestServices(int reservationDetailID)
         {
             SqlConnection con = new SqlConnection(getConnectionString());
-            string sel = "SELECT BillingDescription, BillingItemQty, BillingAmount FROM ReservationDetailBilling WHERE ReservationDetailID = " + reservationDetailID;
+            string sel = "SELECT BillingDescription, BillingItemQty, BillingItemDate, BillingAmount, ReservationBillingID FROM ReservationDetailBilling WHERE ReservationDetailID = " + reservationDetailID;
             SqlCommand cmd = new SqlCommand(sel, con);
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
             return dr;
         }
 
+        /// <summary>
+        /// Gets discount for current reservation
+        /// </summary>
+        /// <param name="reservationID"></param>
+        /// <returns></returns>
+        public static ArrayList getGuestDiscount(int reservationDetailID)
+        {
+            SqlConnection con = new SqlConnection(getConnectionString());
+            string sel = "SELECT ReservationDetail.DiscountID AS DiscountID, Discount.DiscountAmount AS DiscountAmount, Discount.IsPrecentage AS IsPercent FROM Discount INNER JOIN ReservationDetail ON Discount.DiscountID = ReservationDetail.DiscountID WHERE ReservationDetail.ReservationDetailID = " + reservationDetailID;
+
+            SqlCommand cmd = new SqlCommand(sel, con);
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            ArrayList myArrList = new ArrayList();
+            while (dr.Read())
+            {
+                // add the column value to the ArrayList 
+                myArrList.Add(dr["DiscountID"].ToString());
+                myArrList.Add(dr["DiscountAmount"].ToString());
+                myArrList.Add(dr["IsPercent"].ToString());
+            }            
+            return myArrList;
+        }
+
+        /// <summary>
+        /// Updates a guest service in the database
+        /// </summary>
+        /// <param name="BillingDetailID">Unique id for the service</param>
+        /// <param name="Qty">number of services</param>
+        /// <param name="Cost">cost of each service</param>
+        /// <param name="Comments">any additional comments (not a required)</param>
+        /// <returns></returns>
+        public static int updateService(int BillingDetailID, int Qty, double Cost, string Comments)
+        {
+            SqlConnection conn = new SqlConnection(getConnectionString());
+
+            try
+            {            
+                conn.Open(); //Open the connection
+
+                string update = "UPDATE [ReservationDetailBilling] SET [BillingItemQty] = @Qty, [BillingAmount] = @Cost "  +
+                                 "WHERE [ReservationBillingID] = @ReservationBillingID";
+                SqlCommand connCommand = new SqlCommand(update, conn);
+                connCommand.Parameters.AddWithValue("@Qty", Qty);
+                connCommand.Parameters.AddWithValue("@Cost", Cost);
+                connCommand.Parameters.AddWithValue("@Comments", Comments);
+                connCommand.Parameters.AddWithValue("@ReservationBillingID", BillingDetailID);
+                return connCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+            }
+            return 0;
+        }
+    
+        /// <summary>
+        /// Deletes a service in the database
+        /// </summary>
+        /// <param name="BillingDetailID">unique id</param>
+        /// <returns></returns>
+        public static int deleteService(int BillingDetailID)
+        {
+            SqlConnection conn = new SqlConnection(getConnectionString());
+
+            try
+            {
+                conn.Open(); //Open the connection
+
+                string update = "DELETE [ReservationDetailBilling] " +
+                                 "WHERE [ReservationBillingID] = @ReservationBillingID";
+
+                SqlCommand connCommand = new SqlCommand(update, conn);
+                connCommand.Parameters.AddWithValue("@ReservationBillingID", BillingDetailID);
+                return connCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            
+        }
 
     }
 }
