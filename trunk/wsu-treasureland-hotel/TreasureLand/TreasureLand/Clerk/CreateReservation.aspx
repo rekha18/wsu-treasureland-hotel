@@ -149,7 +149,7 @@
                             <td style="width: 154px">
                                 Number of Adults:</td>
                             <td>
-                                <asp:DropDownList ID="ddlAdults" runat="server" AutoPostBack="True">
+                                <asp:DropDownList ID="ddlAdults" runat="server">
                                     <asp:ListItem Selected="True">1</asp:ListItem>
                                     <asp:ListItem>2</asp:ListItem>
                                     <asp:ListItem>3</asp:ListItem>
@@ -166,7 +166,7 @@
                             <td style="width: 154px">
                                 Number of Children:</td>
                             <td>
-                                <asp:DropDownList ID="ddlChildren" runat="server" AutoPostBack="True">
+                                <asp:DropDownList ID="ddlChildren" runat="server">
                                     <asp:ListItem Selected="True">0</asp:ListItem>
                                     <asp:ListItem>1</asp:ListItem>
                                     <asp:ListItem>2</asp:ListItem>

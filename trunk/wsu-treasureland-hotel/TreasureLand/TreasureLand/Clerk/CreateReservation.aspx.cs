@@ -12,7 +12,6 @@ using TreasureLand.DBM;
 namespace TreasureLand.Clerk
 {
     /*Items that still need to be addressed. 
-     * Select Rooms need to be enabled
      * Total Quoted Cost needs to be calculated
      * Resever button needs to be enabled and programmed
      * Add Guest needs to have check against duplicate entries
