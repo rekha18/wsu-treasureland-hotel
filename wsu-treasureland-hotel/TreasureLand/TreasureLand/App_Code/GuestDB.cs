@@ -227,9 +227,7 @@ namespace TreasureLand.App_Code
             catch (Exception e)
             {
                 throw e;
-            }
-            
+            }            
         }
-
     }
 }
