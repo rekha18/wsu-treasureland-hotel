@@ -10,96 +10,132 @@
 namespace TreasureLand.Clerk {
     
     
-    public partial class WebForm6 {
+    public partial class UpdateReservation {
         
         /// <summary>
-        /// calDatePicker control.
+        /// pUpdateReservation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar calDatePicker;
+        protected global::System.Web.UI.WebControls.Panel pUpdateReservation;
         
         /// <summary>
-        /// lbtnDatePrevious control.
+        /// mvUpdateReservation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnDatePrevious;
+        protected global::System.Web.UI.WebControls.MultiView mvUpdateReservation;
         
         /// <summary>
-        /// lbtnToday control.
+        /// vLocateReservation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnToday;
+        protected global::System.Web.UI.WebControls.View vLocateReservation;
         
         /// <summary>
-        /// lbtnDateFuture control.
+        /// txtResNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnDateFuture;
+        protected global::System.Web.UI.WebControls.TextBox txtResNumber;
         
         /// <summary>
-        /// lblTable control.
+        /// txtFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTable;
+        protected global::System.Web.UI.WebControls.TextBox txtFirstName;
         
         /// <summary>
-        /// lbtnPagePrevious control.
+        /// txtSurName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnPagePrevious;
+        protected global::System.Web.UI.WebControls.TextBox txtSurName;
         
         /// <summary>
-        /// lbtnPageNext control.
+        /// txtPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnPageNext;
+        protected global::System.Web.UI.WebControls.TextBox txtPhone;
         
         /// <summary>
-        /// ddlRoomTypes control.
+        /// btnLocateReservation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRoomTypes;
+        protected global::System.Web.UI.WebControls.Button btnLocateReservation;
         
         /// <summary>
-        /// txtRoomNumber control.
+        /// gvGuest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRoomNumber;
+        protected global::System.Web.UI.WebControls.GridView gvGuest;
         
         /// <summary>
-        /// btnSelectRoom control.
+        /// btnSelectReservation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSelectRoom;
+        protected global::System.Web.UI.WebControls.Button btnSelectReservation;
+        
+        /// <summary>
+        /// vUpdateReservation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vUpdateReservation;
+        
+        /// <summary>
+        /// dvReservation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DetailsView dvReservation;
+        
+        /// <summary>
+        /// lblReservationNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReservationNumber;
+        
+        /// <summary>
+        /// ldsReservations control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource ldsReservations;
     }
 }
