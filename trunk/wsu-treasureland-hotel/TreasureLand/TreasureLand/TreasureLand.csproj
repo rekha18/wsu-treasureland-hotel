@@ -75,6 +75,7 @@
     <Content Include="Admin\UserInformation.aspx" />
     <Content Include="Admin\Controls\UserStatusAndApproval.ascx" />
     <Content Include="Admin\ManageBillingCategories.aspx" />
+    <Content Include="Admin\ManageRoomTypes.aspx" />
     <Content Include="Clerk\CheckIn.aspx" />
     <Content Include="Clerk\CheckOut.aspx" />
     <Content Include="Clerk\ClerkDefault.aspx" />
@@ -223,6 +224,13 @@
     </Compile>
     <Compile Include="Admin\ManageBillingCategories.aspx.designer.cs">
       <DependentUpon>ManageBillingCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageRoomTypes.aspx.cs">
+      <DependentUpon>ManageRoomTypes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageRoomTypes.aspx.designer.cs">
+      <DependentUpon>ManageRoomTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\GridRangeView.cs" />
     <Compile Include="App_Code\GuestDB.cs" />

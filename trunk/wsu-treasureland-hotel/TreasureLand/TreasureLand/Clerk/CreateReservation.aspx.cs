@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using TreasureLand.DBM;
 
+
 namespace TreasureLand.Clerk
 {
     /*Items that still need to be addressed. 
@@ -25,7 +26,9 @@ namespace TreasureLand.Clerk
         {
             if (!IsPostBack)
             {
-                reserving.roomID = 0;
+                
+                reserving.roomID = -1;
+                reserving.view = 0;
 
                 //Initial set up of dates for the reservation page
                 lblDateToday.Text = DateTime.Today.Date.ToShortDateString();
@@ -40,6 +43,7 @@ namespace TreasureLand.Clerk
 
                 ddlDiscounts.DataSource = discounts.ToList();
                 ddlDiscounts.DataBind();
+                ddlDiscounts.Items.Insert(0 , new ListItem("-No Discount-", "-1"));
 
             }
 
@@ -47,16 +51,36 @@ namespace TreasureLand.Clerk
             //Get session roomID for room selection
             reserving = GetRoomNumber();
 
-            if (reserving.roomID != 0)
+            if (reserving.roomID != -1)
             {
-                mvReservation.ActiveViewIndex = 2;
+                lblResFirstName.Text = reserving.firstName;
+                lblResSurName.Text = reserving.surName;
+                lblResPhone.Text = reserving.phone;
+                ddlAdults.SelectedIndex = reserving.numAdults;
+                ddlChildren.SelectedIndex = reserving.numChild;
+                ddlNumberOfDays.SelectedIndex = reserving.daysStaying - 1;
+                lblDateFrom.Text = reserving.reserveDate;
+                calDateFrom.SelectedDate = Convert.ToDateTime(reserving.reserveDate);
+                ddlDiscounts.SelectedIndex = reserving.Discount;
+
+                btnSelectRoom.Text = "Change Room";
+                mvReservation.ActiveViewIndex = reserving.view;
+
                 TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-                var room = from r in db.Rooms
-                           where (r.RoomID == reserving.roomID)
-                           select r;
-                dvRoom.DataSource = room.ToList();
-                dvRoom.DataBind();
+                var roomInfo = from r in db.HotelRoomTypes
+                               join o in db.Rooms
+                               on r.HotelRoomTypeID equals o.HotelRoomTypeID
+                               where (o.RoomID == reserving.roomID)
+                               select new { o.RoomNumbers, r.RoomType, curreny = string.Format("{0:c}", r.RoomTypeRackRate) };
+                gvRoomInfo.DataSource = roomInfo.ToList();
+                gvRoomInfo.DataBind();
+                gvRoomInfo.HeaderRow.Cells[0].Text = "Room Number";
+                gvRoomInfo.HeaderRow.Cells[1].Text = "Room Type";
+                gvRoomInfo.HeaderRow.Cells[2].Text = "Price Per Night";
+
+                 
             }
+            
 
 
             //Changes date based on number of days changed
@@ -105,6 +129,7 @@ namespace TreasureLand.Clerk
             lblResFirstName.Text = Convert.ToString(gvGuest.SelectedRow.Cells[1].Text);
             lblResSurName.Text = Convert.ToString(gvGuest.SelectedRow.Cells[0].Text);
             lblResPhone.Text = Convert.ToString(gvGuest.SelectedRow.Cells[2].Text);
+            reserving.view = 2;
         }
 
         protected void gvGuest_SelectedIndexChanged(object sender, EventArgs e)
@@ -119,7 +144,13 @@ namespace TreasureLand.Clerk
             reserving.reserveDate = lblDateFrom.Text;
             reserving.daysStaying = Convert.ToInt32(ddlNumberOfDays.SelectedValue);
             reserving.view = 0;
-
+            reserving.firstName = lblResFirstName.Text;
+            reserving.surName = lblResSurName.Text;
+            reserving.phone = lblResPhone.Text;
+            reserving.numAdults = ddlAdults.SelectedIndex;
+            reserving.numChild = ddlChildren.SelectedIndex;
+            reserving.Discount = ddlDiscounts.SelectedIndex;
+       
             Response.Redirect("SelectRoom.aspx");
         }
 

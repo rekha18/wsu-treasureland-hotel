@@ -2,10 +2,6 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
    
-   function clearTextBox(textBoxID)
-{
-   document.getElementById(textBoxID).value = "";
-}
         <asp:MultiView ID="mvReservation" runat="server" ActiveViewIndex="0" >
             <asp:View ID="vLocateGuest" runat="server">
                 <asp:Panel ID="Panel1" runat="server" BackColor="Silver" BorderStyle="Solid">
@@ -27,7 +23,7 @@
                             <td style="width: 73px">
                                 Sur Name:</td>
                             <td class="style1" style="width: 155px">
-                                <asp:TextBox ID="txtSurName" runat="server">-Enter Name-</asp:TextBox>
+                                <asp:TextBox ID="txtSurName" runat="server" OnClick="this.value=''">-Enter Name-</asp:TextBox>
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="rfvSurName" runat="server" 
@@ -39,7 +35,7 @@
                             <td style="width: 73px">
                                 Phone:</td>
                             <td class="style1" style="width: 155px">
-                                <asp:TextBox ID="txtPhone" runat="server">-Enter Phone-</asp:TextBox>
+                                <asp:TextBox ID="txtPhone" runat="server" OnClick="this.value=''">-Enter Phone-</asp:TextBox>
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="rfvPhone" runat="server" 
@@ -150,7 +146,7 @@
                             <td style="width: 176px">
                                 <asp:Label ID="lblDateToday" runat="server"></asp:Label>
                             </td>
-                            <td style="width: 129px">
+                            <td style="width: 154px">
                                 Number of Adults:</td>
                             <td>
                                 <asp:DropDownList ID="ddlAdults" runat="server" AutoPostBack="True">
@@ -167,7 +163,7 @@
                             <td style="width: 176px">
                                 <asp:Label ID="lblResSurName" runat="server"></asp:Label>
                             </td>
-                            <td style="width: 129px">
+                            <td style="width: 154px">
                                 Number of Children:</td>
                             <td>
                                 <asp:DropDownList ID="ddlChildren" runat="server" AutoPostBack="True">
@@ -185,7 +181,7 @@
                             <td style="width: 176px">
                                 <asp:Label ID="lblResFirstName" runat="server"></asp:Label>
                             </td>
-                            <td style="width: 129px">
+                            <td style="width: 154px">
                                 Discount:</td>
                             <td rowspan="4">
                                 <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" 
@@ -213,9 +209,10 @@
                             <td style="width: 176px">
                                 <asp:Label ID="lblResPhone" runat="server"></asp:Label>
                             </td>
-                            <td ID="Discont" style="width: 129px">
-                                <asp:DropDownList ID="ddlDiscounts" runat="server" AutoPostBack="True" 
-                                    DataTextField="DiscountDescription" DataValueField="DiscountID">
+                            <td id="Discont" style="width: 154px">
+                                <asp:DropDownList ID="ddlDiscounts" runat="server" AppendDataBoundItems="True" 
+                                    AutoPostBack="True" DataTextField="DiscountDescription" 
+                                    DataValueField="DiscountID">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -224,7 +221,7 @@
                                 &nbsp;</td>
                             <td style="width: 176px">
                                 &nbsp;</td>
-                            <td rowspan="2" style="width: 129px">
+                            <td rowspan="2" style="width: 154px">
                                 &nbsp;</td>
                         </tr>
                         <tr>
@@ -236,7 +233,7 @@
                     </table>
                     <table style="width:100%;">
                         <tr>
-                            <td class="style1" style="width: 199px">
+                            <td class="style1" style="width: 244px">
                                 <asp:LinqDataSource ID="ldsDiscout" runat="server" 
                                     ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
                                     EntityTypeName="" TableName="Discounts" Where="DiscountID == @DiscountID">
@@ -245,31 +242,34 @@
                                             PropertyName="SelectedValue" Type="Int16" />
                                     </WhereParameters>
                                 </asp:LinqDataSource>
+                                <asp:LinqDataSource ID="LinqDataSource1" runat="server" 
+                                    ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
+                                    EntityTypeName="" Select="new (RoomType, RoomTypeRackRate)" 
+                                    TableName="HotelRoomTypes">
+                                </asp:LinqDataSource>
                             </td>
                             <td>
-                                <asp:DetailsView ID="dvRoom" runat="server" Height="50px" Width="125px">
-                                </asp:DetailsView>
-                            </td>
+                                &nbsp;</td>
                         </tr>
                     </table>
                     <table style="width:100%;">
                         <tr>
-                            <td style="width: 244px" rowspan="4">
+                            <td rowspan="4" style="width: 244px">
                                 <asp:Calendar ID="calDateFrom" runat="server" 
                                     onselectionchanged="calDateFrom_SelectionChanged" />
                             </td>
                             <td style="width: 239px">
                                 Select Room:</td>
                             <td>
-                                <asp:Button ID="btnSelectRoom" runat="server" Text="Select Room" 
-                                    onclick="btnSelectRoom_Click" />
+                                <asp:Button ID="btnSelectRoom" runat="server" onclick="btnSelectRoom_Click" 
+                                    Text="Select Room" />
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 239px">
-                                &nbsp;</td>
-                            <td>
-                                &nbsp;</td>
+                            <td align="center" colspan="2">
+                                <asp:GridView ID="gvRoomInfo" runat="server" Width="414px">
+                                </asp:GridView>
+                            </td>
                         </tr>
                         <tr>
                             <td style="width: 239px">

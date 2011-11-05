@@ -328,13 +328,13 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.LinqDataSource ldsDiscout;
         
         /// <summary>
-        /// dvRoom control.
+        /// LinqDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView dvRoom;
+        protected global::System.Web.UI.WebControls.LinqDataSource LinqDataSource1;
         
         /// <summary>
         /// calDateFrom control.
@@ -353,6 +353,15 @@ namespace TreasureLand.Clerk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSelectRoom;
+        
+        /// <summary>
+        /// gvRoomInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvRoomInfo;
         
         /// <summary>
         /// lblTotalCost control.

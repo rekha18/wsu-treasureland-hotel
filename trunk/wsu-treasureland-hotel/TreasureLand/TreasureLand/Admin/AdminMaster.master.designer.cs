@@ -31,13 +31,22 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnReports;
         
         /// <summary>
-        /// btnManageRooms control.
+        /// btnCreateUser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnManageRooms;
+        protected global::System.Web.UI.WebControls.Button btnCreateUser;
+        
+        /// <summary>
+        /// btnManageServicesFees control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnManageServicesFees;
         
         /// <summary>
         /// btnManageDiscounts control.
@@ -49,22 +58,22 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnManageDiscounts;
         
         /// <summary>
-        /// btnManageUsers control.
+        /// btnManageRooms control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnManageUsers;
+        protected global::System.Web.UI.WebControls.Button btnManageRooms;
         
         /// <summary>
-        /// btnCreateUser control.
+        /// btnManageRoomTypes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreateUser;
+        protected global::System.Web.UI.WebControls.Button btnManageRoomTypes;
         
         /// <summary>
         /// btnManageStatuses control.
@@ -76,13 +85,13 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnManageStatuses;
         
         /// <summary>
-        /// btnManageServicesFees control.
+        /// btnManageUsers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnManageServicesFees;
+        protected global::System.Web.UI.WebControls.Button btnManageUsers;
         
         /// <summary>
         /// adminContentHolder control.

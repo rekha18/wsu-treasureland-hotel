@@ -28,29 +28,34 @@
                     onclick="btnReports_Click" />
                 <br />
                 <br />
-                <asp:Button ID="btnManageRooms" runat="server" Text="Manage Rooms" 
-                    Width="125px" onclick="btnManageRooms_Click" />
+                <asp:Button ID="btnCreateUser" runat="server" Text="Create User" Width="125px" 
+                    onclick="btnCreateUser_Click" />
+                <br />
+                <br />
+                <asp:Button ID="btnManageServicesFees" runat="server" 
+                    Text="Manage Charges" Width="125px" 
+                    onclick="btnManageBillingCategories_Click"/>
                 <br />
                 <br />
                 <asp:Button ID="btnManageDiscounts" runat="server" Text="Manage Discounts" 
                     Width="125px" onclick="btnManageDiscounts_Click" />
                 <br />
                 <br />
-                <asp:Button ID="btnManageUsers" runat="server" Text="Manage Users" 
-                    Width="125px" onclick="btnManageUsers_Click" />
+                <asp:Button ID="btnManageRooms" runat="server" Text="Manage Rooms" 
+                    Width="125px" onclick="btnManageRooms_Click" />
                 <br />
                 <br />
-                <asp:Button ID="btnCreateUser" runat="server" Text="Create User" Width="125px" 
-                    onclick="btnCreateUser_Click" />
+                <asp:Button ID="btnManageRoomTypes" runat="server" Text="Manage RoomTypes" Width="125px" 
+                onclick="btnManageRoomTypes_Click"/>
                 <br />
                 <br />
                 <asp:Button ID="btnManageStatuses" runat="server" Text="Manage Statuses" 
                     Width="125px" onclick="btnManageStatuses_Click" />
                 <br />
                 <br />
-                <asp:Button ID="btnManageServicesFees" runat="server" 
-                    Text="Manage Charges" Width="122px" 
-                    onclick="btnManageBillingCategories_Click" Height="35px" />
+                <asp:Button ID="btnManageUsers" runat="server" Text="Manage Users" 
+                    Width="125px" onclick="btnManageUsers_Click" />
+                
             </td>
             <td valign="top" rowspan="2">
             <div>
