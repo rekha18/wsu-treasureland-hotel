@@ -7,16 +7,24 @@ using System.Web.UI.WebControls;
 using TreasureLand.App_Code;
 using System.Security;
 using System.Web.Security;
+using System.Collections;
+using System.Data;
 
 namespace TreasureLand.Clerk
-{    
+{
     public partial class WebForm7 : System.Web.UI.Page
     {
-         protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
-        
+            btnLocate.Focus();
+            {
+                if (!Page.IsPostBack)
+                { }
+               
+            }
         }
 
+        #region eventhandlers
         /// <summary>
         /// When button is pressed, the textboxes are checked for value.
         /// If any of the textboxes are empty, default values are added.
@@ -28,49 +36,45 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void btnLocate_Click(object sender, EventArgs e)
         {
-            
+
             if (txtFirstName.Text == "" && txtShowSurName.Text == "" && txtReservation.Text == "")
             {
                 lblError.Text = "You must Enter information in at least one box";
             }
             else
             {
-            //if there are not values entered, default values are added
-            if (txtFirstName.Text == "")
-                txtFirstName.Text = "none";
-            if (txtSurName.Text == "")
-                txtSurName.Text = "none";
-            if (txtReservation.Text == "")
-                txtReservation.Text = "0";
-            
-   
-            //Gridview is populated with data
-            gvGuest.DataSource = App_Code.GuestDB.LocateGuestRoom(txtFirstName.Text, txtSurName.Text, txtReservation.Text);
-            gvGuest.DataBind();
+                //if there are not values entered, default values are added
+                if (txtFirstName.Text == "")
+                    txtFirstName.Text = "none";
+                if (txtSurName.Text == "")
+                    txtSurName.Text = "none";
+                if (txtReservation.Text == "")
+                    txtReservation.Text = "0";
 
+                //Gridview is populated with data
+                gvGuest.DataSource = App_Code.GuestDB.LocateGuestRoom(txtFirstName.Text, txtSurName.Text, txtReservation.Text);
+                gvGuest.DataBind();
 
+                //Clears the default values for the textboxes
+                if (txtFirstName.Text == "none")
+                    txtFirstName.Text = "";
+                if (txtSurName.Text == "none")
+                    txtSurName.Text = "";
+                if (txtReservation.Text == "0")
+                    txtReservation.Text = "";
 
-            //Clears the default values for the textboxes
-            if (txtFirstName.Text == "none")
-                txtFirstName.Text = "";
-            if (txtSurName.Text == "none")
-                txtSurName.Text = "";
-            if (txtReservation.Text == "0")
-                txtReservation.Text = "";
+                if (gvGuest.Rows.Count == 0)
+                {
+                    lblError.Text = "No data found";
+                }
+                else
+                {
+                    ddlServices.DataSource = App_Code.GuestDB.getGuestServices();
+                    ddlServices.DataBind();
 
-            if (gvGuest.Rows.Count == 0)
-            {
-                lblError.Text = "No data found";
+                    lblError.Text = "";
+                }
             }
-            else
-            {
-                ddlServices.DataSource = App_Code.GuestDB.getGuestServices();
-                ddlServices.DataBind();
-
-                lblError.Text = "";
-            }
-            }
-
         }
 
         /// <summary>
@@ -84,36 +88,40 @@ namespace TreasureLand.Clerk
         protected void btnNext_Click(object sender, EventArgs e)
         {
             //checks for a selection in the gridview
-            if (gvGuest.SelectedIndex>-1)
+            if (gvGuest.SelectedIndex > -1)
             {
                 //switches to the next view
                 mvViewGuest.ActiveViewIndex = 1;
+
                 //Grabs the values from the gridview and populates the textboxes with the information
                 txtShowReservation.Text = gvGuest.SelectedRow.Cells[0].Text;
                 txtShowFirstName.Text = gvGuest.SelectedRow.Cells[1].Text;
                 txtShowSurName.Text = gvGuest.SelectedRow.Cells[2].Text;
                 txtShowRoom.Text = gvGuest.SelectedRow.Cells[3].Text;
-                txtTotal.Text = GuestDB.getTotal(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text)).ToString();
-                
+
+
                 //gets the data for the drop down list
                 ddlServices.DataSource = App_Code.GuestDB.getGuestServices();
                 ddlServices.DataTextField = "BillingCategoryDescription";
                 ddlServices.DataValueField = "BillingCategoryID";
                 ddlServices.DataBind();
 
-
+                //gets the datasource for the guest room table
                 gvRoomCost.DataSource = GuestDB.getGuestRoom(Convert.ToInt32(txtShowRoom.Text));
                 gvRoomCost.DataBind();
 
-                gvGuestServices.DataSource = GuestDB.getGuestServices(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
-                gvGuestServices.DataBind();
+                //gets the datasource for the services table 
+                gvGuestServiesDataBind();
 
-                if (Roles.IsUserInRole("Admin")==true)
+                updateGuestPriceTotals();
+
+                //Shows the delete and edit button if the user is admin
+                if (Roles.IsUserInRole("Admin") == true)
                 {
-                    gvGuestServices.Columns[3].Visible = true;
-                    gvGuestServices.Columns[4].Visible = true;
-                }
+                    gvGuestServices.Columns[6].Visible = true;
+                    gvGuestServices.Columns[7].Visible = true;
 
+                }
                 //clears the error label
                 lblError.Text = "";
             }
@@ -142,7 +150,7 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void gvGuest_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            if (gvGuest.SelectedIndex>-1)
+            if (gvGuest.SelectedIndex > -1)
             {
                 gvGuest.SelectedRow.BackColor = System.Drawing.Color.White;
             }
@@ -155,31 +163,143 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void btnAddService_Click(object sender, EventArgs e)
         {
-        gvGuestServices.Dispose();
-        GuestDB.insertGuestServices(Convert.ToDouble(txtCostofService.Text), Convert.ToInt32(ddlQuantity.SelectedValue), ddlServices.SelectedItem.Text, Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
-        gvGuestServices.DataSource = GuestDB.getGuestServices(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
-        gvGuestServices.DataBind();
-        txtTotal.Text = GuestDB.getTotal(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text)).ToString();
+            gvGuestServices.Dispose();
+            GuestDB.insertGuestServices(Convert.ToDouble(txtCostofService.Text), Convert.ToInt32(ddlQuantity.SelectedValue), ddlServices.SelectedItem.Text, Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
+            gvGuestServices.DataSource = GuestDB.getGuestServices(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
+            gvGuestServices.DataBind();
+            updateGuestPriceTotals();
         }
 
+        /// <summary>
+        /// used to return to the first page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnPrevious_Click(object sender, EventArgs e)
         {
             mvViewGuest.ActiveViewIndex = 0;
         }
 
+        /// <summary>
+        /// edits a row in the gridview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvGuestServices_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            gvGuestServices.EditIndex = e.NewEditIndex;
+            gvGuestServiesDataBind();
 
         }
 
         protected void gvGuestServices_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-
+        {   
+            {
+                //Gets the values from the selected row and sends an update call to the database
+                //Data is rebinded to gridview and the totals are updated
+                
+                GridViewRow row = gvGuestServices.Rows[e.RowIndex];
+                int itemQty = Convert.ToInt32((row.FindControl("txtQty") as TextBox).Text);
+                double itemPrice = Convert.ToDouble((row.FindControl("txtPrice") as TextBox).Text);
+                int transactionID = Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text);
+                string comments = (row.FindControl("txtComments") as TextBox).Text;
+                App_Code.GuestDB.updateService(transactionID, itemQty, itemPrice, comments);
+                gvGuestServices.EditIndex = -1;
+                gvGuestServiesDataBind();
+                updateGuestPriceTotals();
+            }
         }
 
+        /// <summary>
+        /// Deletes the selected row from the database then rebinds the data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvGuestServices_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            GridViewRow row = gvGuestServices.Rows[e.RowIndex];
+            int transactionID = Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text);
+            App_Code.GuestDB.deleteService(transactionID);
+            gvGuestServiesDataBind();
+            updateGuestPriceTotals();
+        }
+
+        /// <summary>
+        /// Cancels the editing of a row then rebinds the database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void gvGuestServices_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            gvGuestServices.EditIndex = -1;
+            gvGuestServiesDataBind();
+        }
+
+        protected void gvGuestServices_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+        {
+            // Indicate whether the update operation succeeded.
+            if (e.Exception == null)
+            {
+                lblErrorGuest.Text = "Row updated successfully.";
+            }
+            else
+            {
+                e.ExceptionHandled = true;
+                lblErrorGuest.Text = "An error occurred while attempting to update the row.";
+            }
+
 
         }
+        #endregion
+
+        #region methods
+        /// <summary>
+        /// binds the guest services gridview
+        /// </summary>
+        private void gvGuestServiesDataBind()
+        {
+            gvGuestServices.DataSource = GuestDB.getGuestServices(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
+            gvGuestServices.DataBind();
+        }
+
+
+        /// <summary>
+        /// Updates the textboxes that diplay the sub total and the total price
+        /// of the room and services
+        /// </summary>
+        private void updateGuestPriceTotals()
+        {
+            //makes a call to the database and totals all the selected guests cost of services
+            txtServicesTotal.Text = GuestDB.getTotal(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text)).ToString();
+
+            //get the cost of the room
+            txtRoomTotal.Text = (Convert.ToDecimal(gvRoomCost.Rows[0].Cells[1].Text) * Convert.ToDecimal(gvRoomCost.Rows[0].Cells[2].Text)).ToString();
+            
+            //get the discount
+            ArrayList myArrList = new ArrayList();
+            myArrList = App_Code.GuestDB.getGuestDiscount(Convert.ToInt32(txtShowReservation.Text));
+            //if there are no items in the arrayList then there is no discount
+            if (myArrList.Count == 0)
+            {
+                txtDiscount.Text = "0";
+            }
+            else
+            {
+                //if this is true, the discount is a percent, otherwise it is a flat cost discount
+                if (Convert.ToBoolean(myArrList[2]) == true)
+                {
+                    txtDiscount.Text = ((Convert.ToDecimal(txtServicesTotal.Text) + Convert.ToDecimal(txtRoomTotal.Text) * (Convert.ToDecimal(myArrList[1]) / 100))).ToString();
+                }
+                else
+                {
+                    txtDiscount.Text = (Convert.ToDecimal(myArrList[1]).ToString());
+                }
+            }
+
+            //Displays the total cost
+            txtTotal.Text = (Convert.ToDecimal(txtServicesTotal.Text) + Convert.ToDecimal(txtRoomTotal.Text) - Convert.ToDecimal(txtDiscount.Text)).ToString();
+        }
+        #endregion
+
     }
 }
