@@ -65,6 +65,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Admin\AdminDefault.aspx" />
     <Content Include="Admin\AdminMaster.master" />
+    <Content Include="Admin\Controls\RoomManagement.ascx" />
     <Content Include="Admin\CreateUser.aspx" />
     <Content Include="Admin\ManageRooms.aspx" />
     <Content Include="Admin\ManageStatuses.aspx" />
@@ -151,6 +152,13 @@
     </Compile>
     <Compile Include="Admin\AdminMaster.master.designer.cs">
       <DependentUpon>AdminMaster.master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Controls\RoomManagement.ascx.cs">
+      <DependentUpon>RoomManagement.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Controls\RoomManagement.ascx.designer.cs">
+      <DependentUpon>RoomManagement.ascx</DependentUpon>
     </Compile>
     <Compile Include="Admin\CreateUser.aspx.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>
