@@ -51,6 +51,34 @@ namespace TreasureLand.App_Code
             return dr;
         }
 
+        public static IEnumerable LocateGuestCheckIn(string FirstName, string SurName, string ReservationID, string Email)
+        {
+            SqlConnection con = new SqlConnection(getConnectionString());
+            string sel =
+                "SELECT Reservation.ReservationID, Guest.GuestFirstName, Guest.GuestSurName, Guest.GuestEmail, ReservationDetail.ReservationDetailID, ReservationDetail.RoomID FROM Reservation INNER JOIN Guest ON Reservation.GuestID = Guest.GuestID INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID " +
+                "WHERE Guest.GuestFirstName = '" + FirstName + "' OR Guest.GuestSurName = '" + SurName + "' OR Reservation.ReservationID = '" + ReservationID + "' OR Guest.GuestEmail = '" + Email + "'";
+            SqlCommand cmd =
+            new SqlCommand(sel, con);
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            return dr;
+        }
+
+        //public static IEnumerable LocateGuestFolio(string Salutation, string FirstName, string Surname, string Phone, string CreditCardNum, string Expiration, string Address, string City, string State, string Country, string PostalCode, string Email)
+        public static IEnumerable LocateGuestFolio( string FirstName, string SurName, string Email)
+        {
+            SqlConnection con = new SqlConnection(getConnectionString());
+            string sel =
+                "SELECT Guest.GuestFirstName, Guest.GuestSurName, Guest.GuestEmail" +
+                //"WHERE GuestSalutation = '" + Salutation + "' OR GuestFirstName = '" + FirstName + "' OR GuestSurName = '" + Surname + "' OR PhoneNumber = '" + Phone + "' OR CreditCardNum = '" + CreditCardNum + "' OR Expiration = '" + Expiration + "' OR Address = '" + Address + "' OR City = '" + City + "' OR State = '" + State + "' OR Country = '" + Country + "' OR PostalCode = '" + PostalCode + "' OR GuestEmail = '" + Email + "'";
+                "WHERE Guest.GuestFirstName = '" + FirstName + "' OR Guest.GuestSurName = '" + SurName + "' OR Guest.GuestEmail = '" + Email + "'";
+            SqlCommand cmd =
+            new SqlCommand(sel, con);
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            return dr;
+        }
+
         /// <summary>
         /// Searches for a current guest based on the entered information.
         /// </summary>
