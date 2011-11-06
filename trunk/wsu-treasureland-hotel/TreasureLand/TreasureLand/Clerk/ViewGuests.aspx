@@ -26,7 +26,7 @@
                         <td style="width: 177px">
                             &nbsp;</td>
                         <td class="style1" style="width: 83px">
-                            <asp:Label ID="lblSurName" runat="server" Text="Sur Name:"></asp:Label>
+                            <asp:Label ID="lblSurName" runat="server" Text="Surname:"></asp:Label>
                         </td>
                         <td class="style1" style="width: 236px">
                             <asp:TextBox ID="txtSurName" runat="server" Width="200px"></asp:TextBox>
@@ -89,7 +89,7 @@
                             <asp:Label ID="txtShowRoom" runat="server"></asp:Label>
                         </td>
                         <td class="style1" style="width: 135px">
-                            <asp:Label ID="lblSurName0" runat="server" Text="Sur Name:"></asp:Label>
+                            <asp:Label ID="lblSurName0" runat="server" Text="Surname:"></asp:Label>
                         </td>
                         <td class="style1" style="width: 236px">
                             <asp:Label ID="txtShowSurName" runat="server"></asp:Label>
