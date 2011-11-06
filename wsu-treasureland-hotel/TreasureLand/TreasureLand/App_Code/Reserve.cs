@@ -8,6 +8,7 @@ namespace TreasureLand.App_Code
 
     public class Reserve
     {
+        public Int16 GuestID;
         public Int16 roomID;
         public string firstName;
         public string surName;
