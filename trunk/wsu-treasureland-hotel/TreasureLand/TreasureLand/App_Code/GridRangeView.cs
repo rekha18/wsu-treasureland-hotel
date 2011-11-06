@@ -239,7 +239,7 @@ namespace TreasureLand.App_Code
             #region Hashtable fill
             foreach (string[] s in roomNames)
             {
-                string[,] room = new string[DaysDisplayed + 1, 3];
+                string[,] room = new string[DaysDisplayed + 1, 4];
                 room[DaysDisplayed,0] = s[1];
                 roomData.Add(s[0], room); //Color for each day, data to display
             }
@@ -279,7 +279,7 @@ namespace TreasureLand.App_Code
                 //Create the left-most cell with the room number
                 table += "<tr>"; //Open a row
                 table += "<td id='row" + key + "' style='background-color: "+ (roomType == row[DaysDisplayed, 0] ? highlightColor : "#AAAAAA") + 
-                    ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")'>" + key + "</td>";
+                    ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onRoomClick(\"" + key + "\")' >" + key + "</td>";
 
                 string backColor = roomType == row[DaysDisplayed,0] ? highlightColor : (rowEven ? "#CCCCCC" : "#FFFFFF");
 
@@ -291,16 +291,18 @@ namespace TreasureLand.App_Code
                         table += "<td id='row" + key + "col" + i + "a' style='background-color:" + backColor + 
                             ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' colspan='2'>-</td>";
                     }
-                    else if (row[i, 1] != null) //Full day of a guest
+                    else if (row[i, 0] == null && row[i, 1] != null && row[i, 2] == null) //Full day of a guest
                     {
                         table += row[i, 1];
                     }
                     else //Cell contains a customer that checks out and/or checks in
                     {
+                        int reservationID = row[i, 1] == null ? 0 : Int32.Parse(row[i, 1]);
                         table += "<td id='row" + key + "col" + i + "a' width='40px' style='background-color:" + (row[i, 0] == null ? backColor : row[i, 0]) +
-                            ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")'>&nbsp;</td>";
+                            ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ")' >&nbsp;</td>";
+                        reservationID = row[i, 3] == null ? 0 : Int32.Parse(row[i, 3]);
                         table += "<td id='row" + key + "col" + i + "b' width='40px' style='background-color:" + (row[i, 2] == null ? backColor : row[i, 2]) +
-                            ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")'>&nbsp;</td>";
+                            ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ")' >&nbsp;</td>";
                     }
                 }
                 table += "</tr>"; //Close the row
@@ -328,9 +330,15 @@ namespace TreasureLand.App_Code
 
             string color = getColor(r.ReservationType);
             if (endIndex >= 0 && endIndex < DaysDisplayed)//Add the first td tag
+            {
                 data[endIndex, 0] = color;
+                data[endIndex, 1] = r.ReservationDetailID + String.Empty;
+            }
             if (startIndex >= 0 && startIndex < DaysDisplayed)//Add the second td tag
+            {
                 data[startIndex, 2] = color;
+                data[startIndex, 3] = r.ReservationDetailID + String.Empty;
+            }
 
             //data[DaysDisplayed, 0] = r.RoomType;
             for (int i = startIndex; i < endIndex; i++)
@@ -340,7 +348,7 @@ namespace TreasureLand.App_Code
                 {
                     if(data[i, 2] == null) //Don't overwrite the start date when it comes time to generate the table
                         data[i, 1] = "<td id='row" + r.RoomNumber + "col" + i + "a' colspan='2' style='background-color:" + color +
-                                ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")'>RS #" + r.ReservationDetailID + "</td>";
+                                ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")' onclick='onReservationClick(" + r.ReservationDetailID + ")' >RS #" + r.ReservationDetailID + "</td>";
                 }
             }
         }
