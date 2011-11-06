@@ -31,7 +31,8 @@ namespace TreasureLand.Clerk
             //Assuming that if a room is passed in the clerk is selecting a room
             //for a reservation. If no room value exists, then the clerk is updating
             //an existing reservation by removing it to a different room
-            if (Session["Room"] == null)
+            reserve = (Reserve)Session["Room"];
+            if (reserve == null || reserve.view == 0)
             {
                 mvRooms.ActiveViewIndex = 0; //Update room display
                 lblPageStatus.Text = "Move Reservation to a Different Room:";
@@ -40,13 +41,15 @@ namespace TreasureLand.Clerk
             {
                 mvRooms.ActiveViewIndex = 1; //Select room display
                 lblPageStatus.Text = "Add Current Reservation:";
+                calDatePicker.SelectedDate = DateTime.Parse(reserve.reserveDate);
+                GridRangeView.current = DateTime.Parse(reserve.reserveDate);
 
                 //CheckInDate = Session["CheckInDate"].ToString();
                 //Nights = Int32.Parse(Session["Nights"].ToString());
                 //Session.Remove("CheckInDate");
                 //Session.Remove("Nights");
-                reserve = (Reserve)Session["Room"];
-                Session.Remove("Remove");
+                //reserve = (Reserve)Session["Room"];
+                //Session.Remove("Remove");
             }
         }
 
@@ -237,11 +240,7 @@ namespace TreasureLand.Clerk
 
             //Get the room ID
             reserve.roomID = (short)RoomDB.getRoomId(txtRoomNumberSelect.Text);
-
-            if (Session["Room"] == null)
-                Session.Add("Room", reserve);
-            else
-                Session["Room"] = reserve;
+            reserve.view = 2;
 
             requiresUpdate = true;
             Response.Redirect("~/Clerk/CreateReservation.aspx");
