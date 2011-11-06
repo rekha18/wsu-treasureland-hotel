@@ -205,18 +205,53 @@
                 <asp:ValidationSummary ID="vsGuestServices" runat="server" ForeColor="Red" 
                     ValidationGroup="vgService" />
                 <br />
+                <table style="width: 62%; height: 26px;">
+                    <tr>
+                        <td class="style22">
+                            <asp:Label ID="lblManagerUser" runat="server" Text="Manager UserName" 
+                                Visible="False"></asp:Label>
+                        </td>
+                        <td class="style20">
+                            <asp:TextBox ID="txtMangerUname0" runat="server" Visible="False"></asp:TextBox>
+                        </td>
+                        <td class="style18">
+                            <asp:Label ID="Label4" runat="server" Text="Discount Amount" Visible="False"></asp:Label>
+                        </td>
+                        <td class="style12">
+                            <asp:TextBox ID="txtNewDiscount" runat="server" Visible="False"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style23">
+                            <asp:Label ID="lblPassword" runat="server" Text="Password" Visible="False"></asp:Label>
+                        </td>
+                        <td class="style21">
+                            <asp:TextBox ID="txtManagerPword0" runat="server" Visible="False"></asp:TextBox>
+                        </td>
+                        <td class="style19">
+                            <asp:Label ID="lblPercent" runat="server" Text="Percent" Visible="False"></asp:Label>
+                            <asp:CheckBox ID="cbPercent" runat="server" Visible="False" />
+                        </td>
+                        <td class="style13">
+                            <asp:Button ID="btnApply0" runat="server" onclick="btnApply0_Click" 
+                                Text="Apply Discount" Visible="False" />
+                        </td>
+                    </tr>
+                </table>
                 <br />
                 <table style="width: 100%">
                     <tr>
                         <td style="width: 126px">
-                            Services and Fees:</td>
+                            <asp:Label ID="lblServies" runat="server" Text="Services and Fees:"></asp:Label>
+                        </td>
                         <td style="width: 115px">
                             <asp:DropDownList ID="ddlServices" runat="server" 
                                 TabIndex="-1">
                             </asp:DropDownList>
                         </td>
                         <td style="width: 60px">
-                            Quantity:</td>
+                            <asp:Label ID="lblQty" runat="server" Text="Quantity"></asp:Label>
+                        </td>
                         <td style="width: 135px; margin-left: 40px;">
                             <asp:DropDownList ID="ddlQuantity" runat="server">
                                 <asp:ListItem Selected="True">1</asp:ListItem>
@@ -254,7 +289,15 @@
                     ValidationGroup="vgGuest"></asp:RequiredFieldValidator>
                 <br />
                 <asp:Button ID="btnPrevious" runat="server" Text="Previous" 
-                    onclick="btnPrevious_Click" />
+                    onclick="btnPrevious_Click" Width="100px" />
+                &nbsp;&nbsp;&nbsp;
+                <asp:Button ID="btnAdjustDiscount" runat="server" 
+                    onclick="btnAdjustDiscount_Click" Text="Adjust Discount" Width="110px" />
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="Button2" runat="server" Text="Print Reciept" Width="100px" />
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="GoToCheckOut" runat="server" onclick="GoToCheckOut_Click" 
+                    Text="CheckOut" Width="100px" />
                 <br />
                 <br />
                 <asp:Label ID="lblErrorGuest" runat="server" ForeColor="Red"></asp:Label>

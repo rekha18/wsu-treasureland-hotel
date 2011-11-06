@@ -315,5 +315,60 @@ namespace TreasureLand.Clerk
         }
         #endregion
 
+        protected void GoToCheckOut_Click(object sender, EventArgs e)
+        {
+            mvViewGuest.ActiveViewIndex = 0;
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        protected void btnAdjustDiscount_Click(object sender, EventArgs e)
+        {
+            lblManagerUser.Visible = true;
+            lblPassword.Visible = true;
+            lblPercent.Visible = true;
+            cbPercent.Visible = true;
+            txtNewDiscount.Visible = true;
+            txtMangerUname0.Visible = true;
+            txtManagerPword0.Visible = true;
+            btnApply0.Visible = true;
+            gvGuestServices.Visible = false;
+            gvRoomCost.Visible = false;
+            lblServies.Visible = false;
+            lblQty.Visible = false;
+            lblCost.Visible = false;
+            ddlQuantity.Visible = false;
+            ddlServices.Visible = false;
+            btnAddService.Visible = false;
+            txtCostofService.Visible = false;
+
+        }
+
+        protected void btnApply0_Click(object sender, EventArgs e)
+        {
+            lblManagerUser.Visible = false;
+            lblPassword.Visible = false;
+            lblPercent.Visible = false;
+            cbPercent.Visible = false;
+            txtNewDiscount.Visible = false;
+            txtMangerUname0.Visible = false;
+            txtManagerPword0.Visible = false;
+            btnApply0.Visible = false; 
+            gvGuestServices.Visible = true;
+            gvRoomCost.Visible = true;
+
+            lblServies.Visible = true;
+            lblQty.Visible = true;
+            lblCost.Visible = true;
+            ddlQuantity.Visible = true;
+            ddlServices.Visible = true;
+            btnAddService.Visible = true;
+            txtCostofService.Visible = true;
+
+        }
+
     }
 }
