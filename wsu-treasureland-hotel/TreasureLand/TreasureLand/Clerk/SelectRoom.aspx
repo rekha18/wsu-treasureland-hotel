@@ -102,10 +102,10 @@
             colZero.style.backgroundColor = "#7CC4FF";
 
             for (var i = 0; i < 7; i++) {
-                var id = document.getElementById("room" + room + "col" + i + "a");
+                var id = document.getElementById("row" + room + "col" + i + "a");
                 if (id != null)
                     id.style.color = "#008CFF";
-                id = document.getElementById("room" + room + "col" + i + "b");
+                id = document.getElementById("row" + room + "col" + i + "b");
                 if (id != null)
                     id.style.color = "#008CFF";
             }
@@ -115,13 +115,32 @@
             document.getElementById("row" + room).style.backgroundColor = oldColor;
 
             for (var i = 0; i < 7; i++) {
-                var id = document.getElementById("room" + room + "col" + i + "a");
+                var id = document.getElementById("row" + room + "col" + i + "a");
                 if (id != null)
                     id.style.color = "#696969";
-                id = document.getElementById("room" + room + "col" + i + "b");
+                id = document.getElementById("row" + room + "col" + i + "b");
                 if (id != null)
                     id.style.color = "#696969";
             }
+        }
+
+        function onRoomClick(room) {
+            var txtBox = document.getElementById("MainContent_ContentPlaceHolder1_txtRoomNumberUpdate");
+
+            if (txtBox != null) {
+                txtBox.value = room;
+            }
+            else {
+                txtBox = document.getElementById("MainContent_ContentPlaceHolder1_txtRoomNumberSelect");
+                txtBox.value = room;
+            }
+        }
+
+        function onReservationClick(resID) {
+            var txtBox = document.getElementById("MainContent_ContentPlaceHolder1_txtReservationNumber");
+
+            if (txtBox != null && resID != 0)
+                txtBox.value = resID;
         }
     -->
     </script>
