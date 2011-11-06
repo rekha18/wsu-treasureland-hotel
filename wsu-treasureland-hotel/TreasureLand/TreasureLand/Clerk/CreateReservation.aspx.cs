@@ -12,7 +12,6 @@ using TreasureLand.DBM;
 namespace TreasureLand.Clerk
 {
     /*Items that still need to be addressed. 
-     * Total Quoted Cost needs to be calculated
      * Resever button needs to be enabled and programmed
      * Add Guest needs to have check against duplicate entries
      */ 
@@ -20,12 +19,17 @@ namespace TreasureLand.Clerk
     public partial class CreateReservation : System.Web.UI.Page
     {
         public App_Code.Reserve reserving = new App_Code.Reserve();
+        public decimal quotedPrice;
+        public decimal adjust = 0.00M;
+        public bool isPercent = false;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            #region Initializing Data
+            
             if (!IsPostBack)
             {
-                
                 reserving.roomID = -1;
                 reserving.view = 0;
 
@@ -43,26 +47,29 @@ namespace TreasureLand.Clerk
                 ddlDiscounts.DataSource = discounts.ToList();
                 ddlDiscounts.DataBind();
                 ddlDiscounts.Items.Insert(0 , new ListItem("-No Discount-", "-1"));
-
             }
+            //Changes date based on number of days changed
+            lblDateTo.Text = calDateFrom.SelectedDate.Date.AddDays(Convert.ToInt32(ddlNumberOfDays.SelectedValue)).ToShortDateString();
+            #endregion Initializing Data
 
-
+            #region Getting Room
+            
             //Get session roomID for room selection
             reserving = GetRoomNumber();
-
             if (reserving.roomID != -1)
             {
-                lblResFirstName.Text = reserving.firstName;
-                lblResSurName.Text = reserving.surName;
-                lblResPhone.Text = reserving.phone;
-                ddlAdults.SelectedIndex = reserving.numAdults;
-                ddlChildren.SelectedIndex = reserving.numChild;
-                ddlNumberOfDays.SelectedIndex = reserving.daysStaying - 1;
-                lblDateFrom.Text = reserving.reserveDate;
-                calDateFrom.SelectedDate = Convert.ToDateTime(reserving.reserveDate);
-                ddlDiscounts.SelectedIndex = reserving.Discount;
-
-                btnSelectRoom.Text = "Change Room";
+                if (!IsPostBack){
+                    lblResFirstName.Text = reserving.firstName;
+                    lblResSurName.Text = reserving.surName;
+                    lblResPhone.Text = reserving.phone;
+                    ddlAdults.SelectedIndex = reserving.numAdults;
+                    ddlChildren.SelectedIndex = reserving.numChild;
+                    ddlNumberOfDays.SelectedIndex = reserving.daysStaying - 1;
+                    lblDateFrom.Text = reserving.reserveDate;
+                    calDateFrom.SelectedDate = Convert.ToDateTime(reserving.reserveDate);
+                    ddlDiscounts.SelectedIndex = reserving.Discount;
+                    btnSelectRoom.Text = "Change Room";
+                }
                 mvReservation.ActiveViewIndex = reserving.view;
 
                 TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
@@ -70,21 +77,60 @@ namespace TreasureLand.Clerk
                                join o in db.Rooms
                                on r.HotelRoomTypeID equals o.HotelRoomTypeID
                                where (o.RoomID == reserving.roomID)
-                               select new { o.RoomNumbers, r.RoomType, curreny = string.Format("{0:c}", r.RoomTypeRackRate) };
+                               select new { o.RoomNumbers, r.RoomType, currency = string.Format("{0:c}", r.RoomTypeRackRate) };
                 gvRoomInfo.DataSource = roomInfo.ToList();
                 gvRoomInfo.DataBind();
                 gvRoomInfo.HeaderRow.Cells[0].Text = "Room Number";
                 gvRoomInfo.HeaderRow.Cells[1].Text = "Room Type";
                 gvRoomInfo.HeaderRow.Cells[2].Text = "Price Per Night";
+                gvRoomInfo.SelectRow(0);
 
-                 
+                quotedPrice = Convert.ToDecimal(gvRoomInfo.SelectedRow.Cells[2].Text.Replace("$", "").Replace(",", ""));
+                quotedPrice *= Convert.ToInt16(ddlNumberOfDays.SelectedValue);
             }
+            #endregion Getting Room
+
+            #region Discount Grid View Control
+
+            if (ddlDiscounts.SelectedIndex > 0)
+            {
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                var discount = from d in db.Discounts
+                               where d.DiscountID == Convert.ToInt16(ddlDiscounts.SelectedValue)
+                               select new { d.DiscountRules, d.DiscountAmount, d.IsPrecentage };
+                gvDiscount.DataSource = discount.ToList();
+                gvDiscount.DataBind();
+                gvDiscount.SelectRow(0);
+                adjust = Convert.ToDecimal(gvDiscount.SelectedRow.Cells[1].Text);
+                isPercent = ((CheckBox)gvDiscount.SelectedRow.Cells[2].Controls[0]).Checked;
+            }
+            else
+            {
+                gvDiscount.DataSource = null;
+                gvDiscount.DataBind();
+                adjust = 0.00M;
+                isPercent = false;
+            }
+            #endregion Discount Grid View Control
+
+            #region Quote Calculator
+
+            if (isPercent)
+            {
+                adjust /= 100;
+                quotedPrice -= quotedPrice * adjust;
+            }
+            else
+            {
+                quotedPrice -= adjust;
+            }
+            lblTotalCost.Text = quotedPrice.ToString("C");
+            #endregion Quote Calculator
+
             
-
-
-            //Changes date based on number of days changed
-            lblDateTo.Text = calDateFrom.SelectedDate.Date.AddDays(Convert.ToInt32(ddlNumberOfDays.SelectedValue)).ToShortDateString();
         }
+
+        #region Locate Guest Button
 
         protected void btnLocateGuest_Click(object sender, EventArgs e)
         {
@@ -97,39 +143,105 @@ namespace TreasureLand.Clerk
             gvGuest.DataBind();
            
         }
+        #endregion Locate Guest Button
+
+        #region Add Guest Button
 
         protected void btnAddGuest_Click(object sender, EventArgs e)
         {
-            //USes an linq to sql to insert a guest into the guest table
-            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            Guest addGuest = new Guest();
-            addGuest.GuestFirstName = txtFirstNameInsert.Text;
-            addGuest.GuestSurName = txtSurNameInsert.Text;
-            addGuest.GuestPhone = txtPhoneInsert.Text;
-            db.Guests.InsertOnSubmit(addGuest);
-            db.SubmitChanges();
 
-            //Sets guest into the reservation fields
-            lblResFirstName.Text = txtFirstNameInsert.Text;
-            lblResSurName.Text = txtSurNameInsert.Text;
-            lblResPhone.Text = txtPhoneInsert.Text;        
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            var gu = from g in db.Guests.Where(g => g.GuestFirstName == txtFirstNameInsert.Text && g.GuestSurName == txtSurNameInsert.Text && g.GuestPhone == txtPhoneInsert.Text)
+                     select g;
+            gvGuestInsert.DataSource = gu.ToList();
+            gvGuestInsert.DataBind();
+
+
+            if (gvGuestInsert.Rows.Count == 0)
+            {
+                //USes an linq to sql to insert a guest into the guest table
+                Guest addGuest = new Guest();
+                addGuest.GuestFirstName = txtFirstNameInsert.Text;
+                addGuest.GuestSurName = txtSurNameInsert.Text;
+                addGuest.GuestPhone = txtPhoneInsert.Text;
+                db.Guests.InsertOnSubmit(addGuest);
+                db.SubmitChanges();
+
+                btnAddGuest.CommandArgument = "2";
+            }
+            else
+            {
+                btnSelectGuestInsert.Visible = true;
+                btnSelectGuestInsert.Enabled = false;
+                btnSelectGuestInsert.ViewStateMode = System.Web.UI.ViewStateMode.Enabled;
+                lblErrorInsertGuest.Text = "Guest already exists please select below or enter a new guest";
+                btnAddGuest.CommandArgument = "1";
+            }
         }
+        #endregion Add Guest Button
+
+        #region Back Button
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            txtFirstNameInsert.Text = "";
+            txtSurNameInsert.Text = "";
+            txtPhoneInsert.Text = "";
+            lblErrorInsertGuest.Text = "";
+            gvGuestInsert.DataSource = null;
+            gvGuestInsert.DataBind();
+            btnSelectGuestInsert.Enabled = false;
+            btnSelectGuestInsert.Visible = false;
+            btnSelectGuestInsert.ViewStateMode = System.Web.UI.ViewStateMode.Disabled;
+        }
+        #endregion Back Button
+
+        #region Calander Selection Change Event
 
         protected void calDateFrom_SelectionChanged(object sender, EventArgs e)
         {
-            //Shows Date From in label and calculates Date To based on Date from and days stayed
-            lblDateFrom.Text = calDateFrom.SelectedDate.Date.ToShortDateString();
-            lblDateTo.Text = calDateFrom.SelectedDate.Date.AddDays(Convert.ToInt32(ddlNumberOfDays.SelectedValue)).ToShortDateString();
+            if (calDateFrom.SelectedDate.Date < DateTime.Today.Date)
+            {
+                lblError.Text = "Cannot select previous dates";
+                calDateFrom.SelectedDate = DateTime.Today.Date;
+                lblDateFrom.Text = calDateFrom.SelectedDate.Date.ToShortDateString();
+                lblDateTo.Text = calDateFrom.SelectedDate.Date.AddDays(Convert.ToInt32(ddlNumberOfDays.SelectedValue)).ToShortDateString();
+            }
+            else
+            {
+                //Shows Date From in label and calculates Date To based on Date from and days stayed
+                lblError.Text = "";
+                lblDateFrom.Text = calDateFrom.SelectedDate.Date.ToShortDateString();
+                lblDateTo.Text = calDateFrom.SelectedDate.Date.AddDays(Convert.ToInt32(ddlNumberOfDays.SelectedValue)).ToShortDateString();
+
+            }
         }
+        #endregion Calander Selection Change Event
+
+        #region Select Guest Buttons
 
         protected void btnSelectGuest_Click(object sender, EventArgs e)
         {
             //Sets selected guest into reservation fields
-            lblResFirstName.Text = Convert.ToString(gvGuest.SelectedRow.Cells[1].Text);
-            lblResSurName.Text = Convert.ToString(gvGuest.SelectedRow.Cells[0].Text);
-            lblResPhone.Text = Convert.ToString(gvGuest.SelectedRow.Cells[2].Text);
+            lblResFirstName.Text = Convert.ToString(gvGuest.SelectedRow.Cells[2].Text);
+            lblResSurName.Text = Convert.ToString(gvGuest.SelectedRow.Cells[1].Text);
+            lblResPhone.Text = Convert.ToString(gvGuest.SelectedRow.Cells[3].Text);
+            reserving.GuestID = Convert.ToInt16(gvGuest.SelectedRow.Cells[0].Text);
             reserving.view = 2;
         }
+        protected void btnSelectGuestInsert_Click(object sender, EventArgs e)
+        {
+            //Sets selected guest into reservation fields
+            lblResFirstName.Text = Convert.ToString(gvGuestInsert.SelectedRow.Cells[2].Text);
+            lblResSurName.Text = Convert.ToString(gvGuestInsert.SelectedRow.Cells[1].Text);
+            lblResPhone.Text = Convert.ToString(gvGuestInsert.SelectedRow.Cells[3].Text);
+            reserving.GuestID = Convert.ToInt16(gvGuestInsert.SelectedRow.Cells[0].Text);
+            reserving.view = 2;
+        }
+
+
+        #endregion Select Guest Buttons
+
+        #region Grid View Guest Index Change Event
 
         protected void gvGuest_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -137,9 +249,20 @@ namespace TreasureLand.Clerk
             btnSelectGuest.Enabled = true;
         }
 
+        protected void gvGuestInsert_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Allows user to proceed to reservation only after guest is selected
+            btnSelectGuestInsert.Enabled = true;
+        }
+        #endregion Grid View Guest Index Change Event
+
+        #region Select Room Button
+
         protected void btnSelectRoom_Click(object sender, EventArgs e)
         {
             //Collects data for session and sends to select room page
+            Session.Clear();
+            reserving = GetRoomNumber();
             reserving.reserveDate = lblDateFrom.Text;
             reserving.daysStaying = Convert.ToInt32(ddlNumberOfDays.SelectedValue);
             reserving.view = 0;
@@ -152,7 +275,9 @@ namespace TreasureLand.Clerk
        
             Response.Redirect("SelectRoom.aspx");
         }
+        #endregion Select Room Button
 
+        #region Session Control
 
         //Create of retrive session
         private App_Code.Reserve GetRoomNumber()
@@ -161,6 +286,40 @@ namespace TreasureLand.Clerk
                 Session.Add("Room", reserving);
             return (App_Code.Reserve)Session["Room"];
         }
+        #endregion Session Control
+
+        protected void btnReserve_Click(object sender, EventArgs e)
+        {
+            if (gvRoomInfo.Rows.Count > 0)
+            {
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                Reservation res = new Reservation();
+                ReservationDetail resDetail = new ReservationDetail();
+                res.GuestID = reserving.GuestID;
+                res.ReservationDate = calDateFrom.SelectedDate;
+                res.ReservationStatus = 'A';
+                db.Reservations.InsertOnSubmit(res);
+                db.SubmitChanges();
+
+                resDetail.ReservationID = res.ReservationID;
+                resDetail.CheckinDate = calDateFrom.SelectedDate;
+                resDetail.RoomID = reserving.roomID;
+                resDetail.QuotedRate = quotedPrice;
+                resDetail.Status = 'A';
+                resDetail.Nights = Convert.ToByte(ddlNumberOfDays.SelectedValue);
+                resDetail.NumberOfAdults = Convert.ToByte(ddlAdults.SelectedValue);
+                resDetail.NumberOfChildren = Convert.ToByte(ddlChildren.SelectedValue);
+                db.ReservationDetails.InsertOnSubmit(resDetail);
+                db.SubmitChanges();
+            }
+            else
+            {
+                lblError.Text = "Please select a room before comming a reservation";
+            }
+        }
+
+
+
 
 
     }

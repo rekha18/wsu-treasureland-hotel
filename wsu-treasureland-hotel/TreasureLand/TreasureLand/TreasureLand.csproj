@@ -233,6 +233,7 @@
       <DependentUpon>ManageRoomTypes.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\GridRangeView.cs" />
+    <Compile Include="App_Code\Guest.cs" />
     <Compile Include="App_Code\GuestDB.cs" />
     <Compile Include="App_Code\Reserve.cs" />
     <Compile Include="App_Code\RoomDB.cs" />
