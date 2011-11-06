@@ -65,15 +65,16 @@ namespace TreasureLand.App_Code
         }
 
         //public static IEnumerable LocateGuestFolio(string Salutation, string FirstName, string Surname, string Phone, string CreditCardNum, string Expiration, string Address, string City, string State, string Country, string PostalCode, string Email)
-        public static IEnumerable LocateGuestFolio( string FirstName, string SurName, string Email)
+        public static IEnumerable LocateGuestFolio( string FirstName, string SurName, string PhoneNumber)
         {
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel =
-                "SELECT Guest.GuestFirstName, Guest.GuestSurName, Guest.GuestEmail" +
-                //"WHERE GuestSalutation = '" + Salutation + "' OR GuestFirstName = '" + FirstName + "' OR GuestSurName = '" + Surname + "' OR PhoneNumber = '" + Phone + "' OR CreditCardNum = '" + CreditCardNum + "' OR Expiration = '" + Expiration + "' OR Address = '" + Address + "' OR City = '" + City + "' OR State = '" + State + "' OR Country = '" + Country + "' OR PostalCode = '" + PostalCode + "' OR GuestEmail = '" + Email + "'";
-                "WHERE Guest.GuestFirstName = '" + FirstName + "' OR Guest.GuestSurName = '" + SurName + "' OR Guest.GuestEmail = '" + Email + "'";
+             "SELECT [GuestFirstName], [GuestSurName], [GuestEmail], [GuestPhone], [GuestID] FROM [Guest] WHERE ([GuestFirstName] = @GuestFirstName OR [GuestSurName] = @Guestsurname OR [GuestPhone] = @GuestPhone)";
             SqlCommand cmd =
             new SqlCommand(sel, con);
+            cmd.Parameters.AddWithValue("@GuestFirstName", FirstName);
+            cmd.Parameters.AddWithValue("@GuestSurname", SurName);
+            cmd.Parameters.AddWithValue("@GuestPhone", PhoneNumber);
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
             return dr;
@@ -228,8 +229,9 @@ namespace TreasureLand.App_Code
             }
             catch (Exception e)
             {
+                throw e;
             }
-            return 0;
+           
         }
     
         /// <summary>
@@ -256,6 +258,77 @@ namespace TreasureLand.App_Code
             {
                 throw e;
             }            
+        }
+
+        /// <summary>
+        /// get all the selected customers information
+        /// </summary>
+        /// <param name="GuestIDNumber"></param>
+        /// <returns></returns>
+        public static ArrayList getCustomerFolio(int GuestIDNumber)
+        {
+
+            SqlConnection con = new SqlConnection(getConnectionString());
+            string sel = "SELECT GuestSalutation, GuestFirstName, GuestSurName, GuestAddress, GuestCity, GuestRegion, GuestPostalCode, GuestCountry, GuestPhone, GuestEmail FROM Guest WHERE GuestID = " + GuestIDNumber;
+            SqlCommand cmd = new SqlCommand(sel, con);
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            ArrayList myArrList = new ArrayList();
+            while(dr.Read())
+            {
+                // add the column value to the ArrayList 
+                myArrList.Add(dr["GuestSalutation"].ToString());
+                myArrList.Add(dr["GuestFirstName"].ToString());
+                myArrList.Add(dr["GuestSurName"].ToString());
+                myArrList.Add(dr["GuestAddress"].ToString());
+                myArrList.Add(dr["GuestCity"].ToString());
+                myArrList.Add(dr["Guestregion"].ToString());
+                myArrList.Add(dr["GuestPostalCode"].ToString());
+                myArrList.Add(dr["GuestCountry"].ToString());
+                myArrList.Add(dr["GuestPhone"].ToString());
+                myArrList.Add(dr["GuestEmail"].ToString());
+            }
+            return myArrList;
+        
+        }
+
+        /// <summary>
+        /// updates the guests information
+        /// </summary>
+        /// <param name="currentGuest"></param>
+        /// <returns>whether the insert has succeeded or not</returns>
+        internal static int updateGuestFolio(Guest currentGuest)
+        {
+
+            SqlConnection conn = new SqlConnection(getConnectionString());
+
+            try
+            {
+                conn.Open(); //Open the connection
+
+                string update = "UPDATE [Guest] SET [GuestSalutation] = @GuestSalutation, [GuestFirstName] = @GuestFirstName, " +
+                    "[GuestSurName] = @GuestSurName, [GuestAddress] = @GuestAddress, [GuestCity] = @GuestCity, [GuestRegion] = @GuestRegion, " +
+                    "[GuestPostalCode] = @GuestPostalCode, [GuestCountry] = @GuestCountry, [GuestPhone] = @GuestPhone, [GuestEmail] = @GuestEmail " +
+                                 "WHERE [GuestID] = @GuestID";
+                SqlCommand connCommand = new SqlCommand(update, conn);
+                connCommand.Parameters.AddWithValue("@GuestSalutation", currentGuest._salutation);
+                connCommand.Parameters.AddWithValue("@GuestFirstName", currentGuest._firstName);
+                connCommand.Parameters.AddWithValue("@GuestSurName", currentGuest._surname);
+                connCommand.Parameters.AddWithValue("@GuestAddress", currentGuest._address);
+                connCommand.Parameters.AddWithValue("@GuestCity", currentGuest._city);
+                connCommand.Parameters.AddWithValue("@GuestRegion", currentGuest._state);
+                connCommand.Parameters.AddWithValue("@GuestPostalCode", currentGuest._postalCode);
+                connCommand.Parameters.AddWithValue("@GuestCountry", currentGuest._country);
+                connCommand.Parameters.AddWithValue("@GuestPhone", currentGuest._phoneNumber);
+                connCommand.Parameters.AddWithValue("@GuestEmail", currentGuest._emailAddress);
+                connCommand.Parameters.AddWithValue("@GuestID", currentGuest._ID);
+                return connCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
         }
     }
 }
