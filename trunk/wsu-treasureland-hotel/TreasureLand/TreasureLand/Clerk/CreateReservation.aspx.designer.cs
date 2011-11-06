@@ -220,13 +220,31 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.Button btnAddGuest;
         
         /// <summary>
-        /// ldsGuest control.
+        /// lblErrorInsertGuest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource ldsGuest;
+        protected global::System.Web.UI.WebControls.Label lblErrorInsertGuest;
+        
+        /// <summary>
+        /// gvGuestInsert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvGuestInsert;
+        
+        /// <summary>
+        /// btnSelectGuestInsert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSelectGuestInsert;
         
         /// <summary>
         /// vCreateReservation control.
@@ -292,15 +310,6 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.Label lblResFirstName;
         
         /// <summary>
-        /// DetailsView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView DetailsView1;
-        
-        /// <summary>
         /// lblResPhone control.
         /// </summary>
         /// <remarks>
@@ -319,22 +328,22 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.DropDownList ddlDiscounts;
         
         /// <summary>
-        /// ldsDiscout control.
+        /// gvDiscount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource ldsDiscout;
+        protected global::System.Web.UI.WebControls.GridView gvDiscount;
         
         /// <summary>
-        /// LinqDataSource1 control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource LinqDataSource1;
+        protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
         /// calDateFrom control.

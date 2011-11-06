@@ -62,6 +62,8 @@
                     <asp:GridView ID="gvGuest" runat="server" AutoGenerateColumns="False" 
                         onselectedindexchanged="gvGuest_SelectedIndexChanged">
                         <Columns>
+                             <asp:BoundField DataField="GuestID" HeaderText="ID" ReadOnly="True" 
+                                SortExpression="GuestID" />
                             <asp:BoundField DataField="GuestSurName" HeaderText="Sur Name" ReadOnly="True" 
                                 SortExpression="GuestSurName" />
                             <asp:BoundField DataField="GuestFirstName" HeaderText="First Name" 
@@ -125,15 +127,36 @@
                     </table>
                     <br />
                     <asp:Button ID="btnBack" runat="server" CommandArgument="0" 
-                        CommandName="SwitchViewByIndex" Text="Back" />
+                        CommandName="SwitchViewByIndex" Text="Back" onclick="btnBack_Click" />
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Button ID="btnAddGuest" runat="server" Text="Add Guest" 
                         onclick="btnAddGuest_Click" CommandArgument="2" 
                         CommandName="SwitchViewByIndex" />
-                    <asp:LinqDataSource ID="ldsGuest" runat="server" 
-                        ContextTypeName="TreasureLand.TreasureLandDataClassesDataContext" 
-                        EnableInsert="True" EntityTypeName="" TableName="Guests">
-                    </asp:LinqDataSource>
+                    <br />
+                    <br />
+                    <br />
+                    <asp:Label ID="lblErrorInsertGuest" runat="server" Font-Bold="True" 
+                        Font-Size="Large" ForeColor="#FF3300"></asp:Label>
+                    <br />
+                    <asp:GridView ID="gvGuestInsert" runat="server" AutoGenerateColumns="False" 
+                        onselectedindexchanged="gvGuestInsert_SelectedIndexChanged">
+                        <Columns>
+                            <asp:BoundField DataField="GuestID" HeaderText="ID" ReadOnly="True" 
+                                SortExpression="GuestID" />
+                            <asp:BoundField DataField="GuestSurName" HeaderText="Sur Name" ReadOnly="True" 
+                                SortExpression="GuestSurName" />
+                            <asp:BoundField DataField="GuestFirstName" HeaderText="First Name" 
+                                ReadOnly="True" SortExpression="GuestFirstName" />
+                            <asp:BoundField DataField="GuestPhone" HeaderText="Phone Number" 
+                                ReadOnly="True" SortExpression="GuestPhone" />
+                            <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
+                        </Columns>
+                        <SelectedRowStyle BackColor="#FFFF66" />
+                    </asp:GridView>
+                    <br />
+                    <asp:Button ID="btnSelectGuestInsert" runat="server" CommandArgument="2" 
+                        CommandName="SwitchViewByIndex" onclick="btnSelectGuestInsert_Click" 
+                        Text="Select Guest" ViewStateMode="Disabled" Visible="False" />
                 </asp:Panel>
             </asp:View>
             <asp:View ID="vCreateReservation" runat="server">
@@ -143,13 +166,14 @@
                         <tr>
                             <td style="width: 73px">
                                 Date:</td>
-                            <td style="width: 176px">
+                            <td style="width: 167px">
                                 <asp:Label ID="lblDateToday" runat="server"></asp:Label>
                             </td>
-                            <td style="width: 154px">
+                            <td style="width: 143px">
                                 Number of Adults:</td>
-                            <td>
-                                <asp:DropDownList ID="ddlAdults" runat="server">
+                            <td colspan="2">
+                                <asp:DropDownList ID="ddlAdults" runat="server" 
+                                    >
                                     <asp:ListItem Selected="True">1</asp:ListItem>
                                     <asp:ListItem>2</asp:ListItem>
                                     <asp:ListItem>3</asp:ListItem>
@@ -160,13 +184,14 @@
                         <tr>
                             <td style="width: 73px">
                                 Sur Name:</td>
-                            <td style="width: 176px">
+                            <td style="width: 167px">
                                 <asp:Label ID="lblResSurName" runat="server"></asp:Label>
                             </td>
-                            <td style="width: 154px">
+                            <td style="width: 143px">
                                 Number of Children:</td>
-                            <td>
-                                <asp:DropDownList ID="ddlChildren" runat="server">
+                            <td colspan="2">
+                                <asp:DropDownList ID="ddlChildren" runat="server"           
+                                    >
                                     <asp:ListItem Selected="True">0</asp:ListItem>
                                     <asp:ListItem>1</asp:ListItem>
                                     <asp:ListItem>2</asp:ListItem>
@@ -178,75 +203,60 @@
                         <tr>
                             <td style="width: 73px">
                                 First Name:</td>
-                            <td style="width: 176px">
+                            <td style="width: 167px">
                                 <asp:Label ID="lblResFirstName" runat="server"></asp:Label>
                             </td>
-                            <td style="width: 154px">
+                            <td style="width: 143px">
                                 Discount:</td>
-                            <td rowspan="4">
-                                <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" 
-                                    DataKeyNames="DiscountID" DataSourceID="ldsDiscout" Height="50px" Width="306px">
-                                    <Fields>
-                                        <asp:BoundField DataField="DiscountID" HeaderText="DiscountID" 
-                                            InsertVisible="False" ReadOnly="True" SortExpression="DiscountID" />
-                                        <asp:BoundField DataField="DiscountDescription" 
-                                            HeaderText="DiscountDescription" SortExpression="DiscountDescription" />
-                                        <asp:BoundField DataField="DiscountExpiration" HeaderText="DiscountExpiration" 
-                                            SortExpression="DiscountExpiration" />
-                                        <asp:BoundField DataField="DiscountRules" HeaderText="DiscountRules" 
-                                            SortExpression="DiscountRules" />
-                                        <asp:BoundField DataField="DiscountAmount" HeaderText="DiscountAmount" 
-                                            SortExpression="DiscountAmount" />
-                                        <asp:CheckBoxField DataField="IsPrecentage" HeaderText="IsPrecentage" 
-                                            SortExpression="IsPrecentage" />
-                                    </Fields>
-                                </asp:DetailsView>
-                            </td>
+                            <td rowspan="2">
+                                &nbsp;</td>
+                            <td rowspan="2">
+                                &nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 73px">
                                 Phone #:</td>
-                            <td style="width: 176px">
+                            <td style="width: 167px">
                                 <asp:Label ID="lblResPhone" runat="server"></asp:Label>
                             </td>
-                            <td id="Discont" style="width: 154px">
+                            <td id="Discont" style="width: 143px">
                                 <asp:DropDownList ID="ddlDiscounts" runat="server" AppendDataBoundItems="True" 
                                     AutoPostBack="True" DataTextField="DiscountDescription" 
-                                    DataValueField="DiscountID">
+                                    DataValueField="DiscountID" >
                                 </asp:DropDownList>
                             </td>
                         </tr>
                         <tr>
                             <td style="width: 73px">
                                 &nbsp;</td>
-                            <td style="width: 176px">
+                            <td style="width: 167px">
                                 &nbsp;</td>
-                            <td rowspan="2" style="width: 154px">
-                                &nbsp;</td>
+                            <td rowspan="2" colspan="3" align="center">
+                                <asp:GridView ID="gvDiscount" runat="server" AutoGenerateColumns="False" 
+                                    Width="228px">
+                                    <Columns>
+                                        <asp:BoundField DataField="DiscountRules" HeaderText="DiscountRules" 
+                                            ReadOnly="True" SortExpression="DiscountRules" />
+                                        <asp:BoundField DataField="DiscountAmount" HeaderText="DiscountAmount" 
+                                            ReadOnly="True" SortExpression="DiscountAmount" />
+                                        <asp:CheckBoxField DataField="IsPrecentage" HeaderText="IsPrecentage" 
+                                            ReadOnly="True" SortExpression="IsPrecentage" />
+                                    </Columns>
+                                </asp:GridView>
+                            </td>
                         </tr>
                         <tr>
                             <td style="width: 73px">
                                 &nbsp;</td>
-                            <td style="width: 176px">
+                            <td style="width: 167px">
                                 &nbsp;</td>
                         </tr>
                     </table>
                     <table style="width:100%;">
                         <tr>
                             <td class="style1" style="width: 244px">
-                                <asp:LinqDataSource ID="ldsDiscout" runat="server" 
-                                    ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
-                                    EntityTypeName="" TableName="Discounts" Where="DiscountID == @DiscountID">
-                                    <WhereParameters>
-                                        <asp:ControlParameter ControlID="ddlDiscounts" Name="DiscountID" 
-                                            PropertyName="SelectedValue" Type="Int16" />
-                                    </WhereParameters>
-                                </asp:LinqDataSource>
-                                <asp:LinqDataSource ID="LinqDataSource1" runat="server" 
-                                    ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
-                                    EntityTypeName="" Select="new (RoomType, RoomTypeRackRate)" 
-                                    TableName="HotelRoomTypes">
-                                </asp:LinqDataSource>
+                                <asp:Label ID="lblError" runat="server" ForeColor="Red" Font-Bold="True" 
+                                    Font-Size="Large"></asp:Label>
                             </td>
                             <td>
                                 &nbsp;</td>
@@ -282,7 +292,8 @@
                             <td style="width: 239px">
                                 &nbsp;</td>
                             <td>
-                                <asp:Button ID="btnReserve" runat="server" Enabled="False" Text="Reserve" />
+                                <asp:Button ID="btnReserve" runat="server" Text="Reserve" 
+                                    onclick="btnReserve_Click" />
                             </td>
                         </tr>
                         <tr>
@@ -298,7 +309,8 @@
                                 <asp:Label ID="lblDateFrom" runat="server" Font-Size="Large"></asp:Label>
                             </td>
                             <td style="width: 239px">
-                                <asp:DropDownList ID="ddlNumberOfDays" runat="server" AutoPostBack="True">
+                                <asp:DropDownList ID="ddlNumberOfDays" runat="server" AutoPostBack="True"          
+                                    >
                                     <asp:ListItem Selected="True">1</asp:ListItem>
                                     <asp:ListItem>2</asp:ListItem>
                                     <asp:ListItem>3</asp:ListItem>
