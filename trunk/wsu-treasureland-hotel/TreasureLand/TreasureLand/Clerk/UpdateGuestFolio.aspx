@@ -1,13 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Clerk/ClerkMasterPage.master" AutoEventWireup="true" CodeBehind="UpdateGuestFolio.aspx.cs" Inherits="TreasureLand.Clerk.UpdateGuestFolio" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<asp:MultiView ID="mvUpdateGuestFolio" runat="server" ActiveViewIndex="0">
+    <asp:MultiView ID="mvUpdateGuestFolio" runat="server" ActiveViewIndex="0">
         <asp:View ID="vLocateGuestFolio" runat="server">
             <table style="width: 70%">
                 <tr>
                     <td style="width: 76px; height: 26px">
                         First Name:</td>
                     <td class="style1" style="width: 142px; height: 26px">
-                        <asp:TextBox ID="txtFirstName" runat="server" style="margin-left: 2px"></asp:TextBox>
+                        <asp:TextBox ID="txtFirstName" runat="server" style="margin-left: 0px"></asp:TextBox>
                     </td>
                     <td style="width: 472px; height: 26px">
                         <asp:Label ID="lblErrorMessageMissingData" runat="server" ForeColor="Red"></asp:Label>
@@ -24,9 +24,9 @@
                 </tr>
                 <tr>
                     <td style="width: 76px">
-                        Email:</td>
+                        PhoneNumber:</td>
                     <td class="style1" style="width: 142px">
-                        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
                     </td>
                     <td style="width: 472px">
                         <asp:Label ID="lblErrorMessageNoCustomersFound" runat="server" ForeColor="Red"></asp:Label>
@@ -41,13 +41,15 @@
                 onselectedindexchanged="gvGuestFolio_SelectedIndexChanged" 
                     onselectedindexchanging="gvGuestFolio_SelectedIndexChanging" >
                 <Columns>
-                    <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
+                    <asp:BoundField DataField="GuestID" HeaderText="Guest ID" />
                     <asp:BoundField DataField="GuestFirstName" HeaderText="First Name" 
                         SortExpression="GuestFirstName" />
                     <asp:BoundField DataField="GuestSurName" HeaderText="Surname" 
                         SortExpression="GuestSurName" />
                     <asp:BoundField DataField="GuestEmail" HeaderText="Email" 
                         SortExpression="GuestEmail" />
+                    <asp:BoundField DataField="GuestPhone" HeaderText="Phone Number" />
+                    <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                 </Columns>
                 <RowStyle BackColor="#EFF3FB" Font-Size="Small" />
                 <EditRowStyle BackColor="#2461BF" />
@@ -149,7 +151,8 @@
                     <td style="width: 135px">
                         Email:</td>
                     <td class="style1" style="width: 175px">
-                        <asp:TextBox ID="txtShowEmail" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtEmail" runat="server" 
+                            ></asp:TextBox>
                     </td>
                 </tr>
             </table>
@@ -158,7 +161,7 @@
             <asp:Button ID="btnBack" runat="server" Text="Back" 
                         CommandName="PrevView"  />
             &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnUpdate" runat="server" Text="Update" />
+            <asp:Button ID="btnUpdate" runat="server" Text="Update" onclick="btnUpdate_Click" />
         </asp:View>
     </asp:MultiView>
 </asp:Content>

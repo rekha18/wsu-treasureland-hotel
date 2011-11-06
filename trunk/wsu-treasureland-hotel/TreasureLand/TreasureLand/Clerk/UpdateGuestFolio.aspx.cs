@@ -10,6 +10,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using TreasureLand.App_Code;
 
 namespace TreasureLand.Clerk
 {
@@ -33,10 +34,17 @@ namespace TreasureLand.Clerk
                 gvGuestFolio.SelectedRow.BackColor = System.Drawing.Color.White;
             }
         }
-        
+
+        /// <summary>
+        /// When the Locate button is pressed, the textboxes are checked for input.
+        /// If no information in inputed, an error message is shown.  Otherwise 
+        /// the gridview is displayed with the retreived information
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnLocateGuest_Click(object sender, EventArgs e)
         {
-                if (txtFirstName.Text == "" && txtSurname.Text == "" && txtEmail.Text == "")
+                if (txtFirstName.Text == "" && txtSurname.Text == "" && txtPhoneNumber.Text == "")
                 {
                     lblErrorMessageMissingData.Text = "You must enter information in at least one box";
                 }
@@ -47,29 +55,29 @@ namespace TreasureLand.Clerk
                         txtFirstName.Text = "none";
                     if (txtSurname.Text == "")
                         txtSurname.Text = "none";
-                    if (txtEmail.Text == "")
-                        txtEmail.Text = "none";
-
+                    if (txtPhoneNumber.Text == "")
+                        txtPhoneNumber.Text = "0000000";
 
                     //Gridview is populated with data
-                    gvGuestFolio.DataSource = App_Code.GuestDB.LocateGuestFolio(txtFirstName.Text, txtSurname.Text, txtEmail.Text);
+                    gvGuestFolio.DataSource = App_Code.GuestDB.LocateGuestFolio(txtFirstName.Text, txtSurname.Text, (txtPhoneNumber.Text));
                     gvGuestFolio.DataBind();
-
-
 
                     //Clears the default values for the textboxes
                     if (txtFirstName.Text == "none")
                         txtFirstName.Text = "";
                     if (txtSurname.Text == "none")
                         txtSurname.Text = "";
-                    if (txtEmail.Text == "0")
-                        txtEmail.Text = "";
+                    if (txtPhoneNumber.Text == "0000000")
+                        txtPhoneNumber.Text = "";
 
                     if (gvGuestFolio.Rows.Count == 0)
                     {
                         lblErrorMessageNoCustomersFound.Text = "No customers found";
                     }
-
+                    else
+                    {
+                        lblErrorMessageNoCustomersFound.Text = "";
+                    }
                 }
 
         }
@@ -80,7 +88,74 @@ namespace TreasureLand.Clerk
             if (gvGuestFolio.SelectedIndex == -1)
                 lblErrorMustSelectGuest.Text = "You must select a guest";
             else
+            {
                 mvUpdateGuestFolio.ActiveViewIndex = 1;
+                updateGuestBoxes();
+            }
+        }
+
+        /// <summary>
+        /// Updates the textboxes that contain the guest information
+        /// </summary>
+        private void updateGuestBoxes()
+        {
+            ArrayList myArrList = new ArrayList();
+            myArrList = App_Code.GuestDB.getCustomerFolio(Convert.ToInt32(gvGuestFolio.SelectedRow.Cells[0].Text));
+            //if there are no items in the arrayList then there is no discount
+            if (myArrList.Count == 0)
+            {
+            }
+            else
+            {
+                Guest currentGuest = new Guest();
+                txtSalutation.Text = myArrList[0].ToString();
+                txtShowFirstName.Text = myArrList[1].ToString();
+                txtShowSurname.Text = myArrList[2].ToString();
+                txtAddress.Text = myArrList[3].ToString();
+                txtCity.Text = myArrList[4].ToString();
+                txtState.Text = myArrList[5].ToString();
+                txtPostalCode.Text = myArrList[6].ToString();
+                txtCountry.Text = myArrList[7].ToString();
+                txtPhone.Text = myArrList[8].ToString();
+                txtEmail.Text = myArrList[9].ToString();
+            }
+            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                Guest currentGuest = new Guest();
+
+
+                currentGuest._salutation = txtSalutation.Text;
+                currentGuest._surname = txtShowSurname.Text;
+                currentGuest._firstName = txtShowFirstName.Text;
+                currentGuest._surname = txtShowSurname.Text;
+                currentGuest._address = txtAddress.Text;
+                currentGuest._city = txtCity.Text;
+                currentGuest._state = txtState.Text;
+                currentGuest._country = txtCountry.Text;
+                currentGuest._emailAddress = txtEmail.Text;
+                currentGuest._phoneNumber = txtPhone.Text;
+                currentGuest._postalCode = txtPostalCode.Text;
+                currentGuest._ID = Convert.ToInt32(gvGuestFolio.SelectedRow.Cells[0].Text);
+                GuestDB.updateGuestFolio(currentGuest);
+                updateGuestBoxes();
+
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
     }
 }
