@@ -265,7 +265,7 @@ namespace TreasureLand.Clerk
             reserving = GetRoomNumber();
             reserving.reserveDate = lblDateFrom.Text;
             reserving.daysStaying = Convert.ToInt32(ddlNumberOfDays.SelectedValue);
-            reserving.view = 0;
+            reserving.view = 1;
             reserving.firstName = lblResFirstName.Text;
             reserving.surName = lblResSurName.Text;
             reserving.phone = lblResPhone.Text;
