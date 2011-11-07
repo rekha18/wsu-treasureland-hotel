@@ -205,7 +205,7 @@
                 <asp:ValidationSummary ID="vsGuestServices" runat="server" ForeColor="Red" 
                     ValidationGroup="vgService" />
                 <br />
-                <table style="width: 62%; height: 26px;">
+                <table style="width: 69%; height: 26px;">
                     <tr>
                         <td class="style22">
                             <asp:Label ID="lblManagerUser" runat="server" Text="Manager UserName" 
@@ -218,7 +218,8 @@
                             <asp:Label ID="Label4" runat="server" Text="Discount Amount" Visible="False"></asp:Label>
                         </td>
                         <td class="style12">
-                            <asp:TextBox ID="txtNewDiscount" runat="server" Visible="False"></asp:TextBox>
+                            <asp:DropDownList ID="ddlDiscount" runat="server" Visible="False">
+                            </asp:DropDownList>
                         </td>
                     </tr>
                     <tr>
@@ -229,9 +230,7 @@
                             <asp:TextBox ID="txtManagerPword0" runat="server" Visible="False"></asp:TextBox>
                         </td>
                         <td class="style19">
-                            <asp:Label ID="lblPercent" runat="server" Text="Percent" Visible="False"></asp:Label>
-                            <asp:CheckBox ID="cbPercent" runat="server" Visible="False" />
-                        </td>
+                            &nbsp;</td>
                         <td class="style13">
                             <asp:Button ID="btnApply0" runat="server" onclick="btnApply0_Click" 
                                 Text="Apply Discount" Visible="False" />

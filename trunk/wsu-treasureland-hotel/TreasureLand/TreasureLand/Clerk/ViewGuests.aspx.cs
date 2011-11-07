@@ -9,6 +9,7 @@ using System.Security;
 using System.Web.Security;
 using System.Collections;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace TreasureLand.Clerk
 {
@@ -329,9 +330,8 @@ namespace TreasureLand.Clerk
         {
             lblManagerUser.Visible = true;
             lblPassword.Visible = true;
-            lblPercent.Visible = true;
-            cbPercent.Visible = true;
-            txtNewDiscount.Visible = true;
+
+            ddlDiscount.Visible = true;
             txtMangerUname0.Visible = true;
             txtManagerPword0.Visible = true;
             btnApply0.Visible = true;
@@ -344,6 +344,23 @@ namespace TreasureLand.Clerk
             ddlServices.Visible = false;
             btnAddService.Visible = false;
             txtCostofService.Visible = false;
+            ddlDiscount.Items.Clear();
+            SqlDataReader sqlDiscounts = sqlDiscounts = (SqlDataReader)App_Code.GuestDB.getAllDiscounts();
+   
+            while (sqlDiscounts.Read())
+            {
+                Discount discount = new Discount();
+                
+
+                discount.ID = Convert.ToInt32(sqlDiscounts["DiscountID"]);
+                discount.description = (sqlDiscounts["DiscountDescription"]).ToString();
+                discount.amountOfDiscount = Convert.ToDouble(sqlDiscounts["DiscountAmount"].ToString());
+                discount.isPercent = Convert.ToBoolean(sqlDiscounts["IsPrecentage"]);
+                ddlDiscount.Items.Add(new ListItem(discount.ToString(), discount.ID.ToString()));
+                
+            }
+            
+            ddlDiscount.DataBind();
 
         }
 
@@ -351,9 +368,7 @@ namespace TreasureLand.Clerk
         {
             lblManagerUser.Visible = false;
             lblPassword.Visible = false;
-            lblPercent.Visible = false;
-            cbPercent.Visible = false;
-            txtNewDiscount.Visible = false;
+            ddlDiscount.Visible = false;
             txtMangerUname0.Visible = false;
             txtManagerPword0.Visible = false;
             btnApply0.Visible = false; 
@@ -367,7 +382,17 @@ namespace TreasureLand.Clerk
             ddlServices.Visible = true;
             btnAddService.Visible = true;
             txtCostofService.Visible = true;
+            try
+            {
 
+                GuestDB.addDiscount(Convert.ToInt32(ddlDiscount.SelectedItem.Value), Convert.ToInt32(txtShowReservation.Text));
+                updateGuestPriceTotals();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
         }
 
     }
