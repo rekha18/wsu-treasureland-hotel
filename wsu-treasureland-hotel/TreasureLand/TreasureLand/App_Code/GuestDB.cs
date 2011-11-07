@@ -80,19 +80,23 @@ namespace TreasureLand.App_Code
             return dr;
         }
 
-        /// <summary>
-        /// Searches for a current guest based on the entered information.
-        /// </summary>
-        /// <param name="FirstName">First Name of guest</param>
-        /// <param name="SurName">SurName of guest</param>
-        /// <param name="ReservationID">Reservation ID numbmer</param>
-        /// <param name="RoomNumber">Room Number</param>
-        /// <returns></returns>
         public static IEnumerable getGuestServices()
         {
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel =
                 "SELECT BillingCategoryID, BillingCategoryDescription FROM BillingCategory";
+            SqlCommand cmd =
+            new SqlCommand(sel, con);
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            return dr;
+        }
+
+        public static IEnumerable getAllDiscounts()
+        {
+            SqlConnection con = new SqlConnection(getConnectionString());
+            string sel =
+                "SELECT * FROM Discount";
             SqlCommand cmd =
             new SqlCommand(sel, con);
             con.Open();
@@ -297,7 +301,7 @@ namespace TreasureLand.App_Code
         /// </summary>
         /// <param name="currentGuest"></param>
         /// <returns>whether the insert has succeeded or not</returns>
-        internal static int updateGuestFolio(Guest currentGuest)
+        public static int updateGuestFolio(Guest currentGuest)
         {
 
             SqlConnection conn = new SqlConnection(getConnectionString());
@@ -329,6 +333,30 @@ namespace TreasureLand.App_Code
                 throw e;
             }
 
+        }
+
+        public static int addDiscount(int discountID, int reservationID)
+        {
+            SqlConnection conn = new SqlConnection(getConnectionString());
+
+            try
+            {
+                conn.Open(); //Open the connection
+                string update = "UPDATE [ReservationDetail] SET [DiscountID] = @discountID " +
+                      "WHERE [ReservationDetailID] = @reservationID";
+                SqlCommand connCommand = new SqlCommand(update, conn);
+                connCommand.Parameters.AddWithValue("@discountID", discountID);
+                connCommand.Parameters.AddWithValue("@reservationID", reservationID);
+                return connCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+
+
+            
         }
     }
 }
