@@ -293,7 +293,8 @@
                 <asp:Button ID="btnAdjustDiscount" runat="server" 
                     onclick="btnAdjustDiscount_Click" Text="Adjust Discount" Width="110px" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="Button2" runat="server" Text="Print Reciept" Width="100px" />
+                <asp:Button ID="btnPrint" runat="server" Text="Print Reciept" Width="100px" 
+                    onclick="btnPrint_Click" style="height: 26px" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="GoToCheckOut" runat="server" onclick="GoToCheckOut_Click" 
                     Text="CheckOut" Width="100px" />

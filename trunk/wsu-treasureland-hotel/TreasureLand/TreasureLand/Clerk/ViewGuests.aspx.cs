@@ -403,5 +403,10 @@ namespace TreasureLand.Clerk
             }
         }
 
+        protected void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
