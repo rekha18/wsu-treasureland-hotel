@@ -292,7 +292,7 @@ namespace TreasureLand.Clerk
             
             //get the discount
             ArrayList myArrList = new ArrayList();
-            myArrList = App_Code.GuestDB.getGuestDiscount(Convert.ToInt32(txtShowReservation.Text));
+            myArrList = App_Code.GuestDB.getGuestDiscount(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
             //if there are no items in the arrayList then there is no discount
             if (myArrList.Count == 0)
             {
@@ -303,14 +303,15 @@ namespace TreasureLand.Clerk
                 //if this is true, the discount is a percent, otherwise it is a flat cost discount
                 if (Convert.ToBoolean(myArrList[2]) == true)
                 {
-                    txtDiscount.Text = ((Convert.ToDecimal(txtServicesTotal.Text) + Convert.ToDecimal(txtRoomTotal.Text) * (Convert.ToDecimal(myArrList[1]) / 100))).ToString();
+                    txtDiscount.Text = (((Convert.ToDecimal(txtServicesTotal.Text) + Convert.ToDecimal(txtRoomTotal.Text)) * (Convert.ToDecimal(myArrList[1]) / 100))).ToString();
                 }
                 else
                 {
                     txtDiscount.Text = (Convert.ToDecimal(myArrList[1]).ToString());
                 }
             }
-
+            txtDiscount.Text = string.Format("{0:0.00}", Convert.ToDouble(txtDiscount.Text));
+            
             //Displays the total cost
             txtTotal.Text = (Convert.ToDecimal(txtServicesTotal.Text) + Convert.ToDecimal(txtRoomTotal.Text) - Convert.ToDecimal(txtDiscount.Text)).ToString();
         }
@@ -385,7 +386,7 @@ namespace TreasureLand.Clerk
             try
             {
 
-                GuestDB.addDiscount(Convert.ToInt32(ddlDiscount.SelectedItem.Value), Convert.ToInt32(txtShowReservation.Text));
+                GuestDB.addDiscount(Convert.ToInt32(ddlDiscount.SelectedItem.Value), Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
                 updateGuestPriceTotals();
             }
             catch (Exception)
