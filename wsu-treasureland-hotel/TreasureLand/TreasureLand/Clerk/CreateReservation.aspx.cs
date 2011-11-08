@@ -314,7 +314,7 @@ namespace TreasureLand.Clerk
             }
             else
             {
-                lblError.Text = "Please select a room before comming a reservation";
+                lblError.Text = "Please select a room before commting a reservation";
             }
         }
 
