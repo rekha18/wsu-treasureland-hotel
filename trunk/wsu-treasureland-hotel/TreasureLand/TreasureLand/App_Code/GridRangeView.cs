@@ -99,6 +99,11 @@ namespace TreasureLand.App_Code
         }
 
         /// <summary>
+        /// Whether or not the room is checked for maintenance
+        /// </summary>
+        public bool Maintenance = false;
+
+        /// <summary>
         /// Constructs a Row object
         /// </summary>
         /// <param name="ID">RoomID of the row</param>
@@ -193,6 +198,12 @@ namespace TreasureLand.App_Code
         /// Color that the row is highlighted if the room type value is the same as the row's room number
         /// </summary>
         public static string highlightColor = "#FFF18E";
+
+
+        /// <summary>
+        /// Color that the row is highlighted if the room status is marked as needing maintenance
+        /// </summary>
+        public static string maintenanceColor = "#FF7C7C";
         #endregion
 
         /// <summary>
@@ -240,7 +251,7 @@ namespace TreasureLand.App_Code
             foreach (string[] s in roomNames)
             {
                 string[,] room = new string[DaysDisplayed + 1, 4];
-                room[DaysDisplayed,0] = s[1];
+                room[DaysDisplayed,0] = s[2] == "M" ? s[2] : s[1];
                 roomData.Add(s[0], room); //Color for each day, data to display
             }
 
@@ -278,11 +289,11 @@ namespace TreasureLand.App_Code
                 string[,] row = (string[,])roomData[key];
                 //Create the left-most cell with the room number
                 table += "<tr>"; //Open a row
-                table += "<td id='row" + key + "' style='background-color: "+ (roomType == row[DaysDisplayed, 0] ? highlightColor : "#AAAAAA") + 
+                table += "<td id='row" + key + "' style='background-color: " + (row[DaysDisplayed,0] != "M" ? (roomType == row[DaysDisplayed, 0] ? highlightColor : "#AAAAAA") : maintenanceColor) + 
                     ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onRoomClick(\"" + key + "\")' >" + key + "</td>";
 
-                string backColor = roomType == row[DaysDisplayed,0] ? highlightColor : (rowEven ? "#CCCCCC" : "#FFFFFF");
-
+                string backColor = row[DaysDisplayed,0] != "M" ? (roomType == row[DaysDisplayed,0] ? highlightColor : (rowEven ? "#CCCCCC" : "#FFFFFF")) : maintenanceColor;
+                
                 //Create the row data
                 for(int i = 0; i < DaysDisplayed; i++)
                 {
@@ -311,7 +322,7 @@ namespace TreasureLand.App_Code
                 rowCount++;
             }
 
-            return table + "</table>";
+            return table + "</table>" + generateColorKey(centerTable);
         }
 
         /// <summary>
@@ -354,6 +365,29 @@ namespace TreasureLand.App_Code
         }
 
         /// <summary>
+        /// Generates the table's color key to go along with the gridrangeview
+        /// </summary>
+        /// <param name="center">Centers the table on the page</param>
+        /// <returns>HTML string of the color key table</returns>
+        public string generateColorKey(bool center)
+        {
+            string table = "<table" + (center ? " style='margin-left:auto;margin-right:auto;'>" : ">");
+            table += "<tr><td style='width: 40px; background-color:" + Confirmed + "' ></td>";
+            table += "<td>Confirmed</td>";
+
+            table += "<td style='width: 40px; background-color:" + Unconfirmed + "' ></td>";
+            table += "<td>Unconfirmed</td>";
+
+            table += "<td style='width: 40px; background-color:" + CheckedIn + "' ></td>";
+            table += "<td>Checked In</td>";
+
+            table += "<td style='width: 40px; background-color:" + Canceled + "' ></td>";
+            table += "<td>Canceled</td></tr>";
+
+            return table + "</table>";
+        }
+
+        /// <summary>
         /// Tests a specific ReservationID against all records except itself
         /// to test against existing date ranges to make sure a record will
         /// not overlap a currently existing one
@@ -381,6 +415,8 @@ namespace TreasureLand.App_Code
                 if (s[0] == RoomNumber)
                 {
                     roomFound = true;
+                    if (s[2] == "M") //If that specific room is blocked due to maintenance
+                        return "Specified room is marked for maintenance. Choose a different room";
                     break;
                 }
 
