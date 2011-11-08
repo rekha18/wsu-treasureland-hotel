@@ -324,16 +324,27 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void GoToCheckOut_Click(object sender, EventArgs e)
         {
-            GuestDB.updateReservationDetail('C', Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
-            GuestDB.updateReservationStatus('C', Convert.ToInt32(txtShowReservation.Text));
-            GuestDB.updateRoomStatus('R', Convert.ToInt32(txtShowRoom.Text));
+            GuestDB.updateReservationDetail('F', Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
+            GuestDB.updateReservationStatus('F', Convert.ToInt32(txtShowReservation.Text));
+            GuestDB.updateRoomStatus('H', Convert.ToInt32(txtShowRoom.Text));
         }
 
+        /// <summary>
+        /// goes back to the choose guest page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnBack_Click(object sender, EventArgs e)
         {
-           
+            mvViewGuest.ActiveViewIndex = 0;
         }
 
+        /// <summary>
+        /// When clicked all tables are hidden along with the add service feature.
+        /// The aadjust discount is made visible
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnAdjustDiscount_Click(object sender, EventArgs e)
         {
             lblManagerUser.Visible = true;
@@ -372,6 +383,13 @@ namespace TreasureLand.Clerk
 
         }
 
+        /// <summary>
+        /// Makes the adjust discount fields invisible and
+        /// makes everything else visible
+        /// Sets the discount to the reservation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnApply0_Click(object sender, EventArgs e)
         {
             lblManagerUser.Visible = false;
