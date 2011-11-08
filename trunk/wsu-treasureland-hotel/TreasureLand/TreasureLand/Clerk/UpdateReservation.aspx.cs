@@ -35,12 +35,29 @@ namespace TreasureLand.Clerk
         protected void btnSelectReservation_Click(object sender, EventArgs e)
         {
             lblReservationNumber.Text = gvGuest.SelectedRow.Cells[0].Text;
+            lblSurName.Text = gvGuest.SelectedRow.Cells[1].Text;
+            lblFirstName.Text = gvGuest.SelectedRow.Cells[2].Text;
+            lblPhone.Text = gvGuest.SelectedRow.Cells[3].Text;
+
         }
 
 
         protected void gvGuest_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnSelectReservation.Enabled = true;
+        }
+
+        protected void gvReservationDetails_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            var room = from ro in db.Rooms
+                       join r in db.HotelRoomTypes
+                       on ro.HotelRoomTypeID equals r.HotelRoomTypeID
+                       where ro.RoomID == Convert.ToInt16(gvReservationDetails.SelectedRow.Cells[0].Text)
+                       select new { ro.RoomNumbers, ro.RoomDescription, ro.RoomBedConfiguration, ro.RoomStatus, r.RoomTypeRackRate };
+
+            gvRoom.DataSource = room.ToList();
+            gvRoom.DataBind();
         }
 
         
