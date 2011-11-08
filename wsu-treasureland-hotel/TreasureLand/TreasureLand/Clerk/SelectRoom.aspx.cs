@@ -149,9 +149,12 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void lbtnPagePrevious_Click(object sender, EventArgs e)
         {
-            GridRangeView.RoomIndex -= GridRangeView.PageSize;
-            lbtnPagePrevious.Focus();
-            requiresUpdate = true;
+            if (GridRangeView.RoomIndex >= GridRangeView.PageSize)
+            {
+                GridRangeView.RoomIndex -= GridRangeView.PageSize;
+                lbtnPagePrevious.Focus();
+                requiresUpdate = true;
+            }
         }
 
         /// <summary>
@@ -162,9 +165,12 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void lbtnPageNext_Click(object sender, EventArgs e)
         {
-            GridRangeView.RoomIndex += GridRangeView.PageSize;
-            lbtnPageNext.Focus();
-            requiresUpdate = true;
+            if (GridRangeView.RoomIndex + GridRangeView.PageSize < GridRangeView.MaxRooms)
+            {
+                GridRangeView.RoomIndex += GridRangeView.PageSize;
+                lbtnPageNext.Focus();
+                requiresUpdate = true;
+            }
         }
 
         /// <summary>
