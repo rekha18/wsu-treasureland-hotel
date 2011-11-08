@@ -89,6 +89,7 @@ namespace TreasureLand.App_Code
                 }
                 rt.Close();
 
+                sortRoomsNumerically(rooms);
                 return rooms;
             }
             catch (Exception e)
@@ -272,6 +273,35 @@ namespace TreasureLand.App_Code
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
             return dr;
-        }    
+        }
+
+        /// <summary>
+        /// Sorts the room list by number rather than alphabetically
+        /// </summary>
+        /// <param name="rooms">List of all of the room names</param>
+        /// <returns>List of room names sorted</returns>
+        private static void sortRoomsNumerically(List<string[]> rooms)
+        {
+            if (rooms.Count < 2)
+                return; //Already sorted
+
+            for(int i = 0; i < rooms.Count; i++)
+                for (int j = i; j < rooms.Count; j++)
+                {
+                    string[] temp1 = rooms[i];
+                    string[] temp2 = rooms[j];
+
+                    if (temp1[0].Length > temp2[0].Length) //Sort by length
+                    {
+                        rooms[i] = temp2;
+                        rooms[j] = temp1;
+                    }
+                    else if (temp1[0].CompareTo(temp2[0]) > 0) //Sort by value
+                    {
+                        rooms[i] = temp2;
+                        rooms[j] = temp1;
+                    }
+                }
+        }
     }
 }
