@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TreasureLandModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="TreasureLandModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="TreasureLandModelStoreContainer">
           <EntitySet Name="BillingCategory" EntityType="TreasureLandModel.Store.BillingCategory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Discount" EntityType="TreasureLandModel.Store.Discount" store:Type="Tables" Schema="dbo" />
@@ -150,7 +150,7 @@
           <Property Name="Nights" Type="tinyint" Nullable="false" />
           <Property Name="Status" Type="char" Nullable="false" MaxLength="1" />
           <Property Name="Comments" Type="varchar(max)" />
-          <Property Name="DiscountID" Type="smallint" Nullable="false" />
+          <Property Name="DiscountID" Type="smallint" />
           <Property Name="NumberOfAdults" Type="tinyint" Nullable="false" />
           <Property Name="NumberOfChildren" Type="tinyint" Nullable="false" />
         </EntityType>
@@ -229,7 +229,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ReservationDetail_Must_Have_DiscountID">
-          <End Role="Discount" Type="TreasureLandModel.Store.Discount" Multiplicity="1" />
+          <End Role="Discount" Type="TreasureLandModel.Store.Discount" Multiplicity="0..1" />
           <End Role="ReservationDetail" Type="TreasureLandModel.Store.ReservationDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Discount">
@@ -336,8 +336,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TreasureLandModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
