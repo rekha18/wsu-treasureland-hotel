@@ -80,9 +80,12 @@
     <Content Include="Clerk\CheckOut.aspx" />
     <Content Include="Clerk\ClerkDefault.aspx" />
     <Content Include="Clerk\CreateReservation.aspx" />
+    <Content Include="Clerk\LocateGuest.aspx" />
     <Content Include="Clerk\LocateGuestFolio.aspx" />
+    <Content Include="Clerk\LocateReservation.aspx" />
     <Content Include="Clerk\Reports.aspx" />
     <Content Include="Clerk\SelectRoom.aspx" />
+    <Content Include="Clerk\UpdateGuestFolio.aspx" />
     <Content Include="Clerk\UpdateReservation.aspx" />
     <Content Include="Clerk\ViewGuests.aspx" />
     <Content Include="HouseKeeping\HouseKeepingDefault.aspx" />
@@ -232,6 +235,7 @@
     <Compile Include="Admin\ManageRoomTypes.aspx.designer.cs">
       <DependentUpon>ManageRoomTypes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\Discount.cs" />
     <Compile Include="App_Code\GridRangeView.cs" />
     <Compile Include="App_Code\Guest.cs" />
     <Compile Include="App_Code\GuestDB.cs" />
@@ -265,8 +269,16 @@
     <Compile Include="Clerk\CreateReservation.aspx.designer.cs">
       <DependentUpon>CreateReservation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Clerk\LocateGuest.aspx.cs">
+      <DependentUpon>LocateGuest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Clerk\LocateGuestFolio.aspx.cs">
       <DependentUpon>LocateGuestFolio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\LocateReservation.aspx.cs">
+      <DependentUpon>LocateReservation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Clerk\Reports.aspx.cs">
@@ -282,6 +294,12 @@
     </Compile>
     <Compile Include="Clerk\SelectRoom.aspx.designer.cs">
       <DependentUpon>SelectRoom.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\UpdateGuestFolio.aspx.cs">
+      <DependentUpon>UpdateGuestFolio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\UpdateGuestFolio.aspx.designer.cs">
+      <DependentUpon>UpdateGuestFolio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clerk\UpdateReservation.aspx.cs">
       <DependentUpon>UpdateReservation.aspx</DependentUpon>
