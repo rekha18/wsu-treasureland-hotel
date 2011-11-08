@@ -90,7 +90,7 @@ namespace TreasureLand.Clerk
             if (GridRangeView.RoomIndex + GridRangeView.PageSize >= GridRangeView.MaxRooms)
                 lbtnPageNext.Enabled = false;
             else
-                lbtnPagePrevious.Enabled = true;
+                lbtnPageNext.Enabled = true;
 
             requiresUpdate = false;
         }
@@ -150,6 +150,7 @@ namespace TreasureLand.Clerk
         protected void lbtnPagePrevious_Click(object sender, EventArgs e)
         {
             GridRangeView.RoomIndex -= GridRangeView.PageSize;
+            lbtnPagePrevious.Focus();
             requiresUpdate = true;
         }
 
@@ -162,6 +163,7 @@ namespace TreasureLand.Clerk
         protected void lbtnPageNext_Click(object sender, EventArgs e)
         {
             GridRangeView.RoomIndex += GridRangeView.PageSize;
+            lbtnPageNext.Focus();
             requiresUpdate = true;
         }
 
@@ -244,6 +246,16 @@ namespace TreasureLand.Clerk
 
             requiresUpdate = true;
             Response.Redirect("~/Clerk/CreateReservation.aspx");
+        }
+
+        /// <summary>
+        /// Simply sets focus to the ddlRoomTypes control
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ddlRoomTypes_onSelectedIndexChanged(object sender, EventArgs e)
+        {
+            ddlRoomTypes.Focus();
         }
     }
 }
