@@ -317,9 +317,16 @@ namespace TreasureLand.Clerk
         }
         #endregion
 
+        /// <summary>
+        /// Checks out the guest.  Changes the ReservationDetail status, Reservation status and updateStatus.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void GoToCheckOut_Click(object sender, EventArgs e)
         {
-            mvViewGuest.ActiveViewIndex = 0;
+            GuestDB.updateReservationDetail('C', Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
+            GuestDB.updateReservationStatus('C', Convert.ToInt32(txtShowReservation.Text));
+            GuestDB.updateRoomStatus('R', Convert.ToInt32(txtShowRoom.Text));
         }
 
         protected void btnBack_Click(object sender, EventArgs e)

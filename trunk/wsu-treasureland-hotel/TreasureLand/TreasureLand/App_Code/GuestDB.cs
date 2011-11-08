@@ -43,7 +43,7 @@ namespace TreasureLand.App_Code
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel =
                 "SELECT Reservation.ReservationID, Guest.GuestFirstName, Guest.GuestSurName, ReservationDetail.ReservationDetailID, ReservationDetail.RoomID, ReservationDetail.Status FROM Reservation INNER JOIN Guest ON Reservation.GuestID = Guest.GuestID INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID " +
-                "WHERE (Guest.GuestFirstName = '" + FirstName + "' OR Guest.GuestSurName = '" + SurName +"' OR Reservation.ReservationID = '" + ReservationID + "') AND ReservationDetail.Status ='A'";
+                "WHERE (Guest.GuestFirstName = '" + FirstName + "' OR Guest.GuestSurName = '" + SurName + "' OR Reservation.ReservationID = '" + ReservationID + "') AND ReservationDetail.Status ='A'";
             SqlCommand cmd =
             new SqlCommand(sel, con);
             con.Open();
@@ -65,7 +65,7 @@ namespace TreasureLand.App_Code
         }
 
         //public static IEnumerable LocateGuestFolio(string Salutation, string FirstName, string Surname, string Phone, string CreditCardNum, string Expiration, string Address, string City, string State, string Country, string PostalCode, string Email)
-        public static IEnumerable LocateGuestFolio( string FirstName, string SurName, string PhoneNumber)
+        public static IEnumerable LocateGuestFolio(string FirstName, string SurName, string PhoneNumber)
         {
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel =
@@ -117,7 +117,7 @@ namespace TreasureLand.App_Code
             SqlCommand cmd = new SqlCommand(sel, con);
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
-            ArrayList myArrList = new ArrayList();            
+            ArrayList myArrList = new ArrayList();
             while (dr.Read())
             {
                 // add the column value to the ArrayList 
@@ -130,7 +130,7 @@ namespace TreasureLand.App_Code
             else
                 return 0;
         }
-                
+
         /// <summary>
         /// Inserts a service bill 
         /// </summary>
@@ -143,13 +143,13 @@ namespace TreasureLand.App_Code
         {
             SqlConnection con = new SqlConnection(getConnectionString());
             string update = "INSERT INTO ReservationDetailBilling " +
-                        "(BillingAmount, BillingItemQty, BillingCategoryID,  BillingDescription, ReservationDetailID, BillingItemDate) "+
-                        "VALUES(" + billAmount +"," + billQty + ",1,'" + billingDescription + "'," + reservationID + ", '" + System.DateTime.Now+"')";
+                        "(BillingAmount, BillingItemQty, BillingCategoryID,  BillingDescription, ReservationDetailID, BillingItemDate) " +
+                        "VALUES(" + billAmount + "," + billQty + ",1,'" + billingDescription + "'," + reservationID + ", '" + System.DateTime.Now + "')";
             SqlCommand cmd =
             new SqlCommand(update, con);
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
-            
+
             return dr;
         }
 
@@ -164,7 +164,7 @@ namespace TreasureLand.App_Code
             new SqlCommand(sel, con);
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
-            return dr;        
+            return dr;
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace TreasureLand.App_Code
                 myArrList.Add(dr["DiscountID"].ToString());
                 myArrList.Add(dr["DiscountAmount"].ToString());
                 myArrList.Add(dr["IsPercent"].ToString());
-            }            
+            }
             return myArrList;
         }
 
@@ -219,10 +219,10 @@ namespace TreasureLand.App_Code
             SqlConnection conn = new SqlConnection(getConnectionString());
 
             try
-            {            
+            {
                 conn.Open(); //Open the connection
 
-                string update = "UPDATE [ReservationDetailBilling] SET [BillingItemQty] = @Qty, [BillingAmount] = @Cost "  +
+                string update = "UPDATE [ReservationDetailBilling] SET [BillingItemQty] = @Qty, [BillingAmount] = @Cost " +
                                  "WHERE [ReservationBillingID] = @ReservationBillingID";
                 SqlCommand connCommand = new SqlCommand(update, conn);
                 connCommand.Parameters.AddWithValue("@Qty", Qty);
@@ -235,9 +235,9 @@ namespace TreasureLand.App_Code
             {
                 throw e;
             }
-           
+
         }
-    
+
         /// <summary>
         /// Deletes a service in the database
         /// </summary>
@@ -261,7 +261,7 @@ namespace TreasureLand.App_Code
             catch (Exception e)
             {
                 throw e;
-            }            
+            }
         }
 
         /// <summary>
@@ -278,7 +278,7 @@ namespace TreasureLand.App_Code
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
             ArrayList myArrList = new ArrayList();
-            while(dr.Read())
+            while (dr.Read())
             {
                 // add the column value to the ArrayList 
                 myArrList.Add(dr["GuestSalutation"].ToString());
@@ -293,7 +293,7 @@ namespace TreasureLand.App_Code
                 myArrList.Add(dr["GuestEmail"].ToString());
             }
             return myArrList;
-        
+
         }
 
         /// <summary>
@@ -353,10 +353,66 @@ namespace TreasureLand.App_Code
             {
                 throw e;
             }
+        }
+        public static int updateReservationStatus(char reservationStatus, int reservationID)
+        {
+            SqlConnection conn = new SqlConnection(getConnectionString());
 
+            try
+            {
+                conn.Open(); //Open the connection
+                string update = "UPDATE [Reservation] SET [ReservationStatus] = @reservationStatus " +
+                      "WHERE [ReservationID] = @reservationID";
+                SqlCommand connCommand = new SqlCommand(update, conn);
+                connCommand.Parameters.AddWithValue("@reservationStatus", reservationStatus);
+                connCommand.Parameters.AddWithValue("@reservationID", reservationID);
+                return connCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
+        public static int updateReservationDetail(char status, int reservationID)
+        {
+            SqlConnection conn = new SqlConnection(getConnectionString());
 
-            
+            try
+            {
+                conn.Open(); //Open the connection
+                string update = "UPDATE [ReservationDetail] SET [Status] = @status " +
+                      "WHERE [ReservationDetailID] = @reservationID";
+                SqlCommand connCommand = new SqlCommand(update, conn);
+                connCommand.Parameters.AddWithValue("@status", status);
+                connCommand.Parameters.AddWithValue("@reservationID", reservationID);
+                return connCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
+
+        public static int updateRoomStatus(char roomStatus, int roomID)
+        {
+            SqlConnection conn = new SqlConnection(getConnectionString());
+
+            try
+            {
+                conn.Open(); //Open the connection
+                string update = "UPDATE [Room] SET [RoomStatus] = @roomStatus " +
+                      "WHERE [RoomID] = @roomID";
+                SqlCommand connCommand = new SqlCommand(update, conn);
+                connCommand.Parameters.AddWithValue("@roomStatus", roomStatus);
+                connCommand.Parameters.AddWithValue("@roomID", roomID);
+                return connCommand.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }
