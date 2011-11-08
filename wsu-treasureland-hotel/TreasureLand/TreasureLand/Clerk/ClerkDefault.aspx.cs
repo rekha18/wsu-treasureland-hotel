@@ -44,7 +44,7 @@ namespace TreasureLand.Clerk
             if (GridRangeView.RoomIndex + GridRangeView.PageSize >= GridRangeView.MaxRooms)
                 lbtnPageNext.Enabled = false;
             else
-                lbtnPagePrevious.Enabled = true;
+                lbtnPageNext.Enabled = true;
 
             requiresUpdate = false;
         }
