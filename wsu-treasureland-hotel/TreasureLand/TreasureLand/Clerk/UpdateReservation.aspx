@@ -13,7 +13,7 @@
                     <tr>
                         <td class="style1" style="width: 134px">
                             Reservation Number:</td>
-                        <td class="style1" style="width: 192px">
+                        <td class="style1" style="width: 329px">
                             <asp:TextBox ID="txtResNumber" runat="server"></asp:TextBox>
                         </td>
                         <td>
@@ -22,7 +22,7 @@
                     <tr>
                         <td class="style1" style="width: 134px">
                             First Name:</td>
-                        <td class="style1" style="width: 192px">
+                        <td class="style1" style="width: 329px">
                             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
                         </td>
                         <td>
@@ -31,7 +31,7 @@
                     <tr>
                         <td class="style1" style="width: 134px">
                             Sur Name:</td>
-                        <td class="style1" style="width: 192px">
+                        <td class="style1" style="width: 329px">
                             <asp:TextBox ID="txtSurName" runat="server"></asp:TextBox>
                         </td>
                         <td>
@@ -40,7 +40,7 @@
                     <tr>
                         <td class="style1" style="width: 134px">
                             Phone:</td>
-                        <td class="style1" style="width: 192px">
+                        <td class="style1" style="width: 329px">
                             <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
                         </td>
                         <td>
@@ -53,8 +53,13 @@
                 <br />
                 <br />
                 <asp:GridView ID="gvGuest" runat="server" 
-                    onselectedindexchanged="gvGuest_SelectedIndexChanged">
+                    onselectedindexchanged="gvGuest_SelectedIndexChanged" 
+                    AutoGenerateColumns="False">
                     <Columns>
+                        <asp:BoundField DataField="ReservationID" HeaderText="Reservation Number" />
+                        <asp:BoundField DataField="GuestSurName" HeaderText="Sur Name" />
+                        <asp:BoundField DataField="GuestFirstName" HeaderText="First Name" />
+                        <asp:BoundField DataField="GuestPhone" HeaderText="Phone" />
                         <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                     </Columns>
                     <SelectedRowStyle BackColor="#FFFF66" />
@@ -68,38 +73,6 @@
             <asp:View ID="vUpdateReservation" runat="server">
                 <table style="width:100%;">
                     <tr>
-                        <td rowspan="9" style="width: 25px">
-                            <asp:DetailsView ID="dvReservation" runat="server" AutoGenerateRows="False" 
-                                DataKeyNames="ReservationDetailID" DataSourceID="ldsReservations" Height="50px" 
-                                Width="125px">
-                                <Fields>
-                                    <asp:BoundField DataField="ReservationDetailID" 
-                                        HeaderText="ReservationDetailID" InsertVisible="False" ReadOnly="True" 
-                                        SortExpression="ReservationDetailID" />
-                                    <asp:BoundField DataField="RoomID" HeaderText="RoomID" 
-                                        SortExpression="RoomID" />
-                                    <asp:BoundField DataField="ReservationID" HeaderText="ReservationID" 
-                                        SortExpression="ReservationID" />
-                                    <asp:BoundField DataField="QuotedRate" HeaderText="QuotedRate" 
-                                        SortExpression="QuotedRate" />
-                                    <asp:BoundField DataField="CheckinDate" HeaderText="CheckinDate" 
-                                        SortExpression="CheckinDate" />
-                                    <asp:BoundField DataField="Nights" HeaderText="Nights" 
-                                        SortExpression="Nights" />
-                                    <asp:BoundField DataField="Status" HeaderText="Status" 
-                                        SortExpression="Status" />
-                                    <asp:BoundField DataField="Comments" HeaderText="Comments" 
-                                        SortExpression="Comments" />
-                                    <asp:BoundField DataField="DiscountID" HeaderText="DiscountID" 
-                                        SortExpression="DiscountID" />
-                                    <asp:BoundField DataField="NumberOfAdults" HeaderText="NumberOfAdults" 
-                                        SortExpression="NumberOfAdults" />
-                                    <asp:BoundField DataField="NumberOfChildren" HeaderText="NumberOfChildren" 
-                                        SortExpression="NumberOfChildren" />
-                                    <asp:CommandField ButtonType="Button" ShowEditButton="True" />
-                                </Fields>
-                            </asp:DetailsView>
-                        </td>
                         <td style="width: 94px">
                             Reservation ID:</td>
                         <td>
@@ -108,53 +81,70 @@
                     </tr>
                     <tr>
                         <td style="width: 94px">
-                            &nbsp;</td>
+                            Sur Name:</td>
                         <td>
-                            &nbsp;</td>
+                            <asp:Label ID="lblSurName" runat="server"></asp:Label>
+                        </td>
                     </tr>
                     <tr>
                         <td style="width: 94px">
-                            &nbsp;</td>
+                            First Name:</td>
                         <td>
-                            &nbsp;</td>
+                            <asp:Label ID="lblFirstName" runat="server"></asp:Label>
+                        </td>
                     </tr>
                     <tr>
                         <td style="width: 94px">
-                            &nbsp;</td>
+                            Phone:</td>
                         <td>
-                            &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td style="width: 94px">
-                            &nbsp;</td>
-                        <td>
-                            &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td style="width: 94px">
-                            &nbsp;</td>
-                        <td>
-                            &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td style="width: 94px">
-                            &nbsp;</td>
-                        <td>
-                            &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td style="width: 94px">
-                            &nbsp;</td>
-                        <td>
-                            &nbsp;</td>
-                    </tr>
-                    <tr>
-                        <td style="width: 94px">
-                            &nbsp;</td>
-                        <td>
-                            &nbsp;</td>
+                            <asp:Label ID="lblPhone" runat="server"></asp:Label>
+                        </td>
                     </tr>
                 </table>
+                <br />
+                <asp:GridView ID="gvReservationDetails" runat="server" 
+                    AutoGenerateColumns="False" DataKeyNames="ReservationDetailID" 
+                    DataSourceID="ldsReservations" 
+                    onselectedindexchanged="gvReservationDetails_SelectedIndexChanged">
+                    <Columns>
+                        <asp:BoundField DataField="RoomID" HeaderText="ID" />
+                        <asp:BoundField DataField="QuotedRate" DataFormatString="{0:c}" 
+                            HeaderText="QuotedRate" SortExpression="QuotedRate">
+                        <HeaderStyle HorizontalAlign="Center" />
+                        <ItemStyle HorizontalAlign="Center" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="CheckinDate" DataFormatString="{0:d}" 
+                            HeaderText="CheckinDate" SortExpression="CheckinDate">
+                        <HeaderStyle HorizontalAlign="Center" />
+                        <ItemStyle HorizontalAlign="Center" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="Nights" HeaderText="Nights" SortExpression="Nights">
+                        <HeaderStyle HorizontalAlign="Center" />
+                        <ItemStyle HorizontalAlign="Center" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status">
+                        <HeaderStyle HorizontalAlign="Center" />
+                        <ItemStyle HorizontalAlign="Center" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="Comments" HeaderText="Comments" 
+                            SortExpression="Comments">
+                        <HeaderStyle HorizontalAlign="Center" />
+                        <ItemStyle HorizontalAlign="Left" Width="200px" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="NumberOfAdults" HeaderText="Adults" 
+                            SortExpression="NumberOfAdults">
+                        <HeaderStyle HorizontalAlign="Center" />
+                        <ItemStyle HorizontalAlign="Center" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="NumberOfChildren" HeaderText="Children" 
+                            SortExpression="NumberOfChildren">
+                        <HeaderStyle HorizontalAlign="Center" />
+                        <ItemStyle HorizontalAlign="Center" />
+                        </asp:BoundField>
+                        <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
+                    </Columns>
+                    <SelectedRowStyle BackColor="#FFFF66" />
+                </asp:GridView>
                 <asp:LinqDataSource ID="ldsReservations" runat="server" 
                     ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
                     EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" 
@@ -164,6 +154,24 @@
                             PropertyName="Text" Type="Int16" />
                     </WhereParameters>
                 </asp:LinqDataSource>
+                <br />
+                <asp:GridView ID="gvRoom" runat="server" AutoGenerateColumns="False">
+                    <Columns>
+                        <asp:BoundField DataField="RoomNumbers" HeaderText="Room Number" />
+                        <asp:BoundField DataField="RoomDescription" HeaderText="Description" />
+                        <asp:BoundField DataField="RoomBedConfiguration" HeaderText="Layout" />
+                        <asp:BoundField DataField="RoomStatus" HeaderText="Status" />
+                        <asp:BoundField DataField="RoomTypeRackRate" HeaderText="Rack Rate" />
+                    </Columns>
+                </asp:GridView>
+                <asp:MultiView ID="MultiView1" runat="server">
+                    <asp:View ID="View2" runat="server">
+                    </asp:View>
+                    <asp:View ID="View1" runat="server">
+                    </asp:View>
+                </asp:MultiView>
+                <br />
+                <br />
             </asp:View>
         </asp:MultiView>
         <br />
