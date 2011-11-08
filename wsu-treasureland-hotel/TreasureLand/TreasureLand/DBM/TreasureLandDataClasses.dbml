@@ -1,18 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Ghana_Hotel" Class="TreasureLandDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TreasureLand" Class="TreasureLandDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=titan.cs.weber.edu,10433;Initial Catalog=TreasureLand;Persist Security Info=True;User ID=4790Client" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TreasureLandDB" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.RoomStatus" Member="RoomStatus">
-    <Type Name="RoomStatus">
-      <Column Name="Status" Type="System.Char" DbType="Char(1) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Association Name="RoomStatus_Room" Member="Rooms" ThisKey="Status" OtherKey="RoomStatus" Type="Room" />
-    </Type>
-  </Table>
   <Table Name="dbo.BillingCategory" Member="BillingCategories">
     <Type Name="BillingCategory">
       <Column Name="BillingCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="BillingCategoryDescription" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="BillingCategoryTaxable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="BillingCategory_ReservationDetailBilling" Member="ReservationDetailBillings" ThisKey="BillingCategoryID" OtherKey="BillingCategoryID" Type="ReservationDetailBilling" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RoomStatus" Member="RoomStatus">
+    <Type Name="RoomStatus">
+      <Column Name="Status" Type="System.Char" DbType="Char(1) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="RoomStatus_Room" Member="Rooms" ThisKey="Status" OtherKey="RoomStatus" Type="Room" />
     </Type>
   </Table>
   <Table Name="dbo.Discount" Member="Discounts">
@@ -95,7 +95,7 @@
       <Column Name="Nights" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
       <Column Name="Comments" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="DiscountID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="true" />
+      <Column Name="DiscountID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="NumberOfAdults" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="NumberOfChildren" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Association Name="ReservationDetail_ReservationDetailBilling" Member="ReservationDetailBillings" ThisKey="ReservationDetailID" OtherKey="ReservationDetailID" Type="ReservationDetailBilling" />

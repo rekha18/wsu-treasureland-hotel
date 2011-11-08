@@ -22,7 +22,7 @@ namespace TreasureLand.DBM
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Ghana_Hotel")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="TreasureLand")]
 	public partial class TreasureLandDataClassesDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,12 +30,12 @@ namespace TreasureLand.DBM
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertRoomStatus(RoomStatus instance);
-    partial void UpdateRoomStatus(RoomStatus instance);
-    partial void DeleteRoomStatus(RoomStatus instance);
     partial void InsertBillingCategory(BillingCategory instance);
     partial void UpdateBillingCategory(BillingCategory instance);
     partial void DeleteBillingCategory(BillingCategory instance);
+    partial void InsertRoomStatus(RoomStatus instance);
+    partial void UpdateRoomStatus(RoomStatus instance);
+    partial void DeleteRoomStatus(RoomStatus instance);
     partial void InsertDiscount(Discount instance);
     partial void UpdateDiscount(Discount instance);
     partial void DeleteDiscount(Discount instance);
@@ -98,19 +98,19 @@ namespace TreasureLand.DBM
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<RoomStatus> RoomStatus
-		{
-			get
-			{
-				return this.GetTable<RoomStatus>();
-			}
-		}
-		
 		public System.Data.Linq.Table<BillingCategory> BillingCategories
 		{
 			get
 			{
 				return this.GetTable<BillingCategory>();
+			}
+		}
+		
+		public System.Data.Linq.Table<RoomStatus> RoomStatus
+		{
+			get
+			{
+				return this.GetTable<RoomStatus>();
 			}
 		}
 		
@@ -192,120 +192,6 @@ namespace TreasureLand.DBM
 			{
 				return this.GetTable<Room>();
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RoomStatus")]
-	public partial class RoomStatus : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private char _Status;
-		
-		private string _Description;
-		
-		private EntitySet<Room> _Rooms;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnStatusChanging(char value);
-    partial void OnStatusChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    #endregion
-		
-		public RoomStatus()
-		{
-			this._Rooms = new EntitySet<Room>(new Action<Room>(this.attach_Rooms), new Action<Room>(this.detach_Rooms));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Char(1) NOT NULL", IsPrimaryKey=true)]
-		public char Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RoomStatus_Room", Storage="_Rooms", ThisKey="Status", OtherKey="RoomStatus")]
-		public EntitySet<Room> Rooms
-		{
-			get
-			{
-				return this._Rooms;
-			}
-			set
-			{
-				this._Rooms.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Rooms(Room entity)
-		{
-			this.SendPropertyChanging();
-			entity.RoomStatus1 = this;
-		}
-		
-		private void detach_Rooms(Room entity)
-		{
-			this.SendPropertyChanging();
-			entity.RoomStatus1 = null;
 		}
 	}
 	
@@ -444,6 +330,120 @@ namespace TreasureLand.DBM
 		{
 			this.SendPropertyChanging();
 			entity.BillingCategory = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RoomStatus")]
+	public partial class RoomStatus : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private char _Status;
+		
+		private string _Description;
+		
+		private EntitySet<Room> _Rooms;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnStatusChanging(char value);
+    partial void OnStatusChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    #endregion
+		
+		public RoomStatus()
+		{
+			this._Rooms = new EntitySet<Room>(new Action<Room>(this.attach_Rooms), new Action<Room>(this.detach_Rooms));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Char(1) NOT NULL", IsPrimaryKey=true)]
+		public char Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RoomStatus_Room", Storage="_Rooms", ThisKey="Status", OtherKey="RoomStatus")]
+		public EntitySet<Room> Rooms
+		{
+			get
+			{
+				return this._Rooms;
+			}
+			set
+			{
+				this._Rooms.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Rooms(Room entity)
+		{
+			this.SendPropertyChanging();
+			entity.RoomStatus1 = this;
+		}
+		
+		private void detach_Rooms(Room entity)
+		{
+			this.SendPropertyChanging();
+			entity.RoomStatus1 = null;
 		}
 	}
 	
@@ -2136,7 +2136,7 @@ namespace TreasureLand.DBM
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiscountID", DbType="SmallInt NOT NULL")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiscountID", DbType="SmallInt")]
 		public System.Nullable<short> DiscountID
 		{
 			get
