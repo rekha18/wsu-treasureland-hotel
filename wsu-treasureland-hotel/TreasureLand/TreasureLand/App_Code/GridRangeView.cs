@@ -150,7 +150,13 @@ namespace TreasureLand.App_Code
         /// Color denoting a reservation that has been cancelled by the holder
         /// or from failure to call back and confirm
         /// </summary>
-        public string Canceled = "#FF5526"; //
+        public string Canceled = "#FF5526"; //red-orange
+
+        /// <summary>
+        /// Color denoting a reservation where the guest has stayed in the hotel
+        /// and has since checked out
+        /// </summary>
+        public string Finished = "#BBBB99";
         #endregion
         #region Static Attributes
         /// <summary>
@@ -192,7 +198,8 @@ namespace TreasureLand.App_Code
         /// <summary>
         /// Defines the reservation type char in the database
         /// </summary>
-        private enum COLORS { ACTIVE = 'A', UNCONFIRMED = 'U', CONFIRMED = 'C', CANCELED = 'X' };
+        private enum COLORS { ACTIVE = 'A', UNCONFIRMED = 'U', CONFIRMED = 'C', CANCELED = 'X',
+            FINISHED = 'F' };
 
         /// <summary>
         /// Color that the row is highlighted if the room type value is the same as the row's room number
@@ -276,7 +283,7 @@ namespace TreasureLand.App_Code
             foreach (string[] room in roomNames) //Assuming the rooms were sorted in order
             {
                 #region Paging Logic
-                if (rowCount < RoomIndex)
+                if (rowCount <= RoomIndex)
                 {
                     rowCount++;
                     continue;
@@ -680,6 +687,7 @@ namespace TreasureLand.App_Code
                 case (char)COLORS.CONFIRMED: return Confirmed;
                 case (char)COLORS.UNCONFIRMED: return Unconfirmed;
                 case (char)COLORS.CANCELED: return Canceled;
+                case (char)COLORS.FINISHED: return Finished;
             }
             return "#FFFFFF"; //White as default
         }
