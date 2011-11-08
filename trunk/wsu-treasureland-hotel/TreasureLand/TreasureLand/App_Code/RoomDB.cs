@@ -69,7 +69,8 @@ namespace TreasureLand.App_Code
             {
                 conn.Open(); //Open the connection
 
-                string command = "SELECT room.RoomNumbers, rtype.RoomType FROM Room room " +
+                string command = "SELECT room.RoomNumbers, rtype.RoomType, room.RoomStatus " +
+                                 "FROM Room room " +
                                  "INNER JOIN HotelRoomType rtype ON rtype.HotelRoomTypeID = room.HotelRoomTypeID " +
                                  "ORDER BY RoomNumbers";
 
@@ -80,9 +81,10 @@ namespace TreasureLand.App_Code
                 List<string[]> rooms = new List<string[]>();
                 while (rt.Read())
                 {
-                    string[] room = new string[2];
+                    string[] room = new string[3];
                     room[0] = rt[0].ToString();
                     room[1] = rt[1].ToString();
+                    room[2] = Char.Parse(rt[2].ToString()) == 'M' ? "M" : "A";
                     rooms.Add(room);
                 }
                 rt.Close();
@@ -165,6 +167,7 @@ namespace TreasureLand.App_Code
                     int hotelRoomTypeID = Int32.Parse(rt[6].ToString());
                     string roomType = rt[7].ToString();
                     int reservationDetailsID = Int32.Parse(rt[8].ToString());
+                    //bool roomStatus = Char.Parse(rt[9].ToString()) == 'M' ? true : false;
 
                     Row temp = new Row(id, resID, hotelRoomTypeID, reservationDetailsID); //Create and fill a Row object
                     temp.Begin = begin;
@@ -172,6 +175,7 @@ namespace TreasureLand.App_Code
                     temp.ReservationType = resStatus;
                     temp.RoomNumber = roomNumber;
                     temp.RoomType = roomType;
+                    //temp.Maintenance = roomStatus;
 
                     RT.Add(temp); //Add it to the list
                 }
