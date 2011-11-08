@@ -42,7 +42,8 @@
                 <span style="padding: 5px 5px 0px 0px">Highlight rooms of type:</span>
                 <asp:DropDownList ID="ddlRoomTypes" runat="server" 
                     OnDataBound="ddlRoomTypes_OnDataBind" DataSourceID="sqlRoomTypes" 
-                    DataTextField="RoomType" DataValueField="RoomType" AutoPostBack="True">
+                    DataTextField="RoomType" DataValueField="RoomType" AutoPostBack="True" 
+                    onselectedindexchanged="ddlRoomTypes_onSelectedIndexChanged">
                 </asp:DropDownList>
                 <!-- I know this isn't the best choice for a data source, but I was having
                 issues using the object data source -->
