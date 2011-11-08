@@ -1917,7 +1917,7 @@ namespace TreasureLand.DBM
 		
 		private string _Comments;
 		
-		private short _DiscountID;
+		private System.Nullable<short> _DiscountID;
 		
 		private byte _NumberOfAdults;
 		
@@ -1951,7 +1951,7 @@ namespace TreasureLand.DBM
     partial void OnStatusChanged();
     partial void OnCommentsChanging(string value);
     partial void OnCommentsChanged();
-    partial void OnDiscountIDChanging(short value);
+    partial void OnDiscountIDChanging(System.Nullable<short> value);
     partial void OnDiscountIDChanged();
     partial void OnNumberOfAdultsChanging(byte value);
     partial void OnNumberOfAdultsChanged();
@@ -2137,7 +2137,7 @@ namespace TreasureLand.DBM
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiscountID", DbType="SmallInt NOT NULL")]
-		public short DiscountID
+		public System.Nullable<short> DiscountID
 		{
 			get
 			{
@@ -2240,7 +2240,7 @@ namespace TreasureLand.DBM
 					}
 					else
 					{
-						this._DiscountID = default(short);
+						this._DiscountID = default(Nullable<short>);
 					}
 					this.SendPropertyChanged("Discount");
 				}
