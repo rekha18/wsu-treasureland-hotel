@@ -297,6 +297,7 @@
     </Compile>
     <Compile Include="Clerk\UpdateGuestFolio.aspx.cs">
       <DependentUpon>UpdateGuestFolio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Clerk\UpdateGuestFolio.aspx.designer.cs">
       <DependentUpon>UpdateGuestFolio.aspx</DependentUpon>
