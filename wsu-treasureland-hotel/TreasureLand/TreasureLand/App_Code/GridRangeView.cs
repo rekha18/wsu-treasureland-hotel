@@ -167,7 +167,7 @@ namespace TreasureLand.App_Code
         /// <summary>
         /// Defines which room to start displaying
         /// </summary>
-        public static int RoomIndex = 1;
+        public static int RoomIndex = 0;
 
         /// <summary>
         /// Defines how many days to display
@@ -177,7 +177,7 @@ namespace TreasureLand.App_Code
         /// <summary>
         /// Denotes the maximum number of rooms displayed per page
         /// </summary>
-        public static int PageSize = 15;
+        public static int PageSize = 16;
 
         /// <summary>
         /// Defines the total number of rooms in the hotel
@@ -379,17 +379,20 @@ namespace TreasureLand.App_Code
         public string generateColorKey(bool center)
         {
             string table = "<table" + (center ? " style='margin-left:auto;margin-right:auto;'>" : ">");
-            table += "<tr><td style='width: 40px; background-color:" + Confirmed + "' ></td>";
+            table += "<tr><td style='width: 30px; background-color:" + Confirmed + "' ></td>";
             table += "<td>Confirmed</td>";
 
-            table += "<td style='width: 40px; background-color:" + Unconfirmed + "' ></td>";
+            table += "<td style='width: 30px; background-color:" + Unconfirmed + "' ></td>";
             table += "<td>Unconfirmed</td>";
 
-            table += "<td style='width: 40px; background-color:" + CheckedIn + "' ></td>";
+            table += "<td style='width: 30px; background-color:" + CheckedIn + "' ></td>";
             table += "<td>Checked In</td>";
 
-            table += "<td style='width: 40px; background-color:" + Canceled + "' ></td>";
-            table += "<td>Canceled</td></tr>";
+            table += "<td style='width: 30px; background-color:" + Canceled + "' ></td>";
+            table += "<td>Canceled</td>";
+
+            table += "<td style='width: 30px; background-color:" + Finished + "' ></td>";
+            table += "<td>Checked Out</td></tr>";
 
             return table + "</table>";
         }
@@ -465,6 +468,8 @@ namespace TreasureLand.App_Code
                 if (s[0] == RoomNumber)
                 {
                     roomFound = true;
+                    if (s[2] == "M") //If that specific room is blocked due to maintenance
+                        return "Specified room is marked for maintenance. Choose a different room";
                     break;
                 }
 
