@@ -13,7 +13,7 @@ namespace TreasureLand.Clerk
 {
     /*Items that still need to be addressed. 
      * Resever button needs to be enabled and programmed
-     * Add Guest needs to have check against duplicate entries
+     * Check to make sure room is not occupied
      */ 
 
     public partial class CreateReservation : System.Web.UI.Page
@@ -305,7 +305,7 @@ namespace TreasureLand.Clerk
                 resDetail.CheckinDate = calDateFrom.SelectedDate;
                 resDetail.RoomID = reserving.roomID;
                 resDetail.QuotedRate = quotedPrice;
-                resDetail.Status = 'A';
+                resDetail.Status = 'U';
                 resDetail.Nights = Convert.ToByte(ddlNumberOfDays.SelectedValue);
                 resDetail.NumberOfAdults = Convert.ToByte(ddlAdults.SelectedValue);
                 resDetail.NumberOfChildren = Convert.ToByte(ddlChildren.SelectedValue);
