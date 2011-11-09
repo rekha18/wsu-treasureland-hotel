@@ -293,7 +293,7 @@
                                 &nbsp;</td>
                             <td>
                                 <asp:Button ID="btnReserve" runat="server" Text="Reserve" 
-                                    onclick="btnReserve_Click" Enabled="False" />
+                                    onclick="btnReserve_Click" />
                             </td>
                         </tr>
                         <tr>
