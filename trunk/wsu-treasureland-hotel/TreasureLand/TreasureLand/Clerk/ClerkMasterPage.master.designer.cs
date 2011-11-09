@@ -31,15 +31,6 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.Button btnCheckIn;
         
         /// <summary>
-        /// Checkout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Checkout;
-        
-        /// <summary>
         /// btnUpdateGuestFolio control.
         /// </summary>
         /// <remarks>

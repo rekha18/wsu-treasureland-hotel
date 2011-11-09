@@ -24,10 +24,6 @@
                     onclick="btnCheckIn_Click" />
                 <br />
                 <br />
-                <asp:Button ID="Checkout" runat="server" Text="Check-out" Width="180px" 
-                    onclick="Checkout_Click" />
-                <br />
-                <br />
                 <asp:Button ID="btnUpdateGuestFolio" runat="server" Text="Update Guest-folio" 
                         Width="180px" onclick="btnUpdateGuestFolio_Click" />
                 <br />
