@@ -74,36 +74,6 @@
       <Association Name="Hotel_HotelRoomType" Member="Hotel" ThisKey="HotelID" OtherKey="HotelID" Type="Hotel" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Reservation" Member="Reservations">
-    <Type Name="Reservation">
-      <Column Name="ReservationID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="GuestID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="ReservationDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
-      <Column Name="ReservationStatus" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
-      <Column Name="ReservationComments" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
-      <Association Name="Reservation_ReservationDetail" Member="ReservationDetails" ThisKey="ReservationID" OtherKey="ReservationID" Type="ReservationDetail" />
-      <Association Name="Guest_Reservation" Member="Guest" ThisKey="GuestID" OtherKey="GuestID" Type="Guest" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ReservationDetail" Member="ReservationDetails">
-    <Type Name="ReservationDetail">
-      <Column Name="ReservationDetailID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="RoomID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="ReservationID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="QuotedRate" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
-      <Column Name="CheckinDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Nights" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
-      <Column Name="Comments" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
-      <Column Name="DiscountID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="NumberOfAdults" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="NumberOfChildren" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="ReservationDetail_ReservationDetailBilling" Member="ReservationDetailBillings" ThisKey="ReservationDetailID" OtherKey="ReservationDetailID" Type="ReservationDetailBilling" />
-      <Association Name="Discount_ReservationDetail" Member="Discount" ThisKey="DiscountID" OtherKey="DiscountID" Type="Discount" IsForeignKey="true" />
-      <Association Name="Reservation_ReservationDetail" Member="Reservation" ThisKey="ReservationID" OtherKey="ReservationID" Type="Reservation" IsForeignKey="true" />
-      <Association Name="Room_ReservationDetail" Member="Room" ThisKey="RoomID" OtherKey="RoomID" Type="Room" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Revenue" Member="Revenues">
     <Type Name="Revenue">
       <Column Name="RevenueID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -150,6 +120,36 @@
       <Column Name="Comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="BillingCategory_ReservationDetailBilling" Member="BillingCategory" ThisKey="BillingCategoryID" OtherKey="BillingCategoryID" Type="BillingCategory" IsForeignKey="true" />
       <Association Name="ReservationDetail_ReservationDetailBilling" Member="ReservationDetail" ThisKey="ReservationDetailID" OtherKey="ReservationDetailID" Type="ReservationDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ReservationDetail" Member="ReservationDetails">
+    <Type Name="ReservationDetail">
+      <Column Name="ReservationDetailID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoomID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="ReservationID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="QuotedRate" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
+      <Column Name="CheckinDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Nights" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Comments" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="DiscountID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="NumberOfAdults" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="NumberOfChildren" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="ReservationDetail_ReservationDetailBilling" Member="ReservationDetailBillings" ThisKey="ReservationDetailID" OtherKey="ReservationDetailID" Type="ReservationDetailBilling" />
+      <Association Name="Discount_ReservationDetail" Member="Discount" ThisKey="DiscountID" OtherKey="DiscountID" Type="Discount" IsForeignKey="true" />
+      <Association Name="Room_ReservationDetail" Member="Room" ThisKey="RoomID" OtherKey="RoomID" Type="Room" IsForeignKey="true" />
+      <Association Name="Reservation_ReservationDetail" Member="Reservation" ThisKey="ReservationID" OtherKey="ReservationID" Type="Reservation" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reservation" Member="Reservations">
+    <Type Name="Reservation">
+      <Column Name="ReservationID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GuestID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="ReservationDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ReservationStatus" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ReservationComments" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="Reservation_ReservationDetail" Member="ReservationDetails" ThisKey="ReservationID" OtherKey="ReservationID" Type="ReservationDetail" />
+      <Association Name="Guest_Reservation" Member="Guest" ThisKey="GuestID" OtherKey="GuestID" Type="Guest" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
