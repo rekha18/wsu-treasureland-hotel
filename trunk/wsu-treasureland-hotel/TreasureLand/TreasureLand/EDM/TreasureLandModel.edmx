@@ -165,6 +165,7 @@
           <Property Name="BillingAmount" Type="smallmoney" Nullable="false" />
           <Property Name="BillingItemQty" Type="tinyint" Nullable="false" />
           <Property Name="BillingItemDate" Type="smalldatetime" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Revenue">
           <Key>
@@ -515,6 +516,7 @@
           <Property Name="BillingItemDate" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="BillingCategory" Relationship="TreasureLandModel.FK_ReservationDetailBilling_Must_Have_BillingCategoryID" FromRole="ReservationDetailBilling" ToRole="BillingCategory" />
           <NavigationProperty Name="ReservationDetail" Relationship="TreasureLandModel.FK_ReservationDetailBilling_Must_Have_ReservationDetailID" FromRole="ReservationDetailBilling" ToRole="ReservationDetail" />
+          <Property Type="String" Name="Comments" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Revenue">
           <Key>
@@ -770,7 +772,8 @@
             <ScalarProperty Name="NumberOfChildren" ColumnName="NumberOfChildren" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="ReservationDetailBillings"><EntityTypeMapping TypeName="TreasureLandModel.ReservationDetailBilling"><MappingFragment StoreEntitySet="ReservationDetailBilling">
-            <ScalarProperty Name="ReservationBillingID" ColumnName="ReservationBillingID" />
+            <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ReservationBillingID" ColumnName="ReservationBillingID" />
             <ScalarProperty Name="ReservationDetailID" ColumnName="ReservationDetailID" />
             <ScalarProperty Name="BillingCategoryID" ColumnName="BillingCategoryID" />
             <ScalarProperty Name="BillingDescription" ColumnName="BillingDescription" />
