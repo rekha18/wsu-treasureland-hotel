@@ -207,7 +207,7 @@
                                 <asp:Label ID="lblResFirstName" runat="server"></asp:Label>
                             </td>
                             <td style="width: 143px">
-                                Discount:</td>
+                                &nbsp;</td>
                             <td rowspan="2">
                                 &nbsp;</td>
                             <td rowspan="2">
@@ -220,45 +220,6 @@
                                 <asp:Label ID="lblResPhone" runat="server"></asp:Label>
                             </td>
                             <td id="Discont" style="width: 143px">
-                                <asp:DropDownList ID="ddlDiscounts" runat="server" AppendDataBoundItems="True" 
-                                    AutoPostBack="True" DataTextField="DiscountDescription" 
-                                    DataValueField="DiscountID" >
-                                </asp:DropDownList>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 73px">
-                                &nbsp;</td>
-                            <td style="width: 167px">
-                                &nbsp;</td>
-                            <td rowspan="2" colspan="3" align="center">
-                                <asp:GridView ID="gvDiscount" runat="server" AutoGenerateColumns="False" 
-                                    Width="228px">
-                                    <Columns>
-                                        <asp:BoundField DataField="DiscountRules" HeaderText="DiscountRules" 
-                                            ReadOnly="True" SortExpression="DiscountRules" />
-                                        <asp:BoundField DataField="DiscountAmount" HeaderText="DiscountAmount" 
-                                            ReadOnly="True" SortExpression="DiscountAmount" />
-                                        <asp:CheckBoxField DataField="IsPrecentage" HeaderText="IsPrecentage" 
-                                            ReadOnly="True" SortExpression="IsPrecentage" />
-                                    </Columns>
-                                </asp:GridView>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 73px">
-                                &nbsp;</td>
-                            <td style="width: 167px">
-                                &nbsp;</td>
-                        </tr>
-                    </table>
-                    <table style="width:100%;">
-                        <tr>
-                            <td class="style1" style="width: 244px">
-                                <asp:Label ID="lblError" runat="server" ForeColor="Red" Font-Bold="True" 
-                                    Font-Size="Large"></asp:Label>
-                            </td>
-                            <td>
                                 &nbsp;</td>
                         </tr>
                     </table>
@@ -269,32 +230,27 @@
                                     onselectionchanged="calDateFrom_SelectionChanged" />
                             </td>
                             <td style="width: 239px">
-                                Select Room:</td>
-                            <td>
-                                <asp:Button ID="btnSelectRoom" runat="server" onclick="btnSelectRoom_Click" 
-                                    Text="Select Room" />
+                                <asp:Label ID="lblError" runat="server" Font-Bold="True" Font-Size="Large" 
+                                    ForeColor="Red"></asp:Label>
                             </td>
+                            <td>
+                                &nbsp;</td>
                         </tr>
                         <tr>
                             <td align="center" colspan="2">
-                                <asp:GridView ID="gvRoomInfo" runat="server" Width="414px">
-                                </asp:GridView>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 239px">
-                                Total Quoted Cost:</td>
-                            <td>
-                                <asp:Label ID="lblTotalCost" runat="server"></asp:Label>
-                            </td>
+                                &nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 239px">
                                 &nbsp;</td>
                             <td>
-                                <asp:Button ID="btnReserve" runat="server" Text="Reserve" 
-                                    onclick="btnReserve_Click" />
-                            </td>
+                                &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 239px">
+                                &nbsp;</td>
+                            <td>
+                                &nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 244px">
@@ -338,8 +294,112 @@
                                 <asp:Label ID="lblDateTo" runat="server" Font-Size="Large"></asp:Label>
                             </td>
                         </tr>
+                        <tr>
+                            <td style="width: 244px">
+                                &nbsp;</td>
+                            <td style="width: 239px">
+                                Select Room:</td>
+                            <td>
+                                <asp:Button ID="btnSelectRoom" runat="server" onclick="btnSelectRoom_Click" 
+                                    Text="Select Room" />
+                            </td>
+                        </tr>
                     </table>
                     <br />
+                </asp:Panel>
+            </asp:View>
+            <asp:View ID="View1" runat="server">
+                <asp:Panel ID="Panel4" runat="server" BackColor="Silver">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 475px">
+                                &nbsp;Select any discounts:&nbsp;
+                                <asp:DropDownList ID="ddlDiscounts" runat="server" AppendDataBoundItems="True" 
+                                    AutoPostBack="True" DataTextField="DiscountDescription" 
+                                    DataValueField="DiscountID">
+                                </asp:DropDownList>
+                            </td>
+                            <td style="width: 104px">
+                                &nbsp;</td>
+                            <td>
+                                &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <asp:GridView ID="gvDiscount" runat="server" AutoGenerateColumns="False" 
+                                    Width="228px">
+                                    <Columns>
+                                        <asp:BoundField DataField="DiscountRules" HeaderText="DiscountRules" 
+                                            ReadOnly="True" SortExpression="DiscountRules" />
+                                        <asp:BoundField DataField="DiscountAmount" HeaderText="DiscountAmount" 
+                                            ReadOnly="True" SortExpression="DiscountAmount" />
+                                        <asp:CheckBoxField DataField="IsPrecentage" HeaderText="IsPrecentage" 
+                                            ReadOnly="True" SortExpression="IsPrecentage" />
+                                    </Columns>
+                                </asp:GridView>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <asp:GridView ID="gvRoomInfo" runat="server" Width="414px">
+                                </asp:GridView>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 475px">
+                                &nbsp;</td>
+                            <td style="width: 104px">
+                                Quoted Cost:</td>
+                            <td>
+                                <asp:Label ID="lblTotalCost" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 475px">
+                                &nbsp;</td>
+                            <td style="width: 104px">
+                                <asp:Button ID="btnBack2" runat="server" onclick="btnBack2_Click" Text="Back" />
+                            </td>
+                            <td>
+                                <asp:Button ID="btnReserve" runat="server" CommandArgument="4" 
+                                    CommandName="SwitchViewByIndex" onclick="btnReserve_Click" Text="Reserve" />
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                </asp:Panel>
+            </asp:View>
+            <asp:View ID="View2" runat="server">
+                <asp:Panel ID="Panel5" runat="server" BackColor="Silver">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td>
+                                &nbsp;</td>
+                            <td align="center">
+                                Thank you for placing your reservation.</td>
+                            <td>
+                                &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;</td>
+                            <td align="center">
+                                Your Reservation number is:
+                                <asp:Label ID="lblFinalReservationNumber" runat="server"></asp:Label>
+                            </td>
+                            <td>
+                                &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;</td>
+                            <td align="center">
+                                <asp:Button ID="btnDone" runat="server" onclick="btnDone_Click" Text="Done" />
+                            </td>
+                            <td>
+                                &nbsp;</td>
+                        </tr>
+                    </table>
                 </asp:Panel>
             </asp:View>
         </asp:MultiView>

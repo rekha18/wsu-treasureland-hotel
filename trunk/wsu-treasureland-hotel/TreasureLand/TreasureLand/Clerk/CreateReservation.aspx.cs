@@ -58,7 +58,8 @@ namespace TreasureLand.Clerk
             reserving = GetRoomNumber();
             if (reserving.roomID != -1)
             {
-                if (!IsPostBack){
+                if (!IsPostBack)
+                {
                     lblResFirstName.Text = reserving.firstName;
                     lblResSurName.Text = reserving.surName;
                     lblResPhone.Text = reserving.phone;
@@ -68,9 +69,8 @@ namespace TreasureLand.Clerk
                     lblDateFrom.Text = reserving.reserveDate;
                     calDateFrom.SelectedDate = Convert.ToDateTime(reserving.reserveDate);
                     ddlDiscounts.SelectedIndex = reserving.Discount;
-                    btnSelectRoom.Text = "Change Room";
                 }
-                mvReservation.ActiveViewIndex = reserving.view;
+                mvReservation.ActiveViewIndex = reserving.returnView;
 
                 TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
                 var roomInfo = from r in db.HotelRoomTypes
@@ -87,6 +87,12 @@ namespace TreasureLand.Clerk
 
                 quotedPrice = Convert.ToDecimal(gvRoomInfo.SelectedRow.Cells[2].Text.Replace("$", "").Replace(",", ""));
                 quotedPrice *= Convert.ToInt16(ddlNumberOfDays.SelectedValue);
+            }
+
+            else
+            {
+
+                mvReservation.ActiveViewIndex = reserving.view;
             }
             #endregion Getting Room
 
@@ -265,7 +271,8 @@ namespace TreasureLand.Clerk
             reserving = GetRoomNumber();
             reserving.reserveDate = lblDateFrom.Text;
             reserving.daysStaying = Convert.ToInt32(ddlNumberOfDays.SelectedValue);
-            reserving.view = 1;
+            reserving.view = 2;
+            reserving.returnView = 3;
             reserving.firstName = lblResFirstName.Text;
             reserving.surName = lblResSurName.Text;
             reserving.phone = lblResPhone.Text;
@@ -297,7 +304,7 @@ namespace TreasureLand.Clerk
                 ReservationDetail resDetail = new ReservationDetail();
                 res.GuestID = reserving.GuestID;
                 res.ReservationDate = calDateFrom.SelectedDate;
-                res.ReservationStatus = 'A';
+                res.ReservationStatus = 'U';
                 db.Reservations.InsertOnSubmit(res);
                 db.SubmitChanges();
 
@@ -305,12 +312,14 @@ namespace TreasureLand.Clerk
                 resDetail.CheckinDate = calDateFrom.SelectedDate;
                 resDetail.RoomID = reserving.roomID;
                 resDetail.QuotedRate = quotedPrice;
-                resDetail.Status = 'U';
+                resDetail.Status = 'A';
                 resDetail.Nights = Convert.ToByte(ddlNumberOfDays.SelectedValue);
                 resDetail.NumberOfAdults = Convert.ToByte(ddlAdults.SelectedValue);
                 resDetail.NumberOfChildren = Convert.ToByte(ddlChildren.SelectedValue);
                 db.ReservationDetails.InsertOnSubmit(resDetail);
                 db.SubmitChanges();
+                lblFinalReservationNumber.Text = res.ReservationID.ToString();
+                reserving.returnView = 4;
             }
             else
             {
@@ -318,8 +327,19 @@ namespace TreasureLand.Clerk
             }
         }
 
+        protected void btnBack2_Click(object sender, EventArgs e)
+        {
+            reserving.roomID = -1;
+            reserving.view = 2;
+            reserving.returnView = 3;
+            Response.Redirect("SelectRoom.aspx");
+        }
 
-
+        protected void btnDone_Click(object sender, EventArgs e)
+        {
+            Session.RemoveAll();
+            Response.Redirect("ClerkDefault.aspx");
+        }
 
 
     }
