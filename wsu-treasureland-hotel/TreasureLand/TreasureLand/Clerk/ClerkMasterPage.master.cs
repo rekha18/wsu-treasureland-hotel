@@ -17,49 +17,49 @@ namespace TreasureLand.Clerk
         protected void btnHome_Click(object sender, EventArgs e)
         {
             Response.Redirect("ClerkDefault.aspx");
-            Session.Remove("Room");
+            Session.RemoveAll();
         }
 
         protected void btnCheckIn_Click(object sender, EventArgs e)
         {
             Response.Redirect("LocateGuest.aspx");
-            Session.Remove("Room");
+            Session.RemoveAll();
         }
 
         protected void Checkout_Click(object sender, EventArgs e)
         {
             Response.Redirect("LocateReservation.aspx");
-            Session.Remove("Room");
+            Session.RemoveAll();
         }
 
         protected void btnUpdateGuestFolio_Click(object sender, EventArgs e)
         {
             Response.Redirect("UpdateGuestFolio.aspx");
-            Session.Remove("Room");
+            Session.RemoveAll();
         }
 
         protected void btnCreateReservation_Click(object sender, EventArgs e)
         {
             Response.Redirect("CreateReservation.aspx");
-            Session.Remove("Room");
+            Session.RemoveAll();
         }
 
         protected void btnUpdateReservation_Click(object sender, EventArgs e)
         {
             Response.Redirect("UpdateReservation.aspx");
-            Session.Remove("Room");
+            Session.RemoveAll();
         }
 
         protected void btnViewGuest_Click(object sender, EventArgs e)
         {
             Response.Redirect("ViewGuests.aspx");
-            Session.Remove("Room");
+            Session.RemoveAll();
         }
 
         protected void btnReports_Click(object sender, EventArgs e)
         {
             Response.Redirect("Reports.aspx");
-            Session.Remove("Room");
+            Session.RemoveAll();
         }
     }
 }

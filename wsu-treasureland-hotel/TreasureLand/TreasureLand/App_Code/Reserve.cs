@@ -10,6 +10,7 @@ namespace TreasureLand.App_Code
     {
         public Int16 GuestID;
         public Int16 roomID;
+        public int returnView;
         public string firstName;
         public string surName;
         public string phone;
