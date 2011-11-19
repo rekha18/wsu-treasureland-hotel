@@ -273,7 +273,7 @@ namespace TreasureLand.App_Code
         {
 
             SqlConnection con = new SqlConnection(getConnectionString());
-            string sel = "SELECT GuestSalutation, GuestFirstName, GuestSurName, GuestAddress, GuestCity, GuestRegion, GuestPostalCode, GuestCountry, GuestPhone, GuestEmail FROM Guest WHERE GuestID = " + GuestIDNumber;
+            string sel = "SELECT GuestSalutation, GuestFirstName, GuestSurName, GuestAddress, GuestCity, GuestRegion, GuestPostalCode, GuestCountry, GuestPhone, GuestEmail, GuestIDNumber, GuestIDIssueCountry, GuestComments FROM Guest WHERE GuestID = " + GuestIDNumber;
             SqlCommand cmd = new SqlCommand(sel, con);
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
@@ -291,6 +291,9 @@ namespace TreasureLand.App_Code
                 myArrList.Add(dr["GuestCountry"].ToString());
                 myArrList.Add(dr["GuestPhone"].ToString());
                 myArrList.Add(dr["GuestEmail"].ToString());
+                myArrList.Add(dr["GuestIDNumber"].ToString());
+                myArrList.Add(dr["GuestIDIssueCountry"].ToString());
+                myArrList.Add(dr["GuestComments"].ToString());
             }
             return myArrList;
 
@@ -312,8 +315,9 @@ namespace TreasureLand.App_Code
 
                 string update = "UPDATE [Guest] SET [GuestSalutation] = @GuestSalutation, [GuestFirstName] = @GuestFirstName, " +
                     "[GuestSurName] = @GuestSurName, [GuestAddress] = @GuestAddress, [GuestCity] = @GuestCity, [GuestRegion] = @GuestRegion, " +
-                    "[GuestPostalCode] = @GuestPostalCode, [GuestCountry] = @GuestCountry, [GuestPhone] = @GuestPhone, [GuestEmail] = @GuestEmail " +
-                                 "WHERE [GuestID] = @GuestID";
+                    "[GuestPostalCode] = @GuestPostalCode, [GuestCountry] = @GuestCountry, [GuestPhone] = @GuestPhone, [GuestEmail] = @GuestEmail, " +
+                    "[GuestComments] = @GuestComments, [GuestIDNumber] = @GuestIDNumber, [GuestIDIssueCountry] = @GuestIDIssueCountry " +
+                    "WHERE [GuestID] = @GuestID";
                 SqlCommand connCommand = new SqlCommand(update, conn);
                 connCommand.Parameters.AddWithValue("@GuestSalutation", currentGuest._salutation);
                 connCommand.Parameters.AddWithValue("@GuestFirstName", currentGuest._firstName);
@@ -326,6 +330,9 @@ namespace TreasureLand.App_Code
                 connCommand.Parameters.AddWithValue("@GuestPhone", currentGuest._phoneNumber);
                 connCommand.Parameters.AddWithValue("@GuestEmail", currentGuest._emailAddress);
                 connCommand.Parameters.AddWithValue("@GuestID", currentGuest._ID);
+                connCommand.Parameters.AddWithValue("@GuestIDIssueCountry", currentGuest._issuecountry);
+                connCommand.Parameters.AddWithValue("@GuestIDNumber", currentGuest._guestidnumber);
+                connCommand.Parameters.AddWithValue("@GuestComments", currentGuest._guestcomments);
                 return connCommand.ExecuteNonQuery();
             }
             catch (Exception e)
