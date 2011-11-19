@@ -118,6 +118,9 @@ namespace TreasureLand.Clerk
                 txtCountry.Text = myArrList[7].ToString();
                 txtPhone.Text = myArrList[8].ToString();
                 txtEmail.Text = myArrList[9].ToString();
+                txtGuestID.Text = myArrList[10].ToString();
+                txtIssueCountry.Text = myArrList[11].ToString();
+                txtComments.Text = myArrList[12].ToString();
             }
             
         }
@@ -133,8 +136,6 @@ namespace TreasureLand.Clerk
             try
             {
                 Guest currentGuest = new Guest();
-
-
                 currentGuest._salutation = txtSalutation.Text;
                 currentGuest._surname = txtShowSurname.Text;
                 currentGuest._firstName = txtShowFirstName.Text;
@@ -146,9 +147,16 @@ namespace TreasureLand.Clerk
                 currentGuest._emailAddress = txtEmail.Text;
                 currentGuest._phoneNumber = txtPhone.Text;
                 currentGuest._postalCode = txtPostalCode.Text;
+                currentGuest._guestcomments = txtComments.Text;
+                currentGuest._issuecountry = txtIssueCountry.Text;
                 currentGuest._ID = Convert.ToInt32(gvGuestFolio.SelectedRow.Cells[0].Text);
+                currentGuest._guestidnumber = txtGuestID.Text;
+                currentGuest._guestcomments = txtComments.Text;
+                currentGuest._issuecountry = txtIssueCountry.Text;
                 GuestDB.updateGuestFolio(currentGuest);
                 updateGuestBoxes();
+
+                lblError.Text = "Updated successfully";
 
             }
             catch (Exception)
@@ -156,6 +164,12 @@ namespace TreasureLand.Clerk
                 
                 throw;
             }
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            lblError.Text = "";
+            gvGuestFolio.DataBind();
         }
     }
 }
