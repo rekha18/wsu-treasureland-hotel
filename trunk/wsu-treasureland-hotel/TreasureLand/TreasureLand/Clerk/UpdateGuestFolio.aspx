@@ -54,14 +54,11 @@
                 <RowStyle Font-Size="Small" />
                 <HeaderStyle Font-Names="Arial" Font-Size="Small" />
             </asp:GridView>
-            <br />
-            &nbsp;&nbsp;&nbsp;
             <asp:Label ID="lblErrorMustSelectGuest" runat="server" ForeColor="Red"></asp:Label>
             <br />
             <br />
-            &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnSelect" runat="server" Text="Select" 
-                onclick="btnSelect_Click" />
+            <asp:Button ID="btnSelect" runat="server" Text="Select Guest" 
+                onclick="btnSelect_Click" Width="121px" />
         </asp:View>
                 <asp:View ID="vUpdateGuestFolio" runat="server">
             <table style="width: 99%">
@@ -84,6 +81,8 @@
                         First Name:</td>
                     <td style="width: 175px">
                         <asp:TextBox ID="txtShowFirstName" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                            ControlToValidate="txtShowFirstName" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                     <td style="width: 86px">
                         &nbsp;</td>
@@ -98,6 +97,8 @@
                         Surname:</td>
                     <td style="width: 175px">
                         <asp:TextBox ID="txtShowSurname" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                            ControlToValidate="txtShowSurname" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                     <td style="width: 86px">
                         &nbsp;</td>
@@ -112,6 +113,8 @@
                         Phone #:</td>
                     <td style="width: 175px">
                         <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                            ControlToValidate="txtPhone" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
                     <td style="width: 86px">
                         &nbsp;</td>
@@ -154,14 +157,15 @@
                     <td style="width: 118px">
                         Guest ID Comments:</td>
                     <td colspan="4">
-                        <asp:TextBox ID="txtComments" runat="server" Width="542px"></asp:TextBox>
+                        <asp:TextBox ID="txtComments" runat="server" Width="542px" TextMode="MultiLine"></asp:TextBox>
                     </td>
                 </tr>
             </table>
+                    <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
+                    <br />
             <br />
-            &nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnBack" runat="server" Text="Back" 
-                        CommandName="PrevView"  />
+                        CommandName="PrevView" onclick="btnBack_Click" Width="59px"  />
             &nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnUpdate" runat="server" Text="Update" onclick="btnUpdate_Click" />
         </asp:View>
