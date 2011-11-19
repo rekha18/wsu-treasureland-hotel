@@ -35,6 +35,7 @@ namespace TreasureLand.Admin
             }
             db.Discounts.InsertOnSubmit(addDiscount);
             db.SubmitChanges();
+            GridView1.DataBind();
         }
     }
 }
