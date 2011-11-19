@@ -11,14 +11,16 @@
                         <AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
                             <asp:BoundField DataField="RoomID" HeaderText="RoomID" ReadOnly="True" 
-                                SortExpression="RoomID" Visible="False" />
+                                SortExpression="RoomID" />
                             <asp:BoundField DataField="RoomNumbers" HeaderText="RoomNumbers" 
                                 ReadOnly="True" SortExpression="RoomNumbers" />
                             <asp:BoundField DataField="RoomDescription" HeaderText="RoomDescription" 
                                 ReadOnly="True" SortExpression="RoomDescription" />
-                            <asp:CheckBoxField DataField="RoomStatus" HeaderText="RoomStatus" 
-                                ReadOnly="True" SortExpression="RoomStatus" />
-                            <asp:CommandField ShowEditButton="True" />
+                            <asp:BoundField DataField="RoomStatus" HeaderText="RoomStatus" ReadOnly="True" 
+                                SortExpression="RoomStatus" />
+                            <asp:BoundField DataField="RoomBedConfiguration" 
+                                HeaderText="RoomBedConfiguration" ReadOnly="True" 
+                                SortExpression="RoomBedConfiguration" />
                         </Columns>
                         <FooterStyle BackColor="#CCCCCC" />
                         <HeaderStyle BackColor="Black" BorderColor="#6600FF" BorderStyle="Groove" 
@@ -84,10 +86,13 @@
             <tr>
                 <td style="width: 494px">
                    <asp:LinqDataSource ID="LinqDataSource1" runat="server" 
-                        ContextTypeName="TreasureLand.TreasureLandDataClassesDataContext" 
+                        ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
                         EntityTypeName="" 
                         Select="new (RoomID, RoomNumbers, RoomDescription, RoomStatus, HotelRoomType, ReservationDetails, RoomBedConfiguration)" 
-                        TableName="Rooms">
+                        TableName="Rooms" Where="RoomStatus == @RoomStatus">
+                       <WhereParameters>
+                           <asp:Parameter DefaultValue="M" Name="RoomStatus" Type="Char" />
+                       </WhereParameters>
                     </asp:LinqDataSource>
                 </td>
                 <td style="width: 9px">
