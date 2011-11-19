@@ -69,6 +69,7 @@
                     CommandName="SwitchViewByIndex" Enabled="False" 
                     onclick="btnSelectReservation_Click" Text="Select Reservation" />
                 <br />
+                <br />
             </asp:View>
             <asp:View ID="vUpdateReservation" runat="server">
                 <table style="width:100%;">
@@ -164,14 +165,70 @@
                         <asp:BoundField DataField="RoomTypeRackRate" HeaderText="Rack Rate" />
                     </Columns>
                 </asp:GridView>
-                <asp:MultiView ID="MultiView1" runat="server">
-                    <asp:View ID="View2" runat="server">
-                    </asp:View>
-                    <asp:View ID="View1" runat="server">
-                    </asp:View>
-                </asp:MultiView>
                 <br />
+                <table style="width:100%;">
+                    <tr>
+                        <td align="center">
+                            <asp:Button ID="btnCancelReservation" runat="server" CommandArgument="2" 
+                                CommandName="SwitchViewByIndex" onclick="btnCancelReservation_Click" 
+                                Text="Cancel Reservation" />
+                        </td>
+                        <td align="center">
+                            <asp:Button ID="btnModifyReservation" runat="server" 
+                                onclick="btnModifyReservation_Click" Text="Modify Reservation" />
+                        </td>
+                        <td align="center">
+                            <asp:Button ID="btnConfirmReservation" runat="server" CommandArgument="3" 
+                                CommandName="SwitchViewByIndex" onclick="btnConfirmReservation_Click" 
+                                Text="Confirm Reservation" />
+                        </td>
+                    </tr>
+                </table>
                 <br />
+            </asp:View>
+            <asp:View ID="vCancelReservation" runat="server">
+                <table style="width:100%;">
+                    <tr>
+                        <td>
+                            &nbsp;</td>
+                        <td align="center">
+                            Your reservation has been canceled.</td>
+                        <td>
+                            &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;</td>
+                        <td align="center">
+                            <asp:Button ID="btnFinished" runat="server" onclick="btnFinished_Click" 
+                                Text="Finished" />
+                        </td>
+                        <td>
+                            &nbsp;</td>
+                    </tr>
+                </table>
+            </asp:View>
+            <asp:View ID="vConfirmedReservation" runat="server">
+                <table style="width:100%;">
+                    <tr>
+                        <td>
+                            &nbsp;</td>
+                        <td align="center">
+                            Your reservation has been confirmed.</td>
+                        <td>
+                            &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;</td>
+                        <td align="center">
+                            <asp:Button ID="btnFinished2" runat="server" onclick="btnFinished2_Click" 
+                                style="height: 26px" Text="Finished" />
+                        </td>
+                        <td>
+                            &nbsp;</td>
+                    </tr>
+                </table>
             </asp:View>
         </asp:MultiView>
         <br />

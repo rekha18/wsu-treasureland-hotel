@@ -175,30 +175,66 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.GridView gvRoom;
         
         /// <summary>
-        /// MultiView1 control.
+        /// btnCancelReservation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView MultiView1;
+        protected global::System.Web.UI.WebControls.Button btnCancelReservation;
         
         /// <summary>
-        /// View2 control.
+        /// btnModifyReservation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View2;
+        protected global::System.Web.UI.WebControls.Button btnModifyReservation;
         
         /// <summary>
-        /// View1 control.
+        /// btnConfirmReservation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1;
+        protected global::System.Web.UI.WebControls.Button btnConfirmReservation;
+        
+        /// <summary>
+        /// vCancelReservation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vCancelReservation;
+        
+        /// <summary>
+        /// btnFinished control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFinished;
+        
+        /// <summary>
+        /// vConfirmedReservation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vConfirmedReservation;
+        
+        /// <summary>
+        /// btnFinished2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFinished2;
     }
 }
