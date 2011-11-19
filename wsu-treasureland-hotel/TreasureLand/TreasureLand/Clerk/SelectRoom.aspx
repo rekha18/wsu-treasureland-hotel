@@ -122,9 +122,6 @@
                     </div>
                 </asp:View>
             </asp:MultiView>
-            <div id="BackButton" style="float:right;">
-                <asp:Button ID="btnBack" runat="server" Text="Back" PostBackUrl="~/Clerk/CreateReservation.aspx" />
-            </div>
         </td>
     </tr>
 </table>
@@ -231,11 +228,11 @@
 
             txtBox = document.getElementById("idGuestName");
             if (txtBox != null && resID != 0)
-                txtBox.innerHTML = info;
+                txtBox.innerHTML = info.substring(0, info.indexOf('?'));
 
             txtBox = document.getElementById("idReservationID");
             if (txtBox != null && resID != 0)
-                txtBox.innerHTML = resID;
+                txtBox.innerHTML = info.substring(info.indexOf('?')+1, info.length);
         }
     -->
     </script>

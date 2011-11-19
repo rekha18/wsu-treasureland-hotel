@@ -116,6 +116,7 @@ namespace TreasureLand.Clerk
         public void lbtnPrevious_Click(object sender, EventArgs e)
         {
             GridRangeView.current = GridRangeView.current.AddDays(-GridRangeView.DaysDisplayed);
+            calDatePicker.SelectedDate = GridRangeView.current; 
             requiresUpdate = true;
         }
 
@@ -127,6 +128,7 @@ namespace TreasureLand.Clerk
         public void lbtnFuture_Click(object sender, EventArgs e)
         {
             GridRangeView.current = GridRangeView.current.AddDays(GridRangeView.DaysDisplayed);
+            calDatePicker.SelectedDate = GridRangeView.current; 
             requiresUpdate = true;
         }
 
