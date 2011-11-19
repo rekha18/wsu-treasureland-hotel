@@ -325,8 +325,15 @@ namespace TreasureLand.Clerk
         protected void GoToCheckOut_Click(object sender, EventArgs e)
         {
             GuestDB.updateReservationDetail('F', Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
-            GuestDB.updateReservationStatus('F', Convert.ToInt32(txtShowReservation.Text));
-            GuestDB.updateRoomStatus('H', Convert.ToInt32(txtShowRoom.Text));
+
+            if (App_Code.GuestDB.countConfirmedReservationDetail(Convert.ToInt32(gvGuest.SelectedRow.Cells[0])) == 0)
+            {
+                App_Code.GuestDB.updateReservationStatus('F', Convert.ToInt32(gvGuest.SelectedRow.Cells[0]));
+            }
+
+                
+            
+                GuestDB.updateRoomStatus('H', Convert.ToInt32(txtShowRoom.Text));
         }
 
         /// <summary>

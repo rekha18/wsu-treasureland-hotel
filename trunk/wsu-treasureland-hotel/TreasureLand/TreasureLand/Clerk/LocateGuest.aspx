@@ -45,13 +45,15 @@
                     onselectedindexchanging="gvGuest_SelectedIndexChanging" 
                 >
                 <Columns>
-                    <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
-                    <asp:BoundField DataField="ReservationID" HeaderText="Reservation #" 
-                        InsertVisible="False" ReadOnly="True" SortExpression="ReservationID" />
+                    <asp:BoundField DataField="ReservationDetailID" 
+                        HeaderText="Reservation Detail ID" />
                     <asp:BoundField DataField="GuestFirstName" HeaderText="First Name" 
                         SortExpression="GuestFirstName" />
                     <asp:BoundField DataField="GuestSurName" HeaderText="Surname" 
                         SortExpression="GuestSurName" />
+                    <asp:BoundField DataField="ReservationID" HeaderText="Reservation ID" 
+                        InsertVisible="False" ReadOnly="True" SortExpression="ReservationID" />
+                    <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                 </Columns>
                 <RowStyle Font-Size="Small" />
                 <HeaderStyle Font-Names="Arial" Font-Size="Small" />
@@ -60,65 +62,59 @@
             <br />
             &nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnSelectGuest" runat="server" 
-                Text="Select Guest" onclick="btnSelectGuest_Click" />
+                Text="Select Guest" onclick="btnSelectGuest_Click" Visible="False" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="lblErrorMessage2" runat="server" ForeColor="Red"></asp:Label>
         </asp:View>
         <asp:View ID="vCheckInGuest" runat="server">
-            <table style="width: 78%">
+            <table style="width: 84%">
                 <tr>
                     <td style="width: 133px">
                         Reservation Number:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtShowReservationNum" runat="server" ReadOnly="True"></asp:TextBox>
+                        <asp:Label ID="txtShowReservationNum" runat="server"></asp:Label>
                     </td>
-                    <td style="width: 99px">
+                    <td style="width: 116px">
                         First Name:</td>
                     <td style="width: 134px">
-                        <asp:TextBox ID="txtShowFirstName" runat="server" ReadOnly="True"></asp:TextBox>
+                        <asp:Label ID="txtShowFirstName" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 133px">
                         Room Type:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtShowRoomType" runat="server" ReadOnly="True"></asp:TextBox>
+                        <asp:Label ID="txtShowRoomType" runat="server"></asp:Label>
                     </td>
-                    <td style="width: 99px">
+                    <td style="width: 116px">
                         Surname:</td>
                     <td style="width: 134px">
-                        <asp:TextBox ID="txtShowSurname" runat="server" ReadOnly="True"></asp:TextBox>
+                        <asp:Label ID="txtShowSurname" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 133px">
                         Room Number:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtShowRoomNum" runat="server" ReadOnly="True"></asp:TextBox>
+                        <asp:Label ID="txtShowRoomNum" runat="server"></asp:Label>
                     </td>
-                    <td style="width: 99px">
+                    <td style="width: 116px">
                         Phone Number:</td>
                     <td style="width: 134px">
-                        <asp:TextBox ID="txtShowPhone" runat="server" ReadOnly="True"></asp:TextBox>
+                        <asp:Label ID="txtShowPhone" runat="server"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 133px">
                         Check out:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtShowCheckOut" runat="server" ReadOnly="True"></asp:TextBox>
+                        <asp:Label ID="txtShowCheckOut" runat="server"></asp:Label>
                     </td>
-                </tr>
-                <tr>
-                    <td style="width: 133px">
-                        Number of Guests</td>
-                    <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtShowNumGuests" runat="server" ReadOnly="True"></asp:TextBox>
+                    <td style="width: 116px">
+                        Number of Guests:</td>
+                    <td>
+                        <asp:Label ID="txtShowNumGuests" runat="server"></asp:Label>
                     </td>
-                    <td style="width: 99px">
-                        &nbsp;</td>
-                    <td style="width: 134px">
-                        &nbsp;</td>
                 </tr>
             </table>
             <br />

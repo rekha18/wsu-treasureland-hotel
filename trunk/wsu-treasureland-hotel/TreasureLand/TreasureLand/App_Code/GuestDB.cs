@@ -56,7 +56,7 @@ namespace TreasureLand.App_Code
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel =
                 "SELECT Reservation.ReservationID, Guest.GuestFirstName, Guest.GuestSurName, Guest.GuestPhone, ReservationDetail.ReservationDetailID, ReservationDetail.RoomID FROM Reservation INNER JOIN Guest ON Reservation.GuestID = Guest.GuestID INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID " +
-                "WHERE Guest.GuestFirstName = '" + FirstName + "' OR Guest.GuestSurName = '" + SurName + "' OR Reservation.ReservationID = '" + ReservationID + "'";
+                "WHERE (Guest.GuestFirstName = '" + FirstName + "' OR Guest.GuestSurName = '" + SurName + "' OR Reservation.ReservationID = '" + ReservationID + "') AND Reservation.ReservationStatus = 'C'";
             SqlCommand cmd =
             new SqlCommand(sel, con);
             con.Open();
@@ -420,6 +420,76 @@ namespace TreasureLand.App_Code
             {
                 throw e;
             }
+        }
+
+        /// <summary>
+        /// Gets guest information
+        /// </summary>
+        /// <param name="reservationID"></param>
+        /// <returns></returns>
+        public static ArrayList getGuestInformation(int reservationID)
+        {
+            SqlConnection con = new SqlConnection(getConnectionString());
+            string sel = "SELECT ReservationDetail.ReservationDetailID, HotelRoomType.RoomType, ReservationDetail.RoomID, ReservationDetail.NumberOfAdults, ReservationDetail.NumberOfChildren, Guest.GuestFirstName, " +
+                         "Guest.GuestSurName, Guest.GuestPhone, ReservationDetail.CheckinDate, ReservationDetail.Nights " +
+                         "FROM HotelRoomType INNER JOIN " + 
+                         "Room ON HotelRoomType.HotelRoomTypeID = Room.HotelRoomTypeID INNER JOIN " +
+                         "ReservationDetail ON Room.RoomID = ReservationDetail.RoomID INNER JOIN " +
+                         "Reservation INNER JOIN " +
+                         "Guest ON Reservation.GuestID = Guest.GuestID ON ReservationDetail.ReservationID = Reservation.ReservationID WHERE "+
+                         "ReservationDetail.ReservationDetailID = " + reservationID;
+
+
+            SqlCommand cmd = new SqlCommand(sel, con);
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            ArrayList myArrList = new ArrayList();
+            while (dr.Read())
+            {
+                // add the column value to the ArrayList 
+                myArrList.Add(dr["ReservationDetailID"].ToString());
+                myArrList.Add(dr["RoomType"].ToString());
+                myArrList.Add(dr["RoomID"].ToString());
+                myArrList.Add(dr["NumberOfAdults"].ToString());
+                myArrList.Add(dr["NumberofChildren"].ToString());
+                myArrList.Add(dr["GuestFirstName"].ToString());
+                myArrList.Add(dr["GuestSurName"].ToString());
+                myArrList.Add(dr["GuestPhone"].ToString());
+                myArrList.Add(dr["CheckInDate"].ToString());
+                myArrList.Add(dr["Nights"].ToString());
+            }
+            return myArrList;
+        }
+
+        public static int countConfirmedReservationDetail(int reservationID)
+        {
+
+            SqlConnection con = new SqlConnection(getConnectionString());
+            string sel = "SELECT COUNT (*) FROM ReservationDetail Where ReservationID = " + reservationID + " AND Status = 'C'";
+
+            SqlCommand cmd = new SqlCommand(sel, con);
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.HasRows)
+            { 
+                return 1; 
+            }
+            else 
+                return 0;
+
+        }
+
+        public static int countActiveReservationDetail(int reservationID)
+        {
+
+            SqlConnection con = new SqlConnection(getConnectionString());
+            string sel = "SELECT COUNT (*) FROM ReservationDetail Where ReservationID = " + reservationID + " AND Status = 'C'";
+
+            SqlCommand cmd = new SqlCommand(sel, con);
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            return Convert.ToInt32(dr);
+
         }
     }
 }
