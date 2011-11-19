@@ -37,12 +37,16 @@
     <script type="text/javascript">
     <!--
 
+        var oldColor;
+
         function select(room) {
-            document.getElementById("row" + room).style.backgroundColor = "#7CC4FF";
+            var colZero = document.getElementById("row" + room);
+            oldColor = colZero.style.backgroundColor;
+            colZero.style.backgroundColor = "#7CC4FF";
 
             for (var i = 0; i < 7; i++) {
                 var id = document.getElementById("row" + room + "col" + i + "a");
-                if(id != null)
+                if (id != null)
                     id.style.color = "#008CFF";
                 id = document.getElementById("row" + room + "col" + i + "b");
                 if (id != null)
@@ -51,7 +55,7 @@
         }
 
         function deselect(room) {
-            document.getElementById("row" + room).style.backgroundColor = "#AAAAAA";
+            document.getElementById("row" + room).style.backgroundColor = oldColor;
 
             for (var i = 0; i < 7; i++) {
                 var id = document.getElementById("row" + room + "col" + i + "a");
@@ -67,7 +71,7 @@
             return;
         }
 
-        function onReservationClick(resID) {
+        function onReservationClick(resID, startDate, nights, info) {
             return;
         }
     -->
