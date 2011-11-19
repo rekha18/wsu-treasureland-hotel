@@ -40,7 +40,7 @@ namespace TreasureLand.Clerk
         {
             {
 
-                if (txtFirstName.Text == "" && txtSurname.Text == "" && txtRoomNum.Text == "" && txtReservationNum.Text == "" && txtEmail.Text == "")
+                if (txtFirstName.Text == "" && txtSurname.Text == "" && txtReservationNum.Text == "")
                 {
                     lblErrorMessageMissingData.Text = "You must enter information in at least one box";
                 }
@@ -51,16 +51,13 @@ namespace TreasureLand.Clerk
                         txtFirstName.Text = "none";
                     if (txtSurname.Text == "")
                         txtSurname.Text = "none";
-                    if (txtRoomNum.Text == "")
-                        txtRoomNum.Text = "0";
                     if (txtReservationNum.Text == "")
                         txtReservationNum.Text = "0";
-                    if (txtEmail.Text == "")
-                        txtEmail.Text = "none";
+
 
 
                     //Gridview is populated with data
-                    gvGuest.DataSource = App_Code.GuestDB.LocateGuestCheckIn(txtFirstName.Text, txtSurname.Text, txtReservationNum.Text, txtEmail.Text);
+                    gvGuest.DataSource = App_Code.GuestDB.LocateGuestCheckIn(txtFirstName.Text, txtSurname.Text, txtReservationNum.Text);
                     gvGuest.DataBind();
 
 
@@ -70,12 +67,8 @@ namespace TreasureLand.Clerk
                         txtFirstName.Text = "";
                     if (txtSurname.Text == "none")
                         txtSurname.Text = "";
-                    if (txtRoomNum.Text == "0")
-                        txtRoomNum.Text = "";
                     if (txtReservationNum.Text == "0")
                         txtReservationNum.Text = "";
-                    if (txtEmail.Text == "none")
-                        txtEmail.Text = "";
 
                     if (gvGuest.Rows.Count == 0)
                     {
@@ -99,7 +92,6 @@ namespace TreasureLand.Clerk
                 //switches to the next view
                 mvLocateGuest.ActiveViewIndex = 1;
                 //Grabs the values from the gridview and populates the textboxes with the information
-//                txtShowRoomNum.Text = gvGuest.SelectedRow.Cells[0].Text;
 //                txtShowRoomType.Text = gvGuest.SelectedRow.Cells[5].Text;
 //                txtShowPhone.Text = gvGuest.SelectedRow.Cells[6].Text;
 //                txtShowCheckOut.Text = gvGuest.SelectedRow.Cells[7].Text;
@@ -107,7 +99,7 @@ namespace TreasureLand.Clerk
                 txtShowReservationNum.Text = gvGuest.SelectedRow.Cells[1].Text;
                 txtShowFirstName.Text = gvGuest.SelectedRow.Cells[2].Text;
                 txtShowSurname.Text = gvGuest.SelectedRow.Cells[3].Text;
-                txtShowEmail.Text = gvGuest.SelectedRow.Cells[4].Text;
+                txtShowRoomNum.Text = gvGuest.SelectedRow.Cells[0].Text;
             }
         }
 

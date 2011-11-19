@@ -58,24 +58,6 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.Label lblErrorMessageMissingData;
         
         /// <summary>
-        /// txtRoomNum control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRoomNum;
-        
-        /// <summary>
-        /// txtSurname control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSurname;
-        
-        /// <summary>
         /// btnLocateGuest control.
         /// </summary>
         /// <remarks>
@@ -85,13 +67,13 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.Button btnLocateGuest;
         
         /// <summary>
-        /// txtEmail control.
+        /// txtSurname control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.WebControls.TextBox txtSurname;
         
         /// <summary>
         /// lblErrorMessageNoCustomersFound control.
@@ -175,13 +157,13 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.TextBox txtShowSurname;
         
         /// <summary>
-        /// txtShowRoomNumber control.
+        /// txtShowRoomNum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtShowRoomNumber;
+        protected global::System.Web.UI.WebControls.TextBox txtShowRoomNum;
         
         /// <summary>
         /// txtShowPhone control.
@@ -200,15 +182,6 @@ namespace TreasureLand.Clerk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtShowCheckOut;
-        
-        /// <summary>
-        /// txtShowEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtShowEmail;
         
         /// <summary>
         /// txtShowNumGuests control.
