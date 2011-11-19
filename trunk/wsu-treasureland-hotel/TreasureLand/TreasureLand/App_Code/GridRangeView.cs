@@ -104,6 +104,11 @@ namespace TreasureLand.App_Code
         public bool Maintenance = false;
 
         /// <summary>
+        /// Name of the guest staying for a reservation
+        /// </summary>
+        public string GuestName;
+
+        /// <summary>
         /// Constructs a Row object
         /// </summary>
         /// <param name="ID">RoomID of the row</param>
@@ -222,6 +227,12 @@ namespace TreasureLand.App_Code
         /// A Linked list of room names to help the hast table
         /// </summary>
         private List<string[]> roomNames;
+
+        /// <summary>
+        /// Determines the width of the columns dynamically based on the size of the reservation
+        /// number
+        /// </summary>
+        private int columnWidth = 80;
         #endregion
 
         /// <summary>
@@ -257,7 +268,7 @@ namespace TreasureLand.App_Code
             #region Hashtable fill
             foreach (string[] s in roomNames)
             {
-                string[,] room = new string[DaysDisplayed + 1, 4];
+                string[,] room = new string[DaysDisplayed + 1, 7];
                 room[DaysDisplayed,0] = s[2] == "M" ? s[2] : s[1];
                 roomData.Add(s[0], room); //Color for each day, data to display
             }
@@ -316,11 +327,11 @@ namespace TreasureLand.App_Code
                     else //Cell contains a customer that checks out and/or checks in
                     {
                         int reservationID = row[i, 1] == null ? 0 : Int32.Parse(row[i, 1]);
-                        table += "<td id='row" + key + "col" + i + "a' width='40px' style='background-color:" + (row[i, 0] == null ? backColor : row[i, 0]) +
-                            ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ")' >&nbsp;</td>";
+                        table += "<td id='row" + key + "col" + i + "a' width='" + (columnWidth/2) + "px' style='background-color:" + (row[i, 0] == null ? backColor : row[i, 0]) +
+                            ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ", \"" + DateTime.Parse(row[i, 4]).ToString("dd/MM/yyyy") + "\", " + row[i, 5] + ", \"" + row[i, 6] + "\")' >" + (reservationID == 0 ? "&nbsp;" : reservationID + "") + "</td>";
                         reservationID = row[i, 3] == null ? 0 : Int32.Parse(row[i, 3]);
-                        table += "<td id='row" + key + "col" + i + "b' width='40px' style='background-color:" + (row[i, 2] == null ? backColor : row[i, 2]) +
-                            ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ")' >&nbsp;</td>";
+                        table += "<td id='row" + key + "col" + i + "b' width='" + (columnWidth / 2) + "px' style='background-color:" + (row[i, 2] == null ? backColor : row[i, 2]) +
+                            ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ", \"" + DateTime.Parse(row[i, 4]).ToString("dd/MM/yyyy") + "\", " + row[i, 5] + ", \"" + row[i, 6] + "\")' >" + (reservationID == 0 ? "&nbsp;" : reservationID + "") + "</td>";
                     }
                 }
                 table += "</tr>"; //Close the row
@@ -346,16 +357,25 @@ namespace TreasureLand.App_Code
             int startIndex = (r.Begin - current).Days; //If the same, then it will start in column 1 (arr[0])
             int endIndex = (r.End - current).Days;
 
+            if (columnWidth < ((r.ReservationDetailID + "").Length * 10) + 40)
+                columnWidth = ((r.ReservationDetailID + "").Length * 10) + 40;
+
             string color = getColor(r.ReservationType);
             if (endIndex >= 0 && endIndex < DaysDisplayed)//Add the first td tag
             {
                 data[endIndex, 0] = color;
                 data[endIndex, 1] = r.ReservationDetailID + String.Empty;
+                data[endIndex, 4] = r.Begin.ToString("d");
+                data[endIndex, 5] = (r.End - r.Begin).Days + String.Empty;
+                data[endIndex, 6] = r.GuestName;
             }
             if (startIndex >= 0 && startIndex < DaysDisplayed)//Add the second td tag
             {
                 data[startIndex, 2] = color;
                 data[startIndex, 3] = r.ReservationDetailID + String.Empty;
+                data[startIndex, 4] = r.Begin.ToString("d");
+                data[startIndex, 5] = (r.End - r.Begin).Days + String.Empty;
+                data[startIndex, 6] = r.GuestName;
             }
 
             //data[DaysDisplayed, 0] = r.RoomType;
@@ -366,7 +386,7 @@ namespace TreasureLand.App_Code
                 {
                     if(data[i, 2] == null) //Don't overwrite the start date when it comes time to generate the table
                         data[i, 1] = "<td id='row" + r.RoomNumber + "col" + i + "a' colspan='2' style='background-color:" + color +
-                                ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")' onclick='onReservationClick(" + r.ReservationDetailID + ")' >RS #" + r.ReservationDetailID + "</td>";
+                                ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")' onclick='onReservationClick(" + r.ReservationDetailID + ", \"" + r.Begin.ToString("dd/MM/yyyy") + "\", " + (r.End - r.Begin).Days + ", \"" + r.GuestName + "\")' >RS #" + r.ReservationDetailID + "</td>";
                 }
             }
         }
@@ -438,13 +458,27 @@ namespace TreasureLand.App_Code
             {
                 if (((test.Begin >= r.Begin && test.Begin < r.End) ||
                     (test.End > r.Begin && test.End <= r.End)) &&
-                    RoomNumber == r.RoomNumber)
+                    RoomNumber == r.RoomNumber && test.ReservationDetailID != r.ReservationDetailID)
                 {
                     return "The selected room already has a guest for this time"; //A collision was detected
                 }
             }
 
             return null;
+        }
+
+        /// <summary>
+        /// Gets the reservation ID of a reservation detail
+        /// </summary>
+        /// <param name="ReservationDetailID"></param>
+        /// <returns></returns>
+        public int getReservationNumber(int ReservationDetailID)
+        {
+            foreach (Row r in rows)
+                if (r.ReservationDetailID == ReservationDetailID)
+                    return r.ReservationID;
+
+            return 0;
         }
 
         /// <summary>
@@ -727,7 +761,7 @@ namespace TreasureLand.App_Code
             string RT = "<tr><th>Room<br />#</th>";
             for (int i = 0; i < DaysDisplayed; i++)
             {
-                RT += "<th style='background: #AAAAAA' width='80px' colspan='2'>" + temp.ToString("dddd") + "<br />";
+                RT += "<th style='background: #AAAAAA' width='" + columnWidth + "px' colspan='2'>" + temp.ToString("dddd") + "<br />";
                 RT += temp.ToString("dd/MM/yyyy");
                 RT += "</th>";
                 temp = temp.AddDays(1.0); //Go to the next day
