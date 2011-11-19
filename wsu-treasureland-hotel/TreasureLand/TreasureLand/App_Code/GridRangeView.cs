@@ -412,9 +412,16 @@ namespace TreasureLand.App_Code
             table += "<td>Canceled</td>";
 
             table += "<td style='width: 30px; background-color:" + Finished + "' ></td>";
-            table += "<td>Checked Out</td></tr>";
+            table += "<td>Checked Out</td></tr></table>";
 
-            return table + "</table>";
+            table += "<br /><table" + (center ? " style='margin-left:auto;margin-right:auto;'>" : ">");
+            table += "<tr><td style='width: 30px; background-color:" + maintenanceColor + "' ></td>";
+            table += "<td>Under Maintenance</td>";
+
+            table += "<td style='width: 30px; background-color:#FFCCFF;' ></td>";
+            table += "<td>Selected Room</td></tr></table>";
+
+            return table;
         }
 
         /// <summary>
