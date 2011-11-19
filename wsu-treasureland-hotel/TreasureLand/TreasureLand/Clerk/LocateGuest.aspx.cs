@@ -59,7 +59,7 @@ namespace TreasureLand.Clerk
                     //Gridview is populated with data
                     gvGuest.DataSource = App_Code.GuestDB.LocateGuestCheckIn(txtFirstName.Text, txtSurname.Text, txtReservationNum.Text);
                     gvGuest.DataBind();
-
+                    btnSelectGuest.Visible = true;
 
 
                     //Clears the default values for the textboxes
@@ -100,12 +100,37 @@ namespace TreasureLand.Clerk
                 txtShowFirstName.Text = gvGuest.SelectedRow.Cells[2].Text;
                 txtShowSurname.Text = gvGuest.SelectedRow.Cells[3].Text;
                 txtShowRoomNum.Text = gvGuest.SelectedRow.Cells[0].Text;
+
+                //get the discount
+                ArrayList myArrList = new ArrayList();
+                myArrList = App_Code.GuestDB.getGuestInformation(Convert.ToInt32(gvGuest.SelectedRow.Cells[0].Text));
+                //if there are no items in the arrayList then there is no discount
+                if (myArrList.Count != 0)
+                {
+
+                    txtShowReservationNum.Text = myArrList[0].ToString();
+                    txtShowRoomType.Text = myArrList[1].ToString();
+                    txtShowRoomNum.Text = myArrList[2].ToString();
+                    txtShowNumGuests.Text = (Convert.ToInt32(myArrList[3]) + Convert.ToInt32(myArrList[4])).ToString();
+                    txtShowFirstName.Text = myArrList[5].ToString();
+                    txtShowSurname.Text = myArrList[6].ToString();
+                    txtShowPhone.Text = myArrList[7].ToString();
+                    txtShowCheckOut.Text = string.Format("{0:dd/MM/yyyy}", (Convert.ToDateTime(myArrList[8]).AddDays(Convert.ToInt32(myArrList[9]))));
+                
+                }
+              
+            
             }
         }
 
         protected void btnCheckIn_Click(object sender, EventArgs e)
         {
-            //Needs code to mark room as checked in
+            App_Code.GuestDB.updateRoomStatus('C', Convert.ToInt32(txtShowRoomNum.Text));
+            App_Code.GuestDB.updateReservationDetail('A', Convert.ToInt32(gvGuest.SelectedRow.Cells[0]));
+            if(App_Code.GuestDB.countConfirmedReservationDetail(Convert.ToInt32(gvGuest.SelectedRow.Cells[3]))==0)
+            {
+                App_Code.GuestDB.updateReservationStatus('A', Convert.ToInt32(gvGuest.SelectedRow.Cells[3]));
+            }
         }
     }
 }
