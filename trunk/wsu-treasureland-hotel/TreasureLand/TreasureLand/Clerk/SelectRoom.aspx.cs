@@ -202,8 +202,9 @@ namespace TreasureLand.Clerk
                 return;
             }
 
-            int ReservationID = Int32.Parse(txtReservationNumber.Text);
-            string errors = testDateRangeCollision(ReservationID, txtRoomNumberUpdate.Text);
+            int ReservationDetailID = Int32.Parse(txtReservationNumber.Text);
+            string errors = testDateRangeCollision(ReservationDetailID, txtRoomNumberUpdate.Text);
+            int ReservationID = cHome.getReservationNumber(ReservationDetailID);
             if (errors != null)
             {
                 lblUpdateError.Text = errors;
@@ -212,7 +213,8 @@ namespace TreasureLand.Clerk
             lblUpdateError.Text = String.Empty;
 
             //The database can now be safely updated
-            int rows = RoomDB.updateRoom(ReservationID, RoomDB.getRoomId(txtRoomNumberUpdate.Text));
+            int rows = RoomDB.updateRoom(ReservationID, ReservationDetailID, RoomDB.getRoomId(txtRoomNumberUpdate.Text),
+                DateTime.Parse(txtReservationDate.Text), Int32.Parse(ddlNightsStayed.Items[ddlNightsStayed.SelectedIndex].Value));
 
             if (rows <= 0)
                 lblUpdateError.Text = "There was a problem updating the room number.";
