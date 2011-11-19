@@ -85,7 +85,7 @@ namespace TreasureLand.Clerk
                 gvRoomInfo.HeaderRow.Cells[2].Text = "Price Per Night";
                 gvRoomInfo.SelectRow(0);
 
-                quotedPrice = Convert.ToDecimal(gvRoomInfo.SelectedRow.Cells[2].Text.Replace("$", "").Replace(",", ""));
+                quotedPrice = Convert.ToDecimal(gvRoomInfo.SelectedRow.Cells[2].Text.Replace("₵", "").Replace(",", ""));
                 quotedPrice *= Convert.ToInt16(ddlNumberOfDays.SelectedValue);
             }
 
@@ -173,6 +173,11 @@ namespace TreasureLand.Clerk
                 db.Guests.InsertOnSubmit(addGuest);
                 db.SubmitChanges();
 
+                lblResFirstName.Text = txtFirstNameInsert.Text;
+                lblResSurName.Text = txtSurNameInsert.Text;
+                lblResPhone.Text = txtPhoneInsert.Text;
+                reserving.GuestID = addGuest.GuestID;
+
                 btnAddGuest.CommandArgument = "2";
             }
             else
@@ -183,6 +188,7 @@ namespace TreasureLand.Clerk
                 lblErrorInsertGuest.Text = "Guest already exists please select below or enter a new guest";
                 btnAddGuest.CommandArgument = "1";
             }
+            reserving.view = 2;
         }
         #endregion Add Guest Button
 
