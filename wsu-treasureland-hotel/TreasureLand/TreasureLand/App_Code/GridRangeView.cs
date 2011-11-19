@@ -367,7 +367,7 @@ namespace TreasureLand.App_Code
                 data[endIndex, 1] = r.ReservationDetailID + String.Empty;
                 data[endIndex, 4] = r.Begin.ToString("d");
                 data[endIndex, 5] = (r.End - r.Begin).Days + String.Empty;
-                data[endIndex, 6] = r.GuestName;
+                data[endIndex, 6] = r.GuestName + '?' + r.ReservationID;
             }
             if (startIndex >= 0 && startIndex < DaysDisplayed)//Add the second td tag
             {
@@ -375,7 +375,7 @@ namespace TreasureLand.App_Code
                 data[startIndex, 3] = r.ReservationDetailID + String.Empty;
                 data[startIndex, 4] = r.Begin.ToString("d");
                 data[startIndex, 5] = (r.End - r.Begin).Days + String.Empty;
-                data[startIndex, 6] = r.GuestName;
+                data[startIndex, 6] = r.GuestName + '?' + r.ReservationID;
             }
 
             //data[DaysDisplayed, 0] = r.RoomType;
@@ -386,7 +386,7 @@ namespace TreasureLand.App_Code
                 {
                     if(data[i, 2] == null) //Don't overwrite the start date when it comes time to generate the table
                         data[i, 1] = "<td id='row" + r.RoomNumber + "col" + i + "a' colspan='2' style='background-color:" + color +
-                                ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")' onclick='onReservationClick(" + r.ReservationDetailID + ", \"" + r.Begin.ToString("dd/MM/yyyy") + "\", " + (r.End - r.Begin).Days + ", \"" + r.GuestName + "\")' >RS #" + r.ReservationDetailID + "</td>";
+                                ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")' onclick='onReservationClick(" + r.ReservationDetailID + ", \"" + r.Begin.ToString("dd/MM/yyyy") + "\", " + (r.End - r.Begin).Days + ", \"" + (r.GuestName + '?' + r.ReservationID) + "\")' >RS #" + r.ReservationDetailID + "</td>";
                 }
             }
         }
