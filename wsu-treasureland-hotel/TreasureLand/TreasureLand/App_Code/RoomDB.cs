@@ -137,10 +137,11 @@ namespace TreasureLand.App_Code
             {
                 conn.Open(); //Open the connection
 
-                string command = "SELECT res.ReservationDate, rd.Status, rd.Nights, " +
+                string command = "SELECT g.GuestFirstName, g.GuestSurName, res.ReservationDate, rd.Status, rd.Nights, " +
                                  "room.RoomID, room.RoomNumbers, res.ReservationID, " +
                                  "rtype.HotelRoomTypeID, rtype.RoomType, rd.ReservationDetailID " +
-                                 "FROM Reservation res " + 
+                                 "FROM Guest g " +
+                                 "INNER JOIN Reservation res ON res.GuestID = g.GuestID " +
                                  "INNER JOIN ReservationDetail rd ON res.ReservationID = rd.ReservationID " +
                                  "INNER JOIN Room room ON rd.RoomID = room.RoomID " +
                                  "INNER JOIN HotelRoomType rtype ON rtype.HotelRoomTypeID = room.HotelRoomTypeID " +
@@ -154,20 +155,21 @@ namespace TreasureLand.App_Code
 
                 while (rt.Read())
                 {
-                    string dateTemp = rt[0].ToString();
+                    string dateTemp = rt[2].ToString();
                     //string debug = dateTemp.Substring(0, dateTemp.IndexOf(' '));
                     DateTime begin = DateTime.Parse(dateTemp.Substring(0,dateTemp.IndexOf(' ')));
-                    DateTime end = begin.AddDays(Double.Parse(rt[2].ToString()));
+                    DateTime end = begin.AddDays(Double.Parse(rt[4].ToString()));
                     //if ((end - beginRange).Days < 0 || (begin - endRange).Days > 0)
                         //continue; //Skip the rest and go to the next record
 
-                    char resStatus = Char.Parse(rt[1].ToString());
-                    short id = Int16.Parse(rt[3].ToString());
-                    string roomNumber = rt[4].ToString();
-                    int resID = Int32.Parse(rt[5].ToString());
-                    int hotelRoomTypeID = Int32.Parse(rt[6].ToString());
-                    string roomType = rt[7].ToString();
-                    int reservationDetailsID = Int32.Parse(rt[8].ToString());
+                    char resStatus = Char.Parse(rt[3].ToString());
+                    short id = Int16.Parse(rt[5].ToString());
+                    string roomNumber = rt[6].ToString();
+                    int resID = Int32.Parse(rt[7].ToString());
+                    int hotelRoomTypeID = Int32.Parse(rt[8].ToString());
+                    string roomType = rt[9].ToString();
+                    int reservationDetailsID = Int32.Parse(rt[10].ToString());
+                    string guestName = rt[0].ToString() + ' ' + rt[1].ToString();
                     //bool roomStatus = Char.Parse(rt[9].ToString()) == 'M' ? true : false;
 
                     Row temp = new Row(id, resID, hotelRoomTypeID, reservationDetailsID); //Create and fill a Row object
@@ -176,6 +178,7 @@ namespace TreasureLand.App_Code
                     temp.ReservationType = resStatus;
                     temp.RoomNumber = roomNumber;
                     temp.RoomType = roomType;
+                    temp.GuestName = guestName;
                     //temp.Maintenance = roomStatus;
 
                     RT.Add(temp); //Add it to the list
@@ -228,9 +231,10 @@ namespace TreasureLand.App_Code
         /// Updates a ReservationDetail by moving it to a new room
         /// </summary>
         /// <param name="ReservationID">ID of the reservation detail to change</param>
+        /// <param name="ReservationDetailID">Specific ID for the detail to change the reservation date</param>
         /// <param name="RoomID">ID of the room to change to</param>
         /// <returns>Number of rows affected</returns>
-        public static int updateRoom(int ReservationID, int RoomID)
+        public static int updateRoom(int ReservationID, int ReservationDetailID, int RoomID, DateTime time, int nights)
         {
             SqlConnection conn = new SqlConnection(getConnectionString());
 
@@ -238,15 +242,30 @@ namespace TreasureLand.App_Code
             {
                 conn.Open(); //Open the connection
 
-                string command = "UPDATE [ReservationDetail] SET [RoomID] = @RoomID " +
-                                 "WHERE [ReservationDetailID] = @ReservationID";
+                string command = "UPDATE [ReservationDetail] SET [RoomID] = @RoomID, " +
+                                 "[Nights] = @Nights " +
+                                 "WHERE [ReservationDetailID] = @ReservationDetailID";
 
                 SqlCommand connCommand = new SqlCommand(command, conn);
 
                 connCommand.Parameters.AddWithValue("@RoomID", RoomID);
+                connCommand.Parameters.AddWithValue("@ReservationDetailID", ReservationDetailID);
+                connCommand.Parameters.AddWithValue("@Nights", nights);
+
+                int ReservationDetail = connCommand.ExecuteNonQuery();
+                if (ReservationDetail <= 0)
+                    return ReservationDetail; //An error occurred
+                command = "UPDATE [Reservation] SET [ReservationDate] = @ReservationDate " +
+                          "WHERE [ReservationID] = @ReservationID";
+
+                connCommand = new SqlCommand(command, conn);
+
+                connCommand.Parameters.AddWithValue("@ReservationDate", time);
                 connCommand.Parameters.AddWithValue("@ReservationID", ReservationID);
 
-                return connCommand.ExecuteNonQuery();
+                ReservationDetail = connCommand.ExecuteNonQuery();
+
+                return ReservationDetail;
             }
             catch (Exception e)
             {
