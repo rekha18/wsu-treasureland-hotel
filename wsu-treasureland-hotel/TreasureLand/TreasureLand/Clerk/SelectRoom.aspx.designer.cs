@@ -148,6 +148,33 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.TextBox txtRoomNumberUpdate;
         
         /// <summary>
+        /// txtReservationDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtReservationDate;
+        
+        /// <summary>
+        /// cvDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvDate;
+        
+        /// <summary>
+        /// ddlNightsStayed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNightsStayed;
+        
+        /// <summary>
         /// btnUpdateReservation control.
         /// </summary>
         /// <remarks>
