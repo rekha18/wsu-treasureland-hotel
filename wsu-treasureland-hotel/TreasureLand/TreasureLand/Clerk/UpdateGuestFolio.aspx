@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <td style="width: 76px">
-                        PhoneNumber:</td>
+                        Phone Number:</td>
                     <td class="style1" style="width: 142px">
                         <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
                     </td>
@@ -51,13 +51,8 @@
                     <asp:BoundField DataField="GuestPhone" HeaderText="Phone Number" />
                     <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                 </Columns>
-                <RowStyle BackColor="#EFF3FB" Font-Size="Small" />
-                <EditRowStyle BackColor="#2461BF" />
-                <SelectedRowStyle BackColor="CornflowerBlue" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="Blue" ForeColor="White" HorizontalAlign="Center" />
-                <HeaderStyle BackColor="Blue" Font-Bold="True" Font-Names="Arial" Font-Size="Small"
-                    ForeColor="White" />
-                <AlternatingRowStyle BackColor="White" />
+                <RowStyle Font-Size="Small" />
+                <HeaderStyle Font-Names="Arial" Font-Size="Small" />
             </asp:GridView>
             <br />
             &nbsp;&nbsp;&nbsp;
@@ -71,12 +66,12 @@
                 <asp:View ID="vUpdateGuestFolio" runat="server">
             <table style="width: 99%">
                 <tr>
-                    <td style="width: 75px">
+                    <td style="width: 118px">
                         Salutation:</td>
                     <td style="width: 175px">
                         <asp:TextBox ID="txtSalutation" runat="server"></asp:TextBox>
                     </td>
-                    <td style="width: 115px">
+                    <td style="width: 86px">
                         &nbsp;</td>
                     <td style="width: 135px">
                         Address:</td>
@@ -85,12 +80,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 75px">
+                    <td style="width: 118px">
                         First Name:</td>
                     <td style="width: 175px">
                         <asp:TextBox ID="txtShowFirstName" runat="server"></asp:TextBox>
                     </td>
-                    <td style="width: 115px">
+                    <td style="width: 86px">
                         &nbsp;</td>
                     <td style="width: 135px">
                         City:</td>
@@ -99,12 +94,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 75px">
+                    <td style="width: 118px">
                         Surname:</td>
                     <td style="width: 175px">
                         <asp:TextBox ID="txtShowSurname" runat="server"></asp:TextBox>
                     </td>
-                    <td style="width: 115px">
+                    <td style="width: 86px">
                         &nbsp;</td>
                     <td style="width: 135px">
                         State/Region/Province:</td>
@@ -113,12 +108,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 75px">
+                    <td style="width: 118px">
                         Phone #:</td>
                     <td style="width: 175px">
                         <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
                     </td>
-                    <td style="width: 115px">
+                    <td style="width: 86px">
                         &nbsp;</td>
                     <td style="width: 135px">
                         Country:</td>
@@ -127,12 +122,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 75px">
-                        CC #:</td>
+                    <td style="width: 118px">
+                        Guest ID #:</td>
                     <td style="width: 175px">
-                        <asp:TextBox ID="txtCreditCard" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtGuestID" runat="server"></asp:TextBox>
                     </td>
-                    <td style="width: 115px">
+                    <td style="width: 86px">
                         &nbsp;</td>
                     <td style="width: 135px">
                         Postal Code:</td>
@@ -141,18 +136,25 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 75px">
-                        Expiration:</td>
+                    <td style="width: 118px">
+                        Issue Country:</td>
                     <td style="width: 175px">
-                        <asp:TextBox ID="txtExpiration" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtIssueCountry" runat="server"></asp:TextBox>
                     </td>
-                    <td style="width: 115px">
+                    <td style="width: 86px">
                         &nbsp;</td>
                     <td style="width: 135px">
                         Email:</td>
                     <td class="style1" style="width: 175px">
                         <asp:TextBox ID="txtEmail" runat="server" 
                             ></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 118px">
+                        Guest ID Comments:</td>
+                    <td colspan="4">
+                        <asp:TextBox ID="txtComments" runat="server" Width="542px"></asp:TextBox>
                     </td>
                 </tr>
             </table>

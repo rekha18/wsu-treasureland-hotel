@@ -51,12 +51,12 @@ namespace TreasureLand.App_Code
             return dr;
         }
 
-        public static IEnumerable LocateGuestCheckIn(string FirstName, string SurName, string ReservationID, string Email)
+        public static IEnumerable LocateGuestCheckIn(string FirstName, string SurName, string ReservationID)
         {
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel =
-                "SELECT Reservation.ReservationID, Guest.GuestFirstName, Guest.GuestSurName, Guest.GuestEmail, ReservationDetail.ReservationDetailID, ReservationDetail.RoomID FROM Reservation INNER JOIN Guest ON Reservation.GuestID = Guest.GuestID INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID " +
-                "WHERE Guest.GuestFirstName = '" + FirstName + "' OR Guest.GuestSurName = '" + SurName + "' OR Reservation.ReservationID = '" + ReservationID + "' OR Guest.GuestEmail = '" + Email + "'";
+                "SELECT Reservation.ReservationID, Guest.GuestFirstName, Guest.GuestSurName, Guest.GuestPhone, ReservationDetail.ReservationDetailID, ReservationDetail.RoomID FROM Reservation INNER JOIN Guest ON Reservation.GuestID = Guest.GuestID INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID " +
+                "WHERE Guest.GuestFirstName = '" + FirstName + "' OR Guest.GuestSurName = '" + SurName + "' OR Reservation.ReservationID = '" + ReservationID + "'";
             SqlCommand cmd =
             new SqlCommand(sel, con);
             con.Open();

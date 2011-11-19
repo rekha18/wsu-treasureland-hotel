@@ -193,13 +193,13 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.TextBox txtCountry;
         
         /// <summary>
-        /// txtCreditCard control.
+        /// txtGuestID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCreditCard;
+        protected global::System.Web.UI.WebControls.TextBox txtGuestID;
         
         /// <summary>
         /// txtPostalCode control.
@@ -211,13 +211,13 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.TextBox txtPostalCode;
         
         /// <summary>
-        /// txtExpiration control.
+        /// txtIssueCountry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtExpiration;
+        protected global::System.Web.UI.WebControls.TextBox txtIssueCountry;
         
         /// <summary>
         /// txtEmail control.
@@ -227,6 +227,15 @@ namespace TreasureLand.Clerk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        
+        /// <summary>
+        /// txtComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtComments;
         
         /// <summary>
         /// btnBack control.

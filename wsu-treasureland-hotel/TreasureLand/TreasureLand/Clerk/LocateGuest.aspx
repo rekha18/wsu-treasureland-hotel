@@ -14,48 +14,36 @@
                     <td class="style22" style="width: 136px">
                         <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
                     </td>
+                    <td class="style22" style="width: 136px">
+                        &nbsp;</td>
                     <td class="style13">
                         <asp:Label ID="lblErrorMessageMissingData" runat="server" ForeColor="Red"></asp:Label>
                     </td>
                 </tr>
                 <tr>
                     <td class="style19">
-                        Room #:</td>
-                    <td class="style25">
-                        <asp:TextBox ID="txtRoomNum" runat="server"></asp:TextBox>
+                        <asp:Button ID="btnLocateGuest" runat="server" OnClick="btnLocateGuest_Click" 
+                            Text="Locate Guest" ValidationGroup="lookup" />
                     </td>
+                    <td class="style25">
+                        &nbsp;</td>
                     <td class="style4" style="width: 80px">
                         Surname:</td>
                     <td class="style23" style="width: 136px">
                         <asp:TextBox ID="txtSurname" runat="server"></asp:TextBox>
                     </td>
-                    <td class="style5">
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="style19">
-                        <asp:Button ID="btnLocateGuest" runat="server" 
-                            Text="Locate Guest" ValidationGroup="lookup" OnClick="btnLocateGuest_Click" />
-                    </td>
-                    <td class="style25">
-                        &nbsp;</td>
-                    <td class="style4" style="width: 80px">
-                        Email:</td>
                     <td class="style23" style="width: 136px">
-                        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-                    </td>
+                        &nbsp;</td>
                     <td class="style5">
                         <asp:Label ID="lblErrorMessageNoCustomersFound" runat="server" ForeColor="Red"></asp:Label>
                     </td>
                 </tr>
             </table>
             <br />
-            <asp:GridView ID="gvGuest" runat="server" AutoGenerateColumns="False" CellPadding="4" 
+            <asp:GridView ID="gvGuest" runat="server" AutoGenerateColumns="False" 
                                     onselectedindexchanged="gvGuest_SelectedIndexChanged" 
                     onselectedindexchanging="gvGuest_SelectedIndexChanging" 
-                ForeColor="#333333" GridLines="None" 
                 >
-                <AlternatingRowStyle BackColor="White" />
                 <Columns>
                     <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                     <asp:BoundField DataField="ReservationID" HeaderText="Reservation #" 
@@ -64,15 +52,9 @@
                         SortExpression="GuestFirstName" />
                     <asp:BoundField DataField="GuestSurName" HeaderText="Surname" 
                         SortExpression="GuestSurName" />
-                    <asp:BoundField DataField="GuestEmail" HeaderText="Email"
-                        InsertVisible="False" ReadOnly="True"  />
                 </Columns>
-                <RowStyle BackColor="#EFF3FB" Font-Size="Small" />
-                <EditRowStyle BackColor="#2461BF" />
-                <SelectedRowStyle BackColor="CornflowerBlue" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="Blue" ForeColor="White" HorizontalAlign="Center" />
-                <HeaderStyle BackColor="Blue" Font-Bold="True" Font-Names="Arial" Font-Size="Small"
-                    ForeColor="White" />
+                <RowStyle Font-Size="Small" />
+                <HeaderStyle Font-Names="Arial" Font-Size="Small" />
                 <AlternatingRowStyle BackColor="White" />
             </asp:GridView>
             <br />
@@ -112,7 +94,7 @@
                     <td style="width: 133px">
                         Room Number:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtShowRoomNumber" runat="server" ReadOnly="True"></asp:TextBox>
+                        <asp:TextBox ID="txtShowRoomNum" runat="server" ReadOnly="True"></asp:TextBox>
                     </td>
                     <td style="width: 99px">
                         Phone Number:</td>
@@ -125,11 +107,6 @@
                         Check out:</td>
                     <td class="style1" style="width: 156px">
                         <asp:TextBox ID="txtShowCheckOut" runat="server" ReadOnly="True"></asp:TextBox>
-                    </td>
-                    <td style="width: 99px">
-                        Email:</td>
-                    <td style="width: 134px">
-                        <asp:TextBox ID="txtShowEmail" runat="server"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
