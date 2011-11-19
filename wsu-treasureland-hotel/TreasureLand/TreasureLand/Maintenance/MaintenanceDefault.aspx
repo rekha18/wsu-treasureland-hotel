@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Maintenance/MaintenanceMasterPage.master" AutoEventWireup="true" CodeBehind="MaintenanceDefault.aspx.cs" Inherits="TreasureLand.Maintenance.MaintenanceDefault" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div> 
-        <table style="width:100%;">
+        <table style="width:547px;">
             <tr>
                 <td align="center" style="width: 494px">
                     <asp:GridView ID="gvHouseKeeping" runat="server" AllowPaging="True" 
@@ -10,8 +10,9 @@
                         DataSourceID="LinqDataSource1" ForeColor="Black" GridLines="Vertical">
                         <AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
+                            <asp:CommandField ShowSelectButton="True" />
                             <asp:BoundField DataField="RoomID" HeaderText="RoomID" ReadOnly="True" 
-                                SortExpression="RoomID" />
+                                SortExpression="RoomID" Visible="False" />
                             <asp:BoundField DataField="RoomNumbers" HeaderText="RoomNumbers" 
                                 ReadOnly="True" SortExpression="RoomNumbers" />
                             <asp:BoundField DataField="RoomDescription" HeaderText="RoomDescription" 
@@ -20,7 +21,7 @@
                                 SortExpression="RoomStatus" />
                             <asp:BoundField DataField="RoomBedConfiguration" 
                                 HeaderText="RoomBedConfiguration" ReadOnly="True" 
-                                SortExpression="RoomBedConfiguration" />
+                                SortExpression="RoomBedConfiguration" Visible="False" />
                         </Columns>
                         <FooterStyle BackColor="#CCCCCC" />
                         <HeaderStyle BackColor="Black" BorderColor="#6600FF" BorderStyle="Groove" 
@@ -34,57 +35,7 @@
                         <SortedDescendingHeaderStyle BackColor="#383838" />
                     </asp:GridView>
                 </td>
-                <td style="width: 9px">
-                    &nbsp;</td>
                 <td>
-                    <table bgcolor="#3366CC" border="groove" frame="border" style="width:100%;">
-                        <tr>
-                            <td bgcolor="#003366" style="width: 84px; color: #000000">
-                                <b>Status Letters</b></td>
-                            <td bgcolor="#003366" style="color: #000000">
-                                <b>Definition</b></td>
-                        </tr>
-                        <tr style="color: #000000">
-                            <td style="width: 84px; text-align: center">
-                                A</td>
-                            <td>
-                                Active</td>
-                        </tr>
-                        <tr style="color: #000000">
-                            <td style="width: 84px; text-align: center">
-                                C</td>
-                            <td>
-                                Closed</td>
-                        </tr>
-                        <tr style="color: #000000">
-                            <td style="width: 84px; text-align: center">
-                                X</td>
-                            <td>
-                                Canceled</td>
-                        </tr>
-                        <tr style="color: #000000">
-                            <td style="width: 84px; text-align: center">
-                                U</td>
-                            <td>
-                                Unoccupied</td>
-                        </tr>
-                        <tr style="color: #000000">
-                            <td style="width: 84px; text-align: center">
-                                H</td>
-                            <td>
-                                Housekeeping</td>
-                        </tr>
-                        <tr style="color: #000000">
-                            <td style="width: 84px; text-align: center">
-                                M</td>
-                            <td>
-                                Maintenance</td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td style="width: 494px">
                    <asp:LinqDataSource ID="LinqDataSource1" runat="server" 
                         ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
                         EntityTypeName="" 
@@ -95,9 +46,18 @@
                        </WhereParameters>
                     </asp:LinqDataSource>
                 </td>
-                <td style="width: 9px">
+            </tr>
+            <tr>
+                <td style="width: 494px">
+                    <asp:Label ID="lblMaintenance" runat="server" ForeColor="Red"></asp:Label>
+                </td>
+                <td>
                     &nbsp;</td>
-                <td style="width: 184px">
+            </tr>
+            <tr>
+                <td style="width: 494px">
+                    &nbsp;</td>
+                <td>
                     &nbsp;</td>
             </tr>
         </table>
