@@ -11,7 +11,14 @@ namespace TreasureLand.HouseKeeping
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (gvHouseKeeping.Rows.Count == 0)
+            {
+                lblHoueskeeping.Text = "There are no rooms that need cleaning";
+            }
+            else
+            {
+                lblHoueskeeping.Text = "";
+            }
         }
     }
 }
