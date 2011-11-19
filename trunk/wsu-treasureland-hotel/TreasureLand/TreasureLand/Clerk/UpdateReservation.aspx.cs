@@ -60,8 +60,51 @@ namespace TreasureLand.Clerk
             gvRoom.DataBind();
         }
 
-        
+        protected void btnCancelReservation_Click(object sender, EventArgs e)
+        {
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            var deleteRows = from rs in db.ReservationDetails
+                             where rs.ReservationID == Convert.ToInt16(lblReservationNumber.Text)
+                             select rs;
+            
+            db.ReservationDetails.DeleteAllOnSubmit(deleteRows);
 
-        
+            db.SubmitChanges();
+
+            var deleteRes = from r in db.Reservations
+                            where r.ReservationID == Convert.ToInt16(lblReservationNumber.Text)
+                            select r;
+            db.Reservations.DeleteAllOnSubmit(deleteRes);
+
+            db.SubmitChanges();
+
+            
+         }
+
+        protected void btnConfirmReservation_Click(object sender, EventArgs e)
+        {
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            Reservation res = db.Reservations.Single(p=> p.ReservationID == Convert.ToInt16(lblReservationNumber.Text));
+            res.ReservationStatus = 'C';
+            db.SubmitChanges();
+        }
+
+        protected void btnFinished_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ClerkDefault.aspx");
+            Session.RemoveAll();
+        }
+
+        protected void btnFinished2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ClerkDefault.aspx");
+            Session.RemoveAll();
+        }
+
+        protected void btnModifyReservation_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SelectRoom.aspx");
+            Session.RemoveAll();
+        }      
     }
 }
