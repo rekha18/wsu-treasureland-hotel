@@ -110,7 +110,7 @@ namespace TreasureLand.Clerk
 
                 //gets the datasource for the guest room table
                 //only grabs the room if it has an active status
-                gvRoomCost.DataSource = GuestDB.getGuestRoom(Convert.ToInt32(txtShowRoom.Text));
+                gvRoomCost.DataSource = GuestDB.getGuestRoom(Convert.ToInt32(txtShowRoom.Text), Convert.ToInt32(txtShowReservation.Text));
                 gvRoomCost.DataBind();
 
                 //gets the datasource for the services table 
