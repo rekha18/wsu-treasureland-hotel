@@ -21,5 +21,24 @@ namespace TreasureLand.App_Code
         public int daysStaying;
         public int view;
         public int reservationID;
+
+        public Reserve Clone()
+        {
+            Reserve clone = new Reserve();
+            clone.GuestID = GuestID;
+            clone.roomID = roomID;
+            clone.returnView = returnView;
+            clone.firstName = firstName == null ? String.Empty : (string)firstName.Clone();
+            clone.surName = surName == null ? String.Empty : (string)surName.Clone();
+            clone.phone = phone == null ? String.Empty : (string)phone.Clone();
+            clone.numAdults = numAdults;
+            clone.numChild = numChild;
+            clone.Discount = Discount;
+            clone.reserveDate = reserveDate == null ? String.Empty : (string)reserveDate.Clone();
+            clone.daysStaying = daysStaying;
+            clone.view = view;
+            clone.reservationID = reservationID;
+            return clone;
+        }
     }
 }
