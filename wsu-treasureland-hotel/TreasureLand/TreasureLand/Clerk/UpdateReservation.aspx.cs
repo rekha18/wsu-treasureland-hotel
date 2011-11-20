@@ -16,7 +16,11 @@ namespace TreasureLand.Clerk
 
         protected void Page_Load(object sender, EventArgs e)
         {
+          reserving.roomID = -1;
+          reserving.returnView = 0;
           reserving = GetRoomNumber();
+          mvUpdateReservation.ActiveViewIndex = reserving.returnView;
+          lblReservationNumber.Text = reserving.roomID.ToString();
         }
 
         protected void btnLocateReservation_Click(object sender, EventArgs e)
@@ -26,7 +30,7 @@ namespace TreasureLand.Clerk
             var guest = from g in db.Guests
                         join r in db.Reservations
                         on g.GuestID equals r.GuestID
-                        where r.ReservationID.ToString() == txtResNumber.Text || g.GuestFirstName == txtFirstName.Text || g.GuestSurName == txtSurName.Text || g.GuestPhone == txtPhone.Text
+                        where ((r.ReservationID.ToString() == txtResNumber.Text || g.GuestFirstName == txtFirstName.Text || g.GuestSurName == txtSurName.Text || g.GuestPhone == txtPhone.Text) && (r.ReservationStatus == 'U' || r.ReservationStatus == 'C'))
                         select new {r.ReservationID, g.GuestFirstName, g.GuestSurName, g.GuestPhone};
             gvGuest.DataSource = guest.ToList();
             gvGuest.DataBind();
@@ -103,6 +107,7 @@ namespace TreasureLand.Clerk
 
         protected void btnModifyReservation_Click(object sender, EventArgs e)
         {
+            reserving.returnView = 1;
             reserving.reservationID = Convert.ToInt16(lblReservationNumber.Text);
             Response.Redirect("SelectRoom.aspx");
             Session.RemoveAll();
@@ -118,5 +123,10 @@ namespace TreasureLand.Clerk
             return (App_Code.Reserve)Session["Room"];
         }
         #endregion Session Control
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

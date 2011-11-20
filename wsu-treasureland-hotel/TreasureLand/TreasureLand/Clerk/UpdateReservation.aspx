@@ -183,6 +183,16 @@
                                 Text="Confirm Reservation" />
                         </td>
                     </tr>
+                    <tr>
+                        <td align="center">
+                            <asp:Button ID="btnBack" runat="server" CommandArgument="0" 
+                                CommandName="SwitchViewByIndex" onclick="btnBack_Click" Text="Back" />
+                        </td>
+                        <td align="center">
+                            &nbsp;</td>
+                        <td align="center">
+                            &nbsp;</td>
+                    </tr>
                 </table>
                 <br />
             </asp:View>
