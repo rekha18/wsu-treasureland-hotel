@@ -147,6 +147,15 @@ namespace TreasureLand.Clerk
                         select g;
             gvGuest.DataSource = guest.ToList();
             gvGuest.DataBind();
+
+            if (gvGuest.Rows.Count == 0)
+            {
+                lblErrorNoGuest.Text = "No guests where found please create a new guest";
+            }
+            else
+            {
+                lblErrorNoGuest.Text = "";
+            }
            
         }
         #endregion Locate Guest Button
@@ -342,6 +351,12 @@ namespace TreasureLand.Clerk
         }
 
         protected void btnDone_Click(object sender, EventArgs e)
+        {
+            Session.RemoveAll();
+            Response.Redirect("ClerkDefault.aspx");
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
         {
             Session.RemoveAll();
             Response.Redirect("ClerkDefault.aspx");
