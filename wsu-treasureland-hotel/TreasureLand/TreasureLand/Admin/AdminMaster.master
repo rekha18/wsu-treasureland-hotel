@@ -61,7 +61,7 @@
                 <br />
                 <br />
                 <asp:Button ID="btnSwitchRoles" runat="server" Text="Switch Roles" 
-                    Width="125px" PostBackUrl="~/LoginRedirect.aspx" />
+                    Width="125px" PostBackUrl="~/LoginRedirect.aspx" Font-Bold="True"/>
                 
             </td>
             <td valign="top" rowspan="2">
