@@ -16,7 +16,7 @@ namespace TreasureLand.Clerk
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+          reserving = GetRoomNumber();
         }
 
         protected void btnLocateReservation_Click(object sender, EventArgs e)
