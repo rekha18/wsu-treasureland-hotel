@@ -40,6 +40,15 @@ namespace TreasureLand.HouseKeeping {
         protected global::System.Web.UI.WebControls.Button btnReports;
         
         /// <summary>
+        /// btnSwitchRoles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSwitchRoles;
+        
+        /// <summary>
         /// ContentPlaceHolder1 control.
         /// </summary>
         /// <remarks>
