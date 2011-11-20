@@ -17,14 +17,14 @@ namespace TreasureLand.Admin
         }
         protected void RegisterUser_CreatedUser(object sender, EventArgs e)
         {
-            FormsAuthentication.SetAuthCookie(RegisterUser.UserName, false /* createPersistentCookie */);
+            //FormsAuthentication.SetAuthCookie(RegisterUser.UserName, false /* createPersistentCookie */);
 
-            string continueUrl = RegisterUser.ContinueDestinationPageUrl;
-            if (String.IsNullOrEmpty(continueUrl))
-            {
-                continueUrl = "~/";
-            }
-            Response.Redirect(continueUrl);
+            //string continueUrl = RegisterUser.ContinueDestinationPageUrl;
+            //if (String.IsNullOrEmpty(continueUrl))
+            //{
+            //    continueUrl = "~/";
+            //}
+            Response.Redirect("admindefault.aspx");
         }
     }
 }
