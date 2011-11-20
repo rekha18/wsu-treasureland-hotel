@@ -14,10 +14,7 @@
                                 <asp:TextBox ID="txtFirstName" runat="server" OnClick="this.value=''">-Enter Name-</asp:TextBox>
                             </td>
                             <td>
-                                <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" 
-                                    ControlToValidate="txtFirstName" ErrorMessage="First Name is required" 
-                                    ForeColor="Red" ValidationGroup="lookup"></asp:RequiredFieldValidator>
-                            </td>
+                                &nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 73px">
@@ -26,10 +23,7 @@
                                 <asp:TextBox ID="txtSurName" runat="server" OnClick="this.value=''">-Enter Name-</asp:TextBox>
                             </td>
                             <td>
-                                <asp:RequiredFieldValidator ID="rfvSurName" runat="server" 
-                                    ErrorMessage="Sur Name is required" ForeColor="Red" 
-                                    ValidationGroup="lookup" ControlToValidate="txtSurName"></asp:RequiredFieldValidator>
-                            </td>
+                                &nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 73px">
@@ -38,9 +32,6 @@
                                 <asp:TextBox ID="txtPhone" runat="server" OnClick="this.value=''">-Enter Phone-</asp:TextBox>
                             </td>
                             <td>
-                                <asp:RequiredFieldValidator ID="rfvPhone" runat="server" 
-                                    ErrorMessage="Phone is required" ForeColor="Red" ValidationGroup="lookup" 
-                                    ControlToValidate="txtPhone"></asp:RequiredFieldValidator>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>
                         </tr>
@@ -55,7 +46,8 @@
                                     CommandName="SwitchViewByIndex" />
                             </td>
                             <td>
-                                &nbsp;</td>
+                                <asp:Label ID="lblErrorNoGuest" runat="server" ForeColor="Red"></asp:Label>
+                            </td>
                         </tr>
                     </table>
                     <br />
@@ -74,6 +66,8 @@
                         </Columns>
                         <SelectedRowStyle BackColor="#FFFF66" ForeColor="Black" />
                     </asp:GridView>
+                    <br />
+                    <br />
                     <br />
                     <asp:Button ID="btnSelectGuest" runat="server" CommandArgument="2" 
                         CommandName="SwitchViewByIndex" Enabled="False" Height="26px" 
@@ -296,7 +290,9 @@
                         </tr>
                         <tr>
                             <td style="width: 244px">
-                                &nbsp;</td>
+                                <asp:Button ID="btnCancel" runat="server" onclick="btnCancel_Click" 
+                                    Text="Cancel" />
+                            </td>
                             <td style="width: 239px">
                                 Select Room:</td>
                             <td>
