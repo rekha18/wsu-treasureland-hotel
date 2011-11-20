@@ -403,6 +403,7 @@
     </Compile>
     <Compile Include="Manager\ManagerExpenses.aspx.cs">
       <DependentUpon>ManagerExpenses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Manager\ManagerExpenses.aspx.designer.cs">
       <DependentUpon>ManagerExpenses.aspx</DependentUpon>
