@@ -131,35 +131,13 @@ namespace TreasureLand.App_Code
                 return 0;
         }
 
-        /// <summary>
-        /// Inserts a service bill 
-        /// </summary>
-        /// <param name="billAmount">amount per item</param>
-        /// <param name="billQty">number of items</param>
-        /// <param name="billingDescription">description of item</param>
-        /// <param name="reservationID">ReservationID to add to</param>
-        /// <returns></returns>
-        public static IEnumerable insertGuestServices(double billAmount, int billQty, string billingDescription, int reservationID)
-        {
-            SqlConnection con = new SqlConnection(getConnectionString());
-            string update = "INSERT INTO ReservationDetailBilling " +
-                        "(BillingAmount, BillingItemQty, BillingCategoryID,  BillingDescription, ReservationDetailID, BillingItemDate) " +
-                        "VALUES(" + billAmount + "," + billQty + ",1,'" + billingDescription + "'," + reservationID + ", " + System.DateTime.Now.ToString("d") + ")";
-            SqlCommand cmd =
-            new SqlCommand(update, con);
-            con.Open();
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            return dr;
-        }
-
-
+        
         public static IEnumerable getGuestRoom(int roomID)
         {
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel = "SELECT Reservation.ReservationID, ReservationDetail.Nights, ReservationDetail.QuotedRate, Room.RoomDescription " +
                          "FROM Reservation INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID INNER JOIN " +
-                         "Room ON ReservationDetail.RoomID = Room.RoomID WHERE ReservationDetail.RoomID = '" + roomID + "'";
+                         "Room ON ReservationDetail.RoomID = Room.RoomID WHERE ReservationDetail.RoomID = '" + roomID + "' AND ReservationDetail.Status = 'A'";
             SqlCommand cmd =
             new SqlCommand(sel, con);
             con.Open();
@@ -175,7 +153,7 @@ namespace TreasureLand.App_Code
         public static IEnumerable getGuestServices(int reservationDetailID)
         {
             SqlConnection con = new SqlConnection(getConnectionString());
-            string sel = "SELECT BillingDescription, BillingItemQty, BillingItemDate, BillingAmount, ReservationBillingID FROM ReservationDetailBilling WHERE ReservationDetailID = " + reservationDetailID;
+            string sel = "SELECT BillingDescription, BillingItemQty, BillingItemDate, BillingAmount, ReservationBillingID, Comments FROM ReservationDetailBilling WHERE ReservationDetailID = " + reservationDetailID;
             SqlCommand cmd = new SqlCommand(sel, con);
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
@@ -465,12 +443,12 @@ namespace TreasureLand.App_Code
         {
 
             SqlConnection con = new SqlConnection(getConnectionString());
-            string sel = "SELECT COUNT (*) FROM ReservationDetail Where ReservationID = " + reservationID + " AND Status = 'C'";
+            string sel = "SELECT * FROM ReservationDetail Where ReservationID = " + reservationID + " AND Status = 'C'";
 
             SqlCommand cmd = new SqlCommand(sel, con);
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
-            if (dr.HasRows)
+            if ((dr.HasRows))
             { 
                 return 1; 
             }
@@ -483,12 +461,18 @@ namespace TreasureLand.App_Code
         {
 
             SqlConnection con = new SqlConnection(getConnectionString());
-            string sel = "SELECT COUNT (*) FROM ReservationDetail Where ReservationID = " + reservationID + " AND Status = 'C'";
+            string sel = "SELECT * FROM ReservationDetail Where ReservationID = " + reservationID + " AND Status = 'C'";
 
             SqlCommand cmd = new SqlCommand(sel, con);
             con.Open();
             SqlDataReader dr = cmd.ExecuteReader();
-            return Convert.ToInt32(dr);
+            if ((dr.HasRows))
+            {
+                return 1;
+            }
+            else
+                return 0;
+           
 
         }
     }
