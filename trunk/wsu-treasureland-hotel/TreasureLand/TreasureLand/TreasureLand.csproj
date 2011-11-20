@@ -94,6 +94,7 @@
     <Content Include="Maintenance\MaintenanceReports.aspx" />
     <Content Include="Manager\Inventory.aspx" />
     <Content Include="Manager\ManagerDefault.aspx" />
+    <Content Include="Manager\ManagerExpenses.aspx" />
     <Content Include="Manager\ManagerReports.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
@@ -399,6 +400,12 @@
     </Compile>
     <Compile Include="Manager\ManagerDefault.aspx.designer.cs">
       <DependentUpon>ManagerDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager\ManagerExpenses.aspx.cs">
+      <DependentUpon>ManagerExpenses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manager\ManagerExpenses.aspx.designer.cs">
+      <DependentUpon>ManagerExpenses.aspx</DependentUpon>
     </Compile>
     <Compile Include="Manager\ManagerMasterPage.master.cs">
       <DependentUpon>ManagerMasterPage.master</DependentUpon>
