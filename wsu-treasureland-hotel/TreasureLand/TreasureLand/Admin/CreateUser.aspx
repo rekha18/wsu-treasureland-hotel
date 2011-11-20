@@ -60,7 +60,7 @@
                             </p>
                         </fieldset>
                         <p class="submitButton">
-                            <asp:Button ID="CreateUserButton" runat="server" CommandName="MoveComplete" Text="Create User"
+                            <asp:Button ID="CreateUserButton" runat="server" CommandName="MoveNext" Text="Create User"
                                 ValidationGroup="RegisterUserValidationGroup" />
                         </p>
                     </div>
@@ -82,7 +82,7 @@
             <tr>
                 <td align="right">
                     <asp:Button ID="ContinueButton" runat="server" CausesValidation="False" 
-                        Text="Finish" ValidationGroup="RegisterUser" 
+                        CommandName="Continue" Text="Finish" ValidationGroup="RegisterUser" 
                         PostBackUrl="~/Admin/AdminDefault.aspx" />
                 </td>
             </tr>
