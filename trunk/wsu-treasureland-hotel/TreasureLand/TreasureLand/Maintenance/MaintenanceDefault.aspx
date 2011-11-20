@@ -4,15 +4,14 @@
         <table style="width:547px;">
             <tr>
                 <td align="center" style="width: 494px">
-                    <asp:GridView ID="gvHouseKeeping" runat="server" AllowPaging="True" 
+                    <asp:GridView ID="gvMaintenance" runat="server" AllowPaging="True" 
                         AllowSorting="True" AutoGenerateColumns="False" BackColor="White" 
                         BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" 
                         DataSourceID="LinqDataSource1" ForeColor="Black" GridLines="Vertical">
                         <AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
-                            <asp:CommandField ShowSelectButton="True" />
                             <asp:BoundField DataField="RoomID" HeaderText="RoomID" ReadOnly="True" 
-                                SortExpression="RoomID" Visible="False" />
+                                SortExpression="RoomID" />
                             <asp:BoundField DataField="RoomNumbers" HeaderText="RoomNumbers" 
                                 ReadOnly="True" SortExpression="RoomNumbers" />
                             <asp:BoundField DataField="RoomDescription" HeaderText="RoomDescription" 
@@ -22,6 +21,7 @@
                             <asp:BoundField DataField="RoomBedConfiguration" 
                                 HeaderText="RoomBedConfiguration" ReadOnly="True" 
                                 SortExpression="RoomBedConfiguration" Visible="False" />
+                            <asp:CommandField ShowSelectButton="True" ButtonType="Button" />
                         </Columns>
                         <FooterStyle BackColor="#CCCCCC" />
                         <HeaderStyle BackColor="Black" BorderColor="#6600FF" BorderStyle="Groove" 
@@ -56,7 +56,10 @@
             </tr>
             <tr>
                 <td style="width: 494px">
-                    &nbsp;</td>
+                    <asp:Button ID="btnReadyforGuest" runat="server" 
+                        onclick="btnReadyforGuest_Click" Text="Ready for Guest" 
+                        PostBackUrl="~/Maintenance/MaintenanceDefault.aspx" />
+&nbsp;&nbsp;&nbsp; </td>
                 <td>
                     &nbsp;</td>
             </tr>

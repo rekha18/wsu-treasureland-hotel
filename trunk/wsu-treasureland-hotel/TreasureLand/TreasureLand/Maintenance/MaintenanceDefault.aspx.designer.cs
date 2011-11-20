@@ -13,13 +13,13 @@ namespace TreasureLand.Maintenance {
     public partial class MaintenanceDefault {
         
         /// <summary>
-        /// gvHouseKeeping control.
+        /// gvMaintenance control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvHouseKeeping;
+        protected global::System.Web.UI.WebControls.GridView gvMaintenance;
         
         /// <summary>
         /// LinqDataSource1 control.
@@ -38,5 +38,14 @@ namespace TreasureLand.Maintenance {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMaintenance;
+        
+        /// <summary>
+        /// btnReadyforGuest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReadyforGuest;
     }
 }
