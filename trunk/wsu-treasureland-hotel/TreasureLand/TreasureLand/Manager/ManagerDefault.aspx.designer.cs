@@ -11,41 +11,5 @@ namespace TreasureLand.Manager {
     
     
     public partial class ManagerDefault {
-        
-        /// <summary>
-        /// btnClerkHP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClerkHP;
-        
-        /// <summary>
-        /// btnHousekeepingHP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnHousekeepingHP;
-        
-        /// <summary>
-        /// btnMaintenanceHP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMaintenanceHP;
-        
-        /// <summary>
-        /// btnRestaurantBarHP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRestaurantBarHP;
     }
 }
