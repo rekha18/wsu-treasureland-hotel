@@ -71,13 +71,13 @@ FROM            ACCOUNTING INNER JOIN
         ConflictDetection="CompareAllValues" 
         DeleteCommand="DELETE FROM ACCOUNTING WHERE AccountingID = @original_AccountingID" 
         OldValuesParameterFormatString="original_{0}" 
-        UpdateCommand="UPDATE    ACCOUNTING SET   [AccountingDate] = @AccountingDate, [AccountingCost] = @AccountingCost, 
+        
+        UpdateCommand="UPDATE    ACCOUNTING SET    [AccountingCost] = @AccountingCost, 
                      [AccountingDescription] = @AccountingDescription WHERE [AccountingID] = @original_AccountingID"  >
         <DeleteParameters>
             <asp:Parameter Name="original_AccountingID" />
         </DeleteParameters>
         <UpdateParameters>
-            <asp:Parameter Name="AccountingDate" />
             <asp:Parameter Name="AccountingCost" />
             <asp:Parameter Name="AccountingDescription" />
             <asp:Parameter Name="original_AccountingID" />
