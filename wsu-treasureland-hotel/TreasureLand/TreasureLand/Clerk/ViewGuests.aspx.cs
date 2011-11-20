@@ -319,7 +319,7 @@ namespace TreasureLand.Clerk
             txtServicesTotal.Text = GuestDB.getTotal(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text)).ToString();
 
             //get the cost of the room
-            txtRoomTotal.Text = (Convert.ToDecimal(gvRoomCost.Rows[0].Cells[1].Text) * Convert.ToDecimal(gvRoomCost.Rows[0].Cells[2].Text)).ToString();
+            txtRoomTotal.Text = (gvRoomCost.Rows[0].Cells[1].Text).ToString();
             
             //get the discount
             ArrayList myArrList = new ArrayList();

@@ -131,7 +131,7 @@
                         <asp:BoundField DataField="RoomType" HeaderText="Room Type" />
                         <asp:BoundField DataField="Nights" HeaderText="Number of Nights" />
                         <asp:BoundField DataField="QuotedRate" DataFormatString="{0:0.00}" 
-                            HeaderText="Cost Per Night" />
+                            HeaderText="Total Room Cost" />
                     </Columns>
                 </asp:GridView>
                 <br />
