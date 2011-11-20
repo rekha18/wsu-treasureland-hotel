@@ -206,16 +206,12 @@ namespace TreasureLand.App_Code
             }            
         }
         
-<<<<<<< .mine
         /// <summary>
         /// 
         /// </summary>
         /// <param name="roomID"></param>
         /// <returns></returns>
-        public static IEnumerable getGuestRoom(int roomID)
-=======
         public static IEnumerable getGuestRoom(int roomID, int reservationID)
->>>>>>> .r269
         {
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel = "SELECT Reservation.ReservationID, ReservationDetail.Nights, ReservationDetail.QuotedRate, HotelRoomType.RoomType " +
@@ -514,14 +510,13 @@ namespace TreasureLand.App_Code
         public static ArrayList getGuestInformation(int reservationID)
         {
             SqlConnection con = new SqlConnection(getConnectionString());
-            string sel = "SELECT Reservation.ReservationID, HotelRoomType.RoomType, ReservationDetail.RoomID, ReservationDetail.NumberOfAdults, ReservationDetail.NumberOfChildren, Guest.GuestFirstName, " +
-                         "Guest.GuestSurName, Guest.GuestPhone, ReservationDetail.CheckinDate, ReservationDetail.Nights " +
-                         "FROM HotelRoomType INNER JOIN " + 
-                         "Room ON HotelRoomType.HotelRoomTypeID = Room.HotelRoomTypeID INNER JOIN " +
-                         "ReservationDetail ON Room.RoomID = ReservationDetail.RoomID INNER JOIN " +
-                         "Reservation INNER JOIN " +
-                         "Guest ON Reservation.GuestID = Guest.GuestID ON ReservationDetail.ReservationID = Reservation.ReservationID WHERE "+
-                         "ReservationDetail.ReservationDetailID = " + reservationID;
+            string sel = "SELECT Reservation.ReservationID, HotelRoomType.RoomType, Room.RoomNumbers, ReservationDetail.NumberOfAdults, ReservationDetail.NumberOfChildren, " +
+                      "Guest.GuestFirstName, Guest.GuestSurName, Guest.GuestPhone, ReservationDetail.CheckinDate, ReservationDetail.Nights " +
+                      "FROM Reservation INNER JOIN " +
+                      "ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID INNER JOIN " +
+                      "Guest ON Reservation.GuestID = Guest.GuestID INNER JOIN " + 
+                      "Room ON ReservationDetail.RoomID = Room.RoomID INNER JOIN " +
+                      "HotelRoomType ON Room.HotelRoomTypeID = HotelRoomType.HotelRoomTypeID";
 
 
             SqlCommand cmd = new SqlCommand(sel, con);
@@ -533,7 +528,7 @@ namespace TreasureLand.App_Code
                 // add the column value to the ArrayList 
                 myArrList.Add(dr["ReservationID"].ToString());
                 myArrList.Add(dr["RoomType"].ToString());
-                myArrList.Add(dr["RoomID"].ToString());
+                myArrList.Add(dr["RoomNumbers"].ToString());
                 myArrList.Add(dr["NumberOfAdults"].ToString());
                 myArrList.Add(dr["NumberofChildren"].ToString());
                 myArrList.Add(dr["GuestFirstName"].ToString());
