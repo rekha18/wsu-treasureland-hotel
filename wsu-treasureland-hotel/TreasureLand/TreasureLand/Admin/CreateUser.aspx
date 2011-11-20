@@ -40,9 +40,6 @@
                             <p>
                                 <asp:Label ID="EmailLabel" runat="server" AssociatedControlID="Email">E-mail:</asp:Label>
                                 <asp:TextBox ID="Email" runat="server" CssClass="textEntry"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="Email"
-                                    CssClass="failureNotification" ErrorMessage="E-mail is required." ToolTip="E-mail is required."
-                                    ValidationGroup="RegisterUserValidationGroup">*</asp:RequiredFieldValidator>
                             </p>
                             <p>
                                 <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Password:</asp:Label>
@@ -63,7 +60,7 @@
                             </p>
                         </fieldset>
                         <p class="submitButton">
-                            <asp:Button ID="CreateUserButton" runat="server" CommandName="MoveNext" Text="Create User"
+                            <asp:Button ID="CreateUserButton" runat="server" CommandName="MoveComplete" Text="Create User"
                                 ValidationGroup="RegisterUserValidationGroup" />
                         </p>
                     </div>
@@ -75,7 +72,7 @@
     <ContentTemplate>
         <table>
             <tr>
-                <td align="center" colspan="2">
+                <td align="center">
                     Complete</td>
             </tr>
             <tr>
@@ -83,9 +80,10 @@
                     Your account has been successfully created.</td>
             </tr>
             <tr>
-                <td align="right" colspan="2">
+                <td align="right">
                     <asp:Button ID="ContinueButton" runat="server" CausesValidation="False" 
-                        CommandName="Continue" Text="Continue" ValidationGroup="RegisterUser" />
+                        Text="Finish" ValidationGroup="RegisterUser" 
+                        PostBackUrl="~/Admin/AdminDefault.aspx" />
                 </td>
             </tr>
         </table>
