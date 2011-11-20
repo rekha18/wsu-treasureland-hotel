@@ -16,11 +16,18 @@ namespace TreasureLand.Clerk
 
         protected void Page_Load(object sender, EventArgs e)
         {
-          reserving.roomID = -1;
-          reserving.returnView = 0;
-          reserving = GetRoomNumber();
-          mvUpdateReservation.ActiveViewIndex = reserving.returnView;
-          lblReservationNumber.Text = reserving.roomID.ToString();
+            if (!IsPostBack)
+            {
+                reserving.roomID = -1;
+                reserving.returnView = 0;
+                lblReservationNumber.Text = reserving.roomID.ToString();
+                mvUpdateReservation.ActiveViewIndex = reserving.returnView;
+            }
+
+            reserving = GetRoomNumber();
+            
+            
+            
         }
 
         protected void btnLocateReservation_Click(object sender, EventArgs e)
@@ -42,7 +49,6 @@ namespace TreasureLand.Clerk
             lblSurName.Text = gvGuest.SelectedRow.Cells[1].Text;
             lblFirstName.Text = gvGuest.SelectedRow.Cells[2].Text;
             lblPhone.Text = gvGuest.SelectedRow.Cells[3].Text;
-
         }
 
 
@@ -110,7 +116,6 @@ namespace TreasureLand.Clerk
             reserving.returnView = 1;
             reserving.reservationID = Convert.ToInt16(lblReservationNumber.Text);
             Response.Redirect("SelectRoom.aspx");
-            Session.RemoveAll();
         }
 
         #region Session Control
@@ -126,7 +131,7 @@ namespace TreasureLand.Clerk
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-
+     
         }
     }
 }
