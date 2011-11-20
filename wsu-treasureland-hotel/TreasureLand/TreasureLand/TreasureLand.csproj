@@ -206,6 +206,7 @@
     <Compile Include="Admin\ManageDiscounts.aspx.designer.cs">
       <DependentUpon>ManageDiscounts.aspx</DependentUpon>
     </Compile>
+    <Content Include="App_Code\ExpenseDB.cs" />
     <Compile Include="LoginRedirect.aspx.cs">
       <DependentUpon>LoginRedirect.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
