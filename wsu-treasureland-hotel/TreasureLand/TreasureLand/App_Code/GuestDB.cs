@@ -51,6 +51,13 @@ namespace TreasureLand.App_Code
             return dr;
         }
 
+        /// <summary>
+        /// Gets the guest that needs to be checked in
+        /// </summary>
+        /// <param name="FirstName">Guest first name</param>
+        /// <param name="SurName">Guest surname</param>
+        /// <param name="ReservationID">ReservationID</param>
+        /// <returns></returns>
         public static IEnumerable LocateGuestCheckIn(string FirstName, string SurName, string ReservationID)
         {
             SqlConnection con = new SqlConnection(getConnectionString());
@@ -64,7 +71,13 @@ namespace TreasureLand.App_Code
             return dr;
         }
 
-        //public static IEnumerable LocateGuestFolio(string Salutation, string FirstName, string Surname, string Phone, string CreditCardNum, string Expiration, string Address, string City, string State, string Country, string PostalCode, string Email)
+        /// <summary>
+        /// Locates the guestFolio
+        /// </summary>
+        /// <param name="FirstName">Guest First Name</param>
+        /// <param name="SurName">Guest Surname</param>
+        /// <param name="PhoneNumber">Guest PhoneNumber</param>
+        /// <returns></returns>
         public static IEnumerable LocateGuestFolio(string FirstName, string SurName, string PhoneNumber)
         {
             SqlConnection con = new SqlConnection(getConnectionString());
@@ -80,6 +93,10 @@ namespace TreasureLand.App_Code
             return dr;
         }
 
+        /// <summary>
+        /// gets all of the guest services
+        /// </summary>
+        /// <returns>all guest services</returns>
         public static IEnumerable getGuestServices()
         {
             SqlConnection con = new SqlConnection(getConnectionString());
@@ -92,6 +109,10 @@ namespace TreasureLand.App_Code
             return dr;
         }
 
+        /// <summary>
+        /// gets all discounts
+        /// </summary>
+        /// <returns>all available discounts</returns>
         public static IEnumerable getAllDiscounts()
         {
             SqlConnection con = new SqlConnection(getConnectionString());
@@ -132,8 +153,69 @@ namespace TreasureLand.App_Code
                 return 0;
         }
 
+
+        /// <summary>
+        /// Updates the guest Information
+        /// </summary>
+        /// <param name="GuestCompany"></param>
+        /// <param name="GuestAddress"></param>
+        /// <param name="GuestCity"></param>
+        /// <param name="GuestRegion"></param>
+        /// <param name="GuestPostalCode"></param>
+        /// <param name="GuestCountry"></param>
+        /// <param name="GuestFax"></param>
+        /// <param name="GuestEmail"></param>
+        /// <param name="GuestComments"></param>
+        /// <param name="GuestIDNumber"></param>
+        /// <param name="GuestIDCountry"></param>
+        /// <param name="GuestIDComment"></param>
+        /// <param name="GuestID"></param>
+        /// <returns>returns if the update succeeded</returns>
+        public static int updateGuestInformation(string GuestCompany, string GuestAddress, string GuestCity, String GuestRegion, string GuestPostalCode, string GuestCountry, 
+                        string GuestFax, string GuestEmail, string GuestComments, string GuestIDNumber, string GuestIDCountry, string GuestIDComment, int GuestID)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(getConnectionString());
+                string update =   "UPDATE Guest " + 
+                        "SET GuestCompany = @GuestCompany, GuestAddress = @GuestAddress, GuestCity = @GuestCity, GuestRegion = @GuestRegion, GuestPostalCode = @GuestPostalCode, " +
+                        "GuestCountry = @GuestCountry, GuestFax = @GuestFax, GuestEmail = @GuestEmail, GuestComments =@GuestComments, GuestIDNumber = @GuestIDNumber, " +
+                        "GuestIDIssueCountry = @GuestIDIssueCountry, GuestIDComment = @GuestIDComment WHERE " +
+                        "GuestID = @GuestID";
+                conn.Open(); //Open the connection
+                SqlCommand connCommand = new SqlCommand(update, conn);
+                connCommand.Parameters.AddWithValue("@GuestCompany", GuestCompany);
+                connCommand.Parameters.AddWithValue("@GuestAddress", GuestAddress);
+                connCommand.Parameters.AddWithValue("@GuestCity", GuestCity);
+                connCommand.Parameters.AddWithValue("@GuestRegion", GuestRegion);
+                connCommand.Parameters.AddWithValue("@GuestPostalCode", GuestPostalCode);
+                connCommand.Parameters.AddWithValue("@GuestCountry", GuestCountry);
+                connCommand.Parameters.AddWithValue("@GuestFax", GuestFax);
+                connCommand.Parameters.AddWithValue("@GuestEmail", GuestEmail);
+                connCommand.Parameters.AddWithValue("@GuestComments", GuestComments);
+                connCommand.Parameters.AddWithValue("@GuestIDNumber", GuestID);
+                connCommand.Parameters.AddWithValue("@GuestIDIssueCountry", GuestIDCountry);
+                connCommand.Parameters.AddWithValue("@GuestIDComment", GuestIDComment);
+                connCommand.Parameters.AddWithValue("@GuestID", GuestID);
+                return connCommand.ExecuteNonQuery(); 
+            }
+            catch (Exception e)
+            {
+                
+                throw e;
+            }            
+        }
         
+<<<<<<< .mine
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="roomID"></param>
+        /// <returns></returns>
+        public static IEnumerable getGuestRoom(int roomID)
+=======
         public static IEnumerable getGuestRoom(int roomID, int reservationID)
+>>>>>>> .r269
         {
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel = "SELECT Reservation.ReservationID, ReservationDetail.Nights, ReservationDetail.QuotedRate, HotelRoomType.RoomType " +
@@ -275,7 +357,6 @@ namespace TreasureLand.App_Code
                 myArrList.Add(dr["GuestComments"].ToString());
             }
             return myArrList;
-
         }
 
         /// <summary>
@@ -321,18 +402,23 @@ namespace TreasureLand.App_Code
 
         }
 
-        public static int addDiscount(int discountID, int reservationID)
+        /// <summary>
+        /// adds a discount to the selected reservation
+        /// </summary>
+        /// <param name="discountID"></param>
+        /// <param name="reservationID"></param>
+        /// <returns></returns>
+        public static int addDiscount(int discountID, int reservationDetailID)
         {
             SqlConnection conn = new SqlConnection(getConnectionString());
-
             try
             {
                 conn.Open(); //Open the connection
                 string update = "UPDATE [ReservationDetail] SET [DiscountID] = @discountID " +
-                      "WHERE [ReservationDetailID] = @reservationID";
+                      "WHERE [ReservationDetailID] = @reservationDetailID";
                 SqlCommand connCommand = new SqlCommand(update, conn);
                 connCommand.Parameters.AddWithValue("@discountID", discountID);
-                connCommand.Parameters.AddWithValue("@reservationID", reservationID);
+                connCommand.Parameters.AddWithValue("@reservationDetailID", reservationDetailID);
                 return connCommand.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -340,6 +426,13 @@ namespace TreasureLand.App_Code
                 throw e;
             }
         }
+
+        /// <summary>
+        /// updates a reservation status 
+        /// </summary>
+        /// <param name="reservationStatus">new reservation status </param>
+        /// <param name="reservationID">reservation ID to be updated</param>
+        /// <returns></returns>
         public static int updateReservationStatus(char reservationStatus, int reservationID)
         {
             SqlConnection conn = new SqlConnection(getConnectionString());
@@ -360,6 +453,12 @@ namespace TreasureLand.App_Code
             }
         }
 
+        /// <summary>
+        /// updates a reservationDetail status 
+        /// </summary>
+        /// <param name="reservationStatus">new reservation status </param>
+        /// <param name="reservationID">reservation Detail ID to be updated</param>
+        /// <returns></returns>
         public static int updateReservationDetail(char status, int reservationID)
         {
             SqlConnection conn = new SqlConnection(getConnectionString());
@@ -381,6 +480,12 @@ namespace TreasureLand.App_Code
 
         }
 
+        /// <summary>
+        /// updates a Room status 
+        /// </summary>
+        /// <param name="reservationStatus">new room status </param>
+        /// <param name="reservationID">room ID to be updated</param>
+        /// <returns></returns>
         public static int updateRoomStatus(char roomStatus, int roomID)
         {
             SqlConnection conn = new SqlConnection(getConnectionString());
@@ -409,7 +514,7 @@ namespace TreasureLand.App_Code
         public static ArrayList getGuestInformation(int reservationID)
         {
             SqlConnection con = new SqlConnection(getConnectionString());
-            string sel = "SELECT ReservationDetail.ReservationDetailID, HotelRoomType.RoomType, ReservationDetail.RoomID, ReservationDetail.NumberOfAdults, ReservationDetail.NumberOfChildren, Guest.GuestFirstName, " +
+            string sel = "SELECT Reservation.ReservationID, HotelRoomType.RoomType, ReservationDetail.RoomID, ReservationDetail.NumberOfAdults, ReservationDetail.NumberOfChildren, Guest.GuestFirstName, " +
                          "Guest.GuestSurName, Guest.GuestPhone, ReservationDetail.CheckinDate, ReservationDetail.Nights " +
                          "FROM HotelRoomType INNER JOIN " + 
                          "Room ON HotelRoomType.HotelRoomTypeID = Room.HotelRoomTypeID INNER JOIN " +
@@ -426,7 +531,7 @@ namespace TreasureLand.App_Code
             while (dr.Read())
             {
                 // add the column value to the ArrayList 
-                myArrList.Add(dr["ReservationDetailID"].ToString());
+                myArrList.Add(dr["ReservationID"].ToString());
                 myArrList.Add(dr["RoomType"].ToString());
                 myArrList.Add(dr["RoomID"].ToString());
                 myArrList.Add(dr["NumberOfAdults"].ToString());
@@ -440,6 +545,40 @@ namespace TreasureLand.App_Code
             return myArrList;
         }
 
+        /// <summary>
+        /// gets the guest ID based on the ReservationID
+        /// </summary>
+        /// <param name="FirstName"></param>
+        /// <param name="SurName"></param>
+        /// <param name="ReservationID"></param>
+        /// <returns></returns>
+        public static int getGuestID(int ReservationID)
+        {
+            SqlConnection con = new SqlConnection(getConnectionString());
+            string sel = "SELECT GuestID " +
+                          "FROM Reservation " +
+                          "Where ReservationID = @ReservationID";
+            
+                SqlCommand cmd =
+            new SqlCommand(sel, con);
+            con.Open();
+            cmd.Parameters.AddWithValue("@ReservationID", ReservationID);
+            SqlDataReader dr = cmd.ExecuteReader();
+            ArrayList myArrList = new ArrayList();
+            while (dr.Read())
+            {
+                // add the column value to the ArrayList 
+                myArrList.Add(dr["GuestID"].ToString());
+            }
+            return Convert.ToInt32(myArrList[0].ToString());
+        }
+
+        /// <summary>
+        /// check to see if there are any ReservationDetail IDs of the provided ID with the status 'C'
+        /// 
+        /// </summary>
+        /// <param name="reservationID"></param>
+        /// <returns>returns 1 if there are rows, 0 if there are no rows</returns>
         public static int countConfirmedReservationDetail(int reservationID)
         {
 
@@ -455,9 +594,14 @@ namespace TreasureLand.App_Code
             }
             else 
                 return 0;
-
         }
 
+        /// <summary>
+        /// check to see if there are any ReservationDetail IDs of the provided ID with the status 'A'
+        /// 
+        /// </summary>
+        /// <param name="reservationID"></param>
+        /// <returns>returns 1 if there are rows, 0 if there are no rows</returns>
         public static int countActiveReservationDetail(int reservationID)
         {
 

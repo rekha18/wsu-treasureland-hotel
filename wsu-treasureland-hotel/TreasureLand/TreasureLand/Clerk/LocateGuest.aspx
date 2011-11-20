@@ -67,11 +67,22 @@
             <table style="width: 84%">
                 <tr>
                     <td style="width: 133px">
+                        Customer ID Number:</td>
+                    <td class="style1" style="width: 156px">
+                        <asp:Label ID="lblCustomerId" runat="server"></asp:Label>
+                    </td>
+                    <td style="width: 148px">
+                        &nbsp;</td>
+                    <td style="width: 134px">
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td style="width: 133px">
                         Reservation Number:</td>
                     <td class="style1" style="width: 156px">
                         <asp:Label ID="txtShowReservationNum" runat="server"></asp:Label>
                     </td>
-                    <td style="width: 116px">
+                    <td style="width: 148px">
                         First Name:</td>
                     <td style="width: 134px">
                         <asp:Label ID="txtShowFirstName" runat="server"></asp:Label>
@@ -83,7 +94,7 @@
                     <td class="style1" style="width: 156px">
                         <asp:Label ID="txtShowRoomType" runat="server"></asp:Label>
                     </td>
-                    <td style="width: 116px">
+                    <td style="width: 148px">
                         Surname:</td>
                     <td style="width: 134px">
                         <asp:Label ID="txtShowSurname" runat="server"></asp:Label>
@@ -95,7 +106,7 @@
                     <td class="style1" style="width: 156px">
                         <asp:Label ID="txtShowRoomNum" runat="server"></asp:Label>
                     </td>
-                    <td style="width: 116px">
+                    <td style="width: 148px">
                         Phone Number:</td>
                     <td style="width: 134px">
                         <asp:Label ID="txtShowPhone" runat="server"></asp:Label>
@@ -107,11 +118,89 @@
                     <td class="style1" style="width: 156px">
                         <asp:Label ID="txtShowCheckOut" runat="server"></asp:Label>
                     </td>
-                    <td style="width: 116px">
+                    <td style="width: 148px">
                         Number of Guests:</td>
                     <td>
                         <asp:Label ID="txtShowNumGuests" runat="server"></asp:Label>
                     </td>
+                </tr>
+                <tr>
+                    <td style="width: 133px">
+                        Email:</td>
+                    <td class="style1" style="width: 156px">
+                        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                    </td>
+                    <td style="width: 148px">
+                        Fax Number:</td>
+                    <td>
+                        <asp:TextBox ID="txtFax" runat="server" Width="181px"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 133px">
+                        Company:</td>
+                    <td class="style1" style="width: 156px">
+                        <asp:TextBox ID="txtCompany" runat="server"></asp:TextBox>
+                    </td>
+                    <td style="width: 148px">
+                        ID Number:</td>
+                    <td>
+                        <asp:TextBox ID="txtIdNumber" runat="server" Width="181px"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 133px">
+                        Address:</td>
+                    <td class="style1" style="width: 156px">
+                        <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
+                    </td>
+                    <td style="width: 148px">
+                        ID Issue Country:</td>
+                    <td>
+                        <asp:TextBox ID="txtIdCountry" runat="server" Width="181px"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 133px">
+                        City:</td>
+                    <td class="style1" style="width: 156px">
+                        <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
+                    </td>
+                    <td style="width: 148px">
+                        ID Comments:</td>
+                    <td>
+                        <asp:TextBox ID="txtIdComments" runat="server" Width="181px"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 133px">
+                        Region:</td>
+                    <td class="style1" style="width: 156px">
+                        <asp:TextBox ID="txtRegion" runat="server"></asp:TextBox>
+                    </td>
+                    <td style="width: 148px">
+                        &nbsp;</td>
+                    <td rowspan="3">
+                        <asp:TextBox ID="txtComments" runat="server" Height="46px" TextMode="MultiLine"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 133px">
+                        Postal Code:</td>
+                    <td class="style1" style="width: 156px">
+                        <asp:TextBox ID="txtPostalCode" runat="server"></asp:TextBox>
+                    </td>
+                    <td style="width: 148px">
+                        Comments:</td>
+                </tr>
+                <tr>
+                    <td style="width: 133px">
+                        Country:</td>
+                    <td class="style1" style="width: 156px">
+                        <asp:TextBox ID="txtCountry" runat="server"></asp:TextBox>
+                    </td>
+                    <td style="width: 148px">
+                        &nbsp;</td>
                 </tr>
             </table>
             <br />
