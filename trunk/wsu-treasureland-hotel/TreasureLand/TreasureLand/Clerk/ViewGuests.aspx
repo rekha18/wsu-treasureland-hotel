@@ -56,7 +56,7 @@
                         <asp:BoundField DataField="RoomID" HeaderText="RoomID" />
                         <asp:BoundField DataField="reservationDetailID" 
                             HeaderText="ReservationDetailID" SortExpression="reservationDetailID" />
-                        <asp:BoundField DataField="Status" HeaderText="Status" />
+                        <asp:BoundField DataField="ReservationStatus" HeaderText="Status" />
                         <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                     </Columns>
                 </asp:GridView>
@@ -128,7 +128,7 @@
                 <asp:GridView ID="gvRoomCost" runat="server" AutoGenerateColumns="False" 
                     Width="658px">
                     <Columns>
-                        <asp:BoundField DataField="RoomDescription" HeaderText="Room Type" />
+                        <asp:BoundField DataField="RoomType" HeaderText="Room Type" />
                         <asp:BoundField DataField="Nights" HeaderText="Number of Nights" />
                         <asp:BoundField DataField="QuotedRate" DataFormatString="{0:0.00}" 
                             HeaderText="Cost Per Night" />
