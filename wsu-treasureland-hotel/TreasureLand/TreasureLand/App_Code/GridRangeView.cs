@@ -346,10 +346,12 @@ namespace TreasureLand.App_Code
             }
             catch (Exception e)
             {
+                return "There was an error connecting to the database.<br />" +
+                   "Either press back and try again or check your wireless connection.<br />" +
+                   "Error details: <br />" +
+                   e.Message;
             }
 
-            return "There was an error connecting to the database.<br />" +
-                   "Either press back and try again or check your wireless connection.";
         }
 
         /// <summary>
