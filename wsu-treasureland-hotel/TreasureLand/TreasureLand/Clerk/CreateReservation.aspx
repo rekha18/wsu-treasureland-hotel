@@ -250,7 +250,7 @@
                             <td style="width: 244px">
                                 Checkin Date:</td>
                             <td style="width: 239px">
-                                Number of Days:</td>
+                                Number of Nights:</td>
                             <td>
                                 Checkout Date:</td>
                         </tr>
