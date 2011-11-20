@@ -11,55 +11,63 @@ namespace TreasureLand.Clerk
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         protected void btnHome_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ClerkDefault.aspx");
             Session.RemoveAll();
+            Response.Redirect("ClerkDefault.aspx");
+
         }
 
         protected void btnCheckIn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("LocateGuest.aspx");
             Session.RemoveAll();
+            Response.Redirect("LocateGuest.aspx");
+           
         }
 
         protected void Checkout_Click(object sender, EventArgs e)
         {
-            Response.Redirect("LocateReservation.aspx");
             Session.RemoveAll();
+            Response.Redirect("LocateReservation.aspx");
+            
         }
 
         protected void btnUpdateGuestFolio_Click(object sender, EventArgs e)
         {
-            Response.Redirect("UpdateGuestFolio.aspx");
             Session.RemoveAll();
+            Response.Redirect("UpdateGuestFolio.aspx");
+            
         }
 
         protected void btnCreateReservation_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CreateReservation.aspx");
             Session.RemoveAll();
+            Response.Redirect("CreateReservation.aspx");
+            
         }
 
         protected void btnUpdateReservation_Click(object sender, EventArgs e)
         {
-            Response.Redirect("UpdateReservation.aspx");
             Session.RemoveAll();
+            Response.Redirect("UpdateReservation.aspx");
+            
         }
 
         protected void btnViewGuest_Click(object sender, EventArgs e)
         {
-            Response.Redirect("ViewGuests.aspx");
             Session.RemoveAll();
+            Response.Redirect("ViewGuests.aspx");
+            
         }
 
         protected void btnReports_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Reports.aspx");
             Session.RemoveAll();
+            Response.Redirect("Reports.aspx");
+            
         }
     }
 }
