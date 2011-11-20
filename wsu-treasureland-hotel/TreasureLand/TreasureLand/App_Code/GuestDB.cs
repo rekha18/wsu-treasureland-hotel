@@ -109,7 +109,7 @@ namespace TreasureLand.App_Code
         /// </summary>
         /// <param name="reservationID">reservation Detail ID</param>
         /// <returns>Total bill</returns>
-        public static double getTotal(int reservationID)
+        public static double getTotal(decimal reservationID)
         {
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel = "SELECT SUM(BillingAmount * BillingItemQty) AS BillTotal FROM ReservationDetailBilling WHERE ReservationDetailID = " + reservationID;
@@ -125,19 +125,20 @@ namespace TreasureLand.App_Code
             }
             if (myArrList[0] != "")
             {
-                return Convert.ToDouble(myArrList[0]);
+               
+                return (Convert.ToDouble(myArrList[0]));
             }
             else
                 return 0;
         }
 
         
-        public static IEnumerable getGuestRoom(int roomID)
+        public static IEnumerable getGuestRoom(int roomID, int reservationID)
         {
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel = "SELECT Reservation.ReservationID, ReservationDetail.Nights, ReservationDetail.QuotedRate, HotelRoomType.RoomType " +
                          "FROM Reservation INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID INNER JOIN " +
-                         "Room ON ReservationDetail.RoomID = Room.RoomID INNER JOIN HotelRoomType ON Room.HotelRoomTypeID = HotelRoomType.HotelRoomTypeID WHERE ReservationDetail.RoomID = '" + roomID + "' AND (ReservationDetail.Status = 'A' OR ReservationDetail.Status = 'F')";
+                         "Room ON ReservationDetail.RoomID = Room.RoomID INNER JOIN HotelRoomType ON Room.HotelRoomTypeID = HotelRoomType.HotelRoomTypeID WHERE Reservation.ReservationID = '" + reservationID + "' AND ReservationDetail.RoomID = '" + roomID + "' AND (ReservationDetail.Status = 'A' OR ReservationDetail.Status = 'F')";
             SqlCommand cmd =
             new SqlCommand(sel, con);
             con.Open();
