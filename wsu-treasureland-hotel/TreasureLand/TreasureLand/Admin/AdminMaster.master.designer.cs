@@ -94,6 +94,15 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnManageUsers;
         
         /// <summary>
+        /// btnSwitchRoles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSwitchRoles;
+        
+        /// <summary>
         /// adminContentHolder control.
         /// </summary>
         /// <remarks>
