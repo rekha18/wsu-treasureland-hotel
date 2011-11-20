@@ -127,6 +127,20 @@ namespace TreasureLand.Clerk
                 }
                 //clears the error label
                 lblError.Text = "";
+
+                //disables the check out, add service, and adjust discount buttons if the reservation is not active
+                if (gvGuest.SelectedRow.Cells[5].Text.ToString() == "A")
+                {
+                    btnAddService.Enabled = false;
+                    btnAdjustDiscount.Enabled = false;
+                    btnGoToCheckOut.Enabled = false;
+                }
+                else
+                {
+                    btnAddService.Enabled = true;
+                    btnAdjustDiscount.Enabled = true;
+                    btnGoToCheckOut.Enabled = true;
+                }
             }
             else
             {
