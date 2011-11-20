@@ -316,10 +316,10 @@ namespace TreasureLand.Clerk
         private void updateGuestPriceTotals()
         {
             //makes a call to the database and totals all the selected guests cost of services
-            txtServicesTotal.Text = GuestDB.getTotal(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text)).ToString();
+            txtServicesTotal.Text = string.Format("{0:0.00}",(GuestDB.getTotal(Convert.ToDecimal(gvGuest.SelectedRow.Cells[4].Text)).ToString()));
 
             //get the cost of the room
-            txtRoomTotal.Text = (gvRoomCost.Rows[0].Cells[1].Text).ToString();
+            txtRoomTotal.Text = (gvRoomCost.Rows[0].Cells[2].Text).ToString();
             
             //get the discount
             ArrayList myArrList = new ArrayList();
