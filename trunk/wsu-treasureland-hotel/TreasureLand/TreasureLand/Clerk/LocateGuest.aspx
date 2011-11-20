@@ -2,43 +2,40 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:MultiView ID="mvLocateGuest" runat="server" ActiveViewIndex="0">
         <asp:View ID="vLocateGuest" runat="server">
-            <table class="style1" style="width: 676px">
+            <table class="style1" style="width: 610px">
                 <tr>
-                    <td class="style18">
+                    <td class="style18" style="width: 85px">
                         Reservation #:</td>
-                    <td class="style24">
-                        <asp:TextBox ID="txtReservationNum" runat="server"></asp:TextBox>
+                    <td class="style24" style="width: 102px">
+                        <asp:TextBox ID="txtReservationNum" runat="server" Width="80px"></asp:TextBox>
                     </td>
                     <td class="style12" style="width: 80px">
                         First Name:</td>
                     <td class="style22" style="width: 136px">
-                        <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
-                    </td>
-                    <td class="style22" style="width: 136px">
-                        &nbsp;</td>
-                    <td class="style13">
-                        <asp:Label ID="lblErrorMessageMissingData" runat="server" ForeColor="Red"></asp:Label>
+                        <asp:TextBox ID="txtFirstName" runat="server" Width="150px"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
-                    <td class="style19">
+                    <td class="style19" style="width: 85px">
                         <asp:Button ID="btnLocateGuest" runat="server" OnClick="btnLocateGuest_Click" 
-                            Text="Locate Guest" ValidationGroup="lookup" />
+                            Text="Locate Guest" ValidationGroup="vgView" />
                     </td>
-                    <td class="style25">
+                    <td class="style25" style="width: 102px">
                         &nbsp;</td>
                     <td class="style4" style="width: 80px">
                         Surname:</td>
                     <td class="style23" style="width: 136px">
-                        <asp:TextBox ID="txtSurname" runat="server"></asp:TextBox>
-                    </td>
-                    <td class="style23" style="width: 136px">
-                        &nbsp;</td>
-                    <td class="style5">
-                        <asp:Label ID="lblErrorMessageNoCustomersFound" runat="server" ForeColor="Red"></asp:Label>
+                        <asp:TextBox ID="txtSurname" runat="server" Width="150px"></asp:TextBox>
                     </td>
                 </tr>
             </table>
+            <asp:CompareValidator ID="cvReservationID" runat="server" 
+                    ControlToValidate="txtReservationNum" Display="None" 
+                    ErrorMessage="Reservation must be a number" ForeColor="Red" 
+                    Operator="DataTypeCheck" Type="Integer" ValidationGroup="vgView"></asp:CompareValidator>
+            <br />
+            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" 
+                ValidationGroup="vgView" />
             <br />
             <asp:GridView ID="gvGuest" runat="server" AutoGenerateColumns="False" 
                                     onselectedindexchanged="gvGuest_SelectedIndexChanged" 
