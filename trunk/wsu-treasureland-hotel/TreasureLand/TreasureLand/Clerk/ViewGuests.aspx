@@ -56,6 +56,7 @@
                         <asp:BoundField DataField="RoomID" HeaderText="RoomID" />
                         <asp:BoundField DataField="reservationDetailID" 
                             HeaderText="ReservationDetailID" SortExpression="reservationDetailID" />
+                        <asp:BoundField DataField="Status" HeaderText="Status" />
                         <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                     </Columns>
                 </asp:GridView>
@@ -306,7 +307,7 @@
                 <asp:Button ID="btnPrint" runat="server" onclick="btnPrint_Click" 
                     style="height: 26px" Text="Print Reciept" Width="100px" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="GoToCheckOut" runat="server" onclick="GoToCheckOut_Click" 
+                <asp:Button ID="btnGoToCheckOut" runat="server" onclick="GoToCheckOut_Click" 
                     Text="CheckOut" Width="100px" />
                 <br />
                 <br />
