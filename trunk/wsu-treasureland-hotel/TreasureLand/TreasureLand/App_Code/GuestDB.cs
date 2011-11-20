@@ -137,7 +137,7 @@ namespace TreasureLand.App_Code
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel = "SELECT Reservation.ReservationID, ReservationDetail.Nights, ReservationDetail.QuotedRate, HotelRoomType.RoomType " +
                          "FROM Reservation INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID INNER JOIN " +
-                         "Room ON ReservationDetail.RoomID = Room.RoomID INNER JOIN HotelRoomType ON Room.HotelRoomTypeID = HotelRoomType.HotelRoomTypeID WHERE ReservationDetail.RoomID = '" + roomID + "' AND ReservationDetail.Status = 'A'";
+                         "Room ON ReservationDetail.RoomID = Room.RoomID INNER JOIN HotelRoomType ON Room.HotelRoomTypeID = HotelRoomType.HotelRoomTypeID WHERE ReservationDetail.RoomID = '" + roomID + "' AND (ReservationDetail.Status = 'A' OR ReservationDetail.Status = 'F')";
             SqlCommand cmd =
             new SqlCommand(sel, con);
             con.Open();
