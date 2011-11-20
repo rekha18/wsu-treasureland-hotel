@@ -20,5 +20,6 @@ namespace TreasureLand.App_Code
         public string reserveDate;
         public int daysStaying;
         public int view;
+        public int reservationID;
     }
 }
