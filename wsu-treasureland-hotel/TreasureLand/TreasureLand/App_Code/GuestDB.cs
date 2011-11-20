@@ -42,8 +42,8 @@ namespace TreasureLand.App_Code
         {
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel =
-                "SELECT Reservation.ReservationID, Guest.GuestFirstName, Guest.GuestSurName, ReservationDetail.ReservationDetailID, ReservationDetail.RoomID, ReservationDetail.Status FROM Reservation INNER JOIN Guest ON Reservation.GuestID = Guest.GuestID INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID " +
-                "WHERE (Guest.GuestFirstName = '" + FirstName + "' OR Guest.GuestSurName = '" + SurName + "' OR Reservation.ReservationID = '" + ReservationID + "') AND ReservationDetail.Status ='A'";
+                "SELECT Reservation.ReservationID, Guest.GuestFirstName, Guest.GuestSurName, ReservationDetail.ReservationDetailID, ReservationDetail.RoomID, Reservation.ReservationStatus FROM Reservation INNER JOIN Guest ON Reservation.GuestID = Guest.GuestID INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID " +
+                "WHERE (Guest.GuestFirstName = '" + FirstName + "' OR Guest.GuestSurName = '" + SurName + "' OR Reservation.ReservationID = '" + ReservationID + "') AND (Reservation.ReservationStatus ='A' OR Reservation.ReservationStatus = 'F')";
             SqlCommand cmd =
             new SqlCommand(sel, con);
             con.Open();
@@ -135,9 +135,9 @@ namespace TreasureLand.App_Code
         public static IEnumerable getGuestRoom(int roomID)
         {
             SqlConnection con = new SqlConnection(getConnectionString());
-            string sel = "SELECT Reservation.ReservationID, ReservationDetail.Nights, ReservationDetail.QuotedRate, Room.RoomDescription " +
+            string sel = "SELECT Reservation.ReservationID, ReservationDetail.Nights, ReservationDetail.QuotedRate, HotelRoomType.RoomType " +
                          "FROM Reservation INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID INNER JOIN " +
-                         "Room ON ReservationDetail.RoomID = Room.RoomID WHERE ReservationDetail.RoomID = '" + roomID + "' AND ReservationDetail.Status = 'A'";
+                         "Room ON ReservationDetail.RoomID = Room.RoomID INNER JOIN HotelRoomType ON Room.HotelRoomTypeID = HotelRoomType.HotelRoomTypeID WHERE ReservationDetail.RoomID = '" + roomID + "' AND ReservationDetail.Status = 'A'";
             SqlCommand cmd =
             new SqlCommand(sel, con);
             con.Open();
