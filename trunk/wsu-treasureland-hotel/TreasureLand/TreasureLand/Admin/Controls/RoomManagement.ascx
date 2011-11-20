@@ -19,9 +19,20 @@
             <Columns>
                 <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                 <asp:BoundField DataField="RoomNumbers" HeaderText="Room Number" SortExpression="RoomNumbers" />
-                <asp:BoundField DataField="RoomDescription" HeaderText="Description" SortExpression="RoomDescription" />
-                <asp:CheckBoxField DataField="RoomSmoking" HeaderText="Smoking?" SortExpression="RoomSmoking" />
-                <asp:BoundField DataField="RoomBedConfiguration" HeaderText="Bed Configuration" SortExpression="RoomBedConfiguration" />
+                <asp:TemplateField HeaderText="Description" SortExpression="RoomDescription">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("RoomDescription") %>'></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                            ControlToValidate="TextBox1" ForeColor="Red">Required</asp:RequiredFieldValidator>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("RoomDescription") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:CheckBoxField DataField="RoomSmoking" HeaderText="Smoking?" 
+                    SortExpression="RoomSmoking" />
+                <asp:BoundField DataField="RoomBedConfiguration" HeaderText="Bed Configuration" 
+                    SortExpression="RoomBedConfiguration" />
                 <asp:CheckBoxField DataField="RoomHandicap" HeaderText="Accessible?" SortExpression="RoomHandicap" />
                 <asp:BoundField DataField="RoomStatus" HeaderText="Status" SortExpression="RoomStatus" />
                 <asp:CommandField ShowEditButton="True" ButtonType="Button" />
