@@ -94,28 +94,12 @@ FROM            ACCOUNTING INNER JOIN
     <Columns>
         <asp:BoundField DataField="AccountingID" HeaderText="AccountingID" 
             InsertVisible="False" ReadOnly="True" SortExpression="AccountingID" />
-        <asp:TemplateField HeaderText="AccountingDate" SortExpression="AccountingDate">
-            <EditItemTemplate>
-                <asp:TextBox ID="txtAccountingDate" runat="server" 
-                    Text='<%# Bind("AccountingDate") %>' ValidationGroup="cvVG"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rvGvDate" runat="server" 
-                    ControlToValidate="txtAccountingDate" Display="None" 
-                    ErrorMessage="Accounting Date is required" ForeColor="Red" 
-                    ValidationGroup="vgGV">*</asp:RequiredFieldValidator>
-                <asp:CompareValidator ID="cvAccountingDate" runat="server" 
-                    ControlToValidate="txtAccountingDate" Display="Dynamic" 
-                    ErrorMessage="Accounting Date must be a date" ForeColor="Red" 
-                    Operator="DataTypeCheck" Type="Date" ValidationGroup="vgGV">*</asp:CompareValidator>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Label ID="Label1" runat="server" 
-                    Text='<%# Bind("AccountingDate", "{0:d}") %>'></asp:Label>
-            </ItemTemplate>
-        </asp:TemplateField>
+        <asp:BoundField DataField="AccountingDate" DataFormatString="{0:d}" 
+            HeaderText="AccountingDate" ReadOnly="True" />
         <asp:TemplateField HeaderText="AccountingCost" SortExpression="AccountingCost">
             <EditItemTemplate>
                 <asp:TextBox ID="txtCost" runat="server" CausesValidation="True" 
-                    Text='<%# Bind("AccountingCost") %>'></asp:TextBox>
+                    Text='<%# Bind("AccountingCost", "{0:0.00}") %>'></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rvGvCost" runat="server" 
                     ControlToValidate="txtCost" Display="Dynamic" 
                     ErrorMessage="Accounting Cost is required" ForeColor="Red" 
