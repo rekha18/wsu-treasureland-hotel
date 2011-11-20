@@ -108,6 +108,10 @@
                             onclick="btnUpdateReservation_Click" />
                         <br />
                         <asp:Label ID="lblUpdateError" runat="server" ForeColor="Red"></asp:Label>
+                        <span style="float:right;">
+                            <asp:Button ID="btnBackToUpdateReservation" runat="server" Text="Back" 
+                            onclick="btnBackToUpdateReservation_Click" />
+                        </span>
                     </div>
                 </asp:View>
                 <asp:View ID="viewSelectRoom" runat="server">
@@ -119,6 +123,10 @@
                             onclick="btnSelectRoom_Click" />
                         <br />
                         <asp:Label ID="lblSelectError" runat="server" ForeColor="Red"></asp:Label>
+                        <span style="float:right;">
+                            <asp:Button ID="btnBackToReservation" runat="server" Text="Back" 
+                                PostBackUrl="~/Clerk/CreateReservation.aspx" />
+                        </span>
                     </div>
                 </asp:View>
             </asp:MultiView>

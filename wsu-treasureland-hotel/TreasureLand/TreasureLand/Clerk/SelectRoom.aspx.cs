@@ -36,13 +36,22 @@ namespace TreasureLand.Clerk
             {
                 mvRooms.ActiveViewIndex = 0; //Update room display
                 lblPageStatus.Text = "Move Reservation to a Different Room:";
+
+                if(reserve != null)
+                    if (reserve.reservationID != 0)
+                    {
+                        DateTime time = cHome.getReservationDate(reserve.reservationID);
+
+                        if (time != DateTime.MinValue)
+                            GridRangeView.current = time;
+                    }
             }
             else //Adding a room
             {
                 mvRooms.ActiveViewIndex = 1; //Select room display
                 lblPageStatus.Text = "Add Current Reservation:";
-                calDatePicker.SelectedDate = DateTime.Parse(reserve.reserveDate);
                 GridRangeView.current = DateTime.Parse(reserve.reserveDate);
+                calDatePicker.SelectedDate = GridRangeView.current;
 
                 //CheckInDate = Session["CheckInDate"].ToString();
                 //Nights = Int32.Parse(Session["Nights"].ToString());
@@ -266,6 +275,19 @@ namespace TreasureLand.Clerk
         protected void ddlRoomTypes_onSelectedIndexChanged(object sender, EventArgs e)
         {
             ddlRoomTypes.Focus();
+        }
+
+        /// <summary>
+        /// Modifies the internal reserve object so that the update view is not mistakenly
+        /// returned to when selecting a room
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnBackToUpdateReservation_Click(object sender, EventArgs e)
+        {
+            reserve = reserve.Clone(); //Safely clone the object
+            reserve.view = 1;
+            Response.Redirect("~/Clerk/UpdateReservation.aspx");
         }
     }
 }

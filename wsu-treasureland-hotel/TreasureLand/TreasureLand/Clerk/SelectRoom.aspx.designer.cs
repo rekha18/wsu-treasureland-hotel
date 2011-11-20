@@ -193,6 +193,15 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.Label lblUpdateError;
         
         /// <summary>
+        /// btnBackToUpdateReservation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBackToUpdateReservation;
+        
+        /// <summary>
         /// viewSelectRoom control.
         /// </summary>
         /// <remarks>
@@ -227,5 +236,14 @@ namespace TreasureLand.Clerk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSelectError;
+        
+        /// <summary>
+        /// btnBackToReservation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBackToReservation;
     }
 }
