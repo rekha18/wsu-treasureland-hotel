@@ -22,12 +22,22 @@ namespace TreasureLand.Clerk
 
         }
 
+        /// <summary>
+        /// Highlights the selected row in the gridview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvGuest_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnSelectGuest.Visible = true;
             gvGuest.SelectedRow.BackColor = System.Drawing.Color.Yellow;
         }
 
+        /// <summary>
+        /// Changes a previously selected row from highlighted to white
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void gvGuest_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             if (gvGuest.SelectedIndex > -1)
@@ -35,7 +45,12 @@ namespace TreasureLand.Clerk
                 gvGuest.SelectedRow.BackColor = System.Drawing.Color.White;
             }
         }
-
+        
+        /// <summary>
+        /// Locates the guest based on the entered information
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnLocateGuest_Click(object sender, EventArgs e)
         {
             {
@@ -56,13 +71,9 @@ namespace TreasureLand.Clerk
                     if (txtReservationNum.Text == "")
                         txtReservationNum.Text = "0";
 
-
-
                     //Gridview is populated with data
                     gvGuest.DataSource = App_Code.GuestDB.LocateGuestCheckIn(txtFirstName.Text, txtSurname.Text, txtReservationNum.Text);
                     gvGuest.DataBind();
-                   
-
 
                     //Clears the default values for the textboxes
                     if (txtFirstName.Text == "none")
@@ -93,15 +104,6 @@ namespace TreasureLand.Clerk
             {
                 //switches to the next view
                 mvLocateGuest.ActiveViewIndex = 1;
-                //Grabs the values from the gridview and populates the textboxes with the information
-//                txtShowRoomType.Text = gvGuest.SelectedRow.Cells[5].Text;
-//                txtShowPhone.Text = gvGuest.SelectedRow.Cells[6].Text;
-//                txtShowCheckOut.Text = gvGuest.SelectedRow.Cells[7].Text;
-//                txtShowNumGuests.Text = gvGuest.SelectedRow.Cells[8].Text;
-                txtShowReservationNum.Text = gvGuest.SelectedRow.Cells[1].Text;
-                txtShowFirstName.Text = gvGuest.SelectedRow.Cells[2].Text;
-                txtShowSurname.Text = gvGuest.SelectedRow.Cells[3].Text;
-                txtShowRoomNum.Text = gvGuest.SelectedRow.Cells[0].Text;
 
                 //get the discount
                 ArrayList myArrList = new ArrayList();
@@ -118,17 +120,30 @@ namespace TreasureLand.Clerk
                     txtShowSurname.Text = myArrList[6].ToString();
                     txtShowPhone.Text = myArrList[7].ToString();
                     txtShowCheckOut.Text = string.Format("{0:dd/MM/yyyy}", (Convert.ToDateTime(myArrList[8]).AddDays(Convert.ToInt32(myArrList[9]))));
-                
+                    lblCustomerId.Text = App_Code.GuestDB.getGuestID(Convert.ToInt32(txtShowReservationNum.Text)).ToString();
                 }
               
             
             }
         }
-
+        
+        /// <summary>
+        /// When the check in button is pressed, the entered data is updated.  All or none of the data may be entered.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void btnCheckIn_Click(object sender, EventArgs e)
-        {
+        {   
+            //SQL command to update the guests entered information
+            App_Code.GuestDB.updateGuestInformation(txtCompany.Text, txtAddress.Text, txtCity.Text, txtRegion.Text, 
+                txtPostalCode.Text, txtCountry.Text, txtFax.Text, txtEmail.Text, txtComments.Text, txtIdNumber.Text, 
+                txtIdCountry.Text, txtIdComments.Text, Convert.ToInt32(lblCustomerId.Text));
+
+            //updates the roomStatus to checked in, and updates the reservationdetail to active
             App_Code.GuestDB.updateRoomStatus('C', Convert.ToInt32(txtShowRoomNum.Text));
             App_Code.GuestDB.updateReservationDetail('A', Convert.ToInt32(gvGuest.SelectedRow.Cells[0].Text));
+            
+            //Updates the Reservation status to Active if all reservation detail status associated with the reservation are set to active
             if(App_Code.GuestDB.countConfirmedReservationDetail(Convert.ToInt32(gvGuest.SelectedRow.Cells[3].Text))==0)
             {
                 App_Code.GuestDB.updateReservationStatus('A', Convert.ToInt32(gvGuest.SelectedRow.Cells[3].Text));
