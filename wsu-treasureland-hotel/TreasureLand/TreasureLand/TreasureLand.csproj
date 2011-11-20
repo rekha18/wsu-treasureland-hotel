@@ -111,6 +111,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="LoginRedirect.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.aspx.cs">
@@ -203,6 +204,13 @@
     </Compile>
     <Compile Include="Admin\ManageDiscounts.aspx.designer.cs">
       <DependentUpon>ManageDiscounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LoginRedirect.aspx.cs">
+      <DependentUpon>LoginRedirect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginRedirect.aspx.designer.cs">
+      <DependentUpon>LoginRedirect.aspx</DependentUpon>
     </Compile>
     <Content Include="App_Code\LocateGuestDB.cs" />
     <Compile Include="Admin\UserInformation.aspx.cs">
