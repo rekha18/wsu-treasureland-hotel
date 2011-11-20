@@ -144,7 +144,7 @@ namespace TreasureLand.App_Code
             SqlConnection con = new SqlConnection(getConnectionString());
             string update = "INSERT INTO ReservationDetailBilling " +
                         "(BillingAmount, BillingItemQty, BillingCategoryID,  BillingDescription, ReservationDetailID, BillingItemDate) " +
-                        "VALUES(" + billAmount + "," + billQty + ",1,'" + billingDescription + "'," + reservationID + ", '" + System.DateTime.Now + "')";
+                        "VALUES(" + billAmount + "," + billQty + ",1,'" + billingDescription + "'," + reservationID + ", " + System.DateTime.Now.ToString("d") + ")";
             SqlCommand cmd =
             new SqlCommand(update, con);
             con.Open();
