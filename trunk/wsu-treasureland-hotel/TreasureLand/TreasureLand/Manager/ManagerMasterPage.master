@@ -33,7 +33,7 @@
                 <br />
                 <br />
                 <asp:Button ID="btnSwitchRoles" runat="server" Text="Switch Roles" 
-                    Width="180px" PostBackUrl="~/LoginRedirect.aspx" />
+                    Width="180px" PostBackUrl="~/LoginRedirect.aspx" Font-Bold="True" />
             </td>
             <td  valign="top">
                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
