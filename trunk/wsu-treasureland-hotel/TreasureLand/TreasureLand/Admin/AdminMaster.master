@@ -33,7 +33,7 @@
                 <br />
                 <br />
                 <asp:Button ID="btnManageServicesFees" runat="server" 
-                    Text="Manage Charges" Width="125px" 
+                    Text="Manage Services" Width="125px" 
                     onclick="btnManageBillingCategories_Click"/>
                 <br />
                 <br />
@@ -45,7 +45,7 @@
                     Width="125px" onclick="btnManageRooms_Click" />
                 <br />
                 <br />
-                <asp:Button ID="btnManageRoomTypes" runat="server" Text="Manage RoomTypes" Width="125px" 
+                <asp:Button ID="btnManageRoomTypes" runat="server" Text="Manage Rates" Width="125px" 
                 onclick="btnManageRoomTypes_Click"/>
                 <br />
                 <br />
