@@ -12,7 +12,7 @@ namespace TreasureLand.Clerk
 {
     public partial class UpdateReservation : System.Web.UI.Page
     {
-
+        public App_Code.Reserve reserving = new App_Code.Reserve();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -103,8 +103,20 @@ namespace TreasureLand.Clerk
 
         protected void btnModifyReservation_Click(object sender, EventArgs e)
         {
+            reserving.reservationID = Convert.ToInt16(lblReservationNumber.Text);
             Response.Redirect("SelectRoom.aspx");
             Session.RemoveAll();
-        }      
+        }
+
+        #region Session Control
+
+        //Create of retrive session
+        private App_Code.Reserve GetRoomNumber()
+        {
+            if (Session["Room"] == null)
+                Session.Add("Room", reserving);
+            return (App_Code.Reserve)Session["Room"];
+        }
+        #endregion Session Control
     }
 }
