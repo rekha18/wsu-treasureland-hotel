@@ -77,7 +77,7 @@ namespace TreasureLand.Clerk
                                join o in db.Rooms
                                on r.HotelRoomTypeID equals o.HotelRoomTypeID
                                where (o.RoomID == reserving.roomID)
-                               select new { o.RoomNumbers, r.RoomType, currency = string.Format("{0:c}", r.RoomTypeRackRate) };
+                               select new { o.RoomNumbers, r.RoomType, r.RoomTypeRackRate };//currency = string.Format("{0:c}", r.RoomTypeRackRate) };
                 gvRoomInfo.DataSource = roomInfo.ToList();
                 gvRoomInfo.DataBind();
                 gvRoomInfo.HeaderRow.Cells[0].Text = "Room Number";
@@ -85,7 +85,7 @@ namespace TreasureLand.Clerk
                 gvRoomInfo.HeaderRow.Cells[2].Text = "Price Per Night";
                 gvRoomInfo.SelectRow(0);
 
-                quotedPrice = Convert.ToDecimal(gvRoomInfo.SelectedRow.Cells[2].Text.Replace("₵", "").Replace(",", ""));
+                quotedPrice = Convert.ToDecimal(gvRoomInfo.SelectedRow.Cells[2].Text.Replace("$", "").Replace(",", ""));
                 quotedPrice *= Convert.ToInt16(ddlNumberOfDays.SelectedValue);
             }
 
