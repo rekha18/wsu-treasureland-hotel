@@ -43,6 +43,12 @@
                 <br />
                 <asp:Button ID="btnReports" runat="server" Text="Reports" Width="180px" 
                     onclick="btnReports_Click" />
+                <br />
+                <br />
+                <br />
+                <br />
+                <asp:Button ID="btnSwitchRoles" runat="server" Text="Switch Roles" 
+                    Width="125px" PostBackUrl="~/LoginRedirect.aspx" />
             </td>
             <td valign="top">
                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server" >
