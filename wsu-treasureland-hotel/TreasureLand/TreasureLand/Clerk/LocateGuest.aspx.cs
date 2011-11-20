@@ -42,11 +42,13 @@ namespace TreasureLand.Clerk
 
                 if (txtFirstName.Text == "" && txtSurname.Text == "" && txtReservationNum.Text == "")
                 {
-                    lblErrorMessageMissingData.Text = "You must enter information in at least one box";
+                    lblErrorMessage2.Text = "You must enter information in at least one box";
                 }
                 else
                 {
                     //if there are not values entered, default values are added
+                    lblErrorMessage2.Text = "";  //clear the error message on screen if there is one
+                    btnSelectGuest.Visible = false;//clear the select guest button in case it comes up
                     if (txtFirstName.Text == "")
                         txtFirstName.Text = "none";
                     if (txtSurname.Text == "")
@@ -72,7 +74,7 @@ namespace TreasureLand.Clerk
 
                     if (gvGuest.Rows.Count == 0)
                     {
-                        lblErrorMessageNoCustomersFound.Text = "No customers found";
+                        lblErrorMessage2.Text = "No customers found";
                     }
 
                 }

@@ -49,15 +49,6 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.TextBox txtFirstName;
         
         /// <summary>
-        /// lblErrorMessageMissingData control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMessageMissingData;
-        
-        /// <summary>
         /// btnLocateGuest control.
         /// </summary>
         /// <remarks>
@@ -76,13 +67,22 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.TextBox txtSurname;
         
         /// <summary>
-        /// lblErrorMessageNoCustomersFound control.
+        /// cvReservationID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMessageNoCustomersFound;
+        protected global::System.Web.UI.WebControls.CompareValidator cvReservationID;
+        
+        /// <summary>
+        /// ValidationSummary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
         
         /// <summary>
         /// gvGuest control.
