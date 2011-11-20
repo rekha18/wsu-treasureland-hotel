@@ -263,84 +263,93 @@ namespace TreasureLand.App_Code
         /// <returns></returns>
         public string generateHTMLTablev3(bool centerTable, string roomType)
         {
-            Hashtable roomData = new Hashtable();
-
-            #region Hashtable fill
-            foreach (string[] s in roomNames)
+            try
             {
-                string[,] room = new string[DaysDisplayed + 1, 7];
-                room[DaysDisplayed,0] = s[2] == "M" ? s[2] : s[1];
-                roomData.Add(s[0], room); //Color for each day, data to display
-            }
+                Hashtable roomData = new Hashtable();
 
-            foreach (Row r in rows)
-            {
-                //For simplicity, I don't want duplicate string array data under
-                //the same key. In this case, remove the key, concatenate the
-                //string data, and insert the key and value back in.
-                string[,] oldData = (string[,])roomData[r.RoomNumber];
-                roomData.Remove(r.RoomNumber);
-
-                fillCell(r, oldData);
-                roomData.Add(r.RoomNumber, oldData);
-            }
-            #endregion
-
-            string table = "<table" +
-                (centerTable ? " style='margin-left:auto;margin-right:auto;'>" : ">") + generateRowHeaders();
-
-            bool rowEven = false;
-            int rowCount = 1;
-            foreach (string[] room in roomNames) //Assuming the rooms were sorted in order
-            {
-                #region Paging Logic
-                if (rowCount <= RoomIndex)
+                #region Hashtable fill
+                foreach (string[] s in roomNames)
                 {
-                    rowCount++;
-                    continue;
+                    string[,] room = new string[DaysDisplayed + 1, 7];
+                    room[DaysDisplayed, 0] = s[2] == "M" ? s[2] : s[1];
+                    roomData.Add(s[0], room); //Color for each day, data to display
                 }
-                if (rowCount > RoomIndex + PageSize || rowCount > MAX_ROOMS)
-                    break;
+
+                foreach (Row r in rows)
+                {
+                    //For simplicity, I don't want duplicate string array data under
+                    //the same key. In this case, remove the key, concatenate the
+                    //string data, and insert the key and value back in.
+                    string[,] oldData = (string[,])roomData[r.RoomNumber];
+                    roomData.Remove(r.RoomNumber);
+
+                    fillCell(r, oldData);
+                    roomData.Add(r.RoomNumber, oldData);
+                }
                 #endregion
 
-                string key = room[0];
-                string[,] row = (string[,])roomData[key];
-                //Create the left-most cell with the room number
-                table += "<tr>"; //Open a row
-                table += "<td id='row" + key + "' style='background-color: " + (row[DaysDisplayed,0] != "M" ? (roomType == row[DaysDisplayed, 0] ? highlightColor : "#AAAAAA") : maintenanceColor) + 
-                    ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onRoomClick(\"" + key + "\")' >" + key + "</td>";
+                string table = "<table" +
+                    (centerTable ? " style='margin-left:auto;margin-right:auto;'>" : ">") + generateRowHeaders();
 
-                string backColor = row[DaysDisplayed,0] != "M" ? (roomType == row[DaysDisplayed,0] ? highlightColor : (rowEven ? "#CCCCCC" : "#FFFFFF")) : maintenanceColor;
-                
-                //Create the row data
-                for(int i = 0; i < DaysDisplayed; i++)
+                bool rowEven = false;
+                int rowCount = 1;
+                foreach (string[] room in roomNames) //Assuming the rooms were sorted in order
                 {
-                    if(row[i, 0] == null && row[i, 1] == null && row[i, 2] == null) //No data for this cell
+                    #region Paging Logic
+                    if (rowCount <= RoomIndex)
                     {
-                        table += "<td id='row" + key + "col" + i + "a' style='background-color:" + backColor + 
-                            ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' colspan='2'>-</td>";
+                        rowCount++;
+                        continue;
                     }
-                    else if (row[i, 0] == null && row[i, 1] != null && row[i, 2] == null) //Full day of a guest
-                    {
-                        table += row[i, 1];
-                    }
-                    else //Cell contains a customer that checks out and/or checks in
-                    {
-                        int reservationID = row[i, 1] == null ? 0 : Int32.Parse(row[i, 1]);
-                        table += "<td id='row" + key + "col" + i + "a' width='" + (columnWidth/2) + "px' style='background-color:" + (row[i, 0] == null ? backColor : row[i, 0]) +
-                            ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ", \"" + DateTime.Parse(row[i, 4]).ToString("dd/MM/yyyy") + "\", " + row[i, 5] + ", \"" + row[i, 6] + "\")' >" + (reservationID == 0 ? "&nbsp;" : reservationID + "") + "</td>";
-                        reservationID = row[i, 3] == null ? 0 : Int32.Parse(row[i, 3]);
-                        table += "<td id='row" + key + "col" + i + "b' width='" + (columnWidth / 2) + "px' style='background-color:" + (row[i, 2] == null ? backColor : row[i, 2]) +
-                            ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ", \"" + DateTime.Parse(row[i, 4]).ToString("dd/MM/yyyy") + "\", " + row[i, 5] + ", \"" + row[i, 6] + "\")' >" + (reservationID == 0 ? "&nbsp;" : reservationID + "") + "</td>";
-                    }
-                }
-                table += "</tr>"; //Close the row
+                    if (rowCount > RoomIndex + PageSize || rowCount > MAX_ROOMS)
+                        break;
+                    #endregion
 
-                rowEven = !rowEven;
-                rowCount++;
+                    string key = room[0];
+                    string[,] row = (string[,])roomData[key];
+                    //Create the left-most cell with the room number
+                    table += "<tr>"; //Open a row
+                    table += "<td id='row" + key + "' style='background-color: " + (row[DaysDisplayed, 0] != "M" ? (roomType == row[DaysDisplayed, 0] ? highlightColor : "#AAAAAA") : maintenanceColor) +
+                        ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onRoomClick(\"" + key + "\")' >" + key + "</td>";
+
+                    string backColor = row[DaysDisplayed, 0] != "M" ? (roomType == row[DaysDisplayed, 0] ? highlightColor : (rowEven ? "#CCCCCC" : "#FFFFFF")) : maintenanceColor;
+
+                    //Create the row data
+                    for (int i = 0; i < DaysDisplayed; i++)
+                    {
+                        if (row[i, 0] == null && row[i, 1] == null && row[i, 2] == null) //No data for this cell
+                        {
+                            table += "<td id='row" + key + "col" + i + "a' style='background-color:" + backColor +
+                                ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' colspan='2'>-</td>";
+                        }
+                        else if (row[i, 0] == null && row[i, 1] != null && row[i, 2] == null) //Full day of a guest
+                        {
+                            table += row[i, 1];
+                        }
+                        else //Cell contains a customer that checks out and/or checks in
+                        {
+                            int reservationID = row[i, 1] == null ? 0 : Int32.Parse(row[i, 1]);
+                            table += "<td id='row" + key + "col" + i + "a' width='" + (columnWidth / 2) + "px' style='background-color:" + (row[i, 0] == null ? backColor : row[i, 0]) +
+                                ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ", \"" + DateTime.Parse(row[i, 4]).ToString("dd/MM/yyyy") + "\", " + row[i, 5] + ", \"" + row[i, 6] + "\")' >" + (reservationID == 0 ? "&nbsp;" : reservationID + "") + "</td>";
+                            reservationID = row[i, 3] == null ? 0 : Int32.Parse(row[i, 3]);
+                            table += "<td id='row" + key + "col" + i + "b' width='" + (columnWidth / 2) + "px' style='background-color:" + (row[i, 2] == null ? backColor : row[i, 2]) +
+                                ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ", \"" + DateTime.Parse(row[i, 4]).ToString("dd/MM/yyyy") + "\", " + row[i, 5] + ", \"" + row[i, 6] + "\")' >" + (reservationID == 0 ? "&nbsp;" : reservationID + "") + "</td>";
+                        }
+                    }
+                    table += "</tr>"; //Close the row
+
+                    rowEven = !rowEven;
+                    rowCount++;
+                }
+
+                return table + "</table>" + generateColorKey(centerTable);
+            }
+            catch (Exception e)
+            {
             }
 
-            return table + "</table>" + generateColorKey(centerTable);
+            return "There was an error connecting to the database.<br />" +
+                   "Either press back and try again or check your wireless connection.";
         }
 
         /// <summary>
@@ -408,15 +417,15 @@ namespace TreasureLand.App_Code
             table += "<td style='width: 30px; background-color:" + CheckedIn + "' ></td>";
             table += "<td>Checked In</td>";
 
-            table += "<td style='width: 30px; background-color:" + Canceled + "' ></td>";
-            table += "<td>Canceled</td>";
-
             table += "<td style='width: 30px; background-color:" + Finished + "' ></td>";
             table += "<td>Checked Out</td></tr></table>";
 
             table += "<br /><table" + (center ? " style='margin-left:auto;margin-right:auto;'>" : ">");
             table += "<tr><td style='width: 30px; background-color:" + maintenanceColor + "' ></td>";
             table += "<td>Under Maintenance</td>";
+
+            table += "<td style='width: 30px; background-color:" + highlightColor + "' ></td>";
+            table += "<td>Highlighted Room</td>";
 
             table += "<td style='width: 30px; background-color:#FFCCFF;' ></td>";
             table += "<td>Selected Room</td></tr></table>";
@@ -486,6 +495,29 @@ namespace TreasureLand.App_Code
                     return r.ReservationID;
 
             return 0;
+        }
+
+        /// <summary>
+        /// Provided a reservationID, the system will search through all reservation
+        /// records to find the start date
+        /// Returns MinValue if no record is found
+        /// </summary>
+        /// <param name="ReservationID">ID of the reservation</param>
+        /// <returns>The begin time of the reservation</returns>
+        public DateTime getReservationDate(int ReservationID)
+        {
+            try
+            {
+                update();
+                foreach (Row r in rows)
+                    if (r.ReservationID == ReservationID)
+                        return r.Begin;
+            }
+            catch (Exception e)
+            {
+            }
+
+            return DateTime.MinValue;
         }
 
         /// <summary>
