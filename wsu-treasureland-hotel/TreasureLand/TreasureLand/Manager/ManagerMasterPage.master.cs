@@ -26,7 +26,20 @@ namespace TreasureLand.Manager
 
         protected void btnReports_Click(object sender, EventArgs e)
         {
+            Response.Redirect("ManagerReports.aspx");
+            Session.RemoveAll();
+        }
 
+        protected void btnExpenses_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ManagerExpenses.aspx");
+            Session.RemoveAll();
+        }
+
+        protected void btnDeposit_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ManagerDeposit.aspx");
+            Session.RemoveAll();
         }
     }
 }

@@ -125,6 +125,10 @@
             <asp:Button ID="btnCheckIn" runat="server" Text="Check in" 
                 onclick="btnCheckIn_Click" />
         </asp:View>
+        <asp:View ID="vCheckedIn" runat="server">
+            <asp:Label ID="lblGuestCheckedIn" runat="server" Font-Size="Large" 
+                Text="Guest has been checked in."></asp:Label>
+        </asp:View>
     </asp:MultiView>
     <br />
     <br />

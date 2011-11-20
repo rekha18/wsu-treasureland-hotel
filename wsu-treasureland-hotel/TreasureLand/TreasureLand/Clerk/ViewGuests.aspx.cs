@@ -10,6 +10,7 @@ using System.Web.Security;
 using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
+using TreasureLand.DBM;
 
 namespace TreasureLand.Clerk
 {
@@ -108,6 +109,7 @@ namespace TreasureLand.Clerk
                 ddlServices.DataBind();
 
                 //gets the datasource for the guest room table
+                //only grabs the room if it has an active status
                 gvRoomCost.DataSource = GuestDB.getGuestRoom(Convert.ToInt32(txtShowRoom.Text));
                 gvRoomCost.DataBind();
 
@@ -164,8 +166,23 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void btnAddService_Click(object sender, EventArgs e)
         {
+            //clears the data from the gridview
             gvGuestServices.Dispose();
-            GuestDB.insertGuestServices(Convert.ToDouble(txtCostofService.Text), Convert.ToInt32(ddlQuantity.SelectedValue), ddlServices.SelectedItem.Text, Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
+
+            //adds the entered service into the database
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            ReservationDetailBilling bill = new ReservationDetailBilling();
+            bill.ReservationDetailID = Convert.ToInt16(gvGuest.SelectedRow.Cells[4].Text);
+            bill.BillingAmount = Convert.ToDecimal(txtCostofService.Text);
+            bill.BillingItemQty = Convert.ToByte(ddlQuantity.SelectedValue);
+            bill.BillingCategoryID = Convert.ToByte(ddlServices.SelectedValue);
+            bill.BillingDescription = ddlServices.SelectedItem.ToString();
+            bill.BillingItemDate = DateTime.Now;
+            bill.Comments = txtComments.Text.ToString();
+            db.ReservationDetailBillings.InsertOnSubmit(bill);
+            db.SubmitChanges();
+            
+            //Retrieves all services for the seleceted reservation detail ID and rebinds the data to the gridview
             gvGuestServices.DataSource = GuestDB.getGuestServices(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
             gvGuestServices.DataBind();
             updateGuestPriceTotals();
@@ -326,14 +343,15 @@ namespace TreasureLand.Clerk
         {
             GuestDB.updateReservationDetail('F', Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
 
-            if (App_Code.GuestDB.countConfirmedReservationDetail(Convert.ToInt32(gvGuest.SelectedRow.Cells[0])) == 0)
+            if (App_Code.GuestDB.countActiveReservationDetail(Convert.ToInt32(gvGuest.SelectedRow.Cells[0].Text)) == 0)
             {
-                App_Code.GuestDB.updateReservationStatus('F', Convert.ToInt32(gvGuest.SelectedRow.Cells[0]));
+                App_Code.GuestDB.updateReservationStatus('F', Convert.ToInt32(gvGuest.SelectedRow.Cells[0].Text));
             }
 
                 
             
                 GuestDB.updateRoomStatus('H', Convert.ToInt32(txtShowRoom.Text));
+                mvViewGuest.ActiveViewIndex = 2;
         }
 
         /// <summary>
@@ -370,12 +388,14 @@ namespace TreasureLand.Clerk
             ddlServices.Visible = false;
             btnAddService.Visible = false;
             txtCostofService.Visible = false;
+            lblComments.Visible = false;
+            txtComments.Visible = false;
             ddlDiscount.Items.Clear();
             SqlDataReader sqlDiscounts = sqlDiscounts = (SqlDataReader)App_Code.GuestDB.getAllDiscounts();
    
             while (sqlDiscounts.Read())
             {
-                Discount discount = new Discount();
+                App_Code.Discount discount = new App_Code.Discount();
                 
 
                 discount.ID = Convert.ToInt32(sqlDiscounts["DiscountID"]);
@@ -415,6 +435,9 @@ namespace TreasureLand.Clerk
             ddlServices.Visible = true;
             btnAddService.Visible = true;
             txtCostofService.Visible = true;
+            lblComments.Visible = true;
+            txtComments.Visible = true;
+
             try
             {
 
@@ -432,6 +455,8 @@ namespace TreasureLand.Clerk
         {
 
         }
+
+       
 
     }
 }

@@ -33,7 +33,7 @@
                         </td>
                         <td>
                             <asp:Button ID="btnLocate" runat="server" onclick="btnLocate_Click" 
-                                Text="Locate Guest" Width="121px" ValidationGroup="vgView" />
+                                Text="Locate Guest" ValidationGroup="vgView" Width="121px" />
                         </td>
                     </tr>
                 </table>
@@ -129,18 +129,19 @@
                     <Columns>
                         <asp:BoundField DataField="RoomDescription" HeaderText="Room Type" />
                         <asp:BoundField DataField="Nights" HeaderText="Number of Nights" />
-                        <asp:BoundField DataField="QuotedRate" HeaderText="Cost Per Night" 
-                            DataFormatString="{0:0.00}" />
+                        <asp:BoundField DataField="QuotedRate" DataFormatString="{0:0.00}" 
+                            HeaderText="Cost Per Night" />
                     </Columns>
                 </asp:GridView>
                 <br />
-                <asp:GridView ID="gvGuestServices" runat="server" AutoGenerateColumns="False" 
-                    onrowediting="gvGuestServices_RowEditing" 
-                    onrowupdating="gvGuestServices_RowUpdating" PageSize="8" 
-                    ShowHeaderWhenEmpty="True" Width="654px" AllowSorting="True" 
+                <asp:GridView ID="gvGuestServices" runat="server" AllowSorting="True" 
+                    AutoGenerateColumns="False" 
                     onrowcancelingedit="gvGuestServices_RowCancelingEdit" 
                     onrowdeleting="gvGuestServices_RowDeleting" 
-                    onrowupdated="gvGuestServices_RowUpdated">
+                    onrowediting="gvGuestServices_RowEditing" 
+                    onrowupdated="gvGuestServices_RowUpdated" 
+                    onrowupdating="gvGuestServices_RowUpdating" PageSize="8" 
+                    ShowHeaderWhenEmpty="True" Width="654px">
                     <Columns>
                         <asp:TemplateField HeaderText="Transaction ID">
                             <EditItemTemplate>
@@ -152,12 +153,12 @@
                                     Text='<%# Bind("ReservationBillingID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="BillingDescription" HeaderText="Service" 
-                            ApplyFormatInEditMode="True" ReadOnly="True" />
+                        <asp:BoundField ApplyFormatInEditMode="True" DataField="BillingDescription" 
+                            HeaderText="Service" ReadOnly="True" />
                         <asp:TemplateField HeaderText="Qty">
                             <EditItemTemplate>
-                                <asp:TextBox ID="txtQty" runat="server" Text='<%# Bind("BillingItemQty") %>' 
-                                    Width="41px" CausesValidation="True"></asp:TextBox>
+                                <asp:TextBox ID="txtQty" runat="server" CausesValidation="True" 
+                                    Text='<%# Bind("BillingItemQty") %>' Width="41px"></asp:TextBox>
                                 <asp:CompareValidator ID="cvQty" runat="server" ControlToValidate="txtQty" 
                                     Display="Dynamic" ErrorMessage="Qty must be a number" ForeColor="Red" 
                                     Operator="DataTypeCheck" Type="Integer" ValidationGroup="vgService">*</asp:CompareValidator>
@@ -172,9 +173,8 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Price">
                             <EditItemTemplate>
-                                <asp:TextBox ID="txtPrice" runat="server" 
-                                    Text='<%# Bind("BillingAmount", "{0:0.00}") %>' Width="64px" 
-                                    CausesValidation="True"></asp:TextBox>
+                                <asp:TextBox ID="txtPrice" runat="server" CausesValidation="True" 
+                                    Text='<%# Bind("BillingAmount", "{0:0.00}") %>' Width="64px"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rvPrice" runat="server" 
                                     ControlToValidate="txtPrice" ErrorMessage="Price is a required field" 
                                     ForeColor="Red" ValidationGroup="vgService">*</asp:RequiredFieldValidator>
@@ -189,15 +189,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="BillingItemDate" HeaderText="Date" ReadOnly="True" />
-                        <asp:TemplateField HeaderText="Additional Comments">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="txtComments" runat="server" Height="50px" Rows="2" 
-                                    TextMode="MultiLine" Width="219px"></asp:TextBox>
-                            </EditItemTemplate>
-                            <ItemTemplate>
-                                <asp:Label ID="Label3" runat="server"></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
+                        <asp:BoundField DataField="Comments" HeaderText="Comments" />
                         <asp:CommandField ButtonType="Button" ShowEditButton="True" Visible="False" />
                         <asp:CommandField ButtonType="Button" ShowDeleteButton="True" Visible="False" />
                     </Columns>
@@ -244,8 +236,7 @@
                             <asp:Label ID="lblServies" runat="server" Text="Services and Fees:"></asp:Label>
                         </td>
                         <td style="width: 115px">
-                            <asp:DropDownList ID="ddlServices" runat="server" 
-                                TabIndex="-1">
+                            <asp:DropDownList ID="ddlServices" runat="server" TabIndex="-1">
                             </asp:DropDownList>
                         </td>
                         <td style="width: 60px">
@@ -276,25 +267,44 @@
                                 Text="Add Service" ValidationGroup="vgGuest" />
                         </td>
                     </tr>
+                    <tr>
+                        <td style="width: 126px; height: 60px;">
+                            <asp:Label ID="lblComments" runat="server" Text="Comments:  "></asp:Label>
+                        </td>
+                        <td style="width: 115px; height: 60px;">
+                            <asp:TextBox ID="txtComments" runat="server" Height="45px" TextMode="MultiLine" 
+                                Width="245px"></asp:TextBox>
+                        </td>
+                        <td style="width: 60px; height: 60px;">
+                        </td>
+                        <td style="width: 135px; margin-left: 40px; height: 60px;">
+                        </td>
+                        <td style="width: 45px; margin-left: 40px; height: 60px;">
+                        </td>
+                        <td style="width: 94px; height: 60px;">
+                        </td>
+                        <td style="width: 177px; height: 60px;">
+                        </td>
+                    </tr>
                 </table>
-                <asp:CompareValidator ID="cvCost" runat="server" Display="Dynamic" 
+                <asp:CompareValidator ID="cvCost" runat="server" 
+                    ControlToValidate="txtCostofService" Display="Dynamic" 
                     ErrorMessage="You must enter a monetary value." ForeColor="Red" 
-                    Operator="DataTypeCheck" Type="Currency" ValidationGroup="vgGuest" 
-                    ControlToValidate="txtCostofService"></asp:CompareValidator>
+                    Operator="DataTypeCheck" Type="Currency" ValidationGroup="vgGuest"></asp:CompareValidator>
                 <br />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                     ControlToValidate="txtCostofService" Display="Dynamic" 
                     ErrorMessage="You must enter  an amount" ForeColor="Red" 
                     ValidationGroup="vgGuest"></asp:RequiredFieldValidator>
                 <br />
-                <asp:Button ID="btnPrevious" runat="server" Text="Previous" 
-                    onclick="btnPrevious_Click" Width="100px" />
+                <asp:Button ID="btnPrevious" runat="server" onclick="btnPrevious_Click" 
+                    Text="Previous" Width="100px" />
                 &nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnAdjustDiscount" runat="server" 
                     onclick="btnAdjustDiscount_Click" Text="Adjust Discount" Width="110px" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="btnPrint" runat="server" Text="Print Reciept" Width="100px" 
-                    onclick="btnPrint_Click" style="height: 26px" />
+                <asp:Button ID="btnPrint" runat="server" onclick="btnPrint_Click" 
+                    style="height: 26px" Text="Print Reciept" Width="100px" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="GoToCheckOut" runat="server" onclick="GoToCheckOut_Click" 
                     Text="CheckOut" Width="100px" />
@@ -302,6 +312,10 @@
                 <br />
                 <asp:Label ID="lblErrorGuest" runat="server" ForeColor="Red"></asp:Label>
                 <br />
+            </asp:View>
+            <asp:View ID="View1" runat="server">
+                <asp:Label ID="lblGuestCheckedOut" runat="server" Font-Size="Large" 
+                    Text="Guest has been checked out."></asp:Label>
             </asp:View>
         </asp:MultiView>
     </p>

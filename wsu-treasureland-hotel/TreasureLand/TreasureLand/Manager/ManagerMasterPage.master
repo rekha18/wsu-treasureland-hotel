@@ -25,6 +25,10 @@
                 <asp:Button ID="btnReports" runat="server" Text="Reports" Width="180px" 
                     onclick="btnReports_Click" />
                 <br />
+                <br />
+                <asp:Button ID="btnAccounting" runat="server" onclick="btnExpenses_Click" 
+                    Text="Accounting" Width="180px" />
+                <br />
             </td>
             <td  valign="top">
                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
