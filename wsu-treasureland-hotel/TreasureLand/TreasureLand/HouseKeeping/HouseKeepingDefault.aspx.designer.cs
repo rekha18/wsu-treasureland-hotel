@@ -38,5 +38,23 @@ namespace TreasureLand.HouseKeeping {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblHousekeeping;
+        
+        /// <summary>
+        /// btnReadyforGuest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReadyforGuest;
+        
+        /// <summary>
+        /// btnNeedsMaintenance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNeedsMaintenance;
     }
 }
