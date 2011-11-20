@@ -31,22 +31,22 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.View viewLocate;
         
         /// <summary>
-        /// lblReservation control.
+        /// lblRoom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblReservation;
+        protected global::System.Web.UI.WebControls.Label lblRoom;
         
         /// <summary>
-        /// txtReservation control.
+        /// txtRoom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReservation;
+        protected global::System.Web.UI.WebControls.TextBox txtRoom;
         
         /// <summary>
         /// lblFirst control.
@@ -92,15 +92,6 @@ namespace TreasureLand.Clerk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnLocate;
-        
-        /// <summary>
-        /// cvReservationID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator cvReservationID;
         
         /// <summary>
         /// ValidationSummary1 control.

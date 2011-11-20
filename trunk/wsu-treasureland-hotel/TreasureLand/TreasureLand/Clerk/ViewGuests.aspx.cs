@@ -39,7 +39,7 @@ namespace TreasureLand.Clerk
         protected void btnLocate_Click(object sender, EventArgs e)
         {
 
-            if (txtFirstName.Text == "" && txtShowSurName.Text == "" && txtReservation.Text == "")
+            if (txtFirstName.Text == "" && txtShowSurName.Text == "" && txtRoom.Text == "")
             {
                 lblError.Text = "You must Enter information in at least one box";
             }
@@ -50,20 +50,35 @@ namespace TreasureLand.Clerk
                     txtFirstName.Text = "none";
                 if (txtSurName.Text == "")
                     txtSurName.Text = "none";
-                if (txtReservation.Text == "")
-                    txtReservation.Text = "0";
+                if (txtRoom.Text == "")
+                    txtRoom.Text = "0";
+
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                var guest = from g in db.Guests
+                            join r in db.Reservations
+                            on g.GuestID equals r.GuestID
+                            join rd in db.ReservationDetails
+                            on r.ReservationID equals rd.ReservationID
+                            join ro in db.Rooms
+                            on rd.RoomID equals ro.RoomID
+                            where (ro.RoomNumbers == txtRoom.Text || g.GuestFirstName == txtFirstName.Text || g.GuestSurName == txtSurName.Text) && (r.ReservationStatus == 'A' || r.ReservationStatus == 'F')
+                            select new { r.ReservationID, ro.RoomNumbers, g.GuestFirstName, g.GuestSurName, rd.ReservationDetailID, r.ReservationStatus, ro.RoomID };
+
+                gvGuest.DataSource = guest.ToList();
+                gvGuest.DataBind();
+
 
                 //Gridview is populated with data
-                gvGuest.DataSource = App_Code.GuestDB.LocateGuestRoom(txtFirstName.Text, txtSurName.Text, txtReservation.Text);
-                gvGuest.DataBind();
+                //gvGuest.DataSource = App_Code.GuestDB.LocateGuestRoom(txtFirstName.Text, txtSurName.Text, txtReservation.Text);
+                //gvGuest.DataBind();
 
                 //Clears the default values for the textboxes
                 if (txtFirstName.Text == "none")
                     txtFirstName.Text = "";
                 if (txtSurName.Text == "none")
                     txtSurName.Text = "";
-                if (txtReservation.Text == "0")
-                    txtReservation.Text = "";
+                if (txtRoom.Text == "0")
+                    txtRoom.Text = "";
 
                 if (gvGuest.Rows.Count == 0)
                 {
@@ -99,7 +114,7 @@ namespace TreasureLand.Clerk
                 txtShowReservation.Text = gvGuest.SelectedRow.Cells[0].Text;
                 txtShowFirstName.Text = gvGuest.SelectedRow.Cells[1].Text;
                 txtShowSurName.Text = gvGuest.SelectedRow.Cells[2].Text;
-                txtShowRoom.Text = gvGuest.SelectedRow.Cells[3].Text;
+                txtShowRoom.Text = gvGuest.SelectedRow.Cells[6].Text;
 
 
                 //gets the data for the drop down list

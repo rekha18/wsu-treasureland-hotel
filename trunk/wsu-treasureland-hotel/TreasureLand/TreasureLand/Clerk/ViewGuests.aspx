@@ -6,10 +6,10 @@
                 <table style="width: 100%">
                     <tr>
                         <td class="style1" style="width: 100px">
-                            <asp:Label ID="lblReservation" runat="server" Text="Reservation #:"></asp:Label>
+                            <asp:Label ID="lblRoom" runat="server" Text="Room #:"></asp:Label>
                         </td>
                         <td style="width: 177px">
-                            <asp:TextBox ID="txtReservation" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtRoom" runat="server"></asp:TextBox>
                         </td>
                         <td class="style1" style="width: 83px">
                             <asp:Label ID="lblFirst" runat="server" Text="First Name:"></asp:Label>
@@ -37,10 +37,6 @@
                         </td>
                     </tr>
                 </table>
-                <asp:CompareValidator ID="cvReservationID" runat="server" 
-                    ControlToValidate="txtReservation" Display="None" 
-                    ErrorMessage="Reservation must be a number" ForeColor="Red" 
-                    Operator="DataTypeCheck" Type="Integer" ValidationGroup="vgView"></asp:CompareValidator>
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" 
                     ValidationGroup="vgView" />
                 <br />
@@ -53,10 +49,11 @@
                             ReadOnly="True" />
                         <asp:BoundField DataField="GuestFirstName" HeaderText="FirstName" />
                         <asp:BoundField DataField="GuestSurName" HeaderText="SurName" />
-                        <asp:BoundField DataField="RoomID" HeaderText="RoomID" />
+                        <asp:BoundField DataField="RoomNumbers" HeaderText="Room Number" />
                         <asp:BoundField DataField="reservationDetailID" 
                             HeaderText="ReservationDetailID" SortExpression="reservationDetailID" />
                         <asp:BoundField DataField="ReservationStatus" HeaderText="Status" />
+                        <asp:BoundField DataField="RoomID" HeaderText="Room ID" />
                         <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                     </Columns>
                 </asp:GridView>
