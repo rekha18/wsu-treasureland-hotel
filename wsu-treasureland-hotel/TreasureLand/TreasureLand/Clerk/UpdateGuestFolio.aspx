@@ -7,7 +7,7 @@
                     <td style="width: 76px; height: 26px">
                         First Name:</td>
                     <td class="style1" style="width: 142px; height: 26px">
-                        <asp:TextBox ID="txtFirstName" runat="server" style="margin-left: 0px"></asp:TextBox>
+                        <asp:TextBox ID="txtFirstName" runat="server" style="margin-left: 0px" MaxLength="30"></asp:TextBox>
                     </td>
                     <td style="width: 472px; height: 26px">
                         <asp:Label ID="lblErrorMessageMissingData" runat="server" ForeColor="Red"></asp:Label>
@@ -17,7 +17,7 @@
                     <td style="width: 76px">
                         Surname:</td>
                     <td class="style1" style="width: 142px">
-                        <asp:TextBox ID="txtSurname" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtSurname" runat="server" Columns="30"></asp:TextBox>
                     </td>
                     <td style="width: 472px">
                         &nbsp;</td>
@@ -26,7 +26,7 @@
                     <td style="width: 76px">
                         Phone Number:</td>
                     <td class="style1" style="width: 142px">
-                        <asp:TextBox ID="txtPhoneNumber" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtPhoneNumber" runat="server" MaxLength="20"></asp:TextBox>
                     </td>
                     <td style="width: 472px">
                         <asp:Label ID="lblErrorMessageNoCustomersFound" runat="server" ForeColor="Red"></asp:Label>
@@ -66,21 +66,21 @@
                     <td style="width: 118px">
                         Salutation:</td>
                     <td style="width: 175px">
-                        <asp:TextBox ID="txtSalutation" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtSalutation" runat="server" MaxLength="5"></asp:TextBox>
                     </td>
                     <td style="width: 86px">
                         &nbsp;</td>
                     <td style="width: 135px">
                         Address:</td>
                     <td class="style1" style="width: 175px">
-                        <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtAddress" runat="server" MaxLength="50"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 118px">
                         First Name:</td>
                     <td style="width: 175px">
-                        <asp:TextBox ID="txtShowFirstName" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtShowFirstName" runat="server" MaxLength="30"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                             ControlToValidate="txtShowFirstName" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
@@ -89,14 +89,14 @@
                     <td style="width: 135px">
                         City:</td>
                     <td class="style1" style="width: 175px">
-                        <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtCity" runat="server" MaxLength="50"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 118px">
                         Surname:</td>
                     <td style="width: 175px">
-                        <asp:TextBox ID="txtShowSurname" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtShowSurname" runat="server" MaxLength="30"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                             ControlToValidate="txtShowSurname" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
@@ -105,14 +105,14 @@
                     <td style="width: 135px">
                         State/Region/Province:</td>
                     <td class="style1" style="width: 175px">
-                        <asp:TextBox ID="txtState" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtState" runat="server" MaxLength="50"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 118px">
                         Phone #:</td>
                     <td style="width: 175px">
-                        <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtPhone" runat="server" MaxLength="20"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
                             ControlToValidate="txtPhone" ForeColor="Red">*</asp:RequiredFieldValidator>
                     </td>
@@ -121,28 +121,28 @@
                     <td style="width: 135px">
                         Country:</td>
                     <td class="style1" style="width: 175px">
-                        <asp:TextBox ID="txtCountry" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtCountry" runat="server" MaxLength="20"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 118px">
                         Guest ID #:</td>
                     <td style="width: 175px">
-                        <asp:TextBox ID="txtGuestID" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtGuestID" runat="server" MaxLength="50"></asp:TextBox>
                     </td>
                     <td style="width: 86px">
                         &nbsp;</td>
                     <td style="width: 135px">
                         Postal Code:</td>
                     <td class="style1" style="width: 175px">
-                        <asp:TextBox ID="txtPostalCode" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtPostalCode" runat="server" MaxLength="50"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 118px">
                         Issue Country:</td>
                     <td style="width: 175px">
-                        <asp:TextBox ID="txtIssueCountry" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtIssueCountry" runat="server" MaxLength="50"></asp:TextBox>
                     </td>
                     <td style="width: 86px">
                         &nbsp;</td>
@@ -150,24 +150,39 @@
                         Email:</td>
                     <td class="style1" style="width: 175px">
                         <asp:TextBox ID="txtEmail" runat="server" 
-                            ></asp:TextBox>
+                            MaxLength="30"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 118px">
                         Guest ID Comments:</td>
                     <td colspan="4">
-                        <asp:TextBox ID="txtComments" runat="server" Width="542px" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="txtComments" runat="server" Width="542px" TextMode="MultiLine" onKeyUp="javascript:Count('MainContent_ContentPlaceHolder1_txtComments');" onKeyDown="javascript:Count('MainContent_ContentPlaceHolder1_txtComments');" ></asp:TextBox>
+                        <div id="charsleft">
+                            &nbsp;
+                        </div>
                     </td>
                 </tr>
             </table>
                     <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
                     <br />
-            <br />
             <asp:Button ID="btnBack" runat="server" Text="Back" 
                         CommandName="PrevView" onclick="btnBack_Click" Width="59px"  />
             &nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnUpdate" runat="server" Text="Update" onclick="btnUpdate_Click" />
         </asp:View>
     </asp:MultiView>
+    <script type="text/javascript">
+        function Count(text) {
+            //asp.net textarea maxlength doesnt work; do it by hand
+            var maxlength = 200; //set your value here (or add a parm and pass it in)
+            var object = document.getElementById(text)  //get your object
+            var string = object.value;
+            if (string.length > maxlength) {
+                object.value = string.substring(0, maxlength); //truncate the value
+            }
+            if((maxlength - string.length) >= 0)
+                document.getElementById("charsleft").innerHTML = (maxlength - string.length) + " chars left";
+        }
+    </script>
 </asp:Content>
