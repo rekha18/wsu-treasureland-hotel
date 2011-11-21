@@ -49,15 +49,6 @@ namespace TreasureLand.Admin.Controls {
         protected global::System.Web.UI.WebControls.Button Button_AddRoom;
         
         /// <summary>
-        /// Button_DeleteRoom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button_DeleteRoom;
-        
-        /// <summary>
         /// View_AddRoom control.
         /// </summary>
         /// <remarks>
@@ -130,6 +121,15 @@ namespace TreasureLand.Admin.Controls {
         protected global::System.Web.UI.WebControls.TextBox TextBox_BedConfig;
         
         /// <summary>
+        /// RFV_BedConfig control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFV_BedConfig;
+        
+        /// <summary>
         /// TextBox_Description control.
         /// </summary>
         /// <remarks>
@@ -137,6 +137,15 @@ namespace TreasureLand.Admin.Controls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBox_Description;
+        
+        /// <summary>
+        /// RFV_BedConfig0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFV_BedConfig0;
         
         /// <summary>
         /// Room_Add control.
@@ -155,15 +164,6 @@ namespace TreasureLand.Admin.Controls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel_DataSourceBox;
-        
-        /// <summary>
-        /// Label_StatusMsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label_StatusMsg;
         
         /// <summary>
         /// LinqDataSource_Rooms control.
@@ -191,5 +191,14 @@ namespace TreasureLand.Admin.Controls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinqDataSource LinqDataSource_Statuses;
+        
+        /// <summary>
+        /// Label_StatusMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label_StatusMsg;
     }
 }
