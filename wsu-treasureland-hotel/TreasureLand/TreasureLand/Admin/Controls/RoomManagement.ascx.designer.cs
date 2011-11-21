@@ -49,6 +49,15 @@ namespace TreasureLand.Admin.Controls {
         protected global::System.Web.UI.WebControls.Button Button_AddRoom;
         
         /// <summary>
+        /// Button_DeleteRoom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button_DeleteRoom;
+        
+        /// <summary>
         /// View_AddRoom control.
         /// </summary>
         /// <remarks>
