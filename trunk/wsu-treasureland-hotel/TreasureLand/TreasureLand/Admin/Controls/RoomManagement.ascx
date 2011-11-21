@@ -26,7 +26,7 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox_RoomNumber" runat="server" Text='<%# Bind("RoomNumbers") %>'>
                         </asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RFV_RoomNumber" runat="server" ControlToValidate="TextBox_RoomNumber"
+                        <asp:RequiredFieldValidator ID="RFV_RoomNumber" runat="server" ControlToValidate="TextBox_RoomNumber" SetFocusOnError="true"
                             ForeColor="Red">Required</asp:RequiredFieldValidator>
                     </EditItemTemplate>
                     <ItemTemplate>
@@ -35,7 +35,7 @@
                 <asp:TemplateField HeaderText="Description" SortExpression="RoomDescription">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox_Description" runat="server" Text='<%# Bind("RoomDescription") %>'></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox_Description"
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox_Description" SetFocusOnError="true"
                             ForeColor="Red">Required</asp:RequiredFieldValidator>
                     </EditItemTemplate>
                     <ItemTemplate>
@@ -46,7 +46,7 @@
                 <asp:TemplateField HeaderText="Bed Configuration" SortExpression="RoomBedConfiguration">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox_RoomBedConfig" runat="server" Text='<%# Bind("RoomBedConfiguration") %>'></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RFV_BedConfig" runat="server" ControlToValidate="TextBox_RoomBedConfig"
+                        <asp:RequiredFieldValidator ID="RFV_BedConfig" runat="server" ControlToValidate="TextBox_RoomBedConfig" SetFocusOnError="true"
                             ForeColor="Red">Required</asp:RequiredFieldValidator>
                     </EditItemTemplate>
                     <ItemTemplate>
@@ -58,7 +58,7 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox_RoomStatus" runat="server" Text='<%# Bind("RoomStatus") %>'></asp:TextBox>
                         <asp:RequiredFieldValidator runat="server" ID="RFV_RoomStatus" ControlToValidate="TextBox_RoomStatus"
-                            ForeColor="Red">Required</asp:RequiredFieldValidator>
+                            SetFocusOnError="true" ForeColor="Red">Required</asp:RequiredFieldValidator>
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:Label ID="Label_Status" runat="server" Text='<%# Bind("RoomStatus") %>'></asp:Label>
@@ -77,6 +77,8 @@
             <SortedDescendingHeaderStyle BackColor="#575357" />
         </asp:GridView>
         <asp:Button runat="server" ID="Button_AddRoom" Text="New Room" OnClick="Button_AddRoom_Click" />
+        <asp:Button runat="server" ID="Button_DeleteRoom" Text="Delete Room" 
+            Enabled="false" onclick="Button_DeleteRoom_Click" />
         <br />
         
     </asp:View>
