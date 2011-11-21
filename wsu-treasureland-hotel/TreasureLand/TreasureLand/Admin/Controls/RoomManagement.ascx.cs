@@ -15,8 +15,8 @@ namespace TreasureLand.Admin.Controls
         {
             if (!IsPostBack)
             {
-                
                 ConfigureData();
+                Label_StatusMsg.Text = String.Empty;
             }
         }
 
@@ -29,7 +29,7 @@ namespace TreasureLand.Admin.Controls
         }
 
         protected void BindAll()
-        {  
+        {
             GridView_Rooms.DataBind();
             DropDownList_RoomStatuses.DataBind();
             DropDownList_RoomTypes.DataBind();
@@ -60,7 +60,7 @@ namespace TreasureLand.Admin.Controls
                     HotelRoomTypeID = RoomTypeID,
                     RoomStatus = Status
                 };
-               
+
                 db.Rooms.InsertOnSubmit(newRoom);
                 db.SubmitChanges();
                 BindAll();
@@ -69,7 +69,6 @@ namespace TreasureLand.Admin.Controls
             }
             catch (Exception ex)
             {
-
                 Label_StatusMsg.Text = "Could not add room: " + ex.Message;
             }
 
@@ -80,6 +79,48 @@ namespace TreasureLand.Admin.Controls
             TextBox_BedConfig.Text = string.Empty;
             TextBox_Description.Text = string.Empty;
             TextBox_RoomNumber.Text = string.Empty;
+
+        }
+
+        protected void GridView_Rooms_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+
+        }
+
+        protected void LinqDataSource_Rooms_Updated(object sender, LinqDataSourceStatusEventArgs e)
+        {
+            if (e.Exception != null)
+            {
+                Label_StatusMsg.Text = "Could not edit room: " + e.Exception.Message;
+                e.ExceptionHandled = true;
+            }
+        }
+
+        protected void GridView_Rooms_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+
+        }
+
+        protected void GridView_Rooms_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+        {
+            if (e.Exception != null)
+            {
+                Label_StatusMsg.Text = e.Exception.Message;
+            }
+        }
+
+        protected void LinqDataSource_Rooms_Updating(object sender, LinqDataSourceUpdateEventArgs e)
+        {
+            if (e.Exception != null)
+            {
+                Label_StatusMsg.Text = "Could not edit room: " + e.Exception.Message;
+                e.ExceptionHandled = true;
+            }
+
+        }
+
+        protected void Button_DeleteRoom_Click(object sender, EventArgs e)
+        {
             
         }
 
