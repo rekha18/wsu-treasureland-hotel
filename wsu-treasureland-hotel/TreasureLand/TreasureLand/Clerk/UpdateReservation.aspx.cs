@@ -32,6 +32,14 @@ namespace TreasureLand.Clerk
 
         protected void btnLocateReservation_Click(object sender, EventArgs e)
         {
+            if (txtFirstName.Text == String.Empty && txtPhone.Text == String.Empty &&
+                txtResNumber.Text == String.Empty && txtSurName.Text == String.Empty)
+            {
+                lblNothingSelected.Text = "Please enter information into at least one box";
+                return;
+            }
+            lblNothingSelected.Text = String.Empty;
+            
             //Locates guest in database based on the values given
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
             var guest = from g in db.Guests
@@ -41,6 +49,9 @@ namespace TreasureLand.Clerk
                         select new {r.ReservationID, g.GuestFirstName, g.GuestSurName, g.GuestPhone};
             gvGuest.DataSource = guest.ToList();
             gvGuest.DataBind();
+
+            if (gvGuest.Rows.Count == 0)
+                lblNothingSelected.Text = "No records were found";
         }
 
         protected void btnSelectReservation_Click(object sender, EventArgs e)
