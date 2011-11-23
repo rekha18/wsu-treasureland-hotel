@@ -516,7 +516,8 @@ namespace TreasureLand.App_Code
                       "ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID INNER JOIN " +
                       "Guest ON Reservation.GuestID = Guest.GuestID INNER JOIN " + 
                       "Room ON ReservationDetail.RoomID = Room.RoomID INNER JOIN " +
-                      "HotelRoomType ON Room.HotelRoomTypeID = HotelRoomType.HotelRoomTypeID";
+                      "HotelRoomType ON Room.HotelRoomTypeID = HotelRoomType.HotelRoomTypeID " +
+                      "WHERE Reservation.ReservationID = '" + reservationID + "'";
 
 
             SqlCommand cmd = new SqlCommand(sel, con);
