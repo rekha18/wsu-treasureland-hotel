@@ -24,25 +24,33 @@
                                 <asp:RequiredFieldValidator ID="rvRackRate" runat="server" 
                                     ControlToValidate="TextBox1" Display="Dynamic" 
                                     ErrorMessage="Rate is a required field" ForeColor="Red" 
-                                    ValidationGroup="vgRoom">*</asp:RequiredFieldValidator>
+                                    ValidationGroup="vgSummary">*</asp:RequiredFieldValidator>
                                 <asp:CompareValidator ID="cvRackRate" runat="server" 
                                     ControlToValidate="TextBox1" Display="Dynamic" 
                                     ErrorMessage="Rate must be an amount" ForeColor="Red" Operator="DataTypeCheck" 
-                                    Type="Currency" ValidationGroup="vgRoom">*</asp:CompareValidator>
+                                    Type="Currency" ValidationGroup="vgSummary">*</asp:CompareValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" 
                                     Text='<%# Bind("RoomTypeRackRate", "{0:c}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="RoomTypeDescription" HeaderText="Description" 
-                            SortExpression="RoomTypeDescription" />
+                        <asp:TemplateField HeaderText="Description" 
+                            SortExpression="RoomTypeDescription">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox2" runat="server" MaxLength="200" 
+                                    Text='<%# Bind("RoomTypeDescription") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("RoomTypeDescription") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:CommandField ButtonType="Button" 
-                            ShowEditButton="True" />
+                            ShowEditButton="True" ValidationGroup="vgSummary" />
                     </Columns>
                 </asp:GridView>
                 <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" 
-                    ValidationGroup="vgCost" />
+                    ValidationGroup="vgSummary" />
                 <asp:LinqDataSource ID="ldsRoomTypes" runat="server" 
                     ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
                     EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" 
