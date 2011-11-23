@@ -39,6 +39,7 @@ namespace TreasureLand.Admin.Controls
 
         protected void Button_AddRoom_Click(object sender, EventArgs e)
         {
+            Label_StatusMsg.Text = "";
             MultiView_Rooms.SetActiveView(View_AddRoom);
         }
 
