@@ -11,7 +11,8 @@ namespace TreasureLand.Clerk
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            ContentPlaceHolder1.Focus();
+            
         }
 
         protected void btnHome_Click(object sender, EventArgs e)
