@@ -83,7 +83,7 @@
                         <td style="width: 112px">
                             Room Type:</td>
                         <td style="width: 245px">
-                            <asp:TextBox ID="txtRoomType" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtRoomType" runat="server" MaxLength="20"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rvRoomType" runat="server" 
                                 ControlToValidate="txtRoomType" ErrorMessage="Room Type is required" 
                                 ForeColor="Red" ValidationGroup="vgAddRoom">*</asp:RequiredFieldValidator>
