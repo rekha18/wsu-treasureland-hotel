@@ -112,6 +112,15 @@ namespace TreasureLand.Admin.Controls {
         protected global::System.Web.UI.WebControls.DropDownList DropDownList_RoomTypes;
         
         /// <summary>
+        /// ddlRoomTypes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlRoomTypes;
+        
+        /// <summary>
         /// DropDownList_RoomStatuses control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace TreasureLand.Admin.Controls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownList_RoomStatuses;
+        
+        /// <summary>
+        /// ddlStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
         
         /// <summary>
         /// TextBox_BedConfig control.

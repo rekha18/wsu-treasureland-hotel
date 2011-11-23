@@ -114,6 +114,10 @@
                         DataTextField="RoomType" DataValueField="HotelRoomTypeID" 
                         ValidationGroup="VG_NewRoomData">
                     </asp:DropDownList>-->
+                    <asp:DropDownList ID="ddlRoomTypes" runat="server" 
+                        DataSourceID="LinqDataSource_RoomTypes" DataTextField="RoomType" 
+                        DataValueField="HotelRoomTypeID">
+                    </asp:DropDownList>
                 </td>
                 <td>
                     Status
@@ -124,6 +128,10 @@
                         DataTextField="Description" DataValueField="Status" 
                         ValidationGroup="VG_NewRoomData">
                     </asp:DropDownList>-->
+                    <asp:DropDownList ID="ddlStatus" runat="server" 
+                        DataSourceID="LinqDataSource_Statuses" DataTextField="Description" 
+                        DataValueField="Status">
+                    </asp:DropDownList>
                 </td>
             </tr>
             <tr>
