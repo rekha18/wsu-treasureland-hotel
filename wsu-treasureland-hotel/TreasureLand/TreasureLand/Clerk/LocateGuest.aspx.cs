@@ -154,7 +154,7 @@ namespace TreasureLand.Clerk
 
                 //get the discount
                 ArrayList myArrList = new ArrayList();
-                myArrList = App_Code.GuestDB.getGuestInformation(Convert.ToInt32(gvGuest.SelectedRow.Cells[0].Text));
+                myArrList = App_Code.GuestDB.getGuestInformation(Convert.ToInt32(gvGuest.SelectedRow.Cells[3].Text));
                 //if there are no items in the arrayList then there is no discount
                 if (myArrList.Count != 0)
                 {
@@ -192,7 +192,7 @@ namespace TreasureLand.Clerk
 
                 //get the discount
                 ArrayList myArrList = new ArrayList();
-                myArrList = App_Code.GuestDB.getGuestInformation(Convert.ToInt32(gvUnconfirmedGuest.SelectedRow.Cells[0].Text));
+                myArrList = App_Code.GuestDB.getGuestInformation(Convert.ToInt32(gvUnconfirmedGuest.SelectedRow.Cells[3].Text));
                 //if there are no items in the arrayList then there is no discount
                 if (myArrList.Count != 0)
                 {
@@ -240,6 +240,7 @@ namespace TreasureLand.Clerk
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
+            
             gvGuest.DataBind();
             gvUnconfirmedGuest.DataBind();
             btnConfirm.Visible = false;
