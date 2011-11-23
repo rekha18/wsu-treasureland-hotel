@@ -144,5 +144,10 @@ namespace TreasureLand.Admin
             BindUserAccounts();
         }
         #endregion Events
+
+        protected void btnCreateUser_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CreateUser.aspx");
+        }
     }
 }
