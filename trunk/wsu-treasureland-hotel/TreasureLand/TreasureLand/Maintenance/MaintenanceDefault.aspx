@@ -7,7 +7,8 @@
                     <asp:GridView ID="gvMaintenance" runat="server" AllowPaging="True" 
                         AllowSorting="True" AutoGenerateColumns="False" BackColor="White" 
                         BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" 
-                        DataSourceID="LinqDataSource1" ForeColor="Black" GridLines="Vertical">
+                        DataSourceID="LinqDataSource1" ForeColor="Black" GridLines="Vertical" 
+                        onselectedindexchanged="gvMaintenance_SelectedIndexChanged" SelectedIndex="0">
                         <AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
                             <asp:BoundField DataField="RoomID" HeaderText="RoomID" ReadOnly="True" 

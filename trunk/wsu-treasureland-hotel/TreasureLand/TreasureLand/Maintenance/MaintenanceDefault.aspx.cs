@@ -14,30 +14,7 @@ namespace TreasureLand.Maintenance
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (gvMaintenance.Rows.Count == 0)
-            {
-                lblMaintenance.Text = "There are no rooms that need maintenance";
-                btnReadyforGuest.Visible = false;
-            }
-            else
-            {
-                lblMaintenance.Text = "";
-                btnReadyforGuest.Visible = true;
-            }
-        }
 
-        protected void DataList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (gvMaintenance.Rows.Count == 0)
-            {
-                lblMaintenance.Text = "There are no rooms that need maintenance";
-                btnReadyforGuest.Visible = false;
-            }
-            else
-            {
-                lblMaintenance.Text = "";
-                btnReadyforGuest.Visible = true;
-            }
         }
 
         protected void btnReadyforGuest_Click(object sender, EventArgs e)
@@ -49,6 +26,27 @@ namespace TreasureLand.Maintenance
 
             db.SubmitChanges();
             gvMaintenance.DataBind();
+            check();
+
+        }
+
+        protected void check()
+        {
+            if (gvMaintenance.Rows.Count == 0)
+            {
+                lblMaintenance.Text = "There are no rooms that need maintenance";
+                btnReadyforGuest.Visible = false;
+            }
+            else
+            {
+                lblMaintenance.Text = "";
+                btnReadyforGuest.Visible = true;
+            }
+            gvMaintenance.SelectRow(0);
+        }
+
+        protected void gvMaintenance_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
