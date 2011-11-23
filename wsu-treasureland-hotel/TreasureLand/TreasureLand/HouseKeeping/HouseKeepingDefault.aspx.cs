@@ -14,22 +14,14 @@ namespace TreasureLand.HouseKeeping
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (gvHouseKeeping.Rows.Count == 0)
-            {
-                lblHousekeeping.Text = "There are no rooms that need maintenance";
-                btnReadyforGuest.Visible = false;
-                btnNeedsMaintenance.Visible = false;
-            }
-            else
-            {
-                lblHousekeeping.Text = "";
-                btnReadyforGuest.Visible = true;
-                btnNeedsMaintenance.Visible = true;
-            }
+            check();
         }
 
         protected void btnReadyforGuest_Click(object sender, EventArgs e)
         {
+             lblHousekeeping.Text = "";
+             btnReadyforGuest.Visible = true;
+             btnNeedsMaintenance.Visible = true;
              TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
              var roo = db.Rooms.Single(r => r.RoomID == Convert.ToInt16(gvHouseKeeping.SelectedRow.Cells[0].Text));
 
@@ -37,10 +29,12 @@ namespace TreasureLand.HouseKeeping
 
              db.SubmitChanges();
              gvHouseKeeping.DataBind();
+             check();
         }
 
         protected void btnNeedsMaintenance_Click(object sender, EventArgs e)
         {
+
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
             var roo = db.Rooms.Single(r => r.RoomID == Convert.ToInt16(gvHouseKeeping.SelectedRow.Cells[0].Text));
 
@@ -48,15 +42,15 @@ namespace TreasureLand.HouseKeeping
 
             db.SubmitChanges();
             gvHouseKeeping.DataBind();
+            check();
         }
 
-        protected void gvHouseKeeping_SelectedIndexChanged(object sender, EventArgs e)
+
+        protected void check()
         {
-            btnNeedsMaintenance.Enabled = true;
-            btnReadyforGuest.Enabled = true;
-            if (gvHouseKeeping.Rows.Count == 1)
+            if (gvHouseKeeping.Rows.Count == 0)
             {
-                lblHousekeeping.Text = "There are no rooms that need maintenance";
+                lblHousekeeping.Text = "There are no rooms that need housekeeping";
                 btnReadyforGuest.Visible = false;
                 btnNeedsMaintenance.Visible = false;
             }
@@ -66,7 +60,12 @@ namespace TreasureLand.HouseKeeping
                 btnReadyforGuest.Visible = true;
                 btnNeedsMaintenance.Visible = true;
             }
-            
+            gvHouseKeeping.SelectRow(0);
+        }
+
+        protected void gvHouseKeeping_SelectedIndexChanged(object sender, EventArgs e)
+        {
+              
         }
     }
 }
