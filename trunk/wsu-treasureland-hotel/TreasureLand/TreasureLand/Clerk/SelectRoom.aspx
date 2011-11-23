@@ -74,18 +74,18 @@
                 <asp:View ID="viewUpdateRoom" runat="server">
                     <div id="UpdateReservation">
                         <span style="padding: 5px 5px 0px 0px">Detail #:</span>
-                        <asp:TextBox ID="txtReservationNumber" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtReservationNumber" runat="server" MaxLength="5"></asp:TextBox>
                         <asp:RegularExpressionValidator ID="revReservationNumber" runat="server" 
                             ForeColor="Red" ValidationExpression="^\d+$" 
                             ControlToValidate="txtReservationNumber">Reservation # must be a number!</asp:RegularExpressionValidator>
                         <br />
                         <span style="padding: 5px 5px 0px 0px">Room #:</span>
-                        <asp:TextBox ID="txtRoomNumberUpdate" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtRoomNumberUpdate" runat="server" MaxLength="5"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rfvRoomNumber" runat="server" 
                             ControlToValidate="txtRoomNumberUpdate" ForeColor="Red">Room # cannot be blank!</asp:RequiredFieldValidator>
                         <br />
                         <span style="padding: 5px 5px 0px 0px">Check in date:</span>
-                        <asp:TextBox ID="txtReservationDate" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtReservationDate" runat="server" MaxLength="16"></asp:TextBox>
                         <asp:CompareValidator ID="cvDate" runat="server" ForeColor="Red" Type="Date" 
                             ValueToCompare="11/11/2011" SetFocusOnError="False" Operator="DataTypeCheck" 
                             ControlToValidate="txtReservationDate">Check in date must contain a valid date!</asp:CompareValidator>
@@ -132,7 +132,7 @@
                             &nbsp;to <asp:Label ID="lblDateEnd" runat="server" Font-Size="Large"></asp:Label>
                             .</div>
                         <span style="padding: 5px 5px 0px 0px">Room #:</span>
-                        <asp:TextBox ID="txtRoomNumberSelect" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtRoomNumberSelect" runat="server" MaxLength="5"></asp:TextBox>
                         <span style="padding: 5px 15px 0px 0px"></span>
                         <asp:Button ID="btnSelectRoom" runat="server" Text="Select Room" 
                             onclick="btnSelectRoom_Click" />

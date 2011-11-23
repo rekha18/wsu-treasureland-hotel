@@ -7,12 +7,12 @@
                     <td class="style18" style="width: 85px">
                         Reservation #:</td>
                     <td class="style24" style="width: 102px">
-                        <asp:TextBox ID="txtReservationNum" runat="server" Width="80px"></asp:TextBox>
+                        <asp:TextBox ID="txtReservationNum" runat="server" Width="80px" MaxLength="6"></asp:TextBox>
                     </td>
                     <td class="style12" style="width: 80px">
                         First Name:</td>
                     <td class="style22" style="width: 136px">
-                        <asp:TextBox ID="txtFirstName" runat="server" Width="150px"></asp:TextBox>
+                        <asp:TextBox ID="txtFirstName" runat="server" Width="150px" MaxLength="30"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -25,7 +25,7 @@
                     <td class="style4" style="width: 80px">
                         Surname:</td>
                     <td class="style23" style="width: 136px">
-                        <asp:TextBox ID="txtSurname" runat="server" Width="150px"></asp:TextBox>
+                        <asp:TextBox ID="txtSurname" runat="server" Width="150px" MaxLength="30"></asp:TextBox>
                     </td>
                 </tr>
             </table>
@@ -165,67 +165,68 @@
                     <td style="width: 133px">
                         Email:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtEmail" runat="server" MaxLength="30"></asp:TextBox>
                     </td>
                     <td style="width: 148px">
                         Fax Number:</td>
                     <td>
-                        <asp:TextBox ID="txtFax" runat="server" Width="181px"></asp:TextBox>
+                        <asp:TextBox ID="txtFax" runat="server" Width="181px" MaxLength="20"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 133px">
                         Company:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtCompany" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtCompany" runat="server" MaxLength="50"></asp:TextBox>
                     </td>
                     <td style="width: 148px">
                         ID Number:</td>
                     <td>
-                        <asp:TextBox ID="txtIdNumber" runat="server" Width="181px"></asp:TextBox>
+                        <asp:TextBox ID="txtIdNumber" runat="server" Width="181px" MaxLength="50"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 133px">
                         Address:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtAddress" runat="server" MaxLength="50"></asp:TextBox>
                     </td>
                     <td style="width: 148px">
                         ID Issue Country:</td>
                     <td>
-                        <asp:TextBox ID="txtIdCountry" runat="server" Width="181px"></asp:TextBox>
+                        <asp:TextBox ID="txtIdCountry" runat="server" Width="181px" MaxLength="50"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 133px">
                         City:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtCity" runat="server" MaxLength="50"></asp:TextBox>
                     </td>
                     <td style="width: 148px">
                         ID Comments:</td>
                     <td>
-                        <asp:TextBox ID="txtIdComments" runat="server" Width="181px"></asp:TextBox>
+                        <asp:TextBox ID="txtIdComments" runat="server" Width="181px" MaxLength="50"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 133px">
                         Region:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtRegion" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtRegion" runat="server" MaxLength="50"></asp:TextBox>
                     </td>
                     <td style="width: 148px">
                         &nbsp;</td>
                     <td rowspan="3">
-                        <asp:TextBox ID="txtComments" runat="server" Height="46px" TextMode="MultiLine"></asp:TextBox>
+                        <asp:TextBox ID="txtComments" runat="server" Height="46px" TextMode="MultiLine" 
+                            MaxLength="200"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 133px">
                         Postal Code:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtPostalCode" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtPostalCode" runat="server" MaxLength="50"></asp:TextBox>
                     </td>
                     <td style="width: 148px">
                         Comments:</td>
@@ -234,7 +235,7 @@
                     <td style="width: 133px">
                         Country:</td>
                     <td class="style1" style="width: 156px">
-                        <asp:TextBox ID="txtCountry" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtCountry" runat="server" MaxLength="20"></asp:TextBox>
                     </td>
                     <td style="width: 148px">
                         &nbsp;</td>

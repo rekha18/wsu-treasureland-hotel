@@ -44,7 +44,7 @@
                         <td style="width: 134px">
                             Discount Description:</td>
                         <td>
-                            <asp:TextBox ID="txtDiscountDescription" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtDiscountDescription" runat="server" MaxLength="50"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvDiscountDescription" runat="server" 
                                 ControlToValidate="txtDiscountDescription" Display="Dynamic" 
                                 ErrorMessage="Description is required" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -54,7 +54,7 @@
                         <td style="width: 134px">
                             Discount Expiration:</td>
                         <td>
-                            <asp:TextBox ID="txtDiscountExpiration" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtDiscountExpiration" runat="server" MaxLength="16"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvDiscountExpiration" runat="server" 
                                 ControlToValidate="txtDiscountExpiration" Display="Dynamic" 
                                 ErrorMessage="Expiration Date is Required" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -68,7 +68,7 @@
                         <td style="width: 134px">
                             Discount Rules:</td>
                         <td>
-                            <asp:TextBox ID="txtDiscountRules" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtDiscountRules" runat="server" MaxLength="100"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvDiscountRules" runat="server" 
                                 ControlToValidate="txtDiscountRules" Display="Dynamic" 
                                 ErrorMessage="Dicount rules are required" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -78,7 +78,7 @@
                         <td style="width: 134px">
                             Discount Amount:</td>
                         <td>
-                            <asp:TextBox ID="txtDiscountAmount" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtDiscountAmount" runat="server" MaxLength="10"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvDiscountAmount" runat="server" 
                                 ControlToValidate="txtDiscountAmount" Display="Dynamic" 
                                 ErrorMessage="Discount amount is required" ForeColor="Red"></asp:RequiredFieldValidator>

@@ -32,7 +32,7 @@
                         <td>
                             Description:</td>
                         <td>
-                            <asp:TextBox ID="txtDesciption" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtDesciption" runat="server" MaxLength="30"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvDescription" runat="server" 
                                 ControlToValidate="txtDesciption" ErrorMessage="Description Is Required" 
                                 ForeColor="Red"></asp:RequiredFieldValidator>

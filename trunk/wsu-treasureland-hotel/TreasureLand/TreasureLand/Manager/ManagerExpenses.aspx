@@ -6,7 +6,7 @@
             <asp:Label ID="lblDate" runat="server" Text="Date:"></asp:Label>
         </td>
         <td style="width: 145px; height: 30px">
-            <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtDate" runat="server" MaxLength="16"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfDate" runat="server" 
                 ControlToValidate="txtDate" Display="Dynamic" 
                 ErrorMessage="Date is a required field" ForeColor="Red" 
@@ -19,7 +19,7 @@
             &nbsp;</td>
         <td rowspan="3">
             <asp:TextBox ID="txtComments" runat="server" Height="71px" TextMode="MultiLine" 
-                Width="230px"></asp:TextBox>
+                Width="230px" MaxLength="120"></asp:TextBox>
         </td>
     </tr>
     <tr>
@@ -40,7 +40,7 @@
             <asp:Label ID="lblExpenseCost" runat="server" Text="Cost:"></asp:Label>
         </td>
         <td style="width: 145px; height: 30px">
-            <asp:TextBox ID="txtCost" runat="server"></asp:TextBox>
+            <asp:TextBox ID="txtCost" runat="server" MaxLength="10"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfCost" runat="server" 
                 ControlToValidate="txtCost" Display="Dynamic" 
                 ErrorMessage="Amount is a required field" ForeColor="Red" 
