@@ -334,7 +334,7 @@ namespace TreasureLand.Clerk
             txtServicesTotal.Text = string.Format("{0:0.00}",(GuestDB.getTotal(Convert.ToDecimal(gvGuest.SelectedRow.Cells[4].Text)).ToString()));
 
             //get the cost of the room
-            txtRoomTotal.Text = (gvRoomCost.Rows[0].Cells[2].Text).ToString();
+            txtRoomTotal.Text = (gvRoomCost.Rows[0].Cells[3].Text).ToString();
             
             //get the discount
             ArrayList myArrList = new ArrayList();
@@ -448,41 +448,49 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void btnApply0_Click(object sender, EventArgs e)
         {
-            lblManagerUser.Visible = false;
-            lblPassword.Visible = false;
-            ddlDiscount.Visible = false;
-            txtMangerUname0.Visible = false;
-            txtManagerPword0.Visible = false;
-            btnApply0.Visible = false; 
-            gvGuestServices.Visible = true;
-            gvRoomCost.Visible = true;
-
-            lblServies.Visible = true;
-            lblQty.Visible = true;
-            lblCost.Visible = true;
-            ddlQuantity.Visible = true;
-            ddlServices.Visible = true;
-            btnAddService.Visible = true;
-            txtCostofService.Visible = true;
-            lblComments.Visible = true;
-            txtComments.Visible = true;
-
-            try
+            if (Roles.IsUserInRole(txtMangerUname0.Text, "Manager") && Membership.ValidateUser(txtMangerUname0.Text, txtManagerPword0.Text))
             {
-                if ((Convert.ToInt32((ddlDiscount.SelectedItem.Value)) == -1))
+                lblManagerUser.Visible = false;
+                lblPassword.Visible = false;
+                ddlDiscount.Visible = false;
+                txtMangerUname0.Visible = false;
+                txtManagerPword0.Visible = false;
+                btnApply0.Visible = false;
+                gvGuestServices.Visible = true;
+                gvRoomCost.Visible = true;
+
+                lblServies.Visible = true;
+                lblQty.Visible = true;
+                lblCost.Visible = true;
+                ddlQuantity.Visible = true;
+                ddlServices.Visible = true;
+                btnAddService.Visible = true;
+                txtCostofService.Visible = true;
+                lblComments.Visible = true;
+                txtComments.Visible = true;
+
+                try
+                {
+                    if ((Convert.ToInt32((ddlDiscount.SelectedItem.Value)) == -1))
+                    {
+                        lblErrorMessage.Text = "";
+                    }
+                    else
+                    {
+                        GuestDB.addDiscount(Convert.ToInt32(ddlDiscount.SelectedItem.Value), Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
+                        updateGuestPriceTotals();
+                        lblErrorMessage.Text = "";
+                    }
+                }
+                catch (Exception)
                 {
 
-                }
-                else
-                {
-                    GuestDB.addDiscount(Convert.ToInt32(ddlDiscount.SelectedItem.Value), Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
-                    updateGuestPriceTotals();
+                    throw;
                 }
             }
-            catch (Exception)
+            else
             {
-                
-                throw;
+                lblErrorMessage.Text = "Must have a correct manager login";
             }
         }
 
