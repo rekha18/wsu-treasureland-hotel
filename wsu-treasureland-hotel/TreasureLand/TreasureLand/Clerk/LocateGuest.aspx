@@ -36,6 +36,8 @@
             <br />
             <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" 
                 ValidationGroup="vgView" />
+            <asp:Label ID="lblConfirmedGuests" runat="server" Font-Bold="True" 
+                Text="Confirmed Guests:"></asp:Label>
             <br />
             <asp:GridView ID="gvGuest" runat="server" AutoGenerateColumns="False" 
                                     onselectedindexchanged="gvGuest_SelectedIndexChanged" 
@@ -60,6 +62,8 @@
             <asp:Label ID="lblErrorMessage2" runat="server" ForeColor="Red"></asp:Label>
             <br />
             <br />
+            <asp:Label ID="lblUnconfirmedGuests" runat="server" Font-Bold="True" 
+                Text="Unconfirmed Guests:"></asp:Label>
             <br />
             <asp:GridView ID="gvUnconfirmedGuest" runat="server" 
                 AutoGenerateColumns="False" 

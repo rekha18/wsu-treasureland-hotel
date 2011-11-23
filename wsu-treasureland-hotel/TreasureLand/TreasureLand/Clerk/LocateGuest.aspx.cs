@@ -37,6 +37,8 @@ namespace TreasureLand.Clerk
                 change = false;
                 gvUnconfirmedGuest.SelectRow(-1);
                 change = true;
+                lblUnconfirmedGuests.Visible = false;
+                lblConfirmedGuests.Visible = true;
 
             }
             else
@@ -46,6 +48,8 @@ namespace TreasureLand.Clerk
             }
             btnSelectGuest.Visible = true;
             btnConfirm.Visible = false;
+            lblUnconfirmedGuests.Visible = true;
+            lblConfirmedGuests.Visible = false;
         }
         protected void gvUnconfirmedGuest_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -132,11 +136,20 @@ namespace TreasureLand.Clerk
 
                     if (gvGuest.Rows.Count == 0)
                     {
-                        lblErrorMessage2.Text = "No customers found";
+                        lblErrorMessage2.Text = "No confirmed guests found";
                     }
                     else
                     {
                         lblErrorMessage2.Text = "";
+                    }
+
+                    if (gvUnconfirmedGuest.Rows.Count == 0)
+                    {
+                        lblErrorMessage3.Text = "No unconfirmed guests found";
+                    }
+                    else
+                    {
+                        lblErrorMessage3.Text = "";
                     }
                 }
 
