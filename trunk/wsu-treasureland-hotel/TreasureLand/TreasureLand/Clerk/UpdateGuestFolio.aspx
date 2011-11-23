@@ -82,7 +82,8 @@
                     <td style="width: 175px">
                         <asp:TextBox ID="txtShowFirstName" runat="server" MaxLength="30"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                            ControlToValidate="txtShowFirstName" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            ControlToValidate="txtShowFirstName" ForeColor="Red" 
+                            ErrorMessage="First name is required" ValidationGroup="vsRequired">*</asp:RequiredFieldValidator>
                     </td>
                     <td style="width: 86px">
                         &nbsp;</td>
@@ -98,7 +99,8 @@
                     <td style="width: 175px">
                         <asp:TextBox ID="txtShowSurname" runat="server" MaxLength="30"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                            ControlToValidate="txtShowSurname" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            ControlToValidate="txtShowSurname" ForeColor="Red" 
+                            ErrorMessage="Surname is required" ValidationGroup="vsRequired">*</asp:RequiredFieldValidator>
                     </td>
                     <td style="width: 86px">
                         &nbsp;</td>
@@ -114,7 +116,8 @@
                     <td style="width: 175px">
                         <asp:TextBox ID="txtPhone" runat="server" MaxLength="20"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-                            ControlToValidate="txtPhone" ForeColor="Red">*</asp:RequiredFieldValidator>
+                            ControlToValidate="txtPhone" ForeColor="Red" 
+                            ErrorMessage="Phone number is required" ValidationGroup="vsRequired">*</asp:RequiredFieldValidator>
                     </td>
                     <td style="width: 86px">
                         &nbsp;</td>
@@ -167,12 +170,16 @@
                     </td>
                 </tr>
             </table>
+                    <asp:ValidationSummary ID="vsSummary" runat="server" ForeColor="Red" 
+                        ValidationGroup="vsRequired" />
+                    <br />
                     <asp:Label ID="lblError" runat="server" ForeColor="Red"></asp:Label>
                     <br />
             <asp:Button ID="btnBack" runat="server" Text="Back" 
                         CommandName="PrevView" onclick="btnBack_Click" Width="59px"  />
             &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnUpdate" runat="server" Text="Update" onclick="btnUpdate_Click" />
+            <asp:Button ID="btnUpdate" runat="server" Text="Update" onclick="btnUpdate_Click" 
+                        ValidationGroup="vsRequired" />
         </asp:View>
     </asp:MultiView>
     <script type="text/javascript">
