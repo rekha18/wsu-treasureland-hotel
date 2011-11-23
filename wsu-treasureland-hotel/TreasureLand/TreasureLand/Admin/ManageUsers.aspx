@@ -29,4 +29,8 @@
         <asp:LinkButton ID="lnkNext" runat="server" onclick="lnkNext_Click">Next </asp:LinkButton>|
         <asp:LinkButton ID="lnkLast" runat="server" onclick="lnkLast_Click">Last </asp:LinkButton>
     </p>
+<p>
+        <asp:Button ID="btnCreateUser" runat="server" onclick="btnCreateUser_Click" 
+            Text="Create User" />
+    </p>
 </asp:Content>
