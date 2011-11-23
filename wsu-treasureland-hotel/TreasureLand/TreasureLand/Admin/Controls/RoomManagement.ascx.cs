@@ -45,6 +45,7 @@ namespace TreasureLand.Admin.Controls
 
         protected void Room_Add_Click(object sender, EventArgs e)
         {
+            Label_StatusMsg.Text = "";
             try
             {
                 short RoomTypeID = Convert.ToInt16(ddlRoomTypes.SelectedValue);
@@ -68,13 +69,14 @@ namespace TreasureLand.Admin.Controls
             }
             catch (Exception ex)
             {
-                Label_StatusMsg.Text = "Could not add room: " + ex.Message;
+                Label_StatusMsg.Text = "Could not add room: ";
             }
 
         }
 
         protected void View_AddRoom_Activate(object sender, EventArgs e)
         {
+            Label_StatusMsg.Text = "";
             TextBox_BedConfig.Text = string.Empty;
             TextBox_Description.Text = string.Empty;
             TextBox_RoomNumber.Text = string.Empty;
@@ -90,7 +92,7 @@ namespace TreasureLand.Admin.Controls
         {
             if (e.Exception != null)
             {
-                Label_StatusMsg.Text = "Could not edit room: " + e.Exception.Message;
+                Label_StatusMsg.Text = "Could not edit room: ";
                 e.ExceptionHandled = true;
             }
         }
@@ -121,6 +123,11 @@ namespace TreasureLand.Admin.Controls
         protected void Button_DeleteRoom_Click(object sender, EventArgs e)
         {
             
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Label_StatusMsg.Text = "";
         }
 
 
