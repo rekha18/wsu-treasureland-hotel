@@ -24,8 +24,8 @@
                 <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                 <asp:TemplateField HeaderText="Room Number" SortExpression="RoomNumbers">
                     <EditItemTemplate>
-                        <asp:TextBox ID="TextBox_RoomNumber" runat="server" Text='<%# Bind("RoomNumbers") %>'>
-                        </asp:TextBox>
+                        <asp:TextBox ID="TextBox_RoomNumber" runat="server" 
+                            Text='<%# Bind("RoomNumbers") %>' MaxLength="5"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RFV_RoomNumber" runat="server" ControlToValidate="TextBox_RoomNumber" SetFocusOnError="true"
                             ForeColor="Red">Required</asp:RequiredFieldValidator>
                     </EditItemTemplate>
@@ -34,7 +34,8 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Description" SortExpression="RoomDescription">
                     <EditItemTemplate>
-                        <asp:TextBox ID="TextBox_Description" runat="server" Text='<%# Bind("RoomDescription") %>'></asp:TextBox>
+                        <asp:TextBox ID="TextBox_Description" runat="server" 
+                            Text='<%# Bind("RoomDescription") %>' MaxLength="200"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox_Description" SetFocusOnError="true"
                             ForeColor="Red">Required</asp:RequiredFieldValidator>
                     </EditItemTemplate>
@@ -45,7 +46,8 @@
                 <asp:CheckBoxField DataField="RoomSmoking" HeaderText="Smoking?" SortExpression="RoomSmoking" />
                 <asp:TemplateField HeaderText="Bed Configuration" SortExpression="RoomBedConfiguration">
                     <EditItemTemplate>
-                        <asp:TextBox ID="TextBox_RoomBedConfig" runat="server" Text='<%# Bind("RoomBedConfiguration") %>'></asp:TextBox>
+                        <asp:TextBox ID="TextBox_RoomBedConfig" runat="server" 
+                            Text='<%# Bind("RoomBedConfiguration") %>' MaxLength="30"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RFV_BedConfig" runat="server" ControlToValidate="TextBox_RoomBedConfig" SetFocusOnError="true"
                             ForeColor="Red">Required</asp:RequiredFieldValidator>
                     </EditItemTemplate>
