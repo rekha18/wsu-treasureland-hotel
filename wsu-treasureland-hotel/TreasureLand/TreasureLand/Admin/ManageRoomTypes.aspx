@@ -84,6 +84,9 @@
                             Room Type:</td>
                         <td style="width: 245px">
                             <asp:TextBox ID="txtRoomType" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rvRoomType" runat="server" 
+                                ControlToValidate="txtRoomType" ErrorMessage="Room Type is required" 
+                                ForeColor="Red" ValidationGroup="vgAddRoom">*</asp:RequiredFieldValidator>
                         </td>
                         <td>
                             &nbsp;</td>
@@ -93,6 +96,14 @@
                             Rack Rate:</td>
                         <td style="width: 245px">
                             <asp:TextBox ID="txtRackRate" runat="server" MaxLength="10"></asp:TextBox>
+                            <asp:CompareValidator ID="cvRackRate" runat="server" 
+                                ControlToValidate="txtRackRate" Display="Dynamic" 
+                                ErrorMessage="Rack Rate must be a number" ForeColor="Red" 
+                                Operator="DataTypeCheck" Type="Double" ValidationGroup="vgAddRoom">*</asp:CompareValidator>
+                            <asp:RequiredFieldValidator ID="rvRackRate" runat="server" 
+                                ControlToValidate="txtRackRate" Display="Dynamic" 
+                                ErrorMessage="Rack Rate is required" ForeColor="Red" 
+                                ValidationGroup="vgAddRoom">*</asp:RequiredFieldValidator>
                         </td>
                         <td>
                             &nbsp;</td>
@@ -113,12 +124,16 @@
                         </td>
                         <td style="width: 245px">
                             <asp:Button ID="btnAddRoomType" runat="server" CommandArgument="0" 
-                                CommandName="SwitchViewByIndex" onclick="btnAddRoomType_Click" Text="Add Room Type" />
+                                CommandName="SwitchViewByIndex" onclick="btnAddRoomType_Click" 
+                                Text="Add Room Type" ValidationGroup="vgAddRoom" />
                         </td>
                         <td>
                             &nbsp;</td>
                     </tr>
                 </table>
+                <br />
+                <asp:ValidationSummary ID="ValidationSummary2" runat="server" ForeColor="Red" 
+                    ValidationGroup="vgAddRoom" />
             </asp:Panel>
         </asp:View>
     </asp:MultiView>
