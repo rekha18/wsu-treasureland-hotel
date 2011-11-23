@@ -35,7 +35,7 @@
                             <asp:TextBox ID="txtDesciption" runat="server" MaxLength="30"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvDescription" runat="server" 
                                 ControlToValidate="txtDesciption" ErrorMessage="Description Is Required" 
-                                ForeColor="Red"></asp:RequiredFieldValidator>
+                                ForeColor="Red" ValidationGroup="vgBilling"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -52,7 +52,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnAddBilling" runat="server" CommandArgument="0" 
                     CommandName="SwitchViewByIndex" onclick="btnAddBilling_Click" 
-                    Text="Add Service or Fee" />
+                    Text="Add Service or Fee" ValidationGroup="vgBilling" />
             </asp:Panel>
         </asp:View>
     </asp:MultiView>
