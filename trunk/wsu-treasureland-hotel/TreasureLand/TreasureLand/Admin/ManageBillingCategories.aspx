@@ -13,6 +13,8 @@
                             <EditItemTemplate>
                                 <asp:TextBox ID="TextBox1" runat="server" MaxLength="30" 
                                     Text='<%# Bind("BillingCategoryDescription") %>'></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                    ControlToValidate="TextBox1" ForeColor="Red">Required</asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" 
