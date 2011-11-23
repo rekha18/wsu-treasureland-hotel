@@ -8,7 +8,8 @@
                         AllowSorting="True" AutoGenerateColumns="False" BackColor="White" 
                         BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" 
                         DataSourceID="LinqDataSource1" ForeColor="Black" GridLines="Vertical" 
-                        onselectedindexchanged="gvHouseKeeping_SelectedIndexChanged">
+                        onselectedindexchanged="gvHouseKeeping_SelectedIndexChanged" 
+                        SelectedIndex="0">
                         <AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
                             <asp:BoundField DataField="RoomID" HeaderText="RoomID" ReadOnly="True" 
@@ -58,12 +59,12 @@
             <tr>
                 <td style="width: 494px">
                     <asp:Button ID="btnReadyforGuest" runat="server" 
-                        onclick="btnReadyforGuest_Click" Text="Ready for Guest" Enabled="False" 
+                        onclick="btnReadyforGuest_Click" Text="Ready for Guest" 
                         PostBackUrl="~/HouseKeeping/HouseKeepingDefault.aspx" />
 &nbsp;&nbsp;&nbsp;
                     <asp:Button ID="btnNeedsMaintenance" runat="server" 
                         onclick="btnNeedsMaintenance_Click" Text="Needs Maintenance" 
-                        Enabled="False" PostBackUrl="~/HouseKeeping/HouseKeepingDefault.aspx" />
+                        PostBackUrl="~/HouseKeeping/HouseKeepingDefault.aspx" />
                 </td>
                 <td>
                     &nbsp;</td>
