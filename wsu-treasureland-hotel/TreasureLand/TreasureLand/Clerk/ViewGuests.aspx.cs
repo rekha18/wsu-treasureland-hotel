@@ -147,13 +147,13 @@ namespace TreasureLand.Clerk
                 if (gvGuest.SelectedRow.Cells[5].Text.ToString() != "A")
                 {
                     btnAddService.Enabled = false;
-                    btnAdjustDiscount.Enabled = false;
+                    
                     btnGoToCheckOut.Enabled = false;
                 }
                 else
                 {
                     btnAddService.Enabled = true;
-                    btnAdjustDiscount.Enabled = true;
+                    
                     btnGoToCheckOut.Enabled = true;
                 }
             }
@@ -334,7 +334,7 @@ namespace TreasureLand.Clerk
             txtServicesTotal.Text = string.Format("{0:0.00}",(GuestDB.getTotal(Convert.ToDecimal(gvGuest.SelectedRow.Cells[4].Text)).ToString()));
 
             //get the cost of the room
-            txtRoomTotal.Text = (gvRoomCost.Rows[0].Cells[3].Text).ToString();
+            txtRoomTotal.Text = (Convert.ToDecimal(gvRoomCost.Rows[0].Cells[2].Text)*Convert.ToDecimal(gvRoomCost.Rows[0].Cells[1].Text)).ToString();
             
             //get the discount
             ArrayList myArrList = new ArrayList();
