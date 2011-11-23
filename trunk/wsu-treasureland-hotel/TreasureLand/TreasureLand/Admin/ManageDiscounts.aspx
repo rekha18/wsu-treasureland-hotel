@@ -10,18 +10,43 @@
                             ReadOnly="True" SortExpression="DiscountID" />
                         <asp:BoundField DataField="DiscountDescription" HeaderText="Description" 
                             ReadOnly="True" SortExpression="DiscountDescription" />
-                        <asp:BoundField DataField="DiscountExpiration" DataFormatString="{0:d}" 
-                            HeaderText="Expiration" SortExpression="DiscountExpiration" />
-                        <asp:BoundField DataField="DiscountRules" HeaderText="Rules" 
-                            SortExpression="DiscountRules" />
-                        <asp:BoundField DataField="DiscountAmount" HeaderText="Amount" ReadOnly="True" 
-                            SortExpression="DiscountAmount" />
+                        <asp:TemplateField HeaderText="Expiration" SortExpression="DiscountExpiration">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server" Height="20px" MaxLength="10" 
+                                    Text='<%# Bind("DiscountExpiration", "{0:d}") %>'></asp:TextBox>
+                                <asp:CompareValidator ID="cvDateValidator" runat="server" 
+                                    ControlToValidate="TextBox1" 
+                                    ErrorMessage="Expiration date must be in a valid date format" ForeColor="Red" 
+                                    Operator="DataTypeCheck" Type="Date" ValidationGroup="dateSummary">*</asp:CompareValidator>
+                                <asp:RequiredFieldValidator ID="rfvDateValidator" runat="server" 
+                                    ControlToValidate="TextBox1" ErrorMessage="Expiration date is a required field" 
+                                    ForeColor="Red" ValidationGroup="dateSummary">*</asp:RequiredFieldValidator>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" 
+                                    Text='<%# Bind("DiscountExpiration", "{0:d}") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Rules" SortExpression="DiscountRules">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("DiscountRules") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("DiscountRules") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="DiscountAmount" 
+                            HeaderText="Amount" SortExpression="DiscountAmount" ReadOnly="True" />
                         <asp:CheckBoxField DataField="IsPrecentage" HeaderText="Precentage" 
                             SortExpression="IsPrecentage" />
-                        <asp:CommandField ButtonType="Button" ShowEditButton="True" />
+                        <asp:CommandField ButtonType="Button" ShowEditButton="True" 
+                            ValidationGroup="dateSummary" />
                         <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
                     </Columns>
                 </asp:GridView>
+                <asp:ValidationSummary ID="vsDateSummary" runat="server" ForeColor="Red" 
+                    ValidationGroup="dateSummary" />
+                <br />
                 <asp:LinqDataSource ID="ldsDiscounts" runat="server" 
                     ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
                     EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" 
