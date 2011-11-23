@@ -35,6 +35,8 @@ namespace TreasureLand.Manager
                 {
                     txtComments.Text = "";
                 }
+                txtComments.Text = "";
+                txtCost.Text = "";
             }
             catch (Exception )
             {
