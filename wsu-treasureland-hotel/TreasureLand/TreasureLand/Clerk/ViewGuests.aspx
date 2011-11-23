@@ -9,13 +9,13 @@
                             <asp:Label ID="lblRoom" runat="server" Text="Room #:"></asp:Label>
                         </td>
                         <td style="width: 177px">
-                            <asp:TextBox ID="txtRoom" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtRoom" runat="server" MaxLength="5"></asp:TextBox>
                         </td>
                         <td class="style1" style="width: 83px">
                             <asp:Label ID="lblFirst" runat="server" Text="First Name:"></asp:Label>
                         </td>
                         <td class="style1" style="width: 236px">
-                            <asp:TextBox ID="txtFirstName" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox ID="txtFirstName" runat="server" Width="200px" MaxLength="30"></asp:TextBox>
                         </td>
                         <td>
                             &nbsp;</td>
@@ -29,7 +29,7 @@
                             <asp:Label ID="lblSurName" runat="server" Text="Surname:"></asp:Label>
                         </td>
                         <td class="style1" style="width: 236px">
-                            <asp:TextBox ID="txtSurName" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox ID="txtSurName" runat="server" Width="200px" MaxLength="30"></asp:TextBox>
                         </td>
                         <td>
                             <asp:Button ID="btnLocate" runat="server" onclick="btnLocate_Click" 
@@ -258,7 +258,7 @@
                             <asp:Label ID="lblCost" runat="server" Text="Cost:"></asp:Label>
                         </td>
                         <td style="width: 94px">
-                            <asp:TextBox ID="txtCostofService" runat="server">0</asp:TextBox>
+                            <asp:TextBox ID="txtCostofService" runat="server" MaxLength="10">0</asp:TextBox>
                         </td>
                         <td style="width: 177px">
                             <asp:Button ID="btnAddService" runat="server" onclick="btnAddService_Click" 

@@ -74,7 +74,7 @@
                         <td style="width: 112px">
                             Description:</td>
                         <td style="width: 245px">
-                            <asp:TextBox ID="txtDescription" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtDescription" runat="server" MaxLength="200"></asp:TextBox>
                         </td>
                         <td>
                             &nbsp;</td>

@@ -159,7 +159,8 @@
                     <td colspan="4">
                         <asp:TextBox ID="txtComments" runat="server" Width="542px" TextMode="MultiLine"
                          onKeyUp="javascript:Count('MainContent_ContentPlaceHolder1_txtComments');"
-                         onKeyDown="javascript:Count('MainContent_ContentPlaceHolder1_txtComments');" ></asp:TextBox>
+                         onKeyDown="javascript:Count('MainContent_ContentPlaceHolder1_txtComments');" 
+                            MaxLength="50" ></asp:TextBox>
                         <div id="charsleft">
                             &nbsp;
                         </div>

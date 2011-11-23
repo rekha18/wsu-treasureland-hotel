@@ -436,7 +436,7 @@ namespace TreasureLand.Clerk
             }
             
             ddlDiscount.DataBind();
-
+            ddlDiscount.Items.Insert(0, new ListItem("No Discount", "-1"));
         }
 
         /// <summary>
@@ -469,9 +469,15 @@ namespace TreasureLand.Clerk
 
             try
             {
+                if ((Convert.ToInt32((ddlDiscount.SelectedItem.Value)) == -1))
+                {
 
-                GuestDB.addDiscount(Convert.ToInt32(ddlDiscount.SelectedItem.Value), Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
-                updateGuestPriceTotals();
+                }
+                else
+                {
+                    GuestDB.addDiscount(Convert.ToInt32(ddlDiscount.SelectedItem.Value), Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
+                    updateGuestPriceTotals();
+                }
             }
             catch (Exception)
             {

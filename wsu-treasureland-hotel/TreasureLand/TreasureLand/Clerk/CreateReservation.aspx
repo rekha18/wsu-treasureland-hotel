@@ -11,7 +11,8 @@
                                 First Name:</td>
                             <td class="style1" style="width: 155px">
 
-                                <asp:TextBox ID="txtFirstName" runat="server" OnClick="this.value=''"></asp:TextBox>
+                                <asp:TextBox ID="txtFirstName" runat="server" OnClick="this.value=''" 
+                                    MaxLength="30"></asp:TextBox>
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" 
@@ -24,7 +25,8 @@
                             <td style="width: 73px">
                                 Surname:</td>
                             <td class="style1" style="width: 155px">
-                                <asp:TextBox ID="txtSurName" runat="server" OnClick="this.value=''"></asp:TextBox>
+                                <asp:TextBox ID="txtSurName" runat="server" OnClick="this.value=''" 
+                                    MaxLength="30"></asp:TextBox>
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="rfvSurname" runat="server" 
@@ -37,7 +39,8 @@
                             <td style="width: 73px">
                                 Phone:</td>
                             <td class="style1" style="width: 155px">
-                                <asp:TextBox ID="txtPhone" runat="server" OnClick="this.value=''"></asp:TextBox>
+                                <asp:TextBox ID="txtPhone" runat="server" OnClick="this.value=''" 
+                                    MaxLength="20"></asp:TextBox>
                             </td>
                             <td>
                                 <asp:RequiredFieldValidator ID="rfvPhone" runat="server" 

@@ -7,12 +7,12 @@
                     <td class="style5" style="width: 186px">
                         Reservation #:</td>
                     <td class="style3" style="width: 134px">
-                        <asp:TextBox ID="txtReservationNum" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtReservationNum" runat="server" MaxLength="6"></asp:TextBox>
                     </td>
                     <td class="style4" style="width: 80px">
                         First Name:</td>
                     <td style="width: 94px">
-                        <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtFirstName" runat="server" MaxLength="30"></asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="lblErrorMessageMissingData" runat="server" ForeColor="Red"></asp:Label>
@@ -22,12 +22,12 @@
                     <td class="style5" style="width: 186px">
                         Room #:</td>
                     <td class="style3" style="width: 134px">
-                        <asp:TextBox ID="txtRoomID" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtRoomID" runat="server" MaxLength="5"></asp:TextBox>
                     </td>
                     <td class="style4" style="width: 80px">
                         Surname:</td>
                     <td style="width: 94px">
-                        <asp:TextBox ID="txtSurname" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtSurname" runat="server" MaxLength="30"></asp:TextBox>
                     </td>
                     <td>
                         &nbsp;</td>
@@ -42,7 +42,7 @@
                     <td class="style4" style="width: 80px">
                         Email:</td>
                     <td style="width: 94px">
-                        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtEmail" runat="server" MaxLength="30"></asp:TextBox>
                     </td>
                     <td>
                         <asp:Label ID="lblErrorMessageNoCustomersFound" runat="server" ForeColor="Red"></asp:Label>
@@ -85,24 +85,26 @@
                     <td class="style25">
                         Reservation number:</td>
                     <td class="style26">
-                        <asp:TextBox ID="txtShowReservationNum" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtShowReservationNum" runat="server" MaxLength="5"></asp:TextBox>
                     </td>
                     <td class="style27">
                         First Name:&nbsp;&nbsp;</td>
                     <td>
-                        <asp:TextBox ID="txtShowFirstName" runat="server" style="margin-left: 2px"></asp:TextBox>
+                        <asp:TextBox ID="txtShowFirstName" runat="server" style="margin-left: 2px" 
+                            MaxLength="30"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
                     <td class="style25">
                         Room Number:</td>
                     <td class="style26">
-                        <asp:TextBox ID="txtShowRoomID" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtShowRoomID" runat="server" MaxLength="5"></asp:TextBox>
                     </td>
                     <td class="style27">
                         Surname:</td>
                     <td>
-                        <asp:TextBox ID="txtShowSurname" runat="server" style="margin-left: 2px"></asp:TextBox>
+                        <asp:TextBox ID="txtShowSurname" runat="server" style="margin-left: 2px" 
+                            MaxLength="30"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
@@ -114,7 +116,8 @@
                     <td class="style27">
                         Email:</td>
                     <td>
-                        <asp:TextBox ID="txtShowEmail" runat="server" style="margin-left: 3px"></asp:TextBox>
+                        <asp:TextBox ID="txtShowEmail" runat="server" style="margin-left: 3px" 
+                            MaxLength="30"></asp:TextBox>
                     </td>
                 </tr>
             </table>

@@ -14,7 +14,7 @@
                         <td class="style1" style="width: 134px">
                             Reservation Number:</td>
                         <td class="style1" style="width: 329px">
-                            <asp:TextBox ID="txtResNumber" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtResNumber" runat="server" MaxLength="5"></asp:TextBox>
                         </td>
                         <td>
                             &nbsp;</td>
@@ -23,7 +23,7 @@
                         <td class="style1" style="width: 134px">
                             First Name:</td>
                         <td class="style1" style="width: 329px">
-                            <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtFirstName" runat="server" MaxLength="30"></asp:TextBox>
                         </td>
                         <td>
                             &nbsp;</td>
@@ -32,7 +32,7 @@
                         <td class="style1" style="width: 134px">
                             Sur Name:</td>
                         <td class="style1" style="width: 329px">
-                            <asp:TextBox ID="txtSurName" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtSurName" runat="server" MaxLength="30"></asp:TextBox>
                         </td>
                         <td>
                             &nbsp;</td>
@@ -41,7 +41,7 @@
                         <td class="style1" style="width: 134px">
                             Phone:</td>
                         <td class="style1" style="width: 329px">
-                            <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPhone" runat="server" MaxLength="20"></asp:TextBox>
                         </td>
                         <td>
                             &nbsp;</td>
