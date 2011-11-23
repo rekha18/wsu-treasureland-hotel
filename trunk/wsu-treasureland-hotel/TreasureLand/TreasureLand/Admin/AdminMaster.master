@@ -28,10 +28,6 @@
                     onclick="btnReports_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
-                <asp:Button ID="btnCreateUser" runat="server" Text="Create User" Width="125px" 
-                    onclick="btnCreateUser_Click" UseSubmitBehavior="False" />
-                <br />
-                <br />
                 <asp:Button ID="btnManageServicesFees" runat="server" 
                     Text="Manage Services" Width="125px" 
                     onclick="btnManageBillingCategories_Click" UseSubmitBehavior="False"/>
