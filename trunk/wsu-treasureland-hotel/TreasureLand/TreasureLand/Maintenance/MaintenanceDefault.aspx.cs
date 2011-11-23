@@ -14,7 +14,7 @@ namespace TreasureLand.Maintenance
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            check();
         }
 
         protected void btnReadyforGuest_Click(object sender, EventArgs e)
