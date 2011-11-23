@@ -38,10 +38,11 @@ namespace TreasureLand.Clerk
                 lblPageStatus.Text = "Move Reservation to a Different Room:";
                 calDatePicker.Visible = true;
 
+                Row res = null;
                 if(reserve != null)
                     if (reserve.reservationID != 0)
                     {
-                        Row res = cHome.getRowInformation(reserve.reservationID);
+                        res = cHome.getRowInformation(reserve.reservationID);
 
                         if (res != null)
                         {
@@ -62,6 +63,12 @@ namespace TreasureLand.Clerk
                     "<tr><td>Reservation ID: </td><td id='idReservationID2'></td></tr>" +
                     "<tr><td>Detail ID: </td><td id='idDetailID2'></td></tr>" +
                     "</table>";
+                if (res != null)
+                {
+                    txtReservationNumber.Text = res.ReservationDetailID + String.Empty;
+                    txtReservationDate.Text = res.Begin.ToString("dd/MM/yyyy");
+                    ddlNightsStayed.SelectedIndex = (res.End - res.Begin).Days - 1;
+                }
             }
             else //Adding a room
             {
@@ -243,15 +250,17 @@ namespace TreasureLand.Clerk
             }
             lblUpdateError.Text = String.Empty;
 
+            DateTime resDate = DateTime.Parse(txtReservationDate.Text);
             //The database can now be safely updated
             int rows = RoomDB.updateRoom(ReservationID, ReservationDetailID, RoomDB.getRoomId(txtRoomNumberUpdate.Text),
-                DateTime.Parse(txtReservationDate.Text), Int32.Parse(ddlNightsStayed.Items[ddlNightsStayed.SelectedIndex].Value));
+                resDate, Int32.Parse(ddlNightsStayed.Items[ddlNightsStayed.SelectedIndex].Value));
 
             if (rows <= 0)
                 lblUpdateError.Text = "There was a problem updating the room number.";
             else
                 lblUpdateError.Text = "Room was successfully changed.";
 
+            GridRangeView.current = resDate;
             requiresUpdate = true;
         }
 

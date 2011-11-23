@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Select a room" Language="C#" MasterPageFile="~/Clerk/ClerkMasterPage.master" AutoEventWireup="true" CodeBehind="SelectRoom.aspx.cs" Inherits="TreasureLand.Clerk.SelectRoom" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<table>
+    <table>
     <tr>
         <td>
             <table>
@@ -190,10 +190,12 @@
 
             if (txtBox != null) {
                 txtBox.value = room;
+                txtBox.focus();
             }
             else {
                 txtBox = document.getElementById("MainContent_ContentPlaceHolder1_txtRoomNumberSelect");
                 txtBox.value = room;
+                txtBox.focus();
             }
 
             //Reset the colors of the old rooms
