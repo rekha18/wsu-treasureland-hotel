@@ -47,6 +47,8 @@
                             &nbsp;</td>
                     </tr>
                 </table>
+                <asp:Label ID="lblNothingSelected" runat="server" ForeColor="Red"></asp:Label>
+                <br />
                 <asp:Button ID="btnLocateReservation" runat="server" 
                     onclick="btnLocateReservation_Click" Text="Locate Reservation" />
                 <br />
