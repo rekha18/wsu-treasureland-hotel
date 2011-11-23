@@ -31,8 +31,6 @@ namespace TreasureLand.Admin.Controls
         protected void BindAll()
         {
             GridView_Rooms.DataBind();
-            DropDownList_RoomStatuses.DataBind();
-            DropDownList_RoomTypes.DataBind();
         }
         protected void ConfigureData()
         {
@@ -48,8 +46,8 @@ namespace TreasureLand.Admin.Controls
         {
             try
             {
-                short RoomTypeID = Convert.ToInt16(DropDownList_RoomTypes.SelectedValue);
-                char Status = Convert.ToChar(DropDownList_RoomStatuses.SelectedValue);
+                short RoomTypeID = Convert.ToInt16(ddlRoomTypes.SelectedValue);
+                char Status = Convert.ToChar(ddlStatus.SelectedValue);
                 Room newRoom = new Room
                 {
                     RoomNumbers = TextBox_RoomNumber.Text,
