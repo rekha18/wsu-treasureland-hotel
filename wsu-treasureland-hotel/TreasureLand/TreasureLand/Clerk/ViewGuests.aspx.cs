@@ -134,11 +134,11 @@ namespace TreasureLand.Clerk
                 updateGuestPriceTotals();
 
                 //Shows the delete and edit button if the user is admin
-                if (Roles.IsUserInRole("Admin") == true)
+                if (Roles.IsUserInRole("Admin") == true||Roles.IsUserInRole("Manager")==true)
                 {
                     gvGuestServices.Columns[6].Visible = true;
                     gvGuestServices.Columns[7].Visible = true;
-
+                    btnAdjustDiscount.Enabled = true;
                 }
                 //clears the error label
                 lblError.Text = "";
