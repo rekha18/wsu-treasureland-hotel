@@ -17,7 +17,7 @@
                         <asp:BoundField DataField="DiscountAmount" HeaderText="Amount" ReadOnly="True" 
                             SortExpression="DiscountAmount" />
                         <asp:CheckBoxField DataField="IsPrecentage" HeaderText="Precentage" 
-                            ReadOnly="True" SortExpression="IsPrecentage" />
+                            SortExpression="IsPrecentage" />
                         <asp:CommandField ButtonType="Button" ShowEditButton="True" />
                         <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
                     </Columns>
