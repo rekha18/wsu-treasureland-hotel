@@ -6,16 +6,43 @@
                 <asp:GridView ID="gvRoomTpyes" runat="server" AutoGenerateColumns="False" 
                     DataKeyNames="HotelRoomTypeID" DataSourceID="ldsRoomTypes">
                     <Columns>
-                        <asp:BoundField DataField="RoomType" HeaderText="RoomType" 
-                            SortExpression="RoomType" />
-                        <asp:BoundField DataField="RoomTypeRackRate" HeaderText="Rack Rate" 
-                            SortExpression="RoomTypeRackRate" DataFormatString="{0:c}" />
+                        <asp:TemplateField HeaderText="RoomType" SortExpression="RoomType">
+                            <EditItemTemplate>
+                                <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="ldsRoomTypes" 
+                                    DataTextField="RoomType" DataValueField="RoomType" 
+                                    SelectedValue='<%# Bind("RoomType") %>'>
+                                </asp:DropDownList>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("RoomType") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Rack Rate" SortExpression="RoomTypeRackRate">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server" 
+                                    Text='<%# Bind("RoomTypeRackRate",  "{0:0.00}") %>' ValidationGroup="vgRoom"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rvRackRate" runat="server" 
+                                    ControlToValidate="TextBox1" Display="Dynamic" 
+                                    ErrorMessage="Rate is a required field" ForeColor="Red" 
+                                    ValidationGroup="vgRoom">*</asp:RequiredFieldValidator>
+                                <asp:CompareValidator ID="cvRackRate" runat="server" 
+                                    ControlToValidate="TextBox1" Display="Dynamic" 
+                                    ErrorMessage="Rate must be an amount" ForeColor="Red" Operator="DataTypeCheck" 
+                                    Type="Currency" ValidationGroup="vgRoom">*</asp:CompareValidator>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" 
+                                    Text='<%# Bind("RoomTypeRackRate", "{0:c}") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField DataField="RoomTypeDescription" HeaderText="Description" 
                             SortExpression="RoomTypeDescription" />
-                        <asp:CommandField ButtonType="Button" ShowDeleteButton="True" 
+                        <asp:CommandField ButtonType="Button" 
                             ShowEditButton="True" />
                     </Columns>
                 </asp:GridView>
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" 
+                    ValidationGroup="vgCost" />
                 <asp:LinqDataSource ID="ldsRoomTypes" runat="server" 
                     ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
                     EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" 
@@ -65,7 +92,7 @@
                         <td style="width: 112px">
                             Rack Rate:</td>
                         <td style="width: 245px">
-                            <asp:TextBox ID="txtRackRate" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtRackRate" runat="server" MaxLength="10"></asp:TextBox>
                         </td>
                         <td>
                             &nbsp;</td>
