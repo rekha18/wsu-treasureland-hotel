@@ -34,10 +34,6 @@ namespace TreasureLand.Admin
             Response.Redirect("ManageUsers.aspx");
         }
 
-        protected void btnCreateUser_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("CreateUser.aspx");
-        }
 
         protected void btnManageStatuses_Click(object sender, EventArgs e)
         {
