@@ -85,6 +85,15 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
         
         /// <summary>
+        /// lblConfirmedGuests control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblConfirmedGuests;
+        
+        /// <summary>
         /// gvGuest control.
         /// </summary>
         /// <remarks>
@@ -101,6 +110,15 @@ namespace TreasureLand.Clerk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblErrorMessage2;
+        
+        /// <summary>
+        /// lblUnconfirmedGuests control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUnconfirmedGuests;
         
         /// <summary>
         /// gvUnconfirmedGuest control.
