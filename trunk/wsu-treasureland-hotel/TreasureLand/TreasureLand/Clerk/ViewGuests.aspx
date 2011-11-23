@@ -127,9 +127,8 @@
                     <Columns>
                         <asp:BoundField DataField="RoomType" HeaderText="Room Type" />
                         <asp:BoundField DataField="Nights" HeaderText="Number of Nights" />
-                        <asp:DynamicField DataFormatString="{0:0.00}" HeaderText="Price per Night" />
                         <asp:BoundField DataField="QuotedRate" DataFormatString="{0:0.00}" 
-                            HeaderText="Total Room Cost" />
+                            HeaderText="Price per night" />
                     </Columns>
                 </asp:GridView>
                 <br />
@@ -302,8 +301,7 @@
                     Text="Previous" Width="100px" />
                 &nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnAdjustDiscount" runat="server" 
-                    onclick="btnAdjustDiscount_Click" Text="Adjust Discount" Width="110px" 
-                    Enabled="False" />
+                    onclick="btnAdjustDiscount_Click" Text="Adjust Discount" Width="110px" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnPrint" runat="server" onclick="btnPrint_Click" 
                     style="height: 26px" Text="Print Reciept" Width="100px" />
