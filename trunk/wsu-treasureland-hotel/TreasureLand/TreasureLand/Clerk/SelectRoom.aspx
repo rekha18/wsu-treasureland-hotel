@@ -4,9 +4,18 @@
     <tr>
         <td>
             <table>
-                <tr><td>Name: </td><td id="idGuestName"></td></tr>
-                <tr><td>ReservationID: </td><td id="idReservationID"></td></tr>
+                <tr><th colspan="2"><asp:Literal ID="loriginal" runat="server"></asp:Literal></th></tr>
+                <tr><td><asp:Literal ID="lname" runat="server"></asp:Literal></td><td id="idGuestName">
+                    <asp:Literal ID="lGuestName" runat="server" Text="&nbsp;"></asp:Literal>
+                    </td></tr>
+                <tr><td><asp:Literal ID="lResID" runat="server"></asp:Literal></td><td id="idReservationID">
+                    <asp:Literal ID="lReservationID" runat="server" Text="&nbsp;"> </asp:Literal>
+                </td></tr>
+                <tr><td><asp:Literal ID="lDID" runat="server"></asp:Literal></td><td id="idResDetailID">
+                    <asp:Literal ID="lDetailID" runat="server" Text="&nbsp;"> </asp:Literal>
+                </td></tr>
             </table>
+            <asp:Label ID="lblNewTableInfo" runat="server"></asp:Label>
             <asp:Calendar ID="calDatePicker" runat="server" 
                 onselectionchanged="calDatePicker_SelectionChanged"></asp:Calendar>
         </td>
@@ -64,7 +73,7 @@
             <asp:MultiView ID="mvRooms" runat="server" ActiveViewIndex="1">
                 <asp:View ID="viewUpdateRoom" runat="server">
                     <div id="UpdateReservation">
-                        <span style="padding: 5px 5px 0px 0px">Reservation #:</span>
+                        <span style="padding: 5px 5px 0px 0px">Detail #:</span>
                         <asp:TextBox ID="txtReservationNumber" runat="server"></asp:TextBox>
                         <asp:RegularExpressionValidator ID="revReservationNumber" runat="server" 
                             ForeColor="Red" ValidationExpression="^\d+$" 
@@ -72,6 +81,8 @@
                         <br />
                         <span style="padding: 5px 5px 0px 0px">Room #:</span>
                         <asp:TextBox ID="txtRoomNumberUpdate" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="rfvRoomNumber" runat="server" 
+                            ControlToValidate="txtRoomNumberUpdate" ForeColor="Red">Room # cannot be blank!</asp:RequiredFieldValidator>
                         <br />
                         <span style="padding: 5px 5px 0px 0px">Check in date:</span>
                         <asp:TextBox ID="txtReservationDate" runat="server"></asp:TextBox>
@@ -116,11 +127,18 @@
                 </asp:View>
                 <asp:View ID="viewSelectRoom" runat="server">
                     <div id="AddReservation">
+                        <div id="dateRangeView">
+                            Selecting room for <asp:Label ID="lblDateBegin" runat="server" Font-Size="Large"></asp:Label> 
+                            &nbsp;to <asp:Label ID="lblDateEnd" runat="server" Font-Size="Large"></asp:Label>
+                            .</div>
                         <span style="padding: 5px 5px 0px 0px">Room #:</span>
                         <asp:TextBox ID="txtRoomNumberSelect" runat="server"></asp:TextBox>
                         <span style="padding: 5px 15px 0px 0px"></span>
                         <asp:Button ID="btnSelectRoom" runat="server" Text="Select Room" 
                             onclick="btnSelectRoom_Click" />
+                        <br />
+                        <asp:RequiredFieldValidator ID="rfvRoomNumber2" runat="server" 
+                            ControlToValidate="txtRoomNumberSelect" ForeColor="Red">Room # cannot be blank!</asp:RequiredFieldValidator>
                         <br />
                         <asp:Label ID="lblSelectError" runat="server" ForeColor="Red"></asp:Label>
                         <span style="float:right;">
@@ -221,7 +239,9 @@
             }
         }
 
-        function onReservationClick(resID, startDate, nights, info) {
+        function onReservationClick(resID, startDate, nights, info, room) {
+            onRoomClick(room);
+
             var txtBox = document.getElementById("MainContent_ContentPlaceHolder1_txtReservationNumber");
             if (txtBox != null && resID != 0)
                 txtBox.value = resID;
@@ -234,13 +254,27 @@
             if (txtBox != null && resID != 0)
                 txtBox.value = startDate;
 
-            txtBox = document.getElementById("idGuestName");
+            txtBox = document.getElementById("idName");
             if (txtBox != null && resID != 0)
                 txtBox.innerHTML = info.substring(0, info.indexOf('?'));
+            else if (txtBox == null && resID != 0)
+                document.getElementById("MainContent_ContentPlaceHolder1_lGuestName").innerHTML = info.substring(0, info.indexOf('?'));
 
-            txtBox = document.getElementById("idReservationID");
+            txtBox = document.getElementById("idReservationID2");
             if (txtBox != null && resID != 0)
-                txtBox.innerHTML = info.substring(info.indexOf('?')+1, info.length);
+                txtBox.innerHTML = info.substring(info.indexOf('?') + 1, info.length);
+            else if (txtBox == null && resID != 0)
+                document.getElementById("MainContent_ContentPlaceHolder1_lReservationID").innerHTML = info.substring(info.indexOf('?') + 1, info.length);
+
+            txtBox = document.getElementById("idDetailID2");
+            if (txtBox != null && resID != 0)
+                txtBox.innerHTML = resID;
+            else if (txtBox == null && resID != 0)
+                document.getElementById("MainContent_ContentPlaceHolder1_lDetailID").innerHTML = resID;
+
+            txtBox = document.getElementById("MainContent_ContentPlaceHolder1_txtReservationDate");
+            if (txtBox != null && resID != 0)
+                txtBox.value = startDate;
         }
     -->
     </script>
