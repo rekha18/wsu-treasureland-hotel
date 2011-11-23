@@ -38,7 +38,8 @@
                                 <asp:TextBox ID="txtStatus" runat="server" MaxLength="1" Width="50px"></asp:TextBox>
                                 &nbsp;
                                 <asp:RequiredFieldValidator ID="rfvStatus" runat="server" 
-                                    ControlToValidate="txtStatus" ErrorMessage="Status is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    ControlToValidate="txtStatus" ErrorMessage="Status is required" 
+                                    ForeColor="Red" ValidationGroup="vgStatuses"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
@@ -49,7 +50,7 @@
                                 &nbsp;&nbsp;
                                 <asp:RequiredFieldValidator ID="rfvDescription" runat="server" 
                                     ControlToValidate="txtDescription" ErrorMessage="Description is required" 
-                                    ForeColor="Red"></asp:RequiredFieldValidator>
+                                    ForeColor="Red" ValidationGroup="vgStatuses"></asp:RequiredFieldValidator>
                             </td>
                         </tr>
                         <tr>
@@ -61,7 +62,7 @@
                                 &nbsp;
                                 <asp:Button ID="btnAddStatuses" runat="server" CommandArgument="0" 
                                     CommandName="SwitchViewByIndex" onclick="btnAddStatuses_Click" 
-                                    Text="Add Status" />
+                                    Text="Add Status" ValidationGroup="vgStatuses" />
                             </td>
                         </tr>
                     </table>
