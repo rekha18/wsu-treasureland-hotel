@@ -56,9 +56,10 @@
                 <asp:CheckBoxField DataField="RoomHandicap" HeaderText="Accessible?" SortExpression="RoomHandicap" />
                 <asp:TemplateField HeaderText="Status" SortExpression="RoomStatus">
                     <EditItemTemplate>
-                        <asp:TextBox ID="TextBox_RoomStatus" runat="server" Text='<%# Bind("RoomStatus") %>'></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server" ID="RFV_RoomStatus" ControlToValidate="TextBox_RoomStatus"
-                            SetFocusOnError="true" ForeColor="Red">Required</asp:RequiredFieldValidator>
+                        <asp:DropDownList ID="DropDownList1" runat="server" 
+                            DataSourceID="LinqDataSource_Statuses" DataTextField="Description" 
+                            DataValueField="Status" SelectedValue='<%# Bind("RoomStatus") %>'>
+                        </asp:DropDownList>
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:Label ID="Label_Status" runat="server" Text='<%# Bind("RoomStatus") %>'></asp:Label>
