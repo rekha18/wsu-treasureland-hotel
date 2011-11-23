@@ -39,7 +39,7 @@
                     onclick="btnUpdateReservation_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
-                <asp:Button ID="btnViewGuest" runat="server" Text="View Guest Charges" 
+                <asp:Button ID="btnViewGuest" runat="server" Text="Guest Charges" 
                         Width="180px" onclick="btnViewGuest_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
