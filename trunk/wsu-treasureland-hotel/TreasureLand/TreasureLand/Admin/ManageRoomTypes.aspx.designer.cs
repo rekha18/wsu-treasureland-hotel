@@ -121,6 +121,15 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtRoomType;
         
         /// <summary>
+        /// rvRoomType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rvRoomType;
+        
+        /// <summary>
         /// txtRackRate control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,24 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRackRate;
+        
+        /// <summary>
+        /// cvRackRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvRackRate;
+        
+        /// <summary>
+        /// rvRackRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rvRackRate;
         
         /// <summary>
         /// txtDescription control.
@@ -155,5 +182,14 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddRoomType;
+        
+        /// <summary>
+        /// ValidationSummary2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary2;
     }
 }
