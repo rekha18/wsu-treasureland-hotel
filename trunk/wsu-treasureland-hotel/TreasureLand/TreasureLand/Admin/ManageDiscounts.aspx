@@ -47,7 +47,8 @@
                             <asp:TextBox ID="txtDiscountDescription" runat="server" MaxLength="50"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvDiscountDescription" runat="server" 
                                 ControlToValidate="txtDiscountDescription" Display="Dynamic" 
-                                ErrorMessage="Description is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                                ErrorMessage="Description is required" ForeColor="Red" 
+                                ValidationGroup="vgDiscounts"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -57,11 +58,12 @@
                             <asp:TextBox ID="txtDiscountExpiration" runat="server" MaxLength="16"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvDiscountExpiration" runat="server" 
                                 ControlToValidate="txtDiscountExpiration" Display="Dynamic" 
-                                ErrorMessage="Expiration Date is Required" ForeColor="Red"></asp:RequiredFieldValidator>
+                                ErrorMessage="Expiration Date is Required" ForeColor="Red" 
+                                ValidationGroup="vgDiscounts"></asp:RequiredFieldValidator>
                             <asp:CompareValidator ID="cvDiscountExpiration" runat="server" 
                                 ControlToValidate="txtDiscountExpiration" Display="Dynamic" 
                                 ErrorMessage="Must enter a valid date" ForeColor="Red" 
-                                Operator="DataTypeCheck" Type="Date"></asp:CompareValidator>
+                                Operator="DataTypeCheck" Type="Date" ValidationGroup="vgDiscounts"></asp:CompareValidator>
                         </td>
                     </tr>
                     <tr>
@@ -71,7 +73,8 @@
                             <asp:TextBox ID="txtDiscountRules" runat="server" MaxLength="100"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvDiscountRules" runat="server" 
                                 ControlToValidate="txtDiscountRules" Display="Dynamic" 
-                                ErrorMessage="Dicount rules are required" ForeColor="Red"></asp:RequiredFieldValidator>
+                                ErrorMessage="Dicount rules are required" ForeColor="Red" 
+                                ValidationGroup="vgDiscounts"></asp:RequiredFieldValidator>
                         </td>
                     </tr>
                     <tr>
@@ -81,10 +84,12 @@
                             <asp:TextBox ID="txtDiscountAmount" runat="server" MaxLength="10"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="rfvDiscountAmount" runat="server" 
                                 ControlToValidate="txtDiscountAmount" Display="Dynamic" 
-                                ErrorMessage="Discount amount is required" ForeColor="Red"></asp:RequiredFieldValidator>
+                                ErrorMessage="Discount amount is required" ForeColor="Red" 
+                                ValidationGroup="vgDiscounts"></asp:RequiredFieldValidator>
                             <asp:CompareValidator ID="cvDiscountAmount" runat="server" 
                                 ControlToValidate="txtDiscountAmount" Display="Dynamic" 
-                                ErrorMessage="Please Enter a Decimal Number" ForeColor="Red" Type="Double"></asp:CompareValidator>
+                                ErrorMessage="Please Enter a Decimal Number" ForeColor="Red" Type="Double" 
+                                ValidationGroup="vgDiscounts"></asp:CompareValidator>
                         </td>
                     </tr>
                     <tr>
@@ -101,7 +106,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnInsertDiscount" runat="server" CommandArgument="0" 
                     CommandName="SwitchViewByIndex" onclick="btnInsertDiscount_Click" 
-                    Text="Add Discount" />
+                    Text="Add Discount" ValidationGroup="vgDiscounts" />
             </asp:Panel>
         </asp:View>
     </asp:MultiView>
