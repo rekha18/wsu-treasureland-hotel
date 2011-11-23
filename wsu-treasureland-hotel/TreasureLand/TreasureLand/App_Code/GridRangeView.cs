@@ -272,6 +272,7 @@ namespace TreasureLand.App_Code
                 {
                     string[,] room = new string[DaysDisplayed + 1, 7];
                     room[DaysDisplayed, 0] = s[2] == "M" ? s[2] : s[1];
+                    room[DaysDisplayed, 1] = s[0];
                     roomData.Add(s[0], room); //Color for each day, data to display
                 }
 
@@ -320,7 +321,7 @@ namespace TreasureLand.App_Code
                         if (row[i, 0] == null && row[i, 1] == null && row[i, 2] == null) //No data for this cell
                         {
                             table += "<td id='row" + key + "col" + i + "a' style='background-color:" + backColor +
-                                ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' colspan='2'>-</td>";
+                                ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + 0 + ", \"" + 0 + "\", " + 0 + ", \"" + 0 + "\", \"" + row[DaysDisplayed, 1] + "\")' colspan='2'>-</td>";
                         }
                         else if (row[i, 0] == null && row[i, 1] != null && row[i, 2] == null) //Full day of a guest
                         {
@@ -330,10 +331,10 @@ namespace TreasureLand.App_Code
                         {
                             int reservationID = row[i, 1] == null ? 0 : Int32.Parse(row[i, 1]);
                             table += "<td id='row" + key + "col" + i + "a' width='" + (columnWidth / 2) + "px' style='background-color:" + (row[i, 0] == null ? backColor : row[i, 0]) +
-                                ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ", \"" + DateTime.Parse(row[i, 4]).ToString("dd/MM/yyyy") + "\", " + row[i, 5] + ", \"" + row[i, 6] + "\")' >" + (reservationID == 0 ? "&nbsp;" : reservationID + "") + "</td>";
+                                ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ", \"" + DateTime.Parse(row[i, 4]).ToString("dd/MM/yyyy") + "\", " + row[i, 5] + ", \"" + row[i, 6] + "\", \"" + row[DaysDisplayed, 1] + "\")' >" + (reservationID == 0 ? "&nbsp;" : reservationID + "") + "</td>";
                             reservationID = row[i, 3] == null ? 0 : Int32.Parse(row[i, 3]);
                             table += "<td id='row" + key + "col" + i + "b' width='" + (columnWidth / 2) + "px' style='background-color:" + (row[i, 2] == null ? backColor : row[i, 2]) +
-                                ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ", \"" + DateTime.Parse(row[i, 4]).ToString("dd/MM/yyyy") + "\", " + row[i, 5] + ", \"" + row[i, 6] + "\")' >" + (reservationID == 0 ? "&nbsp;" : reservationID + "") + "</td>";
+                                ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ", \"" + DateTime.Parse(row[i, 4]).ToString("dd/MM/yyyy") + "\", " + row[i, 5] + ", \"" + row[i, 6] + "\", \"" + row[DaysDisplayed, 1] + "\")' >" + (reservationID == 0 ? "&nbsp;" : reservationID + "") + "</td>";
                         }
                     }
                     table += "</tr>"; //Close the row
@@ -397,7 +398,7 @@ namespace TreasureLand.App_Code
                 {
                     if(data[i, 2] == null) //Don't overwrite the start date when it comes time to generate the table
                         data[i, 1] = "<td id='row" + r.RoomNumber + "col" + i + "a' colspan='2' style='background-color:" + color +
-                                ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")' onclick='onReservationClick(" + r.ReservationDetailID + ", \"" + r.Begin.ToString("dd/MM/yyyy") + "\", " + (r.End - r.Begin).Days + ", \"" + (r.GuestName + '?' + r.ReservationID) + "\")' >RS #" + r.ReservationDetailID + "</td>";
+                                ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")' onclick='onReservationClick(" + r.ReservationDetailID + ", \"" + r.Begin.ToString("dd/MM/yyyy") + "\", " + (r.End - r.Begin).Days + ", \"" + (r.GuestName + '?' + r.ReservationID) + "\", \"" + r.RoomNumber + "\")' >RS #" + r.ReservationDetailID + "</td>";
                 }
             }
         }
@@ -500,6 +501,28 @@ namespace TreasureLand.App_Code
         }
 
         /// <summary>
+        /// Gets a row object of the reservation provided a ReservationID
+        /// Returns null if no object is found
+        /// </summary>
+        /// <param name="ReservationID">ReservationID of the reservation</param>
+        /// <returns>Row object of the reservation</returns>
+        public Row getRowInformation(int ReservationID)
+        {
+            try
+            {
+                update();
+                foreach (Row r in rows)
+                    if (r.ReservationID == ReservationID)
+                        return r;
+            }
+            catch (Exception e)
+            {
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Provided a reservationID, the system will search through all reservation
         /// records to find the start date
         /// Returns MinValue if no record is found
@@ -520,6 +543,50 @@ namespace TreasureLand.App_Code
             }
 
             return DateTime.MinValue;
+        }
+
+        /// <summary>
+        /// Provided a reservationID, the system will search through all reservation
+        /// records to find the guest's name
+        /// Returns an empty string if none is found
+        /// </summary>
+        /// <param name="ReservationID">ID of the reservation</param>
+        /// <returns>The begin time of the reservation</returns>
+        public string getGuestName(int ReservationID)
+        {
+            try
+            {
+                foreach (Row r in rows)
+                    if (r.ReservationID == ReservationID)
+                        return r.GuestName;
+            }
+            catch (Exception e)
+            {
+            }
+
+            return String.Empty;
+        }
+
+        /// <summary>
+        /// Provided a reservationID, the system will search through all reservation
+        /// records to find the guest's name
+        /// Returns an empty string if none is found
+        /// </summary>
+        /// <param name="ReservationID">ID of the reservation</param>
+        /// <returns>The reservation detail</returns>
+        public int getDetailID(int ReservationID)
+        {
+            try
+            {
+                foreach (Row r in rows)
+                    if (r.ReservationID == ReservationID)
+                        return r.ReservationDetailID;
+            }
+            catch (Exception e)
+            {
+            }
+
+            return 0;
         }
 
         /// <summary>
