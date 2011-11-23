@@ -95,7 +95,7 @@
                     <asp:TextBox ID="TextBox_RoomNumber" runat="server" 
                         ValidationGroup="VG_NewRoomData" MaxLength="5"></asp:TextBox>
                 </td>
-                <td>
+                <td colspan="2">
                     <asp:CheckBox ID="CheckBox_Smoking" runat="server" Text="Smoking" />
                     &nbsp;
                 </td>
@@ -121,7 +121,7 @@
                         DataValueField="HotelRoomTypeID">
                     </asp:DropDownList>
                 </td>
-                <td>
+                <td colspan="2">
                     Status
                 </td>
                 <td>
@@ -137,12 +137,12 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="5" class="style1">
+                <td colspan="6" class="style1">
                     Bed Configuration
                 </td>
             </tr>
             <tr>
-                <td colspan="5">
+                <td colspan="6">
                     <asp:TextBox ID="TextBox_BedConfig" runat="server" Width="95%" 
                         ValidationGroup="VG_NewRoomData" MaxLength="30"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RFV_BedConfig" runat="server" ControlToValidate="TextBox_BedConfig"
@@ -151,12 +151,12 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="5">
+                <td colspan="6">
                     Description
                 </td>
             </tr>
             <tr>
-                <td colspan="5">
+                <td colspan="6">
                     <asp:TextBox ID="TextBox_Description" runat="server" Width="95%" 
                         ValidationGroup="VG_NewRoomData" MaxLength="200"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RFV_BedConfig0" runat="server" ControlToValidate="TextBox_Description"
@@ -165,9 +165,13 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="5" align="right">
-                    <asp:Button ID="Room_Add" runat="server" Text="Add" OnClick="Room_Add_Click" CommandName="Insert"
-                        ValidationGroup="VG_NewRoomData" />
+                <td colspan="3" align="right">
+                    <asp:Button ID="btnBack" runat="server" CommandArgument="0" 
+                        CommandName="SwitchViewByIndex" onclick="btnBack_Click" Text="Back" />
+                </td>
+                <td align="right" colspan="3">
+                    <asp:Button ID="Room_Add" runat="server" CommandName="Insert" 
+                        OnClick="Room_Add_Click" Text="Add" ValidationGroup="VG_NewRoomData" />
                 </td>
             </tr>
         </table>
