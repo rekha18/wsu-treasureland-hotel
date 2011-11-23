@@ -36,15 +36,32 @@ namespace TreasureLand.Clerk
             {
                 mvRooms.ActiveViewIndex = 0; //Update room display
                 lblPageStatus.Text = "Move Reservation to a Different Room:";
+                calDatePicker.Visible = true;
 
                 if(reserve != null)
                     if (reserve.reservationID != 0)
                     {
-                        DateTime time = cHome.getReservationDate(reserve.reservationID);
+                        Row res = cHome.getRowInformation(reserve.reservationID);
 
-                        if (time != DateTime.MinValue)
-                            GridRangeView.current = time;
+                        if (res != null)
+                        {
+                            GridRangeView.current = res.Begin;
+                            lGuestName.Text = res.GuestName;
+                            lReservationID.Text = res.ReservationID + String.Empty;
+                            lDetailID.Text = res.ReservationDetailID + String.Empty;
+                        }
                     }
+
+                lDID.Text = "Detail ID:";
+                lResID.Text = "Reservation ID:";
+                lname.Text = "Guest Name:";
+                loriginal.Text = "Original Info:";
+                lblNewTableInfo.Text = "<table>" +
+                    "<tr><th colspan='2'>Selected Info:</th></tr>" +
+                    "<tr><td>Name: </td><td id='idName'></td></tr>" +
+                    "<tr><td>Reservation ID: </td><td id='idReservationID2'></td></tr>" +
+                    "<tr><td>Detail ID: </td><td id='idDetailID2'></td></tr>" +
+                    "</table>";
             }
             else //Adding a room
             {
@@ -52,7 +69,10 @@ namespace TreasureLand.Clerk
                 lblPageStatus.Text = "Add Current Reservation:";
                 GridRangeView.current = DateTime.Parse(reserve.reserveDate);
                 calDatePicker.SelectedDate = GridRangeView.current;
+                calDatePicker.Visible = false;
 
+                lblDateBegin.Text = reserve.reserveDate;
+                lblDateEnd.Text = DateTime.Parse(reserve.reserveDate).AddDays(reserve.daysStaying).ToString("dd/MM/yyyy");
                 //CheckInDate = Session["CheckInDate"].ToString();
                 //Nights = Int32.Parse(Session["Nights"].ToString());
                 //Session.Remove("CheckInDate");
