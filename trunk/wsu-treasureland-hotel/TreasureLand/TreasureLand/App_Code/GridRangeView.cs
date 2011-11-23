@@ -203,8 +203,11 @@ namespace TreasureLand.App_Code
         /// <summary>
         /// Defines the reservation type char in the database
         /// </summary>
-        private enum COLORS { ACTIVE = 'A', UNCONFIRMED = 'U', CONFIRMED = 'C', CANCELED = 'X',
-            FINISHED = 'F' };
+        private enum COLORS
+        {
+            ACTIVE = 'A', UNCONFIRMED = 'U', CONFIRMED = 'C', CANCELED = 'X',
+            FINISHED = 'F'
+        };
 
         /// <summary>
         /// Color that the row is highlighted if the room type value is the same as the row's room number
@@ -396,7 +399,7 @@ namespace TreasureLand.App_Code
                 //If the index is valid
                 if (i >= 0 && i < DaysDisplayed)
                 {
-                    if(data[i, 2] == null) //Don't overwrite the start date when it comes time to generate the table
+                    if (data[i, 2] == null) //Don't overwrite the start date when it comes time to generate the table
                         data[i, 1] = "<td id='row" + r.RoomNumber + "col" + i + "a' colspan='2' style='background-color:" + color +
                                 ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")' onclick='onReservationClick(" + r.ReservationDetailID + ", \"" + r.Begin.ToString("dd/MM/yyyy") + "\", " + (r.End - r.Begin).Days + ", \"" + (r.GuestName + '?' + r.ReservationID) + "\", \"" + r.RoomNumber + "\")' >RS #" + r.ReservationDetailID + "</td>";
                 }
@@ -457,7 +460,7 @@ namespace TreasureLand.App_Code
                 }
 
             if (test == null) //ReservationID did not match any existing record
-                return "No existing records for Reservation # " + ReservationID; 
+                return "No existing records for Reservation # " + ReservationID;
 
             bool roomFound = false;
             foreach (string[] s in roomNames)
@@ -601,7 +604,7 @@ namespace TreasureLand.App_Code
         public string testDateRangeCollision(string sBegin, int nightsStayed, string RoomNumber)
         {
             update();
-            
+
             DateTime begin = DateTime.Parse(sBegin); //Assuming sBegin is in the proper format
             DateTime end = begin.AddDays(nightsStayed);
 
@@ -713,7 +716,7 @@ namespace TreasureLand.App_Code
         /// <returns></returns>
         private string generateRow(string[,] rowData, string key, int j, bool rowEven)
         {
-            string RT = "<td id='room" + key + "col" + j + "'>" + 
+            string RT = "<td id='room" + key + "col" + j + "'>" +
                 "<table><tr>" +
                 (rowData[j, 1] == null ? (rowData[j, 0] == null ? (rowEven ? "<td style='background-color:#CCCCCC'>-</td>" : "<td style='background-color:#FFFFFF'>-</td>") : rowData[j, 0]) : rowData[j, 0] + rowData[j, 1]) +
                 "</tr></table>";
@@ -739,7 +742,7 @@ namespace TreasureLand.App_Code
             else if (startIndex >= 0 || startIndex < DaysDisplayed)//Add the second td tag
                 colorData[startIndex, 1] = "<td width='50%' style='background-color:" + color + ";' onmouseover='select(\"" + r.RoomNumber + "\")' onmouseout='deselect(\"" + r.RoomNumber + "\")'" + "></td>";
 
-            for (int i = startIndex+1; i < endIndex; i++)
+            for (int i = startIndex + 1; i < endIndex; i++)
             {
                 //If the index is valid
                 if (i >= 0 && i < DaysDisplayed)
@@ -768,7 +771,7 @@ namespace TreasureLand.App_Code
             foreach (Row r in rows)
             {
                 int foo;
-                if(Int32.TryParse(r.RoomNumber, out foo))
+                if (Int32.TryParse(r.RoomNumber, out foo))
                     fillColData(r, StringColData);
             }
 
@@ -776,16 +779,16 @@ namespace TreasureLand.App_Code
             //can start being crafted
 
             //Generate the row headers
-            string table = "<table" + 
+            string table = "<table" +
                 (centerTable ? " style='margin-left:auto;margin-right:auto;'>" : ">") + generateRowHeaders();
 
             //Generate the data rows
-            for (int rowIndex = RoomIndex-1; rowIndex < RoomIndex + PageSize && rowIndex < MAX_ROOMS; rowIndex++)
+            for (int rowIndex = RoomIndex - 1; rowIndex < RoomIndex + PageSize && rowIndex < MAX_ROOMS; rowIndex++)
             {
                 //Create the left-most cell with the room number
                 table += "<tr>"; //Open a row
                 table += "<td id='row" + rowIndex + "' style='background: #AAAAAA' onmouseover='select(" + rowIndex + ")' onmouseout='deselect(" + rowIndex + ")'>" +
-                    (rowIndex+1) + "</td>";
+                    (rowIndex + 1) + "</td>";
                 //Create the row data
                 for (int j = 0; j < DaysDisplayed; j++)
                     table += "<td id='room" + rowIndex + "col" + j + "' style='background:" + StringColData[rowIndex, j, 0] + "'" +

@@ -94,6 +94,33 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.GridView gvGuest;
         
         /// <summary>
+        /// lblErrorMessage2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMessage2;
+        
+        /// <summary>
+        /// gvUnconfirmedGuest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvUnconfirmedGuest;
+        
+        /// <summary>
+        /// lblErrorMessage3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMessage3;
+        
+        /// <summary>
         /// btnSelectGuest control.
         /// </summary>
         /// <remarks>
@@ -103,13 +130,13 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.Button btnSelectGuest;
         
         /// <summary>
-        /// lblErrorMessage2 control.
+        /// btnConfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorMessage2;
+        protected global::System.Web.UI.WebControls.Button btnConfirm;
         
         /// <summary>
         /// vCheckInGuest control.
@@ -128,6 +155,15 @@ namespace TreasureLand.Clerk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCustomerId;
+        
+        /// <summary>
+        /// lblReservationDetailID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReservationDetailID;
         
         /// <summary>
         /// txtShowReservationNum control.
