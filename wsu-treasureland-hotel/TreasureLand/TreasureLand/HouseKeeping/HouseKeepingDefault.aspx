@@ -18,8 +18,17 @@
                                 ReadOnly="True" SortExpression="RoomNumbers" />
                             <asp:BoundField DataField="RoomDescription" HeaderText="RoomDescription" 
                                 ReadOnly="True" SortExpression="RoomDescription" />
-                            <asp:BoundField DataField="RoomStatus" HeaderText="RoomStatus" ReadOnly="True" 
-                                SortExpression="RoomStatus" />
+                            <asp:TemplateField HeaderText="RoomStatus" SortExpression="RoomStatus">
+                                <EditItemTemplate>
+                                    <asp:DropDownList ID="DropDownList1" runat="server" 
+                                        DataSourceID="LinqDataSource1" DataTextField="Description" 
+                                        DataValueField="Status" SelectedValue='<%# Bind("RoomStatus") %>'>
+                                    </asp:DropDownList>
+                                </EditItemTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("RoomStatus") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:BoundField DataField="RoomBedConfiguration" 
                                 HeaderText="RoomBedConfiguration" ReadOnly="True" 
                                 SortExpression="RoomBedConfiguration" Visible="False" />
@@ -54,7 +63,7 @@
                     <asp:Label ID="lblHousekeeping" runat="server" ForeColor="Red"></asp:Label>
                 </td>
                 <td>
-                    &nbsp;</td>
+                    .</td>
             </tr>
             <tr>
                 <td style="width: 494px">
