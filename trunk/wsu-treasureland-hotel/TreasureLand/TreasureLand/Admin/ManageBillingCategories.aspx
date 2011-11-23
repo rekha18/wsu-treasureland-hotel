@@ -8,8 +8,17 @@
                     <Columns>
                         <asp:BoundField DataField="BillingCategoryID" HeaderText="ID" 
                             InsertVisible="False" ReadOnly="True" SortExpression="BillingCategoryID" />
-                        <asp:BoundField DataField="BillingCategoryDescription" HeaderText="Description" 
-                            SortExpression="BillingCategoryDescription" />
+                        <asp:TemplateField HeaderText="Description" 
+                            SortExpression="BillingCategoryDescription">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server" MaxLength="30" 
+                                    Text='<%# Bind("BillingCategoryDescription") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" 
+                                    Text='<%# Bind("BillingCategoryDescription") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:CheckBoxField DataField="BillingCategoryTaxable" HeaderText="Taxable" 
                             SortExpression="BillingCategoryTaxable" />
                         <asp:CommandField ButtonType="Button" ShowEditButton="True" />
