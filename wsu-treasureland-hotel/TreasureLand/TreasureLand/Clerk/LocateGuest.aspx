@@ -39,7 +39,7 @@
             <br />
             <asp:GridView ID="gvGuest" runat="server" AutoGenerateColumns="False" 
                                     onselectedindexchanged="gvGuest_SelectedIndexChanged" 
-                    onselectedindexchanging="gvGuest_SelectedIndexChanging" 
+                    
                 >
                 <Columns>
                     <asp:BoundField DataField="ReservationDetailID" 
@@ -55,13 +55,49 @@
                 <RowStyle Font-Size="Small" />
                 <HeaderStyle Font-Names="Arial" Font-Size="Small" />
                 <AlternatingRowStyle BackColor="White" />
+                <SelectedRowStyle BackColor="Yellow" />
             </asp:GridView>
-            <br />
-            &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="btnSelectGuest" runat="server" 
-                Text="Select Guest" onclick="btnSelectGuest_Click" Visible="False" />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="lblErrorMessage2" runat="server" ForeColor="Red"></asp:Label>
+            <br />
+            <br />
+            <br />
+            <asp:GridView ID="gvUnconfirmedGuest" runat="server" 
+                AutoGenerateColumns="False" 
+                onselectedindexchanged="gvUnconfirmedGuest_SelectedIndexChanged">
+                <Columns>
+                    <asp:BoundField DataField="ReservationDetailID" 
+                        HeaderText="Reservation Detail ID" />
+                    <asp:BoundField DataField="GuestFirstName" HeaderText="First Name" />
+                    <asp:BoundField DataField="GuestSurName" HeaderText="Surname" />
+                    <asp:BoundField DataField="ReservationID" HeaderText="Reservation ID" />
+                    <asp:BoundField DataField="ReservationStatus" HeaderText="Status" />
+                    <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
+                </Columns>
+                <SelectedRowStyle BackColor="Yellow" />
+            </asp:GridView>
+            <asp:Label ID="lblErrorMessage3" runat="server" ForeColor="Red"></asp:Label>
+            <br />
+            <br />
+            <table style="width:100%;">
+                <tr>
+                    <td style="width: 168px">
+                        <asp:Button ID="btnSelectGuest" runat="server" onclick="btnSelectGuest_Click" 
+                            Text="Select Guest" Visible="False" />
+                    </td>
+                    <td>
+                        <asp:Button ID="btnConfirm" runat="server" style="margin-left: 0px" 
+                            Text="Confirm" Visible="False" onclick="btnConfirm_Click" />
+                    </td>
+                    <td>
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        &nbsp;</td>
+                    <td>
+                        &nbsp;</td>
+                </tr>
+            </table>
         </asp:View>
         <asp:View ID="vCheckInGuest" runat="server">
             <table style="width: 84%">
@@ -72,9 +108,10 @@
                         <asp:Label ID="lblCustomerId" runat="server"></asp:Label>
                     </td>
                     <td style="width: 148px">
-                        &nbsp;</td>
+                        Detail ID:</td>
                     <td style="width: 134px">
-                        &nbsp;</td>
+                        <asp:Label ID="lblReservationDetailID" runat="server"></asp:Label>
+                    </td>
                 </tr>
                 <tr>
                     <td style="width: 133px">
@@ -206,7 +243,7 @@
             <br />
             &nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnBack" runat="server" Text="Back" 
-                CommandName="PrevView" />
+                CommandName="PrevView" onclick="btnBack_Click" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnCheckIn" runat="server" Text="Check in" 
                 onclick="btnCheckIn_Click" />

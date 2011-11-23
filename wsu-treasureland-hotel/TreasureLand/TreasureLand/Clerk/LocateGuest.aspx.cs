@@ -10,40 +10,64 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using TreasureLand.DBM;
 
 namespace TreasureLand.Clerk
 {
+
     public partial class LocateGuest : System.Web.UI.Page
     {
-
+        public static bool change = false;
         protected void Page_Load(object sender, EventArgs e)
         {
 
 
         }
 
-        /// <summary>
-        /// Highlights the selected row in the gridview
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         protected void gvGuest_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnSelectGuest.Visible = true;
-            gvGuest.SelectedRow.BackColor = System.Drawing.Color.Yellow;
-        }
 
-        /// <summary>
-        /// Changes a previously selected row from highlighted to white
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void gvGuest_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-            if (gvGuest.SelectedIndex > -1)
+
+
+            if (gvUnconfirmedGuest.SelectedIndex >= 0 && change == true)
             {
-                gvGuest.SelectedRow.BackColor = System.Drawing.Color.White;
+                btnSelectGuest.Visible = false;
+                btnConfirm.Visible = true;
+                change = false;
+                gvUnconfirmedGuest.SelectRow(-1);
+                change = true;
+
             }
+            else
+            {
+                change = true;
+
+            }
+            btnSelectGuest.Visible = true;
+            btnConfirm.Visible = false;
+        }
+        protected void gvUnconfirmedGuest_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+            if (gvGuest.SelectedIndex >= 0 && change == true)
+            {
+                btnSelectGuest.Visible = true;
+                btnConfirm.Visible = false;
+                change = false;
+                gvGuest.SelectRow(-1);
+                change = true;
+                
+                
+            }
+            else
+            {
+                change = true;
+
+            }
+            btnSelectGuest.Visible = false;
+            btnConfirm.Visible = true;
         }
         
         /// <summary>
@@ -71,9 +95,32 @@ namespace TreasureLand.Clerk
                     if (txtReservationNum.Text == "")
                         txtReservationNum.Text = "0";
 
-                    //Gridview is populated with data
-                    gvGuest.DataSource = App_Code.GuestDB.LocateGuestCheckIn(txtFirstName.Text, txtSurname.Text, txtReservationNum.Text);
+                    TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                    var guest = from g in db.Guests
+                                join r in db.Reservations
+                                on g.GuestID equals r.GuestID
+                                join rd in db.ReservationDetails
+                                on r.ReservationID equals rd.ReservationID
+                                join ro in db.Rooms
+                                on rd.RoomID equals ro.RoomID
+                                where (r.ReservationID == Convert.ToInt16(txtReservationNum.Text) || g.GuestFirstName == txtFirstName.Text || g.GuestSurName == txtSurname.Text) && (r.ReservationStatus == 'C')
+                                select new { r.ReservationID, g.GuestFirstName, g.GuestSurName, rd.ReservationDetailID, };
+
+                    gvGuest.DataSource = guest.ToList();
                     gvGuest.DataBind();
+
+                    var guests = from g in db.Guests
+                                join r in db.Reservations
+                                on g.GuestID equals r.GuestID
+                                join rd in db.ReservationDetails
+                                on r.ReservationID equals rd.ReservationID
+                                join ro in db.Rooms
+                                on rd.RoomID equals ro.RoomID
+                                where (r.ReservationID == Convert.ToInt16(txtReservationNum.Text) || g.GuestFirstName == txtFirstName.Text || g.GuestSurName == txtSurname.Text) && (r.ReservationStatus == 'U')
+                                select new { r.ReservationID, g.GuestFirstName, g.GuestSurName, rd.ReservationDetailID, r.ReservationStatus};
+
+                    gvUnconfirmedGuest.DataSource = guests.ToList();
+                    gvUnconfirmedGuest.DataBind();
 
                     //Clears the default values for the textboxes
                     if (txtFirstName.Text == "none")
@@ -121,12 +168,52 @@ namespace TreasureLand.Clerk
                     txtShowPhone.Text = myArrList[7].ToString();
                     txtShowCheckOut.Text = string.Format("{0:dd/MM/yyyy}", (Convert.ToDateTime(myArrList[8]).AddDays(Convert.ToInt32(myArrList[9]))));
                     lblCustomerId.Text = App_Code.GuestDB.getGuestID(Convert.ToInt32(txtShowReservationNum.Text)).ToString();
+                    lblReservationDetailID.Text = gvGuest.SelectedRow.Cells[0].Text;
                 }
               
             
             }
         }
-        
+
+        protected void btnConfirm_Click(object sender, EventArgs e)
+        {
+            if (gvUnconfirmedGuest.SelectedIndex == -1)
+                lblErrorMessage2.Text = "You must select a guest";
+            else
+            {
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                Reservation res = db.Reservations.Single(r=> r.ReservationID == Convert.ToInt32(gvUnconfirmedGuest.SelectedRow.Cells[3].Text));
+
+                res.ReservationStatus = 'C';
+                db.SubmitChanges();
+                
+                //switches to the next view
+                mvLocateGuest.ActiveViewIndex = 1;
+
+                //get the discount
+                ArrayList myArrList = new ArrayList();
+                myArrList = App_Code.GuestDB.getGuestInformation(Convert.ToInt32(gvUnconfirmedGuest.SelectedRow.Cells[0].Text));
+                //if there are no items in the arrayList then there is no discount
+                if (myArrList.Count != 0)
+                {
+
+                    txtShowReservationNum.Text = myArrList[0].ToString();
+                    txtShowRoomType.Text = myArrList[1].ToString();
+                    txtShowRoomNum.Text = myArrList[2].ToString();
+                    txtShowNumGuests.Text = (Convert.ToInt32(myArrList[3]) + Convert.ToInt32(myArrList[4])).ToString();
+                    txtShowFirstName.Text = myArrList[5].ToString();
+                    txtShowSurname.Text = myArrList[6].ToString();
+                    txtShowPhone.Text = myArrList[7].ToString();
+                    txtShowCheckOut.Text = string.Format("{0:dd/MM/yyyy}", (Convert.ToDateTime(myArrList[8]).AddDays(Convert.ToInt32(myArrList[9]))));
+                    lblCustomerId.Text = App_Code.GuestDB.getGuestID(Convert.ToInt32(txtShowReservationNum.Text)).ToString();
+                    lblReservationDetailID.Text = gvUnconfirmedGuest.SelectedRow.Cells[0].Text;
+                }
+
+
+            }
+        }
+
+
         /// <summary>
         /// When the check in button is pressed, the entered data is updated.  All or none of the data may be entered.
         /// </summary>
@@ -141,14 +228,27 @@ namespace TreasureLand.Clerk
 
             //updates the roomStatus to checked in, and updates the reservationdetail to active
             App_Code.GuestDB.updateRoomStatus('C', Convert.ToInt32(txtShowRoomNum.Text));
-            App_Code.GuestDB.updateReservationDetail('A', Convert.ToInt32(gvGuest.SelectedRow.Cells[0].Text));
+            App_Code.GuestDB.updateReservationDetail('A', Convert.ToInt16(lblReservationDetailID.Text));
             
             //Updates the Reservation status to Active if all reservation detail status associated with the reservation are set to active
-            if(App_Code.GuestDB.countConfirmedReservationDetail(Convert.ToInt32(gvGuest.SelectedRow.Cells[3].Text))==0)
+            if(App_Code.GuestDB.countConfirmedReservationDetail(Convert.ToInt32(txtShowReservationNum.Text))==0)
             {
-                App_Code.GuestDB.updateReservationStatus('A', Convert.ToInt32(gvGuest.SelectedRow.Cells[3].Text));
+                App_Code.GuestDB.updateReservationStatus('A', Convert.ToInt32(txtShowReservationNum.Text));
             }
             mvLocateGuest.ActiveViewIndex = 2;
         }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            gvGuest.DataBind();
+            gvUnconfirmedGuest.DataBind();
+            btnConfirm.Visible = false;
+            btnSelectGuest.Visible = false;
+
+        }
+
+ 
+
+
     }
 }

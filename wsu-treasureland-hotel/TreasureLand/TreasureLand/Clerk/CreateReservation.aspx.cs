@@ -77,7 +77,7 @@ namespace TreasureLand.Clerk
                                join o in db.Rooms
                                on r.HotelRoomTypeID equals o.HotelRoomTypeID
                                where (o.RoomID == reserving.roomID)
-                               select new { o.RoomNumbers, r.RoomType, r.RoomTypeRackRate };//currency = string.Format("{0:c}", r.RoomTypeRackRate) };
+                               select new { o.RoomNumbers, r.RoomType, currenct = string.Format("{0:0.00}", r.RoomTypeRackRate) };//currency = string.Format("{0:c}", r.RoomTypeRackRate) };
                 gvRoomInfo.DataSource = roomInfo.ToList();
                 gvRoomInfo.DataBind();
                 gvRoomInfo.HeaderRow.Cells[0].Text = "Room Number";
@@ -160,62 +160,6 @@ namespace TreasureLand.Clerk
         }
         #endregion Locate Guest Button
 
-        #region Add Guest Button
-
-        protected void btnAddGuest_Click(object sender, EventArgs e)
-        {
-
-            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            var gu = from g in db.Guests.Where(g => g.GuestFirstName == txtFirstNameInsert.Text && g.GuestSurName == txtSurNameInsert.Text && g.GuestPhone == txtPhoneInsert.Text)
-                     select g;
-            gvGuestInsert.DataSource = gu.ToList();
-            gvGuestInsert.DataBind();
-
-
-            if (gvGuestInsert.Rows.Count == 0)
-            {
-                //USes an linq to sql to insert a guest into the guest table
-                Guest addGuest = new Guest();
-                addGuest.GuestFirstName = txtFirstNameInsert.Text;
-                addGuest.GuestSurName = txtSurNameInsert.Text;
-                addGuest.GuestPhone = txtPhoneInsert.Text;
-                db.Guests.InsertOnSubmit(addGuest);
-                db.SubmitChanges();
-
-                lblResFirstName.Text = txtFirstNameInsert.Text;
-                lblResSurName.Text = txtSurNameInsert.Text;
-                lblResPhone.Text = txtPhoneInsert.Text;
-                reserving.GuestID = addGuest.GuestID;
-
-                btnAddGuest.CommandArgument = "2";
-            }
-            else
-            {
-                btnSelectGuestInsert.Visible = true;
-                btnSelectGuestInsert.Enabled = false;
-                btnSelectGuestInsert.ViewStateMode = System.Web.UI.ViewStateMode.Enabled;
-                lblErrorInsertGuest.Text = "Guest already exists please select below or enter a new guest";
-                btnAddGuest.CommandArgument = "1";
-            }
-            reserving.view = 2;
-        }
-        #endregion Add Guest Button
-
-        #region Back Button
-        protected void btnBack_Click(object sender, EventArgs e)
-        {
-            txtFirstNameInsert.Text = "";
-            txtSurNameInsert.Text = "";
-            txtPhoneInsert.Text = "";
-            lblErrorInsertGuest.Text = "";
-            gvGuestInsert.DataSource = null;
-            gvGuestInsert.DataBind();
-            btnSelectGuestInsert.Enabled = false;
-            btnSelectGuestInsert.Visible = false;
-            btnSelectGuestInsert.ViewStateMode = System.Web.UI.ViewStateMode.Disabled;
-        }
-        #endregion Back Button
-
         #region Calander Selection Change Event
 
         protected void calDateFrom_SelectionChanged(object sender, EventArgs e)
@@ -249,15 +193,6 @@ namespace TreasureLand.Clerk
             reserving.GuestID = Convert.ToInt16(gvGuest.SelectedRow.Cells[0].Text);
             reserving.view = 2;
         }
-        protected void btnSelectGuestInsert_Click(object sender, EventArgs e)
-        {
-            //Sets selected guest into reservation fields
-            lblResFirstName.Text = Convert.ToString(gvGuestInsert.SelectedRow.Cells[2].Text);
-            lblResSurName.Text = Convert.ToString(gvGuestInsert.SelectedRow.Cells[1].Text);
-            lblResPhone.Text = Convert.ToString(gvGuestInsert.SelectedRow.Cells[3].Text);
-            reserving.GuestID = Convert.ToInt16(gvGuestInsert.SelectedRow.Cells[0].Text);
-            reserving.view = 2;
-        }
 
 
         #endregion Select Guest Buttons
@@ -270,11 +205,6 @@ namespace TreasureLand.Clerk
             btnSelectGuest.Enabled = true;
         }
 
-        protected void gvGuestInsert_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //Allows user to proceed to reservation only after guest is selected
-            btnSelectGuestInsert.Enabled = true;
-        }
         #endregion Grid View Guest Index Change Event
 
         #region Select Room Button
@@ -361,6 +291,45 @@ namespace TreasureLand.Clerk
             Session.RemoveAll();
             Response.Redirect("ClerkDefault.aspx");
         }
+
+        protected void btnNewGuest_Click(object sender, EventArgs e)
+        {
+
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            var gu = from g in db.Guests.Where(g => g.GuestFirstName == txtFirstName.Text && g.GuestSurName == txtSurName.Text && g.GuestPhone == txtPhone.Text)
+                     select g;
+            gvGuest.DataSource = gu.ToList();
+            gvGuest.DataBind();
+
+
+            if (gvGuest.Rows.Count == 0)
+            {
+                //USes an linq to sql to insert a guest into the guest table
+                Guest addGuest = new Guest();
+                addGuest.GuestFirstName = txtFirstName.Text;
+                addGuest.GuestSurName = txtSurName.Text;
+                addGuest.GuestPhone = txtPhone.Text;
+                db.Guests.InsertOnSubmit(addGuest);
+                db.SubmitChanges();
+
+                lblResFirstName.Text = txtFirstName.Text;
+                lblResSurName.Text = txtSurName.Text;
+                lblResPhone.Text = txtPhone.Text;
+                reserving.GuestID = addGuest.GuestID;
+
+                reserving.view = 2;
+                btnNewGuest.CommandArgument = "2";
+            }
+            else
+            {
+                lblErrorInsertGuest.Text = "Guest already exists please select below or enter a new guest";
+                btnNewGuest.CommandArgument = "0";
+                reserving.view = 0;
+
+            }
+        }
+
+
 
 
     }

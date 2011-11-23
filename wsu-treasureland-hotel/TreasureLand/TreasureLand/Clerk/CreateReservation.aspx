@@ -11,28 +11,39 @@
                                 First Name:</td>
                             <td class="style1" style="width: 155px">
 
-                                <asp:TextBox ID="txtFirstName" runat="server" OnClick="this.value=''">-Enter Name-</asp:TextBox>
+                                <asp:TextBox ID="txtFirstName" runat="server" OnClick="this.value=''"></asp:TextBox>
                             </td>
                             <td>
-                                &nbsp;</td>
+                                <asp:RequiredFieldValidator ID="rfvFirstName" runat="server" 
+                                    ControlToValidate="txtFirstName" 
+                                    ErrorMessage="First name is required to add a guest" ForeColor="Red" 
+                                    ValidationGroup="vgNewGuest"></asp:RequiredFieldValidator>
+                            </td>
                         </tr>
                         <tr>
                             <td style="width: 73px">
-                                Sur Name:</td>
+                                Surname:</td>
                             <td class="style1" style="width: 155px">
-                                <asp:TextBox ID="txtSurName" runat="server" OnClick="this.value=''">-Enter Name-</asp:TextBox>
+                                <asp:TextBox ID="txtSurName" runat="server" OnClick="this.value=''"></asp:TextBox>
                             </td>
                             <td>
-                                &nbsp;</td>
+                                <asp:RequiredFieldValidator ID="rfvSurname" runat="server" 
+                                    ControlToValidate="txtSurName" 
+                                    ErrorMessage="Surname is required to add a guest" ForeColor="Red" 
+                                    ValidationGroup="vgNewGuest"></asp:RequiredFieldValidator>
+                            </td>
                         </tr>
                         <tr>
                             <td style="width: 73px">
                                 Phone:</td>
                             <td class="style1" style="width: 155px">
-                                <asp:TextBox ID="txtPhone" runat="server" OnClick="this.value=''">-Enter Phone-</asp:TextBox>
+                                <asp:TextBox ID="txtPhone" runat="server" OnClick="this.value=''"></asp:TextBox>
                             </td>
                             <td>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:RequiredFieldValidator ID="rfvPhone" runat="server" 
+                                    ControlToValidate="txtPhone" ErrorMessage="Phone is required to add a guest" 
+                                    ForeColor="Red" ValidationGroup="vgNewGuest"></asp:RequiredFieldValidator>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </td>
                         </tr>
                         <tr>
@@ -42,14 +53,18 @@
                             </td>
                             <td class="style1" style="width: 155px">
                                 <asp:Button ID="btnNewGuest" runat="server" 
-                                    Text="New Guest" CausesValidation="False" CommandArgument="1" 
-                                    CommandName="SwitchViewByIndex" />
+                                    Text="New Guest" CommandArgument="2" 
+                                    CommandName="SwitchViewByIndex" onclick="btnNewGuest_Click" 
+                                    ValidationGroup="vgNewGuest" />
                             </td>
                             <td>
                                 <asp:Label ID="lblErrorNoGuest" runat="server" ForeColor="Red"></asp:Label>
                             </td>
                         </tr>
                     </table>
+                    <br />
+                    <asp:Label ID="lblErrorInsertGuest" runat="server" Font-Bold="True" 
+                        Font-Size="Large" ForeColor="#FF3300"></asp:Label>
                     <br />
                     <asp:GridView ID="gvGuest" runat="server" AutoGenerateColumns="False" 
                         onselectedindexchanged="gvGuest_SelectedIndexChanged">
@@ -78,79 +93,6 @@
             </asp:View>
             <asp:View ID="vNewGuest" runat="server">
                 <asp:Panel ID="Panel2" runat="server" BackColor="Silver" BorderStyle="Solid">
-                    <table style="width:100%;">
-                        <tr>
-                            <td style="width: 75px">
-                                &nbsp;</td>
-                            <td>
-                                &nbsp;</td>
-                        </tr>
-                        <tr>
-                            <td style="width: 75px">
-                                First Name:</td>
-                            <td>
-                                <asp:TextBox ID="txtFirstNameInsert" runat="server" Width="160px"></asp:TextBox>
-                                &nbsp;&nbsp;
-                                <asp:RequiredFieldValidator ID="rfvFirstNameInsert" runat="server" 
-                                    ControlToValidate="txtFirstNameInsert" ErrorMessage="First Name is required" 
-                                    ForeColor="Red" ValidationGroup="lookup"></asp:RequiredFieldValidator>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 75px">
-                                Sur Name:</td>
-                            <td>
-                                <asp:TextBox ID="txtSurNameInsert" runat="server" Width="160px"></asp:TextBox>
-                                &nbsp;&nbsp;
-                                <asp:RequiredFieldValidator ID="rfvSurNameInsert" runat="server" 
-                                    ControlToValidate="txtSurNameInsert" ErrorMessage="Sur Name is required" 
-                                    ForeColor="Red" ValidationGroup="lookup"></asp:RequiredFieldValidator>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 75px">
-                                Phone:</td>
-                            <td>
-                                <asp:TextBox ID="txtPhoneInsert" runat="server" Width="160px"></asp:TextBox>
-                                &nbsp;&nbsp;
-                                <asp:RequiredFieldValidator ID="rfvPhoneInsert" runat="server" 
-                                    ControlToValidate="txtPhoneInsert" ErrorMessage="Phone is required" 
-                                    ForeColor="Red" ValidationGroup="lookup"></asp:RequiredFieldValidator>
-                            </td>
-                        </tr>
-                    </table>
-                    <br />
-                    <asp:Button ID="btnBack" runat="server" CommandArgument="0" 
-                        CommandName="SwitchViewByIndex" Text="Back" onclick="btnBack_Click" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:Button ID="btnAddGuest" runat="server" Text="Add Guest" 
-                        onclick="btnAddGuest_Click" CommandArgument="2" 
-                        CommandName="SwitchViewByIndex" />
-                    <br />
-                    <br />
-                    <br />
-                    <asp:Label ID="lblErrorInsertGuest" runat="server" Font-Bold="True" 
-                        Font-Size="Large" ForeColor="#FF3300"></asp:Label>
-                    <br />
-                    <asp:GridView ID="gvGuestInsert" runat="server" AutoGenerateColumns="False" 
-                        onselectedindexchanged="gvGuestInsert_SelectedIndexChanged">
-                        <Columns>
-                            <asp:BoundField DataField="GuestID" HeaderText="ID" ReadOnly="True" 
-                                SortExpression="GuestID" />
-                            <asp:BoundField DataField="GuestSurName" HeaderText="Sur Name" ReadOnly="True" 
-                                SortExpression="GuestSurName" />
-                            <asp:BoundField DataField="GuestFirstName" HeaderText="First Name" 
-                                ReadOnly="True" SortExpression="GuestFirstName" />
-                            <asp:BoundField DataField="GuestPhone" HeaderText="Phone Number" 
-                                ReadOnly="True" SortExpression="GuestPhone" />
-                            <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
-                        </Columns>
-                        <SelectedRowStyle BackColor="#FFFF66" />
-                    </asp:GridView>
-                    <br />
-                    <asp:Button ID="btnSelectGuestInsert" runat="server" CommandArgument="2" 
-                        CommandName="SwitchViewByIndex" onclick="btnSelectGuestInsert_Click" 
-                        Text="Select Guest" ViewStateMode="Disabled" Visible="False" />
                 </asp:Panel>
             </asp:View>
             <asp:View ID="vCreateReservation" runat="server">
