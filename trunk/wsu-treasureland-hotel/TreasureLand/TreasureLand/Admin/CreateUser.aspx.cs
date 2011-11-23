@@ -24,7 +24,7 @@ namespace TreasureLand.Admin
             //{
             //    continueUrl = "~/";
             //}
-            Response.Redirect("admindefault.aspx");
+            Response.Redirect("ManageUsers.aspx");
         }
     }
 }
