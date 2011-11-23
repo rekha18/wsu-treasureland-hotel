@@ -67,10 +67,12 @@
     
         SelectCommand="SELECT        ACCOUNTING.AccountingID, ACCOUNTING.AccountingDate, ACCOUNTING.AccountingCost, ACCOUNTINGTYPE.AccountingType,  ACCOUNTING.AccountingDescription
 FROM            ACCOUNTING INNER JOIN
-                         ACCOUNTINGTYPE ON ACCOUNTING.AccountingTypeID = ACCOUNTINGTYPE.AccountingTypeID" 
+                         ACCOUNTINGTYPE ON ACCOUNTING.AccountingTypeID = ACCOUNTINGTYPE.AccountingTypeID
+ORDER BY ACCOUNTING.AccountingDate" 
         ConflictDetection="CompareAllValues" 
         DeleteCommand="DELETE FROM ACCOUNTING WHERE AccountingID = @original_AccountingID" 
         OldValuesParameterFormatString="original_{0}" 
+        
         
         UpdateCommand="UPDATE    ACCOUNTING SET    [AccountingCost] = @AccountingCost, 
                      [AccountingDescription] = @AccountingDescription WHERE [AccountingID] = @original_AccountingID"  >
