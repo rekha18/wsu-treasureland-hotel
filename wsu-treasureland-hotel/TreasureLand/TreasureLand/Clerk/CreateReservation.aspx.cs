@@ -256,7 +256,7 @@ namespace TreasureLand.Clerk
                 resDetail.ReservationID = res.ReservationID;
                 resDetail.CheckinDate = calDateFrom.SelectedDate;
                 resDetail.RoomID = reserving.roomID;
-                resDetail.QuotedRate = quotedPrice;
+                resDetail.QuotedRate = quotedPrice / Convert.ToInt16(ddlNumberOfDays.SelectedValue);
                 resDetail.Status = 'A';
                 resDetail.Nights = Convert.ToByte(ddlNumberOfDays.SelectedValue);
                 resDetail.NumberOfAdults = Convert.ToByte(ddlAdults.SelectedValue);
