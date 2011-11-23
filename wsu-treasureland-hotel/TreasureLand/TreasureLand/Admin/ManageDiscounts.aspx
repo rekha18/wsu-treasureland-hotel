@@ -60,7 +60,8 @@
                                 ErrorMessage="Expiration Date is Required" ForeColor="Red"></asp:RequiredFieldValidator>
                             <asp:CompareValidator ID="cvDiscountExpiration" runat="server" 
                                 ControlToValidate="txtDiscountExpiration" Display="Dynamic" 
-                                ErrorMessage="Must enter a valid date" ForeColor="Red" Operator="DataTypeCheck"></asp:CompareValidator>
+                                ErrorMessage="Must enter a valid date" ForeColor="Red" 
+                                Operator="DataTypeCheck" Type="Date"></asp:CompareValidator>
                         </td>
                     </tr>
                     <tr>
