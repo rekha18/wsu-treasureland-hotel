@@ -17,38 +17,41 @@
         <tr>
             <td class="style1" valign="top">
                 <asp:Button ID="btnHome" runat="server" Text="Home" Width="180px" 
-                    onclick="btnHome_Click" />
+                    onclick="btnHome_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
                 <asp:Button ID="btnCheckIn" runat="server" Text="Check-in" Width="180px" 
-                    onclick="btnCheckIn_Click" />
+                    onclick="btnCheckIn_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
                 <asp:Button ID="btnUpdateGuestFolio" runat="server" Text="Update Guest-folio" 
-                        Width="180px" onclick="btnUpdateGuestFolio_Click" />
+                        Width="180px" onclick="btnUpdateGuestFolio_Click" 
+                    UseSubmitBehavior="False" />
                 <br />
                 <br />
                 <asp:Button ID="btnCreateReservation" runat="server" Text="Create Reservation" 
-                        Width="180px" onclick="btnCreateReservation_Click" />
+                        Width="180px" onclick="btnCreateReservation_Click" 
+                    UseSubmitBehavior="False" />
                 <br />
                 <br />
                 <asp:Button ID="btnUpdateReservation" runat="server" 
                         Text="Update/Delete Reservation" Width="180px" 
-                    onclick="btnUpdateReservation_Click" />
+                    onclick="btnUpdateReservation_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
                 <asp:Button ID="btnViewGuest" runat="server" Text="View Guest Charges" 
-                        Width="180px" onclick="btnViewGuest_Click" />
+                        Width="180px" onclick="btnViewGuest_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
                 <asp:Button ID="btnReports" runat="server" Text="Reports" Width="180px" 
-                    onclick="btnReports_Click" />
+                    onclick="btnReports_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
                 <br />
                 <br />
                 <asp:Button ID="btnSwitchRoles" runat="server" Text="Switch Roles" 
-                    Width="180px" PostBackUrl="~/LoginRedirect.aspx" Font-Bold="True" />
+                    Width="180px" PostBackUrl="~/LoginRedirect.aspx" Font-Bold="True" 
+                    UseSubmitBehavior="False" />
             </td>
             <td valign="top">
                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server" >
