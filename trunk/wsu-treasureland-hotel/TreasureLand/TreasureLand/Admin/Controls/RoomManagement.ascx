@@ -92,7 +92,8 @@
                     Room Number
                 </td>
                 <td align="right">
-                    <asp:TextBox ID="TextBox_RoomNumber" runat="server" ValidationGroup="VG_NewRoomData"></asp:TextBox>
+                    <asp:TextBox ID="TextBox_RoomNumber" runat="server" 
+                        ValidationGroup="VG_NewRoomData" MaxLength="5"></asp:TextBox>
                 </td>
                 <td>
                     <asp:CheckBox ID="CheckBox_Smoking" runat="server" Text="Smoking" />
@@ -142,7 +143,8 @@
             </tr>
             <tr>
                 <td colspan="5">
-                    <asp:TextBox ID="TextBox_BedConfig" runat="server" Width="95%" ValidationGroup="VG_NewRoomData"></asp:TextBox>
+                    <asp:TextBox ID="TextBox_BedConfig" runat="server" Width="95%" 
+                        ValidationGroup="VG_NewRoomData" MaxLength="30"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RFV_BedConfig" runat="server" ControlToValidate="TextBox_BedConfig"
                         ErrorMessage="Please enter a bed configuration." ForeColor="Red" SetFocusOnError="True"
                         ValidationGroup="VG_NewRoomData"></asp:RequiredFieldValidator>
@@ -155,7 +157,8 @@
             </tr>
             <tr>
                 <td colspan="5">
-                    <asp:TextBox ID="TextBox_Description" runat="server" Width="95%" ValidationGroup="VG_NewRoomData"></asp:TextBox>
+                    <asp:TextBox ID="TextBox_Description" runat="server" Width="95%" 
+                        ValidationGroup="VG_NewRoomData" MaxLength="200"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RFV_BedConfig0" runat="server" ControlToValidate="TextBox_Description"
                         ErrorMessage="Please enter a description." ForeColor="Red" SetFocusOnError="True"
                         ValidationGroup="VG_NewRoomData"></asp:RequiredFieldValidator>
