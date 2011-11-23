@@ -19,7 +19,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Rack Rate" SortExpression="RoomTypeRackRate">
                             <EditItemTemplate>
-                                <asp:TextBox ID="TextBox1" runat="server" 
+                                <asp:TextBox ID="TextBox1" runat="server" MaxLength="10" 
                                     Text='<%# Bind("RoomTypeRackRate",  "{0:0.00}") %>' ValidationGroup="vgRoom"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="rvRackRate" runat="server" 
                                     ControlToValidate="TextBox1" Display="Dynamic" 
