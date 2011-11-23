@@ -134,7 +134,10 @@ namespace TreasureLand.Clerk
                     {
                         lblErrorMessage2.Text = "No customers found";
                     }
-
+                    else
+                    {
+                        lblErrorMessage2.Text = "";
+                    }
                 }
 
             }
