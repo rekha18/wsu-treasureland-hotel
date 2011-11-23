@@ -127,6 +127,7 @@
                     <Columns>
                         <asp:BoundField DataField="RoomType" HeaderText="Room Type" />
                         <asp:BoundField DataField="Nights" HeaderText="Number of Nights" />
+                        <asp:DynamicField DataFormatString="{0:0.00}" HeaderText="Price per Night" />
                         <asp:BoundField DataField="QuotedRate" DataFormatString="{0:0.00}" 
                             HeaderText="Total Room Cost" />
                     </Columns>
@@ -217,7 +218,8 @@
                             <asp:Label ID="lblPassword" runat="server" Text="Password" Visible="False"></asp:Label>
                         </td>
                         <td class="style21">
-                            <asp:TextBox ID="txtManagerPword0" runat="server" Visible="False"></asp:TextBox>
+                            <asp:TextBox ID="txtManagerPword0" runat="server" Visible="False" 
+                                TextMode="Password"></asp:TextBox>
                         </td>
                         <td class="style19">
                             &nbsp;</td>
@@ -227,6 +229,7 @@
                         </td>
                     </tr>
                 </table>
+                <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red"></asp:Label>
                 <br />
                 <table style="width: 100%">
                     <tr>
