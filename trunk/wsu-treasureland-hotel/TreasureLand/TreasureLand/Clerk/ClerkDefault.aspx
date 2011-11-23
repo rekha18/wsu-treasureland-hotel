@@ -3,6 +3,11 @@
 <table>
     <tr>
         <td>
+            <table>
+                <tr><td>Name: </td><td id="idGuestName"></td></tr>
+                <tr><td>Reservation ID: </td><td id="idReservationID"></td></tr>
+                <tr><td>Detail ID: </td><td id="idResDetailID"></td></tr>
+            </table>
             <asp:Calendar ID="calDatePicker" runat="server" 
                 onselectionchanged="calDatePicker_SelectionChanged"></asp:Calendar>
         </td>
@@ -71,8 +76,18 @@
             return;
         }
 
-        function onReservationClick(resID, startDate, nights, info) {
-            return;
+        function onReservationClick(resID, startDate, nights, info, room) {
+            txtBox = document.getElementById("idGuestName");
+            if (txtBox != null && resID != 0)
+                txtBox.innerHTML = info.substring(0, info.indexOf('?'));
+
+            txtBox = document.getElementById("idReservationID");
+            if (txtBox != null && resID != 0)
+                txtBox.innerHTML = info.substring(info.indexOf('?') + 1, info.length);
+
+            txtBox = document.getElementById("idResDetailID");
+            if (txtBox != null && resID != 0)
+                txtBox.innerHTML = resID;
         }
     -->
     </script>
