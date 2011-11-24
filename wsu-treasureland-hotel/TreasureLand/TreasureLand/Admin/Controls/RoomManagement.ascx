@@ -43,7 +43,8 @@
                         <asp:Label ID="Label1" runat="server" Text='<%# Bind("RoomDescription") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:CheckBoxField DataField="RoomSmoking" HeaderText="Smoking?" SortExpression="RoomSmoking" />
+                <asp:CheckBoxField DataField="RoomSmoking" HeaderText="Non smoking" 
+                    SortExpression="RoomSmoking" />
                 <asp:TemplateField HeaderText="Bed Configuration" SortExpression="RoomBedConfiguration">
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox_RoomBedConfig" runat="server" 
@@ -55,7 +56,8 @@
                         <asp:Label ID="Label_BedConfig" runat="server" Text='<%# Bind("RoomBedConfiguration") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:CheckBoxField DataField="RoomHandicap" HeaderText="Accessible?" SortExpression="RoomHandicap" />
+                <asp:CheckBoxField DataField="RoomHandicap" HeaderText="Accessible" 
+                    SortExpression="RoomHandicap" />
                 <asp:TemplateField HeaderText="Status" SortExpression="RoomStatus">
                     <EditItemTemplate>
                         <asp:DropDownList ID="DropDownList1" runat="server" 
