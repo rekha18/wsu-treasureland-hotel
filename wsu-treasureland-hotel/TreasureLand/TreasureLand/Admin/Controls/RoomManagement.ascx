@@ -36,8 +36,6 @@
                     <EditItemTemplate>
                         <asp:TextBox ID="TextBox_Description" runat="server" 
                             Text='<%# Bind("RoomDescription") %>' MaxLength="200"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox_Description" SetFocusOnError="true"
-                            ForeColor="Red">Required</asp:RequiredFieldValidator>
                     </EditItemTemplate>
                     <ItemTemplate>
                         <asp:Label ID="Label1" runat="server" Text='<%# Bind("RoomDescription") %>'></asp:Label>
