@@ -22,24 +22,6 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.Button btnHome;
         
         /// <summary>
-        /// btnCheckIn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCheckIn;
-        
-        /// <summary>
-        /// btnUpdateGuestFolio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateGuestFolio;
-        
-        /// <summary>
         /// btnCreateReservation control.
         /// </summary>
         /// <remarks>
@@ -56,6 +38,24 @@ namespace TreasureLand.Clerk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpdateReservation;
+        
+        /// <summary>
+        /// btnCheckIn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCheckIn;
+        
+        /// <summary>
+        /// btnUpdateGuestFolio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdateGuestFolio;
         
         /// <summary>
         /// btnViewGuest control.

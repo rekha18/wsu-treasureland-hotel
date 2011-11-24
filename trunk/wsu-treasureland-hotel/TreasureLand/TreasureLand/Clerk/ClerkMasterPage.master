@@ -20,6 +20,16 @@
                     onclick="btnHome_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
+                <asp:Button ID="btnCreateReservation" runat="server" Text="Create Reservation" 
+                        Width="180px" onclick="btnCreateReservation_Click" 
+                    UseSubmitBehavior="False" />
+                <br />
+                <br />
+                <asp:Button ID="btnUpdateReservation" runat="server" 
+                        Text="Modify Reservation" Width="180px" 
+                    onclick="btnUpdateReservation_Click" UseSubmitBehavior="False" />
+                <br />
+                <br />
                 <asp:Button ID="btnCheckIn" runat="server" Text="Check-in" Width="180px" 
                     onclick="btnCheckIn_Click" UseSubmitBehavior="False" />
                 <br />
@@ -27,16 +37,6 @@
                 <asp:Button ID="btnUpdateGuestFolio" runat="server" Text="Update Guest-folio" 
                         Width="180px" onclick="btnUpdateGuestFolio_Click" 
                     UseSubmitBehavior="False" />
-                <br />
-                <br />
-                <asp:Button ID="btnCreateReservation" runat="server" Text="Create Reservation" 
-                        Width="180px" onclick="btnCreateReservation_Click" 
-                    UseSubmitBehavior="False" />
-                <br />
-                <br />
-                <asp:Button ID="btnUpdateReservation" runat="server" 
-                        Text="Update/Delete Reservation" Width="180px" 
-                    onclick="btnUpdateReservation_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
                 <asp:Button ID="btnViewGuest" runat="server" Text="Guest Charges" 
