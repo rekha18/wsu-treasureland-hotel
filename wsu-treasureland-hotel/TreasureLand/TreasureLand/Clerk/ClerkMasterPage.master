@@ -34,7 +34,7 @@
                     onclick="btnCheckIn_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
-                <asp:Button ID="btnUpdateGuestFolio" runat="server" Text="Update Guest-folio" 
+                <asp:Button ID="btnUpdateGuestFolio" runat="server" Text="Update Guest Information" 
                         Width="180px" onclick="btnUpdateGuestFolio_Click" 
                     UseSubmitBehavior="False" />
                 <br />
