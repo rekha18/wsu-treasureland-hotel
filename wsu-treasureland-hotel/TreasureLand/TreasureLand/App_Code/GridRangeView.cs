@@ -273,7 +273,7 @@ namespace TreasureLand.App_Code
                 #region Hashtable fill
                 foreach (string[] s in roomNames)
                 {
-                    string[,] room = new string[DaysDisplayed + 1, 9];
+                    string[,] room = new string[DaysDisplayed + 1, 10];
                     room[DaysDisplayed, 0] = s[2] == "M" ? s[2] : s[1];
                     room[DaysDisplayed, 1] = s[0];
                     roomData.Add(s[0], room); //Color for each day, data to display
@@ -337,7 +337,7 @@ namespace TreasureLand.App_Code
                                 ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ", \"" + DateTime.Parse(row[i, 4]).ToString("dd/MM/yyyy") + "\", " + row[i, 5] + ", \"" + row[i, 6] + "\", \"" + row[DaysDisplayed, 1] + "\")' >" + (reservationID == 0 ? "&nbsp;" : row[i, 8] ) + "</td>";
                             reservationID = row[i, 3] == null ? 0 : Int32.Parse(row[i, 3]);
                             table += "<td id='row" + key + "col" + i + "b' width='" + (columnWidth / 2) + "px' style='background-color:" + (row[i, 2] == null ? backColor : row[i, 2]) +
-                                ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ", \"" + DateTime.Parse(row[i, 4]).ToString("dd/MM/yyyy") + "\", " + row[i, 5] + ", \"" + row[i, 7] + "\", \"" + row[DaysDisplayed, 1] + "\")' >" + (reservationID == 0 ? "&nbsp;" : row[i, 8] ) + "</td>";
+                                ";' onmouseover='select(\"" + key + "\")' onmouseout='deselect(\"" + key + "\")' onclick='onReservationClick(" + reservationID + ", \"" + DateTime.Parse(row[i, 4]).ToString("dd/MM/yyyy") + "\", " + row[i, 5] + ", \"" + row[i, 7] + "\", \"" + row[DaysDisplayed, 1] + "\")' >" + (reservationID == 0 ? "&nbsp;" : row[i, 9] ) + "</td>";
                         }
                     }
                     table += "</tr>"; //Close the row
@@ -392,7 +392,7 @@ namespace TreasureLand.App_Code
                 data[startIndex, 4] = r.Begin.ToString("d");
                 data[startIndex, 5] = (r.End - r.Begin).Days + String.Empty;
                 data[startIndex, 7] = r.GuestName + '?' + r.ReservationID;
-                data[startIndex, 8] = r.ReservationID + String.Empty;
+                data[startIndex, 9] = r.ReservationID + String.Empty;
             }
 
             //data[DaysDisplayed, 0] = r.RoomType;
