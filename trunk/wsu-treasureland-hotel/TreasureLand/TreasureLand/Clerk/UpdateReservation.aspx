@@ -111,7 +111,7 @@
                     onselectedindexchanged="gvReservationDetails_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField DataField="RoomID" HeaderText="ID" />
-                        <asp:BoundField DataField="QuotedRate" DataFormatString="{0:c}" 
+                        <asp:BoundField DataField="QuotedRate" 
                             HeaderText="QuotedRate" SortExpression="QuotedRate">
                         <HeaderStyle HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />
