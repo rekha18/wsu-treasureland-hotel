@@ -151,6 +151,7 @@
                                     Text='<%# Bind("ReservationBillingID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:BoundField DataField="BillingItemDate" HeaderText="Date" ReadOnly="True" />
                         <asp:BoundField ApplyFormatInEditMode="True" DataField="BillingDescription" 
                             HeaderText="Service" ReadOnly="True" />
                         <asp:TemplateField HeaderText="Qty">
@@ -186,10 +187,17 @@
                                     Text='<%# Bind("BillingAmount", "{0:0.00}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="BillingItemDate" HeaderText="Date" ReadOnly="True" />
+                        <asp:TemplateField HeaderText="Total Cost">
+                            <EditItemTemplate>
+                                <asp:Label ID="lblTotal" runat="server" Text='<%# Bind("Total", "{0:0.00}") %>'></asp:Label>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("Total", "{0:0.00}") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:BoundField DataField="Comments" HeaderText="Comments" />
-                        <asp:CommandField ButtonType="Button" ShowEditButton="True" Visible="False" />
-                        <asp:CommandField ButtonType="Button" ShowDeleteButton="True" Visible="False" />
+                        <asp:CommandField ButtonType="Button" ShowEditButton="True" />
+                        <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
                     </Columns>
                 </asp:GridView>
                 <asp:ValidationSummary ID="vsGuestServices" runat="server" ForeColor="Red" 
