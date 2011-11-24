@@ -292,7 +292,7 @@
                             <td style="width: 104px">
                                 Quoted Cost:</td>
                             <td>
-                                <asp:Label ID="lblTotalCost" runat="server"></asp:Label>
+                                <asp:Label ID="lblTotalCost" runat="server"></asp:Label>₵
                             </td>
                         </tr>
                         <tr>
