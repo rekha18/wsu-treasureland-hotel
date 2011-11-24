@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using TreasureLand.App_Code;
 using System.Collections;
 
 namespace TreasureLand.App_Code
@@ -167,12 +170,12 @@ namespace TreasureLand.App_Code
         /// <summary>
         /// Defines the current date to start displaying dates from
         /// </summary>
-        public static DateTime current = DateTime.Now;
+        public DateTime current = DateTime.Now;
 
         /// <summary>
         /// Defines which room to start displaying
         /// </summary>
-        public static int RoomIndex = 0;
+        public int RoomIndex = 0;
 
         /// <summary>
         /// Defines how many days to display
@@ -241,9 +244,10 @@ namespace TreasureLand.App_Code
         /// <summary>
         /// Constructs a GridRangeView object
         /// </summary>
-        public GridRangeView()
+        public GridRangeView(DateTime val, int RoomIndex)
         {
-            current = current.Date; //The time portion will mess up calculations
+            current = val; //The time portion will mess up calculations
+            this.RoomIndex = RoomIndex;
         }
 
         /// <summary>
