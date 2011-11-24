@@ -177,7 +177,8 @@
                         </td>
                         <td align="center">
                             <asp:Button ID="btnModifyReservation" runat="server" 
-                                onclick="btnModifyReservation_Click" Text="Modify Reservation" />
+                                onclick="btnModifyReservation_Click" Text="Modify Reservation" 
+                                Enabled="False" />
                         </td>
                         <td align="center">
                             <asp:Button ID="btnConfirmReservation" runat="server" CommandArgument="3" 
