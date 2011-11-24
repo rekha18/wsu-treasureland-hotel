@@ -210,6 +210,8 @@ namespace TreasureLand.Clerk
             bill.Comments = txtComments.Text.ToString();
             db.ReservationDetailBillings.InsertOnSubmit(bill);
             db.SubmitChanges();
+            txtComments.Text = "";
+            txtComments.Text = "";
             
             //Retrieves all services for the seleceted reservation detail ID and rebinds the data to the gridview
             gvGuestServices.DataSource = GuestDB.getGuestServices(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
