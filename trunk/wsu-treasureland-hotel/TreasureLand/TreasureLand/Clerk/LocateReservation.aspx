@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Clerk/ClerkMasterPage.master" AutoEventWireup="True"  CodeBehind="LocateReservation.aspx.cs" Inherits="TreasureLand.Clerk.LocateReservation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
- <asp:MultiView ID="mvLocateReservation" runat="server" ActiveViewIndex="0">
+    <asp:MultiView ID="mvLocateReservation" runat="server" ActiveViewIndex="0">
         <asp:View ID="vLocateReservation" runat="server">
             <table class="style1" style="width: 713px">
                 <tr>
