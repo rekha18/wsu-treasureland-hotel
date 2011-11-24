@@ -10,7 +10,7 @@ namespace TreasureLand.Clerk
 {
     public partial class SelectRoom : System.Web.UI.Page
     {
-        private GridRangeView cHome = new GridRangeView();
+        private GridRangeView cHome;
         private bool requiresUpdate = true;
         private ListItem selectRoomType = new ListItem("-- Select a room type --", "None");
         private static Reserve reserve;
@@ -19,6 +19,15 @@ namespace TreasureLand.Clerk
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Date"] == null)
+            {
+                Session.Add("Date", DateTime.Now.Date);
+                Session.Add("RoomIndex", 0);
+                cHome = new GridRangeView((DateTime)Session["Date"], 0);
+            }
+            else
+                cHome = new GridRangeView((DateTime)Session["Date"], (int)Session["RoomIndex"]);
+            
             if (IsPostBack)
                 return;
             //else
@@ -46,7 +55,8 @@ namespace TreasureLand.Clerk
 
                         if (res != null)
                         {
-                            GridRangeView.current = res.Begin;
+                            cHome.current = res.Begin;
+                            Session["Date"] = cHome.current;
                             lGuestName.Text = res.GuestName;
                             lReservationID.Text = res.ReservationID + String.Empty;
                             lDetailID.Text = res.ReservationDetailID + String.Empty;
@@ -74,8 +84,9 @@ namespace TreasureLand.Clerk
             {
                 mvRooms.ActiveViewIndex = 1; //Select room display
                 lblPageStatus.Text = "Add Current Reservation:";
-                GridRangeView.current = DateTime.Parse(reserve.reserveDate);
-                calDatePicker.SelectedDate = GridRangeView.current;
+                cHome.current = DateTime.Parse(reserve.reserveDate);
+                calDatePicker.SelectedDate = cHome.current;
+                Session["Date"] = cHome.current;
                 calDatePicker.Visible = false;
 
                 lblDateBegin.Text = reserve.reserveDate;
@@ -118,12 +129,12 @@ namespace TreasureLand.Clerk
             lbtnPageNext.Text = "Next " + GridRangeView.PageSize + " Rooms";
             lbtnPagePrevious.Text = "Previous " + GridRangeView.PageSize + " Rooms";
 
-            if (GridRangeView.RoomIndex < GridRangeView.PageSize)
+            if (cHome.RoomIndex < GridRangeView.PageSize)
                 lbtnPagePrevious.Enabled = false;
             else
                 lbtnPagePrevious.Enabled = true;
 
-            if (GridRangeView.RoomIndex + GridRangeView.PageSize >= GridRangeView.MaxRooms)
+            if (cHome.RoomIndex + GridRangeView.PageSize >= GridRangeView.MaxRooms)
                 lbtnPageNext.Enabled = false;
             else
                 lbtnPageNext.Enabled = true;
@@ -151,8 +162,8 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         public void lbtnPrevious_Click(object sender, EventArgs e)
         {
-            GridRangeView.current = GridRangeView.current.AddDays(-GridRangeView.DaysDisplayed);
-            calDatePicker.SelectedDate = GridRangeView.current; 
+            cHome.current = cHome.current.AddDays(-GridRangeView.DaysDisplayed);
+            Session["Date"] = cHome.current;
             requiresUpdate = true;
         }
 
@@ -163,8 +174,8 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         public void lbtnFuture_Click(object sender, EventArgs e)
         {
-            GridRangeView.current = GridRangeView.current.AddDays(GridRangeView.DaysDisplayed);
-            calDatePicker.SelectedDate = GridRangeView.current; 
+            cHome.current = cHome.current.AddDays(GridRangeView.DaysDisplayed);
+            Session["Date"] = cHome.current;
             requiresUpdate = true;
         }
 
@@ -175,8 +186,9 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         public void lbtnToday_Click(object sender, EventArgs e)
         {
-            GridRangeView.current = DateTime.Now.Date;
-            calDatePicker.SelectedDate = GridRangeView.current;
+            cHome.current = DateTime.Now.Date;
+            calDatePicker.SelectedDate = cHome.current;
+            Session["Date"] = cHome.current;
             requiresUpdate = true;
         }
 
@@ -187,9 +199,10 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void lbtnPagePrevious_Click(object sender, EventArgs e)
         {
-            if (GridRangeView.RoomIndex >= GridRangeView.PageSize)
+            if (cHome.RoomIndex >= GridRangeView.PageSize)
             {
-                GridRangeView.RoomIndex -= GridRangeView.PageSize;
+                cHome.RoomIndex -= GridRangeView.PageSize;
+                Session["RoomIndex"] = cHome.RoomIndex;
                 lbtnPagePrevious.Focus();
                 requiresUpdate = true;
             }
@@ -203,9 +216,10 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void lbtnPageNext_Click(object sender, EventArgs e)
         {
-            if (GridRangeView.RoomIndex + GridRangeView.PageSize < GridRangeView.MaxRooms)
+            if (cHome.RoomIndex + GridRangeView.PageSize < GridRangeView.MaxRooms)
             {
-                GridRangeView.RoomIndex += GridRangeView.PageSize;
+                cHome.RoomIndex += GridRangeView.PageSize;
+                Session["RoomIndex"] = cHome.RoomIndex;
                 lbtnPageNext.Focus();
                 requiresUpdate = true;
             }
@@ -218,7 +232,8 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void calDatePicker_SelectionChanged(object sender, EventArgs e)
         {
-            GridRangeView.current = calDatePicker.SelectedDate;
+            cHome.current = calDatePicker.SelectedDate;
+            Session["Date"] = cHome.current;
             requiresUpdate = true;
         }
 
@@ -260,7 +275,8 @@ namespace TreasureLand.Clerk
             else
                 lblUpdateError.Text = "Room was successfully changed.";
 
-            GridRangeView.current = resDate;
+            cHome.current = resDate;
+            Session["Date"] = resDate;
             requiresUpdate = true;
         }
 
@@ -292,6 +308,7 @@ namespace TreasureLand.Clerk
             reserve.roomID = (short)RoomDB.getRoomId(txtRoomNumberSelect.Text);
             reserve.view = 2;
 
+            Session["Date"] = DateTime.Parse(reserve.reserveDate);
             requiresUpdate = true;
             Response.Redirect("~/Clerk/CreateReservation.aspx");
         }
