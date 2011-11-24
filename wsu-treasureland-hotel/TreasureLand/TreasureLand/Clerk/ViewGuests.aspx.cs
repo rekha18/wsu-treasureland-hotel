@@ -39,7 +39,7 @@ namespace TreasureLand.Clerk
         protected void btnLocate_Click(object sender, EventArgs e)
         {
 
-            if (txtFirstName.Text == "" && txtShowSurName.Text == "" && txtRoom.Text == "")
+            if (txtFirstName.Text == "" && txtSurName.Text == "" && txtRoom.Text == "")
             {
                 lblError.Text = "You must Enter information in at least one box";
             }
