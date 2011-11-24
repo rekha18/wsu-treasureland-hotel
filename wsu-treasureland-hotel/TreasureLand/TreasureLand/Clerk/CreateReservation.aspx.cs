@@ -130,7 +130,7 @@ namespace TreasureLand.Clerk
             {
                 quotedPrice -= adjust;
             }
-            lblTotalCost.Text = quotedPrice.ToString("C");
+            lblTotalCost.Text = quotedPrice.ToString();
             #endregion Quote Calculator
 
             
