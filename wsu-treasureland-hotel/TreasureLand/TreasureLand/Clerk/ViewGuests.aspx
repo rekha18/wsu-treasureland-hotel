@@ -139,7 +139,8 @@
                     onrowediting="gvGuestServices_RowEditing" 
                     onrowupdated="gvGuestServices_RowUpdated" 
                     onrowupdating="gvGuestServices_RowUpdating" PageSize="8" 
-                    ShowHeaderWhenEmpty="True" Width="654px">
+                    ShowHeaderWhenEmpty="True" Width="654px" 
+                    onselectedindexchanged="gvGuestServices_SelectedIndexChanged">
                     <Columns>
                         <asp:TemplateField HeaderText="Transaction ID">
                             <EditItemTemplate>
@@ -189,13 +190,14 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Total Cost">
                             <EditItemTemplate>
-                                <asp:Label ID="lblTotal" runat="server" Text='<%# Bind("Total", "{0:0.00}") %>'></asp:Label>
+                                <asp:Label ID="lblTotal" runat="server" Text='<%# ((Convert.ToDecimal(Eval("BillingAmount"))) * (Convert.ToDecimal(Eval("BillingItemQty")))).ToString("0.00") %>'></asp:Label>
                             </EditItemTemplate>
                             <ItemTemplate>
-                                <asp:Label ID="Label3" runat="server" Text='<%# Bind("Total", "{0:0.00}") %>'></asp:Label>
+                                <asp:Label ID="Label3" runat="server" Text='<%# ((Convert.ToDecimal(Eval("BillingAmount"))) * (Convert.ToDecimal(Eval("BillingItemQty")))).ToString("0.00") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="Comments" HeaderText="Comments" />
+                        <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                         <asp:CommandField ButtonType="Button" ShowEditButton="True" />
                         <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
                     </Columns>
