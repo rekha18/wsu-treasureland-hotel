@@ -7,11 +7,11 @@
 
         <asp:TableRow HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="3">
-                <asp:Button ID="RoomBack" runat="server" Text="Previous 14" Height="50px" Width="200px" />
+                <asp:Button ID="RoomBack" runat="server" Text="Previous" Height="50px" Width="200px" />
             </asp:TableCell>
             <asp:TableCell><span style="text-decoration: underline; font-size: large; color:  #000066;"><strong>ROOM</strong></span></asp:TableCell>
             <asp:TableCell ColumnSpan="3">
-                <asp:Button ID="RoomForward" runat="server" Text="Next 14" Height="50px" Width="200px" />
+                <asp:Button ID="RoomForward" runat="server" Text="Next" Height="50px" Width="200px" />
             </asp:TableCell>
         </asp:TableRow>
 
@@ -65,9 +65,7 @@
 
         <asp:TableRow HorizontalAlign="Center" VerticalAlign="Top">
          <asp:TableCell ColumnSpan="7">
-                <span style="text-decoration: underline;
-                    font-size: large; color: #000066;"><strong>PAY CASH</strong></span><br />
-                <br />
+               
                 <asp:Button ID="btnCashPay" runat="server" Text="Pay Cash" Width="288px" Height="72px" /></asp:TableCell>
 
         </asp:TableRow>
