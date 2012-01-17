@@ -96,6 +96,7 @@
     <Content Include="Manager\ManagerDefault.aspx" />
     <Content Include="Manager\ManagerExpenses.aspx" />
     <Content Include="Manager\ManagerReports.aspx" />
+    <Content Include="Styles\Restaurant.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -424,6 +425,13 @@
       <DependentUpon>ManagerReports.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Restaurant.Master.cs">
+      <DependentUpon>Restaurant.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Restaurant.Master.designer.cs">
+      <DependentUpon>Restaurant.Master</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -476,6 +484,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TreasureLandModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Restaurant.Master" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DBM\TreasureLandDataClasses.dbml.layout">
