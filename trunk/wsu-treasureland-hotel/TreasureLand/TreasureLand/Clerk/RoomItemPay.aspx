@@ -7,17 +7,17 @@
 
         <asp:TableRow HorizontalAlign="Center">
             <asp:TableCell ColumnSpan="3">
-                <asp:Button ID="RoomBack" runat="server" Text="Previous 7" Height="50px" Width="200px" />
+                <asp:Button ID="RoomBack" runat="server" Text="Previous 14" Height="50px" Width="200px" />
             </asp:TableCell>
             <asp:TableCell><span style="text-decoration: underline; font-size: large; color:  #000066;"><strong>ROOM</strong></span></asp:TableCell>
             <asp:TableCell ColumnSpan="3">
-                <asp:Button ID="RoomForward" runat="server" Text="Next 7" Height="50px" Width="200px" />
+                <asp:Button ID="RoomForward" runat="server" Text="Next 14" Height="50px" Width="200px" />
             </asp:TableCell>
         </asp:TableRow>
 
         <asp:TableRow HorizontalAlign="Center" VerticalAlign="Top">
             <asp:TableCell>
-                <asp:Button ID="btnRoom1" runat="server" Text="RM 101 <BR> Fry" Height="73px" Width="72px" BackColor="Blue" />
+                <asp:Button ID="btnRoom1" runat="server" Text="RM 101" Height="73px" Width="72px" BackColor="Blue" />
             </asp:TableCell>
             <asp:TableCell>
                 <asp:Button ID="btnRoom2" runat="server" Text="RM 102" Height="73px" Width="72px" BackColor="Blue" />
