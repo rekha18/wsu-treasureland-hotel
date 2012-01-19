@@ -8,7 +8,7 @@
         }
         .style6
         {
-            width: 113px;
+            width: 146px;
             height: 35px;
            
         }
@@ -56,6 +56,10 @@
                 
                 <br />
                 <br />
+                <asp:Button ID="btnManageRestaurant" runat="server" Text="Manage Restaurant" 
+                    Width="134px" onclick="btnManageRestaurant_Clock" 
+                    UseSubmitBehavior="False" />
+                
                 <br />
                 <br />
                 <asp:Button ID="btnSwitchRoles" runat="server" Text="Switch Roles" 
