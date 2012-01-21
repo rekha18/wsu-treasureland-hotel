@@ -82,6 +82,7 @@
     <Content Include="Clerk\LocateGuestFolio.aspx" />
     <Content Include="Clerk\LocateReservation.aspx" />
     <Content Include="Clerk\Reports.aspx" />
+    <Content Include="Clerk\RoomItemPay.aspx" />
     <Content Include="Clerk\SelectRoom.aspx" />
     <Content Include="Clerk\UpdateGuestFolio.aspx" />
     <Content Include="Clerk\UpdateReservation.aspx" />
@@ -485,6 +486,7 @@
       <LastGenOutput>TreasureLandModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <Content Include="Restaurant.Master" />
+    <Content Include="Restaurant\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DBM\TreasureLandDataClasses.dbml.layout">
