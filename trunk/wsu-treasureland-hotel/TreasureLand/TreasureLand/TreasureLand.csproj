@@ -81,8 +81,8 @@
     <Content Include="Clerk\LocateGuest.aspx" />
     <Content Include="Clerk\LocateGuestFolio.aspx" />
     <Content Include="Clerk\LocateReservation.aspx" />
+    <Content Include="Clerk\Print.aspx" />
     <Content Include="Clerk\Reports.aspx" />
-    <Content Include="Clerk\RoomItemPay.aspx" />
     <Content Include="Clerk\SelectRoom.aspx" />
     <Content Include="Clerk\UpdateGuestFolio.aspx" />
     <Content Include="Clerk\UpdateReservation.aspx" />
@@ -209,6 +209,12 @@
       <DependentUpon>ManageDiscounts.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\ExpenseDB.cs" />
+    <Compile Include="Clerk\Print.aspx.cs">
+      <DependentUpon>Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\Print.aspx.designer.cs">
+      <DependentUpon>Print.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LoginRedirect.aspx.cs">
       <DependentUpon>LoginRedirect.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
