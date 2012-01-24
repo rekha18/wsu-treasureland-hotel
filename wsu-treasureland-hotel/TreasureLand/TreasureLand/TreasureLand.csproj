@@ -97,7 +97,12 @@
     <Content Include="Manager\ManagerDefault.aspx" />
     <Content Include="Manager\ManagerExpenses.aspx" />
     <Content Include="Manager\ManagerReports.aspx" />
+    <Content Include="Restaurant\Images\arrow_next.png" />
+    <Content Include="Restaurant\Images\arrow_previous.png" />
+    <Content Include="Restaurant\Images\cedi.jpg" />
+    <Content Include="Restaurant\RestaurantMenu.aspx" />
     <Content Include="Restaurant\RestaurantRoomSelection.aspx" />
+    <Content Include="Styles\RestaurantStyle.css" />
     <Content Include="Styles\Restaurant.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
@@ -440,6 +445,13 @@
     </Compile>
     <Compile Include="Restaurant.Master.designer.cs">
       <DependentUpon>Restaurant.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Restaurant\RestaurantMenu.aspx.cs">
+      <DependentUpon>RestaurantMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Restaurant\RestaurantMenu.aspx.designer.cs">
+      <DependentUpon>RestaurantMenu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Restaurant\RestaurantRoomSelection.aspx.cs">
       <DependentUpon>RestaurantRoomSelection.aspx</DependentUpon>
