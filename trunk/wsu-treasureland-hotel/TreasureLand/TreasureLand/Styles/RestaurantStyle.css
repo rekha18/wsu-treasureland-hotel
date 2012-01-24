@@ -1,0 +1,54 @@
+﻿/*============================================================
+RestaurantRoomSelection Styles
+============================================================*/
+
+.panelButtons
+{
+    height: 456px;
+    width:864px;
+    margin-left: 78px;
+}
+
+.roomButtons
+{
+    /* 72 + 36 = 108 */
+
+    margin-right:36px;
+    margin-bottom:36px;
+    height: 72px;
+    width: 72px;
+}
+ 
+ /*****NAV******/
+.panelNav
+{
+    margin-bottom:100px; 
+}
+.buttonNext
+{
+    height: 72px;
+    width: 72px;
+    margin-left:72px;
+    background-image:url('/Restaurant/Images/arrow_next.png');
+}
+.buttonPrevious
+{
+    height: 72px;
+    width: 72px;
+    margin-right:72px;
+    margin-left:276px;
+    background-image:url('/Restaurant/Images/arrow_previous.png');
+}
+.buttonCash
+{
+    height: 72px;
+    width: 144px;
+    background-image:url('/Restaurant/Images/cedi.jpg');
+}
+
+/*****END NAV******/
+ 
+ 
+/*============================================================
+RestaurantMenu Styles
+============================================================*/
