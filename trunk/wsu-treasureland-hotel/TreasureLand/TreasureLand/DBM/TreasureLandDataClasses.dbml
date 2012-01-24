@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TreasureLand" Class="TreasureLandDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=titan.cs.weber.edu,10433;Initial Catalog=TreasureLand;Persist Security Info=True;User ID=4790Client" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TreasureLandDB" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=&quot;titan.cs.weber.edu, 10433&quot;;Initial Catalog=TreasureLand;User ID=4790Client" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TreasureLandConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.BillingCategory" Member="BillingCategories">
     <Type Name="BillingCategory">
       <Column Name="BillingCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -61,6 +61,7 @@
       <Column Name="TaxLocationID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Association Name="Hotel_HotelRoomType" Member="HotelRoomTypes" ThisKey="HotelID" OtherKey="HotelID" Type="HotelRoomType" />
       <Association Name="Hotel_Revenue" Member="Revenues" ThisKey="HotelID" OtherKey="HotelID" Type="Revenue" />
+      <Association Name="Hotel_Revenue1" Member="Revenue1s" ThisKey="HotelID" OtherKey="HotelID" Type="Revenue1" />
     </Type>
   </Table>
   <Table Name="dbo.HotelRoomType" Member="HotelRoomTypes">
@@ -84,6 +85,7 @@
       <Column Name="RevenueCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Association Name="Hotel_Revenue" Member="Hotel" ThisKey="HotelID" OtherKey="HotelID" Type="Hotel" IsForeignKey="true" />
       <Association Name="RevenueCategory_Revenue" Member="RevenueCategory" ThisKey="RevenueCategoryID" OtherKey="RevenueCategoryID" Type="RevenueCategory" IsForeignKey="true" />
+      <Association Name="RevenueCategory1_Revenue" Member="RevenueCategory1" ThisKey="RevenueCategoryID" OtherKey="RevenueCategoryID" Type="RevenueCategory1" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.RevenueCategory" Member="RevenueCategories">
@@ -91,6 +93,7 @@
       <Column Name="RevenueCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="RevenueCategoryDescription" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
       <Association Name="RevenueCategory_Revenue" Member="Revenues" ThisKey="RevenueCategoryID" OtherKey="RevenueCategoryID" Type="Revenue" />
+      <Association Name="RevenueCategory_Revenue1" Member="Revenue1s" ThisKey="RevenueCategoryID" OtherKey="RevenueCategoryID" Type="Revenue1" />
     </Type>
   </Table>
   <Table Name="dbo.Room" Member="Rooms">
@@ -118,6 +121,7 @@
       <Column Name="BillingItemQty" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="BillingItemDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
       <Column Name="Comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="ReservationDetailBilling_LineItem" Member="LineItems" ThisKey="ReservationBillingID" OtherKey="ReservationBillingID" Type="LineItem" />
       <Association Name="BillingCategory_ReservationDetailBilling" Member="BillingCategory" ThisKey="BillingCategoryID" OtherKey="BillingCategoryID" Type="BillingCategory" IsForeignKey="true" />
       <Association Name="ReservationDetail_ReservationDetailBilling" Member="ReservationDetail" ThisKey="ReservationDetailID" OtherKey="ReservationDetailID" Type="ReservationDetail" IsForeignKey="true" />
     </Type>
@@ -150,6 +154,122 @@
       <Column Name="ReservationComments" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
       <Association Name="Reservation_ReservationDetail" Member="ReservationDetails" ThisKey="ReservationID" OtherKey="ReservationID" Type="ReservationDetail" />
       <Association Name="Guest_Reservation" Member="Guest" ThisKey="GuestID" OtherKey="GuestID" Type="Guest" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DrinkPurchase" Member="DrinkPurchases">
+    <Type Name="DrinkPurchase">
+      <Column Name="DrinkPurchaseID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DrinkPurchaseDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Association Name="DrinkPurchase_DrinkPurchaseHistory" Member="DrinkPurchaseHistories" ThisKey="DrinkPurchaseID" OtherKey="DrinkPurchaseID" Type="DrinkPurchaseHistory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Drink" Member="Drinks">
+    <Type Name="Drink">
+      <Column Name="DrinkID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FoodDrinkCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="DrinkCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="DrinkName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DrinkRetailSalePrice" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
+      <Association Name="Drink_DrinkPurchaseHistory" Member="DrinkPurchaseHistories" ThisKey="DrinkID" OtherKey="DrinkID" Type="DrinkPurchaseHistory" />
+      <Association Name="FoodDrinkCategory_Drink" Member="FoodDrinkCategory" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="FoodDrinkCategory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DrinkPurchaseHistory" Member="DrinkPurchaseHistories">
+    <Type Name="DrinkPurchaseHistory">
+      <Column Name="DrinkPurchaseHistoryID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DrinkPurchaseID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="DrinkPurchaseHistoryWholesalePrice" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
+      <Column Name="DrinkPurchaseHistoryQty" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
+      <Column Name="DrinkID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Association Name="Drink_DrinkPurchaseHistory" Member="Drink" ThisKey="DrinkID" OtherKey="DrinkID" Type="Drink" IsForeignKey="true" />
+      <Association Name="DrinkPurchase_DrinkPurchaseHistory" Member="DrinkPurchase" ThisKey="DrinkPurchaseID" OtherKey="DrinkPurchaseID" Type="DrinkPurchase" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FoodDrinkCategory" Member="FoodDrinkCategories">
+    <Type Name="FoodDrinkCategory">
+      <Column Name="FoodDrinkCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FoodDrinkCategoryName" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="FoodDrinkCategoryTaxable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="FoodDrinkCategory_Drink" Member="Drinks" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="Drink" />
+      <Association Name="FoodDrinkCategory_LineItem" Member="LineItems" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="LineItem" />
+      <Association Name="FoodDrinkCategory_MenuItem" Member="MenuItems" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="MenuItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ingredient" Member="Ingredients">
+    <Type Name="Ingredient">
+      <Column Name="IngredientID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IngredientName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Ingredient_IngredientPurchaseHistory" Member="IngredientPurchaseHistories" ThisKey="IngredientID" OtherKey="IngredientID" Type="IngredientPurchaseHistory" />
+      <Association Name="Ingredient_MenuItemIngredient" Member="MenuItemIngredients" ThisKey="IngredientID" OtherKey="IngredientID" Type="MenuItemIngredient" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IngredientPurchase" Member="IngredientPurchases">
+    <Type Name="IngredientPurchase">
+      <Column Name="PurchaseID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PurchaseDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Association Name="IngredientPurchase_IngredientPurchaseHistory" Member="IngredientPurchaseHistories" ThisKey="PurchaseID" OtherKey="PurchaseID" Type="IngredientPurchaseHistory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IngredientPurchaseHistory" Member="IngredientPurchaseHistories">
+    <Type Name="IngredientPurchaseHistory">
+      <Column Name="IngredientPurchaseHistoryID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IngredientID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="PurchaseID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="IngredientPurchaseHistoryPrice" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
+      <Column Name="IngredientPurchaseHistoryQty" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Association Name="Ingredient_IngredientPurchaseHistory" Member="Ingredient" ThisKey="IngredientID" OtherKey="IngredientID" Type="Ingredient" IsForeignKey="true" />
+      <Association Name="IngredientPurchase_IngredientPurchaseHistory" Member="IngredientPurchase" ThisKey="PurchaseID" OtherKey="PurchaseID" Type="IngredientPurchase" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LineItem" Member="LineItems">
+    <Type Name="LineItem">
+      <Column Name="LineItemTransactionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ReservationBillingID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="FoodDrinkCategoryID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="LineItemAmount" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
+      <Association Name="FoodDrinkCategory_LineItem" Member="FoodDrinkCategory" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="FoodDrinkCategory" IsForeignKey="true" />
+      <Association Name="ReservationDetailBilling_LineItem" Member="ReservationDetailBilling" ThisKey="ReservationBillingID" OtherKey="ReservationBillingID" Type="ReservationDetailBilling" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MenuItem" Member="MenuItems">
+    <Type Name="MenuItem">
+      <Column Name="MenuItemID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FoodDrinkCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="MenuItemName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="MenuItemPrice" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
+      <Association Name="MenuItem_MenuItemIngredient" Member="MenuItemIngredients" ThisKey="MenuItemID" OtherKey="MenuItemID" Type="MenuItemIngredient" />
+      <Association Name="FoodDrinkCategory_MenuItem" Member="FoodDrinkCategory" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="FoodDrinkCategory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MenuItemIngredient" Member="MenuItemIngredients">
+    <Type Name="MenuItemIngredient">
+      <Column Name="MenuItemIngredientID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MenuItemID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="IngredientID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="MenuItemIngredientQty" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Association Name="Ingredient_MenuItemIngredient" Member="Ingredient" ThisKey="IngredientID" OtherKey="IngredientID" Type="Ingredient" IsForeignKey="true" />
+      <Association Name="MenuItem_MenuItemIngredient" Member="MenuItem" ThisKey="MenuItemID" OtherKey="MenuItemID" Type="MenuItem" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RevenueCategory" Member="RevenueCategory1s">
+    <Type Name="RevenueCategory1">
+      <Column Name="RevenueCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RevenueCategoryDescription" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Association Name="RevenueCategory1_Revenue" Member="Revenues" ThisKey="RevenueCategoryID" OtherKey="RevenueCategoryID" Type="Revenue" />
+      <Association Name="RevenueCategory1_Revenue1" Member="Revenue1s" ThisKey="RevenueCategoryID" OtherKey="RevenueCategoryID" Type="Revenue1" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Revenue" Member="Revenue1s">
+    <Type Name="Revenue1">
+      <Column Name="RevenueID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RevenueDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="RevenueAmount" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
+      <Column Name="RevenueType" Type="System.String" DbType="Char(30) NOT NULL" CanBeNull="false" />
+      <Column Name="HotelID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="RevenueCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Association Name="Hotel_Revenue1" Member="Hotel" ThisKey="HotelID" OtherKey="HotelID" Type="Hotel" IsForeignKey="true" />
+      <Association Name="RevenueCategory_Revenue1" Member="RevenueCategory" ThisKey="RevenueCategoryID" OtherKey="RevenueCategoryID" Type="RevenueCategory" IsForeignKey="true" />
+      <Association Name="RevenueCategory1_Revenue1" Member="RevenueCategory1" ThisKey="RevenueCategoryID" OtherKey="RevenueCategoryID" Type="RevenueCategory1" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
