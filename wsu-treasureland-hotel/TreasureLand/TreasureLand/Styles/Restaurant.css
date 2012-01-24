@@ -298,3 +298,16 @@ div.accountInfo
     font-size: large;
     color: Red;
 }
+
+
+/*============================================================
+RestaurantRoomSelection Styles
+============================================================*/
+
+
+ .RestaurantRoomSelectionButton
+{
+     margin:0px 20px 20px 20px;
+     height: 72px;
+     width: 72px;
+ }
