@@ -26,6 +26,8 @@ namespace TreasureLand.Clerk
             }
         }
 
+        TreasureLandDataClassesDataContext db;
+
         #region eventhandlers
         /// <summary>
         /// When button is pressed, the textboxes are checked for value.
@@ -69,9 +71,7 @@ namespace TreasureLand.Clerk
 
 
                 //Gridview is populated with data
-                //gvGuest.DataSource = App_Code.GuestDB.LocateGuestRoom(txtFirstName.Text, txtSurName.Text, txtReservation.Text);
-                //gvGuest.DataBind();
-
+               
                 //Clears the default values for the textboxes
                 if (txtFirstName.Text == "none")
                     txtFirstName.Text = "";
@@ -86,7 +86,12 @@ namespace TreasureLand.Clerk
                 }
                 else
                 {
-                    ddlServices.DataSource = App_Code.GuestDB.getGuestServices();
+                    TreasureLand.DBM.BillingCategory billingCategory = new TreasureLand.DBM.BillingCategory();
+                    IEnumerable<TreasureLand.DBM.BillingCategory> bill =
+                                from g in db.BillingCategories
+                                 select g;
+
+                    ddlServices.DataSource = bill;
                     ddlServices.DataBind();
 
                     lblError.Text = "";
@@ -116,9 +121,13 @@ namespace TreasureLand.Clerk
                 txtShowSurName.Text = gvGuest.SelectedRow.Cells[2].Text;
                 txtShowRoom.Text = gvGuest.SelectedRow.Cells[6].Text;
 
-
                 //gets the data for the drop down list
-                ddlServices.DataSource = App_Code.GuestDB.getGuestServices();
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                TreasureLand.DBM.BillingCategory billingCategory = new TreasureLand.DBM.BillingCategory();
+                IEnumerable<TreasureLand.DBM.BillingCategory> bill =
+                            from g in db.BillingCategories
+                            select g;
+                ddlServices.DataSource = bill;
                 ddlServices.DataTextField = "BillingCategoryDescription";
                 ddlServices.DataValueField = "BillingCategoryID";
                 ddlServices.DataBind();
@@ -146,16 +155,16 @@ namespace TreasureLand.Clerk
                 //disables the check out, add service, and adjust discount buttons if the reservation is not active
                 if (gvGuest.SelectedRow.Cells[5].Text.ToString() != "A")
                 {
-                    btnAddService.Enabled = false;
-                    
+                    btnAddService.Enabled = false;                    
                     btnGoToCheckOut.Enabled = false;
                 }
                 else
                 {
                     btnAddService.Enabled = true;
                     
-                    btnGoToCheckOut.Enabled = true;
-                }
+                    btnGoToCheckOut.Enabled = true;                }
+
+                print();
             }
             else
             {
@@ -199,7 +208,7 @@ namespace TreasureLand.Clerk
             gvGuestServices.Dispose();
 
             //adds the entered service into the database
-            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            db = new TreasureLandDataClassesDataContext();
             ReservationDetailBilling bill = new ReservationDetailBilling();
             bill.ReservationDetailID = Convert.ToInt16(gvGuest.SelectedRow.Cells[4].Text);
             bill.BillingAmount = Convert.ToDecimal(txtCostofService.Text);
@@ -211,11 +220,9 @@ namespace TreasureLand.Clerk
             db.ReservationDetailBillings.InsertOnSubmit(bill);
             db.SubmitChanges();
             txtComments.Text = "";
-            txtComments.Text = "";
             
             //Retrieves all services for the seleceted reservation detail ID and rebinds the data to the gridview
-            gvGuestServices.DataSource = GuestDB.getGuestServices(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
-            gvGuestServices.DataBind();
+            gvGuestServiesDataBind();
             updateGuestPriceTotals();
         }
 
@@ -238,9 +245,11 @@ namespace TreasureLand.Clerk
         {
             gvGuestServices.EditIndex = e.NewEditIndex;
             gvGuestServiesDataBind();
-
         }
 
+        /// <summary>
+        /// Updates the gridview row
+        /// </summary>
         protected void gvGuestServices_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {   
             try
@@ -248,21 +257,33 @@ namespace TreasureLand.Clerk
                 //Gets the values from the selected row and sends an update call to the database
                 //Data is rebinded to gridview and the totals are updated
                     GridViewRow row = gvGuestServices.Rows[e.RowIndex];
-                    int itemQty = Convert.ToInt32((row.FindControl("txtQty") as TextBox).Text);
-                    double itemPrice = Convert.ToDouble((row.FindControl("txtPrice") as TextBox).Text);
-                    int transactionID = Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text);
-                    string comments = (row.FindControl("txtComments") as TextBox).Text;
-                    App_Code.GuestDB.updateService(transactionID, itemQty, itemPrice, comments);
+
+                    TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                    ReservationDetailBilling bill = new ReservationDetailBilling();
+                    var query = from bills in db.ReservationDetailBillings
+                                where bills.ReservationBillingID == (short)Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text)
+                                select bills;
+                    foreach (var bills in query)
+                    {
+                        bills.ReservationBillingID = (short)Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text);
+                        bills.BillingItemQty = (byte)Convert.ToInt32((row.FindControl("txtQty") as TextBox).Text);
+                        bills.BillingAmount = Convert.ToDecimal((row.FindControl("txtPrice") as TextBox).Text);
+                        if ((row.FindControl("txtComments") as TextBox) != null)
+                        {
+                            bills.Comments = (row.FindControl("txtComments") as TextBox).Text;
+                        }
+                    }
+                    db.SubmitChanges();                
+                
                     gvGuestServices.EditIndex = -1;
                     gvGuestServiesDataBind();
-                    updateGuestPriceTotals();
-                
+                    updateGuestPriceTotals();                
             }
         catch (Exception)
-        {
-            lblErrorGuest.Text = "Cannot update information, insertion failed";
-        }
-            
+            {
+                lblErrorGuest.Text = "Cannot update information, insertion failed";
+            }
+
         }
 
         /// <summary>
@@ -278,6 +299,7 @@ namespace TreasureLand.Clerk
                 GridViewRow row = gvGuestServices.Rows[e.RowIndex];
                 int transactionID = Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text);
                 App_Code.GuestDB.deleteService(transactionID);
+
                 gvGuestServiesDataBind();
                 updateGuestPriceTotals();
             }
@@ -321,7 +343,14 @@ namespace TreasureLand.Clerk
         /// </summary>
         private void gvGuestServiesDataBind()
         {
-            gvGuestServices.DataSource = GuestDB.getGuestServices(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            TreasureLand.DBM.ReservationDetailBilling guests = new TreasureLand.DBM.ReservationDetailBilling();
+            IEnumerable<TreasureLand.DBM.ReservationDetailBilling> guest =
+                        from g in db.ReservationDetailBillings
+                        where g.ReservationDetailID == Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text)
+                        select g;
+
+            gvGuestServices.DataSource = guest;
             gvGuestServices.DataBind();
         }
 
@@ -362,6 +391,7 @@ namespace TreasureLand.Clerk
             
             //Displays the total cost
             txtTotal.Text = (Convert.ToDecimal(txtServicesTotal.Text) + Convert.ToDecimal(txtRoomTotal.Text) - Convert.ToDecimal(txtDiscount.Text)).ToString();
+            print();
         }
         #endregion
 
@@ -496,12 +526,23 @@ namespace TreasureLand.Clerk
             }
         }
 
-        protected void btnPrint_Click(object sender, EventArgs e)
+        private void print()
         {
-
+            if (Session["GuestInfo"] != null)
+            {
+                Session.Remove("GuestInfo");
+                Session.Remove("RoomInfo");
+                Session.Remove("Charges");
+            }
+            
+            List<string> roomInfo = new List<string>();
+            roomInfo.Add(gvGuest.SelectedRow.Cells[0].Text);
+            roomInfo.Add(gvGuest.SelectedRow.Cells[1].Text);
+            roomInfo.Add(gvGuest.SelectedRow.Cells[2].Text);
+            roomInfo.Add(gvGuest.SelectedRow.Cells[6].Text);
+            Session["GuestInfo"] = roomInfo;
+            //Session["RoomInfo"] = (DataSet)gvRoomCost.DataSource;
+            Session["Charges"] = gvGuest.SelectedRow.Cells[4].Text; 
         }
-
-       
-
     }
 }

@@ -139,8 +139,7 @@
                     onrowediting="gvGuestServices_RowEditing" 
                     onrowupdated="gvGuestServices_RowUpdated" 
                     onrowupdating="gvGuestServices_RowUpdating" PageSize="8" 
-                    ShowHeaderWhenEmpty="True" Width="654px" 
-                    onselectedindexchanged="gvGuestServices_SelectedIndexChanged">
+                    ShowHeaderWhenEmpty="True" Width="654px">
                     <Columns>
                         <asp:TemplateField HeaderText="Transaction ID">
                             <EditItemTemplate>
@@ -313,8 +312,19 @@
                 <asp:Button ID="btnAdjustDiscount" runat="server" 
                     onclick="btnAdjustDiscount_Click" Text="Adjust Discount" Width="110px" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="btnPrint" runat="server" onclick="btnPrint_Click" 
+                <asp:Button ID="btnPrint" runat="server" onclientclick="Navigate()"  
                     style="height: 26px" Text="Print Reciept" Width="100px" />
+                
+                <script language="javascript" type="text/javascript">
+
+                    function Navigate() 
+                    {
+                        javascript: window.open("Print.aspx");
+
+                    } 
+                </script>
+
+                
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnGoToCheckOut" runat="server" onclick="GoToCheckOut_Click" 
                     Text="CheckOut" Width="100px" />
