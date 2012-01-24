@@ -97,6 +97,7 @@
     <Content Include="Manager\ManagerDefault.aspx" />
     <Content Include="Manager\ManagerExpenses.aspx" />
     <Content Include="Manager\ManagerReports.aspx" />
+    <Content Include="Restaurant\RestaurantRoomSelection.aspx" />
     <Content Include="Styles\Restaurant.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
@@ -211,6 +212,7 @@
     <Compile Include="App_Code\ExpenseDB.cs" />
     <Compile Include="Clerk\Print.aspx.cs">
       <DependentUpon>Print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Clerk\Print.aspx.designer.cs">
       <DependentUpon>Print.aspx</DependentUpon>
@@ -438,6 +440,13 @@
     </Compile>
     <Compile Include="Restaurant.Master.designer.cs">
       <DependentUpon>Restaurant.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Restaurant\RestaurantRoomSelection.aspx.cs">
+      <DependentUpon>RestaurantRoomSelection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Restaurant\RestaurantRoomSelection.aspx.designer.cs">
+      <DependentUpon>RestaurantRoomSelection.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
