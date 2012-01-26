@@ -104,8 +104,8 @@ namespace TreasureLand.DBM
     partial void DeleteRevenue1(Revenue1 instance);
     #endregion
 		
-		public TreasureLandDataClassesDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TreasureLandConnectionString1"].ConnectionString, mappingSource)
+		public TreasureLandDataClassesDataContext() :
+        base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TreasurelandDB"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
