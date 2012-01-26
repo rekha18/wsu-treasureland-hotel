@@ -42,24 +42,32 @@ namespace TreasureLand
             lbl_pageNumber.Text = (page + 1).ToString();
 
             //connect to the database
-            //TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
             //Room room = new Room();
             //IEnumerable<Room> rooms =
             //    from r in db.Rooms
             //    where r.RoomStatus == 'C'
             //    select r;
-
+            
             //int count = rooms.Count();
-            //System.Diagnostics.Debug.WriteLine("room count = " + count);
+            
 
+            int count = 0;
+            //foreach (var room in rooms)
+            //{
+            //    count++;
+            //}
 
+            var query = from r in db.Rooms
+                        where r.RoomStatus == 'C'
+                        select r;
 
+            foreach (var r in query)
+            {
+                count++;   
+            }
 
-
-
-
-
-
+            System.Diagnostics.Debug.WriteLine("room count = " + count);
 
             if (page > 0)
             {
