@@ -55,8 +55,8 @@ namespace Restaurant
 				if (checkID())
 				{
 					//Open select table Form
-                    RoomSelectionForm rsf = new RoomSelectionForm();
-                    rsf.Show();
+                    //RoomSelectionForm rsf = new RoomSelectionForm();
+                    //rsf.Show();
 					Close();
 				}
 				else
