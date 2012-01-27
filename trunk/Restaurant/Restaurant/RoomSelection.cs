@@ -20,10 +20,20 @@ namespace Restaurant
         public RoomSelectionForm()
         {
             InitializeComponent();
+
+            //Loads 24 buttons to a dictionary that are inside panel_buttons
             loadButtonsToDictionary();
+
+            //hides any buttons if room count is less than 24, 
+            //used later if room count is less than number of rooms
             hideNecessaryButtons();
+
+            //Loads the room numbers to the buttons
             loadRoomNumbers();
+
             lbl_currentPage.Text = pageNumber.ToString();
+
+            //gets the max number of pages and sets it to a label
             maxPageNumber = (int)(numberOfRooms / 24);
             int mod = maxPageNumber % numberOfRooms;
             if(mod > 0 || numberOfRooms <= 24)
@@ -44,8 +54,14 @@ namespace Restaurant
             }
         }
 
+        /// <summary>
+        /// Button click for previous page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_previous_Click(object sender, EventArgs e)
         {
+            //decrements the current page number
             pageNumber = --pageNumber;
             if (pageNumber < 1)
             {
@@ -53,6 +69,8 @@ namespace Restaurant
             }
             lbl_currentPage.Text = pageNumber.ToString();
 
+            //loops throught each button and assigns a tag 
+            //which will be a reference to the room number
             foreach (int key in buttonDict.Keys)
             {
                 Button b = buttonDict[key];
@@ -66,10 +84,16 @@ namespace Restaurant
             {
                 btn_previous.Enabled = false;
             }
+
             hideNecessaryButtons();
             loadRoomNumbers();
         }
-
+        
+        /// <summary>
+        /// Button click for next page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_next_Click(object sender, EventArgs e)
         {
             pageNumber = ++pageNumber;
@@ -88,14 +112,25 @@ namespace Restaurant
             loadRoomNumbers();
         }
 
+        /// <summary>
+        /// Selects room '0' which represents payment by cash
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_cash_Click(object sender, EventArgs e)
         {
             RestaurantMenuSelection rsf = new RestaurantMenuSelection(0);
             rsf.Show();
         }
 
+        /// <summary>
+        /// The button click event for the 24 room selection buttons
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void dynamicBtn_Click(Object sender, EventArgs e)
         {
+            //Gets the buttons tag and calls the RestuarantMenuSelection(tag)
             Button btn = sender as Button;
             String tag = ((Button)sender).Tag.ToString();
             int selectedRoom = Convert.ToInt32(tag);
@@ -103,6 +138,9 @@ namespace Restaurant
             rms.Show();
         }
 
+        /// <summary>
+        /// Loads the room numbers from the dictionary to the buttons as tags
+        /// </summary>
         private void loadRoomNumbers()
         {
             foreach (int key in buttonDict.Keys)
@@ -112,6 +150,9 @@ namespace Restaurant
             }
         }
 
+        /// <summary>
+        /// Hides any buttons that exceed the number of rooms
+        /// </summary>
         private void hideNecessaryButtons()
         {
             foreach (int key in buttonDict.Keys)

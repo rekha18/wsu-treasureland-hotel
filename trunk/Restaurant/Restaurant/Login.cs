@@ -55,6 +55,8 @@ namespace Restaurant
 				if (checkID())
 				{
 					//Open select table Form
+                    RoomSelectionForm rsf = new RoomSelectionForm();
+                    rsf.Show();
 					Close();
 				}
 				else
@@ -86,7 +88,7 @@ namespace Restaurant
 				{
 					//Open select table Form
                     RoomSelectionForm rsf = new RoomSelectionForm();
-                    rsf.Show(); // not working?
+                    rsf.Show();
 					Close();
 				}
 				else
@@ -106,6 +108,7 @@ namespace Restaurant
 		/// <returns>returns if the entered password is valid</returns>
 		private bool checkID()
 		{
+            System.Diagnostics.Debug.WriteLine("PASSWORD: " + password);
 			if (password == "0000")
 				return true;
 			return false;
