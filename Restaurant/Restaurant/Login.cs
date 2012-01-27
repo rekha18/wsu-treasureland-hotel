@@ -114,7 +114,7 @@ namespace Restaurant
 			return false;
 		}
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
         }
