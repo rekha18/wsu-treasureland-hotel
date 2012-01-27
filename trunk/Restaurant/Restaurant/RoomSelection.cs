@@ -99,8 +99,8 @@ namespace Restaurant
             Button btn = sender as Button;
             String tag = ((Button)sender).Tag.ToString();
             int selectedRoom = Convert.ToInt32(tag);
-            RestaurantMenuSelection rsf = new RestaurantMenuSelection(selectedRoom);
-            rsf.Show();
+            RestaurantMenuSelection rms = new RestaurantMenuSelection(selectedRoom);
+            rms.Show();
         }
 
         private void loadRoomNumbers()
