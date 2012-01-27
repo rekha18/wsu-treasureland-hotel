@@ -41,7 +41,14 @@ namespace Restaurant
                 maxPageNumber++;
             }
             lbl_totalNumberOfPages.Text = maxPageNumber.ToString();
+
+            LoginForm login = new LoginForm();
+            login.ShowDialog(); 
         }
+
+
+
+        
 
         /// <summary>
         /// Loads the buttons to a dictionary for munipulation 
@@ -180,4 +187,7 @@ namespace Restaurant
             }
         }
     }
+
+
+
 }
