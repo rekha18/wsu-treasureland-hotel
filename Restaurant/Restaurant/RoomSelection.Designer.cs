@@ -62,6 +62,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.lblHeader = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_buttons.SuspendLayout();
             this.SuspendLayout();
@@ -452,12 +453,23 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.dynamicBtn_Click);
             // 
+            // lblHeader
+            // 
+            this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeader.Location = new System.Drawing.Point(201, 616);
+            this.lblHeader.Name = "lblHeader";
+            this.lblHeader.Size = new System.Drawing.Size(325, 23);
+            this.lblHeader.TabIndex = 15;
+            this.lblHeader.Text = "SELECT A ROOM OR CASH";
+            this.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // RoomSelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1008, 700);
+            this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.panel_buttons);
             this.Controls.Add(this.lbl_totalNumberOfPages);
             this.Controls.Add(this.label1);
@@ -513,6 +525,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblHeader;
     }
 }
 
