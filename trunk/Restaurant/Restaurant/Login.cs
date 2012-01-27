@@ -85,6 +85,8 @@ namespace Restaurant
 				if (checkID())
 				{
 					//Open select table Form
+                    //RoomSelectionForm rsf = new RoomSelectionForm();
+                    //rsf.Show(); // not working?
 					Close();
 				}
 				else
@@ -108,7 +110,5 @@ namespace Restaurant
 				return true;
 			return false;
 		}
-
-
 	}
 }
