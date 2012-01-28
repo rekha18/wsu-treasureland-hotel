@@ -40,16 +40,30 @@ namespace TreasureLand.Clerk
                 Session.Add("RowInfo", new Dictionary<int, RowInfo>());
             if (Session["LastRoomType"] == null)
                 Session.Add("LastRoomType", ddlRoomTypes.SelectedValue);
-            
-            if (Session["StartDate"] == null)
+
+            #region Debug Variables
+            /*if (Session["StartDate"] == null)
                 Session.Add("StartDate", DateTime.Now);
             if (Session["Nights"] == null)
-                Session.Add("Nights", 3);
-            
+                Session.Add("Nights", 3);*/
+            #endregion
+
+            #region SQL Variables for SQL Data Source
+            //Load the values from the reservation object in session
+            Reserve res = (Reserve)Session["Room"];
+            if (Session["StartDate"] == null)
+                Session.Add("StartDate", Convert.ToDateTime(res.reserveDate));
+            else
+                Session["StartDate"] = Convert.ToDateTime(res.reserveDate);
+
+            if (Session["Nights"] == null)
+                Session.Add("Nights", res.daysStaying);
+            else
+                Session["Nights"] = res.daysStaying;
+            #endregion
+
             lblStartDate.Text = Session["StartDate"].ToString();
             lNights.Text = Session["Nights"].ToString();
-
-            checkSelectedRooms();
         }
 
         /// <summary>
@@ -88,16 +102,6 @@ namespace TreasureLand.Clerk
                     cb.Checked = true;
                 }
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void btnSelect_Click(object sender, EventArgs e)
-        {
-
         }
 
         /// <summary>
@@ -142,6 +146,37 @@ namespace TreasureLand.Clerk
             }
 
             updatePageInfo(rowInfo.Count);
+        }
+
+        /// <summary>
+        /// After the rooms have been returned from the database, check to see which
+        /// rooms have been previously clicked to correctly update the rooms list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void gvOpenRooms_DataBound(object sender, EventArgs e)
+        {
+            checkSelectedRooms();
+        }
+
+        /// <summary>
+        /// When clicked, all rooms that were selected are loaded into a linked list
+        /// structure and passed back in a new session variable
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnSelect_Click(object sender, EventArgs e)
+        {
+            LinkedList<int> roomIDs = new LinkedList<int>();
+
+            Dictionary<int, RowInfo> rowInfo = (Dictionary<int, RowInfo>)Session["RowInfo"];
+            foreach (KeyValuePair<int, RowInfo> kvp in rowInfo)
+                roomIDs.AddFirst(kvp.Key);
+
+            if (Session["roomIDs"] == null)
+                Session.Add("roomIDs", roomIDs);
+            else
+                Session["roomIDs"] = roomIDs;
         }
     }
 }
