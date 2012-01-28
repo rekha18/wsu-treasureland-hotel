@@ -15,7 +15,8 @@
         </asp:LinqDataSource>
     </p>
     <asp:GridView ID="gvOpenRooms" runat="server" AutoGenerateColumns="False" 
-        DataSourceID="sdsOpenRooms">
+        DataSourceID="sdsOpenRooms" AllowPaging="True" 
+        ondatabound="gvOpenRooms_DataBound">
         <Columns>
             <asp:BoundField DataField="RoomID" HeaderText="Room ID" 
                 SortExpression="RoomID" />
@@ -43,12 +44,13 @@
                (DATEADD(day, @Nights, @StartDate)) &gt;= res.ReservationDate )
    )
    AND HotelRoomTypeID = @HotelRoomType
+   AND RoomStatus != 'M'
    ORDER BY RoomID">
         <SelectParameters>
-            <asp:ControlParameter ControlID="ddlRoomTypes" Name="HotelRoomType" 
-                PropertyName="SelectedValue" />
             <asp:SessionParameter Name="StartDate" SessionField="StartDate" />
             <asp:SessionParameter Name="Nights" SessionField="Nights" />
+            <asp:ControlParameter ControlID="ddlRoomTypes" Name="HotelRoomType" 
+                PropertyName="SelectedValue" />
         </SelectParameters>
     </asp:SqlDataSource>
     <table>
@@ -56,7 +58,7 @@
             <td style="width: 300px">Rooms selected: 
                 <asp:Label ID="lblTotalRooms" runat="server" Text="Label" ForeColor="Red">0</asp:Label></td>
             <td><asp:Button ID="btnSelect" runat="server" Text="Select" Enabled="False" 
-                    onclick="btnSelect_Click" /></td>
+                    onclick="btnSelect_Click" PostBackUrl="~/Clerk/CreateReservation.aspx" /></td>
         </tr>
     </table>
     <p>Selecting a room for 
