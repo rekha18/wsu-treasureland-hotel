@@ -67,6 +67,7 @@
     <Content Include="Admin\AdminMaster.master" />
     <Content Include="Admin\Controls\RoomManagement.ascx" />
     <Content Include="Admin\CreateUser.aspx" />
+    <Content Include="Admin\ManageRestaurant.aspx" />
     <Content Include="Admin\ManageRooms.aspx" />
     <Content Include="Admin\ManageStatuses.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
@@ -178,6 +179,12 @@
     </Compile>
     <Compile Include="Admin\CreateUser.aspx.designer.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageRestaurant.aspx.cs">
+      <DependentUpon>ManageRestaurant.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageRestaurant.aspx.designer.cs">
+      <DependentUpon>ManageRestaurant.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ManageRooms.aspx.cs">
       <DependentUpon>ManageRooms.aspx</DependentUpon>
