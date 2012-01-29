@@ -12,7 +12,7 @@
         }
         .style2
         {
-            width: 135px;
+            width: 184px;
         }
     </style>
 </head>
@@ -155,6 +155,7 @@
                         <asp:BoundField DataField="Comments" HeaderText="Comments" />
                     </Columns>
                 </asp:GridView>
+                <input type="button"  value="Print"  onclick="window.print();" />
     </form>
 </body>
 </html>
