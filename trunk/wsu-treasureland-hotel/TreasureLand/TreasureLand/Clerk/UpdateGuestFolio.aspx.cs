@@ -11,16 +11,12 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using TreasureLand.App_Code;
+using TreasureLand.DBM;
 
 namespace TreasureLand.Clerk
 {
     public partial class UpdateGuestFolio : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
         protected void gvGuestFolio_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnSelect.Visible = true;
@@ -82,7 +78,6 @@ namespace TreasureLand.Clerk
 
         }
 
-
         protected void btnSelect_Click(object sender, EventArgs e)
         {
             if (gvGuestFolio.SelectedIndex == -1)
@@ -107,7 +102,7 @@ namespace TreasureLand.Clerk
             }
             else
             {
-                Guest currentGuest = new Guest();
+                App_Code.Guest currentGuest = new App_Code.Guest();
                 txtSalutation.Text = myArrList[0].ToString();
                 txtShowFirstName.Text = myArrList[1].ToString();
                 txtShowSurname.Text = myArrList[2].ToString();
@@ -135,25 +130,31 @@ namespace TreasureLand.Clerk
 
             try
             {
-                Guest currentGuest = new Guest();
-                currentGuest._salutation = txtSalutation.Text;
-                currentGuest._surname = txtShowSurname.Text;
-                currentGuest._firstName = txtShowFirstName.Text;
-                currentGuest._surname = txtShowSurname.Text;
-                currentGuest._address = txtAddress.Text;
-                currentGuest._city = txtCity.Text;
-                currentGuest._state = txtState.Text;
-                currentGuest._country = txtCountry.Text;
-                currentGuest._emailAddress = txtEmail.Text;
-                currentGuest._phoneNumber = txtPhone.Text;
-                currentGuest._postalCode = txtPostalCode.Text;
-                currentGuest._guestcomments = txtComments.Text;
-                currentGuest._issuecountry = txtIssueCountry.Text;
-                currentGuest._ID = Convert.ToInt32(gvGuestFolio.SelectedRow.Cells[0].Text);
-                currentGuest._guestidnumber = txtGuestID.Text;
-                currentGuest._guestcomments = txtComments.Text;
-                currentGuest._issuecountry = txtIssueCountry.Text;
-                GuestDB.updateGuestFolio(currentGuest);
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                TreasureLand.DBM.Guest guest = new TreasureLand.DBM.Guest();
+                var query = from guests in db.Guests
+                            where guests.GuestID == Convert.ToInt32(gvGuestFolio.SelectedRow.Cells[0].Text)
+                            select guests;
+
+                foreach (var guests in query)
+                {
+                    guests.GuestSalutation = txtSalutation.Text;
+                    guests.GuestSurName = txtShowSurname.Text;
+                    guests.GuestFirstName = txtShowFirstName.Text;
+                    guests.GuestAddress = txtAddress.Text;
+                    guests.GuestCity = txtCity.Text;
+                    guests.GuestRegion = txtState.Text;
+                    guests.GuestCountry = txtCountry.Text;
+                    guests.GuestEmail = txtEmail.Text;
+                    guests.GuestPhone = txtPhone.Text;
+                    guests.GuestPostalCode = txtPostalCode.Text;
+                    guests.GuestComments = txtComments.Text;
+                    guests.GuestIDIssueCountry = txtIssueCountry.Text;
+                    guests.GuestID = (short)Convert.ToInt32(gvGuestFolio.SelectedRow.Cells[0].Text);
+                    guests.GuestIDNumber = txtGuestID.Text;
+                }
+                db.SubmitChanges();  
+
                 updateGuestBoxes();
 
                 lblError.Text = "Updated successfully";
