@@ -375,11 +375,11 @@ namespace TreasureLand.Clerk
             foreach (ReservationDetailBilling rdb in guest)
             {
                 total += (rdb.BillingItemQty * rdb.BillingAmount);
-            }            
-            txtServicesTotal.Text = total.ToString();
+            }
+            txtServicesTotal.Text = total.ToString("0.00");
   
             //get the cost of the room
-            txtRoomTotal.Text = (Convert.ToDecimal(gvRoomCost.Rows[0].Cells[2].Text)*Convert.ToDecimal(gvRoomCost.Rows[0].Cells[1].Text)).ToString();
+            txtRoomTotal.Text = (Convert.ToDecimal(gvRoomCost.Rows[0].Cells[2].Text) * Convert.ToDecimal(gvRoomCost.Rows[0].Cells[1].Text)).ToString("0.00");
             
             //get the discount
             var discount = from rd in db.ReservationDetails
@@ -387,15 +387,12 @@ namespace TreasureLand.Clerk
                         on rd.DiscountID equals d.DiscountID
                            where (rd.ReservationDetailID == Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text))
                         select new {DiscountID = rd.DiscountID, DiscountAmount = d.DiscountAmount, IsPercent = d.IsPrecentage};
-            if (discount == null)
+
+            txtDiscount.Text = "0";
+
+            //if this is true, the discount is a percent, otherwise it is a flat cost discount
+            foreach (var row in discount)
             {
-                txtDiscount.Text = "0";
-            }
-            else
-            {
-                //if this is true, the discount is a percent, otherwise it is a flat cost discount
-                foreach(var row in discount)
-                {
                 if (row.IsPercent == true)
                 {
                     txtDiscount.Text = (((Convert.ToDecimal(txtServicesTotal.Text) + Convert.ToDecimal(txtRoomTotal.Text)) * (Convert.ToDecimal(row.DiscountAmount) / 100))).ToString();
@@ -404,33 +401,13 @@ namespace TreasureLand.Clerk
                 {
                     txtDiscount.Text = row.DiscountAmount.ToString();
                 }
-                }
             }
-
-
-            ArrayList myArrList = new ArrayList();
-            myArrList = App_Code.GuestDB.getGuestDiscount(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
-            //if there are no items in the arrayList then there is no discount
-            if (myArrList.Count == 0)
-            {
-                txtDiscount.Text = "0";
-            }
-            else
-            {
-                //if this is true, the discount is a percent, otherwise it is a flat cost discount
-                if (Convert.ToBoolean(myArrList[2]) == true)
-                {
-                    txtDiscount.Text = (((Convert.ToDecimal(txtServicesTotal.Text) + Convert.ToDecimal(txtRoomTotal.Text)) * (Convert.ToDecimal(myArrList[1]) / 100))).ToString();
-                }
-                else
-                {
-                    txtDiscount.Text = (Convert.ToDecimal(myArrList[1]).ToString());
-                }
-            }
+            
+            //Format the discount text
             txtDiscount.Text = string.Format("{0:0.00}", Convert.ToDouble(txtDiscount.Text));
             
             //Displays the total cost
-            txtTotal.Text = ((Convert.ToDecimal(txtServicesTotal.Text) + Convert.ToDecimal(txtRoomTotal.Text) - Convert.ToDecimal(txtDiscount.Text))).ToString();
+            txtTotal.Text = ((Convert.ToDecimal(txtServicesTotal.Text) + Convert.ToDecimal(txtRoomTotal.Text) - Convert.ToDecimal(txtDiscount.Text))).ToString("0.00");
             print();
         }
         #endregion
