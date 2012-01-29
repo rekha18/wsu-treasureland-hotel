@@ -19,14 +19,7 @@ namespace TreasureLand.Clerk
         protected void Page_Load(object sender, EventArgs e)
         {
             btnLocate.Focus();
-            {
-                if (!Page.IsPostBack)
-                { }
-               
-            }
         }
-
-        TreasureLandDataClassesDataContext db;
 
         #region eventhandlers
         /// <summary>
@@ -69,9 +62,7 @@ namespace TreasureLand.Clerk
                 gvGuest.DataSource = guest.ToList();
                 gvGuest.DataBind();
 
-
                 //Gridview is populated with data
-               
                 //Clears the default values for the textboxes
                 if (txtFirstName.Text == "none")
                     txtFirstName.Text = "";
@@ -134,12 +125,27 @@ namespace TreasureLand.Clerk
 
                 //gets the datasource for the guest room table
                 //only grabs the room if it has an active status
-                gvRoomCost.DataSource = GuestDB.getGuestRoom(Convert.ToInt32(txtShowRoom.Text), Convert.ToInt32(txtShowReservation.Text));
+                db = new TreasureLandDataClassesDataContext();
+                Reservation reservation = new Reservation();
+                ReservationDetail reservationDetail = new ReservationDetail();
+                Room room = new Room();
+
+                var guestRoom = from r in db.Reservations
+                            join rd in db.ReservationDetails
+                            on r.ReservationID equals rd.ReservationID
+                            join ro in db.Rooms
+                            on rd.RoomID equals ro.RoomID
+                            join hrt in db.HotelRoomTypes
+                            on ro.HotelRoomTypeID equals hrt.HotelRoomTypeID
+                                where r.ReservationID == (short)Convert.ToInt32(txtShowReservation.Text) && ro.RoomID == Convert.ToInt32(txtShowRoom.Text)
+                                select new { r.ReservationID, rd.Nights, rd.QuotedRate, hrt.RoomType };
+
+                gvRoomCost.DataSource = guestRoom.ToList();
                 gvRoomCost.DataBind();
+                HotelRoomType hotelRoomType = new HotelRoomType();
 
                 //gets the datasource for the services table 
                 gvGuestServiesDataBind();
-
                 updateGuestPriceTotals();
 
                 //Shows the delete and edit button if the user is admin
@@ -208,6 +214,7 @@ namespace TreasureLand.Clerk
             gvGuestServices.Dispose();
 
             //adds the entered service into the database
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
             db = new TreasureLandDataClassesDataContext();
             ReservationDetailBilling bill = new ReservationDetailBilling();
             bill.ReservationDetailID = Convert.ToInt16(gvGuest.SelectedRow.Cells[4].Text);
@@ -283,7 +290,6 @@ namespace TreasureLand.Clerk
             {
                 lblErrorGuest.Text = "Cannot update information, insertion failed";
             }
-
         }
 
         /// <summary>
@@ -344,12 +350,10 @@ namespace TreasureLand.Clerk
         private void gvGuestServiesDataBind()
         {
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            TreasureLand.DBM.ReservationDetailBilling guests = new TreasureLand.DBM.ReservationDetailBilling();
             IEnumerable<TreasureLand.DBM.ReservationDetailBilling> guest =
                         from g in db.ReservationDetailBillings
                         where g.ReservationDetailID == Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text)
                         select g;
-
             gvGuestServices.DataSource = guest;
             gvGuestServices.DataBind();
         }
@@ -361,13 +365,49 @@ namespace TreasureLand.Clerk
         /// </summary>
         private void updateGuestPriceTotals()
         {
-            //makes a call to the database and totals all the selected guests cost of services
-            txtServicesTotal.Text = string.Format("{0:0.00}",(GuestDB.getTotal(Convert.ToDecimal(gvGuest.SelectedRow.Cells[4].Text)).ToString()));
-
+            //Gets the cost of all guest services
+            decimal total = 0;
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            IEnumerable<TreasureLand.DBM.ReservationDetailBilling> guest =
+                        from g in db.ReservationDetailBillings
+                        where g.ReservationDetailID == Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text)
+                        select g;
+            foreach (ReservationDetailBilling rdb in guest)
+            {
+                total += (rdb.BillingItemQty * rdb.BillingAmount);
+            }            
+            txtServicesTotal.Text = total.ToString();
+  
             //get the cost of the room
             txtRoomTotal.Text = (Convert.ToDecimal(gvRoomCost.Rows[0].Cells[2].Text)*Convert.ToDecimal(gvRoomCost.Rows[0].Cells[1].Text)).ToString();
             
             //get the discount
+            var discount = from rd in db.ReservationDetails
+                        join d in db.Discounts
+                        on rd.DiscountID equals d.DiscountID
+                           where (rd.ReservationDetailID == Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text))
+                        select new {DiscountID = rd.DiscountID, DiscountAmount = d.DiscountAmount, IsPercent = d.IsPrecentage};
+            if (discount == null)
+            {
+                txtDiscount.Text = "0";
+            }
+            else
+            {
+                //if this is true, the discount is a percent, otherwise it is a flat cost discount
+                foreach(var row in discount)
+                {
+                if (row.IsPercent == true)
+                {
+                    txtDiscount.Text = (((Convert.ToDecimal(txtServicesTotal.Text) + Convert.ToDecimal(txtRoomTotal.Text)) * (Convert.ToDecimal(row.DiscountAmount) / 100))).ToString();
+                }
+                else
+                {
+                    txtDiscount.Text = row.DiscountAmount.ToString();
+                }
+                }
+            }
+
+
             ArrayList myArrList = new ArrayList();
             myArrList = App_Code.GuestDB.getGuestDiscount(Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
             //if there are no items in the arrayList then there is no discount
@@ -390,7 +430,7 @@ namespace TreasureLand.Clerk
             txtDiscount.Text = string.Format("{0:0.00}", Convert.ToDouble(txtDiscount.Text));
             
             //Displays the total cost
-            txtTotal.Text = (Convert.ToDecimal(txtServicesTotal.Text) + Convert.ToDecimal(txtRoomTotal.Text) - Convert.ToDecimal(txtDiscount.Text)).ToString();
+            txtTotal.Text = ((Convert.ToDecimal(txtServicesTotal.Text) + Convert.ToDecimal(txtRoomTotal.Text) - Convert.ToDecimal(txtDiscount.Text))).ToString();
             print();
         }
         #endregion
@@ -408,9 +448,6 @@ namespace TreasureLand.Clerk
             {
                 App_Code.GuestDB.updateReservationStatus('F', Convert.ToInt32(gvGuest.SelectedRow.Cells[0].Text));
             }
-
-                
-            
                 GuestDB.updateRoomStatus('H', Convert.ToInt32(txtShowRoom.Text));
                 mvViewGuest.ActiveViewIndex = 2;
         }
@@ -463,8 +500,7 @@ namespace TreasureLand.Clerk
                 discount.description = (sqlDiscounts["DiscountDescription"]).ToString();
                 discount.amountOfDiscount = Convert.ToDouble(sqlDiscounts["DiscountAmount"].ToString());
                 discount.isPercent = Convert.ToBoolean(sqlDiscounts["IsPrecentage"]);
-                ddlDiscount.Items.Add(new ListItem(discount.ToString(), discount.ID.ToString()));
-                
+                ddlDiscount.Items.Add(new ListItem(discount.ToString(), discount.ID.ToString()));                
             }
             
             ddlDiscount.DataBind();
@@ -535,12 +571,21 @@ namespace TreasureLand.Clerk
                 Session.Remove("Charges");
             }
             
-            List<string> roomInfo = new List<string>();
-            roomInfo.Add(gvGuest.SelectedRow.Cells[0].Text);
-            roomInfo.Add(gvGuest.SelectedRow.Cells[1].Text);
-            roomInfo.Add(gvGuest.SelectedRow.Cells[2].Text);
-            roomInfo.Add(gvGuest.SelectedRow.Cells[6].Text);
-            Session["GuestInfo"] = roomInfo;
+            List<string> guestInfo = new List<string>();
+            guestInfo.Add(gvGuest.SelectedRow.Cells[0].Text);
+            guestInfo.Add(gvGuest.SelectedRow.Cells[1].Text);
+            guestInfo.Add(gvGuest.SelectedRow.Cells[2].Text);
+            guestInfo.Add(gvGuest.SelectedRow.Cells[6].Text);
+            guestInfo.Add(txtRoomTotal.Text);
+            guestInfo.Add(txtServicesTotal.Text);
+            guestInfo.Add(txtTotal.Text);
+            guestInfo.Add(txtDiscount.Text);
+
+            List<int> roomInfo = new List<int>();
+            roomInfo.Add((short)Convert.ToInt32(txtShowReservation.Text));
+            roomInfo.Add(Convert.ToInt32(txtShowRoom.Text));
+            Session["RoomInfo"] = roomInfo;
+            Session["GuestInfo"] = guestInfo;
             //Session["RoomInfo"] = (DataSet)gvRoomCost.DataSource;
             Session["Charges"] = gvGuest.SelectedRow.Cells[4].Text; 
         }
