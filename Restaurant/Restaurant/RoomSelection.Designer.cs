@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_testResult = new System.Windows.Forms.Label();
             this.lbl_pageNumberDescription = new System.Windows.Forms.Label();
             this.lbl_currentPage = new System.Windows.Forms.Label();
             this.lbl_totalNumberOfPages = new System.Windows.Forms.Label();
@@ -66,15 +65,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_buttons.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lbl_testResult
-            // 
-            this.lbl_testResult.AutoSize = true;
-            this.lbl_testResult.Location = new System.Drawing.Point(12, 678);
-            this.lbl_testResult.Name = "lbl_testResult";
-            this.lbl_testResult.Size = new System.Drawing.Size(88, 13);
-            this.lbl_testResult.TabIndex = 3;
-            this.lbl_testResult.Text = "TEST REUSLTS";
             // 
             // lbl_pageNumberDescription
             // 
@@ -456,7 +446,7 @@
             // lblHeader
             // 
             this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.Location = new System.Drawing.Point(201, 616);
+            this.lblHeader.Location = new System.Drawing.Point(12, 628);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(325, 23);
             this.lblHeader.TabIndex = 15;
@@ -476,7 +466,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lbl_currentPage);
             this.Controls.Add(this.lbl_pageNumberDescription);
-            this.Controls.Add(this.lbl_testResult);
             this.Controls.Add(this.btn_next);
             this.Controls.Add(this.btn_cash);
             this.Controls.Add(this.btn_previous);
@@ -494,7 +483,6 @@
         private System.Windows.Forms.Button btn_previous;
         private System.Windows.Forms.Button btn_cash;
         private System.Windows.Forms.Button btn_next;
-        private System.Windows.Forms.Label lbl_testResult;
         private System.Windows.Forms.Label lbl_pageNumberDescription;
         private System.Windows.Forms.Label lbl_currentPage;
         private System.Windows.Forms.PictureBox pictureBox1;

@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace Restaurant
 {
     //System.Diagnostics.Debug.WriteLine("");
     public partial class RoomSelectionForm : Form
     {
-        int numberOfRooms = 88;
-        int pageNumber = 1;
-        int maxPageNumber = 1;
+        private int numberOfRooms = 0;
+        private int pageNumber = 1;
+        private int maxPageNumber = 1;
         SortedDictionary<int, Button> buttonDict = new SortedDictionary<int, Button>();
 
         public RoomSelectionForm()
@@ -24,9 +25,13 @@ namespace Restaurant
             //Loads 24 buttons to a dictionary that are inside panel_buttons
             loadButtonsToDictionary();
 
+            //gets/sets currently filled rooms from database
+            numberOfRooms = getFilledRoomCount();
+
+
             //hides any buttons if room count is less than 24, 
             //used later if room count is less than number of rooms
-            hideNecessaryButtons();
+            hideExtraButtons();
 
             //Loads the room numbers to the buttons
             loadRoomNumbers();
@@ -45,9 +50,6 @@ namespace Restaurant
             LoginForm login = new LoginForm();
             login.ShowDialog(); 
         }
-
-
-
         
 
         /// <summary>
@@ -92,7 +94,7 @@ namespace Restaurant
                 btn_previous.Enabled = false;
             }
 
-            hideNecessaryButtons();
+            hideExtraButtons();
             loadRoomNumbers();
         }
         
@@ -115,7 +117,7 @@ namespace Restaurant
             {
                 btn_previous.Enabled = true;
             }
-            hideNecessaryButtons();
+            hideExtraButtons();
             loadRoomNumbers();
         }
 
@@ -160,7 +162,7 @@ namespace Restaurant
         /// <summary>
         /// Hides any buttons that exceed the number of rooms
         /// </summary>
-        private void hideNecessaryButtons()
+        private void hideExtraButtons()
         {
             foreach (int key in buttonDict.Keys)
             {
@@ -186,8 +188,23 @@ namespace Restaurant
                 }
             }
         }
+
+        private int getFilledRoomCount()
+        {
+            //connect to the database
+            DataClassesDataContext db = new DataClassesDataContext();
+            //get the number of rooms currently ('C') filled
+            int count = 0;
+            var query = from r in db.Rooms
+                        where r.RoomStatus == 'C'
+                        select r;
+
+            foreach (var r in query)
+            {
+                count++;
+            }
+
+            return count;
+        }
     }
-
-
-
 }
