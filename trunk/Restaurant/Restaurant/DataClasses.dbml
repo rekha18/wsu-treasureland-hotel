@@ -124,6 +124,7 @@
       <Column Name="NumberOfChildren" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Association Name="ReservationDetail_ReservationDetailBilling" Member="ReservationDetailBillings" ThisKey="ReservationDetailID" OtherKey="ReservationDetailID" Type="ReservationDetailBilling" />
       <Association Name="Room_ReservationDetail" Member="Room" ThisKey="RoomID" OtherKey="RoomID" Type="Room" IsForeignKey="true" />
+      <Association Name="Reservation_ReservationDetail" Member="Reservation" ThisKey="ReservationID" OtherKey="ReservationID" Type="Reservation" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Room" Member="Rooms">
@@ -137,6 +138,39 @@
       <Column Name="RoomHandicap" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="RoomStatus" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
       <Association Name="Room_ReservationDetail" Member="ReservationDetails" ThisKey="RoomID" OtherKey="RoomID" Type="ReservationDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reservation" Member="Reservations">
+    <Type Name="Reservation">
+      <Column Name="ReservationID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GuestID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="ReservationDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ReservationStatus" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Column Name="ReservationComments" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Association Name="Reservation_ReservationDetail" Member="ReservationDetails" ThisKey="ReservationID" OtherKey="ReservationID" Type="ReservationDetail" />
+      <Association Name="Guest_Reservation" Member="Guest" ThisKey="GuestID" OtherKey="GuestID" Type="Guest" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Guest" Member="Guests">
+    <Type Name="Guest">
+      <Column Name="GuestID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="GuestSalutation" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="GuestFirstName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="GuestSurName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="GuestCompany" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GuestAddress" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GuestCity" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GuestRegion" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GuestPostalCode" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GuestCountry" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="GuestFax" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="GuestPhone" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="GuestEmail" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="GuestComments" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="GuestIDNumber" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GuestIDIssueCountry" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="GuestIDComment" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Guest_Reservation" Member="Reservations" ThisKey="GuestID" OtherKey="GuestID" Type="Reservation" />
     </Type>
   </Table>
 </Database>
