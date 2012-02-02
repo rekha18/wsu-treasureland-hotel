@@ -17,6 +17,7 @@ namespace Restaurant
         private int pageNumber = 1;
         private int maxPageNumber = 1;
         SortedDictionary<int, Button> buttonDict = new SortedDictionary<int, Button>();
+        SortedDictionary<int, String> buttonInfoDict = new SortedDictionary<int, String>();
 
         public RoomSelectionForm()
         {
@@ -139,10 +140,12 @@ namespace Restaurant
         /// <param name="e"></param>
         protected void dynamicBtn_Click(Object sender, EventArgs e)
         {
-            //Gets the buttons tag and calls the RestuarantMenuSelection(tag)
+            //Gets the buttons tag and calls the RestuarantMenuSelection(roomID)
             Button btn = sender as Button;
             String tag = ((Button)sender).Tag.ToString();
-            int selectedRoom = Convert.ToInt32(tag);
+            String text = btn.Text;
+            String[] arr = text.Split('\n');
+            int selectedRoom = Convert.ToInt32(arr[0]);
             RestaurantMenuSelection rms = new RestaurantMenuSelection(selectedRoom);
             rms.Show();
         }
@@ -152,10 +155,38 @@ namespace Restaurant
         /// </summary>
         private void loadRoomNumbers()
         {
+            DataClassesDataContext db = new DataClassesDataContext();
+
+            var query = from r in db.Rooms
+                        join rd in db.ReservationDetails
+                        on r.RoomID equals rd.RoomID
+                        join rv in db.Reservations
+                        on rd.ReservationID equals rv.ReservationID
+                        join g in db.Guests
+                        on rv.GuestID equals g.GuestID
+                        where r.RoomStatus == 'C' & rv.ReservationStatus == 'A'
+                        select new { r.RoomID, g.GuestSurName };
+
+            int count = 0;
+            foreach (var q in query)
+            {
+                buttonInfoDict.Add(Convert.ToInt32(q.RoomID), q.GuestSurName.ToString());
+                count++;
+            }
+
+            int num = 0;
             foreach (int key in buttonDict.Keys)
             {
                 Button b = buttonDict[key];
-                b.Text = b.Tag.ToString();
+                if (num < buttonInfoDict.Count)
+                {
+                    String element = buttonInfoDict.ElementAt(num).ToString();
+                    element = element.Replace("[", "");
+                    element = element.Replace("]", "");
+                    String[] arr = element.Split(',');
+                    b.Text = arr[0] + "\n" + arr[1];
+                }
+                num++;
             }
         }
 
