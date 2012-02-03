@@ -20,6 +20,7 @@ namespace Restaurant
         {
             InitializeComponent();
             lbl_selectedRoom.Text = "Room: " + selectedRoom.ToString();
+
         }
     }
 }
