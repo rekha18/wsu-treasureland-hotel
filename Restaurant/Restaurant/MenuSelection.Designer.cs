@@ -1,6 +1,6 @@
 ﻿namespace Restaurant
 {
-    partial class RestaurantMenuSelection
+    partial class MenuSelection
     {
         /// <summary>
         /// Required designer variable.
@@ -49,19 +49,19 @@
             this.lbl_selectedRoom.AutoSize = true;
             this.lbl_selectedRoom.Location = new System.Drawing.Point(13, 675);
             this.lbl_selectedRoom.Name = "lbl_selectedRoom";
-            this.lbl_selectedRoom.Size = new System.Drawing.Size(83, 13);
+            this.lbl_selectedRoom.Size = new System.Drawing.Size(38, 13);
             this.lbl_selectedRoom.TabIndex = 8;
-            this.lbl_selectedRoom.Text = "Selected Room:";
+            this.lbl_selectedRoom.Text = "Room:";
             // 
-            // RestaurantMenuSelection
+            // MenuSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 700);
             this.Controls.Add(this.lbl_selectedRoom);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "RestaurantMenuSelection";
-            this.Text = "RestaurantMenuSelection";
+            this.Name = "MenuSelection";
+            this.Text = "Menu Selection";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

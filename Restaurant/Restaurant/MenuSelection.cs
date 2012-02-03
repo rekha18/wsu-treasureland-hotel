@@ -9,17 +9,17 @@ using System.Windows.Forms;
 
 namespace Restaurant
 {
-    public partial class RestaurantMenuSelection : Form
+    public partial class MenuSelection : Form
     {
-        public RestaurantMenuSelection()
+        public MenuSelection()
         {
             InitializeComponent();
         }
 
-        public RestaurantMenuSelection(int selectedRoom)
+        public MenuSelection(int selectedRoom)
         {
             InitializeComponent();
-            lbl_selectedRoom.Text = "Selected Room: " + selectedRoom.ToString();
+            lbl_selectedRoom.Text = "Room: " + selectedRoom.ToString();
         }
     }
 }
