@@ -129,7 +129,7 @@ namespace Restaurant
         /// <param name="e"></param>
         private void btn_cash_Click(object sender, EventArgs e)
         {
-            RestaurantMenuSelection rsf = new RestaurantMenuSelection(0);
+            MenuSelection rsf = new MenuSelection(0);
             rsf.Show();
         }
 
@@ -140,13 +140,13 @@ namespace Restaurant
         /// <param name="e"></param>
         protected void dynamicBtn_Click(Object sender, EventArgs e)
         {
-            //Gets the buttons tag and calls the RestuarantMenuSelection(roomID)
+            //Gets the buttons tag and calls the MenuSelection(roomID)
             Button btn = sender as Button;
             String tag = ((Button)sender).Tag.ToString();
             String text = btn.Text;
             String[] arr = text.Split('\n');
             int selectedRoom = Convert.ToInt32(arr[0]);
-            RestaurantMenuSelection rms = new RestaurantMenuSelection(selectedRoom);
+            MenuSelection rms = new MenuSelection(selectedRoom);
             rms.Show();
         }
 
