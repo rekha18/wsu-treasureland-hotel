@@ -24,10 +24,6 @@ namespace TreasureLand.Admin
             private string pchQuantity;//purchase price//Need to check this type
             //Table t1;
 
-
-
-
-
             IngredientOrderItem()
             {
                 idNumber = "";
@@ -38,15 +34,20 @@ namespace TreasureLand.Admin
             public IngredientOrderItem(int i)
             {
                 idNumber = "OrderItem" + i.ToString();
+                pchName = "";
+                pchPrice = 0.0;
+                pchQuantity = "";
+
             }
             public IngredientOrderItem(int i, string name, double price, string quantity)
             {
                 idNumber = "OrderItem" + i.ToString();//set name
-                // pchName = ;
+                pchName = "";
+                pchPrice = 0.0;
+                pchQuantity = "";
             }
             public string getIdName()
             {
-
 
                 return idNumber;
             }
@@ -80,47 +81,47 @@ namespace TreasureLand.Admin
             //populate grid
 
             //Ingredient ingredients = new Ingredient();//to insert create ingredient object
-            if (txtIngredient.Text == "")
-            {
-                lblV1error.Text = "please enter a value";
-            }
-            else
-            {
-                //check object type to be completed soon
-              //  if(){
-                //}
+//            if (txtIngredient.Text == "")
+//            {
+//                lblV1error.Text = "please enter a value";
+//            }
+//            else
+//            {
+//                //check object type to be completed soon
+//              //  if(){
+//                //}
 
-                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-                Ingredient ing = new Ingredient
-{
-    IngredientID = 12000,
-    IngredientName = "Seattle",
+//                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+//                Ingredient ing = new Ingredient
+//{
+//    IngredientID = 12000,
+//    IngredientName = "Seattle",
 
-};
+//};
 
 
 
-// Add the new object to the Orders collection.
-                // Add the new object to the Orders collection.
-                db.Ingredients.InsertOnSubmit(ing);
+//// Add the new object to the Orders collection.
+//                // Add the new object to the Orders collection.
+//                db.Ingredients.InsertOnSubmit(ing);
 
-                // Submit the change to the database.
-                //try
-                //{
-                    db.SubmitChanges();
-                //}
-               // catch (Exception i)
-               // {
-                   // Console.WriteLine(i);
-                    // Make some adjustments.
-                    // ...
-                    // Try again.
-                 //   db.SubmitChanges();
-               //}//.InsertOnSubmit(ing);
+//                // Submit the change to the database.
+//                //try
+//                //{
+//                    db.SubmitChanges();
+//                //}
+//               // catch (Exception i)
+//               // {
+//                   // Console.WriteLine(i);
+//                    // Make some adjustments.
+//                    // ...
+//                    // Try again.
+//                 //   db.SubmitChanges();
+//               //}//.InsertOnSubmit(ing);
 
-            }//end if
+//            }//end if
 
-            //make a connection
+//            //make a connection
         }
 
         protected void btnManageMenuItems_Click(object sender, EventArgs e)
@@ -188,13 +189,10 @@ namespace TreasureLand.Admin
 
         protected void btnAddListItemIngredient_Click(object sender, EventArgs e)
         {
-            //increment count of items
-            IngredientOrderItem i1 = new IngredientOrderItem(ingOrdItms.Count());
             Table tb = new Table();
             TableRow r1 = new TableRow();//row
             TableCell c1 = new TableCell();//table cell
             TableCell c2 = new TableCell();
-            r1.Cells.Add(c1);//add name
             TableCell c3 = new TableCell();//table cell
             TableCell c4 = new TableCell();//table cell
             TableCell c5 = new TableCell();//table cell
@@ -202,49 +200,24 @@ namespace TreasureLand.Admin
             TableCell c7 = new TableCell();//table cell
             TableCell c8 = new TableCell();//table cell
 
-            c1.ID = "c" + i1.getIdName();//getID name
+            //increment count of items
+            IngredientOrderItem i1 = new IngredientOrderItem(ingOrdItms.Count);
+
+            tb.Rows.Add(r1);
+            r1.Cells.Add(c1);//add name
 
 
-            //row
 
-            //cell1
-            //cell2
 
-            //row
-
-            //cell1
-            //cell2
-
-            TableCell c2 = new TableCell();//table cell
-            r1.Cells.Add(c2);
-
+            
 
             ingOrdItms.Add(i1);//add item to the orderlist
-
-
+            c1.Text = ingOrdItms[ingOrdItms.Count-1].getIdName();
             //create table
 
-            tb.ID = ingOrdItms[0].getIdName();//Get ID
+            tb.ID = ingOrdItms[ingOrdItms.Count-1].getIdName();//Get ID
 
-            //get name
-
-            //get count 
-
-            // get purchase price
-
-
-
-
-
-
-
-            //add price
-            //add purchase price
-            //add count
-
-
-            c1.Text = ingOrdItms[0].getIdName();
-
+           
             this.View2.Controls.Add(tb);
             ddIngredient.DataBind();
 
