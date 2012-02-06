@@ -62,6 +62,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_buttons.SuspendLayout();
             this.SuspendLayout();
@@ -69,7 +70,7 @@
             // lbl_pageNumberDescription
             // 
             this.lbl_pageNumberDescription.AutoSize = true;
-            this.lbl_pageNumberDescription.Location = new System.Drawing.Point(845, 591);
+            this.lbl_pageNumberDescription.Location = new System.Drawing.Point(848, 600);
             this.lbl_pageNumberDescription.Name = "lbl_pageNumberDescription";
             this.lbl_pageNumberDescription.Size = new System.Drawing.Size(75, 13);
             this.lbl_pageNumberDescription.TabIndex = 4;
@@ -78,7 +79,7 @@
             // lbl_currentPage
             // 
             this.lbl_currentPage.AutoSize = true;
-            this.lbl_currentPage.Location = new System.Drawing.Point(929, 591);
+            this.lbl_currentPage.Location = new System.Drawing.Point(929, 600);
             this.lbl_currentPage.Name = "lbl_currentPage";
             this.lbl_currentPage.Size = new System.Drawing.Size(12, 13);
             this.lbl_currentPage.TabIndex = 5;
@@ -87,7 +88,7 @@
             // lbl_totalNumberOfPages
             // 
             this.lbl_totalNumberOfPages.AutoSize = true;
-            this.lbl_totalNumberOfPages.Location = new System.Drawing.Point(964, 591);
+            this.lbl_totalNumberOfPages.Location = new System.Drawing.Point(964, 600);
             this.lbl_totalNumberOfPages.Name = "lbl_totalNumberOfPages";
             this.lbl_totalNumberOfPages.Size = new System.Drawing.Size(12, 13);
             this.lbl_totalNumberOfPages.TabIndex = 8;
@@ -96,7 +97,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(944, 591);
+            this.label1.Location = new System.Drawing.Point(944, 600);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(16, 13);
             this.label1.TabIndex = 7;
@@ -149,7 +150,7 @@
             // 
             // panel_buttons
             // 
-            this.panel_buttons.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panel_buttons.BackColor = System.Drawing.Color.DarkGray;
             this.panel_buttons.Controls.Add(this.button17);
             this.panel_buttons.Controls.Add(this.button18);
             this.panel_buttons.Controls.Add(this.button19);
@@ -181,7 +182,7 @@
             // 
             // button17
             // 
-            this.button17.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button17.BackColor = System.Drawing.SystemColors.Control;
             this.button17.Location = new System.Drawing.Point(64, 293);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(72, 72);
@@ -192,7 +193,7 @@
             // 
             // button18
             // 
-            this.button18.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button18.BackColor = System.Drawing.SystemColors.Control;
             this.button18.Location = new System.Drawing.Point(178, 293);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(72, 72);
@@ -203,7 +204,7 @@
             // 
             // button19
             // 
-            this.button19.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button19.BackColor = System.Drawing.SystemColors.Control;
             this.button19.Location = new System.Drawing.Point(290, 293);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(72, 72);
@@ -214,7 +215,7 @@
             // 
             // button20
             // 
-            this.button20.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button20.BackColor = System.Drawing.SystemColors.Control;
             this.button20.Location = new System.Drawing.Point(402, 293);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(72, 72);
@@ -225,7 +226,7 @@
             // 
             // button21
             // 
-            this.button21.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button21.BackColor = System.Drawing.SystemColors.Control;
             this.button21.Location = new System.Drawing.Point(513, 293);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(72, 72);
@@ -236,7 +237,7 @@
             // 
             // button22
             // 
-            this.button22.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button22.BackColor = System.Drawing.SystemColors.Control;
             this.button22.Location = new System.Drawing.Point(624, 293);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(72, 72);
@@ -247,7 +248,7 @@
             // 
             // button23
             // 
-            this.button23.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button23.BackColor = System.Drawing.SystemColors.Control;
             this.button23.Location = new System.Drawing.Point(737, 293);
             this.button23.Name = "button23";
             this.button23.Size = new System.Drawing.Size(72, 72);
@@ -258,7 +259,7 @@
             // 
             // button24
             // 
-            this.button24.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button24.BackColor = System.Drawing.SystemColors.Control;
             this.button24.Location = new System.Drawing.Point(849, 293);
             this.button24.Name = "button24";
             this.button24.Size = new System.Drawing.Size(72, 72);
@@ -269,7 +270,7 @@
             // 
             // button9
             // 
-            this.button9.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button9.BackColor = System.Drawing.SystemColors.Control;
             this.button9.Location = new System.Drawing.Point(64, 177);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(72, 72);
@@ -280,7 +281,7 @@
             // 
             // button10
             // 
-            this.button10.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button10.BackColor = System.Drawing.SystemColors.Control;
             this.button10.Location = new System.Drawing.Point(178, 177);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(72, 72);
@@ -291,7 +292,7 @@
             // 
             // button11
             // 
-            this.button11.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button11.BackColor = System.Drawing.SystemColors.Control;
             this.button11.Location = new System.Drawing.Point(290, 177);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(72, 72);
@@ -302,7 +303,7 @@
             // 
             // button12
             // 
-            this.button12.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button12.BackColor = System.Drawing.SystemColors.Control;
             this.button12.Location = new System.Drawing.Point(402, 177);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(72, 72);
@@ -313,7 +314,7 @@
             // 
             // button13
             // 
-            this.button13.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button13.BackColor = System.Drawing.SystemColors.Control;
             this.button13.Location = new System.Drawing.Point(513, 177);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(72, 72);
@@ -324,7 +325,7 @@
             // 
             // button14
             // 
-            this.button14.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button14.BackColor = System.Drawing.SystemColors.Control;
             this.button14.Location = new System.Drawing.Point(624, 177);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(72, 72);
@@ -335,7 +336,7 @@
             // 
             // button15
             // 
-            this.button15.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button15.BackColor = System.Drawing.SystemColors.Control;
             this.button15.Location = new System.Drawing.Point(737, 177);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(72, 72);
@@ -346,7 +347,7 @@
             // 
             // button16
             // 
-            this.button16.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button16.BackColor = System.Drawing.SystemColors.Control;
             this.button16.Location = new System.Drawing.Point(849, 177);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(72, 72);
@@ -357,7 +358,7 @@
             // 
             // button8
             // 
-            this.button8.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button8.BackColor = System.Drawing.SystemColors.Control;
             this.button8.Location = new System.Drawing.Point(849, 60);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(72, 72);
@@ -368,7 +369,7 @@
             // 
             // button7
             // 
-            this.button7.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button7.BackColor = System.Drawing.SystemColors.Control;
             this.button7.Location = new System.Drawing.Point(737, 60);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(72, 72);
@@ -379,7 +380,7 @@
             // 
             // button6
             // 
-            this.button6.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button6.BackColor = System.Drawing.SystemColors.Control;
             this.button6.Location = new System.Drawing.Point(624, 60);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(72, 72);
@@ -390,7 +391,7 @@
             // 
             // button5
             // 
-            this.button5.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button5.BackColor = System.Drawing.SystemColors.Control;
             this.button5.Location = new System.Drawing.Point(513, 60);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(72, 72);
@@ -401,7 +402,7 @@
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button4.BackColor = System.Drawing.SystemColors.Control;
             this.button4.Location = new System.Drawing.Point(402, 60);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(72, 72);
@@ -412,7 +413,7 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button3.BackColor = System.Drawing.SystemColors.Control;
             this.button3.Location = new System.Drawing.Point(290, 60);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(72, 72);
@@ -423,7 +424,7 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button2.BackColor = System.Drawing.SystemColors.Control;
             this.button2.Location = new System.Drawing.Point(178, 60);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(72, 72);
@@ -434,7 +435,7 @@
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
             this.button1.Location = new System.Drawing.Point(64, 60);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(72, 72);
@@ -453,12 +454,22 @@
             this.lblHeader.Text = "SELECT A ROOM OR CASH";
             this.lblHeader.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(693, 600);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Cash";
+            // 
             // RoomSelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1008, 700);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.panel_buttons);
             this.Controls.Add(this.lbl_totalNumberOfPages);
@@ -469,7 +480,9 @@
             this.Controls.Add(this.btn_next);
             this.Controls.Add(this.btn_cash);
             this.Controls.Add(this.btn_previous);
+            this.MinimumSize = new System.Drawing.Size(1024, 738);
             this.Name = "RoomSelectionForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Room Selection";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_buttons.ResumeLayout(false);
@@ -514,6 +527,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblHeader;
+        private System.Windows.Forms.Label label2;
     }
 }
 
