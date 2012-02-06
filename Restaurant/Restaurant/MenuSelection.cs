@@ -22,5 +22,15 @@ namespace Restaurant
             lbl_selectedRoom.Text = "Room: " + selectedRoom.ToString();
 
         }
+
+        private void btn_submit_order_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btn_cancel_order_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
