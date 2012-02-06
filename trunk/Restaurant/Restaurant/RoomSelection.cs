@@ -40,13 +40,16 @@ namespace Restaurant
             lbl_currentPage.Text = pageNumber.ToString();
 
             //gets the max number of pages and sets it to a label
-            maxPageNumber = (int)(numberOfRooms / 24);
-            int mod = maxPageNumber % numberOfRooms;
-            if(mod > 0 || numberOfRooms <= 24)
+            if (numberOfRooms != 0)
             {
-                maxPageNumber++;
+                maxPageNumber = (int)(numberOfRooms / 24);
+                int mod = maxPageNumber % numberOfRooms;
+                if (mod > 0 || numberOfRooms <= 24)
+                {
+                    maxPageNumber++;
+                }
+                lbl_totalNumberOfPages.Text = maxPageNumber.ToString();
             }
-            lbl_totalNumberOfPages.Text = maxPageNumber.ToString();
 
             LoginForm login = new LoginForm();
             login.ShowDialog(); 
