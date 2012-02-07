@@ -54,9 +54,6 @@ namespace TreasureLand.DBM
     partial void InsertDrinkPurchaseHistory(DrinkPurchaseHistory instance);
     partial void UpdateDrinkPurchaseHistory(DrinkPurchaseHistory instance);
     partial void DeleteDrinkPurchaseHistory(DrinkPurchaseHistory instance);
-    partial void InsertFoodDrinkCategory(FoodDrinkCategory instance);
-    partial void UpdateFoodDrinkCategory(FoodDrinkCategory instance);
-    partial void DeleteFoodDrinkCategory(FoodDrinkCategory instance);
     partial void InsertGuest(Guest instance);
     partial void UpdateGuest(Guest instance);
     partial void DeleteGuest(Guest instance);
@@ -120,6 +117,9 @@ namespace TreasureLand.DBM
     partial void InsertShortTermAsset(ShortTermAsset instance);
     partial void UpdateShortTermAsset(ShortTermAsset instance);
     partial void DeleteShortTermAsset(ShortTermAsset instance);
+    partial void InsertFoodDrinkCategory(FoodDrinkCategory instance);
+    partial void UpdateFoodDrinkCategory(FoodDrinkCategory instance);
+    partial void DeleteFoodDrinkCategory(FoodDrinkCategory instance);
     #endregion
 		
 		public TreasureLandDataClassesDataContext() : 
@@ -213,14 +213,6 @@ namespace TreasureLand.DBM
 			get
 			{
 				return this.GetTable<DrinkPurchaseHistory>();
-			}
-		}
-		
-		public System.Data.Linq.Table<FoodDrinkCategory> FoodDrinkCategories
-		{
-			get
-			{
-				return this.GetTable<FoodDrinkCategory>();
 			}
 		}
 		
@@ -397,6 +389,14 @@ namespace TreasureLand.DBM
 			get
 			{
 				return this.GetTable<ShortTermAsset>();
+			}
+		}
+		
+		public System.Data.Linq.Table<FoodDrinkCategory> FoodDrinkCategories
+		{
+			get
+			{
+				return this.GetTable<FoodDrinkCategory>();
 			}
 		}
 	}
@@ -1754,200 +1754,6 @@ namespace TreasureLand.DBM
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FoodDrinkCategory")]
-	public partial class FoodDrinkCategory : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _FoodDrinkCategoryID;
-		
-		private string _FoodDrinkCategoryName;
-		
-		private bool _FoodDrinkCategoryTaxable;
-		
-		private EntitySet<Drink> _Drinks;
-		
-		private EntitySet<LineItem> _LineItems;
-		
-		private EntitySet<MenuItem> _MenuItems;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnFoodDrinkCategoryIDChanging(short value);
-    partial void OnFoodDrinkCategoryIDChanged();
-    partial void OnFoodDrinkCategoryNameChanging(string value);
-    partial void OnFoodDrinkCategoryNameChanged();
-    partial void OnFoodDrinkCategoryTaxableChanging(bool value);
-    partial void OnFoodDrinkCategoryTaxableChanged();
-    #endregion
-		
-		public FoodDrinkCategory()
-		{
-			this._Drinks = new EntitySet<Drink>(new Action<Drink>(this.attach_Drinks), new Action<Drink>(this.detach_Drinks));
-			this._LineItems = new EntitySet<LineItem>(new Action<LineItem>(this.attach_LineItems), new Action<LineItem>(this.detach_LineItems));
-			this._MenuItems = new EntitySet<MenuItem>(new Action<MenuItem>(this.attach_MenuItems), new Action<MenuItem>(this.detach_MenuItems));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FoodDrinkCategoryID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public short FoodDrinkCategoryID
-		{
-			get
-			{
-				return this._FoodDrinkCategoryID;
-			}
-			set
-			{
-				if ((this._FoodDrinkCategoryID != value))
-				{
-					this.OnFoodDrinkCategoryIDChanging(value);
-					this.SendPropertyChanging();
-					this._FoodDrinkCategoryID = value;
-					this.SendPropertyChanged("FoodDrinkCategoryID");
-					this.OnFoodDrinkCategoryIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FoodDrinkCategoryName", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string FoodDrinkCategoryName
-		{
-			get
-			{
-				return this._FoodDrinkCategoryName;
-			}
-			set
-			{
-				if ((this._FoodDrinkCategoryName != value))
-				{
-					this.OnFoodDrinkCategoryNameChanging(value);
-					this.SendPropertyChanging();
-					this._FoodDrinkCategoryName = value;
-					this.SendPropertyChanged("FoodDrinkCategoryName");
-					this.OnFoodDrinkCategoryNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FoodDrinkCategoryTaxable", DbType="Bit NOT NULL")]
-		public bool FoodDrinkCategoryTaxable
-		{
-			get
-			{
-				return this._FoodDrinkCategoryTaxable;
-			}
-			set
-			{
-				if ((this._FoodDrinkCategoryTaxable != value))
-				{
-					this.OnFoodDrinkCategoryTaxableChanging(value);
-					this.SendPropertyChanging();
-					this._FoodDrinkCategoryTaxable = value;
-					this.SendPropertyChanged("FoodDrinkCategoryTaxable");
-					this.OnFoodDrinkCategoryTaxableChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FoodDrinkCategory_Drink", Storage="_Drinks", ThisKey="FoodDrinkCategoryID", OtherKey="FoodDrinkCategoryID")]
-		public EntitySet<Drink> Drinks
-		{
-			get
-			{
-				return this._Drinks;
-			}
-			set
-			{
-				this._Drinks.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FoodDrinkCategory_LineItem", Storage="_LineItems", ThisKey="FoodDrinkCategoryID", OtherKey="FoodDrinkCategoryID")]
-		public EntitySet<LineItem> LineItems
-		{
-			get
-			{
-				return this._LineItems;
-			}
-			set
-			{
-				this._LineItems.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FoodDrinkCategory_MenuItem", Storage="_MenuItems", ThisKey="FoodDrinkCategoryID", OtherKey="FoodDrinkCategoryID")]
-		public EntitySet<MenuItem> MenuItems
-		{
-			get
-			{
-				return this._MenuItems;
-			}
-			set
-			{
-				this._MenuItems.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Drinks(Drink entity)
-		{
-			this.SendPropertyChanging();
-			entity.FoodDrinkCategory = this;
-		}
-		
-		private void detach_Drinks(Drink entity)
-		{
-			this.SendPropertyChanging();
-			entity.FoodDrinkCategory = null;
-		}
-		
-		private void attach_LineItems(LineItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.FoodDrinkCategory = this;
-		}
-		
-		private void detach_LineItems(LineItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.FoodDrinkCategory = null;
-		}
-		
-		private void attach_MenuItems(MenuItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.FoodDrinkCategory = this;
-		}
-		
-		private void detach_MenuItems(MenuItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.FoodDrinkCategory = null;
 		}
 	}
 	
@@ -3834,9 +3640,9 @@ namespace TreasureLand.DBM
 		
 		private decimal _LineItemAmount;
 		
-		private EntityRef<FoodDrinkCategory> _FoodDrinkCategory;
-		
 		private EntityRef<ReservationDetailBilling> _ReservationDetailBilling;
+		
+		private EntityRef<FoodDrinkCategory> _FoodDrinkCategory;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3854,8 +3660,8 @@ namespace TreasureLand.DBM
 		
 		public LineItem()
 		{
-			this._FoodDrinkCategory = default(EntityRef<FoodDrinkCategory>);
 			this._ReservationDetailBilling = default(EntityRef<ReservationDetailBilling>);
+			this._FoodDrinkCategory = default(EntityRef<FoodDrinkCategory>);
 			OnCreated();
 		}
 		
@@ -3947,40 +3753,6 @@ namespace TreasureLand.DBM
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FoodDrinkCategory_LineItem", Storage="_FoodDrinkCategory", ThisKey="FoodDrinkCategoryID", OtherKey="FoodDrinkCategoryID", IsForeignKey=true)]
-		public FoodDrinkCategory FoodDrinkCategory
-		{
-			get
-			{
-				return this._FoodDrinkCategory.Entity;
-			}
-			set
-			{
-				FoodDrinkCategory previousValue = this._FoodDrinkCategory.Entity;
-				if (((previousValue != value) 
-							|| (this._FoodDrinkCategory.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._FoodDrinkCategory.Entity = null;
-						previousValue.LineItems.Remove(this);
-					}
-					this._FoodDrinkCategory.Entity = value;
-					if ((value != null))
-					{
-						value.LineItems.Add(this);
-						this._FoodDrinkCategoryID = value.FoodDrinkCategoryID;
-					}
-					else
-					{
-						this._FoodDrinkCategoryID = default(Nullable<short>);
-					}
-					this.SendPropertyChanged("FoodDrinkCategory");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReservationDetailBilling_LineItem", Storage="_ReservationDetailBilling", ThisKey="ReservationDetailBillingID", OtherKey="ReservationDetailBillingID", IsForeignKey=true)]
 		public ReservationDetailBilling ReservationDetailBilling
 		{
@@ -4011,6 +3783,40 @@ namespace TreasureLand.DBM
 						this._ReservationDetailBillingID = default(short);
 					}
 					this.SendPropertyChanged("ReservationDetailBilling");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FoodDrinkCategory_LineItem", Storage="_FoodDrinkCategory", ThisKey="FoodDrinkCategoryID", OtherKey="FoodDrinkCategoryID", IsForeignKey=true)]
+		public FoodDrinkCategory FoodDrinkCategory
+		{
+			get
+			{
+				return this._FoodDrinkCategory.Entity;
+			}
+			set
+			{
+				FoodDrinkCategory previousValue = this._FoodDrinkCategory.Entity;
+				if (((previousValue != value) 
+							|| (this._FoodDrinkCategory.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._FoodDrinkCategory.Entity = null;
+						previousValue.LineItems.Remove(this);
+					}
+					this._FoodDrinkCategory.Entity = value;
+					if ((value != null))
+					{
+						value.LineItems.Add(this);
+						this._FoodDrinkCategoryID = value.FoodDrinkCategoryID;
+					}
+					else
+					{
+						this._FoodDrinkCategoryID = default(Nullable<short>);
+					}
+					this.SendPropertyChanged("FoodDrinkCategory");
 				}
 			}
 		}
@@ -6884,6 +6690,200 @@ namespace TreasureLand.DBM
 		{
 			this.SendPropertyChanging();
 			entity.ShortTermAsset = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.FoodDrinkCategory")]
+	public partial class FoodDrinkCategory : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _FoodDrinkCategoryID;
+		
+		private string _FoodDrinkCategoryName;
+		
+		private bool _FoodDrinkCategoryIsMenuItem;
+		
+		private EntitySet<Drink> _Drinks;
+		
+		private EntitySet<LineItem> _LineItems;
+		
+		private EntitySet<MenuItem> _MenuItems;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnFoodDrinkCategoryIDChanging(short value);
+    partial void OnFoodDrinkCategoryIDChanged();
+    partial void OnFoodDrinkCategoryNameChanging(string value);
+    partial void OnFoodDrinkCategoryNameChanged();
+    partial void OnFoodDrinkCategoryIsMenuItemChanging(bool value);
+    partial void OnFoodDrinkCategoryIsMenuItemChanged();
+    #endregion
+		
+		public FoodDrinkCategory()
+		{
+			this._Drinks = new EntitySet<Drink>(new Action<Drink>(this.attach_Drinks), new Action<Drink>(this.detach_Drinks));
+			this._LineItems = new EntitySet<LineItem>(new Action<LineItem>(this.attach_LineItems), new Action<LineItem>(this.detach_LineItems));
+			this._MenuItems = new EntitySet<MenuItem>(new Action<MenuItem>(this.attach_MenuItems), new Action<MenuItem>(this.detach_MenuItems));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FoodDrinkCategoryID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public short FoodDrinkCategoryID
+		{
+			get
+			{
+				return this._FoodDrinkCategoryID;
+			}
+			set
+			{
+				if ((this._FoodDrinkCategoryID != value))
+				{
+					this.OnFoodDrinkCategoryIDChanging(value);
+					this.SendPropertyChanging();
+					this._FoodDrinkCategoryID = value;
+					this.SendPropertyChanged("FoodDrinkCategoryID");
+					this.OnFoodDrinkCategoryIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FoodDrinkCategoryName", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string FoodDrinkCategoryName
+		{
+			get
+			{
+				return this._FoodDrinkCategoryName;
+			}
+			set
+			{
+				if ((this._FoodDrinkCategoryName != value))
+				{
+					this.OnFoodDrinkCategoryNameChanging(value);
+					this.SendPropertyChanging();
+					this._FoodDrinkCategoryName = value;
+					this.SendPropertyChanged("FoodDrinkCategoryName");
+					this.OnFoodDrinkCategoryNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FoodDrinkCategoryIsMenuItem", DbType="Bit NOT NULL")]
+		public bool FoodDrinkCategoryIsMenuItem
+		{
+			get
+			{
+				return this._FoodDrinkCategoryIsMenuItem;
+			}
+			set
+			{
+				if ((this._FoodDrinkCategoryIsMenuItem != value))
+				{
+					this.OnFoodDrinkCategoryIsMenuItemChanging(value);
+					this.SendPropertyChanging();
+					this._FoodDrinkCategoryIsMenuItem = value;
+					this.SendPropertyChanged("FoodDrinkCategoryIsMenuItem");
+					this.OnFoodDrinkCategoryIsMenuItemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FoodDrinkCategory_Drink", Storage="_Drinks", ThisKey="FoodDrinkCategoryID", OtherKey="FoodDrinkCategoryID")]
+		public EntitySet<Drink> Drinks
+		{
+			get
+			{
+				return this._Drinks;
+			}
+			set
+			{
+				this._Drinks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FoodDrinkCategory_LineItem", Storage="_LineItems", ThisKey="FoodDrinkCategoryID", OtherKey="FoodDrinkCategoryID")]
+		public EntitySet<LineItem> LineItems
+		{
+			get
+			{
+				return this._LineItems;
+			}
+			set
+			{
+				this._LineItems.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FoodDrinkCategory_MenuItem", Storage="_MenuItems", ThisKey="FoodDrinkCategoryID", OtherKey="FoodDrinkCategoryID")]
+		public EntitySet<MenuItem> MenuItems
+		{
+			get
+			{
+				return this._MenuItems;
+			}
+			set
+			{
+				this._MenuItems.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Drinks(Drink entity)
+		{
+			this.SendPropertyChanging();
+			entity.FoodDrinkCategory = this;
+		}
+		
+		private void detach_Drinks(Drink entity)
+		{
+			this.SendPropertyChanging();
+			entity.FoodDrinkCategory = null;
+		}
+		
+		private void attach_LineItems(LineItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.FoodDrinkCategory = this;
+		}
+		
+		private void detach_LineItems(LineItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.FoodDrinkCategory = null;
+		}
+		
+		private void attach_MenuItems(MenuItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.FoodDrinkCategory = this;
+		}
+		
+		private void detach_MenuItems(MenuItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.FoodDrinkCategory = null;
 		}
 	}
 }
