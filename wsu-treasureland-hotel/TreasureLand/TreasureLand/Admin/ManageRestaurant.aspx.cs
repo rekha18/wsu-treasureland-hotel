@@ -114,6 +114,7 @@ namespace TreasureLand.Admin
             ddIngredient.DataSource = ingredients;
             ddIngredient.DataBind();
 
+            txtIngredient.Text = "";
             //if (gvGuest.Rows.Count == 0)
             //{
             //    //USes an linq to sql to insert a guest into the guest table
@@ -255,10 +256,40 @@ namespace TreasureLand.Admin
         {
             if (purchase.Count > 0)
             {
+                //create a database connection
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                short pchID = 0;// purchase ID
 
+                //Create Ingredient Purchase
+                IngredientPurchase addIngredientPurchase = new IngredientPurchase();//create new purchase object
+                DateTime purchaseTime = new DateTime();
+                addIngredientPurchase.PurchaseDate = purchaseTime;//get today
+                db.IngredientPurchases.InsertOnSubmit(addIngredientPurchase);
+                db.SubmitChanges();
+
+                //Query Recently added Purchase to get Purchase ID
+                var pch = from p in db.IngredientPurchases.Where(p => p.PurchaseDate == purchaseTime )
+                     select p;
+
+                if(pch.Count() == 1){
+
+                    foreach(var pid in pch){
+                        pchID = pid.PurchaseID;
+                    }
+                }
                 //for each add to database
                 foreach(var ph in purchase)
                 {
+
+                    //IngredientPurchaseHistory iph = new IngredientPurchaseHistory();
+                    //iph.PurchaseID = pchID;//set ID
+
+                  //Query IngredientID 
+                    //var ing = from i in db.Ingredients.Where(i => i.IngredientName == ph.)
+                    //          select i;
+
+
+
                   //insert ph into IngredientPurchase
               //  ph.purchaseID = ;//get ID of IngredientPurchase
                 }
@@ -271,6 +302,5 @@ namespace TreasureLand.Admin
 
     }
 
-     //LINQ function calls
     
 }
