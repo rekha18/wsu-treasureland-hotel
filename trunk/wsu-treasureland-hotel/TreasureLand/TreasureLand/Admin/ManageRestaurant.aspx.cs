@@ -16,6 +16,8 @@ namespace TreasureLand.Admin
 {
     public partial class ManageRestaurant : System.Web.UI.Page
     {
+        private List<IngredientPurchaseHistory> purchase;//purchase history item for purchase history view = view2 at this point
+
         public class IngredientOrderItem
         {
             private string idNumber;//logical id for memmory and page.
@@ -80,48 +82,57 @@ namespace TreasureLand.Admin
             containerView.ActiveViewIndex = 0;
             //populate grid
 
-            //Ingredient ingredients = new Ingredient();//to insert create ingredient object
-//            if (txtIngredient.Text == "")
-//            {
-//                lblV1error.Text = "please enter a value";
-//            }
-//            else
-//            {
-//                //check object type to be completed soon
-//              //  if(){
-//                //}
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            var ingredients = from i in db.Ingredients
+                              select i.IngredientName;
 
-//                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-//                Ingredient ing = new Ingredient
-//{
-//    IngredientID = 12000,
-//    IngredientName = "Seattle",
-
-//};
+            var ing = from i in db.Ingredients.Where(i => i.IngredientName== txtIngredient.Text )
+                     select i;
+            if (ing.Any())
+            {
+                //If something exists, then don't add
+                //print error message
 
 
+                //reset txtIngredient to " "
+                txtIngredient.Text = "";
+            }
+            else
+            {
+               //else if something exists
+               //add record to database
+                    //USes an linq to sql to insert a guest into the guest table
+                    Ingredient addIngredient = new Ingredient();
+                    addIngredient.IngredientName = txtIngredient.Text;
+                    db.Ingredients.InsertOnSubmit(addIngredient);
+                    db.SubmitChanges();
+            }
 
-//// Add the new object to the Orders collection.
-//                // Add the new object to the Orders collection.
-//                db.Ingredients.InsertOnSubmit(ing);
+            //if (gvGuest.Rows.Count == 0)
+            //{
+            //    //USes an linq to sql to insert a guest into the guest table
+            //    Guest addGuest = new Guest();
+            //    addGuest.GuestFirstName = txtFirstName.Text;
+            //    addGuest.GuestSurName = txtSurName.Text;
+            //    addGuest.GuestPhone = txtPhone.Text;
+            //    db.Guests.InsertOnSubmit(addGuest);
+            //    db.SubmitChanges();
 
-//                // Submit the change to the database.
-//                //try
-//                //{
-//                    db.SubmitChanges();
-//                //}
-//               // catch (Exception i)
-//               // {
-//                   // Console.WriteLine(i);
-//                    // Make some adjustments.
-//                    // ...
-//                    // Try again.
-//                 //   db.SubmitChanges();
-//               //}//.InsertOnSubmit(ing);
+            //    lblResFirstName.Text = txtFirstName.Text;
+            //    lblResSurName.Text = txtSurName.Text;
+            //    lblResPhone.Text = txtPhone.Text;
+            //    reserving.GuestID = addGuest.GuestID;
 
-//            }//end if
+            //    reserving.view = 2;
+            //    btnNewGuest.CommandArgument = "2";
+            //}
+            //else
+            //{
+            //    lblErrorInsertGuest.Text = "Guest already exists please select below or enter a new guest";
+            //    btnNewGuest.CommandArgument = "0";
+            //    reserving.view = 0;
 
-//            //make a connection
+            //}
         }
 
         protected void btnManageMenuItems_Click(object sender, EventArgs e)
@@ -189,40 +200,67 @@ namespace TreasureLand.Admin
 
         protected void btnAddListItemIngredient_Click(object sender, EventArgs e)
         {
-            Table tb = new Table();
-            TableRow r1 = new TableRow();//row
-            TableCell c1 = new TableCell();//table cell
-            TableCell c2 = new TableCell();
-            TableCell c3 = new TableCell();//table cell
-            TableCell c4 = new TableCell();//table cell
-            TableCell c5 = new TableCell();//table cell
-            TableCell c6 = new TableCell();//table cell
-            TableCell c7 = new TableCell();//table cell
-            TableCell c8 = new TableCell();//table cell
+
+            IngredientPurchaseHistory iph = new IngredientPurchaseHistory();//This is the purchase history object
+            Ingredient ing = new Ingredient();
+
+            //Assign Values in iph
+            ing.IngredientName = ddIngredient2.SelectedItem.Value;//assign dropdown value to Ingredient
+            iph.Ingredient = ing;//add ingredient in iph
+            iph.IngredientPurchaseHistoryPrice = System.Convert.ToDecimal(txtPrice.Text);//add price to iph = convert string to decimal
+            iph.IngredientPurchaseHistoryQty = short.Parse(txtQty.Text);//add qty = convert to short/int16
+
+            purchase.Add(iph);
+            //Table tb = new Table();
+            //TableRow r1 = new TableRow();//row
+            //TableCell c1 = new TableCell();//table cell
+            //TableCell c2 = new TableCell();//table cell
+            //TableCell c3 = new TableCell();//table cell
+            //TableCell c4 = new TableCell();//table cell
+            //TableCell c5 = new TableCell();//table cell
+            //TableCell c6 = new TableCell();//table cell
+            //TableCell c7 = new TableCell();//table cell
+            //TableCell c8 = new TableCell();//table cell
 
             //increment count of items
-            IngredientOrderItem i1 = new IngredientOrderItem(ingOrdItms.Count);
+            //IngredientOrderItem i1 = new IngredientOrderItem(ingOrdItms.Count);
 
-            tb.Rows.Add(r1);
-            r1.Cells.Add(c1);//add name
+            //tb.Rows.Add(r1);
+            //r1.Cells.Add(c1);//add name
 
 
 
 
             
 
-            ingOrdItms.Add(i1);//add item to the orderlist
-            c1.Text = ingOrdItms[ingOrdItms.Count-1].getIdName();
+            //ingOrdItms.Add(i1);//add item to the orderlist
+            //c1.Text = ingOrdItms[ingOrdItms.Count-1].getIdName();
             //create table
 
-            tb.ID = ingOrdItms[ingOrdItms.Count-1].getIdName();//Get ID
+            //tb.ID = ingOrdItms[ingOrdItms.Count-1].getIdName();//Get ID
 
            
-            this.View2.Controls.Add(tb);
-            ddIngredient.DataBind();
+            //this.View2.Controls.Add(tb);
+            //ddIngredient.DataBind();
 
         }
 
+        protected void btnSubmitPurchase_Click(object sender, EventArgs e)
+        {
+            if (purchase.Count > 0)
+            {
+
+                //for each add to database
+                foreach(var ph in purchase)
+                {
+                  //insert ph into IngredientPurchase
+              //  ph.purchaseID = ;//get ID of IngredientPurchase
+                }
+            }
+
+        }
+
+     
 
 
     }
