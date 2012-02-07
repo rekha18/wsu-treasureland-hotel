@@ -16,62 +16,17 @@ namespace TreasureLand.Admin
 {
     public partial class ManageRestaurant : System.Web.UI.Page
     {
-        private List<IngredientPurchaseHistory> purchase;//purchase history item for purchase history view = view2 at this point
+        private List<IngredientPurchaseHistory> purchase = new List<IngredientPurchaseHistory>();//purchase history item for purchase history view = view2 at this point
 
-        public class IngredientOrderItem
-        {
-            private string idNumber;//logical id for memmory and page.
-            private string pchName;//purchase name
-            private double pchPrice;//Purchase Price
-            private string pchQuantity;//purchase price//Need to check this type
-            //Table t1;
-
-            IngredientOrderItem()
-            {
-                idNumber = "";
-
-            }
-
-            //The integer is the number it is assigned.
-            public IngredientOrderItem(int i)
-            {
-                idNumber = "OrderItem" + i.ToString();
-                pchName = "";
-                pchPrice = 0.0;
-                pchQuantity = "";
-
-            }
-            public IngredientOrderItem(int i, string name, double price, string quantity)
-            {
-                idNumber = "OrderItem" + i.ToString();//set name
-                pchName = "";
-                pchPrice = 0.0;
-                pchQuantity = "";
-            }
-            public string getIdName()
-            {
-
-                return idNumber;
-            }
-
-
-        }
-
-        List<IngredientOrderItem> ingOrdItms = new List<IngredientOrderItem>();
+        //List<IngredientOrderItem> ingOrdItms = new List<IngredientOrderItem>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //     btnManageCategories.Focus();
-            //   {
-            //       if (!Page.IsPostBack)
-            //        { }
-
-            //    }
-
+     
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            var ingredients = from i in db.Ingredients
-                              select i.IngredientName;
-            ddIngredient.DataSource = ingredients;
+            var foodDrinkCat = from fdc in db.FoodDrinkCategories
+                              select fdc.FoodDrinkCategoryName;
+            ddIngredient.DataSource = foodDrinkCat;
             ddIngredient.DataBind();
 
         }
@@ -186,17 +141,20 @@ namespace TreasureLand.Admin
             else
             {
                 TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-                Ingredient ingredient = new Ingredient();
-                ingredient.IngredientName = txtIngredient.Text;
+                FoodDrinkCategory addFoodDrinkCat = new FoodDrinkCategory();//New item to be added to database
 
-                db.Ingredients.InsertOnSubmit(ingredient);
+                Ingredient ingredient = new Ingredient();
+                addFoodDrinkCat.FoodDrinkCategoryName = txtIngredient.Text;//set name
+                addFoodDrinkCat.FoodDrinkCategoryTaxable = true;//set to true
+
+                db.FoodDrinkCategories.InsertOnSubmit(addFoodDrinkCat);
                 db.SubmitChanges();
 
                 //refresh contents of dropdown
                 // TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-                var ingredients = from i in db.Ingredients
-                                  select i.IngredientName;
-                ddIngredient.DataSource = ingredients;
+                var foodDrinkCat = from fdc in db.FoodDrinkCategories
+                                   select fdc.FoodDrinkCategoryName;
+                ddIngredient.DataSource = foodDrinkCat;
                 ddIngredient.DataBind();
 
 
@@ -217,39 +175,21 @@ namespace TreasureLand.Admin
             iph.IngredientPurchaseHistoryPrice = System.Convert.ToDecimal(txtPrice.Text);//add price to iph = convert string to decimal
             iph.IngredientPurchaseHistoryQty = short.Parse(txtQty.Text);//add qty = convert to short/int16
 
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            var ingredient = from i in db.Ingredients.Where(i => i.IngredientName == ddIngredient2.Text)
+                      select i;
+
+            foreach (var addIngID in ingredient)
+            {
+                iph.IngredientID = addIngID.IngredientID;
+            }
+
+
             purchase.Add(iph);
-            //Table tb = new Table();
-            //TableRow r1 = new TableRow();//row
-            //TableCell c1 = new TableCell();//table cell
-            //TableCell c2 = new TableCell();//table cell
-            //TableCell c3 = new TableCell();//table cell
-            //TableCell c4 = new TableCell();//table cell
-            //TableCell c5 = new TableCell();//table cell
-            //TableCell c6 = new TableCell();//table cell
-            //TableCell c7 = new TableCell();//table cell
-            //TableCell c8 = new TableCell();//table cell
 
-            //increment count of items
-            //IngredientOrderItem i1 = new IngredientOrderItem(ingOrdItms.Count);
-
-            //tb.Rows.Add(r1);
-            //r1.Cells.Add(c1);//add name
-
-
-
-
-            
-
-            //ingOrdItms.Add(i1);//add item to the orderlist
-            //c1.Text = ingOrdItms[ingOrdItms.Count-1].getIdName();
-            //create table
-
-            //tb.ID = ingOrdItms[ingOrdItms.Count-1].getIdName();//Get ID
-
-           
-            //this.View2.Controls.Add(tb);
-            //ddIngredient.DataBind();
-
+            //reset fields for new item to be added
+            txtQty.Text = "";
+            txtPrice.Text = "";
         }
 
         protected void btnSubmitPurchase_Click(object sender, EventArgs e)
@@ -281,17 +221,10 @@ namespace TreasureLand.Admin
                 foreach(var ph in purchase)
                 {
 
-                    //IngredientPurchaseHistory iph = new IngredientPurchaseHistory();
-                    //iph.PurchaseID = pchID;//set ID
+                    ph.PurchaseID = pchID;
+                    db.IngredientPurchaseHistories.InsertOnSubmit(ph);
+                    db.SubmitChanges();
 
-                  //Query IngredientID 
-                    //var ing = from i in db.Ingredients.Where(i => i.IngredientName == ph.)
-                    //          select i;
-
-
-
-                  //insert ph into IngredientPurchase
-              //  ph.purchaseID = ;//get ID of IngredientPurchase
                 }
             }
 
