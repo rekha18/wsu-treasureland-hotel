@@ -169,27 +169,29 @@ namespace Restaurant
                         on rv.GuestID equals g.GuestID
                         where r.RoomStatus == 'C' & rv.ReservationStatus == 'A'
                         select new { r.RoomID, g.GuestSurName };
-
-            int count = 0;
-            foreach (var q in query)
+            if (query.Any())
             {
-                buttonInfoDict.Add(Convert.ToInt32(q.RoomID), q.GuestSurName.ToString());
-                count++;
-            }
-
-            int num = 0;
-            foreach (int key in buttonDict.Keys)
-            {
-                Button b = buttonDict[key];
-                if (num < buttonInfoDict.Count)
+                int count = 0;
+                foreach (var q in query)
                 {
-                    String element = buttonInfoDict.ElementAt(num).ToString();
-                    element = element.Replace("[", "");
-                    element = element.Replace("]", "");
-                    String[] arr = element.Split(',');
-                    b.Text = arr[0] + "\n" + arr[1];
+                    buttonInfoDict.Add(Convert.ToInt32(q.RoomID), q.GuestSurName.ToString());
+                    count++;
                 }
-                num++;
+
+                int num = 0;
+                foreach (int key in buttonDict.Keys)
+                {
+                    Button b = buttonDict[key];
+                    if (num < buttonInfoDict.Count)
+                    {
+                        String element = buttonInfoDict.ElementAt(num).ToString();
+                        element = element.Replace("[", "");
+                        element = element.Replace("]", "");
+                        String[] arr = element.Split(',');
+                        b.Text = arr[0] + "\n" + arr[1];
+                    }
+                    num++;
+                }
             }
         }
 
