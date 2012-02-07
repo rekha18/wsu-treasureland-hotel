@@ -24,11 +24,11 @@ namespace TreasureLand.Admin
             
             if (cbTaxable.Checked)
             {
-                addBilling.BillingCategoryTaxable = true;
+                addBilling.BillingCategoryTaxable = Convert.ToByte(true);
             }
             else
             {
-                addBilling.BillingCategoryTaxable = false;
+                addBilling.BillingCategoryTaxable = Convert.ToByte(false);
             }
             db.BillingCategories.InsertOnSubmit(addBilling);
             db.SubmitChanges();
