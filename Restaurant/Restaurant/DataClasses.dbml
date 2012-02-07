@@ -1,21 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TreasureLand" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=&quot;titan.cs.weber.edu, 10433&quot;;Initial Catalog=TreasureLand;Persist Security Info=True;User ID=4790Client" SettingsObjectName="Restaurant.Properties.Settings" SettingsPropertyName="TreasureLandConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=&quot;titan.cs.weber.edu, 10433&quot;;Initial Catalog=TreasureLand;User ID=4790Client" SettingsObjectName="Restaurant.Properties.Settings" SettingsPropertyName="TreasureLandConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.DrinkPurchase" Member="DrinkPurchases">
     <Type Name="DrinkPurchase">
       <Column Name="DrinkPurchaseID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="DrinkPurchaseDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
       <Association Name="DrinkPurchase_DrinkPurchaseHistory" Member="DrinkPurchaseHistories" ThisKey="DrinkPurchaseID" OtherKey="DrinkPurchaseID" Type="DrinkPurchaseHistory" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Drink" Member="Drinks">
-    <Type Name="Drink">
-      <Column Name="DrinkID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="FoodDrinkCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="DrinkCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="DrinkName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="DrinkRetailSalePrice" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
-      <Association Name="Drink_DrinkPurchaseHistory" Member="DrinkPurchaseHistories" ThisKey="DrinkID" OtherKey="DrinkID" Type="DrinkPurchaseHistory" />
-      <Association Name="FoodDrinkCategory_Drink" Member="FoodDrinkCategory" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="FoodDrinkCategory" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DrinkPurchaseHistory" Member="DrinkPurchaseHistories">
@@ -25,8 +14,8 @@
       <Column Name="DrinkPurchaseHistoryWholesalePrice" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
       <Column Name="DrinkPurchaseHistoryQty" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
       <Column Name="DrinkID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Association Name="Drink_DrinkPurchaseHistory" Member="Drink" ThisKey="DrinkID" OtherKey="DrinkID" Type="Drink" IsForeignKey="true" />
       <Association Name="DrinkPurchase_DrinkPurchaseHistory" Member="DrinkPurchase" ThisKey="DrinkPurchaseID" OtherKey="DrinkPurchaseID" Type="DrinkPurchase" IsForeignKey="true" />
+      <Association Name="Drink_DrinkPurchaseHistory" Member="Drink" ThisKey="DrinkID" OtherKey="DrinkID" Type="Drink" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.FoodDrinkCategory" Member="FoodDrinkCategories">
@@ -34,9 +23,9 @@
       <Column Name="FoodDrinkCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="FoodDrinkCategoryName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="FoodDrinkCategoryTaxable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="FoodDrinkCategory_Drink" Member="Drinks" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="Drink" />
       <Association Name="FoodDrinkCategory_LineItem" Member="LineItems" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="LineItem" />
       <Association Name="FoodDrinkCategory_MenuItem" Member="MenuItems" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="MenuItem" />
+      <Association Name="FoodDrinkCategory_Drink" Member="Drinks" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="Drink" />
     </Type>
   </Table>
   <Table Name="dbo.Ingredient" Member="Ingredients">
@@ -171,6 +160,16 @@
       <Column Name="GuestIDIssueCountry" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="GuestIDComment" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="Guest_Reservation" Member="Reservations" ThisKey="GuestID" OtherKey="GuestID" Type="Reservation" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Drink" Member="Drinks">
+    <Type Name="Drink">
+      <Column Name="DrinkID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FoodDrinkCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="DrinkName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DrinkRetailSalePrice" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
+      <Association Name="Drink_DrinkPurchaseHistory" Member="DrinkPurchaseHistories" ThisKey="DrinkID" OtherKey="DrinkID" Type="DrinkPurchaseHistory" />
+      <Association Name="FoodDrinkCategory_Drink" Member="FoodDrinkCategory" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="FoodDrinkCategory" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
