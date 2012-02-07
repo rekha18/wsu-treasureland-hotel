@@ -72,16 +72,6 @@
       <Association Name="DrinkPurchase_DrinkPurchaseHistory" Member="DrinkPurchase" ThisKey="DrinkPurchaseID" OtherKey="DrinkPurchaseID" Type="DrinkPurchase" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.FoodDrinkCategory" Member="FoodDrinkCategories">
-    <Type Name="FoodDrinkCategory">
-      <Column Name="FoodDrinkCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="FoodDrinkCategoryName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="FoodDrinkCategoryTaxable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="FoodDrinkCategory_Drink" Member="Drinks" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="Drink" />
-      <Association Name="FoodDrinkCategory_LineItem" Member="LineItems" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="LineItem" />
-      <Association Name="FoodDrinkCategory_MenuItem" Member="MenuItems" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="MenuItem" />
-    </Type>
-  </Table>
   <Table Name="dbo.Format" Member="Formats">
     <Type Name="Format">
       <Column Name="FormatID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
@@ -185,8 +175,8 @@
       <Column Name="ReservationDetailBillingID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="FoodDrinkCategoryID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="LineItemAmount" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
-      <Association Name="FoodDrinkCategory_LineItem" Member="FoodDrinkCategory" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="FoodDrinkCategory" IsForeignKey="true" />
       <Association Name="ReservationDetailBilling_LineItem" Member="ReservationDetailBilling" ThisKey="ReservationDetailBillingID" OtherKey="ReservationDetailBillingID" Type="ReservationDetailBilling" IsForeignKey="true" />
+      <Association Name="FoodDrinkCategory_LineItem" Member="FoodDrinkCategory" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="FoodDrinkCategory" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.LongTermAsset" Member="LongTermAssets">
@@ -323,6 +313,16 @@
       <Column Name="ShortTermTotalQuantity" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Association Name="ShortTermAsset_OrderShortTerm" Member="OrderShortTerms" ThisKey="ShortTermAssetID" OtherKey="ShortTermAssetID" Type="OrderShortTerm" />
       <Association Name="Department_ShortTermAsset" Member="Department" ThisKey="DepartmentID" OtherKey="DepartmentID" Type="Department" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FoodDrinkCategory" Member="FoodDrinkCategories">
+    <Type Name="FoodDrinkCategory">
+      <Column Name="FoodDrinkCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FoodDrinkCategoryName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="FoodDrinkCategoryIsMenuItem" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="FoodDrinkCategory_Drink" Member="Drinks" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="Drink" />
+      <Association Name="FoodDrinkCategory_LineItem" Member="LineItems" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="LineItem" />
+      <Association Name="FoodDrinkCategory_MenuItem" Member="MenuItems" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="MenuItem" />
     </Type>
   </Table>
 </Database>
