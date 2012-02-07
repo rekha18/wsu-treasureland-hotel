@@ -14,11 +14,13 @@ namespace TreasureLand.Clerk
         {
             public string RoomType;
             public int RowIndex;
+            public int PageIndex;
 
-            public RowInfo(string RoomType, int RowIndex)
+            public RowInfo(string RoomType, int RowIndex, int PageIndex)
             {
                 this.RoomType = RoomType;
                 this.RowIndex = RowIndex;
+                this.PageIndex = PageIndex;
             }
         }
         
@@ -96,10 +98,13 @@ namespace TreasureLand.Clerk
                 RowInfo ri = kvp.Value;
 
                 //The current room type is also this room's type
-                if(ri.RoomType == ddlRoomTypes.SelectedValue)
+                if(ri.RoomType == ddlRoomTypes.SelectedValue
+                    && ri.PageIndex == gvOpenRooms.PageIndex)
                 {
                     CheckBox cb = (CheckBox)gvOpenRooms.Rows[ri.RowIndex].FindControl("cbSelected");
                     cb.Checked = true;
+                    foreach(TableCell c in gvOpenRooms.Rows[ri.RowIndex].Cells)
+                        c.BackColor = System.Drawing.Color.Yellow;
                 }
             }
         }
@@ -135,17 +140,32 @@ namespace TreasureLand.Clerk
             if (!rowInfo.ContainsKey(roomID))
             {
                 //Add it to the linked list
-                rowInfo.Add(roomID, new RowInfo(ddlRoomTypes.SelectedValue, rowID));
+                rowInfo.Add(roomID, new RowInfo(ddlRoomTypes.SelectedValue, rowID, gvOpenRooms.PageIndex));
+                colorRow(gvOpenRooms, rowID, System.Drawing.Color.Yellow);
                 cb.Focus();
             }
             else
             {
                 //Remove it from the linked list
                 rowInfo.Remove(roomID);
+                colorRow(gvOpenRooms, rowID, System.Drawing.Color.White);
                 cb.Checked = false;
             }
 
             updatePageInfo(rowInfo.Count);
+        }
+
+        /// <summary>
+        /// Iterates through each cell of the row in the gridview object, setting
+        /// the corresponding cells to the specified color
+        /// </summary>
+        /// <param name="gv">GridView object</param>
+        /// <param name="rowIndex">Row to be colored</param>
+        /// <param name="color">Color to set background color to</param>
+        private void colorRow(GridView gv, int rowIndex, System.Drawing.Color color)
+        {
+            foreach (TableCell c in gv.Rows[rowIndex].Cells)
+                c.BackColor = color;
         }
 
         /// <summary>
@@ -177,6 +197,25 @@ namespace TreasureLand.Clerk
                 Session.Add("roomIDs", roomIDs);
             else
                 Session["roomIDs"] = roomIDs;
+        }
+
+        /// <summary>
+        /// Row color remains persistent when the page is changed, so
+        /// this function will appropriately "decolor" unchecked items
+        /// and recolor colored items.
+        /// Also rechecks checkboxes on a different page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void gvOpenRooms_PageIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < gvOpenRooms.Rows.Count; i++)
+            {
+                colorRow(gvOpenRooms, i, System.Drawing.Color.White);
+                ((CheckBox)gvOpenRooms.Rows[i].FindControl("cbSelected")).Checked = false;
+            }
+
+            checkSelectedRooms();
         }
     }
 }

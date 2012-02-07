@@ -16,7 +16,8 @@
     </p>
     <asp:GridView ID="gvOpenRooms" runat="server" AutoGenerateColumns="False" 
         DataSourceID="sdsOpenRooms" AllowPaging="True" 
-        ondatabound="gvOpenRooms_DataBound">
+        ondatabound="gvOpenRooms_DataBound" 
+        onpageindexchanged="gvOpenRooms_PageIndexChanged">
         <Columns>
             <asp:BoundField DataField="RoomID" HeaderText="Room ID" 
                 SortExpression="RoomID" />
