@@ -83,11 +83,10 @@ namespace TreasureLand.Admin
             //populate grid
 
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            var ingredients = from i in db.Ingredients
-                              select i.IngredientName;
-
+      
             var ing = from i in db.Ingredients.Where(i => i.IngredientName== txtIngredient.Text )
                      select i;
+
             if (ing.Any())
             {
                 //If something exists, then don't add
@@ -107,6 +106,10 @@ namespace TreasureLand.Admin
                     db.Ingredients.InsertOnSubmit(addIngredient);
                     db.SubmitChanges();
             }
+
+            //repopulate dropdownlist
+            var ingredients = from i in db.Ingredients
+                              select i.IngredientName;
 
             //if (gvGuest.Rows.Count == 0)
             //{
