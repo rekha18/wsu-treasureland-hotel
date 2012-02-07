@@ -107,9 +107,12 @@ namespace TreasureLand.Admin
                     db.SubmitChanges();
             }
 
+
             //repopulate dropdownlist
             var ingredients = from i in db.Ingredients
                               select i.IngredientName;
+            ddIngredient.DataSource = ingredients;
+            ddIngredient.DataBind();
 
             //if (gvGuest.Rows.Count == 0)
             //{
