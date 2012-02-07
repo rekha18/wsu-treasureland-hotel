@@ -466,6 +466,7 @@
             this.btn_non_alcoholic_drinks.TabIndex = 20;
             this.btn_non_alcoholic_drinks.Text = "Non-Alcoholic";
             this.btn_non_alcoholic_drinks.UseVisualStyleBackColor = false;
+            this.btn_non_alcoholic_drinks.Click += new System.EventHandler(this.btn_non_alcoholic_drinks_Click);
             // 
             // btn_alcoholic_drinks
             // 
@@ -477,6 +478,7 @@
             this.btn_alcoholic_drinks.TabIndex = 21;
             this.btn_alcoholic_drinks.Text = "Alcoholic";
             this.btn_alcoholic_drinks.UseVisualStyleBackColor = false;
+            this.btn_alcoholic_drinks.Click += new System.EventHandler(this.btn_alcoholic_drinks_Click);
             // 
             // btn_cancel_order
             // 

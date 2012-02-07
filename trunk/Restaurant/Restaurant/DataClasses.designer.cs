@@ -78,7 +78,7 @@ namespace Restaurant
     #endregion
 		
 		public DataClassesDataContext() : 
-				base(global::Restaurant.Properties.Settings.Default.TreasureLandConnectionString1, mappingSource)
+				base(global::Restaurant.Properties.Settings.Default.TreasureLandConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
