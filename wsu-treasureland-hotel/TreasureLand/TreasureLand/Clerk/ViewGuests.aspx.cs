@@ -56,7 +56,7 @@ namespace TreasureLand.Clerk
                             on r.ReservationID equals rd.ReservationID
                             join ro in db.Rooms
                             on rd.RoomID equals ro.RoomID
-                            where (ro.RoomNumbers == txtRoom.Text || g.GuestFirstName == txtFirstName.Text || g.GuestSurName == txtSurName.Text) && (r.ReservationStatus == 'A' || r.ReservationStatus == 'F')
+                            where (ro.RoomNumbers == Convert.ToByte(txtRoom.Text) || g.GuestFirstName == txtFirstName.Text || g.GuestSurName == txtSurName.Text) && (r.ReservationStatus == 'A' || r.ReservationStatus == 'F')
                             select new { r.ReservationID, ro.RoomNumbers, g.GuestFirstName, g.GuestSurName, rd.ReservationDetailID, r.ReservationStatus, ro.RoomID };
 
                 gvGuest.DataSource = guest.ToList();
@@ -268,11 +268,11 @@ namespace TreasureLand.Clerk
                     TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
                     ReservationDetailBilling bill = new ReservationDetailBilling();
                     var query = from bills in db.ReservationDetailBillings
-                                where bills.ReservationBillingID == (short)Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text)
+                                where bills.ReservationDetailBillingID == (short)Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text)
                                 select bills;
                     foreach (var bills in query)
                     {
-                        bills.ReservationBillingID = (short)Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text);
+                        bills.ReservationDetailBillingID = (short)Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text);
                         bills.BillingItemQty = (byte)Convert.ToInt32((row.FindControl("txtQty") as TextBox).Text);
                         bills.BillingAmount = Convert.ToDecimal((row.FindControl("txtPrice") as TextBox).Text);
                         if ((row.FindControl("txtComments") as TextBox) != null)
