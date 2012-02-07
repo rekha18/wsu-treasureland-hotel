@@ -77,22 +77,20 @@
             </asp:DropDownList>
             <asp:Button ID="btnAddListItemIngredient" runat="server" 
                 Text="Add New Ingredient" onclick="btnAddListItemIngredient_Click" />
-            <asp:TextBox ID="TextBox1" runat="server" style="margin-left: 60px" 
-                Visible="False"></asp:TextBox>
         </td>
     </tr>
     <tr>
         <td style="width: 176px">
             Purchase Price:</td>
         <td style="width: 248px">
-            <asp:TextBox ID="TextBox5" runat="server" Width="94px"></asp:TextBox>
+            <asp:TextBox ID="txtPrice" runat="server" Width="94px"></asp:TextBox>
         </td>
     </tr>
     <tr>
         <td style="width: 176px">
             Qty:</td>
         <td style="width: 248px">
-            <asp:TextBox ID="TextBox6" runat="server" Width="96px"></asp:TextBox>
+            <asp:TextBox ID="txtQty" runat="server" Width="96px"></asp:TextBox>
         </td>
     </tr>
     <tr>
@@ -101,7 +99,8 @@
                 Width="165px" />
         </td>
         <td style="width: 248px">
-            <asp:Button ID="Button7" runat="server" Text="Submit Purchase" Width="165px" />
+            <asp:Button ID="btnSubmitPurchase" runat="server" Text="Submit Purchase" 
+                Width="165px" onclick="btnSubmitPurchase_Click" />
         </td>
     </tr>
 </table>
