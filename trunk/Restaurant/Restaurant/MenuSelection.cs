@@ -496,7 +496,18 @@ namespace Restaurant
         {
             Button btn = sender as Button;
             String menuItemName = btn.Text.Trim();
-            createTotalItemButton(getMoneyValueForItem(menuItemName), menuItemName);
+            String menuPrice = getMoneyValueForItem(menuItemName);
+            createTotalItemButton(menuPrice , menuItemName);
+
+            //add to total
+            String amount = getItemInfoFromButton(menuPrice + " - " + menuItemName, 0);
+            Decimal dec = Convert.ToDecimal(amount);
+
+            String totalLabel = lbl_grand_total.Text.ToString();
+            Decimal total = Convert.ToDecimal(totalLabel);
+
+            total = total + dec;
+            lbl_grand_total.Text = total.ToString();
         }
 
         #endregion
@@ -549,7 +560,7 @@ namespace Restaurant
             btn.BackColor = Color.WhiteSmoke;
             btn.Tag = totalItemsKey;
             btn.TextAlign = ContentAlignment.MiddleLeft;
-            btn.Text = menuItemPrice + menuItemName;
+            btn.Text = buttonLabel;
 
             totalDict.Add(totalItemsKey, buttonLabel);
             total_panel.Controls.Add(btn);
@@ -562,6 +573,16 @@ namespace Restaurant
         {
             Button btn = sender as Button;
             int tag = Convert.ToInt32(btn.Tag);
+
+            String amount = getItemInfoFromButton(btn.Text, 0);
+            Decimal dec = Convert.ToDecimal(amount);
+
+            String totalLabel = lbl_grand_total.Text.ToString();
+            Decimal total = Convert.ToDecimal(totalLabel);
+
+            total = total - dec;
+            lbl_grand_total.Text = total.ToString();
+
             totalDict.Remove(tag);
             recreateAllTotalButtons();
         }
@@ -605,21 +626,23 @@ namespace Restaurant
                 }
             }
 
-            String value = String.Format("{0:C}", menuItemPrice);
+            String value = String.Format("{0:N}", menuItemPrice);
 
             return value;
         }
 
-        private String getItemNameFromButton(String buttonName)
+        private String getItemInfoFromButton(String buttonName, int operation)
         {
             String itemName = "";
 
             String[] arr;
 
             arr = buttonName.Split('-');
-            if (arr.Length > 0)
+            if (arr.Length > 0 && (operation == 1 || operation == 0))
             {
-                itemName = arr[1].Trim();
+                // 0 = item amount
+                // 1 = item name
+                itemName = arr[operation].Trim();
             }
 
             return itemName;
@@ -631,7 +654,7 @@ namespace Restaurant
         {
             foreach (var item in totalDict)
             {
-                System.Diagnostics.Debug.WriteLine("item remaining: " + getItemNameFromButton(item.Value));
+                System.Diagnostics.Debug.WriteLine("item remaining: " + getItemInfoFromButton(item.Value, 1));
             }
 
             Close();
