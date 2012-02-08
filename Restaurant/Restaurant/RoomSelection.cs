@@ -132,8 +132,7 @@ namespace Restaurant
         /// <param name="e"></param>
         private void btn_cash_Click(object sender, EventArgs e)
         {
-            MenuSelection rsf = new MenuSelection(0);
-            rsf.Show();
+            new MenuSelection(0).Show();
         }
 
         /// <summary>
@@ -145,12 +144,11 @@ namespace Restaurant
         {
             //Gets the buttons tag and calls the MenuSelection(roomID)
             Button btn = sender as Button;
-            String tag = ((Button)sender).Tag.ToString();
             String text = btn.Text;
             String[] arr = text.Split('\n');
             int selectedRoom = Convert.ToInt32(arr[0]);
-            MenuSelection rms = new MenuSelection(selectedRoom);
-            rms.Show();
+
+            new MenuSelection(selectedRoom).Show();
         }
 
         /// <summary>
@@ -171,11 +169,9 @@ namespace Restaurant
                         select new { r.RoomID, g.GuestSurName };
             if (query.Any())
             {
-                int count = 0;
                 foreach (var q in query)
                 {
                     buttonInfoDict.Add(Convert.ToInt32(q.RoomID), q.GuestSurName.ToString());
-                    count++;
                 }
 
                 int num = 0;

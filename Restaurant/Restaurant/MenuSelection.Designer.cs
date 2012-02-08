@@ -30,9 +30,9 @@
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl_selectedRoom = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.total_panel = new System.Windows.Forms.Panel();
             this.btn_submit_order = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.categories_panel = new System.Windows.Forms.Panel();
             this.button23 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
@@ -40,7 +40,7 @@
             this.button19 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.items_panel = new System.Windows.Forms.Panel();
             this.button16 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
@@ -68,9 +68,15 @@
             this.btn_non_alcoholic_drinks = new System.Windows.Forms.Button();
             this.btn_alcoholic_drinks = new System.Windows.Forms.Button();
             this.btn_cancel_order = new System.Windows.Forms.Button();
+            this.lbl_current_category_page = new System.Windows.Forms.Label();
+            this.lbl_total_category_page = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lbl_total_item_page = new System.Windows.Forms.Label();
+            this.lbl_current_item_page = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.categories_panel.SuspendLayout();
+            this.items_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -94,13 +100,13 @@
             this.lbl_selectedRoom.TabIndex = 8;
             this.lbl_selectedRoom.Text = "Room:";
             // 
-            // panel1
+            // total_panel
             // 
-            this.panel1.BackColor = System.Drawing.Color.DarkGray;
-            this.panel1.Location = new System.Drawing.Point(795, 151);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(206, 412);
-            this.panel1.TabIndex = 9;
+            this.total_panel.BackColor = System.Drawing.Color.DarkGray;
+            this.total_panel.Location = new System.Drawing.Point(795, 151);
+            this.total_panel.Name = "total_panel";
+            this.total_panel.Size = new System.Drawing.Size(206, 412);
+            this.total_panel.TabIndex = 9;
             // 
             // btn_submit_order
             // 
@@ -114,20 +120,20 @@
             this.btn_submit_order.UseVisualStyleBackColor = false;
             this.btn_submit_order.Click += new System.EventHandler(this.btn_submit_order_Click);
             // 
-            // panel2
+            // categories_panel
             // 
-            this.panel2.BackColor = System.Drawing.Color.DarkGray;
-            this.panel2.Controls.Add(this.button23);
-            this.panel2.Controls.Add(this.button22);
-            this.panel2.Controls.Add(this.button21);
-            this.panel2.Controls.Add(this.button20);
-            this.panel2.Controls.Add(this.button19);
-            this.panel2.Controls.Add(this.button18);
-            this.panel2.Controls.Add(this.button17);
-            this.panel2.Location = new System.Drawing.Point(8, 151);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(614, 100);
-            this.panel2.TabIndex = 10;
+            this.categories_panel.BackColor = System.Drawing.Color.DarkGray;
+            this.categories_panel.Controls.Add(this.button23);
+            this.categories_panel.Controls.Add(this.button22);
+            this.categories_panel.Controls.Add(this.button21);
+            this.categories_panel.Controls.Add(this.button20);
+            this.categories_panel.Controls.Add(this.button19);
+            this.categories_panel.Controls.Add(this.button18);
+            this.categories_panel.Controls.Add(this.button17);
+            this.categories_panel.Location = new System.Drawing.Point(8, 151);
+            this.categories_panel.Name = "categories_panel";
+            this.categories_panel.Size = new System.Drawing.Size(614, 100);
+            this.categories_panel.TabIndex = 10;
             // 
             // button23
             // 
@@ -135,7 +141,7 @@
             this.button23.Name = "button23";
             this.button23.Size = new System.Drawing.Size(72, 72);
             this.button23.TabIndex = 6;
-            this.button23.Text = "Category";
+            this.button23.Tag = "7";
             this.button23.UseVisualStyleBackColor = true;
             // 
             // button22
@@ -144,7 +150,7 @@
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(72, 72);
             this.button22.TabIndex = 5;
-            this.button22.Text = "Category";
+            this.button22.Tag = "6";
             this.button22.UseVisualStyleBackColor = true;
             // 
             // button21
@@ -153,7 +159,7 @@
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(72, 72);
             this.button21.TabIndex = 4;
-            this.button21.Text = "Category";
+            this.button21.Tag = "5";
             this.button21.UseVisualStyleBackColor = true;
             // 
             // button20
@@ -162,7 +168,7 @@
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(72, 72);
             this.button20.TabIndex = 3;
-            this.button20.Text = "Category";
+            this.button20.Tag = "4";
             this.button20.UseVisualStyleBackColor = true;
             // 
             // button19
@@ -171,7 +177,7 @@
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(72, 72);
             this.button19.TabIndex = 2;
-            this.button19.Text = "Category";
+            this.button19.Tag = "3";
             this.button19.UseVisualStyleBackColor = true;
             // 
             // button18
@@ -180,7 +186,7 @@
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(72, 72);
             this.button18.TabIndex = 1;
-            this.button18.Text = "Category";
+            this.button18.Tag = "2";
             this.button18.UseVisualStyleBackColor = true;
             // 
             // button17
@@ -189,32 +195,32 @@
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(72, 72);
             this.button17.TabIndex = 0;
-            this.button17.Text = "Category";
+            this.button17.Tag = "1";
             this.button17.UseVisualStyleBackColor = true;
             // 
-            // panel3
+            // items_panel
             // 
-            this.panel3.BackColor = System.Drawing.Color.DarkGray;
-            this.panel3.Controls.Add(this.button16);
-            this.panel3.Controls.Add(this.button15);
-            this.panel3.Controls.Add(this.button14);
-            this.panel3.Controls.Add(this.button13);
-            this.panel3.Controls.Add(this.button12);
-            this.panel3.Controls.Add(this.button11);
-            this.panel3.Controls.Add(this.button10);
-            this.panel3.Controls.Add(this.button9);
-            this.panel3.Controls.Add(this.button8);
-            this.panel3.Controls.Add(this.button7);
-            this.panel3.Controls.Add(this.button6);
-            this.panel3.Controls.Add(this.button5);
-            this.panel3.Controls.Add(this.button4);
-            this.panel3.Controls.Add(this.button3);
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.button1);
-            this.panel3.Location = new System.Drawing.Point(8, 288);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(614, 366);
-            this.panel3.TabIndex = 11;
+            this.items_panel.BackColor = System.Drawing.Color.DarkGray;
+            this.items_panel.Controls.Add(this.button16);
+            this.items_panel.Controls.Add(this.button15);
+            this.items_panel.Controls.Add(this.button14);
+            this.items_panel.Controls.Add(this.button13);
+            this.items_panel.Controls.Add(this.button12);
+            this.items_panel.Controls.Add(this.button11);
+            this.items_panel.Controls.Add(this.button10);
+            this.items_panel.Controls.Add(this.button9);
+            this.items_panel.Controls.Add(this.button8);
+            this.items_panel.Controls.Add(this.button7);
+            this.items_panel.Controls.Add(this.button6);
+            this.items_panel.Controls.Add(this.button5);
+            this.items_panel.Controls.Add(this.button4);
+            this.items_panel.Controls.Add(this.button3);
+            this.items_panel.Controls.Add(this.button2);
+            this.items_panel.Controls.Add(this.button1);
+            this.items_panel.Location = new System.Drawing.Point(8, 288);
+            this.items_panel.Name = "items_panel";
+            this.items_panel.Size = new System.Drawing.Size(614, 366);
+            this.items_panel.TabIndex = 11;
             // 
             // button16
             // 
@@ -223,7 +229,7 @@
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(144, 72);
             this.button16.TabIndex = 15;
-            this.button16.Text = "Item";
+            this.button16.Tag = "16";
             this.button16.UseVisualStyleBackColor = true;
             // 
             // button15
@@ -233,7 +239,7 @@
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(144, 72);
             this.button15.TabIndex = 14;
-            this.button15.Text = "Item";
+            this.button15.Tag = "15";
             this.button15.UseVisualStyleBackColor = true;
             // 
             // button14
@@ -243,7 +249,7 @@
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(144, 72);
             this.button14.TabIndex = 13;
-            this.button14.Text = "Item";
+            this.button14.Tag = "14";
             this.button14.UseVisualStyleBackColor = true;
             // 
             // button13
@@ -253,7 +259,7 @@
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(144, 72);
             this.button13.TabIndex = 12;
-            this.button13.Text = "Item";
+            this.button13.Tag = "13";
             this.button13.UseVisualStyleBackColor = true;
             // 
             // button12
@@ -263,7 +269,7 @@
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(144, 72);
             this.button12.TabIndex = 11;
-            this.button12.Text = "Item";
+            this.button12.Tag = "12";
             this.button12.UseVisualStyleBackColor = true;
             // 
             // button11
@@ -273,7 +279,7 @@
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(144, 72);
             this.button11.TabIndex = 10;
-            this.button11.Text = "Item";
+            this.button11.Tag = "11";
             this.button11.UseVisualStyleBackColor = true;
             // 
             // button10
@@ -283,7 +289,7 @@
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(144, 72);
             this.button10.TabIndex = 9;
-            this.button10.Text = "Item";
+            this.button10.Tag = "10";
             this.button10.UseVisualStyleBackColor = true;
             // 
             // button9
@@ -293,7 +299,7 @@
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(144, 72);
             this.button9.TabIndex = 8;
-            this.button9.Text = "Item";
+            this.button9.Tag = "9";
             this.button9.UseVisualStyleBackColor = true;
             // 
             // button8
@@ -303,7 +309,7 @@
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(144, 72);
             this.button8.TabIndex = 7;
-            this.button8.Text = "Item";
+            this.button8.Tag = "8";
             this.button8.UseVisualStyleBackColor = true;
             // 
             // button7
@@ -313,7 +319,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(144, 72);
             this.button7.TabIndex = 6;
-            this.button7.Text = "Item";
+            this.button7.Tag = "7";
             this.button7.UseVisualStyleBackColor = true;
             // 
             // button6
@@ -323,7 +329,7 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(144, 72);
             this.button6.TabIndex = 5;
-            this.button6.Text = "Item";
+            this.button6.Tag = "6";
             this.button6.UseVisualStyleBackColor = true;
             // 
             // button5
@@ -333,7 +339,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(144, 72);
             this.button5.TabIndex = 4;
-            this.button5.Text = "Item";
+            this.button5.Tag = "5";
             this.button5.UseVisualStyleBackColor = true;
             // 
             // button4
@@ -343,7 +349,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(144, 72);
             this.button4.TabIndex = 3;
-            this.button4.Text = "Item";
+            this.button4.Tag = "4";
             this.button4.UseVisualStyleBackColor = true;
             // 
             // button3
@@ -353,7 +359,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(144, 72);
             this.button3.TabIndex = 2;
-            this.button3.Text = "Item";
+            this.button3.Tag = "3";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // button2
@@ -363,7 +369,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(144, 72);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Item";
+            this.button2.Tag = "2";
             this.button2.UseVisualStyleBackColor = true;
             // 
             // button1
@@ -373,7 +379,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(144, 72);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Item";
+            this.button1.Tag = "1";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // label1
@@ -425,6 +431,7 @@
             this.btn_previous_categories.Size = new System.Drawing.Size(72, 72);
             this.btn_previous_categories.TabIndex = 16;
             this.btn_previous_categories.UseVisualStyleBackColor = false;
+            this.btn_previous_categories.Click += new System.EventHandler(this.btn_previous_categories_Click);
             // 
             // btn_previous_items
             // 
@@ -445,6 +452,7 @@
             this.btn_next_categories.Size = new System.Drawing.Size(72, 72);
             this.btn_next_categories.TabIndex = 18;
             this.btn_next_categories.UseVisualStyleBackColor = false;
+            this.btn_next_categories.Click += new System.EventHandler(this.btn_next_categories_Click);
             // 
             // btn_next_items
             // 
@@ -492,11 +500,71 @@
             this.btn_cancel_order.UseVisualStyleBackColor = false;
             this.btn_cancel_order.Click += new System.EventHandler(this.btn_cancel_order_Click);
             // 
+            // lbl_current_category_page
+            // 
+            this.lbl_current_category_page.AutoSize = true;
+            this.lbl_current_category_page.Location = new System.Drawing.Point(683, 228);
+            this.lbl_current_category_page.Name = "lbl_current_category_page";
+            this.lbl_current_category_page.Size = new System.Drawing.Size(12, 13);
+            this.lbl_current_category_page.TabIndex = 24;
+            this.lbl_current_category_page.Text = "x";
+            // 
+            // lbl_total_category_page
+            // 
+            this.lbl_total_category_page.AutoSize = true;
+            this.lbl_total_category_page.Location = new System.Drawing.Point(723, 228);
+            this.lbl_total_category_page.Name = "lbl_total_category_page";
+            this.lbl_total_category_page.Size = new System.Drawing.Size(12, 13);
+            this.lbl_total_category_page.TabIndex = 25;
+            this.lbl_total_category_page.Text = "x";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(701, 229);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(16, 13);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "of";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(701, 363);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(16, 13);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "of";
+            // 
+            // lbl_total_item_page
+            // 
+            this.lbl_total_item_page.AutoSize = true;
+            this.lbl_total_item_page.Location = new System.Drawing.Point(723, 362);
+            this.lbl_total_item_page.Name = "lbl_total_item_page";
+            this.lbl_total_item_page.Size = new System.Drawing.Size(12, 13);
+            this.lbl_total_item_page.TabIndex = 28;
+            this.lbl_total_item_page.Text = "x";
+            // 
+            // lbl_current_item_page
+            // 
+            this.lbl_current_item_page.AutoSize = true;
+            this.lbl_current_item_page.Location = new System.Drawing.Point(683, 362);
+            this.lbl_current_item_page.Name = "lbl_current_item_page";
+            this.lbl_current_item_page.Size = new System.Drawing.Size(12, 13);
+            this.lbl_current_item_page.TabIndex = 27;
+            this.lbl_current_item_page.Text = "x";
+            // 
             // MenuSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 700);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lbl_total_item_page);
+            this.Controls.Add(this.lbl_current_item_page);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lbl_total_category_page);
+            this.Controls.Add(this.lbl_current_category_page);
             this.Controls.Add(this.btn_submit_order);
             this.Controls.Add(this.btn_cancel_order);
             this.Controls.Add(this.btn_alcoholic_drinks);
@@ -509,9 +577,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.items_panel);
+            this.Controls.Add(this.categories_panel);
+            this.Controls.Add(this.total_panel);
             this.Controls.Add(this.lbl_selectedRoom);
             this.Controls.Add(this.pictureBox1);
             this.MinimumSize = new System.Drawing.Size(1024, 738);
@@ -519,8 +587,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu Selection";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
+            this.categories_panel.ResumeLayout(false);
+            this.items_panel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -530,9 +598,9 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lbl_selectedRoom;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel total_panel;
         private System.Windows.Forms.Button btn_submit_order;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel categories_panel;
         private System.Windows.Forms.Button button23;
         private System.Windows.Forms.Button button22;
         private System.Windows.Forms.Button button21;
@@ -540,7 +608,7 @@
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel items_panel;
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button14;
@@ -568,5 +636,11 @@
         private System.Windows.Forms.Button btn_non_alcoholic_drinks;
         private System.Windows.Forms.Button btn_alcoholic_drinks;
         private System.Windows.Forms.Button btn_cancel_order;
+        private System.Windows.Forms.Label lbl_current_category_page;
+        private System.Windows.Forms.Label lbl_total_category_page;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lbl_total_item_page;
+        private System.Windows.Forms.Label lbl_current_item_page;
     }
 }

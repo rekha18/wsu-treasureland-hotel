@@ -18,5 +18,13 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source="titan.cs.weber.edu, 10433";Initial Catalog=TreasureLand;User ID=4790Client</Value>
     </Setting>
+    <Setting Name="TreasureLandConnectionString2" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=titan.cs.weber.edu,10433;Initial Catalog=TreasureLand;Persist Security Info=True;User ID=4790Client;Password=CS4790&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=titan.cs.weber.edu,10433;Initial Catalog=TreasureLand;Persist Security Info=True;User ID=4790Client;Password=CS4790</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
