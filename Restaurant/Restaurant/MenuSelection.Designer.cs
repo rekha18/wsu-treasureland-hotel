@@ -589,7 +589,7 @@
             this.lbl_grand_total.Name = "lbl_grand_total";
             this.lbl_grand_total.Size = new System.Drawing.Size(71, 29);
             this.lbl_grand_total.TabIndex = 30;
-            this.lbl_grand_total.Text = "$$.$$";
+            this.lbl_grand_total.Text = "00.00";
             // 
             // MenuSelection
             // 
