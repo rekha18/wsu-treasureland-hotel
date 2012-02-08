@@ -48,7 +48,8 @@ namespace Restaurant
         SortedDictionary<int, String> itemInfoDict = new SortedDictionary<int, String>();
 
         //TOTALS
-        private int totalItemsCount = 0;
+        private int totalItemsKey = 0;
+        private int totalItemsPosition = 0;
         SortedDictionary<int, String> totalDict = new SortedDictionary<int, String>();
 
 
@@ -59,7 +60,8 @@ namespace Restaurant
 
         public MenuSelection(int selectedRoom)
         {
-            InitializeComponent();
+            InitializeComponent();           
+
             if (selectedRoom != 0) // 0 means paying with cash
             {
                 lbl_selectedRoom.Text = "Room: " + selectedRoom.ToString();
@@ -494,7 +496,7 @@ namespace Restaurant
         {
             Button btn = sender as Button;
             String menuItemName = btn.Text.Trim();
-            createTotalItemButton(menuItemName);
+            createTotalItemButton(getMoneyValueForItem(menuItemName), menuItemName);
         }
 
         #endregion
@@ -532,34 +534,104 @@ namespace Restaurant
         #endregion
 
 
-        private void createTotalItemButton(String menuItemName)
+
+        #region Total List of Items
+
+        private void createTotalItemButton(String menuItemPrice, String menuItemName)
         {
+            String buttonLabel = menuItemPrice + " - " + menuItemName;
+
             Button btn = new Button();
             btn.Click += new System.EventHandler(btn_remove_item_Click);
             btn.Height = 36;
             btn.Width = 166;
-            btn.Location = new Point(20, 4 + totalItemsCount * 36);
+            btn.Location = new Point(20, 4 + totalItemsPosition * 36);
             btn.BackColor = Color.WhiteSmoke;
-            btn.Tag = totalDict.Count();
-            btn.Text = menuItemName;
+            btn.Tag = totalItemsKey;
+            btn.TextAlign = ContentAlignment.MiddleLeft;
+            btn.Text = menuItemPrice + menuItemName;
+
+            totalDict.Add(totalItemsKey, buttonLabel);
             total_panel.Controls.Add(btn);
-            System.Diagnostics.Debug.WriteLine("button added.");
-            totalItemsCount++;
+            totalItemsKey++;
+            totalItemsPosition++;
         }
 
 
         private void btn_remove_item_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("button removed.");
             Button btn = sender as Button;
-            total_panel.Controls.Remove(btn);
+            int tag = Convert.ToInt32(btn.Tag);
+            totalDict.Remove(tag);
+            recreateAllTotalButtons();
         }
+
+        private void recreateAllTotalButtons()
+        {
+            total_panel.Controls.Clear();
+
+            totalItemsPosition = 0;
+
+            foreach (var item in totalDict)
+            {
+                Button btn = new Button();
+                btn.Click += new System.EventHandler(btn_remove_item_Click);
+                btn.Height = 36;
+                btn.Width = 166;
+                btn.Location = new Point(20, 4 + totalItemsPosition * 36);
+                btn.BackColor = Color.WhiteSmoke;
+                btn.Tag = item.Key;
+                btn.TextAlign = ContentAlignment.MiddleLeft;
+                btn.Text = item.Value;
+                total_panel.Controls.Add(btn);
+                totalItemsPosition++;
+            }
+        }
+
+        private String getMoneyValueForItem(String menuItemName)
+        {
+            DataClassesDataContext db = new DataClassesDataContext();
+            var query = from m in db.MenuItems
+                        where m.MenuItemName == menuItemName
+                        select new { m.MenuItemPrice };
+
+            Decimal menuItemPrice = 0;
+
+            if (query.Any())
+            {
+                foreach (var q in query)
+                {
+                    menuItemPrice = Convert.ToDecimal(q.MenuItemPrice);
+                }
+            }
+
+            String value = String.Format("{0:C}", menuItemPrice);
+
+            return value;
+        }
+
+        private String getItemNameFromButton(String buttonName)
+        {
+            String itemName = "";
+
+            String[] arr;
+
+            arr = buttonName.Split('-');
+            if (arr.Length > 0)
+            {
+                itemName = arr[1].Trim();
+            }
+
+            return itemName;
+        }
+
+        #endregion
 
         private void btn_submit_order_Click(object sender, EventArgs e)
         {
             foreach (var item in totalDict)
             {
-                //loop through and do an insert for each item
+                System.Diagnostics.Debug.WriteLine("item remaining: " + getItemNameFromButton(item.Value));
             }
 
             Close();
