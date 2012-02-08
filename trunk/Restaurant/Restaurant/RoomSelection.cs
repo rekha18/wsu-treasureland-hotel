@@ -29,7 +29,6 @@ namespace Restaurant
             //gets/sets currently filled rooms from database
             numberOfRooms = getFilledRoomCount();
 
-
             //hides any buttons if room count is less than 24, 
             //used later if room count is less than number of rooms
             hideExtraButtons();
@@ -49,6 +48,10 @@ namespace Restaurant
                     maxPageNumber++;
                 }
                 lbl_totalNumberOfPages.Text = maxPageNumber.ToString();
+            }
+            else
+            {
+                lbl_totalNumberOfPages.Text = "1";
             }
 
             LoginForm login = new LoginForm();
