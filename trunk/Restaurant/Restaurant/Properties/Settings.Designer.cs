@@ -44,5 +44,16 @@ namespace Restaurant.Properties {
                 return ((string)(this["TreasureLandConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=titan.cs.weber.edu,10433;Initial Catalog=TreasureLand;Persist Securit" +
+            "y Info=True;User ID=4790Client;Password=CS4790")]
+        public string TreasureLandConnectionString2 {
+            get {
+                return ((string)(this["TreasureLandConnectionString2"]));
+            }
+        }
     }
 }
