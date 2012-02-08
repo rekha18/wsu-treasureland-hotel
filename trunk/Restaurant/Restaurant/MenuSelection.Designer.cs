@@ -143,6 +143,7 @@
             this.button23.TabIndex = 6;
             this.button23.Tag = "7";
             this.button23.UseVisualStyleBackColor = true;
+            this.button23.Click += new System.EventHandler(this.btn_category_selected);
             // 
             // button22
             // 
@@ -152,6 +153,7 @@
             this.button22.TabIndex = 5;
             this.button22.Tag = "6";
             this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.btn_category_selected);
             // 
             // button21
             // 
@@ -161,6 +163,7 @@
             this.button21.TabIndex = 4;
             this.button21.Tag = "5";
             this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.btn_category_selected);
             // 
             // button20
             // 
@@ -170,6 +173,7 @@
             this.button20.TabIndex = 3;
             this.button20.Tag = "4";
             this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.btn_category_selected);
             // 
             // button19
             // 
@@ -179,6 +183,7 @@
             this.button19.TabIndex = 2;
             this.button19.Tag = "3";
             this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.btn_category_selected);
             // 
             // button18
             // 
@@ -188,6 +193,7 @@
             this.button18.TabIndex = 1;
             this.button18.Tag = "2";
             this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.btn_category_selected);
             // 
             // button17
             // 
@@ -197,6 +203,7 @@
             this.button17.TabIndex = 0;
             this.button17.Tag = "1";
             this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.btn_category_selected);
             // 
             // items_panel
             // 
@@ -442,6 +449,7 @@
             this.btn_previous_items.Size = new System.Drawing.Size(72, 72);
             this.btn_previous_items.TabIndex = 17;
             this.btn_previous_items.UseVisualStyleBackColor = false;
+            this.btn_previous_items.Click += new System.EventHandler(this.btn_previous_items_Click);
             // 
             // btn_next_categories
             // 
@@ -463,6 +471,7 @@
             this.btn_next_items.Size = new System.Drawing.Size(72, 72);
             this.btn_next_items.TabIndex = 19;
             this.btn_next_items.UseVisualStyleBackColor = false;
+            this.btn_next_items.Click += new System.EventHandler(this.btn_next_items_Click);
             // 
             // btn_non_alcoholic_drinks
             // 
