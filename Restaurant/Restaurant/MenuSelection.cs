@@ -33,9 +33,6 @@ namespace Restaurant
     //System.Diagnostics.Debug.WriteLine("");
     public partial class MenuSelection : Form
     {
-        //GLOBAL USE
-        private String CURRENT_SELECTED_CATEGORY = "";
-
         //FOOD CATEGORIES
         private int numberOfCategories = 0;
         private int categoryPageNumber = 1;
@@ -101,7 +98,6 @@ namespace Restaurant
             lbl_current_item_page.Text = itemPageNumber.ToString();
             //gets the max number of category pages and sets it to a label
             setMaxNumberOfPagesForItems();
-            CURRENT_SELECTED_CATEGORY = btn_non_alcoholic_drinks.Text;
             #endregion
         }
 
@@ -237,20 +233,37 @@ namespace Restaurant
         private void btn_category_selected(object sender, EventArgs e)
         {
             Button btn = sender as Button;
+            String selectedCategory = btn.Text.Trim();
 
-            System.Diagnostics.Debug.WriteLine("btn text: " + btn.Text);
+            resetItemPageNumber();
 
-            loadItemsDictWithFood(btn.Text);
-            numberOfItems = getFoodItemsCount(btn.Text);
+            loadItemsDictWithFood(selectedCategory);
+            numberOfItems = getFoodItemsCount(selectedCategory);
             hideExtraItemButtons();
             loadItems();
             lbl_current_item_page.Text = itemPageNumber.ToString();
             setMaxNumberOfPagesForItems();
-            
-            CURRENT_SELECTED_CATEGORY = btn.Text;
         }
-        #endregion
 
+        private void resetItemPageNumber()
+        {
+            if (itemPageNumber != 1)
+            {
+                itemPageNumber = 1;
+                lbl_current_item_page.Text = itemPageNumber.ToString();
+            }
+
+            int count = 1;
+            foreach (int key in itemBtnDict.Keys)
+            {
+                Button b = itemBtnDict[key];
+                b.Tag = count;
+                count++;
+            }
+            btn_previous_items.Enabled = false;
+        }
+
+        #endregion
 
 
 
@@ -278,16 +291,28 @@ namespace Restaurant
                 btn_previous_items.Enabled = false;
             }
 
-            if (CURRENT_SELECTED_CATEGORY == btn_non_alcoholic_drinks.Text)
+            hideExtraItemButtons();
+            loadItems();
+        }
+
+        private void btn_next_items_Click(object sender, EventArgs e)
+        {
+            itemPageNumber = ++itemPageNumber;
+            lbl_current_item_page.Text = itemPageNumber.ToString();
+
+            foreach (int key in itemBtnDict.Keys)
             {
-                hideExtraItemButtons();
-                loadItems();
+                Button b = itemBtnDict[key];
+                b.Tag = Convert.ToInt32(b.Tag) + 16;
             }
-            else if (CURRENT_SELECTED_CATEGORY == btn_alcoholic_drinks.Text)
+            if (itemPageNumber > 1)
             {
-                hideExtraItemButtons();
-                loadItems();
+                btn_previous_items.Enabled = true;
             }
+
+
+            hideExtraItemButtons();
+            loadItems();
         }
 
         private int getDrinksCount(int nonORnot)
@@ -306,47 +331,22 @@ namespace Restaurant
             return count;
         }
 
-        private int getFoodItemsCount(String foodItemCategory)
+        private int getFoodItemsCount(String foodCategory)
         {
             //connect to the database
             DataClassesDataContext db = new DataClassesDataContext();
             int count = 0;
-            var query = from d in db.FoodDrinkCategories
-                        where d.FoodDrinkCategoryName == foodItemCategory
-                        select d;
+            var query = from m in db.MenuItems
+                        join f in db.FoodDrinkCategories
+                        on m.FoodDrinkCategoryID equals f.FoodDrinkCategoryID
+                        where f.FoodDrinkCategoryName == foodCategory
+                        select new { m.MenuItemID, m.MenuItemName };
 
             foreach (var d in query)
             {
                 count++;
             }
             return count;
-        }
-
-        private void btn_next_items_Click(object sender, EventArgs e)
-        {
-            itemPageNumber = ++itemPageNumber;
-            lbl_current_item_page.Text = itemPageNumber.ToString();
-
-            foreach (int key in itemBtnDict.Keys)
-            {
-                Button b = itemBtnDict[key];
-                b.Tag = Convert.ToInt32(b.Tag) + 16;
-            }
-            if (itemPageNumber > 1)
-            {
-                btn_previous_items.Enabled = true;
-            }
-
-            if (CURRENT_SELECTED_CATEGORY == btn_non_alcoholic_drinks.Text)
-            {
-                hideExtraItemButtons();
-                loadItems();
-            }
-            else if (CURRENT_SELECTED_CATEGORY == btn_alcoholic_drinks.Text)
-            {
-                hideExtraItemButtons();
-                loadItems();
-            }
         }
 
         /// <summary>
@@ -479,35 +479,22 @@ namespace Restaurant
             }
         }
 
-        //var query = from r in db.Rooms
-        //                join rd in db.ReservationDetails
-        //                on r.RoomID equals rd.RoomID
-        //                join rv in db.Reservations
-        //                on rd.ReservationID equals rv.ReservationID
-        //                join g in db.Guests
-        //                on rv.GuestID equals g.GuestID
-        //                where r.RoomStatus == 'C' & rv.ReservationStatus == 'A'
-        //                select new { r.RoomID, g.GuestSurName };
-
         private void loadItemsDictWithFood(String foodCategory)
         {
-
-            System.Diagnostics.Debug.WriteLine("foodCategory: " + foodCategory);
             itemInfoDict.Clear();
             DataClassesDataContext db = new DataClassesDataContext();
             var query = from m in db.MenuItems
-                             join f in db.FoodDrinkCategories
-                             on m.FoodDrinkCategoryID equals f.FoodDrinkCategoryID
-                             where f.FoodDrinkCategoryName == foodCategory
-                             select new { m.MenuItemID, f.FoodDrinkCategoryName};
+                        join f in db.FoodDrinkCategories
+                        on m.FoodDrinkCategoryID equals f.FoodDrinkCategoryID
+                        where f.FoodDrinkCategoryName == foodCategory
+                        select new { m.MenuItemID, m.MenuItemName};
 
             if (query.Any())
             {
-                System.Diagnostics.Debug.WriteLine("any found? - yes!");
                 foreach (var q in query)
                 {
-                    System.Diagnostics.Debug.WriteLine("insert to dict: " + q.FoodDrinkCategoryName);
-                    itemInfoDict.Add(Convert.ToInt32(q.MenuItemID), q.FoodDrinkCategoryName);
+                    System.Diagnostics.Debug.WriteLine("insert to dict: " + q.MenuItemName);
+                    itemInfoDict.Add(Convert.ToInt32(q.MenuItemID), q.MenuItemName);
                 }
             }
         }
@@ -531,12 +518,6 @@ namespace Restaurant
         }
 
 
-
-
-
-
-        //FINISHED
-
         private void btn_non_alcoholic_drinks_Click(object sender, EventArgs e)
         {
             loadItemsDictWithDrinks(2);
@@ -545,7 +526,6 @@ namespace Restaurant
             loadItems();
             lbl_current_item_page.Text = itemPageNumber.ToString();
             setMaxNumberOfPagesForItems();
-            CURRENT_SELECTED_CATEGORY = btn_non_alcoholic_drinks.Text;
         }
 
         private void btn_alcoholic_drinks_Click(object sender, EventArgs e)
@@ -556,10 +536,6 @@ namespace Restaurant
             loadItems();
             lbl_current_item_page.Text = itemPageNumber.ToString();
             setMaxNumberOfPagesForItems();
-            CURRENT_SELECTED_CATEGORY = btn_alcoholic_drinks.Text;
         }
-
-
-
     }
 }
