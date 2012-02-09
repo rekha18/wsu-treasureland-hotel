@@ -189,22 +189,25 @@ namespace TreasureLand.Admin
                 db.IngredientPurchases.InsertOnSubmit(addIngredientPurchase);
                 db.SubmitChanges();
 
+                //System.Diagnostics.Debug.WriteLine("");
                 //Query Recently added Purchase to get Purchase ID
-                var pch = db.IngredientPurchases.Last();// from p in db.IngredientPurchases.Where(p => p. == purchaseTime )
+                var pch = (from i in db.IngredientPurchases
+                  select i.PurchaseID).Max();//db.IngredientPurchases.Last(); //from p in db.IngredientPurchases select p.PurchaseDate//.Where(p => p. == purchaseTime )
                      //select p;
 
                 //if(pch.Count() == 1){
                 
-                    //foreach(var pid in pch){
-                     //  pchID = pid.PurchaseID;
-                    //}
+                //    foreach(var pid in pch){
+                //       pchID = pid.PurchaseID;
+                //    }
                 //}
-
+                
+                System.Diagnostics.Debug.WriteLine(pch.ToString());
                 //for each add to database
                 foreach(var ph in purchase)
                 {
-
-                    ph.PurchaseID = pch.PurchaseID;
+                    
+                    ph.PurchaseID = System.Convert.ToInt16(pch.ToString());
                     db.IngredientPurchaseHistories.InsertOnSubmit(ph);
                     db.SubmitChanges();
 
