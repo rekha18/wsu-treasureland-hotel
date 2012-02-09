@@ -77,6 +77,11 @@ namespace Restaurant
                 e.Cancel = true;
             }
         }
+        protected override void OnLostFocus(EventArgs e)
+        {
+            base.OnLostFocus(e);
+            this.Focus();
+        }
 
         /// <summary>
         /// Loads the buttons to a dictionary for munipulation 
@@ -273,7 +278,6 @@ namespace Restaurant
             LoginForm login = new LoginForm(1);
             login.ShowDialog();
             allowUserToClose = true;
-            Close();
         }
     }
 }

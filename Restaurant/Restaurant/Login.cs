@@ -29,7 +29,7 @@ namespace Restaurant
             else
             {
                 lblHeader.Text = "ENTER LOGOUT ID";
-                btnExit.Visible = false;
+                btnExit.Text = "Cancel";
             }
 		}
 
@@ -70,9 +70,7 @@ namespace Restaurant
                 {
                     if (checkID())
                     {
-                        //Open select table Form
-                        //RoomSelectionForm rsf = new RoomSelectionForm();
-                        //rsf.Show();
+                        //Open select room form
                         Close();
                     }
                     else
@@ -87,10 +85,7 @@ namespace Restaurant
                 {
                     if (logOutCheckID())
                     {
-                        //Open select table Form
-                        //RoomSelectionForm rsf = new RoomSelectionForm();
-                        //rsf.Show();
-                        Close();
+                        Environment.Exit(0);
                     }
                     else
                     {
@@ -122,9 +117,7 @@ namespace Restaurant
                     //the current password
                     if (checkID())
                     {
-                        //Open select table Form
-                        RoomSelectionForm rsf = new RoomSelectionForm();
-                        rsf.Show();
+                        //Open select room Form
                         Close();
                     }
                     else
@@ -139,10 +132,7 @@ namespace Restaurant
                 {
                     if (logOutCheckID())
                     {
-                        //Open select table Form
-                        RoomSelectionForm rsf = new RoomSelectionForm();
-                        rsf.Show();
-                        Close();
+                        Environment.Exit(0);
                     }
                     else
                     {
@@ -176,9 +166,14 @@ namespace Restaurant
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            if (logInLogOut == 0)
+            {
+                Environment.Exit(0);
+            }
+            else
+            {                
+                Close();
+            }
         }
-
-
 	}
 }
