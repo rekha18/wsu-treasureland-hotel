@@ -77,11 +77,7 @@ namespace Restaurant
                 e.Cancel = true;
             }
         }
-        protected override void OnLostFocus(EventArgs e)
-        {
-            base.OnLostFocus(e);
-            this.Focus();
-        }
+
 
         /// <summary>
         /// Loads the buttons to a dictionary for munipulation 
