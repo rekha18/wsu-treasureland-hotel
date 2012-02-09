@@ -33,6 +33,8 @@ namespace Restaurant
     //System.Diagnostics.Debug.WriteLine("");
     public partial class MenuSelection : Form
     {
+        private bool isSelectedCategoryDrink = true;
+
         //CATEGORIES
         private int numberOfCategories = 0;
         private int categoryPageNumber = 1;
@@ -428,6 +430,7 @@ namespace Restaurant
 
         private void loadItemsDictWithDrinks(int nonORnot)
         {
+            isSelectedCategoryDrink = true;
             itemInfoDict.Clear();
             DataClassesDataContext db = new DataClassesDataContext();
             var drinkQuery = from d in db.Drinks
@@ -445,6 +448,7 @@ namespace Restaurant
 
         private void loadItemsDictWithFood(String foodCategory)
         {
+            isSelectedCategoryDrink = false;
             itemInfoDict.Clear();
             DataClassesDataContext db = new DataClassesDataContext();
             var query = from m in db.MenuItems
@@ -496,6 +500,7 @@ namespace Restaurant
         {
             Button btn = sender as Button;
             String menuItemName = btn.Text.Trim();
+            System.Diagnostics.Debug.WriteLine("item name: " + menuItemName);
             String menuPrice = getMoneyValueForItem(menuItemName);
             createTotalItemButton(menuPrice , menuItemName);
 
@@ -610,23 +615,45 @@ namespace Restaurant
 
         private String getMoneyValueForItem(String menuItemName)
         {
-            DataClassesDataContext db = new DataClassesDataContext();
-            var query = from m in db.MenuItems
-                        where m.MenuItemName == menuItemName
-                        select new { m.MenuItemPrice };
-
             Decimal menuItemPrice = 0;
 
-            if (query.Any())
+            if (isSelectedCategoryDrink)
             {
-                foreach (var q in query)
+                DataClassesDataContext db = new DataClassesDataContext();
+                var query = from d in db.Drinks
+                            where d.DrinkName == menuItemName
+                            select new { d.DrinkRetailSalePrice };
+
+                if(query.Any())
                 {
-                    menuItemPrice = Convert.ToDecimal(q.MenuItemPrice);
+                    foreach (var q in query)
+                    {
+                        menuItemPrice = Convert.ToDecimal(q.DrinkRetailSalePrice);
+                    }
+
+                    System.Diagnostics.Debug.WriteLine("drink item price: " + menuItemPrice);
                 }
             }
+            else
+            {
+                DataClassesDataContext db = new DataClassesDataContext();
+                var query = from m in db.MenuItems
+                            where m.MenuItemName == menuItemName
+                            select new { m.MenuItemPrice };
 
-            String value = String.Format("{0:N}", menuItemPrice);
+                if (query.Any())
+                {
 
+                    foreach (var q in query)
+                    {
+                        menuItemPrice = Convert.ToDecimal(q.MenuItemPrice);
+                    }
+
+                    System.Diagnostics.Debug.WriteLine("food item price: " + menuItemPrice);
+                }
+            }
+                String value = String.Format("{0:N}", menuItemPrice);
+            
             return value;
         }
 
