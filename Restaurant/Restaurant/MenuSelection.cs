@@ -576,19 +576,24 @@ namespace Restaurant
 
         private void btn_remove_item_Click(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
-            int tag = Convert.ToInt32(btn.Tag);
+            DialogResult result = MessageBox.Show("Remove item from order?", "Item", MessageBoxButtons.YesNo);
 
-            //subtract from totals
-            String amount = getItemInfoFromButton(btn.Text, 0);
-            Decimal dec = Convert.ToDecimal(amount);
-            String totalLabel = lbl_grand_total.Text.ToString();
-            Decimal total = Convert.ToDecimal(totalLabel);
-            total = total - dec;
-            lbl_grand_total.Text = total.ToString();
+            if(result == DialogResult.Yes)
+            {
+                Button btn = sender as Button;
+                int tag = Convert.ToInt32(btn.Tag);
 
-            totalDict.Remove(tag);
-            recreateAllTotalButtons();
+                //subtract from totals
+                String amount = getItemInfoFromButton(btn.Text, 0);
+                Decimal dec = Convert.ToDecimal(amount);
+                String totalLabel = lbl_grand_total.Text.ToString();
+                Decimal total = Convert.ToDecimal(totalLabel);
+                total = total - dec;
+                lbl_grand_total.Text = total.ToString();
+
+                totalDict.Remove(tag);
+                recreateAllTotalButtons();
+            }
         }
 
         private void recreateAllTotalButtons()
