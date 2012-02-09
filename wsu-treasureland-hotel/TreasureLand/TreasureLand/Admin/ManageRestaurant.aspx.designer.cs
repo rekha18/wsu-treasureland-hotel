@@ -40,6 +40,15 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnEnterPurchase;
         
         /// <summary>
+        /// btnManageDrink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnManageDrink;
+        
+        /// <summary>
         /// containerView control.
         /// </summary>
         /// <remarks>
@@ -85,22 +94,22 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnAddCategory;
         
         /// <summary>
-        /// lblV1error control.
+        /// lblCatAddError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblV1error;
+        protected global::System.Web.UI.WebControls.Label lblCatAddError;
         
         /// <summary>
-        /// View1 control.
+        /// manageMenuItemsView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1;
+        protected global::System.Web.UI.WebControls.View manageMenuItemsView;
         
         /// <summary>
         /// gvMenuItems control.
@@ -112,6 +121,15 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.GridView gvMenuItems;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
         /// btnAddMenuItem control.
         /// </summary>
         /// <remarks>
@@ -121,13 +139,13 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnAddMenuItem;
         
         /// <summary>
-        /// View2 control.
+        /// createPurchaseView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View2;
+        protected global::System.Web.UI.WebControls.View createPurchaseView;
         
         /// <summary>
         /// ddIngredient2 control.
@@ -148,6 +166,15 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnAddListItemIngredient;
         
         /// <summary>
+        /// txtIngredient2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtIngredient2;
+        
+        /// <summary>
         /// txtPrice control.
         /// </summary>
         /// <remarks>
@@ -166,13 +193,13 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtQty;
         
         /// <summary>
-        /// Button6 control.
+        /// btnAddItemToPurchase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button6;
+        protected global::System.Web.UI.WebControls.Button btnAddItemToPurchase;
         
         /// <summary>
         /// btnSubmitPurchase control.
@@ -182,5 +209,14 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmitPurchase;
+        
+        /// <summary>
+        /// manageDrinksView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View manageDrinksView;
     }
 }
