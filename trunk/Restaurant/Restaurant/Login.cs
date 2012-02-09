@@ -60,90 +60,70 @@ namespace Restaurant
 			}
 			else
 			{
-				password += b.Text;
-				lblLoginPassword.Text = lblLoginPassword.Text += "*";
-				//If the code is valid, open table select form
-				//Otherwise displays error message and clears
-				//the current password
+                password += b.Text;
+                lblLoginPassword.Text = lblLoginPassword.Text += "*";
+                validateLogin();
+			}
+		}
 
-                if (logInLogOut == 0)
+        private void validateLogin()
+        {
+            
+            //If the code is valid, open table select form
+            //Otherwise displays error message and clears
+            //the current password
+
+            if (logInLogOut == 0)
+            {
+                if (checkID())
                 {
-                    if (checkID())
-                    {
-                        //Open select room form
-                        Close();
-                    }
-                    else
-                    {
-                        lblError.Text = " Invalid Login ID";
-                        lblError.Visible = true;
-                        password = "";
-                        lblLoginPassword.Text = "";
-                    }
+                    //Open select room form
+                    Close();
                 }
                 else
                 {
-                    if (logOutCheckID())
-                    {
-                        Environment.Exit(0);
-                    }
-                    else
-                    {
-                        lblError.Text = " Invalid Logout ID";
-                        lblError.Visible = true;
-                        password = "";
-                        lblLoginPassword.Text = "";
-                    }
+                    lblError.Text = " Invalid Login ID";
+                    lblError.Visible = true;
+                    password = "";
+                    lblLoginPassword.Text = "";
                 }
-			}
-		}
+            }
+            else
+            {
+                if (logOutCheckID())
+                {
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    lblError.Text = " Invalid Logout ID";
+                    lblError.Visible = true;
+                    password = "";
+                    lblLoginPassword.Text = "";
+                }
+            }
+        }
 
 		/// <summary>
 		/// Checks the database and checks the entered number to see if it is valid
 		/// </summary>
 		private void btnSubmit_Click(object sender, EventArgs e)
 		{
-			if (password.Length < 4)
-			{
-				lblError.Text = "ID must be four digits";
-				lblError.Visible = true;
-			}
-			else 
-			{
-                if (logInLogOut == 0)
-                {
-                    //If the code is valid, open table select form
-                    //Otherwise displays error message and clears
-                    //the current password
-                    if (checkID())
-                    {
-                        //Open select room Form
-                        Close();
-                    }
-                    else
-                    {
-                        lblError.Text = " Invalid Login ID";
-                        lblError.Visible = true;
-                        password = "";
-                        lblLoginPassword.Text = "";
-                    }
-                }
-                else
-                {
-                    if (logOutCheckID())
-                    {
-                        Environment.Exit(0);
-                    }
-                    else
-                    {
-                        lblError.Text = " Invalid Logout ID";
-                        lblError.Visible = true;
-                        password = "";
-                        lblLoginPassword.Text = "";
-                    }
-                }
-			}
+            submitButtonClick();
 		}
+
+        private void submitButtonClick()
+        {
+            if (password.Length < 4)
+            {
+                lblError.Text = "ID must be four digits";
+                lblError.Visible = true;
+            }
+            else
+            {
+                validateLogin();
+            }
+        }
 
 		/// <summary>
 		/// Connects to database, checks the four digit code
@@ -173,6 +153,34 @@ namespace Restaurant
             else
             {                
                 Close();
+            }
+        }
+
+        private void numberKeyEvent(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue >= 48 && e.KeyValue <= 57) // horizontal keyboard numbers
+            {
+                int value = e.KeyValue - 48;
+                password += value.ToString();
+                lblLoginPassword.Text = lblLoginPassword.Text += "*";
+                if (lblLoginPassword.Text.Length >= 4)
+                {
+                    validateLogin();
+                }
+            }
+            else if (e.KeyValue >= 96 && e.KeyValue <= 105) // 10 keyboard numberpad
+            {
+                int value = e.KeyValue - 96;
+                password += value.ToString();
+                lblLoginPassword.Text = lblLoginPassword.Text += "*";
+                if (lblLoginPassword.Text.Length >= 4)
+                {
+                    validateLogin();
+                }
+            }
+            else if (e.KeyValue == 13) // return
+            {
+                submitButtonClick();
             }
         }
 	}

@@ -56,6 +56,7 @@
             this.btn1.Text = "1";
             this.btn1.UseVisualStyleBackColor = true;
             this.btn1.Click += new System.EventHandler(this.Button_Click);
+            this.btn1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numberKeyEvent);
             // 
             // btn4
             // 
@@ -67,6 +68,7 @@
             this.btn4.Text = "4";
             this.btn4.UseVisualStyleBackColor = true;
             this.btn4.Click += new System.EventHandler(this.Button_Click);
+            this.btn4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numberKeyEvent);
             // 
             // btn3
             // 
@@ -78,6 +80,7 @@
             this.btn3.Text = "3";
             this.btn3.UseVisualStyleBackColor = true;
             this.btn3.Click += new System.EventHandler(this.Button_Click);
+            this.btn3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numberKeyEvent);
             // 
             // btn2
             // 
@@ -89,6 +92,7 @@
             this.btn2.Text = "2";
             this.btn2.UseVisualStyleBackColor = true;
             this.btn2.Click += new System.EventHandler(this.Button_Click);
+            this.btn2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numberKeyEvent);
             // 
             // btn5
             // 
@@ -100,6 +104,7 @@
             this.btn5.Text = "5";
             this.btn5.UseVisualStyleBackColor = true;
             this.btn5.Click += new System.EventHandler(this.Button_Click);
+            this.btn5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numberKeyEvent);
             // 
             // btn6
             // 
@@ -111,6 +116,7 @@
             this.btn6.Text = "6";
             this.btn6.UseVisualStyleBackColor = true;
             this.btn6.Click += new System.EventHandler(this.Button_Click);
+            this.btn6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numberKeyEvent);
             // 
             // btn7
             // 
@@ -122,6 +128,7 @@
             this.btn7.Text = "7";
             this.btn7.UseVisualStyleBackColor = true;
             this.btn7.Click += new System.EventHandler(this.Button_Click);
+            this.btn7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numberKeyEvent);
             // 
             // btn8
             // 
@@ -133,6 +140,7 @@
             this.btn8.Text = "8";
             this.btn8.UseVisualStyleBackColor = true;
             this.btn8.Click += new System.EventHandler(this.Button_Click);
+            this.btn8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numberKeyEvent);
             // 
             // btn9
             // 
@@ -144,6 +152,7 @@
             this.btn9.Text = "9";
             this.btn9.UseVisualStyleBackColor = true;
             this.btn9.Click += new System.EventHandler(this.Button_Click);
+            this.btn9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numberKeyEvent);
             // 
             // lblLoginPassword
             // 
@@ -164,6 +173,7 @@
             this.btnSubmit.Text = "SUBMIT";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            this.btnSubmit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numberKeyEvent);
             // 
             // btn0
             // 
@@ -175,6 +185,7 @@
             this.btn0.Text = "0";
             this.btn0.UseVisualStyleBackColor = true;
             this.btn0.Click += new System.EventHandler(this.Button_Click);
+            this.btn0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.numberKeyEvent);
             // 
             // btnClear
             // 
