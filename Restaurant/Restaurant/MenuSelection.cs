@@ -574,12 +574,11 @@ namespace Restaurant
             Button btn = sender as Button;
             int tag = Convert.ToInt32(btn.Tag);
 
+            //subtract from totals
             String amount = getItemInfoFromButton(btn.Text, 0);
             Decimal dec = Convert.ToDecimal(amount);
-
             String totalLabel = lbl_grand_total.Text.ToString();
             Decimal total = Convert.ToDecimal(totalLabel);
-
             total = total - dec;
             lbl_grand_total.Text = total.ToString();
 
@@ -664,7 +663,5 @@ namespace Restaurant
         {
             Close();
         }
-
-
     }
 }
