@@ -13,11 +13,24 @@ namespace Restaurant
 	
 	public partial class LoginForm : Form
 	{
+        private int logInLogOut = 0; // 0 for login, 1 for logout
+
 		private string password="";
 
-		public LoginForm()
+		public LoginForm(int inORout)
 		{
 			InitializeComponent();
+            logInLogOut = inORout;
+
+            if (logInLogOut == 0)
+            {
+                lblHeader.Text = "ENTER LOGIN ID";
+            }
+            else
+            {
+                lblHeader.Text = "ENTER LOGOUT ID";
+                btnExit.Visible = false;
+            }
 		}
 
 		/// <summary>
@@ -52,20 +65,41 @@ namespace Restaurant
 				//If the code is valid, open table select form
 				//Otherwise displays error message and clears
 				//the current password
-				if (checkID())
-				{
-					//Open select table Form
-                    //RoomSelectionForm rsf = new RoomSelectionForm();
-                    //rsf.Show();
-					Close();
-				}
-				else
-				{
-					lblError.Text = " Invalid Login ID";
-					lblError.Visible = true;
-					password = "";
-					lblLoginPassword.Text = "";
-				}	
+
+                if (logInLogOut == 0)
+                {
+                    if (checkID())
+                    {
+                        //Open select table Form
+                        //RoomSelectionForm rsf = new RoomSelectionForm();
+                        //rsf.Show();
+                        Close();
+                    }
+                    else
+                    {
+                        lblError.Text = " Invalid Login ID";
+                        lblError.Visible = true;
+                        password = "";
+                        lblLoginPassword.Text = "";
+                    }
+                }
+                else
+                {
+                    if (logOutCheckID())
+                    {
+                        //Open select table Form
+                        //RoomSelectionForm rsf = new RoomSelectionForm();
+                        //rsf.Show();
+                        Close();
+                    }
+                    else
+                    {
+                        lblError.Text = " Invalid Logout ID";
+                        lblError.Visible = true;
+                        password = "";
+                        lblLoginPassword.Text = "";
+                    }
+                }
 			}
 		}
 
@@ -81,23 +115,43 @@ namespace Restaurant
 			}
 			else 
 			{
-				//If the code is valid, open table select form
-				//Otherwise displays error message and clears
-				//the current password
-				if (checkID())
-				{
-					//Open select table Form
-                    RoomSelectionForm rsf = new RoomSelectionForm();
-                    rsf.Show();
-					Close();
-				}
-				else
-				 {
-				 lblError.Text = " Invalid Login ID";
-				 lblError.Visible = true;
-				 password = "";
-				 lblLoginPassword.Text = "";				 
-				 }				  
+                if (logInLogOut == 0)
+                {
+                    //If the code is valid, open table select form
+                    //Otherwise displays error message and clears
+                    //the current password
+                    if (checkID())
+                    {
+                        //Open select table Form
+                        RoomSelectionForm rsf = new RoomSelectionForm();
+                        rsf.Show();
+                        Close();
+                    }
+                    else
+                    {
+                        lblError.Text = " Invalid Login ID";
+                        lblError.Visible = true;
+                        password = "";
+                        lblLoginPassword.Text = "";
+                    }
+                }
+                else
+                {
+                    if (logOutCheckID())
+                    {
+                        //Open select table Form
+                        RoomSelectionForm rsf = new RoomSelectionForm();
+                        rsf.Show();
+                        Close();
+                    }
+                    else
+                    {
+                        lblError.Text = " Invalid Logout ID";
+                        lblError.Visible = true;
+                        password = "";
+                        lblLoginPassword.Text = "";
+                    }
+                }
 			}
 		}
 
@@ -108,11 +162,17 @@ namespace Restaurant
 		/// <returns>returns if the entered password is valid</returns>
 		private bool checkID()
 		{
-            System.Diagnostics.Debug.WriteLine("PASSWORD: " + password);
 			if (password == "0000")
 				return true;
 			return false;
 		}
+
+        private bool logOutCheckID()
+        {
+            if (password == "1111")
+                return true;
+            return false;
+        }
 
         private void buttonExit_Click(object sender, EventArgs e)
         {

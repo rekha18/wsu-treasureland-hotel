@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows;
+
 
 /*
  * Items are loaded based off of a category selection
@@ -62,7 +64,12 @@ namespace Restaurant
 
         public MenuSelection(int selectedRoom)
         {
-            InitializeComponent();           
+            InitializeComponent();
+
+            MinimizeBox = false;
+            MaximizeBox = false;
+            WindowState = FormWindowState.Maximized;
+            FormBorderStyle = FormBorderStyle.None;
 
             if (selectedRoom != 0) // 0 means paying with cash
             {
@@ -88,6 +95,11 @@ namespace Restaurant
                 }
                 lbl_total_category_page.Text = maxCategoryPageNumber.ToString();
             }
+            //HAS NOT BEEN TESTED
+            if (numberOfCategories < 8)
+            {
+                nav_panel_categories.Visible = false;
+            }
 
             #endregion
 
@@ -103,6 +115,12 @@ namespace Restaurant
             lbl_current_item_page.Text = itemPageNumber.ToString();
             //gets the max number of category pages and sets it to a label
             setMaxNumberOfPagesForItems();
+
+            //HAS NOT BEEN TESTED
+            if (numberOfItems < 17)
+            {
+                nav_panel_items.Visible = false;
+            }
             #endregion
         }
 
@@ -407,6 +425,12 @@ namespace Restaurant
                 {
                     b.Visible = false;
                 }
+            }
+
+            //HAS NOT BEEN TESTED
+            if (numberOfItems > 16)
+            {
+                nav_panel_items.Visible = true;
             }
         }
 

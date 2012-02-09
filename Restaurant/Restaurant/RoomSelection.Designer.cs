@@ -63,14 +63,17 @@
             this.button1 = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_logOut = new System.Windows.Forms.Button();
+            this.nav_panel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_buttons.SuspendLayout();
+            this.nav_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_pageNumberDescription
             // 
             this.lbl_pageNumberDescription.AutoSize = true;
-            this.lbl_pageNumberDescription.Location = new System.Drawing.Point(848, 600);
+            this.lbl_pageNumberDescription.Location = new System.Drawing.Point(38, 3);
             this.lbl_pageNumberDescription.Name = "lbl_pageNumberDescription";
             this.lbl_pageNumberDescription.Size = new System.Drawing.Size(75, 13);
             this.lbl_pageNumberDescription.TabIndex = 4;
@@ -79,7 +82,7 @@
             // lbl_currentPage
             // 
             this.lbl_currentPage.AutoSize = true;
-            this.lbl_currentPage.Location = new System.Drawing.Point(929, 600);
+            this.lbl_currentPage.Location = new System.Drawing.Point(119, 3);
             this.lbl_currentPage.Name = "lbl_currentPage";
             this.lbl_currentPage.Size = new System.Drawing.Size(12, 13);
             this.lbl_currentPage.TabIndex = 5;
@@ -88,7 +91,7 @@
             // lbl_totalNumberOfPages
             // 
             this.lbl_totalNumberOfPages.AutoSize = true;
-            this.lbl_totalNumberOfPages.Location = new System.Drawing.Point(964, 600);
+            this.lbl_totalNumberOfPages.Location = new System.Drawing.Point(154, 3);
             this.lbl_totalNumberOfPages.Name = "lbl_totalNumberOfPages";
             this.lbl_totalNumberOfPages.Size = new System.Drawing.Size(12, 13);
             this.lbl_totalNumberOfPages.TabIndex = 8;
@@ -97,7 +100,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(944, 600);
+            this.label1.Location = new System.Drawing.Point(134, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(16, 13);
             this.label1.TabIndex = 7;
@@ -108,9 +111,9 @@
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
             this.pictureBox1.Image = global::Restaurant.Properties.Resources.CompanyLogo;
             this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(-3, -1);
+            this.pictureBox1.Location = new System.Drawing.Point(1, 1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1014, 106);
+            this.pictureBox1.Size = new System.Drawing.Size(664, 106);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
@@ -119,7 +122,7 @@
             // 
             this.btn_next.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.btn_next.Image = global::Restaurant.Properties.Resources.arrowNext;
-            this.btn_next.Location = new System.Drawing.Point(910, 616);
+            this.btn_next.Location = new System.Drawing.Point(105, 19);
             this.btn_next.Name = "btn_next";
             this.btn_next.Size = new System.Drawing.Size(72, 72);
             this.btn_next.TabIndex = 2;
@@ -130,7 +133,7 @@
             // 
             this.btn_cash.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.btn_cash.Image = global::Restaurant.Properties.Resources.cedi;
-            this.btn_cash.Location = new System.Drawing.Point(638, 616);
+            this.btn_cash.Location = new System.Drawing.Point(852, 646);
             this.btn_cash.Name = "btn_cash";
             this.btn_cash.Size = new System.Drawing.Size(144, 72);
             this.btn_cash.TabIndex = 1;
@@ -141,7 +144,7 @@
             // 
             this.btn_previous.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.btn_previous.Image = global::Restaurant.Properties.Resources.arrowPrevious;
-            this.btn_previous.Location = new System.Drawing.Point(832, 616);
+            this.btn_previous.Location = new System.Drawing.Point(27, 19);
             this.btn_previous.Name = "btn_previous";
             this.btn_previous.Size = new System.Drawing.Size(72, 72);
             this.btn_previous.TabIndex = 0;
@@ -175,7 +178,7 @@
             this.panel_buttons.Controls.Add(this.button3);
             this.panel_buttons.Controls.Add(this.button2);
             this.panel_buttons.Controls.Add(this.button1);
-            this.panel_buttons.Location = new System.Drawing.Point(12, 141);
+            this.panel_buttons.Location = new System.Drawing.Point(12, 152);
             this.panel_buttons.Name = "panel_buttons";
             this.panel_buttons.Size = new System.Drawing.Size(984, 426);
             this.panel_buttons.TabIndex = 9;
@@ -447,7 +450,7 @@
             // lblHeader
             // 
             this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.Location = new System.Drawing.Point(12, 628);
+            this.lblHeader.Location = new System.Drawing.Point(12, 646);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(325, 23);
             this.lblHeader.TabIndex = 15;
@@ -457,35 +460,57 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(693, 600);
+            this.label2.Location = new System.Drawing.Point(908, 630);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 16;
             this.label2.Text = "Cash";
+            // 
+            // btn_logOut
+            // 
+            this.btn_logOut.Location = new System.Drawing.Point(924, 12);
+            this.btn_logOut.Name = "btn_logOut";
+            this.btn_logOut.Size = new System.Drawing.Size(72, 72);
+            this.btn_logOut.TabIndex = 17;
+            this.btn_logOut.Text = "Log Out";
+            this.btn_logOut.UseVisualStyleBackColor = true;
+            this.btn_logOut.Click += new System.EventHandler(this.btn_logOut_Click);
+            // 
+            // nav_panel
+            // 
+            this.nav_panel.Controls.Add(this.btn_next);
+            this.nav_panel.Controls.Add(this.btn_previous);
+            this.nav_panel.Controls.Add(this.lbl_pageNumberDescription);
+            this.nav_panel.Controls.Add(this.lbl_currentPage);
+            this.nav_panel.Controls.Add(this.label1);
+            this.nav_panel.Controls.Add(this.lbl_totalNumberOfPages);
+            this.nav_panel.Location = new System.Drawing.Point(636, 627);
+            this.nav_panel.Name = "nav_panel";
+            this.nav_panel.Size = new System.Drawing.Size(200, 100);
+            this.nav_panel.TabIndex = 18;
             // 
             // RoomSelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1008, 700);
+            this.ClientSize = new System.Drawing.Size(1008, 730);
+            this.Controls.Add(this.nav_panel);
+            this.Controls.Add(this.btn_logOut);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.panel_buttons);
-            this.Controls.Add(this.lbl_totalNumberOfPages);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lbl_currentPage);
-            this.Controls.Add(this.lbl_pageNumberDescription);
-            this.Controls.Add(this.btn_next);
             this.Controls.Add(this.btn_cash);
-            this.Controls.Add(this.btn_previous);
-            this.MinimumSize = new System.Drawing.Size(1024, 738);
+            this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "RoomSelectionForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Room Selection";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_buttons.ResumeLayout(false);
+            this.nav_panel.ResumeLayout(false);
+            this.nav_panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -528,6 +553,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_logOut;
+        private System.Windows.Forms.Panel nav_panel;
     }
 }
 
