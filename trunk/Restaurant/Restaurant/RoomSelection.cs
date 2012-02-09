@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows;
 
 
 namespace Restaurant
@@ -19,9 +20,14 @@ namespace Restaurant
         SortedDictionary<int, Button> buttonDict = new SortedDictionary<int, Button>();
         SortedDictionary<int, String> buttonInfoDict = new SortedDictionary<int, String>();
 
+        public bool allowUserToClose = false;
+
         public RoomSelectionForm()
         {
             InitializeComponent();
+
+            WindowState = FormWindowState.Maximized;
+            FormBorderStyle = FormBorderStyle.None;
 
             //Loads 24 buttons to a dictionary that are inside panel_buttons
             loadButtonsToDictionary();
@@ -54,10 +60,23 @@ namespace Restaurant
                 lbl_totalNumberOfPages.Text = "1";
             }
 
-            LoginForm login = new LoginForm();
-            login.ShowDialog(); 
+            LoginForm login = new LoginForm(0);
+            login.ShowDialog();
         }
-        
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            if (allowUserToClose)
+            {
+                base.OnClosing(e);
+                e.Cancel = false;
+            }
+            else
+            {
+                base.OnClosing(e);
+                e.Cancel = true;
+            }
+        }
 
         /// <summary>
         /// Loads the buttons to a dictionary for munipulation 
@@ -222,6 +241,12 @@ namespace Restaurant
                     }
                 }
             }
+
+            //HAS NOT BEEN TESTED YET
+            if (numberOfRooms < 25)
+            {
+                nav_panel.Visible = false;
+            }
         }
 
         private int getFilledRoomCount()
@@ -240,6 +265,15 @@ namespace Restaurant
             }
 
             return count;
+        }
+
+        //NEEDS TO BE WIRED UP TO LOGINFORM()
+        private void btn_logOut_Click(object sender, EventArgs e)
+        {
+            LoginForm login = new LoginForm(1);
+            login.ShowDialog();
+            allowUserToClose = true;
+            Close();
         }
     }
 }
