@@ -93,9 +93,9 @@ namespace Restaurant
 
             #region Initial Items Setup - Non-Alcoholic
             //Loads the item dictionary with non-alcoholic drinks
-            loadItemsDictWithDrinks(2);
+            loadItemsDictWithDrinks(1);
             //gets the number of non-alcoholic drinks
-            numberOfItems = getDrinksCount(2);
+            numberOfItems = getDrinksCount(1);
             //Hides any extra item buttons
             hideExtraItemButtons();
             //sets up the initial display to non-alcoholic drinks
@@ -477,8 +477,8 @@ namespace Restaurant
         private void btn_non_alcoholic_drinks_Click(object sender, EventArgs e)
         {
             resetItemPageNumber();
-            loadItemsDictWithDrinks(2);
-            numberOfItems = getDrinksCount(2);
+            loadItemsDictWithDrinks(1);
+            numberOfItems = getDrinksCount(1);
             hideExtraItemButtons();
             loadItems();
             lbl_current_item_page.Text = itemPageNumber.ToString();
@@ -488,8 +488,8 @@ namespace Restaurant
         private void btn_alcoholic_drinks_Click(object sender, EventArgs e)
         {
             resetItemPageNumber();
-            loadItemsDictWithDrinks(4);
-            numberOfItems = getDrinksCount(4);
+            loadItemsDictWithDrinks(2);
+            numberOfItems = getDrinksCount(2);
             hideExtraItemButtons();
             loadItems();
             lbl_current_item_page.Text = itemPageNumber.ToString();
