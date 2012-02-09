@@ -29,6 +29,9 @@ namespace Restaurant
             WindowState = FormWindowState.Maximized;
             FormBorderStyle = FormBorderStyle.None;
 
+            wrapper_panel.Left = (this.ClientSize.Width - wrapper_panel.Width) / 2;
+            wrapper_panel.Top = (this.ClientSize.Height - wrapper_panel.Height) / 2;
+
             //Loads 24 buttons to a dictionary that are inside panel_buttons
             loadButtonsToDictionary();
 
