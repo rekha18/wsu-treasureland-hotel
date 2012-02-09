@@ -576,7 +576,7 @@ namespace Restaurant
 
         private void btn_remove_item_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Remove item from order?", "Item", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Remove item from order?", "Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if(result == DialogResult.Yes)
             {
