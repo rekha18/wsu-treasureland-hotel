@@ -77,18 +77,20 @@
             this.lbl_grand_total = new System.Windows.Forms.Label();
             this.nav_panel_items = new System.Windows.Forms.Panel();
             this.nav_panel_categories = new System.Windows.Forms.Panel();
+            this.wrapper_panel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.categories_panel.SuspendLayout();
             this.items_panel.SuspendLayout();
             this.nav_panel_items.SuspendLayout();
             this.nav_panel_categories.SuspendLayout();
+            this.wrapper_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Restaurant.Properties.Resources.CompanyLogo;
             this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(1, 1);
+            this.pictureBox1.Location = new System.Drawing.Point(2, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(666, 106);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -99,7 +101,7 @@
             // 
             this.lbl_selectedRoom.AutoSize = true;
             this.lbl_selectedRoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_selectedRoom.Location = new System.Drawing.Point(4, 697);
+            this.lbl_selectedRoom.Location = new System.Drawing.Point(2, 699);
             this.lbl_selectedRoom.Name = "lbl_selectedRoom";
             this.lbl_selectedRoom.Size = new System.Drawing.Size(66, 24);
             this.lbl_selectedRoom.TabIndex = 8;
@@ -109,7 +111,7 @@
             // 
             this.total_panel.AutoScroll = true;
             this.total_panel.BackColor = System.Drawing.Color.DarkGray;
-            this.total_panel.Location = new System.Drawing.Point(795, 151);
+            this.total_panel.Location = new System.Drawing.Point(793, 153);
             this.total_panel.Name = "total_panel";
             this.total_panel.Size = new System.Drawing.Size(206, 443);
             this.total_panel.TabIndex = 9;
@@ -118,7 +120,7 @@
             // 
             this.btn_submit_order.BackColor = System.Drawing.Color.LightGreen;
             this.btn_submit_order.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_submit_order.Location = new System.Drawing.Point(826, 600);
+            this.btn_submit_order.Location = new System.Drawing.Point(824, 602);
             this.btn_submit_order.Name = "btn_submit_order";
             this.btn_submit_order.Size = new System.Drawing.Size(144, 72);
             this.btn_submit_order.TabIndex = 23;
@@ -136,7 +138,7 @@
             this.categories_panel.Controls.Add(this.button19);
             this.categories_panel.Controls.Add(this.button18);
             this.categories_panel.Controls.Add(this.button17);
-            this.categories_panel.Location = new System.Drawing.Point(8, 151);
+            this.categories_panel.Location = new System.Drawing.Point(6, 153);
             this.categories_panel.Name = "categories_panel";
             this.categories_panel.Size = new System.Drawing.Size(614, 100);
             this.categories_panel.TabIndex = 10;
@@ -230,7 +232,7 @@
             this.items_panel.Controls.Add(this.button3);
             this.items_panel.Controls.Add(this.button2);
             this.items_panel.Controls.Add(this.button1);
-            this.items_panel.Location = new System.Drawing.Point(8, 304);
+            this.items_panel.Location = new System.Drawing.Point(6, 306);
             this.items_panel.Name = "items_panel";
             this.items_panel.Size = new System.Drawing.Size(614, 366);
             this.items_panel.TabIndex = 11;
@@ -415,7 +417,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(130, 697);
+            this.label1.Location = new System.Drawing.Point(128, 699);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(64, 24);
             this.label1.TabIndex = 12;
@@ -425,7 +427,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 272);
+            this.label2.Location = new System.Drawing.Point(1, 274);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 29);
             this.label2.TabIndex = 13;
@@ -435,7 +437,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 119);
+            this.label3.Location = new System.Drawing.Point(1, 121);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(131, 29);
             this.label3.TabIndex = 14;
@@ -445,7 +447,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(790, 119);
+            this.label4.Location = new System.Drawing.Point(788, 121);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 29);
             this.label4.TabIndex = 15;
@@ -499,7 +501,7 @@
             // 
             this.btn_non_alcoholic_drinks.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btn_non_alcoholic_drinks.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_non_alcoholic_drinks.Location = new System.Drawing.Point(636, 408);
+            this.btn_non_alcoholic_drinks.Location = new System.Drawing.Point(634, 410);
             this.btn_non_alcoholic_drinks.Name = "btn_non_alcoholic_drinks";
             this.btn_non_alcoholic_drinks.Size = new System.Drawing.Size(144, 72);
             this.btn_non_alcoholic_drinks.TabIndex = 20;
@@ -511,7 +513,7 @@
             // 
             this.btn_alcoholic_drinks.BackColor = System.Drawing.Color.LightSteelBlue;
             this.btn_alcoholic_drinks.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_alcoholic_drinks.Location = new System.Drawing.Point(636, 486);
+            this.btn_alcoholic_drinks.Location = new System.Drawing.Point(634, 488);
             this.btn_alcoholic_drinks.Name = "btn_alcoholic_drinks";
             this.btn_alcoholic_drinks.Size = new System.Drawing.Size(144, 72);
             this.btn_alcoholic_drinks.TabIndex = 21;
@@ -523,7 +525,7 @@
             // 
             this.btn_cancel_order.BackColor = System.Drawing.Color.RosyBrown;
             this.btn_cancel_order.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_cancel_order.Location = new System.Drawing.Point(636, 600);
+            this.btn_cancel_order.Location = new System.Drawing.Point(634, 602);
             this.btn_cancel_order.Name = "btn_cancel_order";
             this.btn_cancel_order.Size = new System.Drawing.Size(144, 72);
             this.btn_cancel_order.TabIndex = 22;
@@ -589,7 +591,7 @@
             // 
             this.lbl_grand_total.AutoSize = true;
             this.lbl_grand_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_grand_total.Location = new System.Drawing.Point(922, 119);
+            this.lbl_grand_total.Location = new System.Drawing.Point(920, 121);
             this.lbl_grand_total.Name = "lbl_grand_total";
             this.lbl_grand_total.Size = new System.Drawing.Size(71, 29);
             this.lbl_grand_total.TabIndex = 30;
@@ -602,7 +604,7 @@
             this.nav_panel_items.Controls.Add(this.label6);
             this.nav_panel_items.Controls.Add(this.lbl_current_item_page);
             this.nav_panel_items.Controls.Add(this.lbl_total_item_page);
-            this.nav_panel_items.Location = new System.Drawing.Point(630, 301);
+            this.nav_panel_items.Location = new System.Drawing.Point(628, 303);
             this.nav_panel_items.Name = "nav_panel_items";
             this.nav_panel_items.Size = new System.Drawing.Size(157, 91);
             this.nav_panel_items.TabIndex = 31;
@@ -614,32 +616,41 @@
             this.nav_panel_categories.Controls.Add(this.lbl_current_category_page);
             this.nav_panel_categories.Controls.Add(this.label5);
             this.nav_panel_categories.Controls.Add(this.lbl_total_category_page);
-            this.nav_panel_categories.Location = new System.Drawing.Point(630, 147);
+            this.nav_panel_categories.Location = new System.Drawing.Point(628, 149);
             this.nav_panel_categories.Name = "nav_panel_categories";
             this.nav_panel_categories.Size = new System.Drawing.Size(157, 103);
             this.nav_panel_categories.TabIndex = 32;
+            // 
+            // wrapper_panel
+            // 
+            this.wrapper_panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.wrapper_panel.Controls.Add(this.pictureBox1);
+            this.wrapper_panel.Controls.Add(this.nav_panel_categories);
+            this.wrapper_panel.Controls.Add(this.lbl_selectedRoom);
+            this.wrapper_panel.Controls.Add(this.nav_panel_items);
+            this.wrapper_panel.Controls.Add(this.total_panel);
+            this.wrapper_panel.Controls.Add(this.lbl_grand_total);
+            this.wrapper_panel.Controls.Add(this.categories_panel);
+            this.wrapper_panel.Controls.Add(this.btn_submit_order);
+            this.wrapper_panel.Controls.Add(this.items_panel);
+            this.wrapper_panel.Controls.Add(this.btn_cancel_order);
+            this.wrapper_panel.Controls.Add(this.label1);
+            this.wrapper_panel.Controls.Add(this.btn_alcoholic_drinks);
+            this.wrapper_panel.Controls.Add(this.label2);
+            this.wrapper_panel.Controls.Add(this.btn_non_alcoholic_drinks);
+            this.wrapper_panel.Controls.Add(this.label3);
+            this.wrapper_panel.Controls.Add(this.label4);
+            this.wrapper_panel.Location = new System.Drawing.Point(3, 1);
+            this.wrapper_panel.Name = "wrapper_panel";
+            this.wrapper_panel.Size = new System.Drawing.Size(1004, 726);
+            this.wrapper_panel.TabIndex = 33;
             // 
             // MenuSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 730);
-            this.Controls.Add(this.nav_panel_categories);
-            this.Controls.Add(this.nav_panel_items);
-            this.Controls.Add(this.lbl_grand_total);
-            this.Controls.Add(this.btn_submit_order);
-            this.Controls.Add(this.btn_cancel_order);
-            this.Controls.Add(this.btn_alcoholic_drinks);
-            this.Controls.Add(this.btn_non_alcoholic_drinks);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.items_panel);
-            this.Controls.Add(this.categories_panel);
-            this.Controls.Add(this.total_panel);
-            this.Controls.Add(this.lbl_selectedRoom);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.wrapper_panel);
             this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "MenuSelection";
             this.ShowIcon = false;
@@ -653,8 +664,9 @@
             this.nav_panel_items.PerformLayout();
             this.nav_panel_categories.ResumeLayout(false);
             this.nav_panel_categories.PerformLayout();
+            this.wrapper_panel.ResumeLayout(false);
+            this.wrapper_panel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -709,5 +721,6 @@
         private System.Windows.Forms.Label lbl_grand_total;
         private System.Windows.Forms.Panel nav_panel_items;
         private System.Windows.Forms.Panel nav_panel_categories;
+        private System.Windows.Forms.Panel wrapper_panel;
     }
 }

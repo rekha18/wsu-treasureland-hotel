@@ -65,9 +65,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btn_logOut = new System.Windows.Forms.Button();
             this.nav_panel = new System.Windows.Forms.Panel();
+            this.wrapper_panel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_buttons.SuspendLayout();
             this.nav_panel.SuspendLayout();
+            this.wrapper_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_pageNumberDescription
@@ -111,7 +113,7 @@
             this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
             this.pictureBox1.Image = global::Restaurant.Properties.Resources.CompanyLogo;
             this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(1, 1);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(664, 106);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -133,7 +135,7 @@
             // 
             this.btn_cash.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.btn_cash.Image = global::Restaurant.Properties.Resources.cedi;
-            this.btn_cash.Location = new System.Drawing.Point(852, 646);
+            this.btn_cash.Location = new System.Drawing.Point(851, 642);
             this.btn_cash.Name = "btn_cash";
             this.btn_cash.Size = new System.Drawing.Size(144, 72);
             this.btn_cash.TabIndex = 1;
@@ -178,7 +180,7 @@
             this.panel_buttons.Controls.Add(this.button3);
             this.panel_buttons.Controls.Add(this.button2);
             this.panel_buttons.Controls.Add(this.button1);
-            this.panel_buttons.Location = new System.Drawing.Point(12, 152);
+            this.panel_buttons.Location = new System.Drawing.Point(11, 151);
             this.panel_buttons.Name = "panel_buttons";
             this.panel_buttons.Size = new System.Drawing.Size(984, 426);
             this.panel_buttons.TabIndex = 9;
@@ -450,7 +452,7 @@
             // lblHeader
             // 
             this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.Location = new System.Drawing.Point(12, 646);
+            this.lblHeader.Location = new System.Drawing.Point(10, 664);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(325, 23);
             this.lblHeader.TabIndex = 15;
@@ -460,7 +462,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(908, 630);
+            this.label2.Location = new System.Drawing.Point(907, 626);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 16;
@@ -468,7 +470,7 @@
             // 
             // btn_logOut
             // 
-            this.btn_logOut.Location = new System.Drawing.Point(924, 12);
+            this.btn_logOut.Location = new System.Drawing.Point(923, 11);
             this.btn_logOut.Name = "btn_logOut";
             this.btn_logOut.Size = new System.Drawing.Size(72, 72);
             this.btn_logOut.TabIndex = 17;
@@ -484,10 +486,26 @@
             this.nav_panel.Controls.Add(this.lbl_currentPage);
             this.nav_panel.Controls.Add(this.label1);
             this.nav_panel.Controls.Add(this.lbl_totalNumberOfPages);
-            this.nav_panel.Location = new System.Drawing.Point(636, 627);
+            this.nav_panel.Location = new System.Drawing.Point(635, 623);
             this.nav_panel.Name = "nav_panel";
             this.nav_panel.Size = new System.Drawing.Size(200, 100);
             this.nav_panel.TabIndex = 18;
+            // 
+            // wrapper_panel
+            // 
+            this.wrapper_panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.wrapper_panel.Controls.Add(this.pictureBox1);
+            this.wrapper_panel.Controls.Add(this.nav_panel);
+            this.wrapper_panel.Controls.Add(this.btn_cash);
+            this.wrapper_panel.Controls.Add(this.btn_logOut);
+            this.wrapper_panel.Controls.Add(this.panel_buttons);
+            this.wrapper_panel.Controls.Add(this.label2);
+            this.wrapper_panel.Controls.Add(this.lblHeader);
+            this.wrapper_panel.Location = new System.Drawing.Point(2, 3);
+            this.wrapper_panel.Margin = new System.Windows.Forms.Padding(0);
+            this.wrapper_panel.Name = "wrapper_panel";
+            this.wrapper_panel.Size = new System.Drawing.Size(1002, 726);
+            this.wrapper_panel.TabIndex = 19;
             // 
             // RoomSelectionForm
             // 
@@ -495,13 +513,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1008, 730);
-            this.Controls.Add(this.nav_panel);
-            this.Controls.Add(this.btn_logOut);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblHeader);
-            this.Controls.Add(this.panel_buttons);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.btn_cash);
+            this.Controls.Add(this.wrapper_panel);
             this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "RoomSelectionForm";
             this.ShowIcon = false;
@@ -512,8 +524,9 @@
             this.panel_buttons.ResumeLayout(false);
             this.nav_panel.ResumeLayout(false);
             this.nav_panel.PerformLayout();
+            this.wrapper_panel.ResumeLayout(false);
+            this.wrapper_panel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -556,6 +569,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_logOut;
         private System.Windows.Forms.Panel nav_panel;
+        private System.Windows.Forms.Panel wrapper_panel;
     }
 }
 
