@@ -9,18 +9,27 @@ using TreasureLand.App_Code;
 namespace TreasureLand.Clerk
 {
     public partial class SelectRoom : System.Web.UI.Page
-    {
-        private struct RowInfo
+    {     
+        private class RowInfo
         {
             public string RoomType;
             public int RowIndex;
             public int PageIndex;
+            public string RoomNumber;
+            public CheckBox cb;
+            private static ushort counter = 0;
 
-            public RowInfo(string RoomType, int RowIndex, int PageIndex)
+            public RowInfo(string RoomType, int RowIndex, int PageIndex, string RoomNumber)
             {
                 this.RoomType = RoomType;
                 this.RowIndex = RowIndex;
                 this.PageIndex = PageIndex;
+                this.RoomNumber = RoomNumber;
+
+                cb = new CheckBox();
+                cb.Checked = true;
+                cb.EnableViewState = true;
+                cb.ID = "DynamicCheckBox" + counter++.ToString();
             }
         }
         
@@ -35,7 +44,7 @@ namespace TreasureLand.Clerk
         {
             //On a fresh load, remove any previous RowInfo
             if (!IsPostBack)
-                if(Session["RowInfo"] != null)
+                if (Session["RowInfo"] != null)
                     Session.Remove("RowInfo");
             
             if (Session["RowInfo"] == null)
@@ -110,6 +119,33 @@ namespace TreasureLand.Clerk
         }
 
         /// <summary>
+        /// Dynamically renders a list of checked rooms to be displayed
+        /// on the right side of the page
+        /// </summary>
+        private void renderCheckedRoomsList()
+        {
+            if (phSelectedRoomsList.Controls.Count > 0 || Session["RowInfo"] == null)
+                return;
+            
+            Dictionary<int, RowInfo> rowInfos = (Dictionary<int, RowInfo>)Session["RowInfo"];
+            foreach (KeyValuePair<int, RowInfo> kvp in rowInfos)
+            {
+                Literal l = new Literal();
+                l.Text = " - Room #" + kvp.Value.RoomNumber + "<br />";
+                phSelectedRoomsList.Controls.Add(kvp.Value.cb);
+                phSelectedRoomsList.Controls.Add(l);
+            }
+
+            if (rowInfos.Count > 0)
+            {
+                btnUpdateCheckedRoomsList.Visible = true;
+                phSelectedRoomsList.DataBind();
+            }
+            else
+                btnUpdateCheckedRoomsList.Visible = false;
+        }
+
+        /// <summary>
         /// Fires when a checkbox in the selected rooms list is changed
         /// </summary>
         /// <param name="sender">CheckBox that was toggled</param>
@@ -118,6 +154,7 @@ namespace TreasureLand.Clerk
         {
             CheckBox cb = (CheckBox)sender;
             int roomID = 0, rowID = 0;
+            string roomNumber = String.Empty;
             Dictionary<int, RowInfo> rowInfo = (Dictionary<int, RowInfo>)Session["RowInfo"];
             
             //Determine the exact RoomID of the checkbox
@@ -130,6 +167,7 @@ namespace TreasureLand.Clerk
                 if(temp == cb)
                 {
                     roomID = Convert.ToInt32(r.Cells[0].Text);
+                    roomNumber = r.Cells[1].Text;
                     rowID = rows;
                     break;
                 }
@@ -140,7 +178,7 @@ namespace TreasureLand.Clerk
             if (!rowInfo.ContainsKey(roomID))
             {
                 //Add it to the linked list
-                rowInfo.Add(roomID, new RowInfo(ddlRoomTypes.SelectedValue, rowID, gvOpenRooms.PageIndex));
+                rowInfo.Add(roomID, new RowInfo(ddlRoomTypes.SelectedValue, rowID, gvOpenRooms.PageIndex, roomNumber));
                 colorRow(gvOpenRooms, rowID, System.Drawing.Color.Yellow);
                 cb.Focus();
             }
@@ -200,6 +238,35 @@ namespace TreasureLand.Clerk
         }
 
         /// <summary>
+        /// After updating the checked rooms list, this function will deselect any
+        /// rooms that were unchecked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnUpdateCheckedRoomsList_OnClick(object sender, EventArgs e)
+        {
+            renderCheckedRoomsList(); //Fill with values prior to execution
+            
+            Dictionary<int, RowInfo> rowInfos = (Dictionary<int, RowInfo>)Session["RowInfo"];
+            LinkedList<int> RemoveValues = new LinkedList<int>();
+            foreach (KeyValuePair<int, RowInfo> kvp in rowInfos)
+            {
+                if (!((CheckBox)phSelectedRoomsList.FindControl(kvp.Value.cb.ID)).Checked)
+                {
+                    RemoveValues.AddFirst(kvp.Key);
+                    colorRow(gvOpenRooms, kvp.Value.RowIndex, System.Drawing.Color.White);
+                    ((CheckBox)gvOpenRooms.Rows[kvp.Value.RowIndex].FindControl("cbSelected")).Checked = false;
+                }
+            }
+
+            foreach (int i in RemoveValues)
+                rowInfos.Remove(i);
+
+            if(RemoveValues.Count > 0)
+                checkSelectedRooms();
+        }
+
+        /// <summary>
         /// Row color remains persistent when the page is changed, so
         /// this function will appropriately "decolor" unchecked items
         /// and recolor colored items.
@@ -216,6 +283,32 @@ namespace TreasureLand.Clerk
             }
 
             checkSelectedRooms();
+        }
+
+        /// <summary>
+        /// Renders the checked rooms list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void phSelectedRoomedsList_PreRender(object sender, EventArgs e)
+        {
+            renderCheckedRoomsList();
+        }
+
+        /// <summary>
+        /// Gathers the information from the dynamic checkboxes to update their
+        /// logical counterpart so information is not lost on re-loading
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void phSelectedRoomedsList_Unload(object sender, EventArgs e)
+        {         
+            Dictionary<int, RowInfo> rowInfos = (Dictionary<int, RowInfo>)Session["RowInfo"];
+            LinkedList<int> RemoveValues = new LinkedList<int>();
+
+            foreach (KeyValuePair<int, RowInfo> kvp in rowInfos)
+                kvp.Value.cb.Checked =
+                    ((CheckBox)phSelectedRoomsList.FindControl(kvp.Value.cb.ID)).Checked;
         }
     }
 }

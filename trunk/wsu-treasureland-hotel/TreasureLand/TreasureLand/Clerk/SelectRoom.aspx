@@ -14,23 +14,36 @@
             TableName="HotelRoomTypes">
         </asp:LinqDataSource>
     </p>
-    <asp:GridView ID="gvOpenRooms" runat="server" AutoGenerateColumns="False" 
-        DataSourceID="sdsOpenRooms" AllowPaging="True" 
-        ondatabound="gvOpenRooms_DataBound" 
-        onpageindexchanged="gvOpenRooms_PageIndexChanged">
-        <Columns>
-            <asp:BoundField DataField="RoomID" HeaderText="Room ID" 
-                SortExpression="RoomID" />
-            <asp:BoundField DataField="RoomNumbers" HeaderText="Room Number" 
-                SortExpression="RoomNumbers" />
-            <asp:TemplateField HeaderText="Selected Rooms" ShowHeader="False">
-                <ItemTemplate>
-                    <asp:CheckBox ID="cbSelected" runat="server" AutoPostBack="True" 
-                        oncheckedchanged="cbSelected_CheckedChanged" />
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
+    <table>
+        <tr>
+            <td valign="top"><asp:GridView ID="gvOpenRooms" runat="server" AutoGenerateColumns="False" 
+                DataSourceID="sdsOpenRooms" AllowPaging="True" 
+                ondatabound="gvOpenRooms_DataBound" 
+                onpageindexchanged="gvOpenRooms_PageIndexChanged">
+                <Columns>
+                    <asp:BoundField DataField="RoomID" HeaderText="Room ID" 
+                        SortExpression="RoomID" />
+                    <asp:BoundField DataField="RoomNumbers" HeaderText="Room Number" 
+                        SortExpression="RoomNumbers" />
+                    <asp:TemplateField HeaderText="Selected Rooms" ShowHeader="False">
+                        <ItemTemplate>
+                            <asp:CheckBox ID="cbSelected" runat="server" AutoPostBack="True" 
+                                oncheckedchanged="cbSelected_CheckedChanged" />
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView></td>
+            <td valign="top"><!--<p><strong>Selected Rooms:</strong></p>
+                <asp:PlaceHolder ID="phSelectedRoomsList" runat="server" 
+                    onprerender="phSelectedRoomedsList_PreRender" 
+                    oninit="phSelectedRoomedsList_PreRender" 
+                    ></asp:PlaceHolder>
+                <asp:Button ID="btnUpdateCheckedRoomsList" Visible="false" Text="Update Rooms"
+                    OnClick="btnUpdateCheckedRoomsList_OnClick" runat="server"/>-->
+            </td>
+        </tr>
+    </table>
+    
     <!-- A SQL data source is necessary here due to the complex operation of comparing
     all records to ensure that a room is open for the specified date range -->
     <asp:SqlDataSource ID="sdsOpenRooms" runat="server" 
@@ -66,5 +79,4 @@
         <asp:Literal ID="lblStartDate" runat="server"></asp:Literal>
        &nbsp;for 
         <asp:Literal ID="lNights" runat="server"></asp:Literal>&nbsp;night(s).</p>
-    
 </asp:Content>
