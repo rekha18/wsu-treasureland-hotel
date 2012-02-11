@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TreasureLand" Class="TreasureLandDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=titan.cs.weber.edu,10433;Initial Catalog=TreasureLand;Persist Security Info=True;User ID=4790Client" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TreasurelandDB" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Accounting" Member="Accountings">
-    <Type Name="Accounting">
-      <Column Name="AccountingID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="AccountingDate" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
-      <Column Name="AccountingTypeID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
-      <Column Name="AccountingCost" Type="System.Decimal" DbType="SmallMoney" CanBeNull="true" />
-      <Column Name="AccountingDescription" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
-      <Association Name="AccountingType_Accounting" Member="AccountingType" ThisKey="AccountingTypeID" OtherKey="AccountingTypeID" Type="AccountingType" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.AccountingType" Member="AccountingTypes">
     <Type Name="AccountingType">
       <Column Name="AccountingTypeID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -72,12 +62,6 @@
       <Association Name="DrinkPurchase_DrinkPurchaseHistory" Member="DrinkPurchase" ThisKey="DrinkPurchaseID" OtherKey="DrinkPurchaseID" Type="DrinkPurchase" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Format" Member="Formats">
-    <Type Name="Format">
-      <Column Name="FormatID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="FormatDescription" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.Guest" Member="Guests">
     <Type Name="Guest">
       <Column Name="GuestID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -114,12 +98,8 @@
       <Association Name="Hotel_HotelOrder" Member="HotelOrders" ThisKey="HotelID" OtherKey="HotelID" Type="HotelOrder" />
       <Association Name="Hotel_HotelRoomType" Member="HotelRoomTypes" ThisKey="HotelID" OtherKey="HotelID" Type="HotelRoomType" />
       <Association Name="Hotel_Revenue" Member="Revenues" ThisKey="HotelID" OtherKey="HotelID" Type="Revenue" />
-    </Type>
-  </Table>
-  <Table Name="dbo.HotelLongTermAsset" Member="HotelLongTermAssets">
-    <Type Name="HotelLongTermAsset">
-      <Column Name="LongTermAssetID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="HotelID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Hotel_HotelLongTermAsset" Member="HotelLongTermAssets" ThisKey="HotelID" OtherKey="HotelID" Type="HotelLongTermAsset" />
+      <Association Name="Hotel_Accounting" Member="Accountings" ThisKey="HotelID" OtherKey="HotelID" Type="Accounting" />
     </Type>
   </Table>
   <Table Name="dbo.HotelOrder" Member="HotelOrders">
@@ -177,16 +157,6 @@
       <Column Name="LineItemAmount" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
       <Association Name="ReservationDetailBilling_LineItem" Member="ReservationDetailBilling" ThisKey="ReservationDetailBillingID" OtherKey="ReservationDetailBillingID" Type="ReservationDetailBilling" IsForeignKey="true" />
       <Association Name="FoodDrinkCategory_LineItem" Member="FoodDrinkCategory" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="FoodDrinkCategory" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.LongTermAsset" Member="LongTermAssets">
-    <Type Name="LongTermAsset">
-      <Column Name="LongTermAssetID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="LongTermAssetName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="LongTermAssetLocation" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="LongTermAssetCost" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
-      <Column Name="LongTermAssetInUse" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="LongTermAssetPurchaseDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.MenuItem" Member="MenuItems">
@@ -285,12 +255,6 @@
       <Association Name="RevenueCategory_Revenue" Member="Revenues" ThisKey="RevenueCategoryID" OtherKey="RevenueCategoryID" Type="Revenue" />
     </Type>
   </Table>
-  <Table Name="dbo.RoomStatus" Member="RoomStatus">
-    <Type Name="RoomStatus">
-      <Column Name="RoomStatusID" Type="System.Char" DbType="Char(1) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="RoomStatusDescription" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.ShortTermAsset" Member="ShortTermAssets">
     <Type Name="ShortTermAsset">
       <Column Name="ShortTermAssetID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -323,6 +287,45 @@
       <Column Name="RoomStatus" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
       <Association Name="Room_ReservationDetail" Member="ReservationDetails" ThisKey="RoomID" OtherKey="RoomID" Type="ReservationDetail" />
       <Association Name="HotelRoomType_Room" Member="HotelRoomType" ThisKey="HotelRoomTypeID" OtherKey="HotelRoomTypeID" Type="HotelRoomType" IsForeignKey="true" />
+      <Association Name="RoomStatus_Room" Member="RoomStatus1" ThisKey="RoomStatus" OtherKey="RoomStatus1" Type="RoomStatus" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LongTermAsset" Member="LongTermAssets">
+    <Type Name="LongTermAsset">
+      <Column Name="LongTermAssetID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LongTermAssetName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LongTermAssetLocation" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LongTermAssetCost" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
+      <Column Name="LongTermAssetInUse" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="LongTermAssetPurchaseDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Association Name="LongTermAsset_HotelLongTermAsset" Member="HotelLongTermAssets" ThisKey="LongTermAssetID" OtherKey="LongTermAssetID" Type="HotelLongTermAsset" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HotelLongTermAsset" Member="HotelLongTermAssets">
+    <Type Name="HotelLongTermAsset">
+      <Column Name="LongTermAssetID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HotelID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Hotel_HotelLongTermAsset" Member="Hotel" ThisKey="HotelID" OtherKey="HotelID" Type="Hotel" IsForeignKey="true" />
+      <Association Name="LongTermAsset_HotelLongTermAsset" Member="LongTermAsset" ThisKey="LongTermAssetID" OtherKey="LongTermAssetID" Type="LongTermAsset" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Accounting" Member="Accountings">
+    <Type Name="Accounting">
+      <Column Name="AccountingID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AccountingDate" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="AccountingTypeID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="AccountingCost" Type="System.Decimal" DbType="SmallMoney" CanBeNull="true" />
+      <Column Name="AccountingDescription" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
+      <Column Name="HotelID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Association Name="AccountingType_Accounting" Member="AccountingType" ThisKey="AccountingTypeID" OtherKey="AccountingTypeID" Type="AccountingType" IsForeignKey="true" />
+      <Association Name="Hotel_Accounting" Member="Hotel" ThisKey="HotelID" OtherKey="HotelID" Type="Hotel" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RoomStatus" Member="RoomStatus">
+    <Type Name="RoomStatus">
+      <Column Name="RoomStatus" Member="RoomStatus1" Type="System.Char" DbType="Char(1) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoomStatusDescription" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="RoomStatus_Room" Member="Rooms" ThisKey="RoomStatus1" OtherKey="RoomStatus" Type="Room" />
     </Type>
   </Table>
 </Database>
