@@ -36,6 +36,7 @@ namespace Restaurant
     public partial class MenuSelection : Form
     {
         private bool isSelectedCategoryDrink = true;
+        int ROOMNUMBER = 0;
 
         //CATEGORIES
         private int numberOfCategories = 0;
@@ -74,6 +75,7 @@ namespace Restaurant
             if (selectedRoom != 0) // 0 means paying with cash
             {
                 lbl_selectedRoom.Text = "Room: " + selectedRoom.ToString();
+                ROOMNUMBER = Convert.ToInt32(selectedRoom);
             }
 
             #region Categorie Setup
@@ -524,7 +526,6 @@ namespace Restaurant
         {
             Button btn = sender as Button;
             String menuItemName = btn.Text.Trim();
-            System.Diagnostics.Debug.WriteLine("item name: " + menuItemName);
             String menuPrice = getMoneyValueForItem(menuItemName);
             createTotalItemButton(menuPrice , menuItemName);
 
@@ -659,8 +660,6 @@ namespace Restaurant
                     {
                         menuItemPrice = Convert.ToDecimal(q.DrinkRetailSalePrice);
                     }
-
-                    System.Diagnostics.Debug.WriteLine("drink item price: " + menuItemPrice);
                 }
             }
             else
@@ -672,13 +671,10 @@ namespace Restaurant
 
                 if (query.Any())
                 {
-
                     foreach (var q in query)
                     {
                         menuItemPrice = Convert.ToDecimal(q.MenuItemPrice);
                     }
-
-                    System.Diagnostics.Debug.WriteLine("food item price: " + menuItemPrice);
                 }
             }
                 String value = String.Format("{0:N}", menuItemPrice);
@@ -709,7 +705,25 @@ namespace Restaurant
         {
             foreach (var item in totalDict)
             {
-                System.Diagnostics.Debug.WriteLine("item remaining: " + getItemInfoFromButton(item.Value, 1));
+                String itemName = getItemInfoFromButton(item.Value, 1);
+                System.Diagnostics.Debug.WriteLine("item remaining: " + itemName);
+
+                DataClassesDataContext db = new DataClassesDataContext();
+
+
+                //RESERVATIONDETAILBILLING
+                ReservationDetailBilling reservationOBJ = new ReservationDetailBilling
+                {
+                    
+                };                
+                db.ReservationDetailBillings.InsertOnSubmit(reservationOBJ);
+
+                //LINEITEM
+                LineItem lineOBJ = new LineItem
+                {
+
+                };
+                db.LineItems.InsertOnSubmit(lineOBJ);
             }
 
             Close();
