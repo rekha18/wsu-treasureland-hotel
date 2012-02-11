@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TreasureLand" Class="TreasureLandDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=&quot;titan.cs.weber.edu, 10433&quot;;Initial Catalog=TreasureLand;User ID=4790Client" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TreasureLandConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=titan.cs.weber.edu,10433;Initial Catalog=TreasureLand;Persist Security Info=True;User ID=4790Client" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TreasurelandDB" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Accounting" Member="Accountings">
     <Type Name="Accounting">
       <Column Name="AccountingID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -285,26 +285,10 @@
       <Association Name="RevenueCategory_Revenue" Member="Revenues" ThisKey="RevenueCategoryID" OtherKey="RevenueCategoryID" Type="Revenue" />
     </Type>
   </Table>
-  <Table Name="dbo.Room" Member="Rooms">
-    <Type Name="Room">
-      <Column Name="RoomID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="HotelRoomTypeID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="RoomNumbers" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="RoomDescription" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="RoomSmoking" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="RoomBedConfiguration" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="RoomHandicap" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="RoomStatus" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
-      <Association Name="Room_ReservationDetail" Member="ReservationDetails" ThisKey="RoomID" OtherKey="RoomID" Type="ReservationDetail" />
-      <Association Name="Room_RoomStatus" Member="RoomStatus1" ThisKey="RoomStatus" OtherKey="RoomStatusID" Type="RoomStatus" />
-      <Association Name="HotelRoomType_Room" Member="HotelRoomType" ThisKey="HotelRoomTypeID" OtherKey="HotelRoomTypeID" Type="HotelRoomType" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.RoomStatus" Member="RoomStatus">
     <Type Name="RoomStatus">
       <Column Name="RoomStatusID" Type="System.Char" DbType="Char(1) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="RoomStatusDescription" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Association Name="Room_RoomStatus" Member="Room" ThisKey="RoomStatusID" OtherKey="RoomStatus" Type="Room" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ShortTermAsset" Member="ShortTermAssets">
@@ -325,6 +309,20 @@
       <Association Name="FoodDrinkCategory_Drink" Member="Drinks" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="Drink" />
       <Association Name="FoodDrinkCategory_LineItem" Member="LineItems" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="LineItem" />
       <Association Name="FoodDrinkCategory_MenuItem" Member="MenuItems" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="MenuItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Room" Member="Rooms">
+    <Type Name="Room">
+      <Column Name="RoomID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HotelRoomTypeID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="RoomNumbers" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="RoomDescription" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RoomSmoking" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="RoomBedConfiguration" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RoomHandicap" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="RoomStatus" Type="System.Char" DbType="Char(1) NOT NULL" CanBeNull="false" />
+      <Association Name="Room_ReservationDetail" Member="ReservationDetails" ThisKey="RoomID" OtherKey="RoomID" Type="ReservationDetail" />
+      <Association Name="HotelRoomType_Room" Member="HotelRoomType" ThisKey="HotelRoomTypeID" OtherKey="HotelRoomTypeID" Type="HotelRoomType" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
