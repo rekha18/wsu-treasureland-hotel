@@ -67,7 +67,6 @@
     <Content Include="Admin\AdminMaster.master" />
     <Content Include="Admin\Controls\RoomManagement.ascx" />
     <Content Include="Admin\CreateUser.aspx" />
-    <Content Include="Admin\ManageRestaurant.aspx" />
     <Content Include="Admin\ManageRooms.aspx" />
     <Content Include="Admin\ManageStatuses.aspx" />
     <Content Include="Admin\ManageUsers.aspx" />
@@ -82,6 +81,7 @@
     <Content Include="Clerk\LocateGuest.aspx" />
     <Content Include="Clerk\LocateGuestFolio.aspx" />
     <Content Include="Clerk\LocateReservation.aspx" />
+    <Content Include="Clerk\ModifyReservation.aspx" />
     <Content Include="Clerk\Print.aspx" />
     <Content Include="Clerk\Reports.aspx" />
     <Content Include="Clerk\SelectRoom.aspx" />
@@ -180,12 +180,6 @@
     <Compile Include="Admin\CreateUser.aspx.designer.cs">
       <DependentUpon>CreateUser.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\ManageRestaurant.aspx.cs">
-      <DependentUpon>ManageRestaurant.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin\ManageRestaurant.aspx.designer.cs">
-      <DependentUpon>ManageRestaurant.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\ManageRooms.aspx.cs">
       <DependentUpon>ManageRooms.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -222,6 +216,13 @@
       <DependentUpon>ManageDiscounts.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\ExpenseDB.cs" />
+    <Compile Include="Clerk\ModifyReservation.aspx.cs">
+      <DependentUpon>ModifyReservation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\ModifyReservation.aspx.designer.cs">
+      <DependentUpon>ModifyReservation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Clerk\Print.aspx.cs">
       <DependentUpon>Print.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
