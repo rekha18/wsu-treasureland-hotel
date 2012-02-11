@@ -123,7 +123,7 @@ namespace TreasureLand.DBM
     #endregion
 		
 		public TreasureLandDataClassesDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TreasureLandConnectionString2"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TreasureLandConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -6129,6 +6129,8 @@ namespace TreasureLand.DBM
 		
 		private EntitySet<ReservationDetail> _ReservationDetails;
 		
+		private EntitySet<RoomStatus> _RoomStatus1;
+		
 		private EntityRef<HotelRoomType> _HotelRoomType;
 		
     #region Extensibility Method Definitions
@@ -6156,6 +6158,7 @@ namespace TreasureLand.DBM
 		public Room()
 		{
 			this._ReservationDetails = new EntitySet<ReservationDetail>(new Action<ReservationDetail>(this.attach_ReservationDetails), new Action<ReservationDetail>(this.detach_ReservationDetails));
+			this._RoomStatus1 = new EntitySet<RoomStatus>(new Action<RoomStatus>(this.attach_RoomStatus1), new Action<RoomStatus>(this.detach_RoomStatus1));
 			this._HotelRoomType = default(EntityRef<HotelRoomType>);
 			OnCreated();
 		}
@@ -6337,6 +6340,19 @@ namespace TreasureLand.DBM
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Room_RoomStatus", Storage="_RoomStatus1", ThisKey="RoomStatus", OtherKey="RoomStatusID")]
+		public EntitySet<RoomStatus> RoomStatus1
+		{
+			get
+			{
+				return this._RoomStatus1;
+			}
+			set
+			{
+				this._RoomStatus1.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HotelRoomType_Room", Storage="_HotelRoomType", ThisKey="HotelRoomTypeID", OtherKey="HotelRoomTypeID", IsForeignKey=true)]
 		public HotelRoomType HotelRoomType
 		{
@@ -6402,6 +6418,18 @@ namespace TreasureLand.DBM
 			this.SendPropertyChanging();
 			entity.Room = null;
 		}
+		
+		private void attach_RoomStatus1(RoomStatus entity)
+		{
+			this.SendPropertyChanging();
+			entity.Room = this;
+		}
+		
+		private void detach_RoomStatus1(RoomStatus entity)
+		{
+			this.SendPropertyChanging();
+			entity.Room = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RoomStatus")]
@@ -6413,6 +6441,8 @@ namespace TreasureLand.DBM
 		private char _RoomStatusID;
 		
 		private string _RoomStatusDescription;
+		
+		private EntityRef<Room> _Room;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -6426,6 +6456,7 @@ namespace TreasureLand.DBM
 		
 		public RoomStatus()
 		{
+			this._Room = default(EntityRef<Room>);
 			OnCreated();
 		}
 		
@@ -6440,6 +6471,10 @@ namespace TreasureLand.DBM
 			{
 				if ((this._RoomStatusID != value))
 				{
+					if (this._Room.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnRoomStatusIDChanging(value);
 					this.SendPropertyChanging();
 					this._RoomStatusID = value;
@@ -6465,6 +6500,40 @@ namespace TreasureLand.DBM
 					this._RoomStatusDescription = value;
 					this.SendPropertyChanged("RoomStatusDescription");
 					this.OnRoomStatusDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Room_RoomStatus", Storage="_Room", ThisKey="RoomStatusID", OtherKey="RoomStatus", IsForeignKey=true)]
+		public Room Room
+		{
+			get
+			{
+				return this._Room.Entity;
+			}
+			set
+			{
+				Room previousValue = this._Room.Entity;
+				if (((previousValue != value) 
+							|| (this._Room.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Room.Entity = null;
+						previousValue.RoomStatus1.Remove(this);
+					}
+					this._Room.Entity = value;
+					if ((value != null))
+					{
+						value.RoomStatus1.Add(this);
+						this._RoomStatusID = value.RoomStatus;
+					}
+					else
+					{
+						this._RoomStatusID = default(char);
+					}
+					this.SendPropertyChanged("Room");
 				}
 			}
 		}
