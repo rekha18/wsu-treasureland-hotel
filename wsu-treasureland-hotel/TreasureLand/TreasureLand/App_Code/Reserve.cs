@@ -21,6 +21,7 @@ namespace TreasureLand.App_Code
         public int daysStaying;
         public int view;
         public int reservationID;
+        public int reservationDetailID;
 
         public Reserve Clone()
         {
