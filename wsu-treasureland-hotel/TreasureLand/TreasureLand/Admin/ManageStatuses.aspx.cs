@@ -19,7 +19,7 @@ namespace TreasureLand.Admin
         {
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
             RoomStatus status = new RoomStatus();
-            status.RoomStatusID = Convert.ToChar(txtStatus.Text);
+            status.RoomStatus1 = Convert.ToChar(txtStatus.Text);
             status.RoomStatusDescription = txtDescription.Text;
             db.RoomStatus.InsertOnSubmit(status);
             db.SubmitChanges();
