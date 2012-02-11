@@ -125,7 +125,8 @@
                         <HeaderStyle HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status">
+                        <asp:BoundField DataField="ReservationStatus" HeaderText="Status" 
+                            SortExpression="ReservationStatus">
                         <HeaderStyle HorizontalAlign="Center" />
                         <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
@@ -177,8 +178,7 @@
                         </td>
                         <td align="center">
                             <asp:Button ID="btnModifyReservation" runat="server" 
-                                onclick="btnModifyReservation_Click" Text="Modify Reservation" 
-                                Enabled="False" />
+                                onclick="btnModifyReservation_Click" Text="Modify Reservation" />
                         </td>
                         <td align="center">
                             <asp:Button ID="btnConfirmReservation" runat="server" CommandArgument="3" 

@@ -126,7 +126,10 @@ namespace TreasureLand.Clerk
         {
             reserving.returnView = 1;
             reserving.reservationID = Convert.ToInt16(lblReservationNumber.Text);
-            Response.Redirect("SelectRoom.aspx");
+            reserving.reservationDetailID = Convert.ToInt32(gvReservationDetails.SelectedRow.Cells[0].Text);
+            reserving.reserveDate = gvReservationDetails.SelectedRow.Cells[2].Text;
+            reserving.daysStaying = Convert.ToInt32(gvReservationDetails.SelectedRow.Cells[3].Text);
+            Response.Redirect("ModifyReservation.aspx");
         }
 
         #region Session Control
