@@ -31,7 +31,7 @@ namespace TreasureLand.Admin
 
         protected void btnManageUsers_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Manage.aspx");
+            Response.Redirect("ManageUsers.aspx");
         }
 
         protected void btnManageRestaurant_Clock(object sender, EventArgs e)
