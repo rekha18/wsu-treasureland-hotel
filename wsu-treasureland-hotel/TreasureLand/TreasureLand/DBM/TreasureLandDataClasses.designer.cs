@@ -30,9 +30,6 @@ namespace TreasureLand.DBM
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertAccounting(Accounting instance);
-    partial void UpdateAccounting(Accounting instance);
-    partial void DeleteAccounting(Accounting instance);
     partial void InsertAccountingType(AccountingType instance);
     partial void UpdateAccountingType(AccountingType instance);
     partial void DeleteAccountingType(AccountingType instance);
@@ -60,9 +57,6 @@ namespace TreasureLand.DBM
     partial void InsertHotel(Hotel instance);
     partial void UpdateHotel(Hotel instance);
     partial void DeleteHotel(Hotel instance);
-    partial void InsertHotelLongTermAsset(HotelLongTermAsset instance);
-    partial void UpdateHotelLongTermAsset(HotelLongTermAsset instance);
-    partial void DeleteHotelLongTermAsset(HotelLongTermAsset instance);
     partial void InsertHotelOrder(HotelOrder instance);
     partial void UpdateHotelOrder(HotelOrder instance);
     partial void DeleteHotelOrder(HotelOrder instance);
@@ -81,9 +75,6 @@ namespace TreasureLand.DBM
     partial void InsertLineItem(LineItem instance);
     partial void UpdateLineItem(LineItem instance);
     partial void DeleteLineItem(LineItem instance);
-    partial void InsertLongTermAsset(LongTermAsset instance);
-    partial void UpdateLongTermAsset(LongTermAsset instance);
-    partial void DeleteLongTermAsset(LongTermAsset instance);
     partial void InsertMenuItem(MenuItem instance);
     partial void UpdateMenuItem(MenuItem instance);
     partial void DeleteMenuItem(MenuItem instance);
@@ -108,9 +99,6 @@ namespace TreasureLand.DBM
     partial void InsertRevenueCategory(RevenueCategory instance);
     partial void UpdateRevenueCategory(RevenueCategory instance);
     partial void DeleteRevenueCategory(RevenueCategory instance);
-    partial void InsertRoomStatus(RoomStatus instance);
-    partial void UpdateRoomStatus(RoomStatus instance);
-    partial void DeleteRoomStatus(RoomStatus instance);
     partial void InsertShortTermAsset(ShortTermAsset instance);
     partial void UpdateShortTermAsset(ShortTermAsset instance);
     partial void DeleteShortTermAsset(ShortTermAsset instance);
@@ -120,10 +108,22 @@ namespace TreasureLand.DBM
     partial void InsertRoom(Room instance);
     partial void UpdateRoom(Room instance);
     partial void DeleteRoom(Room instance);
+    partial void InsertLongTermAsset(LongTermAsset instance);
+    partial void UpdateLongTermAsset(LongTermAsset instance);
+    partial void DeleteLongTermAsset(LongTermAsset instance);
+    partial void InsertHotelLongTermAsset(HotelLongTermAsset instance);
+    partial void UpdateHotelLongTermAsset(HotelLongTermAsset instance);
+    partial void DeleteHotelLongTermAsset(HotelLongTermAsset instance);
+    partial void InsertAccounting(Accounting instance);
+    partial void UpdateAccounting(Accounting instance);
+    partial void DeleteAccounting(Accounting instance);
+    partial void InsertRoomStatus(RoomStatus instance);
+    partial void UpdateRoomStatus(RoomStatus instance);
+    partial void DeleteRoomStatus(RoomStatus instance);
     #endregion
 		
-		public TreasureLandDataClassesDataContext() :
-        base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TreasurelandTreasureLandDBM"].ConnectionString, mappingSource)
+		public TreasureLandDataClassesDataContext() : 
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TreasurelandDB"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -150,14 +150,6 @@ namespace TreasureLand.DBM
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Accounting> Accountings
-		{
-			get
-			{
-				return this.GetTable<Accounting>();
-			}
 		}
 		
 		public System.Data.Linq.Table<AccountingType> AccountingTypes
@@ -216,14 +208,6 @@ namespace TreasureLand.DBM
 			}
 		}
 		
-		public System.Data.Linq.Table<Format> Formats
-		{
-			get
-			{
-				return this.GetTable<Format>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Guest> Guests
 		{
 			get
@@ -237,14 +221,6 @@ namespace TreasureLand.DBM
 			get
 			{
 				return this.GetTable<Hotel>();
-			}
-		}
-		
-		public System.Data.Linq.Table<HotelLongTermAsset> HotelLongTermAssets
-		{
-			get
-			{
-				return this.GetTable<HotelLongTermAsset>();
 			}
 		}
 		
@@ -293,14 +269,6 @@ namespace TreasureLand.DBM
 			get
 			{
 				return this.GetTable<LineItem>();
-			}
-		}
-		
-		public System.Data.Linq.Table<LongTermAsset> LongTermAssets
-		{
-			get
-			{
-				return this.GetTable<LongTermAsset>();
 			}
 		}
 		
@@ -368,14 +336,6 @@ namespace TreasureLand.DBM
 			}
 		}
 		
-		public System.Data.Linq.Table<RoomStatus> RoomStatus
-		{
-			get
-			{
-				return this.GetTable<RoomStatus>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ShortTermAsset> ShortTermAssets
 		{
 			get
@@ -399,203 +359,36 @@ namespace TreasureLand.DBM
 				return this.GetTable<Room>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Accounting")]
-	public partial class Accounting : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _AccountingID;
-		
-		private System.Nullable<System.DateTime> _AccountingDate;
-		
-		private System.Nullable<short> _AccountingTypeID;
-		
-		private System.Nullable<decimal> _AccountingCost;
-		
-		private string _AccountingDescription;
-		
-		private EntityRef<AccountingType> _AccountingType;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAccountingIDChanging(short value);
-    partial void OnAccountingIDChanged();
-    partial void OnAccountingDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnAccountingDateChanged();
-    partial void OnAccountingTypeIDChanging(System.Nullable<short> value);
-    partial void OnAccountingTypeIDChanged();
-    partial void OnAccountingCostChanging(System.Nullable<decimal> value);
-    partial void OnAccountingCostChanged();
-    partial void OnAccountingDescriptionChanging(string value);
-    partial void OnAccountingDescriptionChanged();
-    #endregion
-		
-		public Accounting()
-		{
-			this._AccountingType = default(EntityRef<AccountingType>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountingID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public short AccountingID
+		public System.Data.Linq.Table<LongTermAsset> LongTermAssets
 		{
 			get
 			{
-				return this._AccountingID;
-			}
-			set
-			{
-				if ((this._AccountingID != value))
-				{
-					this.OnAccountingIDChanging(value);
-					this.SendPropertyChanging();
-					this._AccountingID = value;
-					this.SendPropertyChanged("AccountingID");
-					this.OnAccountingIDChanged();
-				}
+				return this.GetTable<LongTermAsset>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountingDate", DbType="SmallDateTime")]
-		public System.Nullable<System.DateTime> AccountingDate
+		public System.Data.Linq.Table<HotelLongTermAsset> HotelLongTermAssets
 		{
 			get
 			{
-				return this._AccountingDate;
-			}
-			set
-			{
-				if ((this._AccountingDate != value))
-				{
-					this.OnAccountingDateChanging(value);
-					this.SendPropertyChanging();
-					this._AccountingDate = value;
-					this.SendPropertyChanged("AccountingDate");
-					this.OnAccountingDateChanged();
-				}
+				return this.GetTable<HotelLongTermAsset>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountingTypeID", DbType="SmallInt")]
-		public System.Nullable<short> AccountingTypeID
+		public System.Data.Linq.Table<Accounting> Accountings
 		{
 			get
 			{
-				return this._AccountingTypeID;
-			}
-			set
-			{
-				if ((this._AccountingTypeID != value))
-				{
-					if (this._AccountingType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnAccountingTypeIDChanging(value);
-					this.SendPropertyChanging();
-					this._AccountingTypeID = value;
-					this.SendPropertyChanged("AccountingTypeID");
-					this.OnAccountingTypeIDChanged();
-				}
+				return this.GetTable<Accounting>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountingCost", DbType="SmallMoney")]
-		public System.Nullable<decimal> AccountingCost
+		public System.Data.Linq.Table<RoomStatus> RoomStatus
 		{
 			get
 			{
-				return this._AccountingCost;
-			}
-			set
-			{
-				if ((this._AccountingCost != value))
-				{
-					this.OnAccountingCostChanging(value);
-					this.SendPropertyChanging();
-					this._AccountingCost = value;
-					this.SendPropertyChanged("AccountingCost");
-					this.OnAccountingCostChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountingDescription", DbType="VarChar(120)")]
-		public string AccountingDescription
-		{
-			get
-			{
-				return this._AccountingDescription;
-			}
-			set
-			{
-				if ((this._AccountingDescription != value))
-				{
-					this.OnAccountingDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._AccountingDescription = value;
-					this.SendPropertyChanged("AccountingDescription");
-					this.OnAccountingDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AccountingType_Accounting", Storage="_AccountingType", ThisKey="AccountingTypeID", OtherKey="AccountingTypeID", IsForeignKey=true)]
-		public AccountingType AccountingType
-		{
-			get
-			{
-				return this._AccountingType.Entity;
-			}
-			set
-			{
-				AccountingType previousValue = this._AccountingType.Entity;
-				if (((previousValue != value) 
-							|| (this._AccountingType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._AccountingType.Entity = null;
-						previousValue.Accountings.Remove(this);
-					}
-					this._AccountingType.Entity = value;
-					if ((value != null))
-					{
-						value.Accountings.Add(this);
-						this._AccountingTypeID = value.AccountingTypeID;
-					}
-					else
-					{
-						this._AccountingTypeID = default(Nullable<short>);
-					}
-					this.SendPropertyChanged("AccountingType");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<RoomStatus>();
 			}
 		}
 	}
@@ -1757,51 +1550,6 @@ namespace TreasureLand.DBM
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Format")]
-	public partial class Format
-	{
-		
-		private short _FormatID;
-		
-		private string _FormatDescription;
-		
-		public Format()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FormatID", AutoSync=AutoSync.Always, DbType="SmallInt NOT NULL IDENTITY", IsDbGenerated=true)]
-		public short FormatID
-		{
-			get
-			{
-				return this._FormatID;
-			}
-			set
-			{
-				if ((this._FormatID != value))
-				{
-					this._FormatID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FormatDescription", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string FormatDescription
-		{
-			get
-			{
-				return this._FormatDescription;
-			}
-			set
-			{
-				if ((this._FormatDescription != value))
-				{
-					this._FormatDescription = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Guest")]
 	public partial class Guest : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2306,6 +2054,10 @@ namespace TreasureLand.DBM
 		
 		private EntitySet<Revenue> _Revenues;
 		
+		private EntitySet<HotelLongTermAsset> _HotelLongTermAssets;
+		
+		private EntitySet<Accounting> _Accountings;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -2335,6 +2087,8 @@ namespace TreasureLand.DBM
 			this._HotelOrders = new EntitySet<HotelOrder>(new Action<HotelOrder>(this.attach_HotelOrders), new Action<HotelOrder>(this.detach_HotelOrders));
 			this._HotelRoomTypes = new EntitySet<HotelRoomType>(new Action<HotelRoomType>(this.attach_HotelRoomTypes), new Action<HotelRoomType>(this.detach_HotelRoomTypes));
 			this._Revenues = new EntitySet<Revenue>(new Action<Revenue>(this.attach_Revenues), new Action<Revenue>(this.detach_Revenues));
+			this._HotelLongTermAssets = new EntitySet<HotelLongTermAsset>(new Action<HotelLongTermAsset>(this.attach_HotelLongTermAssets), new Action<HotelLongTermAsset>(this.detach_HotelLongTermAssets));
+			this._Accountings = new EntitySet<Accounting>(new Action<Accounting>(this.attach_Accountings), new Action<Accounting>(this.detach_Accountings));
 			OnCreated();
 		}
 		
@@ -2557,6 +2311,32 @@ namespace TreasureLand.DBM
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hotel_HotelLongTermAsset", Storage="_HotelLongTermAssets", ThisKey="HotelID", OtherKey="HotelID")]
+		public EntitySet<HotelLongTermAsset> HotelLongTermAssets
+		{
+			get
+			{
+				return this._HotelLongTermAssets;
+			}
+			set
+			{
+				this._HotelLongTermAssets.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hotel_Accounting", Storage="_Accountings", ThisKey="HotelID", OtherKey="HotelID")]
+		public EntitySet<Accounting> Accountings
+		{
+			get
+			{
+				return this._Accountings;
+			}
+			set
+			{
+				this._Accountings.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -2612,91 +2392,29 @@ namespace TreasureLand.DBM
 			this.SendPropertyChanging();
 			entity.Hotel = null;
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.HotelLongTermAsset")]
-	public partial class HotelLongTermAsset : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _LongTermAssetID;
-		
-		private short _HotelID;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnLongTermAssetIDChanging(short value);
-    partial void OnLongTermAssetIDChanged();
-    partial void OnHotelIDChanging(short value);
-    partial void OnHotelIDChanged();
-    #endregion
-		
-		public HotelLongTermAsset()
+		private void attach_HotelLongTermAssets(HotelLongTermAsset entity)
 		{
-			OnCreated();
+			this.SendPropertyChanging();
+			entity.Hotel = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LongTermAssetID", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
-		public short LongTermAssetID
+		private void detach_HotelLongTermAssets(HotelLongTermAsset entity)
 		{
-			get
-			{
-				return this._LongTermAssetID;
-			}
-			set
-			{
-				if ((this._LongTermAssetID != value))
-				{
-					this.OnLongTermAssetIDChanging(value);
-					this.SendPropertyChanging();
-					this._LongTermAssetID = value;
-					this.SendPropertyChanged("LongTermAssetID");
-					this.OnLongTermAssetIDChanged();
-				}
-			}
+			this.SendPropertyChanging();
+			entity.Hotel = null;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HotelID", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
-		public short HotelID
+		private void attach_Accountings(Accounting entity)
 		{
-			get
-			{
-				return this._HotelID;
-			}
-			set
-			{
-				if ((this._HotelID != value))
-				{
-					this.OnHotelIDChanging(value);
-					this.SendPropertyChanging();
-					this._HotelID = value;
-					this.SendPropertyChanged("HotelID");
-					this.OnHotelIDChanged();
-				}
-			}
+			this.SendPropertyChanging();
+			entity.Hotel = this;
 		}
 		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
+		private void detach_Accountings(Accounting entity)
 		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
+			this.SendPropertyChanging();
+			entity.Hotel = null;
 		}
 	}
 	
@@ -3817,188 +3535,6 @@ namespace TreasureLand.DBM
 						this._FoodDrinkCategoryID = default(Nullable<short>);
 					}
 					this.SendPropertyChanged("FoodDrinkCategory");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LongTermAsset")]
-	public partial class LongTermAsset : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _LongTermAssetID;
-		
-		private string _LongTermAssetName;
-		
-		private string _LongTermAssetLocation;
-		
-		private decimal _LongTermAssetCost;
-		
-		private System.Nullable<bool> _LongTermAssetInUse;
-		
-		private System.DateTime _LongTermAssetPurchaseDate;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnLongTermAssetIDChanging(short value);
-    partial void OnLongTermAssetIDChanged();
-    partial void OnLongTermAssetNameChanging(string value);
-    partial void OnLongTermAssetNameChanged();
-    partial void OnLongTermAssetLocationChanging(string value);
-    partial void OnLongTermAssetLocationChanged();
-    partial void OnLongTermAssetCostChanging(decimal value);
-    partial void OnLongTermAssetCostChanged();
-    partial void OnLongTermAssetInUseChanging(System.Nullable<bool> value);
-    partial void OnLongTermAssetInUseChanged();
-    partial void OnLongTermAssetPurchaseDateChanging(System.DateTime value);
-    partial void OnLongTermAssetPurchaseDateChanged();
-    #endregion
-		
-		public LongTermAsset()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LongTermAssetID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public short LongTermAssetID
-		{
-			get
-			{
-				return this._LongTermAssetID;
-			}
-			set
-			{
-				if ((this._LongTermAssetID != value))
-				{
-					this.OnLongTermAssetIDChanging(value);
-					this.SendPropertyChanging();
-					this._LongTermAssetID = value;
-					this.SendPropertyChanged("LongTermAssetID");
-					this.OnLongTermAssetIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LongTermAssetName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string LongTermAssetName
-		{
-			get
-			{
-				return this._LongTermAssetName;
-			}
-			set
-			{
-				if ((this._LongTermAssetName != value))
-				{
-					this.OnLongTermAssetNameChanging(value);
-					this.SendPropertyChanging();
-					this._LongTermAssetName = value;
-					this.SendPropertyChanged("LongTermAssetName");
-					this.OnLongTermAssetNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LongTermAssetLocation", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string LongTermAssetLocation
-		{
-			get
-			{
-				return this._LongTermAssetLocation;
-			}
-			set
-			{
-				if ((this._LongTermAssetLocation != value))
-				{
-					this.OnLongTermAssetLocationChanging(value);
-					this.SendPropertyChanging();
-					this._LongTermAssetLocation = value;
-					this.SendPropertyChanged("LongTermAssetLocation");
-					this.OnLongTermAssetLocationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LongTermAssetCost", DbType="SmallMoney NOT NULL")]
-		public decimal LongTermAssetCost
-		{
-			get
-			{
-				return this._LongTermAssetCost;
-			}
-			set
-			{
-				if ((this._LongTermAssetCost != value))
-				{
-					this.OnLongTermAssetCostChanging(value);
-					this.SendPropertyChanging();
-					this._LongTermAssetCost = value;
-					this.SendPropertyChanged("LongTermAssetCost");
-					this.OnLongTermAssetCostChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LongTermAssetInUse", DbType="Bit")]
-		public System.Nullable<bool> LongTermAssetInUse
-		{
-			get
-			{
-				return this._LongTermAssetInUse;
-			}
-			set
-			{
-				if ((this._LongTermAssetInUse != value))
-				{
-					this.OnLongTermAssetInUseChanging(value);
-					this.SendPropertyChanging();
-					this._LongTermAssetInUse = value;
-					this.SendPropertyChanged("LongTermAssetInUse");
-					this.OnLongTermAssetInUseChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LongTermAssetPurchaseDate", DbType="SmallDateTime NOT NULL")]
-		public System.DateTime LongTermAssetPurchaseDate
-		{
-			get
-			{
-				return this._LongTermAssetPurchaseDate;
-			}
-			set
-			{
-				if ((this._LongTermAssetPurchaseDate != value))
-				{
-					this.OnLongTermAssetPurchaseDateChanging(value);
-					this.SendPropertyChanging();
-					this._LongTermAssetPurchaseDate = value;
-					this.SendPropertyChanged("LongTermAssetPurchaseDate");
-					this.OnLongTermAssetPurchaseDateChanged();
 				}
 			}
 		}
@@ -6105,92 +5641,6 @@ namespace TreasureLand.DBM
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RoomStatus")]
-	public partial class RoomStatus : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private char _RoomStatusID;
-		
-		private string _RoomStatusDescription;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnRoomStatusIDChanging(char value);
-    partial void OnRoomStatusIDChanged();
-    partial void OnRoomStatusDescriptionChanging(string value);
-    partial void OnRoomStatusDescriptionChanged();
-    #endregion
-		
-		public RoomStatus()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomStatusID", DbType="Char(1) NOT NULL", IsPrimaryKey=true)]
-		public char RoomStatusID
-		{
-			get
-			{
-				return this._RoomStatusID;
-			}
-			set
-			{
-				if ((this._RoomStatusID != value))
-				{
-					this.OnRoomStatusIDChanging(value);
-					this.SendPropertyChanging();
-					this._RoomStatusID = value;
-					this.SendPropertyChanged("RoomStatusID");
-					this.OnRoomStatusIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomStatusDescription", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string RoomStatusDescription
-		{
-			get
-			{
-				return this._RoomStatusDescription;
-			}
-			set
-			{
-				if ((this._RoomStatusDescription != value))
-				{
-					this.OnRoomStatusDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._RoomStatusDescription = value;
-					this.SendPropertyChanged("RoomStatusDescription");
-					this.OnRoomStatusDescriptionChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ShortTermAsset")]
 	public partial class ShortTermAsset : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -6614,6 +6064,8 @@ namespace TreasureLand.DBM
 		
 		private EntityRef<HotelRoomType> _HotelRoomType;
 		
+		private EntityRef<RoomStatus> _RoomStatus1;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -6640,6 +6092,7 @@ namespace TreasureLand.DBM
 		{
 			this._ReservationDetails = new EntitySet<ReservationDetail>(new Action<ReservationDetail>(this.attach_ReservationDetails), new Action<ReservationDetail>(this.detach_ReservationDetails));
 			this._HotelRoomType = default(EntityRef<HotelRoomType>);
+			this._RoomStatus1 = default(EntityRef<RoomStatus>);
 			OnCreated();
 		}
 		
@@ -6798,6 +6251,10 @@ namespace TreasureLand.DBM
 			{
 				if ((this._RoomStatus != value))
 				{
+					if (this._RoomStatus1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnRoomStatusChanging(value);
 					this.SendPropertyChanging();
 					this._RoomStatus = value;
@@ -6854,6 +6311,40 @@ namespace TreasureLand.DBM
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RoomStatus_Room", Storage="_RoomStatus1", ThisKey="RoomStatus", OtherKey="RoomStatus1", IsForeignKey=true)]
+		public RoomStatus RoomStatus1
+		{
+			get
+			{
+				return this._RoomStatus1.Entity;
+			}
+			set
+			{
+				RoomStatus previousValue = this._RoomStatus1.Entity;
+				if (((previousValue != value) 
+							|| (this._RoomStatus1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RoomStatus1.Entity = null;
+						previousValue.Rooms.Remove(this);
+					}
+					this._RoomStatus1.Entity = value;
+					if ((value != null))
+					{
+						value.Rooms.Add(this);
+						this._RoomStatus = value.RoomStatus1;
+					}
+					else
+					{
+						this._RoomStatus = default(char);
+					}
+					this.SendPropertyChanged("RoomStatus1");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -6884,6 +6375,762 @@ namespace TreasureLand.DBM
 		{
 			this.SendPropertyChanging();
 			entity.Room = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LongTermAsset")]
+	public partial class LongTermAsset : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _LongTermAssetID;
+		
+		private string _LongTermAssetName;
+		
+		private string _LongTermAssetLocation;
+		
+		private decimal _LongTermAssetCost;
+		
+		private System.Nullable<bool> _LongTermAssetInUse;
+		
+		private System.DateTime _LongTermAssetPurchaseDate;
+		
+		private EntitySet<HotelLongTermAsset> _HotelLongTermAssets;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnLongTermAssetIDChanging(short value);
+    partial void OnLongTermAssetIDChanged();
+    partial void OnLongTermAssetNameChanging(string value);
+    partial void OnLongTermAssetNameChanged();
+    partial void OnLongTermAssetLocationChanging(string value);
+    partial void OnLongTermAssetLocationChanged();
+    partial void OnLongTermAssetCostChanging(decimal value);
+    partial void OnLongTermAssetCostChanged();
+    partial void OnLongTermAssetInUseChanging(System.Nullable<bool> value);
+    partial void OnLongTermAssetInUseChanged();
+    partial void OnLongTermAssetPurchaseDateChanging(System.DateTime value);
+    partial void OnLongTermAssetPurchaseDateChanged();
+    #endregion
+		
+		public LongTermAsset()
+		{
+			this._HotelLongTermAssets = new EntitySet<HotelLongTermAsset>(new Action<HotelLongTermAsset>(this.attach_HotelLongTermAssets), new Action<HotelLongTermAsset>(this.detach_HotelLongTermAssets));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LongTermAssetID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public short LongTermAssetID
+		{
+			get
+			{
+				return this._LongTermAssetID;
+			}
+			set
+			{
+				if ((this._LongTermAssetID != value))
+				{
+					this.OnLongTermAssetIDChanging(value);
+					this.SendPropertyChanging();
+					this._LongTermAssetID = value;
+					this.SendPropertyChanged("LongTermAssetID");
+					this.OnLongTermAssetIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LongTermAssetName", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string LongTermAssetName
+		{
+			get
+			{
+				return this._LongTermAssetName;
+			}
+			set
+			{
+				if ((this._LongTermAssetName != value))
+				{
+					this.OnLongTermAssetNameChanging(value);
+					this.SendPropertyChanging();
+					this._LongTermAssetName = value;
+					this.SendPropertyChanged("LongTermAssetName");
+					this.OnLongTermAssetNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LongTermAssetLocation", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string LongTermAssetLocation
+		{
+			get
+			{
+				return this._LongTermAssetLocation;
+			}
+			set
+			{
+				if ((this._LongTermAssetLocation != value))
+				{
+					this.OnLongTermAssetLocationChanging(value);
+					this.SendPropertyChanging();
+					this._LongTermAssetLocation = value;
+					this.SendPropertyChanged("LongTermAssetLocation");
+					this.OnLongTermAssetLocationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LongTermAssetCost", DbType="SmallMoney NOT NULL")]
+		public decimal LongTermAssetCost
+		{
+			get
+			{
+				return this._LongTermAssetCost;
+			}
+			set
+			{
+				if ((this._LongTermAssetCost != value))
+				{
+					this.OnLongTermAssetCostChanging(value);
+					this.SendPropertyChanging();
+					this._LongTermAssetCost = value;
+					this.SendPropertyChanged("LongTermAssetCost");
+					this.OnLongTermAssetCostChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LongTermAssetInUse", DbType="Bit")]
+		public System.Nullable<bool> LongTermAssetInUse
+		{
+			get
+			{
+				return this._LongTermAssetInUse;
+			}
+			set
+			{
+				if ((this._LongTermAssetInUse != value))
+				{
+					this.OnLongTermAssetInUseChanging(value);
+					this.SendPropertyChanging();
+					this._LongTermAssetInUse = value;
+					this.SendPropertyChanged("LongTermAssetInUse");
+					this.OnLongTermAssetInUseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LongTermAssetPurchaseDate", DbType="SmallDateTime NOT NULL")]
+		public System.DateTime LongTermAssetPurchaseDate
+		{
+			get
+			{
+				return this._LongTermAssetPurchaseDate;
+			}
+			set
+			{
+				if ((this._LongTermAssetPurchaseDate != value))
+				{
+					this.OnLongTermAssetPurchaseDateChanging(value);
+					this.SendPropertyChanging();
+					this._LongTermAssetPurchaseDate = value;
+					this.SendPropertyChanged("LongTermAssetPurchaseDate");
+					this.OnLongTermAssetPurchaseDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LongTermAsset_HotelLongTermAsset", Storage="_HotelLongTermAssets", ThisKey="LongTermAssetID", OtherKey="LongTermAssetID")]
+		public EntitySet<HotelLongTermAsset> HotelLongTermAssets
+		{
+			get
+			{
+				return this._HotelLongTermAssets;
+			}
+			set
+			{
+				this._HotelLongTermAssets.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_HotelLongTermAssets(HotelLongTermAsset entity)
+		{
+			this.SendPropertyChanging();
+			entity.LongTermAsset = this;
+		}
+		
+		private void detach_HotelLongTermAssets(HotelLongTermAsset entity)
+		{
+			this.SendPropertyChanging();
+			entity.LongTermAsset = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.HotelLongTermAsset")]
+	public partial class HotelLongTermAsset : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _LongTermAssetID;
+		
+		private short _HotelID;
+		
+		private EntityRef<Hotel> _Hotel;
+		
+		private EntityRef<LongTermAsset> _LongTermAsset;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnLongTermAssetIDChanging(short value);
+    partial void OnLongTermAssetIDChanged();
+    partial void OnHotelIDChanging(short value);
+    partial void OnHotelIDChanged();
+    #endregion
+		
+		public HotelLongTermAsset()
+		{
+			this._Hotel = default(EntityRef<Hotel>);
+			this._LongTermAsset = default(EntityRef<LongTermAsset>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LongTermAssetID", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
+		public short LongTermAssetID
+		{
+			get
+			{
+				return this._LongTermAssetID;
+			}
+			set
+			{
+				if ((this._LongTermAssetID != value))
+				{
+					if (this._LongTermAsset.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLongTermAssetIDChanging(value);
+					this.SendPropertyChanging();
+					this._LongTermAssetID = value;
+					this.SendPropertyChanged("LongTermAssetID");
+					this.OnLongTermAssetIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HotelID", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
+		public short HotelID
+		{
+			get
+			{
+				return this._HotelID;
+			}
+			set
+			{
+				if ((this._HotelID != value))
+				{
+					if (this._Hotel.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnHotelIDChanging(value);
+					this.SendPropertyChanging();
+					this._HotelID = value;
+					this.SendPropertyChanged("HotelID");
+					this.OnHotelIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hotel_HotelLongTermAsset", Storage="_Hotel", ThisKey="HotelID", OtherKey="HotelID", IsForeignKey=true)]
+		public Hotel Hotel
+		{
+			get
+			{
+				return this._Hotel.Entity;
+			}
+			set
+			{
+				Hotel previousValue = this._Hotel.Entity;
+				if (((previousValue != value) 
+							|| (this._Hotel.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Hotel.Entity = null;
+						previousValue.HotelLongTermAssets.Remove(this);
+					}
+					this._Hotel.Entity = value;
+					if ((value != null))
+					{
+						value.HotelLongTermAssets.Add(this);
+						this._HotelID = value.HotelID;
+					}
+					else
+					{
+						this._HotelID = default(short);
+					}
+					this.SendPropertyChanged("Hotel");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LongTermAsset_HotelLongTermAsset", Storage="_LongTermAsset", ThisKey="LongTermAssetID", OtherKey="LongTermAssetID", IsForeignKey=true)]
+		public LongTermAsset LongTermAsset
+		{
+			get
+			{
+				return this._LongTermAsset.Entity;
+			}
+			set
+			{
+				LongTermAsset previousValue = this._LongTermAsset.Entity;
+				if (((previousValue != value) 
+							|| (this._LongTermAsset.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LongTermAsset.Entity = null;
+						previousValue.HotelLongTermAssets.Remove(this);
+					}
+					this._LongTermAsset.Entity = value;
+					if ((value != null))
+					{
+						value.HotelLongTermAssets.Add(this);
+						this._LongTermAssetID = value.LongTermAssetID;
+					}
+					else
+					{
+						this._LongTermAssetID = default(short);
+					}
+					this.SendPropertyChanged("LongTermAsset");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Accounting")]
+	public partial class Accounting : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _AccountingID;
+		
+		private System.Nullable<System.DateTime> _AccountingDate;
+		
+		private System.Nullable<short> _AccountingTypeID;
+		
+		private System.Nullable<decimal> _AccountingCost;
+		
+		private string _AccountingDescription;
+		
+		private System.Nullable<short> _HotelID;
+		
+		private EntityRef<AccountingType> _AccountingType;
+		
+		private EntityRef<Hotel> _Hotel;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAccountingIDChanging(short value);
+    partial void OnAccountingIDChanged();
+    partial void OnAccountingDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnAccountingDateChanged();
+    partial void OnAccountingTypeIDChanging(System.Nullable<short> value);
+    partial void OnAccountingTypeIDChanged();
+    partial void OnAccountingCostChanging(System.Nullable<decimal> value);
+    partial void OnAccountingCostChanged();
+    partial void OnAccountingDescriptionChanging(string value);
+    partial void OnAccountingDescriptionChanged();
+    partial void OnHotelIDChanging(System.Nullable<short> value);
+    partial void OnHotelIDChanged();
+    #endregion
+		
+		public Accounting()
+		{
+			this._AccountingType = default(EntityRef<AccountingType>);
+			this._Hotel = default(EntityRef<Hotel>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountingID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public short AccountingID
+		{
+			get
+			{
+				return this._AccountingID;
+			}
+			set
+			{
+				if ((this._AccountingID != value))
+				{
+					this.OnAccountingIDChanging(value);
+					this.SendPropertyChanging();
+					this._AccountingID = value;
+					this.SendPropertyChanged("AccountingID");
+					this.OnAccountingIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountingDate", DbType="SmallDateTime")]
+		public System.Nullable<System.DateTime> AccountingDate
+		{
+			get
+			{
+				return this._AccountingDate;
+			}
+			set
+			{
+				if ((this._AccountingDate != value))
+				{
+					this.OnAccountingDateChanging(value);
+					this.SendPropertyChanging();
+					this._AccountingDate = value;
+					this.SendPropertyChanged("AccountingDate");
+					this.OnAccountingDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountingTypeID", DbType="SmallInt")]
+		public System.Nullable<short> AccountingTypeID
+		{
+			get
+			{
+				return this._AccountingTypeID;
+			}
+			set
+			{
+				if ((this._AccountingTypeID != value))
+				{
+					if (this._AccountingType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAccountingTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._AccountingTypeID = value;
+					this.SendPropertyChanged("AccountingTypeID");
+					this.OnAccountingTypeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountingCost", DbType="SmallMoney")]
+		public System.Nullable<decimal> AccountingCost
+		{
+			get
+			{
+				return this._AccountingCost;
+			}
+			set
+			{
+				if ((this._AccountingCost != value))
+				{
+					this.OnAccountingCostChanging(value);
+					this.SendPropertyChanging();
+					this._AccountingCost = value;
+					this.SendPropertyChanged("AccountingCost");
+					this.OnAccountingCostChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountingDescription", DbType="VarChar(120)")]
+		public string AccountingDescription
+		{
+			get
+			{
+				return this._AccountingDescription;
+			}
+			set
+			{
+				if ((this._AccountingDescription != value))
+				{
+					this.OnAccountingDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._AccountingDescription = value;
+					this.SendPropertyChanged("AccountingDescription");
+					this.OnAccountingDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HotelID", DbType="SmallInt")]
+		public System.Nullable<short> HotelID
+		{
+			get
+			{
+				return this._HotelID;
+			}
+			set
+			{
+				if ((this._HotelID != value))
+				{
+					if (this._Hotel.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnHotelIDChanging(value);
+					this.SendPropertyChanging();
+					this._HotelID = value;
+					this.SendPropertyChanged("HotelID");
+					this.OnHotelIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AccountingType_Accounting", Storage="_AccountingType", ThisKey="AccountingTypeID", OtherKey="AccountingTypeID", IsForeignKey=true)]
+		public AccountingType AccountingType
+		{
+			get
+			{
+				return this._AccountingType.Entity;
+			}
+			set
+			{
+				AccountingType previousValue = this._AccountingType.Entity;
+				if (((previousValue != value) 
+							|| (this._AccountingType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AccountingType.Entity = null;
+						previousValue.Accountings.Remove(this);
+					}
+					this._AccountingType.Entity = value;
+					if ((value != null))
+					{
+						value.Accountings.Add(this);
+						this._AccountingTypeID = value.AccountingTypeID;
+					}
+					else
+					{
+						this._AccountingTypeID = default(Nullable<short>);
+					}
+					this.SendPropertyChanged("AccountingType");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Hotel_Accounting", Storage="_Hotel", ThisKey="HotelID", OtherKey="HotelID", IsForeignKey=true)]
+		public Hotel Hotel
+		{
+			get
+			{
+				return this._Hotel.Entity;
+			}
+			set
+			{
+				Hotel previousValue = this._Hotel.Entity;
+				if (((previousValue != value) 
+							|| (this._Hotel.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Hotel.Entity = null;
+						previousValue.Accountings.Remove(this);
+					}
+					this._Hotel.Entity = value;
+					if ((value != null))
+					{
+						value.Accountings.Add(this);
+						this._HotelID = value.HotelID;
+					}
+					else
+					{
+						this._HotelID = default(Nullable<short>);
+					}
+					this.SendPropertyChanged("Hotel");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.RoomStatus")]
+	public partial class RoomStatus : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private char _RoomStatus1;
+		
+		private string _RoomStatusDescription;
+		
+		private EntitySet<Room> _Rooms;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRoomStatus1Changing(char value);
+    partial void OnRoomStatus1Changed();
+    partial void OnRoomStatusDescriptionChanging(string value);
+    partial void OnRoomStatusDescriptionChanged();
+    #endregion
+		
+		public RoomStatus()
+		{
+			this._Rooms = new EntitySet<Room>(new Action<Room>(this.attach_Rooms), new Action<Room>(this.detach_Rooms));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="RoomStatus", Storage="_RoomStatus1", DbType="Char(1) NOT NULL", IsPrimaryKey=true)]
+		public char RoomStatus1
+		{
+			get
+			{
+				return this._RoomStatus1;
+			}
+			set
+			{
+				if ((this._RoomStatus1 != value))
+				{
+					this.OnRoomStatus1Changing(value);
+					this.SendPropertyChanging();
+					this._RoomStatus1 = value;
+					this.SendPropertyChanged("RoomStatus1");
+					this.OnRoomStatus1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomStatusDescription", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string RoomStatusDescription
+		{
+			get
+			{
+				return this._RoomStatusDescription;
+			}
+			set
+			{
+				if ((this._RoomStatusDescription != value))
+				{
+					this.OnRoomStatusDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._RoomStatusDescription = value;
+					this.SendPropertyChanged("RoomStatusDescription");
+					this.OnRoomStatusDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RoomStatus_Room", Storage="_Rooms", ThisKey="RoomStatus1", OtherKey="RoomStatus")]
+		public EntitySet<Room> Rooms
+		{
+			get
+			{
+				return this._Rooms;
+			}
+			set
+			{
+				this._Rooms.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Rooms(Room entity)
+		{
+			this.SendPropertyChanging();
+			entity.RoomStatus1 = this;
+		}
+		
+		private void detach_Rooms(Room entity)
+		{
+			this.SendPropertyChanging();
+			entity.RoomStatus1 = null;
 		}
 	}
 }
