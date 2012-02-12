@@ -40,13 +40,13 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnEnterPurchase;
         
         /// <summary>
-        /// btnManageDrink control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnManageDrink;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
         /// containerView control.
@@ -67,22 +67,31 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.View manageCatView;
         
         /// <summary>
-        /// ddIngredient control.
+        /// ddlCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddIngredient;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
         
         /// <summary>
-        /// txtIngredient control.
+        /// txtCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIngredient;
+        protected global::System.Web.UI.WebControls.TextBox txtCategory;
+        
+        /// <summary>
+        /// txtCategory_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender txtCategory_FilteredTextBoxExtender;
         
         /// <summary>
         /// btnAddCategory control.
@@ -112,6 +121,33 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.View manageMenuItemsView;
         
         /// <summary>
+        /// ddlChooseItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlChooseItem;
+        
+        /// <summary>
+        /// lblCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCategory;
+        
+        /// <summary>
+        /// ddlAddGetCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAddGetCategory;
+        
+        /// <summary>
         /// gvMenuItems control.
         /// </summary>
         /// <remarks>
@@ -121,13 +157,13 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.GridView gvMenuItems;
         
         /// <summary>
-        /// Label1 control.
+        /// gvDrink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.GridView gvDrink;
         
         /// <summary>
         /// btnAddMenuItem control.
@@ -139,6 +175,96 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnAddMenuItem;
         
         /// <summary>
+        /// ldsMenuItems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource ldsMenuItems;
+        
+        /// <summary>
+        /// ldsDrinks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource ldsDrinks;
+        
+        /// <summary>
+        /// lblAddMenuItemName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAddMenuItemName;
+        
+        /// <summary>
+        /// txtAddMenuItemName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAddMenuItemName;
+        
+        /// <summary>
+        /// lblAddCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAddCategory;
+        
+        /// <summary>
+        /// ddlAddCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlAddCategory;
+        
+        /// <summary>
+        /// lblAddPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAddPrice;
+        
+        /// <summary>
+        /// txtAddPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAddPrice;
+        
+        /// <summary>
+        /// btnAddSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddSubmit;
+        
+        /// <summary>
+        /// btnCancel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancel;
+        
+        /// <summary>
         /// createPurchaseView control.
         /// </summary>
         /// <remarks>
@@ -146,6 +272,24 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.View createPurchaseView;
+        
+        /// <summary>
+        /// ddlChooseItemForPurchase control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlChooseItemForPurchase;
+        
+        /// <summary>
+        /// lblPurchaseItemName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPurchaseItemName;
         
         /// <summary>
         /// ddIngredient2 control.
@@ -211,12 +355,21 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnSubmitPurchase;
         
         /// <summary>
-        /// manageDrinksView control.
+        /// gvshowIngredientPurchases control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View manageDrinksView;
+        protected global::System.Web.UI.WebControls.GridView gvshowIngredientPurchases;
+        
+        /// <summary>
+        /// gvShowDrinkPurchases control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvShowDrinkPurchases;
     }
 }

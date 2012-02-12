@@ -18,40 +18,54 @@ namespace TreasureLand.Admin
     {
         private List<IngredientPurchaseHistory> purchase;//purchase history item for purchase history view = view2 at this point
 
-        //View State
+        /// <summary>
+        /// Gets all the drink categories or the menu item categories
+        /// </summary>
+        /// <param name="isMenuItem">if the categories are menuitems</param>
+        /// <returns>menu item or drink categories</returns>
+        private object getCategories(bool isMenuItem)
+        {
+            
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            return from fdc in db.FoodDrinkCategories
+                   where fdc.FoodDrinkCategoryIsMenuItem == isMenuItem
+                              select fdc;
+        }
+
+        private object getAllCategories()
+        {
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            return from fdc in db.FoodDrinkCategories
+                   select fdc;
+        }
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            var foodDrinkCat = from fdc in db.FoodDrinkCategories
-                              select fdc.FoodDrinkCategoryName;
-            ddIngredient.DataSource = foodDrinkCat;
-            ddIngredient.DataBind();
+            if (!Page.IsPostBack)
+            {
+                displayTypeCategories();
 
-
-            //Postback check for MenuItems view[01]
-            //if (!IsPostBack)
-            //{
-            //    IEnumerable<DataRow> query =
-            //        from order in orders.AsEnumerable()
-            //        where order.Field<DateTime>("OrderDate") > new DateTime(2001, 8, 1)
-            //        select order;
-
-            //    // Create a table from the query.
-            //    DataTable boundTable = query.CopyToDataTable<DataRow>();
-
-            //    //add to session.
-
-            //}
-
+                //populates the data for the create/view categories
+                ddlCategory.DataSource = getAllCategories();
+                ddlCategory.DataValueField = "FoodDrinkCategoryID";
+                ddlCategory.DataTextField = "FoodDrinkCategoryName";
+                ddlCategory.DataBind();
+            }
         }
 
+        /// <summary>
+        /// creates a new category
+        /// checks to see if the category to be entered is already in the database
+        /// if it doesn't exist it is created and added to the database
+        /// </summary>
         protected void btnManageCategories_Click(object sender, EventArgs e)
         {
+            //Hides the error message
+            lblCatAddError.Text = "";
+
             //If input is blank
-            if (txtIngredient.Text == "")
+            if (txtCategory.Text == "")
             {
                 lblCatAddError.Text = "You have not entered a Category";
             }
@@ -63,66 +77,54 @@ namespace TreasureLand.Admin
 
                 TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
 
-                var ing = from i in db.Ingredients.Where(i => i.IngredientName == txtIngredient.Text)
-                          select i;
+                var ing = from fdc in db.FoodDrinkCategories.Where(fdc => fdc.FoodDrinkCategoryName == txtCategory.Text)
+                          select fdc;
 
+                //checks to see if the item is in the database
                 if (ing.Any())
                 {
                     //If something exists, then don't add
                     //print error message
                     lblCatAddError.Text = "Category Is Already In the Hotel Restaurant";
+
                     //reset txtIngredient to " "
-                    txtIngredient.Text = "";
+                    txtCategory.Text = "";
                 }
                 else
                 {
                     //else if something exists
                     //add record to database
                     //USes an linq to sql to insert a guest into the guest table
-                    Ingredient addIngredient = new Ingredient();
-                    addIngredient.IngredientName = txtIngredient.Text;
-                    db.Ingredients.InsertOnSubmit(addIngredient);
+
+                    FoodDrinkCategory addfdc = new FoodDrinkCategory();
+                    addfdc.FoodDrinkCategoryName = txtCategory.Text;
+                    addfdc.FoodDrinkCategoryIsMenuItem = true;
+                    db.FoodDrinkCategories.InsertOnSubmit(addfdc);
                     db.SubmitChanges();
                 }
 
-
                 //repopulate dropdownlist
-                var ingredients = from i in db.Ingredients
-                                  select i.IngredientName;
-                ddIngredient.DataSource = ingredients;
-                ddIngredient.DataBind();
+                ddlCategory.DataSource = getAllCategories();
+                ddlCategory.DataBind();
 
-                txtIngredient.Text = "";
-
-            }//end if
-
-        }//end function
+                txtCategory.Text = "";
+            }
+        }
 
    
+        /// <summary>
+        /// Shows the manage menu items view
+        /// </summary>
         protected void btnManageMenuItems_Click(object sender, EventArgs e)
         {
             //Change View Over to ManageCategories View.
-            //if(!Page.IsPostBack)
             //Set ManageCategoryView to visible
-            containerView.ActiveViewIndex = 1;
-
-            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-
-            //Linq SQL
-            var menuItem = from i in db.MenuItems
-                           join f in db.FoodDrinkCategories on
-                               i.FoodDrinkCategoryID equals f.FoodDrinkCategoryID
-                           select new { i.MenuItemName, f.FoodDrinkCategoryName, i.MenuItemPrice };
-            
-            if (menuItem.Count() > 0)
-            {
-                gvMenuItems.DataSource = menuItem;
-                gvMenuItems.DataBind();
-            }
-
-            Session["gvMenuItems"] = gvMenuItems;
+            containerView.ActiveViewIndex = 1;   
         }
 
+        /// <summary>
+        /// shows the Enter Purchase view
+        /// </summary>
         protected void btnEnterPurchase_Click(object sender, EventArgs e)
         {
             //Change View Over to createPurchase View.
@@ -134,16 +136,15 @@ namespace TreasureLand.Admin
                               select i.IngredientName;
             ddIngredient2.DataSource = ingredients;
             ddIngredient2.DataBind();
-
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
         protected void btnAddCategory_Click(object sender, EventArgs e)
-        {
-            if (txtIngredient.Text == "")
-            {
-                //output alert no text
-            }
-            else
+        {/*
+            if (txtIngredient.Text != "")
             {
                 TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
                 FoodDrinkCategory addFoodDrinkCat = new FoodDrinkCategory();//New item to be added to database
@@ -163,15 +164,12 @@ namespace TreasureLand.Admin
                                    select fdc.FoodDrinkCategoryName;
                 ddIngredient.DataSource = foodDrinkCat;
                 ddIngredient.DataBind();
-
-
-            }
-
+            }*/
         }
 
-
-
-
+        /// <summary>
+        /// Creates a purchase and saves it do the database
+        /// </summary>
         protected void btnSubmitPurchase_Click(object sender, EventArgs e)
         {
             if (Session["ingredientlist"]!=null)
@@ -179,8 +177,7 @@ namespace TreasureLand.Admin
                 purchase = (List<IngredientPurchaseHistory>)Session["ingredientlist"];
                 //create a database connection
                 TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-                short pchID = 0;// purchase ID
-
+      
                 //Create Ingredient Purchase
                 IngredientPurchase addIngredientPurchase = new IngredientPurchase();//create new purchase object
                 DateTime purchaseTime = new DateTime();
@@ -195,13 +192,6 @@ namespace TreasureLand.Admin
                   select i.PurchaseID).Max();//db.IngredientPurchases.Last(); //from p in db.IngredientPurchases select p.PurchaseDate//.Where(p => p. == purchaseTime )
                      //select p;
 
-                //if(pch.Count() == 1){
-                
-                //    foreach(var pid in pch){
-                //       pchID = pid.PurchaseID;
-                //    }
-                //}
-                
                 System.Diagnostics.Debug.WriteLine(pch.ToString());
                 //for each add to database
                 foreach(var ph in purchase)
@@ -214,83 +204,54 @@ namespace TreasureLand.Admin
                 }
                 Session["ingredientlist"] = null;
             }
-
+            ddlChooseItemForPurchase.Enabled = true;
         }
 
-
-
-
-        //public DataTable DTSample
-        //{
-        //    get
-        //    {
-        //        if (ViewState["DTSample"] == null)
-        //            return (DataTable)ViewState["DTSample"];
-
-        //        return (DataTable)ViewState["DTSample"];
-
-        //    }
-        //    set
-        //    {
-        //        ViewState["DTSample"] = value;
-        //    }
-        //}
-    
-
-
-        protected void gvMenuItems_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-
-        }
-
-        private void BindData()
-        {
-            gvMenuItems.DataSource = Session["gvMenuItems"];
-            gvMenuItems.DataBind();
-        }
-
-        protected void gvMenuItems_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Adds an individual item to to purchase
+        /// </summary>
         protected void btnAddItemToPurchase_Click(object sender, EventArgs e)
         {
-            if (Session["ingredientlist"] == null)
+            ddlChooseItemForPurchase.Enabled = false;
+
+            if (ddlChooseItemForPurchase.SelectedIndex == 0)
             {
-                purchase = new List<IngredientPurchaseHistory>();
+                //need to implement drink version
             }
             else
             {
-                purchase = (List<IngredientPurchaseHistory>)Session["ingredientlist"];
+                if (Session["ingredientlist"] == null)
+                {
+                    purchase = new List<IngredientPurchaseHistory>();
+                }
+                else
+                {
+                    purchase = (List<IngredientPurchaseHistory>)Session["ingredientlist"];
+                }
+
+                IngredientPurchaseHistory iph = new IngredientPurchaseHistory();//This is the purchase history object
+
+                iph.IngredientPurchaseHistoryPrice = System.Convert.ToDecimal(txtPrice.Text);//add price to iph = convert string to decimal
+                iph.IngredientPurchaseHistoryQty = short.Parse(txtQty.Text);//add qty = convert to short/int16
+
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                var ingredient = from i in db.Ingredients.Where(i => i.IngredientName == ddIngredient2.Text)
+                                 select i;
+
+                foreach (var addIngID in ingredient)
+                {
+                    iph.IngredientID = addIngID.IngredientID;
+                }
+
+
+                purchase.Add(iph);
+                Session["ingredientlist"] = purchase;
             }
-
-            IngredientPurchaseHistory iph = new IngredientPurchaseHistory();//This is the purchase history object
-            //Ingredient ing = new Ingredient();
-
-            //Assign Values in iph
-            //iph. = ddIngredient2.SelectedItem.Value;//assign dropdown value to Ingredient
-            //iph.Ingredient = ing;//add ingredient in iph
-            iph.IngredientPurchaseHistoryPrice = System.Convert.ToDecimal(txtPrice.Text);//add price to iph = convert string to decimal
-            iph.IngredientPurchaseHistoryQty = short.Parse(txtQty.Text);//add qty = convert to short/int16
-
-            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            var ingredient = from i in db.Ingredients.Where(i => i.IngredientName == ddIngredient2.Text)
-                             select i;
-
-            foreach (var addIngID in ingredient)
-            {
-                iph.IngredientID = addIngID.IngredientID;
-            }
-
-
-            purchase.Add(iph);
-            Session["ingredientlist"] = purchase;
-
             //reset fields for new item to be added
             txtQty.Text = "";
             txtPrice.Text = "";
         }
+
 
         protected void btnAddListItemIngredient_Click1(object sender, EventArgs e)
         {
@@ -319,15 +280,162 @@ namespace TreasureLand.Admin
             //make text box 
         }
 
-        protected void btnManageDrink_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// When the add menu item is clicked, the add menu items options are made visible
+        /// The drop down list is populated with categories based on if it is a drink or menu item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnAddMenuItem_Click(object sender, EventArgs e)
         {
-            containerView.ActiveViewIndex = 3;
+            disableButtons(false);
+            if (ddlChooseItem.SelectedIndex == 0)
+            {
+                var foodDrinkCat = getCategories(false);
+                ddlAddCategory.DataSource = foodDrinkCat;
+                ddlAddCategory.DataValueField = "FoodDrinkCategoryID";
+                ddlAddCategory.DataTextField = "FoodDrinkCategoryName";
+                ddlAddCategory.DataBind();
+                lblAddMenuItemName.Text = "Drink Name";
+            }
+            else
+            {
+                var foodDrinkCat = getCategories(true);
+                ddlAddCategory.DataSource = foodDrinkCat;
+                ddlAddCategory.DataValueField = "FoodDrinkCategoryID";
+                ddlAddCategory.DataTextField = "FoodDrinkCategoryName";
+                ddlAddCategory.DataBind();
+                lblAddMenuItemName.Text = "Menu Item Name";
+            }
         }
 
-    
+        /// <summary>
+        /// The item new item is added to the menu item table or the drink table based on 
+        /// the selected category.  The fields are then hidden.
+        /// </summary>
+        protected void btnAddSubmit_Click(object sender, EventArgs e)
+        {
+            //it is a drink item
+            if (ddlChooseItem.SelectedIndex == 0)
+            {
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                Drink d = new Drink();
+                d.DrinkName = txtAddMenuItemName.Text;
+                d.DrinkRetailSalePrice = Convert.ToDecimal(txtAddPrice.Text);
+                d.FoodDrinkCategoryID = Convert.ToByte(ddlAddCategory.SelectedIndex + 1);
+                db.Drinks.InsertOnSubmit(d);
+                db.SubmitChanges();
+            }
+            //it is a food item
+            else
+            {
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                TreasureLand.DBM.MenuItem mi = new TreasureLand.DBM.MenuItem();
+                mi.FoodDrinkCategoryID = Convert.ToSByte(ddlAddCategory.SelectedIndex+3);
+                mi.MenuItemName = txtAddMenuItemName.Text;
+                mi.MenuItemPrice = Convert.ToDecimal(txtAddPrice.Text);
+                db.MenuItems.InsertOnSubmit(mi);
+                db.SubmitChanges();
+            }
 
+            disableButtons(true);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected void ddlAddGetCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            gvMenuItems.DataBind();
+
+        }
+
+        void disableButtons(bool b)
+        {
+            lblAddCategory.Visible = !b;
+            lblAddMenuItemName.Visible = !b;
+            lblAddPrice.Visible = !b;
+            txtAddMenuItemName.Visible = !b;
+            txtAddPrice.Visible = !b;
+            ddlAddCategory.Visible = !b;
+            btnAddSubmit.Visible = !b;
+            btnCancel.Visible = !b;
+
+            btnManageCategories.Enabled = b;
+            btnManageMenuItems.Enabled = b;
+            btnEnterPurchase.Enabled = b;
+            btnEnterDrinkPurchase.Enabled = b;
+            ddlAddGetCategory.Enabled = b;
+            ddlChooseItem.Enabled = b;
+            gvDrink.Enabled = b;
+            gvMenuItems.Enabled = b;
+            btnAddMenuItem.Enabled = b;
+            txtAddMenuItemName.Text = "";
+            txtAddPrice.Text = "";
+        }
+
+
+        void displayTypeCategories()
+        {
+            if (ddlChooseItem.SelectedIndex == 0)
+            {
+                lblAddMenuItemName.Text = "Drink name";
+                var foodDrinkCat = getCategories(false);
+                ddlAddGetCategory.DataSource = foodDrinkCat;
+                ddlAddGetCategory.DataValueField = "FoodDrinkCategoryID";
+                ddlAddGetCategory.DataTextField = "FoodDrinkCategoryName";
+                ddlAddGetCategory.DataBind();
+                gvDrink.Enabled = true;
+               
+                gvMenuItems.Enabled = false;
+            }
+            else
+            {
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                var foodDrinkCat = getCategories(true);
+                ddlAddGetCategory.DataSource = foodDrinkCat;
+                ddlAddGetCategory.DataValueField = "FoodDrinkCategoryID";
+                ddlAddGetCategory.DataTextField = "FoodDrinkCategoryName";
+                ddlAddGetCategory.DataBind();
+                gvMenuItems.DataBind();
+                gvMenuItems.Enabled = true;
+                
+                gvDrink.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Checks for Menu items or beverages.  If menu items, the second ddl is populated
+        /// with all menu item categories, otherwise, the second list is populated with drink categories
+        /// This is called with the choose item list is changed
+        /// </summary>
+        protected void ddlChooseItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        displayTypeCategories();
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            disableButtons(false);
+        }
+
+        protected void ddlChooseItemForPurchase_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlChooseItemForPurchase.SelectedIndex == 0)
+            {
+                lblPurchaseItemName.Text = "Beverage Name";
+                btnAddListItemIngredient.Visible = false;
+            }
+            else
+            {
+                lblPurchaseItemName.Text = "Ingredient Name";
+                btnAddListItemIngredient.Visible = true;
+            }
+        }
 
     }
+
 
     
 }
