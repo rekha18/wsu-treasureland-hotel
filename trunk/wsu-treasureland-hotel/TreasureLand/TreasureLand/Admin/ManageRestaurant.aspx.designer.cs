@@ -85,15 +85,6 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtCategory;
         
         /// <summary>
-        /// txtCategory_FilteredTextBoxExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender txtCategory_FilteredTextBoxExtender;
-        
-        /// <summary>
         /// btnAddCategory control.
         /// </summary>
         /// <remarks>
@@ -103,6 +94,33 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnAddCategory;
         
         /// <summary>
+        /// cvAddCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvAddCategory;
+        
+        /// <summary>
+        /// rfvAddCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAddCategory;
+        
+        /// <summary>
+        /// txtCategory_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender txtCategory_FilteredTextBoxExtender;
+        
+        /// <summary>
         /// lblCatAddError control.
         /// </summary>
         /// <remarks>
@@ -110,6 +128,15 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCatAddError;
+        
+        /// <summary>
+        /// ValidationSummary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
         
         /// <summary>
         /// manageMenuItemsView control.
@@ -193,6 +220,15 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.LinqDataSource ldsDrinks;
         
         /// <summary>
+        /// LinqDataSource1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinqDataSource LinqDataSource1;
+        
+        /// <summary>
         /// lblAddMenuItemName control.
         /// </summary>
         /// <remarks>
@@ -209,6 +245,15 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAddMenuItemName;
+        
+        /// <summary>
+        /// txtAddMenuItemName_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender txtAddMenuItemName_FilteredTextBoxExtender;
         
         /// <summary>
         /// lblAddCategory control.
@@ -292,13 +337,13 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Label lblPurchaseItemName;
         
         /// <summary>
-        /// ddIngredient2 control.
+        /// ddlIngredientPurchase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddIngredient2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlIngredientPurchase;
         
         /// <summary>
         /// btnAddListItemIngredient control.
@@ -317,6 +362,15 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtIngredient2;
+        
+        /// <summary>
+        /// txtIngredient2_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender txtIngredient2_FilteredTextBoxExtender;
         
         /// <summary>
         /// txtPrice control.
@@ -353,6 +407,15 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmitPurchase;
+        
+        /// <summary>
+        /// btnClear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClear;
         
         /// <summary>
         /// gvshowIngredientPurchases control.
