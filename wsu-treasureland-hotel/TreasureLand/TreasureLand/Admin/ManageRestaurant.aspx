@@ -33,15 +33,24 @@
             </asp:DropDownList>
               <asp:TextBox ID="txtCategory" runat="server" style="margin-left: 60px" 
                 Visible="true" ForeColor="Black"></asp:TextBox>
-               <asp:FilteredTextBoxExtender ID="txtCategory_FilteredTextBoxExtender" 
+               <asp:Button ID="btnAddCategory" runat="server" Text="Add New Category" 
+                onclick="btnManageCategories_Click" ValidationGroup="vgAddCategory" />
+          
+            <asp:CompareValidator ID="cvAddCategory" runat="server" 
+                ControlToValidate="txtCategory" Display="Dynamic" 
+                ErrorMessage="Category Must be a String" ForeColor="Red" 
+                Operator="DataTypeCheck" ValidationGroup="vgAddCategory">*</asp:CompareValidator>
+            <asp:RequiredFieldValidator ID="rfvAddCategory" runat="server" 
+                ControlToValidate="txtCategory" ErrorMessage="You must enter a category" 
+                ForeColor="Red" ValidationGroup="vgAddCategory">*</asp:RequiredFieldValidator>
+            <asp:FilteredTextBoxExtender ID="txtCategory_FilteredTextBoxExtender" 
                 runat="server" FilterMode="InvalidChars" 
-                InvalidChars="!@#$%^&amp;*()_+-=[]{}\|;:'&quot;/.,&lt;&gt;?`~" 
+                InvalidChars="!@#$%^&amp;*()_+-=1234567890[]{}\|;:'&quot;/.,&lt;&gt;?`~" 
                 TargetControlID="txtCategory">
             </asp:FilteredTextBoxExtender>
-               <asp:Button ID="btnAddCategory" runat="server" Text="Add New Category" 
-                onclick="btnManageCategories_Click" />
-          
             <asp:Label ID="lblCatAddError" runat="server" ForeColor="Red"></asp:Label>
+            <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" 
+                ValidationGroup="vgAddCategory" />
           
         </td>
     </tr>
@@ -70,29 +79,30 @@
         <br />
         <asp:GridView ID="gvMenuItems" runat="server" AllowPaging="True" 
             AllowSorting="True" AutoGenerateColumns="False" DataSourceID="ldsMenuItems" 
-            PageSize="5">
+            PageSize="5" DataKeyNames="MenuItemID">
             <Columns>
-                <asp:BoundField DataField="MenuItemName" HeaderText="Name" ReadOnly="True" 
+                <asp:BoundField DataField="MenuItemID" HeaderText="MenuItemID" 
+                    InsertVisible="False" ReadOnly="True" SortExpression="MenuItemID" />
+                <asp:BoundField DataField="MenuItemName" HeaderText="MenuItemName" 
                     SortExpression="MenuItemName" />
-                <asp:BoundField DataField="MenuItemPrice" HeaderText="Price" ReadOnly="True" 
+                <asp:BoundField DataField="MenuItemPrice" HeaderText="MenuItemPrice" 
                     SortExpression="MenuItemPrice" />
-                <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
+                <asp:CommandField ButtonType="Button" ShowEditButton="True" />
             </Columns>
         </asp:GridView>
         <br />
         <asp:GridView ID="gvDrink" runat="server" AllowPaging="True" 
-            AllowSorting="True" AutoGenerateColumns="False" DataSourceID="ldsDrinks" 
-            Enabled="False" PageSize="5">
+            AllowSorting="True" AutoGenerateColumns="False" 
+            DataSourceID="LinqDataSource1" PageSize="5" DataKeyNames="DrinkID" 
+            Visible="False">
             <Columns>
-                <asp:BoundField DataField="DrinkName" HeaderText="DrinkName" ReadOnly="True" 
+                <asp:BoundField DataField="DrinkID" HeaderText="DrinkID" ReadOnly="True" 
+                    SortExpression="DrinkID" InsertVisible="False" />
+                <asp:BoundField DataField="DrinkName" HeaderText="DrinkName" 
                     SortExpression="DrinkName" />
                 <asp:BoundField DataField="DrinkRetailSalePrice" 
-                    HeaderText="DrinkRetailSalePrice" ReadOnly="True" 
-                    SortExpression="DrinkRetailSalePrice" />
-                <asp:BoundField DataField="FoodDrinkCategoryID" 
-                    HeaderText="FoodDrinkCategoryID" ReadOnly="True" 
-                    SortExpression="FoodDrinkCategoryID" />
-                <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
+                    HeaderText="DrinkRetailSalePrice" SortExpression="DrinkRetailSalePrice" />
+                <asp:CommandField ButtonType="Button" ShowEditButton="True" />
             </Columns>
         </asp:GridView>
         <br />
@@ -101,10 +111,9 @@
     
         <asp:LinqDataSource ID="ldsMenuItems" runat="server" 
             ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
-            EntityTypeName="" 
-            Select="new (MenuItemName, MenuItemPrice)" 
+            EntityTypeName=""  
             TableName="MenuItems" Where="FoodDrinkCategoryID == @FoodDrinkCategoryID1" 
-            EnableUpdate="True">
+            EnableUpdate="True" EnableDelete="True" EnableInsert="True">
             <WhereParameters>
                 <asp:ControlParameter ControlID="ddlAddGetCategory" Name="FoodDrinkCategoryID1" 
                     PropertyName="SelectedValue" Type="Int16" />
@@ -112,17 +121,25 @@
         </asp:LinqDataSource>
     
         <asp:LinqDataSource ID="ldsDrinks" runat="server" 
-            ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
-            EntityTypeName="" Select="new (DrinkName, DrinkRetailSalePrice, FoodDrinkCategoryID)" 
-            TableName="Drinks" Where="FoodDrinkCategoryID == @FoodDrinkCategoryID1" 
-            EnableUpdate="True">
+            ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext"  
+            TableName="Drinks" Where="FoodDrinkCategoryID == @FoodDrinkCategoryID" 
+            EnableUpdate="True" EntityTypeName="">
             <WhereParameters>
-                <asp:ControlParameter ControlID="ddlAddGetCategory" Name="FoodDrinkCategoryID1" 
-                    PropertyName="SelectedValue" Type="Int16" />
+                <asp:ControlParameter ControlID="ddlAddGetCategory" Name="newparameter" 
+                    PropertyName="SelectedValue" />
             </WhereParameters>
         </asp:LinqDataSource>
     
         <br />
+        <asp:LinqDataSource ID="LinqDataSource1" runat="server" 
+            ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
+            EnableUpdate="True" EntityTypeName="" TableName="Drinks" 
+            Where="FoodDrinkCategoryID == @FoodDrinkCategoryID">
+            <WhereParameters>
+                <asp:ControlParameter ControlID="ddlAddGetCategory" Name="FoodDrinkCategoryID" 
+                    PropertyName="SelectedValue" Type="Int16" />
+            </WhereParameters>
+        </asp:LinqDataSource>
         <br />
         <table class="style4" style="width: 45%">
             <tr>
@@ -132,6 +149,11 @@
                 </td>
                 <td>
                     <asp:TextBox ID="txtAddMenuItemName" runat="server" Visible="False"></asp:TextBox>
+                    <asp:FilteredTextBoxExtender ID="txtAddMenuItemName_FilteredTextBoxExtender" 
+                        runat="server" Enabled="True" FilterMode="InvalidChars" 
+                        InvalidChars="!@#$%^&amp;*()_+-=1234567890[]{}\|;:'&quot;/.,&lt;&gt;?`~" 
+                        TargetControlID="txtAddMenuItemName">
+                    </asp:FilteredTextBoxExtender>
                 </td>
             </tr>
             <tr>
@@ -171,7 +193,7 @@
     <asp:View ID="createPurchaseView" runat="server">
      <table class="style4">
     <tr>
-        <td style="width: 176px">
+        <td style="width: 144px">
             <asp:DropDownList ID="ddlChooseItemForPurchase" runat="server" 
                 AutoPostBack="True" 
                 onselectedindexchanged="ddlChooseItemForPurchase_SelectedIndexChanged">
@@ -179,65 +201,80 @@
                 <asp:ListItem>Menu Items</asp:ListItem>
             </asp:DropDownList>
         </td>
-        <td style="width: 248px">
+        <td style="width: 312px">
             &nbsp;</td>
     </tr>
          <tr>
-             <td style="width: 176px">
+             <td style="width: 144px">
                  <asp:Label ID="lblPurchaseItemName" runat="server" Text="Beverage Name:"></asp:Label>
              </td>
-             <td style="width: 248px">
-                 <asp:DropDownList ID="ddIngredient2" runat="server">
+             <td style="width: 312px">
+                 <asp:DropDownList ID="ddlIngredientPurchase" runat="server">
                  </asp:DropDownList>
                  <asp:Button ID="btnAddListItemIngredient" runat="server" 
                      onclick="btnAddListItemIngredient_Click1" Text="Add New Ingredient" 
                      Visible="False" />
                  <asp:TextBox ID="txtIngredient2" runat="server" Visible="False"></asp:TextBox>
+                 <asp:FilteredTextBoxExtender ID="txtIngredient2_FilteredTextBoxExtender" 
+                     runat="server" Enabled="True" FilterMode="InvalidChars" 
+                     InvalidChars="!@#$%^&amp;*()_+-=1234567890[]{}\|;:'&quot;/.,&lt;&gt;?`~" 
+                     TargetControlID="txtIngredient2">
+                 </asp:FilteredTextBoxExtender>
              </td>
          </tr>
     <tr>
-        <td style="width: 176px">
+        <td style="width: 144px">
             Purchase Price:</td>
-        <td style="width: 248px">
+        <td style="width: 312px">
             <asp:TextBox ID="txtPrice" runat="server" Width="94px"></asp:TextBox>
         </td>
     </tr>
     <tr>
-        <td style="width: 176px">
+        <td style="width: 144px">
             Qty:</td>
-        <td style="width: 248px">
+        <td style="width: 312px">
             <asp:TextBox ID="txtQty" runat="server" Width="96px"></asp:TextBox>
         </td>
     </tr>
     <tr>
-        <td style="width: 176px">
+        <td style="width: 144px">
             <asp:Button ID="btnAddItemToPurchase" runat="server" Text="Add Item to Purchase" 
-                Width="165px" onclick="btnAddItemToPurchase_Click" />
+                Width="157px" onclick="btnAddItemToPurchase_Click" Height="21px" />
+        </td>
+        <td style="width: 312px">
+            &nbsp;<asp:Button ID="btnSubmitPurchase" runat="server" Enabled="False" 
+                onclick="btnSubmitPurchase_Click" Text="Submit Purchase" Width="118px" />
         </td>
         <td style="width: 248px">
-            <asp:Button ID="btnSubmitPurchase" runat="server" Text="Submit Purchase" 
-                Width="165px" onclick="btnSubmitPurchase_Click" />
-        </td>
+            &nbsp;</td>
     </tr>
+         <tr>
+             <td style="width: 144px">
+                 <asp:Button ID="btnClear" runat="server" onclick="btnClearPurchase" 
+                     Text="Clear Purchase" Width="107px" />
+             </td>
+             <td style="width: 312px">
+                 &nbsp;</td>
+             <td style="width: 248px">
+                 &nbsp;</td>
+         </tr>
 </table>
         <asp:GridView ID="gvshowIngredientPurchases" runat="server" 
             AutoGenerateColumns="False">
             <Columns>
-                <asp:BoundField DataField="IngredientPurchaseHistoryID" 
-                    HeaderText="Purchase ID" />
                 <asp:BoundField DataField="IngredientID" HeaderText="Ingredient" />
-                <asp:BoundField DataField="IngredientPurchaseHistoryPrice" HeaderText="Price" />
                 <asp:BoundField DataField="IngredientPurchaseHistoryQty" HeaderText="Qty" />
+                <asp:BoundField DataField="IngredientPurchaseHistoryPrice" HeaderText="Price" 
+                    DataFormatString="{0:0.00}" />
             </Columns>
         </asp:GridView>
         <asp:GridView ID="gvShowDrinkPurchases" runat="server" 
             AutoGenerateColumns="False">
             <Columns>
-                <asp:BoundField DataField="DrinkPurchaseID" HeaderText="Purchase ID" />
+                <asp:BoundField DataField="DrinkID" HeaderText="Drink Name" />
+                <asp:BoundField DataField="DrinkPurchaseHistoryQty" HeaderText="Qty" />
                 <asp:BoundField DataField="DrinkPurchaseHistoryWholesalePrice" 
                     HeaderText="Wholesale Price" />
-                <asp:BoundField DataField="DrinkPurchaseHistoryQty" HeaderText="Qty" />
-                <asp:BoundField DataField="DrinkID" HeaderText="Drink Name" />
             </Columns>
         </asp:GridView>
 <br />
