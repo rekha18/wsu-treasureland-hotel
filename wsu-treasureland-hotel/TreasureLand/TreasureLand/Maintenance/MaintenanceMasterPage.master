@@ -18,10 +18,12 @@
                     onclick="btnHome_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
+                <asp:Button ID="btnInventory" runat="server" Text="Inventory" Width="180px" 
+                    onclick="btnInventory_Click" UseSubmitBehavior="False" />
+                <br />
+                <br />
                 <asp:Button ID="btnReports" runat="server" Text="Reports" Width="180px" 
                     onclick="btnReports_Click" UseSubmitBehavior="False" />
-                <br />
-                <br />
                 <br />
                 <br />
                 <asp:Button ID="btnSwitchRoles" runat="server" Text="Switch Roles" 
