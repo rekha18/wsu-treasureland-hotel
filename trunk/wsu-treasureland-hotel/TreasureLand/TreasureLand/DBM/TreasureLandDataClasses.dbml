@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TreasureLand" Class="TreasureLandDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=&quot;titan.cs.weber.edu, 10433&quot;;Initial Catalog=TreasureLand;User ID=4790Client" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TreasureLandConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=&quot;titan.cs.weber.edu, 10433&quot;;Initial Catalog=TreasureLand;User ID=4790Client" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TreasureLandDBM" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AccountingType" Member="AccountingTypes">
     <Type Name="AccountingType">
       <Column Name="AccountingTypeID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
