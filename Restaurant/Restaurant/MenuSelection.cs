@@ -190,13 +190,15 @@ namespace Restaurant
             }
         }
 
+        //***************************************************************************************************
         private int getCategoryCount()
         {
             //connect to the database
             DataClassesDataContext db = new DataClassesDataContext();
             int count = 0;
             var query = from c in db.FoodDrinkCategories
-                        where c.FoodDrinkCategoryIsMenuItem == true
+                        //where c.FoodDrinkCategoryIsMenuItem == true
+                        where c.FoodDrinkCategoryTypeID == "F"
                         select new { c.FoodDrinkCategoryID };
 
             foreach (var r in query)
@@ -205,6 +207,7 @@ namespace Restaurant
             }
             return count;
         }
+        //***************************************************************************************************
         
         private void btn_previous_categories_Click(object sender, EventArgs e)
         {
@@ -323,14 +326,37 @@ namespace Restaurant
             //connect to the database
             DataClassesDataContext db = new DataClassesDataContext();
             int count = 0;
-            var query = from d in db.Drinks
-                        where d.FoodDrinkCategoryID == nonORnot
-                        select new { d.FoodDrinkCategoryID };
+            //var query = from d in db.Drinks
+            //            where d.FoodDrinkCategoryID == nonORnot
+            //            select new { d.FoodDrinkCategoryID };
 
-            foreach (var d in query)
+            //***************************************************************************************************
+            if (nonORnot == 1)
             {
-                count++;
+                System.Diagnostics.Debug.WriteLine("getDrinksCount == N");
+                var query = from c in db.FoodDrinkCategories
+                            where c.FoodDrinkCategoryTypeID == "N"
+                            select new { c.FoodDrinkCategoryID };
+
+                foreach (var d in query)
+                {
+                    count++;
+                }
             }
+            else if(nonORnot == 2)
+            {
+                System.Diagnostics.Debug.WriteLine("getDrinksCount == A");
+                var query = from c in db.FoodDrinkCategories
+                            where c.FoodDrinkCategoryTypeID == "A"
+                            select new { c.FoodDrinkCategoryID };
+
+                foreach (var d in query)
+                {
+                    count++;
+                }
+            }
+            //***************************************************************************************************
+            System.Diagnostics.Debug.WriteLine("getDrinksCount, Count == " + count);
             return count;
         }
 
@@ -456,20 +482,45 @@ namespace Restaurant
 
         private void loadItemsDictWithDrinks(int nonORnot)
         {
+            System.Diagnostics.Debug.WriteLine("loadItemsDictWithDrinks, nonORnot == " + nonORnot);
             isSelectedCategoryDrink = true;
             itemInfoDict.Clear();
             DataClassesDataContext db = new DataClassesDataContext();
-            var drinkQuery = from d in db.Drinks
-                             where d.FoodDrinkCategoryID == nonORnot //4 is alcoholic, 2 is non-alcoholic
-                             select new { d.DrinkID, d.DrinkName };
 
-            if (drinkQuery.Any())
+            //*********************************************************************************************************
+            if (nonORnot == 1) //2 is alcoholic, 1 is non-alcoholic
             {
-                foreach (var q in drinkQuery)
+                var drinkQuery = from d in db.FoodDrinkCategories
+                                 join m in db.MenuItems
+                                 on d.FoodDrinkCategoryID equals m.FoodDrinkCategoryID
+                                 where d.FoodDrinkCategoryTypeID == "N"
+                                 select new { m.FoodDrinkCategoryID, m.MenuItemName };
+
+                if (drinkQuery.Any())
                 {
-                    itemInfoDict.Add(Convert.ToInt32(q.DrinkID), q.DrinkName);
+                    foreach (var q in drinkQuery)
+                    {
+                        itemInfoDict.Add(Convert.ToInt32(q.FoodDrinkCategoryID), q.MenuItemName);
+                    }
                 }
             }
+            else if(nonORnot == 2)
+            {
+                var drinkQuery = from d in db.FoodDrinkCategories
+                                 join m in db.MenuItems
+                                 on d.FoodDrinkCategoryID equals m.FoodDrinkCategoryID
+                                 where d.FoodDrinkCategoryTypeID == "A"
+                                 select new { m.FoodDrinkCategoryID, m.MenuItemName };
+
+                if (drinkQuery.Any())
+                {
+                    foreach (var q in drinkQuery)
+                    {
+                        itemInfoDict.Add(Convert.ToInt32(q.FoodDrinkCategoryID), q.MenuItemName);
+                    }
+                }
+            }
+            //*********************************************************************************************************
         }
 
         private void loadItemsDictWithFood(String foodCategory)
@@ -553,9 +604,9 @@ namespace Restaurant
                 categoryBtnDict.Add(Convert.ToInt32(control.Tag), control);
             }
 
-
+            //*********************************************************************************************************
             var query = from c in db.FoodDrinkCategories
-                        where c.FoodDrinkCategoryIsMenuItem == true
+                        where c.FoodDrinkCategoryTypeID == "F"
                         select new { c.FoodDrinkCategoryID, c.FoodDrinkCategoryName };
 
             if (query.Any())
@@ -565,7 +616,7 @@ namespace Restaurant
                     categoryInfoDict.Add(Convert.ToInt32(q.FoodDrinkCategoryID), q.FoodDrinkCategoryName);
                 }
             }
-
+            //*********************************************************************************************************
             foreach (Button control in items_panel.Controls)
             {
                 itemBtnDict.Add(Convert.ToInt32(control.Tag), control);
@@ -650,15 +701,15 @@ namespace Restaurant
             if (isSelectedCategoryDrink)
             {
                 DataClassesDataContext db = new DataClassesDataContext();
-                var query = from d in db.Drinks
-                            where d.DrinkName == menuItemName
-                            select new { d.DrinkRetailSalePrice };
+                var query = from d in db.MenuItems
+                            where d.MenuItemName == menuItemName
+                            select new { d.MenuItemPrice };
 
                 if(query.Any())
                 {
                     foreach (var q in query)
                     {
-                        menuItemPrice = Convert.ToDecimal(q.DrinkRetailSalePrice);
+                        menuItemPrice = Convert.ToDecimal(q.MenuItemPrice);
                     }
                 }
             }
@@ -703,27 +754,80 @@ namespace Restaurant
 
         private void btn_submit_order_Click(object sender, EventArgs e)
         {
-            foreach (var item in totalDict)
+            String reservationDetailID = null;
+            DataClassesDataContext db = new DataClassesDataContext();
+
+            if (ROOMNUMBER != 0)
+            {
+                var query = from r in db.Rooms
+                            join rd in db.ReservationDetails
+                            on r.RoomID equals rd.RoomID
+                            join rdb in db.ReservationDetailBillings
+                            on rd.ReservationDetailID equals rdb.ReservationDetailID
+                            where r.RoomNumbers == ROOMNUMBER.ToString() & rd.Status == 'A'
+                            select new { rd.ReservationDetailID };
+
+                if (query.Any())
+                {
+                    foreach (var item in query)
+                    {
+                        reservationDetailID = item.ToString();
+                    }
+                }
+            }
+
+            //RESERVATIONDETAILBILLING
+            ReservationDetailBilling reservationOBJ = new ReservationDetailBilling();
+            
+            if(ROOMNUMBER == 0)
+            {
+                reservationOBJ.ReservationDetailID = null;
+            }
+            else
+            {
+                reservationOBJ.ReservationDetailID = Convert.ToSByte(reservationDetailID);
+            }
+
+            reservationOBJ.BillingCategoryID = 1;
+            reservationOBJ.BillingDescription = "food & drink purchase";
+            reservationOBJ.BillingAmount = Convert.ToDecimal(lbl_grand_total.Text);
+            reservationOBJ.BillingItemQty = 1;
+            reservationOBJ.BillingItemDate = System.DateTime.Now;
+            reservationOBJ.TransEmployee = "1111";//get from
+            
+            db.ReservationDetailBillings.InsertOnSubmit(reservationOBJ);
+            db.SubmitChanges();
+
+
+            var rdbID = (from r in db.ReservationDetailBillings
+                         select r.ReservationDetailBillingID).Max();
+
+            foreach (var item in totalDict)//all purchase items in the list
             {
                 String itemName = getItemInfoFromButton(item.Value, 1);
-                System.Diagnostics.Debug.WriteLine("item remaining: " + itemName);
+                System.Diagnostics.Debug.WriteLine("item purchased: " + itemName);
 
-                DataClassesDataContext db = new DataClassesDataContext();
+                var itemInfo = from i in db.MenuItems
+                               where i.MenuItemName == itemName
+                               select i;
 
+                short menuItemID = 0;
+                decimal menuItemPrice = 0;
 
-                //RESERVATIONDETAILBILLING
-                ReservationDetailBilling reservationOBJ = new ReservationDetailBilling
+                foreach (var menuItem in itemInfo)
                 {
-                    
-                };                
-                db.ReservationDetailBillings.InsertOnSubmit(reservationOBJ);
+                    menuItemID = menuItem.MenuItemID;
+                    menuItemPrice = menuItem.MenuItemPrice;
+                }
 
                 //LINEITEM
-                LineItem lineOBJ = new LineItem
-                {
-
-                };
+                LineItem lineOBJ = new LineItem();
+                lineOBJ.ReservationDetailBillingID = rdbID;
+                lineOBJ.MenuItemID = menuItemID;
+                lineOBJ.LineItemAmount = menuItemPrice;
+                
                 db.LineItems.InsertOnSubmit(lineOBJ);
+                db.SubmitChanges();
             }
 
             Close();
