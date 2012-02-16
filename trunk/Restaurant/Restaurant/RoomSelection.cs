@@ -158,7 +158,7 @@ namespace Restaurant
         /// <param name="e"></param>
         private void btn_cash_Click(object sender, EventArgs e)
         {
-            new MenuSelection(0).Show();
+            new MenuSelection(0, "").Show();
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace Restaurant
             String[] arr = text.Split('\n');
             int selectedRoom = Convert.ToInt32(arr[0]);
 
-            new MenuSelection(selectedRoom).Show();
+            new MenuSelection(selectedRoom, arr[1]).Show();
         }
 
         /// <summary>
@@ -192,12 +192,13 @@ namespace Restaurant
                         join g in db.Guests
                         on rv.GuestID equals g.GuestID
                         where r.RoomStatus == 'C' & rv.ReservationStatus == 'A'
-                        select new { r.RoomID, g.GuestSurName };
+                        select new { r.RoomID, g.GuestSurName, r.RoomNumbers };
             if (query.Any())
             {
                 foreach (var q in query)
                 {
-                    buttonInfoDict.Add(Convert.ToInt32(q.RoomID), q.GuestSurName.ToString());
+                    //***************************************************************************
+                    buttonInfoDict.Add(Convert.ToInt32(q.RoomNumbers), q.GuestSurName.ToString());
                 }
 
                 int num = 0;

@@ -63,7 +63,7 @@ namespace Restaurant
             InitializeComponent();
         }
 
-        public MenuSelection(int selectedRoom)
+        public MenuSelection(int selectedRoom, String guestSurname)
         {
             InitializeComponent();
 
@@ -75,7 +75,13 @@ namespace Restaurant
             if (selectedRoom != 0) // 0 means paying with cash
             {
                 lbl_selectedRoom.Text = "Room: " + selectedRoom.ToString();
+                lbl_guestSurname.Text = "Guest: " + guestSurname;
                 ROOMNUMBER = Convert.ToInt32(selectedRoom);
+            }
+            else
+            {
+                lbl_selectedRoom.Text = "";
+                lbl_guestSurname.Text = "";
             }
 
             #region Categorie Setup
@@ -494,13 +500,13 @@ namespace Restaurant
                                  join m in db.MenuItems
                                  on d.FoodDrinkCategoryID equals m.FoodDrinkCategoryID
                                  where d.FoodDrinkCategoryTypeID == "N"
-                                 select new { m.FoodDrinkCategoryID, m.MenuItemName };
+                                 select new { m.MenuItemID, m.MenuItemName };
 
                 if (drinkQuery.Any())
                 {
                     foreach (var q in drinkQuery)
                     {
-                        itemInfoDict.Add(Convert.ToInt32(q.FoodDrinkCategoryID), q.MenuItemName);
+                        itemInfoDict.Add(Convert.ToInt32(q.MenuItemID), q.MenuItemName);
                     }
                 }
             }
@@ -510,13 +516,13 @@ namespace Restaurant
                                  join m in db.MenuItems
                                  on d.FoodDrinkCategoryID equals m.FoodDrinkCategoryID
                                  where d.FoodDrinkCategoryTypeID == "A"
-                                 select new { m.FoodDrinkCategoryID, m.MenuItemName };
+                                 select new { m.MenuItemID, m.MenuItemName };
 
                 if (drinkQuery.Any())
                 {
                     foreach (var q in drinkQuery)
                     {
-                        itemInfoDict.Add(Convert.ToInt32(q.FoodDrinkCategoryID), q.MenuItemName);
+                        itemInfoDict.Add(Convert.ToInt32(q.MenuItemID), q.MenuItemName);
                     }
                 }
             }
@@ -754,7 +760,7 @@ namespace Restaurant
 
         private void btn_submit_order_Click(object sender, EventArgs e)
         {
-            String reservationDetailID = null;
+            Int16 reservationDetailID = 0;
             DataClassesDataContext db = new DataClassesDataContext();
 
             if (ROOMNUMBER != 0)
@@ -762,16 +768,17 @@ namespace Restaurant
                 var query = from r in db.Rooms
                             join rd in db.ReservationDetails
                             on r.RoomID equals rd.RoomID
-                            join rdb in db.ReservationDetailBillings
-                            on rd.ReservationDetailID equals rdb.ReservationDetailID
-                            where r.RoomNumbers == ROOMNUMBER.ToString() & rd.Status == 'A'
+                            //join rdb in db.ReservationDetailBillings
+                            //on rd.ReservationDetailID equals rdb.ReservationDetailID  // 1 , null
+                            where r.RoomNumbers == ROOMNUMBER.ToString() & rd.ReservationStatus == 'A'
+                            //where rd.ReservationStatus == 'A'
                             select new { rd.ReservationDetailID };
 
                 if (query.Any())
                 {
                     foreach (var item in query)
                     {
-                        reservationDetailID = item.ToString();
+                        reservationDetailID = Convert.ToInt16(item.ReservationDetailID);
                     }
                 }
             }
@@ -785,7 +792,7 @@ namespace Restaurant
             }
             else
             {
-                reservationOBJ.ReservationDetailID = Convert.ToSByte(reservationDetailID);
+                reservationOBJ.ReservationDetailID = Convert.ToInt16(reservationDetailID);
             }
 
             reservationOBJ.BillingCategoryID = 1;
@@ -793,7 +800,7 @@ namespace Restaurant
             reservationOBJ.BillingAmount = Convert.ToDecimal(lbl_grand_total.Text);
             reservationOBJ.BillingItemQty = 1;
             reservationOBJ.BillingItemDate = System.DateTime.Now;
-            reservationOBJ.TransEmployee = "1111";//get from
+            reservationOBJ.TransEmployee = "1111";//get from login
             
             db.ReservationDetailBillings.InsertOnSubmit(reservationOBJ);
             db.SubmitChanges();
