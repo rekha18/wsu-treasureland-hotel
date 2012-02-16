@@ -30,33 +30,6 @@ namespace Restaurant
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertDrinkPurchase(DrinkPurchase instance);
-    partial void UpdateDrinkPurchase(DrinkPurchase instance);
-    partial void DeleteDrinkPurchase(DrinkPurchase instance);
-    partial void InsertDrinkPurchaseHistory(DrinkPurchaseHistory instance);
-    partial void UpdateDrinkPurchaseHistory(DrinkPurchaseHistory instance);
-    partial void DeleteDrinkPurchaseHistory(DrinkPurchaseHistory instance);
-    partial void InsertIngredient(Ingredient instance);
-    partial void UpdateIngredient(Ingredient instance);
-    partial void DeleteIngredient(Ingredient instance);
-    partial void InsertIngredientPurchase(IngredientPurchase instance);
-    partial void UpdateIngredientPurchase(IngredientPurchase instance);
-    partial void DeleteIngredientPurchase(IngredientPurchase instance);
-    partial void InsertIngredientPurchaseHistory(IngredientPurchaseHistory instance);
-    partial void UpdateIngredientPurchaseHistory(IngredientPurchaseHistory instance);
-    partial void DeleteIngredientPurchaseHistory(IngredientPurchaseHistory instance);
-    partial void InsertLineItem(LineItem instance);
-    partial void UpdateLineItem(LineItem instance);
-    partial void DeleteLineItem(LineItem instance);
-    partial void InsertMenuItem(MenuItem instance);
-    partial void UpdateMenuItem(MenuItem instance);
-    partial void DeleteMenuItem(MenuItem instance);
-    partial void InsertMenuItemIngredient(MenuItemIngredient instance);
-    partial void UpdateMenuItemIngredient(MenuItemIngredient instance);
-    partial void DeleteMenuItemIngredient(MenuItemIngredient instance);
-    partial void InsertReservationDetailBilling(ReservationDetailBilling instance);
-    partial void UpdateReservationDetailBilling(ReservationDetailBilling instance);
-    partial void DeleteReservationDetailBilling(ReservationDetailBilling instance);
     partial void InsertReservationDetail(ReservationDetail instance);
     partial void UpdateReservationDetail(ReservationDetail instance);
     partial void DeleteReservationDetail(ReservationDetail instance);
@@ -69,9 +42,27 @@ namespace Restaurant
     partial void InsertGuest(Guest instance);
     partial void UpdateGuest(Guest instance);
     partial void DeleteGuest(Guest instance);
-    partial void InsertDrink(Drink instance);
-    partial void UpdateDrink(Drink instance);
-    partial void DeleteDrink(Drink instance);
+    partial void InsertReservationDetailBilling(ReservationDetailBilling instance);
+    partial void UpdateReservationDetailBilling(ReservationDetailBilling instance);
+    partial void DeleteReservationDetailBilling(ReservationDetailBilling instance);
+    partial void InsertLineItem(LineItem instance);
+    partial void UpdateLineItem(LineItem instance);
+    partial void DeleteLineItem(LineItem instance);
+    partial void InsertMenuItem(MenuItem instance);
+    partial void UpdateMenuItem(MenuItem instance);
+    partial void DeleteMenuItem(MenuItem instance);
+    partial void InsertMenuItemIngredient(MenuItemIngredient instance);
+    partial void UpdateMenuItemIngredient(MenuItemIngredient instance);
+    partial void DeleteMenuItemIngredient(MenuItemIngredient instance);
+    partial void InsertIngredient(Ingredient instance);
+    partial void UpdateIngredient(Ingredient instance);
+    partial void DeleteIngredient(Ingredient instance);
+    partial void InsertIngredientPurchase(IngredientPurchase instance);
+    partial void UpdateIngredientPurchase(IngredientPurchase instance);
+    partial void DeleteIngredientPurchase(IngredientPurchase instance);
+    partial void InsertIngredientPurchaseHistory(IngredientPurchaseHistory instance);
+    partial void UpdateIngredientPurchaseHistory(IngredientPurchaseHistory instance);
+    partial void DeleteIngredientPurchaseHistory(IngredientPurchaseHistory instance);
     partial void InsertFoodDrinkCategory(FoodDrinkCategory instance);
     partial void UpdateFoodDrinkCategory(FoodDrinkCategory instance);
     partial void DeleteFoodDrinkCategory(FoodDrinkCategory instance);
@@ -107,78 +98,6 @@ namespace Restaurant
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<DrinkPurchase> DrinkPurchases
-		{
-			get
-			{
-				return this.GetTable<DrinkPurchase>();
-			}
-		}
-		
-		public System.Data.Linq.Table<DrinkPurchaseHistory> DrinkPurchaseHistories
-		{
-			get
-			{
-				return this.GetTable<DrinkPurchaseHistory>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Ingredient> Ingredients
-		{
-			get
-			{
-				return this.GetTable<Ingredient>();
-			}
-		}
-		
-		public System.Data.Linq.Table<IngredientPurchase> IngredientPurchases
-		{
-			get
-			{
-				return this.GetTable<IngredientPurchase>();
-			}
-		}
-		
-		public System.Data.Linq.Table<IngredientPurchaseHistory> IngredientPurchaseHistories
-		{
-			get
-			{
-				return this.GetTable<IngredientPurchaseHistory>();
-			}
-		}
-		
-		public System.Data.Linq.Table<LineItem> LineItems
-		{
-			get
-			{
-				return this.GetTable<LineItem>();
-			}
-		}
-		
-		public System.Data.Linq.Table<MenuItem> MenuItems
-		{
-			get
-			{
-				return this.GetTable<MenuItem>();
-			}
-		}
-		
-		public System.Data.Linq.Table<MenuItemIngredient> MenuItemIngredients
-		{
-			get
-			{
-				return this.GetTable<MenuItemIngredient>();
-			}
-		}
-		
-		public System.Data.Linq.Table<ReservationDetailBilling> ReservationDetailBillings
-		{
-			get
-			{
-				return this.GetTable<ReservationDetailBilling>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ReservationDetail> ReservationDetails
 		{
 			get
@@ -211,11 +130,59 @@ namespace Restaurant
 			}
 		}
 		
-		public System.Data.Linq.Table<Drink> Drinks
+		public System.Data.Linq.Table<ReservationDetailBilling> ReservationDetailBillings
 		{
 			get
 			{
-				return this.GetTable<Drink>();
+				return this.GetTable<ReservationDetailBilling>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LineItem> LineItems
+		{
+			get
+			{
+				return this.GetTable<LineItem>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MenuItem> MenuItems
+		{
+			get
+			{
+				return this.GetTable<MenuItem>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MenuItemIngredient> MenuItemIngredients
+		{
+			get
+			{
+				return this.GetTable<MenuItemIngredient>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Ingredient> Ingredients
+		{
+			get
+			{
+				return this.GetTable<Ingredient>();
+			}
+		}
+		
+		public System.Data.Linq.Table<IngredientPurchase> IngredientPurchases
+		{
+			get
+			{
+				return this.GetTable<IngredientPurchase>();
+			}
+		}
+		
+		public System.Data.Linq.Table<IngredientPurchaseHistory> IngredientPurchaseHistories
+		{
+			get
+			{
+				return this.GetTable<IngredientPurchaseHistory>();
 			}
 		}
 		
@@ -225,1790 +192,6 @@ namespace Restaurant
 			{
 				return this.GetTable<FoodDrinkCategory>();
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DrinkPurchase")]
-	public partial class DrinkPurchase : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _DrinkPurchaseID;
-		
-		private System.DateTime _DrinkPurchaseDate;
-		
-		private EntitySet<DrinkPurchaseHistory> _DrinkPurchaseHistories;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnDrinkPurchaseIDChanging(short value);
-    partial void OnDrinkPurchaseIDChanged();
-    partial void OnDrinkPurchaseDateChanging(System.DateTime value);
-    partial void OnDrinkPurchaseDateChanged();
-    #endregion
-		
-		public DrinkPurchase()
-		{
-			this._DrinkPurchaseHistories = new EntitySet<DrinkPurchaseHistory>(new Action<DrinkPurchaseHistory>(this.attach_DrinkPurchaseHistories), new Action<DrinkPurchaseHistory>(this.detach_DrinkPurchaseHistories));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrinkPurchaseID", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
-		public short DrinkPurchaseID
-		{
-			get
-			{
-				return this._DrinkPurchaseID;
-			}
-			set
-			{
-				if ((this._DrinkPurchaseID != value))
-				{
-					this.OnDrinkPurchaseIDChanging(value);
-					this.SendPropertyChanging();
-					this._DrinkPurchaseID = value;
-					this.SendPropertyChanged("DrinkPurchaseID");
-					this.OnDrinkPurchaseIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrinkPurchaseDate", DbType="SmallDateTime NOT NULL")]
-		public System.DateTime DrinkPurchaseDate
-		{
-			get
-			{
-				return this._DrinkPurchaseDate;
-			}
-			set
-			{
-				if ((this._DrinkPurchaseDate != value))
-				{
-					this.OnDrinkPurchaseDateChanging(value);
-					this.SendPropertyChanging();
-					this._DrinkPurchaseDate = value;
-					this.SendPropertyChanged("DrinkPurchaseDate");
-					this.OnDrinkPurchaseDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DrinkPurchase_DrinkPurchaseHistory", Storage="_DrinkPurchaseHistories", ThisKey="DrinkPurchaseID", OtherKey="DrinkPurchaseID")]
-		public EntitySet<DrinkPurchaseHistory> DrinkPurchaseHistories
-		{
-			get
-			{
-				return this._DrinkPurchaseHistories;
-			}
-			set
-			{
-				this._DrinkPurchaseHistories.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_DrinkPurchaseHistories(DrinkPurchaseHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.DrinkPurchase = this;
-		}
-		
-		private void detach_DrinkPurchaseHistories(DrinkPurchaseHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.DrinkPurchase = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DrinkPurchaseHistory")]
-	public partial class DrinkPurchaseHistory : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _DrinkPurchaseHistoryID;
-		
-		private short _DrinkPurchaseID;
-		
-		private decimal _DrinkPurchaseHistoryWholesalePrice;
-		
-		private decimal _DrinkPurchaseHistoryQty;
-		
-		private short _DrinkID;
-		
-		private EntityRef<DrinkPurchase> _DrinkPurchase;
-		
-		private EntityRef<Drink> _Drink;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnDrinkPurchaseHistoryIDChanging(int value);
-    partial void OnDrinkPurchaseHistoryIDChanged();
-    partial void OnDrinkPurchaseIDChanging(short value);
-    partial void OnDrinkPurchaseIDChanged();
-    partial void OnDrinkPurchaseHistoryWholesalePriceChanging(decimal value);
-    partial void OnDrinkPurchaseHistoryWholesalePriceChanged();
-    partial void OnDrinkPurchaseHistoryQtyChanging(decimal value);
-    partial void OnDrinkPurchaseHistoryQtyChanged();
-    partial void OnDrinkIDChanging(short value);
-    partial void OnDrinkIDChanged();
-    #endregion
-		
-		public DrinkPurchaseHistory()
-		{
-			this._DrinkPurchase = default(EntityRef<DrinkPurchase>);
-			this._Drink = default(EntityRef<Drink>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrinkPurchaseHistoryID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int DrinkPurchaseHistoryID
-		{
-			get
-			{
-				return this._DrinkPurchaseHistoryID;
-			}
-			set
-			{
-				if ((this._DrinkPurchaseHistoryID != value))
-				{
-					this.OnDrinkPurchaseHistoryIDChanging(value);
-					this.SendPropertyChanging();
-					this._DrinkPurchaseHistoryID = value;
-					this.SendPropertyChanged("DrinkPurchaseHistoryID");
-					this.OnDrinkPurchaseHistoryIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrinkPurchaseID", DbType="SmallInt NOT NULL")]
-		public short DrinkPurchaseID
-		{
-			get
-			{
-				return this._DrinkPurchaseID;
-			}
-			set
-			{
-				if ((this._DrinkPurchaseID != value))
-				{
-					if (this._DrinkPurchase.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDrinkPurchaseIDChanging(value);
-					this.SendPropertyChanging();
-					this._DrinkPurchaseID = value;
-					this.SendPropertyChanged("DrinkPurchaseID");
-					this.OnDrinkPurchaseIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrinkPurchaseHistoryWholesalePrice", DbType="SmallMoney NOT NULL")]
-		public decimal DrinkPurchaseHistoryWholesalePrice
-		{
-			get
-			{
-				return this._DrinkPurchaseHistoryWholesalePrice;
-			}
-			set
-			{
-				if ((this._DrinkPurchaseHistoryWholesalePrice != value))
-				{
-					this.OnDrinkPurchaseHistoryWholesalePriceChanging(value);
-					this.SendPropertyChanging();
-					this._DrinkPurchaseHistoryWholesalePrice = value;
-					this.SendPropertyChanged("DrinkPurchaseHistoryWholesalePrice");
-					this.OnDrinkPurchaseHistoryWholesalePriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrinkPurchaseHistoryQty", DbType="SmallMoney NOT NULL")]
-		public decimal DrinkPurchaseHistoryQty
-		{
-			get
-			{
-				return this._DrinkPurchaseHistoryQty;
-			}
-			set
-			{
-				if ((this._DrinkPurchaseHistoryQty != value))
-				{
-					this.OnDrinkPurchaseHistoryQtyChanging(value);
-					this.SendPropertyChanging();
-					this._DrinkPurchaseHistoryQty = value;
-					this.SendPropertyChanged("DrinkPurchaseHistoryQty");
-					this.OnDrinkPurchaseHistoryQtyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrinkID", DbType="SmallInt NOT NULL")]
-		public short DrinkID
-		{
-			get
-			{
-				return this._DrinkID;
-			}
-			set
-			{
-				if ((this._DrinkID != value))
-				{
-					if (this._Drink.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDrinkIDChanging(value);
-					this.SendPropertyChanging();
-					this._DrinkID = value;
-					this.SendPropertyChanged("DrinkID");
-					this.OnDrinkIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DrinkPurchase_DrinkPurchaseHistory", Storage="_DrinkPurchase", ThisKey="DrinkPurchaseID", OtherKey="DrinkPurchaseID", IsForeignKey=true)]
-		public DrinkPurchase DrinkPurchase
-		{
-			get
-			{
-				return this._DrinkPurchase.Entity;
-			}
-			set
-			{
-				DrinkPurchase previousValue = this._DrinkPurchase.Entity;
-				if (((previousValue != value) 
-							|| (this._DrinkPurchase.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DrinkPurchase.Entity = null;
-						previousValue.DrinkPurchaseHistories.Remove(this);
-					}
-					this._DrinkPurchase.Entity = value;
-					if ((value != null))
-					{
-						value.DrinkPurchaseHistories.Add(this);
-						this._DrinkPurchaseID = value.DrinkPurchaseID;
-					}
-					else
-					{
-						this._DrinkPurchaseID = default(short);
-					}
-					this.SendPropertyChanged("DrinkPurchase");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Drink_DrinkPurchaseHistory", Storage="_Drink", ThisKey="DrinkID", OtherKey="DrinkID", IsForeignKey=true)]
-		public Drink Drink
-		{
-			get
-			{
-				return this._Drink.Entity;
-			}
-			set
-			{
-				Drink previousValue = this._Drink.Entity;
-				if (((previousValue != value) 
-							|| (this._Drink.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Drink.Entity = null;
-						previousValue.DrinkPurchaseHistories.Remove(this);
-					}
-					this._Drink.Entity = value;
-					if ((value != null))
-					{
-						value.DrinkPurchaseHistories.Add(this);
-						this._DrinkID = value.DrinkID;
-					}
-					else
-					{
-						this._DrinkID = default(short);
-					}
-					this.SendPropertyChanged("Drink");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ingredient")]
-	public partial class Ingredient : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _IngredientID;
-		
-		private string _IngredientName;
-		
-		private EntitySet<IngredientPurchaseHistory> _IngredientPurchaseHistories;
-		
-		private EntitySet<MenuItemIngredient> _MenuItemIngredients;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIngredientIDChanging(short value);
-    partial void OnIngredientIDChanged();
-    partial void OnIngredientNameChanging(string value);
-    partial void OnIngredientNameChanged();
-    #endregion
-		
-		public Ingredient()
-		{
-			this._IngredientPurchaseHistories = new EntitySet<IngredientPurchaseHistory>(new Action<IngredientPurchaseHistory>(this.attach_IngredientPurchaseHistories), new Action<IngredientPurchaseHistory>(this.detach_IngredientPurchaseHistories));
-			this._MenuItemIngredients = new EntitySet<MenuItemIngredient>(new Action<MenuItemIngredient>(this.attach_MenuItemIngredients), new Action<MenuItemIngredient>(this.detach_MenuItemIngredients));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientID", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
-		public short IngredientID
-		{
-			get
-			{
-				return this._IngredientID;
-			}
-			set
-			{
-				if ((this._IngredientID != value))
-				{
-					this.OnIngredientIDChanging(value);
-					this.SendPropertyChanging();
-					this._IngredientID = value;
-					this.SendPropertyChanged("IngredientID");
-					this.OnIngredientIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientName", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string IngredientName
-		{
-			get
-			{
-				return this._IngredientName;
-			}
-			set
-			{
-				if ((this._IngredientName != value))
-				{
-					this.OnIngredientNameChanging(value);
-					this.SendPropertyChanging();
-					this._IngredientName = value;
-					this.SendPropertyChanged("IngredientName");
-					this.OnIngredientNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_IngredientPurchaseHistory", Storage="_IngredientPurchaseHistories", ThisKey="IngredientID", OtherKey="IngredientID")]
-		public EntitySet<IngredientPurchaseHistory> IngredientPurchaseHistories
-		{
-			get
-			{
-				return this._IngredientPurchaseHistories;
-			}
-			set
-			{
-				this._IngredientPurchaseHistories.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_MenuItemIngredient", Storage="_MenuItemIngredients", ThisKey="IngredientID", OtherKey="IngredientID")]
-		public EntitySet<MenuItemIngredient> MenuItemIngredients
-		{
-			get
-			{
-				return this._MenuItemIngredients;
-			}
-			set
-			{
-				this._MenuItemIngredients.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_IngredientPurchaseHistories(IngredientPurchaseHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.Ingredient = this;
-		}
-		
-		private void detach_IngredientPurchaseHistories(IngredientPurchaseHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.Ingredient = null;
-		}
-		
-		private void attach_MenuItemIngredients(MenuItemIngredient entity)
-		{
-			this.SendPropertyChanging();
-			entity.Ingredient = this;
-		}
-		
-		private void detach_MenuItemIngredients(MenuItemIngredient entity)
-		{
-			this.SendPropertyChanging();
-			entity.Ingredient = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.IngredientPurchase")]
-	public partial class IngredientPurchase : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _PurchaseID;
-		
-		private System.DateTime _PurchaseDate;
-		
-		private EntitySet<IngredientPurchaseHistory> _IngredientPurchaseHistories;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnPurchaseIDChanging(short value);
-    partial void OnPurchaseIDChanged();
-    partial void OnPurchaseDateChanging(System.DateTime value);
-    partial void OnPurchaseDateChanged();
-    #endregion
-		
-		public IngredientPurchase()
-		{
-			this._IngredientPurchaseHistories = new EntitySet<IngredientPurchaseHistory>(new Action<IngredientPurchaseHistory>(this.attach_IngredientPurchaseHistories), new Action<IngredientPurchaseHistory>(this.detach_IngredientPurchaseHistories));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchaseID", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
-		public short PurchaseID
-		{
-			get
-			{
-				return this._PurchaseID;
-			}
-			set
-			{
-				if ((this._PurchaseID != value))
-				{
-					this.OnPurchaseIDChanging(value);
-					this.SendPropertyChanging();
-					this._PurchaseID = value;
-					this.SendPropertyChanged("PurchaseID");
-					this.OnPurchaseIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchaseDate", DbType="SmallDateTime NOT NULL")]
-		public System.DateTime PurchaseDate
-		{
-			get
-			{
-				return this._PurchaseDate;
-			}
-			set
-			{
-				if ((this._PurchaseDate != value))
-				{
-					this.OnPurchaseDateChanging(value);
-					this.SendPropertyChanging();
-					this._PurchaseDate = value;
-					this.SendPropertyChanged("PurchaseDate");
-					this.OnPurchaseDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IngredientPurchase_IngredientPurchaseHistory", Storage="_IngredientPurchaseHistories", ThisKey="PurchaseID", OtherKey="PurchaseID")]
-		public EntitySet<IngredientPurchaseHistory> IngredientPurchaseHistories
-		{
-			get
-			{
-				return this._IngredientPurchaseHistories;
-			}
-			set
-			{
-				this._IngredientPurchaseHistories.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_IngredientPurchaseHistories(IngredientPurchaseHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.IngredientPurchase = this;
-		}
-		
-		private void detach_IngredientPurchaseHistories(IngredientPurchaseHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.IngredientPurchase = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.IngredientPurchaseHistory")]
-	public partial class IngredientPurchaseHistory : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _IngredientPurchaseHistoryID;
-		
-		private short _IngredientID;
-		
-		private short _PurchaseID;
-		
-		private decimal _IngredientPurchaseHistoryPrice;
-		
-		private short _IngredientPurchaseHistoryQty;
-		
-		private EntityRef<Ingredient> _Ingredient;
-		
-		private EntityRef<IngredientPurchase> _IngredientPurchase;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIngredientPurchaseHistoryIDChanging(short value);
-    partial void OnIngredientPurchaseHistoryIDChanged();
-    partial void OnIngredientIDChanging(short value);
-    partial void OnIngredientIDChanged();
-    partial void OnPurchaseIDChanging(short value);
-    partial void OnPurchaseIDChanged();
-    partial void OnIngredientPurchaseHistoryPriceChanging(decimal value);
-    partial void OnIngredientPurchaseHistoryPriceChanged();
-    partial void OnIngredientPurchaseHistoryQtyChanging(short value);
-    partial void OnIngredientPurchaseHistoryQtyChanged();
-    #endregion
-		
-		public IngredientPurchaseHistory()
-		{
-			this._Ingredient = default(EntityRef<Ingredient>);
-			this._IngredientPurchase = default(EntityRef<IngredientPurchase>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientPurchaseHistoryID", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
-		public short IngredientPurchaseHistoryID
-		{
-			get
-			{
-				return this._IngredientPurchaseHistoryID;
-			}
-			set
-			{
-				if ((this._IngredientPurchaseHistoryID != value))
-				{
-					this.OnIngredientPurchaseHistoryIDChanging(value);
-					this.SendPropertyChanging();
-					this._IngredientPurchaseHistoryID = value;
-					this.SendPropertyChanged("IngredientPurchaseHistoryID");
-					this.OnIngredientPurchaseHistoryIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientID", DbType="SmallInt NOT NULL")]
-		public short IngredientID
-		{
-			get
-			{
-				return this._IngredientID;
-			}
-			set
-			{
-				if ((this._IngredientID != value))
-				{
-					if (this._Ingredient.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIngredientIDChanging(value);
-					this.SendPropertyChanging();
-					this._IngredientID = value;
-					this.SendPropertyChanged("IngredientID");
-					this.OnIngredientIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchaseID", DbType="SmallInt NOT NULL")]
-		public short PurchaseID
-		{
-			get
-			{
-				return this._PurchaseID;
-			}
-			set
-			{
-				if ((this._PurchaseID != value))
-				{
-					if (this._IngredientPurchase.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPurchaseIDChanging(value);
-					this.SendPropertyChanging();
-					this._PurchaseID = value;
-					this.SendPropertyChanged("PurchaseID");
-					this.OnPurchaseIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientPurchaseHistoryPrice", DbType="SmallMoney NOT NULL")]
-		public decimal IngredientPurchaseHistoryPrice
-		{
-			get
-			{
-				return this._IngredientPurchaseHistoryPrice;
-			}
-			set
-			{
-				if ((this._IngredientPurchaseHistoryPrice != value))
-				{
-					this.OnIngredientPurchaseHistoryPriceChanging(value);
-					this.SendPropertyChanging();
-					this._IngredientPurchaseHistoryPrice = value;
-					this.SendPropertyChanged("IngredientPurchaseHistoryPrice");
-					this.OnIngredientPurchaseHistoryPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientPurchaseHistoryQty", DbType="SmallInt NOT NULL")]
-		public short IngredientPurchaseHistoryQty
-		{
-			get
-			{
-				return this._IngredientPurchaseHistoryQty;
-			}
-			set
-			{
-				if ((this._IngredientPurchaseHistoryQty != value))
-				{
-					this.OnIngredientPurchaseHistoryQtyChanging(value);
-					this.SendPropertyChanging();
-					this._IngredientPurchaseHistoryQty = value;
-					this.SendPropertyChanged("IngredientPurchaseHistoryQty");
-					this.OnIngredientPurchaseHistoryQtyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_IngredientPurchaseHistory", Storage="_Ingredient", ThisKey="IngredientID", OtherKey="IngredientID", IsForeignKey=true)]
-		public Ingredient Ingredient
-		{
-			get
-			{
-				return this._Ingredient.Entity;
-			}
-			set
-			{
-				Ingredient previousValue = this._Ingredient.Entity;
-				if (((previousValue != value) 
-							|| (this._Ingredient.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Ingredient.Entity = null;
-						previousValue.IngredientPurchaseHistories.Remove(this);
-					}
-					this._Ingredient.Entity = value;
-					if ((value != null))
-					{
-						value.IngredientPurchaseHistories.Add(this);
-						this._IngredientID = value.IngredientID;
-					}
-					else
-					{
-						this._IngredientID = default(short);
-					}
-					this.SendPropertyChanged("Ingredient");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IngredientPurchase_IngredientPurchaseHistory", Storage="_IngredientPurchase", ThisKey="PurchaseID", OtherKey="PurchaseID", IsForeignKey=true)]
-		public IngredientPurchase IngredientPurchase
-		{
-			get
-			{
-				return this._IngredientPurchase.Entity;
-			}
-			set
-			{
-				IngredientPurchase previousValue = this._IngredientPurchase.Entity;
-				if (((previousValue != value) 
-							|| (this._IngredientPurchase.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._IngredientPurchase.Entity = null;
-						previousValue.IngredientPurchaseHistories.Remove(this);
-					}
-					this._IngredientPurchase.Entity = value;
-					if ((value != null))
-					{
-						value.IngredientPurchaseHistories.Add(this);
-						this._PurchaseID = value.PurchaseID;
-					}
-					else
-					{
-						this._PurchaseID = default(short);
-					}
-					this.SendPropertyChanged("IngredientPurchase");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LineItem")]
-	public partial class LineItem : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _LineItemTransactionID;
-		
-		private short _ReservationBillingID;
-		
-		private System.Nullable<short> _FoodDrinkCategoryID;
-		
-		private decimal _LineItemAmount;
-		
-		private EntityRef<ReservationDetailBilling> _ReservationDetailBilling;
-		
-		private EntityRef<FoodDrinkCategory> _FoodDrinkCategory;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnLineItemTransactionIDChanging(int value);
-    partial void OnLineItemTransactionIDChanged();
-    partial void OnReservationBillingIDChanging(short value);
-    partial void OnReservationBillingIDChanged();
-    partial void OnFoodDrinkCategoryIDChanging(System.Nullable<short> value);
-    partial void OnFoodDrinkCategoryIDChanged();
-    partial void OnLineItemAmountChanging(decimal value);
-    partial void OnLineItemAmountChanged();
-    #endregion
-		
-		public LineItem()
-		{
-			this._ReservationDetailBilling = default(EntityRef<ReservationDetailBilling>);
-			this._FoodDrinkCategory = default(EntityRef<FoodDrinkCategory>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LineItemTransactionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int LineItemTransactionID
-		{
-			get
-			{
-				return this._LineItemTransactionID;
-			}
-			set
-			{
-				if ((this._LineItemTransactionID != value))
-				{
-					this.OnLineItemTransactionIDChanging(value);
-					this.SendPropertyChanging();
-					this._LineItemTransactionID = value;
-					this.SendPropertyChanged("LineItemTransactionID");
-					this.OnLineItemTransactionIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservationBillingID", DbType="SmallInt NOT NULL")]
-		public short ReservationBillingID
-		{
-			get
-			{
-				return this._ReservationBillingID;
-			}
-			set
-			{
-				if ((this._ReservationBillingID != value))
-				{
-					if (this._ReservationDetailBilling.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnReservationBillingIDChanging(value);
-					this.SendPropertyChanging();
-					this._ReservationBillingID = value;
-					this.SendPropertyChanged("ReservationBillingID");
-					this.OnReservationBillingIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FoodDrinkCategoryID", DbType="SmallInt")]
-		public System.Nullable<short> FoodDrinkCategoryID
-		{
-			get
-			{
-				return this._FoodDrinkCategoryID;
-			}
-			set
-			{
-				if ((this._FoodDrinkCategoryID != value))
-				{
-					if (this._FoodDrinkCategory.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFoodDrinkCategoryIDChanging(value);
-					this.SendPropertyChanging();
-					this._FoodDrinkCategoryID = value;
-					this.SendPropertyChanged("FoodDrinkCategoryID");
-					this.OnFoodDrinkCategoryIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LineItemAmount", DbType="SmallMoney NOT NULL")]
-		public decimal LineItemAmount
-		{
-			get
-			{
-				return this._LineItemAmount;
-			}
-			set
-			{
-				if ((this._LineItemAmount != value))
-				{
-					this.OnLineItemAmountChanging(value);
-					this.SendPropertyChanging();
-					this._LineItemAmount = value;
-					this.SendPropertyChanged("LineItemAmount");
-					this.OnLineItemAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReservationDetailBilling_LineItem", Storage="_ReservationDetailBilling", ThisKey="ReservationBillingID", OtherKey="ReservationBillingID", IsForeignKey=true)]
-		public ReservationDetailBilling ReservationDetailBilling
-		{
-			get
-			{
-				return this._ReservationDetailBilling.Entity;
-			}
-			set
-			{
-				ReservationDetailBilling previousValue = this._ReservationDetailBilling.Entity;
-				if (((previousValue != value) 
-							|| (this._ReservationDetailBilling.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ReservationDetailBilling.Entity = null;
-						previousValue.LineItems.Remove(this);
-					}
-					this._ReservationDetailBilling.Entity = value;
-					if ((value != null))
-					{
-						value.LineItems.Add(this);
-						this._ReservationBillingID = value.ReservationBillingID;
-					}
-					else
-					{
-						this._ReservationBillingID = default(short);
-					}
-					this.SendPropertyChanged("ReservationDetailBilling");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FoodDrinkCategory_LineItem", Storage="_FoodDrinkCategory", ThisKey="FoodDrinkCategoryID", OtherKey="FoodDrinkCategoryID", IsForeignKey=true)]
-		public FoodDrinkCategory FoodDrinkCategory
-		{
-			get
-			{
-				return this._FoodDrinkCategory.Entity;
-			}
-			set
-			{
-				FoodDrinkCategory previousValue = this._FoodDrinkCategory.Entity;
-				if (((previousValue != value) 
-							|| (this._FoodDrinkCategory.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._FoodDrinkCategory.Entity = null;
-						previousValue.LineItems.Remove(this);
-					}
-					this._FoodDrinkCategory.Entity = value;
-					if ((value != null))
-					{
-						value.LineItems.Add(this);
-						this._FoodDrinkCategoryID = value.FoodDrinkCategoryID;
-					}
-					else
-					{
-						this._FoodDrinkCategoryID = default(Nullable<short>);
-					}
-					this.SendPropertyChanged("FoodDrinkCategory");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MenuItem")]
-	public partial class MenuItem : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _MenuItemID;
-		
-		private short _FoodDrinkCategoryID;
-		
-		private string _MenuItemName;
-		
-		private decimal _MenuItemPrice;
-		
-		private EntitySet<MenuItemIngredient> _MenuItemIngredients;
-		
-		private EntityRef<FoodDrinkCategory> _FoodDrinkCategory;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMenuItemIDChanging(short value);
-    partial void OnMenuItemIDChanged();
-    partial void OnFoodDrinkCategoryIDChanging(short value);
-    partial void OnFoodDrinkCategoryIDChanged();
-    partial void OnMenuItemNameChanging(string value);
-    partial void OnMenuItemNameChanged();
-    partial void OnMenuItemPriceChanging(decimal value);
-    partial void OnMenuItemPriceChanged();
-    #endregion
-		
-		public MenuItem()
-		{
-			this._MenuItemIngredients = new EntitySet<MenuItemIngredient>(new Action<MenuItemIngredient>(this.attach_MenuItemIngredients), new Action<MenuItemIngredient>(this.detach_MenuItemIngredients));
-			this._FoodDrinkCategory = default(EntityRef<FoodDrinkCategory>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemID", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
-		public short MenuItemID
-		{
-			get
-			{
-				return this._MenuItemID;
-			}
-			set
-			{
-				if ((this._MenuItemID != value))
-				{
-					this.OnMenuItemIDChanging(value);
-					this.SendPropertyChanging();
-					this._MenuItemID = value;
-					this.SendPropertyChanged("MenuItemID");
-					this.OnMenuItemIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FoodDrinkCategoryID", DbType="SmallInt NOT NULL")]
-		public short FoodDrinkCategoryID
-		{
-			get
-			{
-				return this._FoodDrinkCategoryID;
-			}
-			set
-			{
-				if ((this._FoodDrinkCategoryID != value))
-				{
-					if (this._FoodDrinkCategory.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFoodDrinkCategoryIDChanging(value);
-					this.SendPropertyChanging();
-					this._FoodDrinkCategoryID = value;
-					this.SendPropertyChanged("FoodDrinkCategoryID");
-					this.OnFoodDrinkCategoryIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemName", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string MenuItemName
-		{
-			get
-			{
-				return this._MenuItemName;
-			}
-			set
-			{
-				if ((this._MenuItemName != value))
-				{
-					this.OnMenuItemNameChanging(value);
-					this.SendPropertyChanging();
-					this._MenuItemName = value;
-					this.SendPropertyChanged("MenuItemName");
-					this.OnMenuItemNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemPrice", DbType="SmallMoney NOT NULL")]
-		public decimal MenuItemPrice
-		{
-			get
-			{
-				return this._MenuItemPrice;
-			}
-			set
-			{
-				if ((this._MenuItemPrice != value))
-				{
-					this.OnMenuItemPriceChanging(value);
-					this.SendPropertyChanging();
-					this._MenuItemPrice = value;
-					this.SendPropertyChanged("MenuItemPrice");
-					this.OnMenuItemPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MenuItem_MenuItemIngredient", Storage="_MenuItemIngredients", ThisKey="MenuItemID", OtherKey="MenuItemID")]
-		public EntitySet<MenuItemIngredient> MenuItemIngredients
-		{
-			get
-			{
-				return this._MenuItemIngredients;
-			}
-			set
-			{
-				this._MenuItemIngredients.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FoodDrinkCategory_MenuItem", Storage="_FoodDrinkCategory", ThisKey="FoodDrinkCategoryID", OtherKey="FoodDrinkCategoryID", IsForeignKey=true)]
-		public FoodDrinkCategory FoodDrinkCategory
-		{
-			get
-			{
-				return this._FoodDrinkCategory.Entity;
-			}
-			set
-			{
-				FoodDrinkCategory previousValue = this._FoodDrinkCategory.Entity;
-				if (((previousValue != value) 
-							|| (this._FoodDrinkCategory.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._FoodDrinkCategory.Entity = null;
-						previousValue.MenuItems.Remove(this);
-					}
-					this._FoodDrinkCategory.Entity = value;
-					if ((value != null))
-					{
-						value.MenuItems.Add(this);
-						this._FoodDrinkCategoryID = value.FoodDrinkCategoryID;
-					}
-					else
-					{
-						this._FoodDrinkCategoryID = default(short);
-					}
-					this.SendPropertyChanged("FoodDrinkCategory");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_MenuItemIngredients(MenuItemIngredient entity)
-		{
-			this.SendPropertyChanging();
-			entity.MenuItem = this;
-		}
-		
-		private void detach_MenuItemIngredients(MenuItemIngredient entity)
-		{
-			this.SendPropertyChanging();
-			entity.MenuItem = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MenuItemIngredient")]
-	public partial class MenuItemIngredient : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _MenuItemIngredientID;
-		
-		private short _MenuItemID;
-		
-		private short _IngredientID;
-		
-		private decimal _MenuItemIngredientQty;
-		
-		private EntityRef<Ingredient> _Ingredient;
-		
-		private EntityRef<MenuItem> _MenuItem;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMenuItemIngredientIDChanging(short value);
-    partial void OnMenuItemIngredientIDChanged();
-    partial void OnMenuItemIDChanging(short value);
-    partial void OnMenuItemIDChanged();
-    partial void OnIngredientIDChanging(short value);
-    partial void OnIngredientIDChanged();
-    partial void OnMenuItemIngredientQtyChanging(decimal value);
-    partial void OnMenuItemIngredientQtyChanged();
-    #endregion
-		
-		public MenuItemIngredient()
-		{
-			this._Ingredient = default(EntityRef<Ingredient>);
-			this._MenuItem = default(EntityRef<MenuItem>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemIngredientID", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
-		public short MenuItemIngredientID
-		{
-			get
-			{
-				return this._MenuItemIngredientID;
-			}
-			set
-			{
-				if ((this._MenuItemIngredientID != value))
-				{
-					this.OnMenuItemIngredientIDChanging(value);
-					this.SendPropertyChanging();
-					this._MenuItemIngredientID = value;
-					this.SendPropertyChanged("MenuItemIngredientID");
-					this.OnMenuItemIngredientIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemID", DbType="SmallInt NOT NULL")]
-		public short MenuItemID
-		{
-			get
-			{
-				return this._MenuItemID;
-			}
-			set
-			{
-				if ((this._MenuItemID != value))
-				{
-					if (this._MenuItem.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMenuItemIDChanging(value);
-					this.SendPropertyChanging();
-					this._MenuItemID = value;
-					this.SendPropertyChanged("MenuItemID");
-					this.OnMenuItemIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientID", DbType="SmallInt NOT NULL")]
-		public short IngredientID
-		{
-			get
-			{
-				return this._IngredientID;
-			}
-			set
-			{
-				if ((this._IngredientID != value))
-				{
-					if (this._Ingredient.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIngredientIDChanging(value);
-					this.SendPropertyChanging();
-					this._IngredientID = value;
-					this.SendPropertyChanged("IngredientID");
-					this.OnIngredientIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemIngredientQty", DbType="Decimal(18,0) NOT NULL")]
-		public decimal MenuItemIngredientQty
-		{
-			get
-			{
-				return this._MenuItemIngredientQty;
-			}
-			set
-			{
-				if ((this._MenuItemIngredientQty != value))
-				{
-					this.OnMenuItemIngredientQtyChanging(value);
-					this.SendPropertyChanging();
-					this._MenuItemIngredientQty = value;
-					this.SendPropertyChanged("MenuItemIngredientQty");
-					this.OnMenuItemIngredientQtyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_MenuItemIngredient", Storage="_Ingredient", ThisKey="IngredientID", OtherKey="IngredientID", IsForeignKey=true)]
-		public Ingredient Ingredient
-		{
-			get
-			{
-				return this._Ingredient.Entity;
-			}
-			set
-			{
-				Ingredient previousValue = this._Ingredient.Entity;
-				if (((previousValue != value) 
-							|| (this._Ingredient.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Ingredient.Entity = null;
-						previousValue.MenuItemIngredients.Remove(this);
-					}
-					this._Ingredient.Entity = value;
-					if ((value != null))
-					{
-						value.MenuItemIngredients.Add(this);
-						this._IngredientID = value.IngredientID;
-					}
-					else
-					{
-						this._IngredientID = default(short);
-					}
-					this.SendPropertyChanged("Ingredient");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MenuItem_MenuItemIngredient", Storage="_MenuItem", ThisKey="MenuItemID", OtherKey="MenuItemID", IsForeignKey=true)]
-		public MenuItem MenuItem
-		{
-			get
-			{
-				return this._MenuItem.Entity;
-			}
-			set
-			{
-				MenuItem previousValue = this._MenuItem.Entity;
-				if (((previousValue != value) 
-							|| (this._MenuItem.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MenuItem.Entity = null;
-						previousValue.MenuItemIngredients.Remove(this);
-					}
-					this._MenuItem.Entity = value;
-					if ((value != null))
-					{
-						value.MenuItemIngredients.Add(this);
-						this._MenuItemID = value.MenuItemID;
-					}
-					else
-					{
-						this._MenuItemID = default(short);
-					}
-					this.SendPropertyChanged("MenuItem");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ReservationDetailBilling")]
-	public partial class ReservationDetailBilling : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _ReservationBillingID;
-		
-		private short _ReservationDetailID;
-		
-		private short _BillingCategoryID;
-		
-		private string _BillingDescription;
-		
-		private decimal _BillingAmount;
-		
-		private byte _BillingItemQty;
-		
-		private System.DateTime _BillingItemDate;
-		
-		private string _Comments;
-		
-		private EntitySet<LineItem> _LineItems;
-		
-		private EntityRef<ReservationDetail> _ReservationDetail;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnReservationBillingIDChanging(short value);
-    partial void OnReservationBillingIDChanged();
-    partial void OnReservationDetailIDChanging(short value);
-    partial void OnReservationDetailIDChanged();
-    partial void OnBillingCategoryIDChanging(short value);
-    partial void OnBillingCategoryIDChanged();
-    partial void OnBillingDescriptionChanging(string value);
-    partial void OnBillingDescriptionChanged();
-    partial void OnBillingAmountChanging(decimal value);
-    partial void OnBillingAmountChanged();
-    partial void OnBillingItemQtyChanging(byte value);
-    partial void OnBillingItemQtyChanged();
-    partial void OnBillingItemDateChanging(System.DateTime value);
-    partial void OnBillingItemDateChanged();
-    partial void OnCommentsChanging(string value);
-    partial void OnCommentsChanged();
-    #endregion
-		
-		public ReservationDetailBilling()
-		{
-			this._LineItems = new EntitySet<LineItem>(new Action<LineItem>(this.attach_LineItems), new Action<LineItem>(this.detach_LineItems));
-			this._ReservationDetail = default(EntityRef<ReservationDetail>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservationBillingID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public short ReservationBillingID
-		{
-			get
-			{
-				return this._ReservationBillingID;
-			}
-			set
-			{
-				if ((this._ReservationBillingID != value))
-				{
-					this.OnReservationBillingIDChanging(value);
-					this.SendPropertyChanging();
-					this._ReservationBillingID = value;
-					this.SendPropertyChanged("ReservationBillingID");
-					this.OnReservationBillingIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservationDetailID", DbType="SmallInt NOT NULL")]
-		public short ReservationDetailID
-		{
-			get
-			{
-				return this._ReservationDetailID;
-			}
-			set
-			{
-				if ((this._ReservationDetailID != value))
-				{
-					if (this._ReservationDetail.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnReservationDetailIDChanging(value);
-					this.SendPropertyChanging();
-					this._ReservationDetailID = value;
-					this.SendPropertyChanged("ReservationDetailID");
-					this.OnReservationDetailIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingCategoryID", DbType="SmallInt NOT NULL")]
-		public short BillingCategoryID
-		{
-			get
-			{
-				return this._BillingCategoryID;
-			}
-			set
-			{
-				if ((this._BillingCategoryID != value))
-				{
-					this.OnBillingCategoryIDChanging(value);
-					this.SendPropertyChanging();
-					this._BillingCategoryID = value;
-					this.SendPropertyChanged("BillingCategoryID");
-					this.OnBillingCategoryIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingDescription", DbType="Char(30) NOT NULL", CanBeNull=false)]
-		public string BillingDescription
-		{
-			get
-			{
-				return this._BillingDescription;
-			}
-			set
-			{
-				if ((this._BillingDescription != value))
-				{
-					this.OnBillingDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._BillingDescription = value;
-					this.SendPropertyChanged("BillingDescription");
-					this.OnBillingDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingAmount", DbType="SmallMoney NOT NULL")]
-		public decimal BillingAmount
-		{
-			get
-			{
-				return this._BillingAmount;
-			}
-			set
-			{
-				if ((this._BillingAmount != value))
-				{
-					this.OnBillingAmountChanging(value);
-					this.SendPropertyChanging();
-					this._BillingAmount = value;
-					this.SendPropertyChanged("BillingAmount");
-					this.OnBillingAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingItemQty", DbType="TinyInt NOT NULL")]
-		public byte BillingItemQty
-		{
-			get
-			{
-				return this._BillingItemQty;
-			}
-			set
-			{
-				if ((this._BillingItemQty != value))
-				{
-					this.OnBillingItemQtyChanging(value);
-					this.SendPropertyChanging();
-					this._BillingItemQty = value;
-					this.SendPropertyChanged("BillingItemQty");
-					this.OnBillingItemQtyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingItemDate", DbType="SmallDateTime NOT NULL")]
-		public System.DateTime BillingItemDate
-		{
-			get
-			{
-				return this._BillingItemDate;
-			}
-			set
-			{
-				if ((this._BillingItemDate != value))
-				{
-					this.OnBillingItemDateChanging(value);
-					this.SendPropertyChanging();
-					this._BillingItemDate = value;
-					this.SendPropertyChanged("BillingItemDate");
-					this.OnBillingItemDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comments", DbType="NVarChar(MAX)")]
-		public string Comments
-		{
-			get
-			{
-				return this._Comments;
-			}
-			set
-			{
-				if ((this._Comments != value))
-				{
-					this.OnCommentsChanging(value);
-					this.SendPropertyChanging();
-					this._Comments = value;
-					this.SendPropertyChanged("Comments");
-					this.OnCommentsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReservationDetailBilling_LineItem", Storage="_LineItems", ThisKey="ReservationBillingID", OtherKey="ReservationBillingID")]
-		public EntitySet<LineItem> LineItems
-		{
-			get
-			{
-				return this._LineItems;
-			}
-			set
-			{
-				this._LineItems.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReservationDetail_ReservationDetailBilling", Storage="_ReservationDetail", ThisKey="ReservationDetailID", OtherKey="ReservationDetailID", IsForeignKey=true)]
-		public ReservationDetail ReservationDetail
-		{
-			get
-			{
-				return this._ReservationDetail.Entity;
-			}
-			set
-			{
-				ReservationDetail previousValue = this._ReservationDetail.Entity;
-				if (((previousValue != value) 
-							|| (this._ReservationDetail.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ReservationDetail.Entity = null;
-						previousValue.ReservationDetailBillings.Remove(this);
-					}
-					this._ReservationDetail.Entity = value;
-					if ((value != null))
-					{
-						value.ReservationDetailBillings.Add(this);
-						this._ReservationDetailID = value.ReservationDetailID;
-					}
-					else
-					{
-						this._ReservationDetailID = default(short);
-					}
-					this.SendPropertyChanged("ReservationDetail");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_LineItems(LineItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.ReservationDetailBilling = this;
-		}
-		
-		private void detach_LineItems(LineItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.ReservationDetailBilling = null;
 		}
 	}
 	
@@ -3383,21 +1566,586 @@ namespace Restaurant
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Drink")]
-	public partial class Drink : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ReservationDetailBilling")]
+	public partial class ReservationDetailBilling : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private short _DrinkID;
+		private short _ReservationDetailBillingID;
+		
+		private System.Nullable<short> _ReservationDetailID;
+		
+		private short _BillingCategoryID;
+		
+		private string _BillingDescription;
+		
+		private decimal _BillingAmount;
+		
+		private byte _BillingItemQty;
+		
+		private System.DateTime _BillingItemDate;
+		
+		private string _Comments;
+		
+		private string _EmployeeID;
+		
+		private string _TransEmployee;
+		
+		private EntitySet<LineItem> _LineItems;
+		
+		private EntityRef<ReservationDetail> _ReservationDetail;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnReservationDetailBillingIDChanging(short value);
+    partial void OnReservationDetailBillingIDChanged();
+    partial void OnReservationDetailIDChanging(System.Nullable<short> value);
+    partial void OnReservationDetailIDChanged();
+    partial void OnBillingCategoryIDChanging(short value);
+    partial void OnBillingCategoryIDChanged();
+    partial void OnBillingDescriptionChanging(string value);
+    partial void OnBillingDescriptionChanged();
+    partial void OnBillingAmountChanging(decimal value);
+    partial void OnBillingAmountChanged();
+    partial void OnBillingItemQtyChanging(byte value);
+    partial void OnBillingItemQtyChanged();
+    partial void OnBillingItemDateChanging(System.DateTime value);
+    partial void OnBillingItemDateChanged();
+    partial void OnCommentsChanging(string value);
+    partial void OnCommentsChanged();
+    partial void OnEmployeeIDChanging(string value);
+    partial void OnEmployeeIDChanged();
+    partial void OnTransEmployeeChanging(string value);
+    partial void OnTransEmployeeChanged();
+    #endregion
+		
+		public ReservationDetailBilling()
+		{
+			this._LineItems = new EntitySet<LineItem>(new Action<LineItem>(this.attach_LineItems), new Action<LineItem>(this.detach_LineItems));
+			this._ReservationDetail = default(EntityRef<ReservationDetail>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservationDetailBillingID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public short ReservationDetailBillingID
+		{
+			get
+			{
+				return this._ReservationDetailBillingID;
+			}
+			set
+			{
+				if ((this._ReservationDetailBillingID != value))
+				{
+					this.OnReservationDetailBillingIDChanging(value);
+					this.SendPropertyChanging();
+					this._ReservationDetailBillingID = value;
+					this.SendPropertyChanged("ReservationDetailBillingID");
+					this.OnReservationDetailBillingIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservationDetailID", DbType="SmallInt")]
+		public System.Nullable<short> ReservationDetailID
+		{
+			get
+			{
+				return this._ReservationDetailID;
+			}
+			set
+			{
+				if ((this._ReservationDetailID != value))
+				{
+					if (this._ReservationDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnReservationDetailIDChanging(value);
+					this.SendPropertyChanging();
+					this._ReservationDetailID = value;
+					this.SendPropertyChanged("ReservationDetailID");
+					this.OnReservationDetailIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingCategoryID", DbType="SmallInt NOT NULL")]
+		public short BillingCategoryID
+		{
+			get
+			{
+				return this._BillingCategoryID;
+			}
+			set
+			{
+				if ((this._BillingCategoryID != value))
+				{
+					this.OnBillingCategoryIDChanging(value);
+					this.SendPropertyChanging();
+					this._BillingCategoryID = value;
+					this.SendPropertyChanged("BillingCategoryID");
+					this.OnBillingCategoryIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingDescription", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string BillingDescription
+		{
+			get
+			{
+				return this._BillingDescription;
+			}
+			set
+			{
+				if ((this._BillingDescription != value))
+				{
+					this.OnBillingDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._BillingDescription = value;
+					this.SendPropertyChanged("BillingDescription");
+					this.OnBillingDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingAmount", DbType="SmallMoney NOT NULL")]
+		public decimal BillingAmount
+		{
+			get
+			{
+				return this._BillingAmount;
+			}
+			set
+			{
+				if ((this._BillingAmount != value))
+				{
+					this.OnBillingAmountChanging(value);
+					this.SendPropertyChanging();
+					this._BillingAmount = value;
+					this.SendPropertyChanged("BillingAmount");
+					this.OnBillingAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingItemQty", DbType="TinyInt NOT NULL")]
+		public byte BillingItemQty
+		{
+			get
+			{
+				return this._BillingItemQty;
+			}
+			set
+			{
+				if ((this._BillingItemQty != value))
+				{
+					this.OnBillingItemQtyChanging(value);
+					this.SendPropertyChanging();
+					this._BillingItemQty = value;
+					this.SendPropertyChanged("BillingItemQty");
+					this.OnBillingItemQtyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingItemDate", DbType="SmallDateTime NOT NULL")]
+		public System.DateTime BillingItemDate
+		{
+			get
+			{
+				return this._BillingItemDate;
+			}
+			set
+			{
+				if ((this._BillingItemDate != value))
+				{
+					this.OnBillingItemDateChanging(value);
+					this.SendPropertyChanging();
+					this._BillingItemDate = value;
+					this.SendPropertyChanged("BillingItemDate");
+					this.OnBillingItemDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comments", DbType="VarChar(200)")]
+		public string Comments
+		{
+			get
+			{
+				return this._Comments;
+			}
+			set
+			{
+				if ((this._Comments != value))
+				{
+					this.OnCommentsChanging(value);
+					this.SendPropertyChanging();
+					this._Comments = value;
+					this.SendPropertyChanged("Comments");
+					this.OnCommentsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmployeeID", DbType="VarChar(20)")]
+		public string EmployeeID
+		{
+			get
+			{
+				return this._EmployeeID;
+			}
+			set
+			{
+				if ((this._EmployeeID != value))
+				{
+					this.OnEmployeeIDChanging(value);
+					this.SendPropertyChanging();
+					this._EmployeeID = value;
+					this.SendPropertyChanged("EmployeeID");
+					this.OnEmployeeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransEmployee", DbType="VarChar(4)")]
+		public string TransEmployee
+		{
+			get
+			{
+				return this._TransEmployee;
+			}
+			set
+			{
+				if ((this._TransEmployee != value))
+				{
+					this.OnTransEmployeeChanging(value);
+					this.SendPropertyChanging();
+					this._TransEmployee = value;
+					this.SendPropertyChanged("TransEmployee");
+					this.OnTransEmployeeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReservationDetailBilling_LineItem", Storage="_LineItems", ThisKey="ReservationDetailBillingID", OtherKey="ReservationDetailBillingID")]
+		public EntitySet<LineItem> LineItems
+		{
+			get
+			{
+				return this._LineItems;
+			}
+			set
+			{
+				this._LineItems.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReservationDetail_ReservationDetailBilling", Storage="_ReservationDetail", ThisKey="ReservationDetailID", OtherKey="ReservationDetailID", IsForeignKey=true)]
+		public ReservationDetail ReservationDetail
+		{
+			get
+			{
+				return this._ReservationDetail.Entity;
+			}
+			set
+			{
+				ReservationDetail previousValue = this._ReservationDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._ReservationDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ReservationDetail.Entity = null;
+						previousValue.ReservationDetailBillings.Remove(this);
+					}
+					this._ReservationDetail.Entity = value;
+					if ((value != null))
+					{
+						value.ReservationDetailBillings.Add(this);
+						this._ReservationDetailID = value.ReservationDetailID;
+					}
+					else
+					{
+						this._ReservationDetailID = default(Nullable<short>);
+					}
+					this.SendPropertyChanged("ReservationDetail");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_LineItems(LineItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.ReservationDetailBilling = this;
+		}
+		
+		private void detach_LineItems(LineItem entity)
+		{
+			this.SendPropertyChanging();
+			entity.ReservationDetailBilling = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LineItem")]
+	public partial class LineItem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _LineItemTransactionID;
+		
+		private short _ReservationDetailBillingID;
+		
+		private System.Nullable<short> _MenuItemID;
+		
+		private decimal _LineItemAmount;
+		
+		private EntityRef<ReservationDetailBilling> _ReservationDetailBilling;
+		
+		private EntityRef<MenuItem> _MenuItem;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnLineItemTransactionIDChanging(int value);
+    partial void OnLineItemTransactionIDChanged();
+    partial void OnReservationDetailBillingIDChanging(short value);
+    partial void OnReservationDetailBillingIDChanged();
+    partial void OnMenuItemIDChanging(System.Nullable<short> value);
+    partial void OnMenuItemIDChanged();
+    partial void OnLineItemAmountChanging(decimal value);
+    partial void OnLineItemAmountChanged();
+    #endregion
+		
+		public LineItem()
+		{
+			this._ReservationDetailBilling = default(EntityRef<ReservationDetailBilling>);
+			this._MenuItem = default(EntityRef<MenuItem>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LineItemTransactionID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int LineItemTransactionID
+		{
+			get
+			{
+				return this._LineItemTransactionID;
+			}
+			set
+			{
+				if ((this._LineItemTransactionID != value))
+				{
+					this.OnLineItemTransactionIDChanging(value);
+					this.SendPropertyChanging();
+					this._LineItemTransactionID = value;
+					this.SendPropertyChanged("LineItemTransactionID");
+					this.OnLineItemTransactionIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservationDetailBillingID", DbType="SmallInt NOT NULL")]
+		public short ReservationDetailBillingID
+		{
+			get
+			{
+				return this._ReservationDetailBillingID;
+			}
+			set
+			{
+				if ((this._ReservationDetailBillingID != value))
+				{
+					if (this._ReservationDetailBilling.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnReservationDetailBillingIDChanging(value);
+					this.SendPropertyChanging();
+					this._ReservationDetailBillingID = value;
+					this.SendPropertyChanged("ReservationDetailBillingID");
+					this.OnReservationDetailBillingIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemID", DbType="SmallInt")]
+		public System.Nullable<short> MenuItemID
+		{
+			get
+			{
+				return this._MenuItemID;
+			}
+			set
+			{
+				if ((this._MenuItemID != value))
+				{
+					if (this._MenuItem.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMenuItemIDChanging(value);
+					this.SendPropertyChanging();
+					this._MenuItemID = value;
+					this.SendPropertyChanged("MenuItemID");
+					this.OnMenuItemIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LineItemAmount", DbType="SmallMoney NOT NULL")]
+		public decimal LineItemAmount
+		{
+			get
+			{
+				return this._LineItemAmount;
+			}
+			set
+			{
+				if ((this._LineItemAmount != value))
+				{
+					this.OnLineItemAmountChanging(value);
+					this.SendPropertyChanging();
+					this._LineItemAmount = value;
+					this.SendPropertyChanged("LineItemAmount");
+					this.OnLineItemAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReservationDetailBilling_LineItem", Storage="_ReservationDetailBilling", ThisKey="ReservationDetailBillingID", OtherKey="ReservationDetailBillingID", IsForeignKey=true)]
+		public ReservationDetailBilling ReservationDetailBilling
+		{
+			get
+			{
+				return this._ReservationDetailBilling.Entity;
+			}
+			set
+			{
+				ReservationDetailBilling previousValue = this._ReservationDetailBilling.Entity;
+				if (((previousValue != value) 
+							|| (this._ReservationDetailBilling.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ReservationDetailBilling.Entity = null;
+						previousValue.LineItems.Remove(this);
+					}
+					this._ReservationDetailBilling.Entity = value;
+					if ((value != null))
+					{
+						value.LineItems.Add(this);
+						this._ReservationDetailBillingID = value.ReservationDetailBillingID;
+					}
+					else
+					{
+						this._ReservationDetailBillingID = default(short);
+					}
+					this.SendPropertyChanged("ReservationDetailBilling");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MenuItem_LineItem", Storage="_MenuItem", ThisKey="MenuItemID", OtherKey="MenuItemID", IsForeignKey=true)]
+		public MenuItem MenuItem
+		{
+			get
+			{
+				return this._MenuItem.Entity;
+			}
+			set
+			{
+				MenuItem previousValue = this._MenuItem.Entity;
+				if (((previousValue != value) 
+							|| (this._MenuItem.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MenuItem.Entity = null;
+						previousValue.LineItems.Remove(this);
+					}
+					this._MenuItem.Entity = value;
+					if ((value != null))
+					{
+						value.LineItems.Add(this);
+						this._MenuItemID = value.MenuItemID;
+					}
+					else
+					{
+						this._MenuItemID = default(Nullable<short>);
+					}
+					this.SendPropertyChanged("MenuItem");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MenuItem")]
+	public partial class MenuItem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _MenuItemID;
 		
 		private short _FoodDrinkCategoryID;
 		
-		private string _DrinkName;
+		private string _MenuItemName;
 		
-		private decimal _DrinkRetailSalePrice;
+		private decimal _MenuItemPrice;
 		
-		private EntitySet<DrinkPurchaseHistory> _DrinkPurchaseHistories;
+		private EntitySet<LineItem> _LineItems;
+		
+		private EntitySet<MenuItemIngredient> _MenuItemIngredients;
 		
 		private EntityRef<FoodDrinkCategory> _FoodDrinkCategory;
 		
@@ -3405,39 +2153,40 @@ namespace Restaurant
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnDrinkIDChanging(short value);
-    partial void OnDrinkIDChanged();
+    partial void OnMenuItemIDChanging(short value);
+    partial void OnMenuItemIDChanged();
     partial void OnFoodDrinkCategoryIDChanging(short value);
     partial void OnFoodDrinkCategoryIDChanged();
-    partial void OnDrinkNameChanging(string value);
-    partial void OnDrinkNameChanged();
-    partial void OnDrinkRetailSalePriceChanging(decimal value);
-    partial void OnDrinkRetailSalePriceChanged();
+    partial void OnMenuItemNameChanging(string value);
+    partial void OnMenuItemNameChanged();
+    partial void OnMenuItemPriceChanging(decimal value);
+    partial void OnMenuItemPriceChanged();
     #endregion
 		
-		public Drink()
+		public MenuItem()
 		{
-			this._DrinkPurchaseHistories = new EntitySet<DrinkPurchaseHistory>(new Action<DrinkPurchaseHistory>(this.attach_DrinkPurchaseHistories), new Action<DrinkPurchaseHistory>(this.detach_DrinkPurchaseHistories));
+			this._LineItems = new EntitySet<LineItem>(new Action<LineItem>(this.attach_LineItems), new Action<LineItem>(this.detach_LineItems));
+			this._MenuItemIngredients = new EntitySet<MenuItemIngredient>(new Action<MenuItemIngredient>(this.attach_MenuItemIngredients), new Action<MenuItemIngredient>(this.detach_MenuItemIngredients));
 			this._FoodDrinkCategory = default(EntityRef<FoodDrinkCategory>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrinkID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public short DrinkID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public short MenuItemID
 		{
 			get
 			{
-				return this._DrinkID;
+				return this._MenuItemID;
 			}
 			set
 			{
-				if ((this._DrinkID != value))
+				if ((this._MenuItemID != value))
 				{
-					this.OnDrinkIDChanging(value);
+					this.OnMenuItemIDChanging(value);
 					this.SendPropertyChanging();
-					this._DrinkID = value;
-					this.SendPropertyChanged("DrinkID");
-					this.OnDrinkIDChanged();
+					this._MenuItemID = value;
+					this.SendPropertyChanged("MenuItemID");
+					this.OnMenuItemIDChanged();
 				}
 			}
 		}
@@ -3466,60 +2215,73 @@ namespace Restaurant
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrinkName", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string DrinkName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemName", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		public string MenuItemName
 		{
 			get
 			{
-				return this._DrinkName;
+				return this._MenuItemName;
 			}
 			set
 			{
-				if ((this._DrinkName != value))
+				if ((this._MenuItemName != value))
 				{
-					this.OnDrinkNameChanging(value);
+					this.OnMenuItemNameChanging(value);
 					this.SendPropertyChanging();
-					this._DrinkName = value;
-					this.SendPropertyChanged("DrinkName");
-					this.OnDrinkNameChanged();
+					this._MenuItemName = value;
+					this.SendPropertyChanged("MenuItemName");
+					this.OnMenuItemNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DrinkRetailSalePrice", DbType="SmallMoney NOT NULL")]
-		public decimal DrinkRetailSalePrice
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemPrice", DbType="SmallMoney NOT NULL")]
+		public decimal MenuItemPrice
 		{
 			get
 			{
-				return this._DrinkRetailSalePrice;
+				return this._MenuItemPrice;
 			}
 			set
 			{
-				if ((this._DrinkRetailSalePrice != value))
+				if ((this._MenuItemPrice != value))
 				{
-					this.OnDrinkRetailSalePriceChanging(value);
+					this.OnMenuItemPriceChanging(value);
 					this.SendPropertyChanging();
-					this._DrinkRetailSalePrice = value;
-					this.SendPropertyChanged("DrinkRetailSalePrice");
-					this.OnDrinkRetailSalePriceChanged();
+					this._MenuItemPrice = value;
+					this.SendPropertyChanged("MenuItemPrice");
+					this.OnMenuItemPriceChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Drink_DrinkPurchaseHistory", Storage="_DrinkPurchaseHistories", ThisKey="DrinkID", OtherKey="DrinkID")]
-		public EntitySet<DrinkPurchaseHistory> DrinkPurchaseHistories
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MenuItem_LineItem", Storage="_LineItems", ThisKey="MenuItemID", OtherKey="MenuItemID")]
+		public EntitySet<LineItem> LineItems
 		{
 			get
 			{
-				return this._DrinkPurchaseHistories;
+				return this._LineItems;
 			}
 			set
 			{
-				this._DrinkPurchaseHistories.Assign(value);
+				this._LineItems.Assign(value);
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FoodDrinkCategory_Drink", Storage="_FoodDrinkCategory", ThisKey="FoodDrinkCategoryID", OtherKey="FoodDrinkCategoryID", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MenuItem_MenuItemIngredient", Storage="_MenuItemIngredients", ThisKey="MenuItemID", OtherKey="MenuItemID")]
+		public EntitySet<MenuItemIngredient> MenuItemIngredients
+		{
+			get
+			{
+				return this._MenuItemIngredients;
+			}
+			set
+			{
+				this._MenuItemIngredients.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FoodDrinkCategory_MenuItem", Storage="_FoodDrinkCategory", ThisKey="FoodDrinkCategoryID", OtherKey="FoodDrinkCategoryID", IsForeignKey=true)]
 		public FoodDrinkCategory FoodDrinkCategory
 		{
 			get
@@ -3536,12 +2298,12 @@ namespace Restaurant
 					if ((previousValue != null))
 					{
 						this._FoodDrinkCategory.Entity = null;
-						previousValue.Drinks.Remove(this);
+						previousValue.MenuItems.Remove(this);
 					}
 					this._FoodDrinkCategory.Entity = value;
 					if ((value != null))
 					{
-						value.Drinks.Add(this);
+						value.MenuItems.Add(this);
 						this._FoodDrinkCategoryID = value.FoodDrinkCategoryID;
 					}
 					else
@@ -3573,16 +2335,764 @@ namespace Restaurant
 			}
 		}
 		
-		private void attach_DrinkPurchaseHistories(DrinkPurchaseHistory entity)
+		private void attach_LineItems(LineItem entity)
 		{
 			this.SendPropertyChanging();
-			entity.Drink = this;
+			entity.MenuItem = this;
 		}
 		
-		private void detach_DrinkPurchaseHistories(DrinkPurchaseHistory entity)
+		private void detach_LineItems(LineItem entity)
 		{
 			this.SendPropertyChanging();
-			entity.Drink = null;
+			entity.MenuItem = null;
+		}
+		
+		private void attach_MenuItemIngredients(MenuItemIngredient entity)
+		{
+			this.SendPropertyChanging();
+			entity.MenuItem = this;
+		}
+		
+		private void detach_MenuItemIngredients(MenuItemIngredient entity)
+		{
+			this.SendPropertyChanging();
+			entity.MenuItem = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MenuItemIngredient")]
+	public partial class MenuItemIngredient : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _MenuItemIngredientID;
+		
+		private short _MenuItemID;
+		
+		private short _IngredientID;
+		
+		private decimal _MenuItemIngredientQty;
+		
+		private EntityRef<MenuItem> _MenuItem;
+		
+		private EntityRef<Ingredient> _Ingredient;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMenuItemIngredientIDChanging(short value);
+    partial void OnMenuItemIngredientIDChanged();
+    partial void OnMenuItemIDChanging(short value);
+    partial void OnMenuItemIDChanged();
+    partial void OnIngredientIDChanging(short value);
+    partial void OnIngredientIDChanged();
+    partial void OnMenuItemIngredientQtyChanging(decimal value);
+    partial void OnMenuItemIngredientQtyChanged();
+    #endregion
+		
+		public MenuItemIngredient()
+		{
+			this._MenuItem = default(EntityRef<MenuItem>);
+			this._Ingredient = default(EntityRef<Ingredient>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemIngredientID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public short MenuItemIngredientID
+		{
+			get
+			{
+				return this._MenuItemIngredientID;
+			}
+			set
+			{
+				if ((this._MenuItemIngredientID != value))
+				{
+					this.OnMenuItemIngredientIDChanging(value);
+					this.SendPropertyChanging();
+					this._MenuItemIngredientID = value;
+					this.SendPropertyChanged("MenuItemIngredientID");
+					this.OnMenuItemIngredientIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemID", DbType="SmallInt NOT NULL")]
+		public short MenuItemID
+		{
+			get
+			{
+				return this._MenuItemID;
+			}
+			set
+			{
+				if ((this._MenuItemID != value))
+				{
+					if (this._MenuItem.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMenuItemIDChanging(value);
+					this.SendPropertyChanging();
+					this._MenuItemID = value;
+					this.SendPropertyChanged("MenuItemID");
+					this.OnMenuItemIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientID", DbType="SmallInt NOT NULL")]
+		public short IngredientID
+		{
+			get
+			{
+				return this._IngredientID;
+			}
+			set
+			{
+				if ((this._IngredientID != value))
+				{
+					if (this._Ingredient.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIngredientIDChanging(value);
+					this.SendPropertyChanging();
+					this._IngredientID = value;
+					this.SendPropertyChanged("IngredientID");
+					this.OnIngredientIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuItemIngredientQty", DbType="Decimal(18,0) NOT NULL")]
+		public decimal MenuItemIngredientQty
+		{
+			get
+			{
+				return this._MenuItemIngredientQty;
+			}
+			set
+			{
+				if ((this._MenuItemIngredientQty != value))
+				{
+					this.OnMenuItemIngredientQtyChanging(value);
+					this.SendPropertyChanging();
+					this._MenuItemIngredientQty = value;
+					this.SendPropertyChanged("MenuItemIngredientQty");
+					this.OnMenuItemIngredientQtyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MenuItem_MenuItemIngredient", Storage="_MenuItem", ThisKey="MenuItemID", OtherKey="MenuItemID", IsForeignKey=true)]
+		public MenuItem MenuItem
+		{
+			get
+			{
+				return this._MenuItem.Entity;
+			}
+			set
+			{
+				MenuItem previousValue = this._MenuItem.Entity;
+				if (((previousValue != value) 
+							|| (this._MenuItem.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MenuItem.Entity = null;
+						previousValue.MenuItemIngredients.Remove(this);
+					}
+					this._MenuItem.Entity = value;
+					if ((value != null))
+					{
+						value.MenuItemIngredients.Add(this);
+						this._MenuItemID = value.MenuItemID;
+					}
+					else
+					{
+						this._MenuItemID = default(short);
+					}
+					this.SendPropertyChanged("MenuItem");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_MenuItemIngredient", Storage="_Ingredient", ThisKey="IngredientID", OtherKey="IngredientID", IsForeignKey=true)]
+		public Ingredient Ingredient
+		{
+			get
+			{
+				return this._Ingredient.Entity;
+			}
+			set
+			{
+				Ingredient previousValue = this._Ingredient.Entity;
+				if (((previousValue != value) 
+							|| (this._Ingredient.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Ingredient.Entity = null;
+						previousValue.MenuItemIngredients.Remove(this);
+					}
+					this._Ingredient.Entity = value;
+					if ((value != null))
+					{
+						value.MenuItemIngredients.Add(this);
+						this._IngredientID = value.IngredientID;
+					}
+					else
+					{
+						this._IngredientID = default(short);
+					}
+					this.SendPropertyChanged("Ingredient");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ingredient")]
+	public partial class Ingredient : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _IngredientID;
+		
+		private string _IngredientName;
+		
+		private string _IngredientDescription;
+		
+		private EntitySet<MenuItemIngredient> _MenuItemIngredients;
+		
+		private EntitySet<IngredientPurchaseHistory> _IngredientPurchaseHistories;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIngredientIDChanging(short value);
+    partial void OnIngredientIDChanged();
+    partial void OnIngredientNameChanging(string value);
+    partial void OnIngredientNameChanged();
+    partial void OnIngredientDescriptionChanging(string value);
+    partial void OnIngredientDescriptionChanged();
+    #endregion
+		
+		public Ingredient()
+		{
+			this._MenuItemIngredients = new EntitySet<MenuItemIngredient>(new Action<MenuItemIngredient>(this.attach_MenuItemIngredients), new Action<MenuItemIngredient>(this.detach_MenuItemIngredients));
+			this._IngredientPurchaseHistories = new EntitySet<IngredientPurchaseHistory>(new Action<IngredientPurchaseHistory>(this.attach_IngredientPurchaseHistories), new Action<IngredientPurchaseHistory>(this.detach_IngredientPurchaseHistories));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public short IngredientID
+		{
+			get
+			{
+				return this._IngredientID;
+			}
+			set
+			{
+				if ((this._IngredientID != value))
+				{
+					this.OnIngredientIDChanging(value);
+					this.SendPropertyChanging();
+					this._IngredientID = value;
+					this.SendPropertyChanged("IngredientID");
+					this.OnIngredientIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientName", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string IngredientName
+		{
+			get
+			{
+				return this._IngredientName;
+			}
+			set
+			{
+				if ((this._IngredientName != value))
+				{
+					this.OnIngredientNameChanging(value);
+					this.SendPropertyChanging();
+					this._IngredientName = value;
+					this.SendPropertyChanged("IngredientName");
+					this.OnIngredientNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientDescription", DbType="VarChar(MAX)")]
+		public string IngredientDescription
+		{
+			get
+			{
+				return this._IngredientDescription;
+			}
+			set
+			{
+				if ((this._IngredientDescription != value))
+				{
+					this.OnIngredientDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._IngredientDescription = value;
+					this.SendPropertyChanged("IngredientDescription");
+					this.OnIngredientDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_MenuItemIngredient", Storage="_MenuItemIngredients", ThisKey="IngredientID", OtherKey="IngredientID")]
+		public EntitySet<MenuItemIngredient> MenuItemIngredients
+		{
+			get
+			{
+				return this._MenuItemIngredients;
+			}
+			set
+			{
+				this._MenuItemIngredients.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_IngredientPurchaseHistory", Storage="_IngredientPurchaseHistories", ThisKey="IngredientID", OtherKey="IngredientID")]
+		public EntitySet<IngredientPurchaseHistory> IngredientPurchaseHistories
+		{
+			get
+			{
+				return this._IngredientPurchaseHistories;
+			}
+			set
+			{
+				this._IngredientPurchaseHistories.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_MenuItemIngredients(MenuItemIngredient entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ingredient = this;
+		}
+		
+		private void detach_MenuItemIngredients(MenuItemIngredient entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ingredient = null;
+		}
+		
+		private void attach_IngredientPurchaseHistories(IngredientPurchaseHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ingredient = this;
+		}
+		
+		private void detach_IngredientPurchaseHistories(IngredientPurchaseHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ingredient = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.IngredientPurchase")]
+	public partial class IngredientPurchase : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _PurchaseID;
+		
+		private System.DateTime _PurchaseDate;
+		
+		private EntitySet<IngredientPurchaseHistory> _IngredientPurchaseHistories;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPurchaseIDChanging(short value);
+    partial void OnPurchaseIDChanged();
+    partial void OnPurchaseDateChanging(System.DateTime value);
+    partial void OnPurchaseDateChanged();
+    #endregion
+		
+		public IngredientPurchase()
+		{
+			this._IngredientPurchaseHistories = new EntitySet<IngredientPurchaseHistory>(new Action<IngredientPurchaseHistory>(this.attach_IngredientPurchaseHistories), new Action<IngredientPurchaseHistory>(this.detach_IngredientPurchaseHistories));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchaseID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public short PurchaseID
+		{
+			get
+			{
+				return this._PurchaseID;
+			}
+			set
+			{
+				if ((this._PurchaseID != value))
+				{
+					this.OnPurchaseIDChanging(value);
+					this.SendPropertyChanging();
+					this._PurchaseID = value;
+					this.SendPropertyChanged("PurchaseID");
+					this.OnPurchaseIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchaseDate", DbType="SmallDateTime NOT NULL")]
+		public System.DateTime PurchaseDate
+		{
+			get
+			{
+				return this._PurchaseDate;
+			}
+			set
+			{
+				if ((this._PurchaseDate != value))
+				{
+					this.OnPurchaseDateChanging(value);
+					this.SendPropertyChanging();
+					this._PurchaseDate = value;
+					this.SendPropertyChanged("PurchaseDate");
+					this.OnPurchaseDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IngredientPurchase_IngredientPurchaseHistory", Storage="_IngredientPurchaseHistories", ThisKey="PurchaseID", OtherKey="PurchaseID")]
+		public EntitySet<IngredientPurchaseHistory> IngredientPurchaseHistories
+		{
+			get
+			{
+				return this._IngredientPurchaseHistories;
+			}
+			set
+			{
+				this._IngredientPurchaseHistories.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_IngredientPurchaseHistories(IngredientPurchaseHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.IngredientPurchase = this;
+		}
+		
+		private void detach_IngredientPurchaseHistories(IngredientPurchaseHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.IngredientPurchase = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.IngredientPurchaseHistory")]
+	public partial class IngredientPurchaseHistory : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _IngredientPurchaseHistoryID;
+		
+		private short _IngredientID;
+		
+		private short _PurchaseID;
+		
+		private decimal _IngredientPurchaseHistoryPrice;
+		
+		private short _IngredientPurchaseHistoryQty;
+		
+		private EntityRef<Ingredient> _Ingredient;
+		
+		private EntityRef<IngredientPurchase> _IngredientPurchase;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIngredientPurchaseHistoryIDChanging(short value);
+    partial void OnIngredientPurchaseHistoryIDChanged();
+    partial void OnIngredientIDChanging(short value);
+    partial void OnIngredientIDChanged();
+    partial void OnPurchaseIDChanging(short value);
+    partial void OnPurchaseIDChanged();
+    partial void OnIngredientPurchaseHistoryPriceChanging(decimal value);
+    partial void OnIngredientPurchaseHistoryPriceChanged();
+    partial void OnIngredientPurchaseHistoryQtyChanging(short value);
+    partial void OnIngredientPurchaseHistoryQtyChanged();
+    #endregion
+		
+		public IngredientPurchaseHistory()
+		{
+			this._Ingredient = default(EntityRef<Ingredient>);
+			this._IngredientPurchase = default(EntityRef<IngredientPurchase>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientPurchaseHistoryID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public short IngredientPurchaseHistoryID
+		{
+			get
+			{
+				return this._IngredientPurchaseHistoryID;
+			}
+			set
+			{
+				if ((this._IngredientPurchaseHistoryID != value))
+				{
+					this.OnIngredientPurchaseHistoryIDChanging(value);
+					this.SendPropertyChanging();
+					this._IngredientPurchaseHistoryID = value;
+					this.SendPropertyChanged("IngredientPurchaseHistoryID");
+					this.OnIngredientPurchaseHistoryIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientID", DbType="SmallInt NOT NULL")]
+		public short IngredientID
+		{
+			get
+			{
+				return this._IngredientID;
+			}
+			set
+			{
+				if ((this._IngredientID != value))
+				{
+					if (this._Ingredient.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIngredientIDChanging(value);
+					this.SendPropertyChanging();
+					this._IngredientID = value;
+					this.SendPropertyChanged("IngredientID");
+					this.OnIngredientIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PurchaseID", DbType="SmallInt NOT NULL")]
+		public short PurchaseID
+		{
+			get
+			{
+				return this._PurchaseID;
+			}
+			set
+			{
+				if ((this._PurchaseID != value))
+				{
+					if (this._IngredientPurchase.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPurchaseIDChanging(value);
+					this.SendPropertyChanging();
+					this._PurchaseID = value;
+					this.SendPropertyChanged("PurchaseID");
+					this.OnPurchaseIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientPurchaseHistoryPrice", DbType="SmallMoney NOT NULL")]
+		public decimal IngredientPurchaseHistoryPrice
+		{
+			get
+			{
+				return this._IngredientPurchaseHistoryPrice;
+			}
+			set
+			{
+				if ((this._IngredientPurchaseHistoryPrice != value))
+				{
+					this.OnIngredientPurchaseHistoryPriceChanging(value);
+					this.SendPropertyChanging();
+					this._IngredientPurchaseHistoryPrice = value;
+					this.SendPropertyChanged("IngredientPurchaseHistoryPrice");
+					this.OnIngredientPurchaseHistoryPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientPurchaseHistoryQty", DbType="SmallInt NOT NULL")]
+		public short IngredientPurchaseHistoryQty
+		{
+			get
+			{
+				return this._IngredientPurchaseHistoryQty;
+			}
+			set
+			{
+				if ((this._IngredientPurchaseHistoryQty != value))
+				{
+					this.OnIngredientPurchaseHistoryQtyChanging(value);
+					this.SendPropertyChanging();
+					this._IngredientPurchaseHistoryQty = value;
+					this.SendPropertyChanged("IngredientPurchaseHistoryQty");
+					this.OnIngredientPurchaseHistoryQtyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_IngredientPurchaseHistory", Storage="_Ingredient", ThisKey="IngredientID", OtherKey="IngredientID", IsForeignKey=true)]
+		public Ingredient Ingredient
+		{
+			get
+			{
+				return this._Ingredient.Entity;
+			}
+			set
+			{
+				Ingredient previousValue = this._Ingredient.Entity;
+				if (((previousValue != value) 
+							|| (this._Ingredient.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Ingredient.Entity = null;
+						previousValue.IngredientPurchaseHistories.Remove(this);
+					}
+					this._Ingredient.Entity = value;
+					if ((value != null))
+					{
+						value.IngredientPurchaseHistories.Add(this);
+						this._IngredientID = value.IngredientID;
+					}
+					else
+					{
+						this._IngredientID = default(short);
+					}
+					this.SendPropertyChanged("Ingredient");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IngredientPurchase_IngredientPurchaseHistory", Storage="_IngredientPurchase", ThisKey="PurchaseID", OtherKey="PurchaseID", IsForeignKey=true)]
+		public IngredientPurchase IngredientPurchase
+		{
+			get
+			{
+				return this._IngredientPurchase.Entity;
+			}
+			set
+			{
+				IngredientPurchase previousValue = this._IngredientPurchase.Entity;
+				if (((previousValue != value) 
+							|| (this._IngredientPurchase.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._IngredientPurchase.Entity = null;
+						previousValue.IngredientPurchaseHistories.Remove(this);
+					}
+					this._IngredientPurchase.Entity = value;
+					if ((value != null))
+					{
+						value.IngredientPurchaseHistories.Add(this);
+						this._PurchaseID = value.PurchaseID;
+					}
+					else
+					{
+						this._PurchaseID = default(short);
+					}
+					this.SendPropertyChanged("IngredientPurchase");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -3596,13 +3106,9 @@ namespace Restaurant
 		
 		private string _FoodDrinkCategoryName;
 		
-		private bool _FoodDrinkCategoryIsMenuItem;
-		
-		private EntitySet<LineItem> _LineItems;
+		private string _FoodDrinkCategoryTypeID;
 		
 		private EntitySet<MenuItem> _MenuItems;
-		
-		private EntitySet<Drink> _Drinks;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3612,15 +3118,13 @@ namespace Restaurant
     partial void OnFoodDrinkCategoryIDChanged();
     partial void OnFoodDrinkCategoryNameChanging(string value);
     partial void OnFoodDrinkCategoryNameChanged();
-    partial void OnFoodDrinkCategoryIsMenuItemChanging(bool value);
-    partial void OnFoodDrinkCategoryIsMenuItemChanged();
+    partial void OnFoodDrinkCategoryTypeIDChanging(string value);
+    partial void OnFoodDrinkCategoryTypeIDChanged();
     #endregion
 		
 		public FoodDrinkCategory()
 		{
-			this._LineItems = new EntitySet<LineItem>(new Action<LineItem>(this.attach_LineItems), new Action<LineItem>(this.detach_LineItems));
 			this._MenuItems = new EntitySet<MenuItem>(new Action<MenuItem>(this.attach_MenuItems), new Action<MenuItem>(this.detach_MenuItems));
-			this._Drinks = new EntitySet<Drink>(new Action<Drink>(this.attach_Drinks), new Action<Drink>(this.detach_Drinks));
 			OnCreated();
 		}
 		
@@ -3664,36 +3168,23 @@ namespace Restaurant
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FoodDrinkCategoryIsMenuItem", DbType="Bit NOT NULL")]
-		public bool FoodDrinkCategoryIsMenuItem
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FoodDrinkCategoryTypeID", DbType="VarChar(1) NOT NULL", CanBeNull=false)]
+		public string FoodDrinkCategoryTypeID
 		{
 			get
 			{
-				return this._FoodDrinkCategoryIsMenuItem;
+				return this._FoodDrinkCategoryTypeID;
 			}
 			set
 			{
-				if ((this._FoodDrinkCategoryIsMenuItem != value))
+				if ((this._FoodDrinkCategoryTypeID != value))
 				{
-					this.OnFoodDrinkCategoryIsMenuItemChanging(value);
+					this.OnFoodDrinkCategoryTypeIDChanging(value);
 					this.SendPropertyChanging();
-					this._FoodDrinkCategoryIsMenuItem = value;
-					this.SendPropertyChanged("FoodDrinkCategoryIsMenuItem");
-					this.OnFoodDrinkCategoryIsMenuItemChanged();
+					this._FoodDrinkCategoryTypeID = value;
+					this.SendPropertyChanged("FoodDrinkCategoryTypeID");
+					this.OnFoodDrinkCategoryTypeIDChanged();
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FoodDrinkCategory_LineItem", Storage="_LineItems", ThisKey="FoodDrinkCategoryID", OtherKey="FoodDrinkCategoryID")]
-		public EntitySet<LineItem> LineItems
-		{
-			get
-			{
-				return this._LineItems;
-			}
-			set
-			{
-				this._LineItems.Assign(value);
 			}
 		}
 		
@@ -3707,19 +3198,6 @@ namespace Restaurant
 			set
 			{
 				this._MenuItems.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="FoodDrinkCategory_Drink", Storage="_Drinks", ThisKey="FoodDrinkCategoryID", OtherKey="FoodDrinkCategoryID")]
-		public EntitySet<Drink> Drinks
-		{
-			get
-			{
-				return this._Drinks;
-			}
-			set
-			{
-				this._Drinks.Assign(value);
 			}
 		}
 		
@@ -3743,18 +3221,6 @@ namespace Restaurant
 			}
 		}
 		
-		private void attach_LineItems(LineItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.FoodDrinkCategory = this;
-		}
-		
-		private void detach_LineItems(LineItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.FoodDrinkCategory = null;
-		}
-		
 		private void attach_MenuItems(MenuItem entity)
 		{
 			this.SendPropertyChanging();
@@ -3762,18 +3228,6 @@ namespace Restaurant
 		}
 		
 		private void detach_MenuItems(MenuItem entity)
-		{
-			this.SendPropertyChanging();
-			entity.FoodDrinkCategory = null;
-		}
-		
-		private void attach_Drinks(Drink entity)
-		{
-			this.SendPropertyChanging();
-			entity.FoodDrinkCategory = this;
-		}
-		
-		private void detach_Drinks(Drink entity)
 		{
 			this.SendPropertyChanging();
 			entity.FoodDrinkCategory = null;
