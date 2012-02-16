@@ -2,7 +2,7 @@
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="adminContentHolder" runat="server">
     <asp:Button ID="btnManageCategories" runat="server" Text="Manage Categories" 
-        onclick="btnManageCategories_Click" />
+        onclick="btnManageCategory_Click" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button 
         ID="btnManageMenuItems" runat="server" Text="Manage Items" 
         onclick="btnManageMenuItems_Click" />
@@ -32,9 +32,9 @@
                 
             </asp:DropDownList>
               <asp:TextBox ID="txtCategory" runat="server" style="margin-left: 60px" 
-                Visible="true" ForeColor="Black"></asp:TextBox>
+                Visible="true" ForeColor="Black" MaxLength="20"></asp:TextBox>
                <asp:Button ID="btnAddCategory" runat="server" Text="Add New Category" 
-                onclick="btnManageCategories_Click" ValidationGroup="vgAddCategory" />
+                onclick="btnAddNewCategory" ValidationGroup="vgAddCategory" />
           
             <asp:CompareValidator ID="cvAddCategory" runat="server" 
                 ControlToValidate="txtCategory" Display="Dynamic" 
@@ -93,16 +93,17 @@
         <br />
         <asp:GridView ID="gvDrink" runat="server" AllowPaging="True" 
             AllowSorting="True" AutoGenerateColumns="False" 
-            DataSourceID="LinqDataSource1" PageSize="5" DataKeyNames="DrinkID" 
+            DataSourceID="LinqDataSource1" PageSize="5" DataKeyNames="MenuItemID" 
             Visible="False">
             <Columns>
-                <asp:BoundField DataField="DrinkID" HeaderText="DrinkID" ReadOnly="True" 
-                    SortExpression="DrinkID" InsertVisible="False" />
-                <asp:BoundField DataField="DrinkName" HeaderText="DrinkName" 
-                    SortExpression="DrinkName" />
-                <asp:BoundField DataField="DrinkRetailSalePrice" 
-                    HeaderText="DrinkRetailSalePrice" SortExpression="DrinkRetailSalePrice" />
-                <asp:CommandField ButtonType="Button" ShowEditButton="True" />
+                <asp:BoundField DataField="MenuItemID" HeaderText="MenuItemID" ReadOnly="True" 
+                    SortExpression="MenuItemID" InsertVisible="False" />
+                <asp:BoundField DataField="FoodDrinkCategoryID" 
+                    HeaderText="FoodDrinkCategoryID" SortExpression="FoodDrinkCategoryID" />
+                <asp:BoundField DataField="MenuItemName" HeaderText="MenuItemName" 
+                    SortExpression="MenuItemName" />
+                <asp:BoundField DataField="MenuItemPrice" HeaderText="MenuItemPrice" 
+                    SortExpression="MenuItemPrice" />
             </Columns>
         </asp:GridView>
         <br />
@@ -122,7 +123,8 @@
     
         <asp:LinqDataSource ID="ldsDrinks" runat="server" 
             ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext"  
-            TableName="Drinks" Where="FoodDrinkCategoryID == @FoodDrinkCategoryID" 
+            TableName="MenuItems" Where="FoodDrinkCategoryID == @FoodDrinkCategoryID
+Food" 
             EnableUpdate="True" EntityTypeName="">
             <WhereParameters>
                 <asp:ControlParameter ControlID="ddlAddGetCategory" Name="newparameter" 
@@ -133,7 +135,7 @@
         <br />
         <asp:LinqDataSource ID="LinqDataSource1" runat="server" 
             ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
-            EnableUpdate="True" EntityTypeName="" TableName="Drinks" 
+            EnableUpdate="True" EntityTypeName="" TableName="MenuItems" 
             Where="FoodDrinkCategoryID == @FoodDrinkCategoryID">
             <WhereParameters>
                 <asp:ControlParameter ControlID="ddlAddGetCategory" Name="FoodDrinkCategoryID" 
@@ -250,8 +252,8 @@
     </tr>
          <tr>
              <td style="width: 144px">
-                 <asp:Button ID="btnClear" runat="server" onclick="btnClearPurchase" 
-                     Text="Clear Purchase" Width="107px" />
+                 <asp:Button ID="btnClear" runat="server" Enabled="False" 
+                     onclick="btnClearPurchase" Text="Clear Purchase" Width="107px" />
              </td>
              <td style="width: 312px">
                  &nbsp;</td>
@@ -266,15 +268,6 @@
                 <asp:BoundField DataField="IngredientPurchaseHistoryQty" HeaderText="Qty" />
                 <asp:BoundField DataField="IngredientPurchaseHistoryPrice" HeaderText="Price" 
                     DataFormatString="{0:0.00}" />
-            </Columns>
-        </asp:GridView>
-        <asp:GridView ID="gvShowDrinkPurchases" runat="server" 
-            AutoGenerateColumns="False">
-            <Columns>
-                <asp:BoundField DataField="DrinkID" HeaderText="Drink Name" />
-                <asp:BoundField DataField="DrinkPurchaseHistoryQty" HeaderText="Qty" />
-                <asp:BoundField DataField="DrinkPurchaseHistoryWholesalePrice" 
-                    HeaderText="Wholesale Price" />
             </Columns>
         </asp:GridView>
 <br />
