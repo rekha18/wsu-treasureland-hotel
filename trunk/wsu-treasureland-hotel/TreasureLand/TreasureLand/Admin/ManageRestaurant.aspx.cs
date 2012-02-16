@@ -289,15 +289,11 @@ namespace TreasureLand.Admin
 
                     }
                     Session["ingredientlist"] = null;
-                    gvShowDrinkPurchases.DataSource = null;
                     gvshowIngredientPurchases.DataSource = null;
                     gvshowIngredientPurchases.DataBind();
-                    gvShowDrinkPurchases.DataBind();
                 }
 
-            }
-            gvShowDrinkPurchases.DataSource = null;
-            gvShowDrinkPurchases.DataBind();
+            };
             gvshowIngredientPurchases.DataSource = null;
             gvshowIngredientPurchases.DataBind();
             ddlChooseItemForPurchase.Enabled = true;
@@ -317,8 +313,6 @@ namespace TreasureLand.Admin
             Session["drinklist"] = null;
             Session["ingredientlist"] = null;
             btnSubmitPurchase.Enabled = false;
-            gvShowDrinkPurchases.DataSource = null;
-            gvShowDrinkPurchases.DataBind();
             gvshowIngredientPurchases.DataSource = null;
             gvshowIngredientPurchases.DataBind();
             ddlChooseItemForPurchase.Enabled = true;
@@ -354,9 +348,6 @@ namespace TreasureLand.Admin
                 dph.IngredientID = Convert.ToSByte(ddlIngredientPurchase.SelectedValue);
 
                 drinkPurchase.Add(dph);
-                gvShowDrinkPurchases.DataSource = drinkPurchase;
-                gvShowDrinkPurchases.DataBind();
-                gvShowDrinkPurchases.Visible = true;
                 gvshowIngredientPurchases.Visible = false;
                 Session["drinklist"] = drinkPurchase;
 
@@ -382,7 +373,6 @@ namespace TreasureLand.Admin
                 gvshowIngredientPurchases.DataSource = purchase;
                 gvshowIngredientPurchases.DataBind();
 
-                gvShowDrinkPurchases.Visible = false;
                 gvshowIngredientPurchases.Visible = true;
                 Session["ingredientlist"] = purchase;
             }
