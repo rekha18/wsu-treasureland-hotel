@@ -114,7 +114,7 @@ namespace TreasureLand.DBM
     #endregion
 		
 		public TreasureLandDataClassesDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TreasureLandConnectionString2"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TreasureLandDBM"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
