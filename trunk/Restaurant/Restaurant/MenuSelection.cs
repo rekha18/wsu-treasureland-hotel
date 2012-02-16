@@ -35,7 +35,9 @@ namespace Restaurant
     //System.Diagnostics.Debug.WriteLine("");
     public partial class MenuSelection : Form
     {
-        private bool isSelectedCategoryDrink = true;
+        public static String LOGGED_IN_ID;
+
+        //private bool isSelectedCategoryDrink = true;
         int ROOMNUMBER = 0;
 
         //CATEGORIES
@@ -63,7 +65,7 @@ namespace Restaurant
             InitializeComponent();
         }
 
-        public MenuSelection(int selectedRoom, String guestSurname)
+        public MenuSelection(int selectedRoom, String guestSurname, String LoginPassword)
         {
             InitializeComponent();
 
@@ -71,6 +73,8 @@ namespace Restaurant
             MaximizeBox = false;
             WindowState = FormWindowState.Maximized;
             FormBorderStyle = FormBorderStyle.None;
+
+            LOGGED_IN_ID = LoginPassword;
 
             if (selectedRoom != 0) // 0 means paying with cash
             {
@@ -113,9 +117,9 @@ namespace Restaurant
 
             #region Initial Items Setup - Non-Alcoholic
             //Loads the item dictionary with non-alcoholic drinks
-            loadItemsDictWithDrinks(1);
+            loadItemsDictWithDrinks("N");
             //gets the number of non-alcoholic drinks
-            numberOfItems = getDrinksCount(1);
+            numberOfItems = getDrinksCount("N");
             //Hides any extra item buttons
             hideExtraItemButtons();
             //sets up the initial display to non-alcoholic drinks
@@ -196,14 +200,12 @@ namespace Restaurant
             }
         }
 
-        //***************************************************************************************************
         private int getCategoryCount()
         {
             //connect to the database
             DataClassesDataContext db = new DataClassesDataContext();
             int count = 0;
             var query = from c in db.FoodDrinkCategories
-                        //where c.FoodDrinkCategoryIsMenuItem == true
                         where c.FoodDrinkCategoryTypeID == "F"
                         select new { c.FoodDrinkCategoryID };
 
@@ -213,7 +215,6 @@ namespace Restaurant
             }
             return count;
         }
-        //***************************************************************************************************
         
         private void btn_previous_categories_Click(object sender, EventArgs e)
         {
@@ -327,42 +328,24 @@ namespace Restaurant
             loadItems();
         }
 
-        private int getDrinksCount(int nonORnot)
+        private int getDrinksCount(String beverage)
         {
-            //connect to the database
             DataClassesDataContext db = new DataClassesDataContext();
             int count = 0;
-            //var query = from d in db.Drinks
-            //            where d.FoodDrinkCategoryID == nonORnot
-            //            select new { d.FoodDrinkCategoryID };
 
-            //***************************************************************************************************
-            if (nonORnot == 1)
+            var drinkQuery = from d in db.FoodDrinkCategories
+                                join m in db.MenuItems
+                                on d.FoodDrinkCategoryID equals m.FoodDrinkCategoryID
+                                where d.FoodDrinkCategoryTypeID == beverage
+                                select new { m.MenuItemID};
+
+            if (drinkQuery.Any())
             {
-                System.Diagnostics.Debug.WriteLine("getDrinksCount == N");
-                var query = from c in db.FoodDrinkCategories
-                            where c.FoodDrinkCategoryTypeID == "N"
-                            select new { c.FoodDrinkCategoryID };
-
-                foreach (var d in query)
+                foreach (var q in drinkQuery)
                 {
                     count++;
                 }
             }
-            else if(nonORnot == 2)
-            {
-                System.Diagnostics.Debug.WriteLine("getDrinksCount == A");
-                var query = from c in db.FoodDrinkCategories
-                            where c.FoodDrinkCategoryTypeID == "A"
-                            select new { c.FoodDrinkCategoryID };
-
-                foreach (var d in query)
-                {
-                    count++;
-                }
-            }
-            //***************************************************************************************************
-            System.Diagnostics.Debug.WriteLine("getDrinksCount, Count == " + count);
             return count;
         }
 
@@ -486,20 +469,17 @@ namespace Restaurant
             btn_previous_items.Enabled = false;
         }
 
-        private void loadItemsDictWithDrinks(int nonORnot)
+        private void loadItemsDictWithDrinks(String beverage)
         {
-            System.Diagnostics.Debug.WriteLine("loadItemsDictWithDrinks, nonORnot == " + nonORnot);
-            isSelectedCategoryDrink = true;
             itemInfoDict.Clear();
             DataClassesDataContext db = new DataClassesDataContext();
 
-            //*********************************************************************************************************
-            if (nonORnot == 1) //2 is alcoholic, 1 is non-alcoholic
+            if (beverage.Equals("N"))
             {
                 var drinkQuery = from d in db.FoodDrinkCategories
                                  join m in db.MenuItems
                                  on d.FoodDrinkCategoryID equals m.FoodDrinkCategoryID
-                                 where d.FoodDrinkCategoryTypeID == "N"
+                                 where d.FoodDrinkCategoryTypeID == beverage
                                  select new { m.MenuItemID, m.MenuItemName };
 
                 if (drinkQuery.Any())
@@ -510,12 +490,12 @@ namespace Restaurant
                     }
                 }
             }
-            else if(nonORnot == 2)
+            else if (beverage.Equals("A"))
             {
                 var drinkQuery = from d in db.FoodDrinkCategories
                                  join m in db.MenuItems
                                  on d.FoodDrinkCategoryID equals m.FoodDrinkCategoryID
-                                 where d.FoodDrinkCategoryTypeID == "A"
+                                 where d.FoodDrinkCategoryTypeID == beverage
                                  select new { m.MenuItemID, m.MenuItemName };
 
                 if (drinkQuery.Any())
@@ -526,12 +506,47 @@ namespace Restaurant
                     }
                 }
             }
-            //*********************************************************************************************************
+        }
+
+        private void loadItemsDictWithDiscounts()
+        {
+            itemInfoDict.Clear();
+            DataClassesDataContext db = new DataClassesDataContext();
+
+            var drinkQuery = from d in db.FoodDrinkCategories
+                                join m in db.MenuItems
+                                on d.FoodDrinkCategoryID equals m.FoodDrinkCategoryID
+                                where d.FoodDrinkCategoryTypeID == "D"
+                                select new { m.MenuItemID, m.MenuItemName };
+
+            if (drinkQuery.Any())
+            {
+                foreach (var q in drinkQuery)
+                {
+                    itemInfoDict.Add(Convert.ToInt32(q.MenuItemID), q.MenuItemName);
+                }
+            }
+        }
+        private int getDiscountsCount()
+        {
+            int count = 0;
+
+            DataClassesDataContext db = new DataClassesDataContext();
+            var drinkQuery = from d in db.FoodDrinkCategories
+                             join m in db.MenuItems
+                             on d.FoodDrinkCategoryID equals m.FoodDrinkCategoryID
+                             where d.FoodDrinkCategoryTypeID == "D"
+                             select new { m.MenuItemID, m.MenuItemName };
+
+            foreach (var d in drinkQuery)
+            {
+                count++;
+            }
+            return count;
         }
 
         private void loadItemsDictWithFood(String foodCategory)
         {
-            isSelectedCategoryDrink = false;
             itemInfoDict.Clear();
             DataClassesDataContext db = new DataClassesDataContext();
             var query = from m in db.MenuItems
@@ -560,8 +575,8 @@ namespace Restaurant
         private void btn_non_alcoholic_drinks_Click(object sender, EventArgs e)
         {
             resetItemPageNumber();
-            loadItemsDictWithDrinks(1);
-            numberOfItems = getDrinksCount(1);
+            loadItemsDictWithDrinks("N");
+            numberOfItems = getDrinksCount("N");
             hideExtraItemButtons();
             loadItems();
             lbl_current_item_page.Text = itemPageNumber.ToString();
@@ -571,24 +586,25 @@ namespace Restaurant
         private void btn_alcoholic_drinks_Click(object sender, EventArgs e)
         {
             resetItemPageNumber();
-            loadItemsDictWithDrinks(2);
-            numberOfItems = getDrinksCount(2);
+            loadItemsDictWithDrinks("A");
+            numberOfItems = getDrinksCount("A");
             hideExtraItemButtons();
             loadItems();
             lbl_current_item_page.Text = itemPageNumber.ToString();
             setMaxNumberOfPagesForItems();
         }
 
-        private void menuItemSelected(object sender, EventArgs e)
+        private void menuItemSelected(object sender, EventArgs e)//*******************************
         {
             Button btn = sender as Button;
-            String menuItemName = btn.Text.Trim();
-            String menuPrice = getMoneyValueForItem(menuItemName);
-            createTotalItemButton(menuPrice , menuItemName);
+            String itemName = btn.Text.Trim();
+            String itemPrice = getMoneyValueForItem(itemName);
+            createTotalItemButton(itemPrice, itemName);
 
             //add to total
-            String amount = getItemInfoFromButton(menuPrice + " - " + menuItemName, 0);
-            Decimal dec = Convert.ToDecimal(amount);
+            //String amount = getItemInfoFromButton(itemPrice + " - " + itemName, 0);
+            //System.Diagnostics.Debug.WriteLine("discount amount: " + amount);
+            Decimal dec = Convert.ToDecimal(itemPrice);
 
             String totalLabel = lbl_grand_total.Text.ToString();
             Decimal total = Convert.ToDecimal(totalLabel);
@@ -610,7 +626,6 @@ namespace Restaurant
                 categoryBtnDict.Add(Convert.ToInt32(control.Tag), control);
             }
 
-            //*********************************************************************************************************
             var query = from c in db.FoodDrinkCategories
                         where c.FoodDrinkCategoryTypeID == "F"
                         select new { c.FoodDrinkCategoryID, c.FoodDrinkCategoryName };
@@ -622,7 +637,6 @@ namespace Restaurant
                     categoryInfoDict.Add(Convert.ToInt32(q.FoodDrinkCategoryID), q.FoodDrinkCategoryName);
                 }
             }
-            //*********************************************************************************************************
             foreach (Button control in items_panel.Controls)
             {
                 itemBtnDict.Add(Convert.ToInt32(control.Tag), control);
@@ -630,8 +644,6 @@ namespace Restaurant
         }
 
         #endregion
-
-
 
         #region Total List of Items
 
@@ -655,7 +667,6 @@ namespace Restaurant
             totalItemsPosition++;
         }
 
-
         private void btn_remove_item_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Remove item from order?", "Item", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -663,15 +674,36 @@ namespace Restaurant
             if(result == DialogResult.Yes)
             {
                 Button btn = sender as Button;
+                String buttonText = btn.Text;
+                Boolean negativeNumber = false;
+                if (buttonText.StartsWith("-"))
+                {
+                    buttonText = buttonText.Substring(1, buttonText.Length - 1);
+                    negativeNumber = true;
+                }
+
                 int tag = Convert.ToInt32(btn.Tag);
 
                 //subtract from totals
-                String amount = getItemInfoFromButton(btn.Text, 0);
-                Decimal dec = Convert.ToDecimal(amount);
-                String totalLabel = lbl_grand_total.Text.ToString();
-                Decimal total = Convert.ToDecimal(totalLabel);
-                total = total - dec;
-                lbl_grand_total.Text = total.ToString();
+                String amount = getItemInfoFromButton(buttonText, 0);
+                if (negativeNumber)
+                {
+                    amount = "-" + amount;
+                    Decimal dec = Convert.ToDecimal(amount);
+                    String totalLabel = lbl_grand_total.Text.ToString();
+                    Decimal total = Convert.ToDecimal(totalLabel);
+                    total = total - dec;
+                    lbl_grand_total.Text = total.ToString();
+                }
+                else
+                {
+                    Decimal dec = Convert.ToDecimal(amount);
+                    String totalLabel = lbl_grand_total.Text.ToString();
+                    Decimal total = Convert.ToDecimal(totalLabel);
+                    total = total - dec;
+                    lbl_grand_total.Text = total.ToString();
+                }
+                
 
                 totalDict.Remove(tag);
                 recreateAllTotalButtons();
@@ -704,45 +736,27 @@ namespace Restaurant
         {
             Decimal menuItemPrice = 0;
 
-            if (isSelectedCategoryDrink)
-            {
-                DataClassesDataContext db = new DataClassesDataContext();
-                var query = from d in db.MenuItems
-                            where d.MenuItemName == menuItemName
-                            select new { d.MenuItemPrice };
+            DataClassesDataContext db = new DataClassesDataContext();
+            var query = from d in db.MenuItems
+                        where d.MenuItemName == menuItemName
+                        select new { d.MenuItemPrice };
 
-                if(query.Any())
+            if(query.Any())
+            {
+                foreach (var q in query)
                 {
-                    foreach (var q in query)
-                    {
-                        menuItemPrice = Convert.ToDecimal(q.MenuItemPrice);
-                    }
+                    menuItemPrice = Convert.ToDecimal(q.MenuItemPrice);
                 }
             }
-            else
-            {
-                DataClassesDataContext db = new DataClassesDataContext();
-                var query = from m in db.MenuItems
-                            where m.MenuItemName == menuItemName
-                            select new { m.MenuItemPrice };
 
-                if (query.Any())
-                {
-                    foreach (var q in query)
-                    {
-                        menuItemPrice = Convert.ToDecimal(q.MenuItemPrice);
-                    }
-                }
-            }
-                String value = String.Format("{0:N}", menuItemPrice);
+            String value = String.Format("{0:N}", menuItemPrice);
             
             return value;
         }
 
         private String getItemInfoFromButton(String buttonName, int operation)
         {
-            String itemName = "";
-
+            String itemInfo = "";
             String[] arr;
 
             arr = buttonName.Split('-');
@@ -750,99 +764,112 @@ namespace Restaurant
             {
                 // 0 = item amount
                 // 1 = item name
-                itemName = arr[operation].Trim();
+                itemInfo = arr[operation].Trim();
             }
-
-            return itemName;
+            return itemInfo;
         }
 
         #endregion
 
         private void btn_submit_order_Click(object sender, EventArgs e)
         {
-            Int16 reservationDetailID = 0;
-            DataClassesDataContext db = new DataClassesDataContext();
-
-            if (ROOMNUMBER != 0)
+            if (totalDict.Count() > 0)
             {
-                var query = from r in db.Rooms
-                            join rd in db.ReservationDetails
-                            on r.RoomID equals rd.RoomID
-                            //join rdb in db.ReservationDetailBillings
-                            //on rd.ReservationDetailID equals rdb.ReservationDetailID  // 1 , null
-                            where r.RoomNumbers == ROOMNUMBER.ToString() & rd.ReservationStatus == 'A'
-                            //where rd.ReservationStatus == 'A'
-                            select new { rd.ReservationDetailID };
+                Int16 reservationDetailID = 0;
+                DataClassesDataContext db = new DataClassesDataContext();
 
-                if (query.Any())
+                if (ROOMNUMBER != 0)
                 {
-                    foreach (var item in query)
+                    var query = from r in db.Rooms
+                                join rd in db.ReservationDetails
+                                on r.RoomID equals rd.RoomID
+                                where r.RoomNumbers == ROOMNUMBER.ToString() & rd.ReservationStatus == 'A'
+                                select new { rd.ReservationDetailID };
+
+                    if (query.Any())
                     {
-                        reservationDetailID = Convert.ToInt16(item.ReservationDetailID);
+                        foreach (var item in query)
+                        {
+                            reservationDetailID = Convert.ToInt16(item.ReservationDetailID);
+                        }
                     }
                 }
-            }
 
-            //RESERVATIONDETAILBILLING
-            ReservationDetailBilling reservationOBJ = new ReservationDetailBilling();
-            
-            if(ROOMNUMBER == 0)
-            {
-                reservationOBJ.ReservationDetailID = null;
-            }
-            else
-            {
-                reservationOBJ.ReservationDetailID = Convert.ToInt16(reservationDetailID);
-            }
+                //RESERVATIONDETAILBILLING
+                ReservationDetailBilling reservationOBJ = new ReservationDetailBilling();
 
-            reservationOBJ.BillingCategoryID = 1;
-            reservationOBJ.BillingDescription = "food & drink purchase";
-            reservationOBJ.BillingAmount = Convert.ToDecimal(lbl_grand_total.Text);
-            reservationOBJ.BillingItemQty = 1;
-            reservationOBJ.BillingItemDate = System.DateTime.Now;
-            reservationOBJ.TransEmployee = "1111";//get from login
-            
-            db.ReservationDetailBillings.InsertOnSubmit(reservationOBJ);
-            db.SubmitChanges();
-
-
-            var rdbID = (from r in db.ReservationDetailBillings
-                         select r.ReservationDetailBillingID).Max();
-
-            foreach (var item in totalDict)//all purchase items in the list
-            {
-                String itemName = getItemInfoFromButton(item.Value, 1);
-                System.Diagnostics.Debug.WriteLine("item purchased: " + itemName);
-
-                var itemInfo = from i in db.MenuItems
-                               where i.MenuItemName == itemName
-                               select i;
-
-                short menuItemID = 0;
-                decimal menuItemPrice = 0;
-
-                foreach (var menuItem in itemInfo)
+                if (ROOMNUMBER == 0)
                 {
-                    menuItemID = menuItem.MenuItemID;
-                    menuItemPrice = menuItem.MenuItemPrice;
+                    reservationOBJ.ReservationDetailID = null;
+                }
+                else
+                {
+                    reservationOBJ.ReservationDetailID = Convert.ToInt16(reservationDetailID);
                 }
 
-                //LINEITEM
-                LineItem lineOBJ = new LineItem();
-                lineOBJ.ReservationDetailBillingID = rdbID;
-                lineOBJ.MenuItemID = menuItemID;
-                lineOBJ.LineItemAmount = menuItemPrice;
-                
-                db.LineItems.InsertOnSubmit(lineOBJ);
-                db.SubmitChanges();
-            }
+                reservationOBJ.BillingCategoryID = 1;
+                reservationOBJ.BillingDescription = "food & drink purchase";
+                reservationOBJ.BillingAmount = Convert.ToDecimal(lbl_grand_total.Text);
+                reservationOBJ.BillingItemQty = 1;
+                reservationOBJ.BillingItemDate = System.DateTime.Now;
+                reservationOBJ.TransEmployee = LOGGED_IN_ID;
 
-            Close();
+                db.ReservationDetailBillings.InsertOnSubmit(reservationOBJ);
+                db.SubmitChanges();
+
+
+                var rdbID = (from r in db.ReservationDetailBillings
+                             select r.ReservationDetailBillingID).Max();
+
+                foreach (var item in totalDict)//all purchase items in the list
+                {
+                    String itemInfo = item.Value;
+                    if (itemInfo.StartsWith("-"))
+                    {
+                        itemInfo = itemInfo.Substring(1, itemInfo.Length - 1);
+                    }
+                    String itemName = getItemInfoFromButton(itemInfo, 1);
+
+                    var query = from i in db.MenuItems
+                                where i.MenuItemName == itemName
+                                select new { i.MenuItemID, i.MenuItemPrice };
+
+                    short menuItemID = 0;
+                    decimal menuItemPrice = 0;
+
+                    foreach (var menuItem in query)
+                    {
+                        menuItemID = menuItem.MenuItemID;
+                        menuItemPrice = menuItem.MenuItemPrice;
+                    }
+
+                    //LINEITEM
+                    LineItem lineOBJ = new LineItem();
+                    lineOBJ.ReservationDetailBillingID = rdbID;
+                    lineOBJ.MenuItemID = menuItemID;
+                    lineOBJ.LineItemAmount = menuItemPrice;
+                    db.LineItems.InsertOnSubmit(lineOBJ);
+                    db.SubmitChanges();
+                }
+
+                Close();
+            }
         }
 
         private void btn_cancel_order_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btn_discount_Click(object sender, EventArgs e)
+        {
+            resetItemPageNumber();
+            loadItemsDictWithDiscounts();
+            numberOfItems = getDiscountsCount();
+            hideExtraItemButtons();
+            loadItems();
+            lbl_current_item_page.Text = itemPageNumber.ToString();
+            setMaxNumberOfPagesForItems();
         }
     }
 }

@@ -14,6 +14,8 @@ namespace Restaurant
     //System.Diagnostics.Debug.WriteLine("");
     public partial class RoomSelectionForm : Form
     {
+        public static String LOGGED_IN_ID;
+
         private int numberOfRooms = 0;
         private int pageNumber = 1;
         private int maxPageNumber = 1;
@@ -65,6 +67,9 @@ namespace Restaurant
 
             LoginForm login = new LoginForm(0);
             login.ShowDialog();
+            LOGGED_IN_ID = login.password;
+
+            System.Diagnostics.Debug.WriteLine("Password: " + LOGGED_IN_ID);
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -158,7 +163,7 @@ namespace Restaurant
         /// <param name="e"></param>
         private void btn_cash_Click(object sender, EventArgs e)
         {
-            new MenuSelection(0, "").Show();
+            new MenuSelection(0, "", LOGGED_IN_ID).Show();
         }
 
         /// <summary>
@@ -174,7 +179,7 @@ namespace Restaurant
             String[] arr = text.Split('\n');
             int selectedRoom = Convert.ToInt32(arr[0]);
 
-            new MenuSelection(selectedRoom, arr[1]).Show();
+            new MenuSelection(selectedRoom, arr[1], LOGGED_IN_ID).Show();
         }
 
         /// <summary>
@@ -197,7 +202,6 @@ namespace Restaurant
             {
                 foreach (var q in query)
                 {
-                    //***************************************************************************
                     buttonInfoDict.Add(Convert.ToInt32(q.RoomNumbers), q.GuestSurName.ToString());
                 }
 

@@ -10,12 +10,12 @@ using System.Security;
 
 namespace Restaurant
 {
-	
+    //System.Diagnostics.Debug.WriteLine("");
 	public partial class LoginForm : Form
 	{
         private int logInLogOut = 0; // 0 for login, 1 for logout
 
-		private string password="";
+		public string password="";
 
 		public LoginForm(int inORout)
 		{
@@ -77,7 +77,6 @@ namespace Restaurant
             {
                 if (checkID())
                 {
-                    //Open select room form
                     Close();
                 }
                 else

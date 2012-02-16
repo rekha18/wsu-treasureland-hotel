@@ -114,7 +114,7 @@
             this.total_panel.BackColor = System.Drawing.Color.DarkGray;
             this.total_panel.Location = new System.Drawing.Point(793, 153);
             this.total_panel.Name = "total_panel";
-            this.total_panel.Size = new System.Drawing.Size(206, 443);
+            this.total_panel.Size = new System.Drawing.Size(206, 434);
             this.total_panel.TabIndex = 9;
             // 
             // btn_submit_order
@@ -649,13 +649,15 @@
             // 
             // btn_discount
             // 
-            this.btn_discount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_discount.Location = new System.Drawing.Point(466, 678);
+            this.btn_discount.BackColor = System.Drawing.Color.Khaki;
+            this.btn_discount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_discount.Location = new System.Drawing.Point(824, 37);
             this.btn_discount.Name = "btn_discount";
-            this.btn_discount.Size = new System.Drawing.Size(144, 40);
+            this.btn_discount.Size = new System.Drawing.Size(144, 72);
             this.btn_discount.TabIndex = 34;
             this.btn_discount.Text = "Discount";
-            this.btn_discount.UseVisualStyleBackColor = true;
+            this.btn_discount.UseVisualStyleBackColor = false;
+            this.btn_discount.Click += new System.EventHandler(this.btn_discount_Click);
             // 
             // MenuSelection
             // 
