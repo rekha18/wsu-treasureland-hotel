@@ -57,7 +57,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_guestSurname = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -78,6 +78,7 @@
             this.nav_panel_items = new System.Windows.Forms.Panel();
             this.nav_panel_categories = new System.Windows.Forms.Panel();
             this.wrapper_panel = new System.Windows.Forms.Panel();
+            this.btn_discount = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.categories_panel.SuspendLayout();
             this.items_panel.SuspendLayout();
@@ -413,15 +414,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.menuItemSelected);
             // 
-            // label1
+            // lbl_guestSurname
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(128, 699);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 24);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Guest:";
+            this.lbl_guestSurname.AutoSize = true;
+            this.lbl_guestSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_guestSurname.Location = new System.Drawing.Point(128, 699);
+            this.lbl_guestSurname.Name = "lbl_guestSurname";
+            this.lbl_guestSurname.Size = new System.Drawing.Size(64, 24);
+            this.lbl_guestSurname.TabIndex = 12;
+            this.lbl_guestSurname.Text = "Guest:";
             // 
             // label2
             // 
@@ -624,6 +625,7 @@
             // wrapper_panel
             // 
             this.wrapper_panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.wrapper_panel.Controls.Add(this.btn_discount);
             this.wrapper_panel.Controls.Add(this.pictureBox1);
             this.wrapper_panel.Controls.Add(this.nav_panel_categories);
             this.wrapper_panel.Controls.Add(this.lbl_selectedRoom);
@@ -634,7 +636,7 @@
             this.wrapper_panel.Controls.Add(this.btn_submit_order);
             this.wrapper_panel.Controls.Add(this.items_panel);
             this.wrapper_panel.Controls.Add(this.btn_cancel_order);
-            this.wrapper_panel.Controls.Add(this.label1);
+            this.wrapper_panel.Controls.Add(this.lbl_guestSurname);
             this.wrapper_panel.Controls.Add(this.btn_alcoholic_drinks);
             this.wrapper_panel.Controls.Add(this.label2);
             this.wrapper_panel.Controls.Add(this.btn_non_alcoholic_drinks);
@@ -645,13 +647,23 @@
             this.wrapper_panel.Size = new System.Drawing.Size(1004, 726);
             this.wrapper_panel.TabIndex = 33;
             // 
+            // btn_discount
+            // 
+            this.btn_discount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_discount.Location = new System.Drawing.Point(466, 678);
+            this.btn_discount.Name = "btn_discount";
+            this.btn_discount.Size = new System.Drawing.Size(144, 40);
+            this.btn_discount.TabIndex = 34;
+            this.btn_discount.Text = "Discount";
+            this.btn_discount.UseVisualStyleBackColor = true;
+            // 
             // MenuSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 730);
             this.Controls.Add(this.wrapper_panel);
-            this.MinimumSize = new System.Drawing.Size(1024, 768);
+            this.MinimumSize = new System.Drawing.Size(1024, 766);
             this.Name = "MenuSelection";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -701,7 +713,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_guestSurname;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -722,5 +734,6 @@
         private System.Windows.Forms.Panel nav_panel_items;
         private System.Windows.Forms.Panel nav_panel_categories;
         private System.Windows.Forms.Panel wrapper_panel;
+        private System.Windows.Forms.Button btn_discount;
     }
 }
