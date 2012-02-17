@@ -131,8 +131,17 @@ namespace Restaurant
 		/// <returns>returns if the entered password is valid</returns>
 		private bool checkID()
 		{
-			if (password == "0000")
-				return true;
+            DataClassesDataContext db = new DataClassesDataContext();
+            var loginQuery = from l in db.aspnet_Memberships
+                             where l.Pin == password & l.IsApproved == true
+                             select new { l.UserId, l.LastLoginDate };
+
+            if(loginQuery.Any())
+            {
+                //need to add in lastLogin, more secure?? users can guess passwords and succeed, max trys?
+                return true;
+            }
+
 			return false;
 		}
 
