@@ -4,32 +4,23 @@
         <asp:View ID="vUpdateBillingCategory" runat="server">
             <asp:Panel ID="Panel1" runat="server" BackColor="Silver">
                 <asp:GridView ID="gvBilling" runat="server" AutoGenerateColumns="False" 
-                    DataKeyNames="BillingCategoryID" DataSourceID="ldsBilling">
+                    DataSourceID="ldsBilling" DataKeyNames="BillingCategoryID">
                     <Columns>
                         <asp:BoundField DataField="BillingCategoryID" HeaderText="ID" 
                             InsertVisible="False" ReadOnly="True" SortExpression="BillingCategoryID" />
-                        <asp:TemplateField HeaderText="Description" 
-                            SortExpression="BillingCategoryDescription">
-                            <EditItemTemplate>
-                                <asp:TextBox ID="TextBox1" runat="server" MaxLength="30" 
-                                    Text='<%# Bind("BillingCategoryDescription") %>'></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                                    ControlToValidate="TextBox1" ForeColor="Red">Required</asp:RequiredFieldValidator>
-                            </EditItemTemplate>
-                            <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" 
-                                    Text='<%# Bind("BillingCategoryDescription") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:CheckBoxField DataField="BillingCategoryTaxable" HeaderText="Taxable" 
+                        <asp:BoundField DataField="BillingCategoryDescription" HeaderText="Description" 
+                            SortExpression="BillingCategoryDescription" />
+                        <asp:BoundField DataField="BillingCategoryTaxable" HeaderText="Taxable" 
                             SortExpression="BillingCategoryTaxable" />
-                        <asp:CommandField ButtonType="Button" ShowEditButton="True" />
+                        <asp:CommandField ButtonType="Button" ShowDeleteButton="True" 
+                            ShowEditButton="True" />
                     </Columns>
                 </asp:GridView>
                 <asp:LinqDataSource ID="ldsBilling" runat="server" 
                     ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
-                    EnableInsert="True" EnableUpdate="True" EntityTypeName="" 
-                    OrderBy="BillingCategoryID" TableName="BillingCategories">
+                    EnableUpdate="True" EntityTypeName="" 
+                    OrderBy="BillingCategoryID" TableName="BillingCategories" 
+                    EnableDelete="True" EnableInsert="True">
                 </asp:LinqDataSource>
                 <br />
                 <asp:Button ID="btnAddBillingCategory" runat="server" CommandArgument="1" 

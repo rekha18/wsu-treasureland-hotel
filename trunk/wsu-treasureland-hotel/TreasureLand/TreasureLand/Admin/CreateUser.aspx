@@ -42,6 +42,10 @@
                                 <asp:TextBox ID="Email" runat="server" CssClass="textEntry"></asp:TextBox>
                             </p>
                             <p>
+                                <asp:Label ID="PinLabel1" runat="server" AssociatedControlID="Pin">Pin:</asp:Label>
+                                <asp:TextBox ID="Pin" runat="server" CssClass="textEntry"></asp:TextBox>
+                            </p>
+                            <p>
                                 <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Password:</asp:Label>
                                 <asp:TextBox ID="Password" runat="server" CssClass="passwordEntry" TextMode="Password"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password"
@@ -91,4 +95,6 @@
             </asp:CompleteWizardStep>
         </WizardSteps>
     </asp:CreateUserWizard>
+    <br />
+    <br />
 </asp:Content>
