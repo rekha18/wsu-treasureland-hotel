@@ -72,21 +72,9 @@ namespace TreasureLand.Clerk
                 }
                 mvReservation.ActiveViewIndex = reserving.returnView;
 
-                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-                var roomInfo = from r in db.HotelRoomTypes
-                               join o in db.Rooms
-                               on r.HotelRoomTypeID equals o.HotelRoomTypeID
-                               where (o.RoomID == reserving.roomID)
-                               select new { o.RoomNumbers, r.RoomType, currenct = string.Format("{0:0.00}", r.RoomTypeRackRate) };//currency = string.Format("{0:c}", r.RoomTypeRackRate) };
-                gvRoomInfo.DataSource = roomInfo.ToList();
-                gvRoomInfo.DataBind();
-                gvRoomInfo.HeaderRow.Cells[0].Text = "Room Number";
-                gvRoomInfo.HeaderRow.Cells[1].Text = "Room Type";
-                gvRoomInfo.HeaderRow.Cells[2].Text = "Price Per Night";
-                gvRoomInfo.SelectRow(0);
+               
 
-                quotedPrice = Convert.ToDecimal(gvRoomInfo.SelectedRow.Cells[2].Text.Replace("$", "").Replace(",", ""));
-                quotedPrice *= Convert.ToInt16(ddlNumberOfDays.SelectedValue);
+                
             }
 
             else
@@ -119,19 +107,7 @@ namespace TreasureLand.Clerk
             }
             #endregion Discount Grid View Control
 
-            #region Quote Calculator
 
-            if (isPercent)
-            {
-                adjust /= 100;
-                quotedPrice -= quotedPrice * adjust;
-            }
-            else
-            {
-                quotedPrice -= adjust;
-            }
-            lblTotalCost.Text = quotedPrice.ToString();
-            #endregion Quote Calculator
 
             #region Return From Select Room
             if (Session["RoomIDs"] != null)
@@ -249,23 +225,35 @@ namespace TreasureLand.Clerk
             {
                 TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
                 Reservation res = new Reservation();
-                ReservationDetail resDetail = new ReservationDetail();
+                
                 res.GuestID = reserving.GuestID;
                 res.ReservationDate = calDateFrom.SelectedDate;
                 res.ReservationStatus = 'U';
                 db.Reservations.InsertOnSubmit(res);
                 db.SubmitChanges();
 
-                resDetail.ReservationID = res.ReservationID;
-                resDetail.CheckinDate = calDateFrom.SelectedDate;
-                resDetail.RoomID = reserving.roomID;
-                resDetail.QuotedRate = quotedPrice / Convert.ToInt16(ddlNumberOfDays.SelectedValue);
-                resDetail.ReservationStatus = 'A';
-                resDetail.Nights = Convert.ToByte(ddlNumberOfDays.SelectedValue);
-                resDetail.NumberOfAdults = Convert.ToByte(ddlAdults.SelectedValue);
-                resDetail.NumberOfChildren = Convert.ToByte(ddlChildren.SelectedValue);
-                db.ReservationDetails.InsertOnSubmit(resDetail);
-                db.SubmitChanges();
+
+                LinkedList<RoomInfo> ri = (LinkedList<RoomInfo>)Session["RoomIDs"];
+                int i = 0;
+                foreach(RoomInfo r in ri)
+                {
+                    ReservationDetail resDetail = new ReservationDetail();
+                    gvRoomInfo.SelectRow(i);
+                    resDetail.ReservationID = res.ReservationID;
+                    resDetail.CheckinDate = calDateFrom.SelectedDate;
+                    resDetail.RoomID = Convert.ToInt16(r.RoomID);
+                    resDetail.QuotedRate = Convert.ToByte(ddlNumberOfDays.SelectedValue) * Convert.ToDecimal(gvRoomInfo.SelectedRow.Cells[2].Text);
+                    resDetail.ReservationStatus = 'A';
+                    resDetail.Nights = Convert.ToByte(ddlNumberOfDays.SelectedValue);
+                    resDetail.NumberOfAdults = Convert.ToByte(ddlAdults.SelectedValue);
+                    resDetail.NumberOfChildren = Convert.ToByte(ddlChildren.SelectedValue);
+                    resDetail.DiscountID = 1;
+                    db.ReservationDetails.InsertOnSubmit(resDetail);
+                    db.SubmitChanges();
+                    i++;
+                }
+
+                
                 lblFinalReservationNumber.Text = res.ReservationID.ToString();
                 reserving.returnView = 4;
             }
@@ -335,26 +323,62 @@ namespace TreasureLand.Clerk
 
         protected void RenderSelectedRoomsList()
         {
+
             DataSet ds = new DataSet();
             ds.Tables.Add("Rooms");
-            ds.Tables["Rooms"].Columns.Add("RoomID");
-            ds.Tables["Rooms"].Columns.Add("RoomNumbers");
+            ds.Tables["Rooms"].Columns.Add("RoomNumber");
+            ds.Tables["Rooms"].Columns.Add("RoomType");
+            ds.Tables["Rooms"].Columns.Add("Rack Rate");
 
             LinkedList<RoomInfo> ri = (LinkedList<RoomInfo>)Session["RoomIDs"];
 
             foreach(RoomInfo r in ri)
             {
                 DataRow dr = ds.Tables["Rooms"].NewRow();
-                dr["RoomID"] = r.RoomID;
-                dr["RoomNumbers"] = r.RoomNumbers;
+                dr["RoomNumber"] = r.RoomNumbers;
 
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                var type = from ro in db.HotelRoomTypes
+                            join o in db.Rooms
+                            on ro.HotelRoomTypeID equals o.HotelRoomTypeID
+                            where (o.RoomID == r.RoomID)
+                            select new { ro.RoomType };
+
+                dr["RoomType"] = type.First().RoomType.ToString();
+
+                var price = from ro in db.HotelRoomTypes
+                            join o in db.Rooms
+                            on ro.HotelRoomTypeID equals o.HotelRoomTypeID
+                            where (o.RoomID == r.RoomID)
+                            select new {ro.RoomTypeRackRate };
+                decimal me = price.First().RoomTypeRackRate;
+                string meto = String.Format("{0:0.00}", me);
+                dr["Rack Rate"] = meto;
                 ds.Tables["Rooms"].Rows.Add(dr);
+
+                quotedPrice = quotedPrice + me;
+    
             }
 
             gvRoomInfo.DataSource = ds;
             gvRoomInfo.DataBind();
 
+            quotedPrice *= Convert.ToInt16(ddlNumberOfDays.SelectedValue);
             mvReservation.ActiveViewIndex = 3;
+
+            #region Quote Calculator
+
+            if (isPercent)
+            {
+                adjust /= 100;
+                quotedPrice -= quotedPrice * adjust;
+            }
+            else
+            {
+                quotedPrice -= adjust;
+            }
+            lblTotalCost.Text = string.Format("{0:0.00}", quotedPrice);
+            #endregion Quote Calculator
         }
 
     }

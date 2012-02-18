@@ -285,10 +285,12 @@
                                 <asp:GridView ID="gvRoomInfo" runat="server" Width="414px" 
                                     AutoGenerateColumns="False">
                                     <Columns>
-                                        <asp:BoundField DataField="RoomID" HeaderText="Room ID" 
-                                            SortExpression="RoomID" />
-                                        <asp:BoundField DataField="RoomNumbers" HeaderText="Room Number" 
-                                            SortExpression="RoomNumbers" />
+                                        <asp:BoundField DataField="RoomNumber" HeaderText="Room Number" 
+                                            SortExpression="RoomNumber" />
+                                        <asp:BoundField DataField="RoomType" HeaderText="Room Type" 
+                                            SortExpression="RoomType" />
+                                        <asp:BoundField DataField="Rack Rate" HeaderText="Rack Rate" 
+                                            SortExpression="Rack Rate" />
                                     </Columns>
                                 </asp:GridView>
                             </td>
