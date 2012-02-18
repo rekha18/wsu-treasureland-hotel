@@ -30,6 +30,9 @@ namespace TreasureLand.Clerk
                 Session.Add("ResDetailID", res.reservationDetailID);
             else
                 Session["ResDetailID"] = res.reservationDetailID;
+
+            if(Session["LastRoomType"] == null)
+                Session.Add("LastRooType", ddlRoomTypes.SelectedValue);
         }
 
         /// <summary>
@@ -42,6 +45,7 @@ namespace TreasureLand.Clerk
         {
             gvOpenRooms.SelectedIndex = -1;
             btnSelect.Enabled = false;
+            Session["LastRoomType"] = ddlRoomTypes.SelectedValue;
         }
 
         /// <summary>
@@ -133,6 +137,80 @@ namespace TreasureLand.Clerk
                 connCommand.Parameters.AddWithValue("@ReservationDetailID", Convert.ToInt32(Session["ResDetailID"].ToString()));
 
                 connCommand.ExecuteNonQuery();
+            }
+        }
+
+        /// <summary>
+        /// Adds in a --Select a room type-- option
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void ddlRoomTypes_DataBound(object sender, EventArgs e)
+        {
+            ddlRoomTypes.Items.Insert(0, new ListItem("Select a Room Type", "-1"));
+        }
+
+        /// <summary>
+        /// Uses SQL to query results from the database. If no rows are returned,
+        /// then select all rooms
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void gvOpenRooms_PreRender(object sender, EventArgs e)
+        {
+            if (gvOpenRooms.Rows.Count != 0 &&
+                Session["LastRoomType"].ToString() == ddlRoomTypes.SelectedValue)
+                return;
+
+            using (SqlConnection conn = new SqlConnection(
+                ConfigurationManager.ConnectionStrings["TreasureLandDB"].ConnectionString))
+            {
+                conn.Open();
+
+                string command = "SELECT RoomID, RoomNumbers FROM Room " +
+                                   "WHERE RoomID !=" +
+                                   "( " +
+                                      "SELECT r.RoomID FROM Room r " +
+                                         "INNER JOIN HotelRoomType hrt ON hrt.HotelRoomTypeID = r.HotelRoomTypeID " +
+                                         "INNER JOIN ReservationDetail rd ON rd.RoomID = r.RoomID " +
+                                         "INNER JOIN Reservation res ON res.ReservationID = rd.ReservationID " +
+                                         "WHERE (@StartDate <= (DATEADD(day, rd.Nights, res.ReservationDate)) AND " +
+                                               "(DATEADD(day, @Nights, @StartDate)) >= res.ReservationDate ) " +
+                                   ") " +
+                                   "AND HotelRoomTypeID = @HotelRoomType " +
+                                   "AND RoomStatus != 'M' " +
+                                   "ORDER BY RoomID ";
+
+                SqlCommand connCommand = new SqlCommand(command, conn);
+
+                connCommand.Parameters.AddWithValue("@StartDate", Convert.ToDateTime(Session["StartDate"].ToString()));
+                connCommand.Parameters.AddWithValue("@Nights", Convert.ToInt32(Session["Nights"].ToString()));
+                connCommand.Parameters.AddWithValue("@HotelRoomType", ddlRoomTypes.SelectedValue.ToString());
+
+                using (SqlDataReader openRooms = connCommand.ExecuteReader())
+                {
+                    if (openRooms.HasRows)
+                        gvOpenRooms.DataSource = openRooms;
+                    else
+                    {
+                        openRooms.Close();
+                        //A potential flaw in the above SQL is that no results will be returned if
+                        //no reservations exist in the database for the queried date range. In this
+                        //case, simply return all rooms because no reservations for the date range mean
+                        //that all rooms are open
+                        command = "SELECT RoomID, RoomNumbers FROM Room " +
+                                  "WHERE HotelRoomTypeID = @HotelRoomType " +
+                                  "ORDER BY RoomID ";
+
+                        connCommand = new SqlCommand(command, conn);
+
+                        connCommand.Parameters.AddWithValue("@HotelRoomType", ddlRoomTypes.SelectedValue.ToString());
+
+                        gvOpenRooms.DataSource = connCommand.ExecuteReader();
+                    }
+
+                    gvOpenRooms.DataBind();
+                }
             }
         }
     }
