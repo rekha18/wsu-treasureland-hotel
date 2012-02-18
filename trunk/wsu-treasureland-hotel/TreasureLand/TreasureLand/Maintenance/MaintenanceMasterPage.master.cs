@@ -28,5 +28,10 @@ namespace TreasureLand.Maintenance
         {
             Response.Redirect("MaintenanceInventory.aspx");
         }
+
+        protected void btnShortTermInventory_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MaintenanceShortTermAsset.aspx");
+        }
     }
 }
