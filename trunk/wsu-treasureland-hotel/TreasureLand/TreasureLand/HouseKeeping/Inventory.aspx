@@ -1,37 +1,36 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/HouseKeeping/HouseKeepingMasterPage.master" AutoEventWireup="true" CodeBehind="Inventory.aspx.cs" Inherits="TreasureLand.HouseKeeping.WebForm3" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table>
+    <table style="width: 421px">
     <tr>
-        <td style="width: 35px; height: 30px">
-            <asp:Label ID="lblDate" runat="server" Text="Date:"></asp:Label>
-        </td>
-        <td style="width: 138px; height: 30px">
-            <asp:TextBox ID="txtDate" runat="server" MaxLength="16"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="rfDate" runat="server" 
-                ControlToValidate="txtDate" Display="Dynamic" 
-                ErrorMessage="Date is a required field" ForeColor="Red" 
-                ValidationGroup="vgAddExpense">*</asp:RequiredFieldValidator>
-            <asp:CompareValidator ID="cvDate" runat="server" ControlToValidate="txtDate" 
-                Display="Dynamic" ErrorMessage="Date must be a date" ForeColor="Red" 
-                Operator="DataTypeCheck" Type="Date" ValidationGroup="vgAddExpense">*</asp:CompareValidator>
-        </td>
-    </tr>
-    <tr>
-        <td style="width: 35px; height: 30px">
+        <td style="width: 81px; height: 30px">
             <asp:Label ID="lblInventoryName" runat="server" Text="Name"></asp:Label>
         </td>
-        <td style="width: 138px; height: 30px">
+        <td style="width: 128px; height: 30px">
             <asp:TextBox ID="txtInventoryName" runat="server" MaxLength="16"></asp:TextBox>
+                <asp:CompareValidator ID="cvName" runat="server" 
+                    ControlToValidate="txtInventoryName" Display="Dynamic" 
+                    ErrorMessage="Name must be text" ForeColor="Red" Operator="DataTypeCheck" 
+                    ValidationGroup="vgAddExpense">*</asp:CompareValidator> 
+                <asp:RequiredFieldValidator ID="rfName" runat="server" 
+                    ControlToValidate="txtInventoryName" Display="Dynamic" 
+                    ErrorMessage="Name is a required field" ForeColor="Red" 
+                    ValidationGroup="vgAddExpense">*</asp:RequiredFieldValidator>
         </td>
     </tr>
     <tr>
-        <td style="width: 35px; height: 30px">
-            <asp:Label ID="lblInventoryType" runat="server" Text="Type:"></asp:Label>
+        <td style="width: 81px; height: 30px">
+            <asp:Label ID="lblTotalQuantity" runat="server" Text="Total Quantity"></asp:Label>
         </td>
-        <td style="width: 138px; height: 30px">
-            <asp:DropDownList ID="ddlInventoryType" runat="server" DataSourceID="LinqDataSource1" 
-                DataTextField="DepartmentID" DataValueField="Department">
-            </asp:DropDownList>
+        <td style="width: 128px; height: 30px">
+            <asp:TextBox ID="txtTotalQuantity" runat="server" MaxLength="16"></asp:TextBox>
+                <asp:CompareValidator ID="cvTotalQuantity" runat="server" 
+                ControlToValidate="txtTotalQuantity" Display="Dynamic" 
+                ErrorMessage="Total Quantity must be a number" ForeColor="Red" 
+                Operator="DataTypeCheck" Type="Integer" ValidationGroup="vgAddExpense">*</asp:CompareValidator> 
+                <asp:RequiredFieldValidator ID="rfTotalQuantity" runat="server" 
+                ControlToValidate="txtTotalQuantity" Display="Dynamic" 
+                ErrorMessage="Quantity is required" ForeColor="Red" 
+                ValidationGroup="vgAddExpense">*</asp:RequiredFieldValidator>
         </td>
     </tr>
     </table>
@@ -41,26 +40,21 @@
         ValidationGroup="vgAddExpense" Height="26px" />
 &nbsp;<asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" 
         ValidationGroup="vgAddExpense" />
-    <asp:LinqDataSource ID="LinqDataSource1" runat="server" 
-        ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
-        EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" 
-        TableName="ShortTermAssets">
-    </asp:LinqDataSource>
     <asp:LinqDataSource ID="LinqDataSource2" runat="server" 
         ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
         EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" 
         TableName="ShortTermAssets">
     </asp:LinqDataSource>
+    <br />
     <asp:GridView ID="gvInventory" runat="server" AllowPaging="True" 
         AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="ShortTermAssetID" 
         DataSourceID="LinqDataSource2">
         <Columns>
-            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
-            <asp:BoundField DataField="ShortTermItemName" HeaderText="Item Name" 
+            <asp:CommandField ShowEditButton="True" />
+            <asp:BoundField DataField="ShortTermItemName" HeaderText="ShortTermItemName" 
                 SortExpression="ShortTermItemName" />
-            <asp:DynamicField DataField="Department" HeaderText="Department" />
-            <asp:BoundField DataField="ShortTermTotalQuantity" HeaderText="Total Quantity" 
-                SortExpression="ShortTermTotalQuantity" />
+            <asp:BoundField DataField="ShortTermTotalQuantity" 
+                HeaderText="ShortTermTotalQuantity" SortExpression="ShortTermTotalQuantity" />
         </Columns>
     </asp:GridView>
     <br />

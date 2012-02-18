@@ -33,5 +33,10 @@ namespace TreasureLand.HouseKeeping
         {
             Response.Redirect("HouseKeepingReports.aspx");
         }
+
+        protected void btnLongTermAsset_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("HousekeepingLongTermAsset.aspx");
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TreasureLand.DBM;
+using TreasureLand.App_Code;
 
 namespace TreasureLand.HouseKeeping
 {
@@ -16,7 +17,7 @@ namespace TreasureLand.HouseKeeping
         {
             if (!IsPostBack)
             {
-                txtDate.Text = System.DateTime.Now.ToShortDateString();
+             
             }
         }
 
@@ -29,17 +30,27 @@ namespace TreasureLand.HouseKeeping
                 {
                     txtInventoryName.Text = "None";
                 }
+
+                if (txtTotalQuantity.Text == "")
+                {
+                    txtTotalQuantity.Text = "None";
+                }
                 
-                //ShortTermInventoryDB.AddTransaction(Convert.ToDateTime(txtDate.Text), txtInventoryName.Text, Convert.ToInt32(ddlInventoryType.SelectedItem.Value));
+                ShortTermInventoryDB.AddTransaction(txtInventoryName.Text, Convert.ToInt16(txtTotalQuantity.Text), 1);
                 gvInventory.DataBind();
                 
                 if (txtInventoryName.Text == "None")
                 {
                     txtInventoryName.Text = "";
                 }
-                
+
+                if (txtTotalQuantity.Text == "None")
+                {
+                    txtTotalQuantity.Text = "";
+                }
+
                 txtInventoryName.Text = "";
-                
+                txtTotalQuantity.Text = "";
             }
             catch (Exception)
             {
