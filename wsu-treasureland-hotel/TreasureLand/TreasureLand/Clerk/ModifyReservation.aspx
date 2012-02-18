@@ -5,7 +5,8 @@
         <asp:DropDownList ID="ddlRoomTypes" runat="server" AutoPostBack="True" 
             DataSourceID="ldsRoomTypes" DataTextField="RoomType" 
             DataValueField="HotelRoomTypeID" 
-            onselectedindexchanged="ddlRoomTypes_SelectedIndexChanged">
+            onselectedindexchanged="ddlRoomTypes_SelectedIndexChanged" 
+            ondatabound="ddlRoomTypes_DataBound">
         </asp:DropDownList>
         <asp:LinqDataSource ID="ldsRoomTypes" runat="server" 
             ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
@@ -14,7 +15,6 @@
         </asp:LinqDataSource>
     </p>
     <asp:GridView ID="gvOpenRooms" runat="server" AutoGenerateColumns="False" 
-        DataSourceID="sdsOpenRooms" AllowPaging="True" 
         onpageindexchanged="gvOpenRooms_PageIndexChanged" 
         onselectedindexchanged="gvOpenRooms_SelectedIndexChanged">
         <Columns>
@@ -28,7 +28,7 @@
     </asp:GridView>
     <!-- A SQL data source is necessary here due to the complex operation of comparing
     all records to ensure that a room is open for the specified date range -->
-    <asp:SqlDataSource ID="sdsOpenRooms" runat="server" 
+    <!--<asp:SqlDataSource ID="sdsOpenRooms" runat="server" 
         ConnectionString="<%$ ConnectionStrings:TreasurelandDB %>" SelectCommand="SELECT RoomID, RoomNumbers FROM Room
    WHERE RoomID != 
    (
@@ -48,7 +48,7 @@
             <asp:ControlParameter ControlID="ddlRoomTypes" Name="HotelRoomType" 
                 PropertyName="SelectedValue" />
         </SelectParameters>
-    </asp:SqlDataSource>
+    </asp:SqlDataSource>-->
     <asp:CheckBox ID="cbRemoveDiscount" runat="server" Text="Check if guest requested the room change." />
     <p style="color:Red; margin: 0px; padding: 2px;">Checking will remove discounts and apply the standard room rate.</p>
     <br />
