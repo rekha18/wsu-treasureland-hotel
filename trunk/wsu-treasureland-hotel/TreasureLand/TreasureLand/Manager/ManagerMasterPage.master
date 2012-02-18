@@ -18,8 +18,13 @@
                     onclick="btnHome_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
-                <asp:Button ID="btnInventory" runat="server" Text="Inventory" Width="180px" 
+                <asp:Button ID="btnInventory" runat="server" Text="Long Term - Inventory" Width="180px" 
                     onclick="btnInventory_Click" UseSubmitBehavior="False" />
+                <br />
+                <br />
+                <asp:Button ID="btnShortTermInventory" runat="server" 
+                    Text="Short Term - Inventory" Width="180px" 
+                    onclick="btnShortTermInventory_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
                 <asp:Button ID="btnReports" runat="server" Text="Reports" Width="180px" 
@@ -28,8 +33,6 @@
                 <br />
                 <asp:Button ID="btnAccounting" runat="server" onclick="btnExpenses_Click" 
                     Text="Accounting" Width="180px" UseSubmitBehavior="False" />
-                <br />
-                <br />
                 <br />
                 <br />
                 <asp:Button ID="btnSwitchRoles" runat="server" Text="Switch Roles" 
