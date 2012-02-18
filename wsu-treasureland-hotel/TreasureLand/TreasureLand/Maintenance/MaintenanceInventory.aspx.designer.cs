@@ -31,6 +31,24 @@ namespace TreasureLand.Maintenance {
         protected global::System.Web.UI.WebControls.TextBox txtLongTermName;
         
         /// <summary>
+        /// cvName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvName;
+        
+        /// <summary>
+        /// rfName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfName;
+        
+        /// <summary>
         /// lblLocation control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,24 @@ namespace TreasureLand.Maintenance {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLongTermLocation;
+        
+        /// <summary>
+        /// rfLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfLocation;
+        
+        /// <summary>
+        /// cvLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvLocation;
         
         /// <summary>
         /// lblLongTermCost control.
@@ -85,6 +121,24 @@ namespace TreasureLand.Maintenance {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfCost;
         
         /// <summary>
+        /// lblDate0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDate0;
+        
+        /// <summary>
+        /// cbLongTermInUse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbLongTermInUse;
+        
+        /// <summary>
         /// lblDate control.
         /// </summary>
         /// <remarks>
@@ -121,13 +175,13 @@ namespace TreasureLand.Maintenance {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfDate;
         
         /// <summary>
-        /// btnAddExpense control.
+        /// btnAddLongTermAsset control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddExpense;
+        protected global::System.Web.UI.WebControls.Button btnAddLongTermAsset;
         
         /// <summary>
         /// ValidationSummary1 control.

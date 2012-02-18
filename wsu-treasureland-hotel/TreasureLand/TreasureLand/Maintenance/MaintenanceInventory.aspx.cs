@@ -19,7 +19,7 @@ namespace TreasureLand.Maintenance
             }
         }
 
-        protected void btnAddExpense_Click(object sender, EventArgs e)
+        protected void btnAddLongTermAsset_Click(object sender, EventArgs e)
         {
             try
             {
@@ -34,9 +34,9 @@ namespace TreasureLand.Maintenance
                     txtLongTermLocation.Text = "None";
                 }
 
-                LongTermAssetDB.AddTransaction(txtLongTermName.Text, txtLongTermLocation.Text, Convert.ToDecimal(txtCost.Text), Convert.ToDateTime(txtPurchaseDate.Text));
+                LongTermAssetDB.AddTransaction(txtLongTermName.Text, txtLongTermLocation.Text, Convert.ToDecimal(txtCost.Text), cbLongTermInUse.Checked, Convert.ToDateTime(txtPurchaseDate.Text));
                 gvLongTermAsset.DataBind();
-                
+
                 if (txtLongTermName.Text == "None")
                 {
                     txtLongTermName.Text = "";

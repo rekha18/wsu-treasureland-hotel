@@ -7,6 +7,14 @@
             </td>
             <td style="width: 138px; height: 30px">
                 <asp:TextBox ID="txtLongTermName" runat="server" MaxLength="16"></asp:TextBox>
+                <asp:CompareValidator ID="cvName" runat="server" 
+                    ControlToValidate="txtLongTermName" Display="Dynamic" 
+                    ErrorMessage="Name must be text" ForeColor="Red" Operator="DataTypeCheck" 
+                    ValidationGroup="vgAddExpense">*</asp:CompareValidator> 
+                <asp:RequiredFieldValidator ID="rfName" runat="server" 
+                    ControlToValidate="txtLongTermLocation" Display="Dynamic" 
+                    ErrorMessage="Name is a required field" ForeColor="Red" 
+                    ValidationGroup="vgAddExpense">*</asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
@@ -15,6 +23,14 @@
             </td>
             <td style="width: 138px; height: 30px">
                 <asp:TextBox ID="txtLongTermLocation" runat="server" MaxLength="16"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="rfLocation" runat="server" 
+                    ControlToValidate="txtLongTermLocation" Display="Dynamic" 
+                    ErrorMessage="Location is a required field" ForeColor="Red" 
+                    ValidationGroup="vgAddExpense">*</asp:RequiredFieldValidator>
+                <asp:CompareValidator ID="cvLocation" runat="server" 
+                    ControlToValidate="txtLongTermLocation" Display="Dynamic" 
+                    ErrorMessage="Location must be text" ForeColor="Red" Operator="DataTypeCheck" 
+                    ValidationGroup="vgAddExpense">*</asp:CompareValidator> 
             </td>
         </tr>
         <tr>
@@ -22,7 +38,17 @@
                 <asp:Label ID="lblLongTermCost" runat="server" Text="Cost:"></asp:Label>
             </td>
             <td style="width: 138px; height: 30px">
-                <asp:TextBox ID="txtCost" runat="server" MaxLength="10" Width="128px"></asp:TextBox><asp:CompareValidator ID="cvCost" runat="server" ControlToValidate="txtCost" Display="Dynamic" ErrorMessage="Amount must be a number" ForeColor="Red" Operator="DataTypeCheck" Type="Currency" ValidationGroup="vgAddExpense">*</asp:CompareValidator> <asp:RequiredFieldValidator ID="rfCost" runat="server" ControlToValidate="txtCost" Display="Dynamic" ErrorMessage="Amount is a required field" ForeColor="Red" ValidationGroup="vgAddExpense">*</asp:RequiredFieldValidator>
+                <asp:TextBox ID="txtCost" runat="server" MaxLength="10" Width="128px"></asp:TextBox>
+                <asp:CompareValidator ID="cvCost" runat="server" ControlToValidate="txtCost" Display="Dynamic" ErrorMessage="Amount must be a number" ForeColor="Red" Operator="DataTypeCheck" Type="Currency" ValidationGroup="vgAddExpense">*</asp:CompareValidator> 
+                <asp:RequiredFieldValidator ID="rfCost" runat="server" ControlToValidate="txtCost" Display="Dynamic" ErrorMessage="Amount is a required field" ForeColor="Red" ValidationGroup="vgAddExpense">*</asp:RequiredFieldValidator>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 86px; height: 30px">
+                <asp:Label ID="lblDate0" runat="server" Text="In Use:"></asp:Label>
+            </td>
+            <td style="width: 138px; height: 30px">
+                <asp:CheckBox ID="cbLongTermInUse" runat="server" />
             </td>
         </tr>
         <tr>
@@ -41,11 +67,11 @@
             </td>
         </tr>
     </table>
-    <asp:Button ID="btnAddExpense" runat="server" Text="Add Expense" 
-    Width="130px" onclick="btnAddExpense_Click" style="margin-bottom: 0px" 
+&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;<asp:Button ID="btnAddLongTermAsset" 
+        runat="server" Text="Add Long Term Asset" 
+    Width="175px" onclick="btnAddLongTermAsset_Click" style="margin-bottom: 0px" 
         ValidationGroup="vgAddExpense" />
-&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;
-    <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" 
+&nbsp;<asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" 
         ValidationGroup="vgAddExpense" />
     <asp:LinqDataSource ID="ldsLongTermAsset" runat="server" 
         ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
@@ -56,13 +82,15 @@
         AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="LongTermAssetID" 
         DataSourceID="ldsLongTermAsset">
         <Columns>
-            <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
+            <asp:CommandField ShowEditButton="True" />
             <asp:BoundField DataField="LongTermAssetName" HeaderText="Name" 
                 SortExpression="LongTermAssetName" />
             <asp:BoundField DataField="LongTermAssetLocation" HeaderText="Location" 
                 SortExpression="LongTermAssetLocation" />
-            <asp:BoundField DataField="LongTermAssetCost" HeaderText="Purchase Cost" 
+            <asp:BoundField DataField="LongTermAssetCost" HeaderText="Cost" 
                 SortExpression="LongTermAssetCost" />
+            <asp:CheckBoxField DataField="LongTermAssetInUse" HeaderText="In Use" 
+                SortExpression="LongTermAssetInUse" />
             <asp:BoundField DataField="LongTermAssetPurchaseDate" 
                 HeaderText="Purchase Date" SortExpression="LongTermAssetPurchaseDate" />
         </Columns>
