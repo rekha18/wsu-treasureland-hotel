@@ -217,6 +217,9 @@
       <DependentUpon>ManageDiscounts.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\ExpenseDB.cs" />
+    <Compile Include="App_Code\LongTermAssetDB.cs" />
+    <Compile Include="App_Code\ShortTermAssetDB.cs" />
+    <Compile Include="App_Code\ShortTermInventoryDB.cs" />
     <Compile Include="Clerk\ModifyReservation.aspx.cs">
       <DependentUpon>ModifyReservation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
