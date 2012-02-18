@@ -43,7 +43,10 @@
     <asp:LinqDataSource ID="LinqDataSource2" runat="server" 
         ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
         EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" 
-        TableName="ShortTermAssets">
+        TableName="ShortTermAssets" Where="DepartmentID == @DepartmentID">
+        <WhereParameters>
+            <asp:Parameter DefaultValue="1" Name="DepartmentID" Type="Int16" />
+        </WhereParameters>
     </asp:LinqDataSource>
     <br />
     <asp:GridView ID="gvInventory" runat="server" AllowPaging="True" 
@@ -51,10 +54,10 @@
         DataSourceID="LinqDataSource2">
         <Columns>
             <asp:CommandField ShowEditButton="True" />
-            <asp:BoundField DataField="ShortTermItemName" HeaderText="ShortTermItemName" 
+            <asp:BoundField DataField="ShortTermItemName" HeaderText="Name" 
                 SortExpression="ShortTermItemName" />
             <asp:BoundField DataField="ShortTermTotalQuantity" 
-                HeaderText="ShortTermTotalQuantity" SortExpression="ShortTermTotalQuantity" />
+                HeaderText="Total Quantity" SortExpression="ShortTermTotalQuantity" />
         </Columns>
     </asp:GridView>
     <br />
