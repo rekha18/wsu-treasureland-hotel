@@ -30,7 +30,7 @@ namespace TreasureLand.HouseKeeping
                     txtInventoryName.Text = "None";
                 }
                 
-                ShortTermInventoryDB.AddTransaction(Convert.ToDateTime(txtDate.Text), txtInventoryName.Text, Convert.ToInt32(ddlInventoryType.SelectedItem.Value));
+                //ShortTermInventoryDB.AddTransaction(Convert.ToDateTime(txtDate.Text), txtInventoryName.Text, Convert.ToInt32(ddlInventoryType.SelectedItem.Value));
                 gvInventory.DataBind();
                 
                 if (txtInventoryName.Text == "None")
