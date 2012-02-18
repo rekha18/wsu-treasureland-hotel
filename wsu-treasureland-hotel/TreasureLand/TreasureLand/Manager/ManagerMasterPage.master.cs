@@ -21,7 +21,8 @@ namespace TreasureLand.Manager
 
         protected void btnInventory_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Inventory.aspx");
+            Session.RemoveAll();
         }
 
         protected void btnReports_Click(object sender, EventArgs e)
@@ -39,6 +40,12 @@ namespace TreasureLand.Manager
         protected void btnDeposit_Click(object sender, EventArgs e)
         {
             Response.Redirect("ManagerDeposit.aspx");
+            Session.RemoveAll();
+        }
+
+        protected void btnShortTermInventory_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ShortTermAsset.aspx");
             Session.RemoveAll();
         }
     }
