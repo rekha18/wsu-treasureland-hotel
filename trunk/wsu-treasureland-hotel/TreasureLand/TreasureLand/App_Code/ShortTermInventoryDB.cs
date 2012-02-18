@@ -33,6 +33,7 @@ namespace TreasureLand.App_Code
                 connCommand.Parameters.AddWithValue("@ShortTermItemName", ShortTermItemName);
                 connCommand.Parameters.AddWithValue("@ShortTermTotalQuantity", ShortTermTotalQuantity);
                 connCommand.Parameters.AddWithValue("@DepartmentID", DepartmentID);
+      
                 return connCommand.ExecuteNonQuery();
             }
             catch (Exception e)
