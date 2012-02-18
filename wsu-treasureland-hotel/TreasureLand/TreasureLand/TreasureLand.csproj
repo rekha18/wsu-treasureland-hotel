@@ -93,6 +93,7 @@
     <Content Include="HouseKeeping\Inventory.aspx" />
     <Content Include="Images\CompanyLogo.png" />
     <Content Include="Maintenance\MaintenanceDefault.aspx" />
+    <Content Include="Maintenance\MaintenanceInventory.aspx" />
     <Content Include="Maintenance\MaintenanceReports.aspx" />
     <Content Include="Manager\Inventory.aspx" />
     <Content Include="Manager\ManagerDefault.aspx" />
@@ -396,6 +397,13 @@
     </Compile>
     <Compile Include="Maintenance\MaintenanceDefault.aspx.designer.cs">
       <DependentUpon>MaintenanceDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Maintenance\MaintenanceInventory.aspx.cs">
+      <DependentUpon>MaintenanceInventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Maintenance\MaintenanceInventory.aspx.designer.cs">
+      <DependentUpon>MaintenanceInventory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Maintenance\MaintenanceMasterPage.master.cs">
       <DependentUpon>MaintenanceMasterPage.master</DependentUpon>
