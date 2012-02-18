@@ -54,6 +54,5 @@
     <br />
     <span style="margin: 0 0 0 300px">
         <asp:Button ID="btnSelect" runat="server" Text="Change Room" 
-        Enabled="false" onclick="btnSelect_Click" 
-        PostBackUrl="~/Clerk/UpdateReservation.aspx" /></span>
+        Enabled="false" onclick="btnSelect_Click" /></span>
 </asp:Content>
