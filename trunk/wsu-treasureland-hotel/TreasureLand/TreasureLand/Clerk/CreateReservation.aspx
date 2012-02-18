@@ -282,7 +282,14 @@
                         </tr>
                         <tr>
                             <td colspan="3">
-                                <asp:GridView ID="gvRoomInfo" runat="server" Width="414px">
+                                <asp:GridView ID="gvRoomInfo" runat="server" Width="414px" 
+                                    AutoGenerateColumns="False">
+                                    <Columns>
+                                        <asp:BoundField DataField="RoomID" HeaderText="Room ID" 
+                                            SortExpression="RoomID" />
+                                        <asp:BoundField DataField="RoomNumbers" HeaderText="Room Number" 
+                                            SortExpression="RoomNumbers" />
+                                    </Columns>
                                 </asp:GridView>
                             </td>
                         </tr>
