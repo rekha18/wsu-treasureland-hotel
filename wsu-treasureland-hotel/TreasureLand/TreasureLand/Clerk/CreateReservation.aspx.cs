@@ -133,7 +133,10 @@ namespace TreasureLand.Clerk
             lblTotalCost.Text = quotedPrice.ToString();
             #endregion Quote Calculator
 
-            
+            #region Return From Select Room
+            if (Session["RoomIDs"] != null)
+                RenderSelectedRoomsList();
+            #endregion
         }
 
         #region Locate Guest Button
@@ -330,7 +333,29 @@ namespace TreasureLand.Clerk
         }
 
 
+        protected void RenderSelectedRoomsList()
+        {
+            DataSet ds = new DataSet();
+            ds.Tables.Add("Rooms");
+            ds.Tables["Rooms"].Columns.Add("RoomID");
+            ds.Tables["Rooms"].Columns.Add("RoomNumbers");
 
+            LinkedList<RoomInfo> ri = (LinkedList<RoomInfo>)Session["RoomIDs"];
+
+            foreach(RoomInfo r in ri)
+            {
+                DataRow dr = ds.Tables["Rooms"].NewRow();
+                dr["RoomID"] = r.RoomID;
+                dr["RoomNumbers"] = r.RoomNumbers;
+
+                ds.Tables["Rooms"].Rows.Add(dr);
+            }
+
+            gvRoomInfo.DataSource = ds;
+            gvRoomInfo.DataBind();
+
+            mvReservation.ActiveViewIndex = 3;
+        }
 
     }
 }
