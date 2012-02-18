@@ -10,8 +10,8 @@ using System.Configuration;
 
 namespace TreasureLand.App_Code
 {
-    public class ShortTermAssetDB
-    {
+	public class ShortTermAssetDB
+	{
         private static string GetConnectionString()
         {
             return ConfigurationManager.ConnectionStrings
@@ -39,5 +39,5 @@ namespace TreasureLand.App_Code
                 throw e;
             }
         }
-    }
+	}
 }
