@@ -146,6 +146,8 @@
                         <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
                         <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
+                        <asp:BoundField DataField="ReservationDetailID" HeaderText="DetailID" 
+                            SortExpression="ReservationDetailID" Visible="False" />
                     </Columns>
                     <SelectedRowStyle BackColor="#FFFF66" />
                 </asp:GridView>

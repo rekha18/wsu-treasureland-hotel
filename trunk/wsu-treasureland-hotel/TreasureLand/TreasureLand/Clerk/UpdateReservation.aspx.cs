@@ -79,6 +79,7 @@ namespace TreasureLand.Clerk
 
             gvRoom.DataSource = room.ToList();
             gvRoom.DataBind();
+            btnModifyReservation.Enabled = true;
         }
 
         protected void btnCancelReservation_Click(object sender, EventArgs e)
@@ -126,7 +127,7 @@ namespace TreasureLand.Clerk
         {
             reserving.returnView = 1;
             reserving.reservationID = Convert.ToInt16(lblReservationNumber.Text);
-            reserving.reservationDetailID = Convert.ToInt32(gvReservationDetails.SelectedRow.Cells[0].Text);
+            reserving.reservationDetailID = (int) gvReservationDetails.DataKeys[gvReservationDetails.SelectedIndex].Value;
             reserving.reserveDate = gvReservationDetails.SelectedRow.Cells[2].Text;
             reserving.daysStaying = Convert.ToInt32(gvReservationDetails.SelectedRow.Cells[3].Text);
             Response.Redirect("ModifyReservation.aspx");
