@@ -19,7 +19,7 @@ namespace TreasureLand.App_Code
                 ["TreasureLandDB"].ConnectionString;
         }
 
-        public static int AddTransaction(int DepartmentID, string ShortTermItemName, int ShortTermTotalQuantity)
+        public static int AddTransaction(string ShortTermItemName, int ShortTermTotalQuantity, short DepartmentID)
         {
             SqlConnection conn = new SqlConnection(GetConnectionString());
 
@@ -27,12 +27,12 @@ namespace TreasureLand.App_Code
             {
                 conn.Open(); //Open the connection
 
-                string update = "INSERT INTO ShortTermAsset (DepartmentID, ShortTermItemName, ShortTermTotalQuantity) " +
-                        "VALUES(@DepartmentID, @ShortTermItemName, @ShortTermItemQuantity)";
-                SqlCommand connCommand = new SqlCommand(update, conn);
-                connCommand.Parameters.AddWithValue("@DepartmentID", DepartmentID);
+                string update = "INSERT INTO ShortTermAsset (ShortTermItemName, ShortTermTotalQuantity, DepartmentID) " +
+                        "VALUES(@ShortTermItemName, @ShortTermTotalQuantity, @DepartmentID)";
+                SqlCommand connCommand = new SqlCommand(update, conn); 
                 connCommand.Parameters.AddWithValue("@ShortTermItemName", ShortTermItemName);
                 connCommand.Parameters.AddWithValue("@ShortTermTotalQuantity", ShortTermTotalQuantity);
+                connCommand.Parameters.AddWithValue("@DepartmentID", DepartmentID);
                 return connCommand.ExecuteNonQuery();
             }
             catch (Exception e)

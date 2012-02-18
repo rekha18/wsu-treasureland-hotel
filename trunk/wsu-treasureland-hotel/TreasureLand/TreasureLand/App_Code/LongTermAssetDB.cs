@@ -18,7 +18,7 @@ namespace TreasureLand.App_Code
             ["TreasureLandDB"].ConnectionString;
         }
 
-        public static int AddTransaction(string LongTermAssetName, string LongTermAssetLocation, decimal LongTermAssetCost, DateTime LongTermAssetPurchaseDate)
+        public static int AddTransaction(string LongTermAssetName, string LongTermAssetLocation, decimal LongTermAssetCost, bool LongTermAssetInUse, DateTime LongTermAssetPurchaseDate)
         {
             SqlConnection conn = new SqlConnection(GetConnectionString());
 
@@ -26,12 +26,13 @@ namespace TreasureLand.App_Code
             {
                 conn.Open(); //Open the connection
 
-                string update = "INSERT INTO LongTermAsset (LongTermAssetName, LongTermAssetLocation, LongTermAssetCost, LongTermAssetPurchaseDate) " +
-                        "VALUES(@LongTermAssetName, @LongTermAssetLocation, @LongTermAssetCost, @LongTermAssetPurchaseDate)";
+                string update = "INSERT INTO LongTermAsset (LongTermAssetName, LongTermAssetLocation, LongTermAssetCost, LongTermAssetInUse, LongTermAssetPurchaseDate) " +
+                        "VALUES(@LongTermAssetName, @LongTermAssetLocation, @LongTermAssetCost, @LongTermAssetInUse,@LongTermAssetPurchaseDate)";
                 SqlCommand connCommand = new SqlCommand(update, conn);
                 connCommand.Parameters.AddWithValue("@LongTermAssetName", LongTermAssetName);
                 connCommand.Parameters.AddWithValue("@LongTermAssetLocation", LongTermAssetLocation);
                 connCommand.Parameters.AddWithValue("@LongTermAssetCost", LongTermAssetCost);
+                connCommand.Parameters.AddWithValue("@LongTermAssetInUse", LongTermAssetInUse);
                 connCommand.Parameters.AddWithValue("@LongTermAssetPurchaseDate", LongTermAssetPurchaseDate);
                 return connCommand.ExecuteNonQuery();
             }
