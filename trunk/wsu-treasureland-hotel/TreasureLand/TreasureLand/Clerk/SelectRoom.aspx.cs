@@ -10,8 +10,23 @@ using System.Configuration;
 
 namespace TreasureLand.Clerk
 {
+    /// <summary>
+    /// Defines room information when passing between pages
+    /// </summary>
+    internal class RoomInfo
+    {
+        public int RoomID;
+        public string RoomNumbers;
+
+        public RoomInfo(int RoomID, string RoomNumbers)
+        {
+            this.RoomID = RoomID;
+            this.RoomNumbers = RoomNumbers;
+        }
+    }
+    
     public partial class SelectRoom : System.Web.UI.Page
-    {     
+    {           
         private class RowInfo
         {
             public string RoomType;
@@ -228,11 +243,11 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void btnSelect_Click(object sender, EventArgs e)
         {
-            LinkedList<int> roomIDs = new LinkedList<int>();
+            LinkedList<RoomInfo> roomIDs = new LinkedList<RoomInfo>();
 
             Dictionary<int, RowInfo> rowInfo = (Dictionary<int, RowInfo>)Session["RowInfo"];
             foreach (KeyValuePair<int, RowInfo> kvp in rowInfo)
-                roomIDs.AddFirst(kvp.Key);
+                roomIDs.AddFirst(new RoomInfo(kvp.Key, kvp.Value.RoomNumber));
 
             if (Session["roomIDs"] == null)
                 Session.Add("roomIDs", roomIDs);
