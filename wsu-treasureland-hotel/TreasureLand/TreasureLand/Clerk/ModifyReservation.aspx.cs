@@ -84,6 +84,8 @@ namespace TreasureLand.Clerk
                 updateKeepDiscount(roomID);
 
             ((Reserve)Session["Room"]).roomID = (short)roomID;
+
+            Response.Redirect("~/Clerk/UpdateReservation.aspx");
         }
 
         /// <summary>
