@@ -67,15 +67,6 @@ namespace TreasureLand.Maintenance {
         protected global::System.Web.UI.WebControls.TextBox txtCost;
         
         /// <summary>
-        /// rfCost control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfCost;
-        
-        /// <summary>
         /// cvCost control.
         /// </summary>
         /// <remarks>
@@ -85,22 +76,13 @@ namespace TreasureLand.Maintenance {
         protected global::System.Web.UI.WebControls.CompareValidator cvCost;
         
         /// <summary>
-        /// lblLongTermInUse control.
+        /// rfCost control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLongTermInUse;
-        
-        /// <summary>
-        /// cbLongTermInUse control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox cbLongTermInUse;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfCost;
         
         /// <summary>
         /// lblDate control.

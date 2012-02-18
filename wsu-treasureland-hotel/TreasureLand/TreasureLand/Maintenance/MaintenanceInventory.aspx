@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Maintenance/MaintenanceMasterPage.master" AutoEventWireup="true" CodeBehind="MaintenanceInventory.aspx.cs" Inherits="TreasureLand.Maintenance.MaintenanceInventory" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <table style="width: 234px; height: 136px;">
+    <table style="width: 247px; height: 136px;">
         <tr>
             <td style="width: 86px; height: 30px">
                 <asp:Label ID="lblLongTermName" runat="server" Text="Name:"></asp:Label>
@@ -22,22 +22,7 @@
                 <asp:Label ID="lblLongTermCost" runat="server" Text="Cost:"></asp:Label>
             </td>
             <td style="width: 138px; height: 30px">
-                <asp:TextBox ID="txtCost" runat="server" MaxLength="10"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="rfCost" runat="server" 
-                ControlToValidate="txtCost" Display="Dynamic" 
-                ErrorMessage="Amount is a required field" ForeColor="Red" 
-                ValidationGroup="vgAddExpense">*</asp:RequiredFieldValidator>
-                <asp:CompareValidator ID="cvCost" runat="server" ControlToValidate="txtCost" 
-                Display="Dynamic" ErrorMessage="Amount must be a number" ForeColor="Red" 
-                Operator="DataTypeCheck" Type="Currency" ValidationGroup="vgAddExpense">*</asp:CompareValidator>
-            </td>
-        </tr>
-        <tr>
-            <td style="width: 86px; height: 30px">
-                <asp:Label ID="lblLongTermInUse" runat="server" Text="Item In Use:"></asp:Label>
-            </td>
-            <td style="width: 138px; height: 30px">
-                <asp:CheckBox ID="cbLongTermInUse" runat="server" />
+                <asp:TextBox ID="txtCost" runat="server" MaxLength="10" Width="128px"></asp:TextBox><asp:CompareValidator ID="cvCost" runat="server" ControlToValidate="txtCost" Display="Dynamic" ErrorMessage="Amount must be a number" ForeColor="Red" Operator="DataTypeCheck" Type="Currency" ValidationGroup="vgAddExpense">*</asp:CompareValidator> <asp:RequiredFieldValidator ID="rfCost" runat="server" ControlToValidate="txtCost" Display="Dynamic" ErrorMessage="Amount is a required field" ForeColor="Red" ValidationGroup="vgAddExpense">*</asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
@@ -45,12 +30,12 @@
                 <asp:Label ID="lblDate" runat="server" Text="Purchase Date:"></asp:Label>
             </td>
             <td style="width: 138px; height: 30px">
-                <asp:TextBox ID="txtPurchaseDate" runat="server" MaxLength="16"></asp:TextBox>
-                <asp:CompareValidator ID="cvDate" runat="server" ControlToValidate="txtDate" 
+                <asp:TextBox ID="txtPurchaseDate" runat="server" MaxLength="16" Width="128px"></asp:TextBox>
+                <asp:CompareValidator ID="cvDate" runat="server" ControlToValidate="txtPurchaseDate" 
                 Display="Dynamic" ErrorMessage="Date must be a date" ForeColor="Red" 
                 Operator="DataTypeCheck" Type="Date" ValidationGroup="vgAddExpense">*</asp:CompareValidator>
                 <asp:RequiredFieldValidator ID="rfDate" runat="server" 
-                ControlToValidate="txtDate" Display="Dynamic" 
+                ControlToValidate="txtPurchaseDate" Display="Dynamic" 
                 ErrorMessage="Date is a required field" ForeColor="Red" 
                 ValidationGroup="vgAddExpense">*</asp:RequiredFieldValidator>
             </td>
@@ -78,8 +63,6 @@
                 SortExpression="LongTermAssetLocation" />
             <asp:BoundField DataField="LongTermAssetCost" HeaderText="Purchase Cost" 
                 SortExpression="LongTermAssetCost" />
-            <asp:CheckBoxField DataField="LongTermAssetInUse" HeaderText="In Use" 
-                SortExpression="LongTermAssetInUse" />
             <asp:BoundField DataField="LongTermAssetPurchaseDate" 
                 HeaderText="Purchase Date" SortExpression="LongTermAssetPurchaseDate" />
         </Columns>
