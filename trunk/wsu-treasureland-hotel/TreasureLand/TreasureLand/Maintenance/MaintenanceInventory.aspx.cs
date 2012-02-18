@@ -27,16 +27,28 @@ namespace TreasureLand.Maintenance
                 {
                     txtLongTermName.Text = "None";
                 }
-             
-                LongTermAssetDB.AddTransaction(txtLongTermName.Text, txtLongTermLocation.Text, Convert.ToDecimal(txtCost.Text), Convert.ToBoolean(cbLongTermInUse), Convert.ToDateTime(txtPurchaseDate.Text));
+
+                if (txtLongTermLocation.Text == "")
+                {
+                    txtLongTermLocation.Text = "None";
+                }
+
+                LongTermAssetDB.AddTransaction(txtLongTermName.Text, txtLongTermLocation.Text, Convert.ToDecimal(txtCost.Text), Convert.ToDateTime(txtPurchaseDate.Text));
                 gvLongTermAsset.DataBind();
                 
                 if (txtLongTermName.Text == "None")
                 {
                     txtLongTermName.Text = "";
                 }
-                
+
+                if (txtLongTermLocation.Text == "None")
+                {
+                    txtLongTermLocation.Text = "";
+                }
+
                 txtLongTermName.Text = "";
+
+                txtLongTermLocation.Text = "";
                 
                 txtCost.Text = "";
             }
