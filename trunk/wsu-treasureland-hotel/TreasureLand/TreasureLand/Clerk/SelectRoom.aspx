@@ -6,7 +6,9 @@
     <p>Select a room type: 
         <asp:DropDownList ID="ddlRoomTypes" runat="server" AutoPostBack="True" 
             DataSourceID="ldsRoomTypes" DataTextField="RoomType" 
-            DataValueField="HotelRoomTypeID">
+            DataValueField="HotelRoomTypeID" 
+            onselectedindexchanged="ddlRoomTypes_SelectedIndexChanged" 
+            ondatabound="ddlRoomTypes_DataBound">
         </asp:DropDownList>
         <asp:LinqDataSource ID="ldsRoomTypes" runat="server" 
             ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
@@ -16,10 +18,11 @@
     </p>
     <table>
         <tr>
-            <td valign="top"><asp:GridView ID="gvOpenRooms" runat="server" AutoGenerateColumns="False" 
-                DataSourceID="sdsOpenRooms" AllowPaging="True" 
+            <td valign="top">
+                <asp:GridView ID="gvOpenRooms" runat="server" AutoGenerateColumns="False" 
                 ondatabound="gvOpenRooms_DataBound" 
-                onpageindexchanged="gvOpenRooms_PageIndexChanged">
+                onpageindexchanged="gvOpenRooms_PageIndexChanged" 
+                    onload="gvOpenRooms_PreRender">
                 <Columns>
                     <asp:BoundField DataField="RoomID" HeaderText="Room ID" 
                         SortExpression="RoomID" />
@@ -46,7 +49,7 @@
     
     <!-- A SQL data source is necessary here due to the complex operation of comparing
     all records to ensure that a room is open for the specified date range -->
-    <asp:SqlDataSource ID="sdsOpenRooms" runat="server" 
+    <!--<asp:SqlDataSource ID="sdsOpenRooms" runat="server" 
         ConnectionString="<%$ ConnectionStrings:TreasurelandDB %>" SelectCommand="SELECT RoomID, RoomNumbers FROM Room
    WHERE RoomID != 
    (
@@ -66,13 +69,13 @@
             <asp:ControlParameter ControlID="ddlRoomTypes" Name="HotelRoomType" 
                 PropertyName="SelectedValue" />
         </SelectParameters>
-    </asp:SqlDataSource>
+    </asp:SqlDataSource>-->
     <table>
         <tr>
             <td style="width: 300px">Rooms selected: 
                 <asp:Label ID="lblTotalRooms" runat="server" Text="Label" ForeColor="Red">0</asp:Label></td>
             <td><asp:Button ID="btnSelect" runat="server" Text="Select" Enabled="False" 
-                    onclick="btnSelect_Click" PostBackUrl="~/Clerk/CreateReservation.aspx" /></td>
+                    onclick="btnSelect_Click" /></td>
         </tr>
     </table>
     <p>Selecting a room for 
