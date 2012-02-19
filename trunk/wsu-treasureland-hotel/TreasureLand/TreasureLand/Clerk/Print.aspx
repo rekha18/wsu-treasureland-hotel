@@ -8,11 +8,23 @@
     <style type="text/css">
         .style1
         {
-            width: 100%;
+            width: 85%;
         }
         .style2
         {
-            width: 184px;
+            height: 23px;
+        }
+        .style3
+        {
+            width: 99px;
+        }
+        .style4
+        {
+            width: 111px;
+        }
+        .style6
+        {
+            width: 8px;
         }
     </style>
 </head>
@@ -22,59 +34,86 @@
     
         <table class="style1">
             <tr>
-                <td class="style2">
+                <td class="style2" colspan="2">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <strong>SUMMARY OF CHARGES&nbsp;</strong></td>
+                <td class="style4" rowspan="11">
+                    &nbsp;&nbsp;
+                    <asp:Label ID="lblBillTotal" runat="server" Font-Bold="True" Text="TOTAL DUE:"></asp:Label>
+                    <br />
+                    <br />
+                    <br />
+                    <asp:Label ID="lblTotalDue" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td class="style3">
                     Guest Name:</td>
-                <td>
+                <td class="style6">
                     <asp:Label ID="lblName" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
-                <td class="style2">
+                <td class="style3">
+                    Guest Address</td>
+                <td class="style6">
+                    <asp:Label ID="lblAddress" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td class="style3">
+                    Guest City</td>
+                <td class="style6">
+                    <asp:Label ID="lblCity" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td class="style3">
                     Reservation Number:</td>
-                <td>
+                <td class="style6">
                     <asp:Label ID="lblReservationNumber" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
-                <td class="style2">
+                <td class="style3">
                     Date:</td>
-                <td>
+                <td class="style6">
                     <asp:Label ID="lblDate" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
-                <td class="style2">
+                <td class="style3">
                     Room Number:</td>
-                <td>
+                <td class="style6">
                     <asp:Label ID="lblRoomNumber" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
-                <td class="style2">
+                <td class="style3">
                     Room Total:</td>
-                <td>
+                <td class="style6">
                     <asp:Label ID="lblRoomTotal" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
-                <td class="style2">
+                <td class="style3">
                     Services Total:</td>
-                <td>
+                <td class="style6">
                     <asp:Label ID="lblServicesTotal" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
-                <td class="style2">
+                <td class="style3">
                     Discount:</td>
-                <td>
+                <td class="style6">
                     <asp:Label ID="lblDiscount" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
-                <td class="style2">
-                    Total:</td>
-                <td>
-                    <asp:Label ID="lblTotal" runat="server"></asp:Label>
+                <td class="style3">
+                    <strong>Total:</strong></td>
+                <td class="style6">
+                    <asp:Label ID="lblTotal" runat="server" style="font-weight: 700"></asp:Label>
                 </td>
             </tr>
         </table>
