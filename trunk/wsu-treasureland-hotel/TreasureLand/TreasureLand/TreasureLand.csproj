@@ -259,6 +259,7 @@
     </Compile>
     <Compile Include="HouseKeeping\HousekeepingLongTermAsset.aspx.cs">
       <DependentUpon>HousekeepingLongTermAsset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HouseKeeping\HousekeepingLongTermAsset.aspx.designer.cs">
       <DependentUpon>HousekeepingLongTermAsset.aspx</DependentUpon>
@@ -452,6 +453,7 @@
     </Compile>
     <Compile Include="Maintenance\MaintenanceShortTermAsset.aspx.cs">
       <DependentUpon>MaintenanceShortTermAsset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Maintenance\MaintenanceShortTermAsset.aspx.designer.cs">
       <DependentUpon>MaintenanceShortTermAsset.aspx</DependentUpon>
@@ -493,6 +495,7 @@
     </Compile>
     <Compile Include="Manager\ShortTermAsset.aspx.cs">
       <DependentUpon>ShortTermAsset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Manager\ShortTermAsset.aspx.designer.cs">
       <DependentUpon>ShortTermAsset.aspx</DependentUpon>
