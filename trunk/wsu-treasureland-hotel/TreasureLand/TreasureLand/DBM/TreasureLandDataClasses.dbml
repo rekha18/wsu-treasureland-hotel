@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TreasureLand" Class="TreasureLandDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=titan.cs.weber.edu,10433;Initial Catalog=TreasureLand;Persist Security Info=True;User ID=4790Client" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TreasurelandDB" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=&quot;titan.cs.weber.edu, 10433&quot;;Initial Catalog=TreasureLand;User ID=4790Client" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TreasureLandDBM" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AccountingType" Member="AccountingTypes">
     <Type Name="AccountingType">
       <Column Name="AccountingTypeID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -95,14 +95,6 @@
       <Association Name="Hotel_HotelRoomType" Member="Hotel" ThisKey="HotelID" OtherKey="HotelID" Type="Hotel" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Ingredient" Member="Ingredients">
-    <Type Name="Ingredient">
-      <Column Name="IngredientID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="IngredientName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
-      <Association Name="Ingredient_IngredientPurchaseHistory" Member="IngredientPurchaseHistories" ThisKey="IngredientID" OtherKey="IngredientID" Type="IngredientPurchaseHistory" />
-      <Association Name="Ingredient_MenuItemIngredient" Member="MenuItemIngredients" ThisKey="IngredientID" OtherKey="IngredientID" Type="MenuItemIngredient" />
-    </Type>
-  </Table>
   <Table Name="dbo.IngredientPurchase" Member="IngredientPurchases">
     <Type Name="IngredientPurchase">
       <Column Name="PurchaseID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -117,8 +109,8 @@
       <Column Name="PurchaseID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="IngredientPurchaseHistoryPrice" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
       <Column Name="IngredientPurchaseHistoryQty" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Association Name="Ingredient_IngredientPurchaseHistory" Member="Ingredient" ThisKey="IngredientID" OtherKey="IngredientID" Type="Ingredient" IsForeignKey="true" />
       <Association Name="IngredientPurchase_IngredientPurchaseHistory" Member="IngredientPurchase" ThisKey="PurchaseID" OtherKey="PurchaseID" Type="IngredientPurchase" IsForeignKey="true" />
+      <Association Name="Ingredient_IngredientPurchaseHistory" Member="Ingredient" ThisKey="IngredientID" OtherKey="IngredientID" Type="Ingredient" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.MenuItem" Member="MenuItems">
@@ -138,8 +130,8 @@
       <Column Name="MenuItemID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="IngredientID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="MenuItemIngredientQty" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Association Name="Ingredient_MenuItemIngredient" Member="Ingredient" ThisKey="IngredientID" OtherKey="IngredientID" Type="Ingredient" IsForeignKey="true" />
       <Association Name="MenuItem_MenuItemIngredient" Member="MenuItem" ThisKey="MenuItemID" OtherKey="MenuItemID" Type="MenuItem" IsForeignKey="true" />
+      <Association Name="Ingredient_MenuItemIngredient" Member="Ingredient" ThisKey="IngredientID" OtherKey="IngredientID" Type="Ingredient" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.OrderShortTerm" Member="OrderShortTerms">
@@ -336,6 +328,15 @@
       <Association Name="Room_ReservationDetail" Member="ReservationDetails" ThisKey="RoomID" OtherKey="RoomID" Type="ReservationDetail" />
       <Association Name="HotelRoomType_Room" Member="HotelRoomType" ThisKey="HotelRoomTypeID" OtherKey="HotelRoomTypeID" Type="HotelRoomType" IsForeignKey="true" />
       <Association Name="RoomStatus_Room" Member="RoomStatus1" ThisKey="RoomStatus" OtherKey="RoomStatus1" Type="RoomStatus" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ingredient" Member="Ingredients">
+    <Type Name="Ingredient">
+      <Column Name="IngredientID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="IngredientName" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="IngredientDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="Ingredient_IngredientPurchaseHistory" Member="IngredientPurchaseHistories" ThisKey="IngredientID" OtherKey="IngredientID" Type="IngredientPurchaseHistory" />
+      <Association Name="Ingredient_MenuItemIngredient" Member="MenuItemIngredients" ThisKey="IngredientID" OtherKey="IngredientID" Type="MenuItemIngredient" />
     </Type>
   </Table>
 </Database>

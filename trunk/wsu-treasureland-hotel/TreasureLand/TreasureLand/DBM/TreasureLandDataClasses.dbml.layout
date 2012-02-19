@@ -50,12 +50,6 @@
         <elementListCompartment Id="409afeb9-f8e2-4f68-932d-c76638d7c986" absoluteBounds="3.515, 8.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="db2a66b7-12b2-496b-9bbf-7978231992ff" absoluteBounds="14.5, 15, 2, 1.1939925130208327">
-      <DataClassMoniker Name="/TreasureLandDataClassesDataContext/Ingredient" />
-      <nestedChildShapes>
-        <elementListCompartment Id="228cbae6-0db8-430d-b5ee-da2471ac05ac" absoluteBounds="14.515, 15.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="708bee2f-cbbe-4000-834f-f0672d31f39b" absoluteBounds="14.5, 17, 2, 1.1939925130208309">
       <DataClassMoniker Name="/TreasureLandDataClassesDataContext/IngredientPurchase" />
       <nestedChildShapes>
@@ -136,25 +130,11 @@
         <classShapeMoniker Id="4b2ec2e7-4a2f-42ff-8c8d-6735f435f9b1" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(16.5 : 15.6963932291667); (17.25 : 15.6963932291667)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TreasureLandDataClassesDataContext/Ingredient/Ingredient_IngredientPurchaseHistory" />
-      <nodes>
-        <classShapeMoniker Id="db2a66b7-12b2-496b-9bbf-7978231992ff" />
-        <classShapeMoniker Id="5b981c6b-af3a-4d1a-9df4-f7e9bf506546" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(16.5 : 17.5969962565104); (18.25 : 17.5969962565104); (18.25 : 16.3958968098958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(16.5 : 17.5969962565104); (18.25 : 17.5969962565104); (18.25 : 16.3958968098958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/TreasureLandDataClassesDataContext/IngredientPurchase/IngredientPurchase_IngredientPurchaseHistory" />
       <nodes>
         <classShapeMoniker Id="708bee2f-cbbe-4000-834f-f0672d31f39b" />
         <classShapeMoniker Id="5b981c6b-af3a-4d1a-9df4-f7e9bf506546" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(14.65625 : 15); (14.65625 : 13.2348453776042); (17.25 : 13.2348453776042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/TreasureLandDataClassesDataContext/Ingredient/Ingredient_MenuItemIngredient" />
-      <nodes>
-        <classShapeMoniker Id="db2a66b7-12b2-496b-9bbf-7978231992ff" />
-        <classShapeMoniker Id="9f4bf602-42e4-4553-bceb-bb9edd86dbdb" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(16.875 : 12.7636946614583); (17.25 : 12.7636946614583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
@@ -185,7 +165,7 @@
         <classShapeMoniker Id="7b362ba9-cab4-4cf8-a64b-2e4be9fd9586" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.28125 : 19.125); (6.28125 : 8.21875); (9 : 8.21875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.28125 : 19.125); (6.28125 : 8.21875); (9 : 8.21875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TreasureLandDataClassesDataContext/Reservation/Reservation_ReservationDetail" />
       <nodes>
         <classShapeMoniker Id="99eac7dc-cff9-4588-b10b-7925ccc19093" />
@@ -220,7 +200,7 @@
         <classShapeMoniker Id="9c85bdfe-dd49-462c-9281-c7a18a21b155" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 15.6642976888021); (6.265625 : 15.6642976888021); (6.265625 : 7.45359537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 15.6642976888021); (6.265625 : 15.6642976888021); (6.265625 : 7.45359537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TreasureLandDataClassesDataContext/ShortTermAsset/ShortTermAsset_OrderShortTerm" />
       <nodes>
         <classShapeMoniker Id="79353c75-0449-43d4-bfcc-4ac086cbb191" />
@@ -273,7 +253,7 @@
         <classShapeMoniker Id="8417659b-2040-456f-af02-bec415ab9beb" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(0.78125 : 6.875); (0.78125 : 3.08099609375); (4 : 3.08099609375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(0.78125 : 6.875); (0.78125 : 3.08099609375); (4 : 3.08099609375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TreasureLandDataClassesDataContext/Hotel/Hotel_Accounting" />
       <nodes>
         <classShapeMoniker Id="4ab301da-a75f-42be-bd09-fadd6d6cd024" />
@@ -344,25 +324,45 @@
         <elementListCompartment Id="aa0c7ccb-89b4-4ca1-b9ca-40dca567ab43" absoluteBounds="6.39, 9.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.375 : 9.71235270182292); (9 : 9.71235270182292)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.375 : 9.71235270182292); (9 : 9.71235270182292)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TreasureLandDataClassesDataContext/Room/Room_ReservationDetail" />
       <nodes>
         <classShapeMoniker Id="9eddac3d-bce2-4f2b-ad6d-27d36c4330b4" />
         <classShapeMoniker Id="7b362ba9-cab4-4cf8-a64b-2e4be9fd9586" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 9.44794840494792); (6.18229166666667 : 9.44794840494792 : JumpStart); (6.36458333333333 : 9.44794840494792 : JumpEnd); (6.375 : 9.44794840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 9.44794840494792); (6.375 : 9.44794840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TreasureLandDataClassesDataContext/HotelRoomType/HotelRoomType_Room" />
       <nodes>
         <classShapeMoniker Id="4b2ec2e7-4a2f-42ff-8c8d-6735f435f9b1" />
         <classShapeMoniker Id="9eddac3d-bce2-4f2b-ad6d-27d36c4330b4" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(7.5 : 13.375); (7.5 : 10.9728011067708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.5 : 13.375); (7.5 : 10.9728011067708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/TreasureLandDataClassesDataContext/RoomStatus/RoomStatus_Room" />
       <nodes>
         <classShapeMoniker Id="9f33c3ad-4073-4d8c-b58f-ef889d1308e1" />
         <classShapeMoniker Id="9eddac3d-bce2-4f2b-ad6d-27d36c4330b4" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="aef8498e-679d-426c-bf65-78764b5e0bc4" absoluteBounds="14.625, 14.25, 2, 1.3862939453125">
+      <DataClassMoniker Name="/TreasureLandDataClassesDataContext/Ingredient" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b5b6ad0d-7573-40ab-8e6b-eecd98229fe8" absoluteBounds="14.64, 14.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(16.625 : 15.1306469726562); (17.25 : 15.1306469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TreasureLandDataClassesDataContext/Ingredient/Ingredient_IngredientPurchaseHistory" />
+      <nodes>
+        <classShapeMoniker Id="aef8498e-679d-426c-bf65-78764b5e0bc4" />
+        <classShapeMoniker Id="5b981c6b-af3a-4d1a-9df4-f7e9bf506546" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.71875 : 14.25); (14.71875 : 13.2348453776042); (17.25 : 13.2348453776042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/TreasureLandDataClassesDataContext/Ingredient/Ingredient_MenuItemIngredient" />
+      <nodes>
+        <classShapeMoniker Id="aef8498e-679d-426c-bf65-78764b5e0bc4" />
+        <classShapeMoniker Id="9f4bf602-42e4-4553-bceb-bb9edd86dbdb" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>
