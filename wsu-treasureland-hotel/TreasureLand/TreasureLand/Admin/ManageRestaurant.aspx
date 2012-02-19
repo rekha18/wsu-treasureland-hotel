@@ -9,8 +9,9 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <asp:Button ID="btnEnterPurchase" 
         runat="server" Text="Create Purchase" 
         onclick="btnEnterPurchase_Click" Width="168px" />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnIngredients" 
+        runat="server" onclick="btnIngredients_Click" Text="Manage Ingredients" />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <br />
 <br />
     <asp:ScriptManager ID="ScriptManager1" runat="server">
@@ -21,6 +22,58 @@
 <asp:MultiView ID="containerView" runat="server" ActiveViewIndex = "0">
 
 <!--Begin View ActiveViewIndex[0]-->
+    <asp:View ID="viewLinkIngredients" runat="server">
+        <table class="style4">
+            <tr>
+                <td style="width: 286px">
+                    <asp:DropDownList ID="ddlMenuItemIngredients" runat="server" 
+                        AutoPostBack="True" DataSourceID="ldsMenuItemddl" DataTextField="MenuItemName" 
+                        DataValueField="MenuItemID">
+                    </asp:DropDownList>
+                    <asp:LinqDataSource ID="ldsMenuItemddl" runat="server" 
+                        ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
+                        EntityTypeName="" TableName="MenuItems" 
+                        Where="FoodDrinkCategoryID &gt; @FoodDrinkCategoryID">
+                        <WhereParameters>
+                            <asp:Parameter DefaultValue="3" Name="FoodDrinkCategoryID" Type="Int16" />
+                        </WhereParameters>
+                    </asp:LinqDataSource>
+                </td>
+                <td>
+                    <asp:DropDownList ID="ddlIngredients" runat="server">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 286px">
+                    <asp:ListBox ID="lbMenuItems" runat="server" DataSourceID="SqlDataSource1" 
+                        DataTextField="IngredientName" DataValueField="MenuItemIngredientID">
+                    </asp:ListBox>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+                        ConnectionString="<%$ ConnectionStrings:TreasurelandDB %>" SelectCommand="SELECT * FROM MenuItemIngredient INNER JOIN Ingredient ON MenuItemIngredient.IngredientID = Ingredient.IngredientID
+WHERE ([MenuItemID] = @MenuItemID)">
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="ddlMenuItemIngredients" Name="MenuItemID" 
+                                PropertyName="SelectedValue" />
+                        </SelectParameters>
+                    </asp:SqlDataSource>
+                </td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td style="width: 286px">
+                    <asp:Button ID="btnRemoveIngredient" runat="server" 
+                        onclick="btnRemoveIngredient_Click" Text="Remove Selected Ingredient" />
+                </td>
+                <td>
+                    <asp:Button ID="btnAddIngredientToMenuItem" runat="server" 
+                        onclick="btnAddIngredientToMenuItem_Click" Text="Add Selected Ingredient" 
+                        Width="174px" />
+                </td>
+            </tr>
+        </table>
+    </asp:View>
     <asp:View ID="manageCatView" runat="server">
     <table class="style4">
     <tr>
@@ -45,7 +98,7 @@
                 ForeColor="Red" ValidationGroup="vgAddCategory">*</asp:RequiredFieldValidator>
             <asp:FilteredTextBoxExtender ID="txtCategory_FilteredTextBoxExtender" 
                 runat="server" FilterMode="InvalidChars" 
-                InvalidChars="!@#$%^&amp;*()_+-=1234567890[]{}\|;:'&quot;/.,&lt;&gt;?`~" 
+                InvalidChars="" 
                 TargetControlID="txtCategory">
             </asp:FilteredTextBoxExtender>
             <asp:Label ID="lblCatAddError" runat="server" ForeColor="Red"></asp:Label>
@@ -68,6 +121,7 @@
             AutoPostBack="True" onselectedindexchanged="ddlChooseItem_SelectedIndexChanged">
             <asp:ListItem>Beverages</asp:ListItem>
             <asp:ListItem>Menu Items</asp:ListItem>
+            <asp:ListItem Value="Discounts">Discounts</asp:ListItem>
         </asp:DropDownList>
         <br />
         <br />
@@ -79,7 +133,9 @@
         <br />
         <asp:GridView ID="gvMenuItems" runat="server" AllowPaging="True" 
             AllowSorting="True" AutoGenerateColumns="False" DataSourceID="ldsMenuItems" 
-            PageSize="5" DataKeyNames="MenuItemID">
+            PageSize="5" DataKeyNames="MenuItemID" 
+            onrowcancelingedit="gvMenuItems_RowCancelingEdit" 
+            onrowediting="gvMenuItems_RowEditing" onrowupdated="gvMenuItems_RowUpdated">
             <Columns>
                 <asp:BoundField DataField="MenuItemID" HeaderText="MenuItemID" 
                     InsertVisible="False" ReadOnly="True" SortExpression="MenuItemID" />
@@ -91,24 +147,9 @@
             </Columns>
         </asp:GridView>
         <br />
-        <asp:GridView ID="gvDrink" runat="server" AllowPaging="True" 
-            AllowSorting="True" AutoGenerateColumns="False" 
-            DataSourceID="LinqDataSource1" PageSize="5" DataKeyNames="MenuItemID" 
-            Visible="False">
-            <Columns>
-                <asp:BoundField DataField="MenuItemID" HeaderText="MenuItemID" ReadOnly="True" 
-                    SortExpression="MenuItemID" InsertVisible="False" />
-                <asp:BoundField DataField="FoodDrinkCategoryID" 
-                    HeaderText="FoodDrinkCategoryID" SortExpression="FoodDrinkCategoryID" />
-                <asp:BoundField DataField="MenuItemName" HeaderText="MenuItemName" 
-                    SortExpression="MenuItemName" />
-                <asp:BoundField DataField="MenuItemPrice" HeaderText="MenuItemPrice" 
-                    SortExpression="MenuItemPrice" />
-            </Columns>
-        </asp:GridView>
         <br />
     <asp:Button ID="btnAddMenuItem" runat="server" Text="Add Item" 
-            onclick="btnAddMenuItem_Click" />
+            onclick="btnAddMenuItem_Click" style="height: 26px" />
     
         <asp:LinqDataSource ID="ldsMenuItems" runat="server" 
             ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
@@ -150,10 +191,11 @@ Food"
                         Visible="False"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtAddMenuItemName" runat="server" Visible="False"></asp:TextBox>
+                    <asp:TextBox ID="txtAddMenuItemName" runat="server" Visible="False" 
+                        MaxLength="30"></asp:TextBox>
                     <asp:FilteredTextBoxExtender ID="txtAddMenuItemName_FilteredTextBoxExtender" 
                         runat="server" Enabled="True" FilterMode="InvalidChars" 
-                        InvalidChars="!@#$%^&amp;*()_+-=1234567890[]{}\|;:'&quot;/.,&lt;&gt;?`~" 
+                        InvalidChars="!@#$%^&amp;*()_+=[]{}\|;:'&quot;/,&lt;&gt;?`~" 
                         TargetControlID="txtAddMenuItemName">
                     </asp:FilteredTextBoxExtender>
                 </td>
@@ -172,7 +214,11 @@ Food"
                     <asp:Label ID="lblAddPrice" runat="server" Text="Price" Visible="False"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtAddPrice" runat="server" Visible="False"></asp:TextBox>
+                    <asp:TextBox ID="txtAddPrice" runat="server" Visible="False" MaxLength="7"></asp:TextBox>
+                    <asp:FilteredTextBoxExtender ID="txtAddPrice_FilteredTextBoxExtender" 
+                        runat="server" Enabled="True" TargetControlID="txtAddPrice" 
+                        ValidChars="1234567890.">
+                    </asp:FilteredTextBoxExtender>
                 </td>
             </tr>
             <tr>
@@ -213,29 +259,44 @@ Food"
              <td style="width: 312px">
                  <asp:DropDownList ID="ddlIngredientPurchase" runat="server">
                  </asp:DropDownList>
+                 <asp:Label ID="lblAddIngredient" runat="server" Text="Name:" Visible="False"></asp:Label>
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <asp:TextBox ID="txtIngredient2" runat="server" Visible="False" MaxLength="20"></asp:TextBox>
+                 <br />
+                 <br />
+                 <asp:Label ID="lblAddIngredientDescriptino" runat="server" Text="Description:" 
+                     Visible="False"></asp:Label>
+                 <asp:TextBox ID="txtIngredientComments" runat="server" Height="46px" 
+                     MaxLength="200" TextMode="MultiLine" Visible="False"></asp:TextBox>
+                 <asp:FilteredTextBoxExtender ID="txtIngredientComments_FilteredTextBoxExtender" 
+                     runat="server" Enabled="True" FilterMode="InvalidChars" 
+                     InvalidChars="!@#$%^&amp;*()_+-=[]{}\|;:'&quot;/.,&lt;&gt;?`~" 
+                     TargetControlID="txtIngredientComments">
+                 </asp:FilteredTextBoxExtender>
+                 <asp:FilteredTextBoxExtender ID="txtIngredient2_FilteredTextBoxExtender" 
+                     runat="server" Enabled="True" FilterMode="InvalidChars" 
+                     InvalidChars="!@#$%^&amp;*()_+-=[]{}\|;:'&quot;/.,&lt;&gt;?`~" 
+                     TargetControlID="txtIngredient2">
+                 </asp:FilteredTextBoxExtender>
                  <asp:Button ID="btnAddListItemIngredient" runat="server" 
                      onclick="btnAddListItemIngredient_Click1" Text="Add New Ingredient" 
                      Visible="False" />
-                 <asp:TextBox ID="txtIngredient2" runat="server" Visible="False"></asp:TextBox>
-                 <asp:FilteredTextBoxExtender ID="txtIngredient2_FilteredTextBoxExtender" 
-                     runat="server" Enabled="True" FilterMode="InvalidChars" 
-                     InvalidChars="!@#$%^&amp;*()_+-=1234567890[]{}\|;:'&quot;/.,&lt;&gt;?`~" 
-                     TargetControlID="txtIngredient2">
-                 </asp:FilteredTextBoxExtender>
+                 <asp:Button ID="btnAddIngredientCancel" runat="server" 
+                     onclick="btnAddIngredientCancel_Click" Text="Cancel" Visible="False" />
              </td>
          </tr>
     <tr>
         <td style="width: 144px">
             Purchase Price:</td>
         <td style="width: 312px">
-            <asp:TextBox ID="txtPrice" runat="server" Width="94px"></asp:TextBox>
+            <asp:TextBox ID="txtPrice" runat="server" Width="94px" MaxLength="7"></asp:TextBox>
         </td>
     </tr>
     <tr>
         <td style="width: 144px">
             Qty:</td>
         <td style="width: 312px">
-            <asp:TextBox ID="txtQty" runat="server" Width="96px"></asp:TextBox>
+            <asp:TextBox ID="txtQty" runat="server" Width="96px" MaxLength="4"></asp:TextBox>
         </td>
     </tr>
     <tr>
