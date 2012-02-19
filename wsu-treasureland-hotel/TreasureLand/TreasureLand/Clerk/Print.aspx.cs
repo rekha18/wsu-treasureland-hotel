@@ -74,6 +74,9 @@ namespace TreasureLand.Clerk
         /// </summary>
         private void databindGuestInfo()
         {
+            
+
+
             List<string> list = (List<string>)Session["GuestInfo"];
             lblReservationNumber.Text = list[0];
             lblName.Text = list[1] + " " + list[2];
@@ -83,6 +86,19 @@ namespace TreasureLand.Clerk
             lblServicesTotal.Text = list[5];
             lblTotal.Text = list[6];
             lblDiscount.Text = list[7];
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            IEnumerable<TreasureLand.DBM.Guest> guest =
+                        from g in db.Guests
+                        join r in db.Reservations
+                        on g.GuestID equals r.GuestID
+                        where r.ReservationID == Convert.ToInt32(list[0])
+                        select g;
+            foreach (var guests in guest)
+            {
+                lblAddress.Text = guests.GuestAddress;
+                lblCity.Text = guests.GuestCity;
+                lblTotalDue.Text = list[6];
+            }
         }
     }
 }
