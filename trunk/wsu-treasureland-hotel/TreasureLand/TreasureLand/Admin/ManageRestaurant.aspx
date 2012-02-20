@@ -19,7 +19,7 @@
 <br />
 
 
-<asp:MultiView ID="containerView" runat="server" ActiveViewIndex = "0">
+<asp:MultiView ID="containerView" runat="server" ActiveViewIndex = "1">
 
 <!--Begin View ActiveViewIndex[0]-->
     <asp:View ID="viewLinkIngredients" runat="server">
@@ -98,7 +98,7 @@ WHERE ([MenuItemID] = @MenuItemID)">
                 ForeColor="Red" ValidationGroup="vgAddCategory">*</asp:RequiredFieldValidator>
             <asp:FilteredTextBoxExtender ID="txtCategory_FilteredTextBoxExtender" 
                 runat="server" FilterMode="InvalidChars" 
-                InvalidChars="" 
+                InvalidChars="!@#$%^&amp;*_+=-{}[]\|;:'&quot;" 
                 TargetControlID="txtCategory">
             </asp:FilteredTextBoxExtender>
             <asp:Label ID="lblCatAddError" runat="server" ForeColor="Red"></asp:Label>
@@ -137,15 +137,57 @@ WHERE ([MenuItemID] = @MenuItemID)">
             onrowcancelingedit="gvMenuItems_RowCancelingEdit" 
             onrowediting="gvMenuItems_RowEditing" onrowupdated="gvMenuItems_RowUpdated">
             <Columns>
-                <asp:BoundField DataField="MenuItemID" HeaderText="MenuItemID" 
+                <asp:BoundField DataField="MenuItemID" HeaderText="Item ID" 
                     InsertVisible="False" ReadOnly="True" SortExpression="MenuItemID" />
-                <asp:BoundField DataField="MenuItemName" HeaderText="MenuItemName" 
-                    SortExpression="MenuItemName" />
-                <asp:BoundField DataField="MenuItemPrice" HeaderText="MenuItemPrice" 
-                    SortExpression="MenuItemPrice" />
-                <asp:CommandField ButtonType="Button" ShowEditButton="True" />
+                <asp:TemplateField HeaderText="Item Name" SortExpression="MenuItemName">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txtEditMenuItem" runat="server" MaxLength="30" 
+                            Text='<%# Bind("MenuItemName") %>'></asp:TextBox>
+                        <asp:FilteredTextBoxExtender ID="txtEditMenuItem_FilteredTextBoxExtender" 
+                            runat="server" Enabled="True" FilterMode="InvalidChars" 
+                            TargetControlID="txtEditMenuItem" 
+                            InvalidChars="!@#$%^&amp;*()_+=-[]\{}|';&quot;:/.,&lt;&gt;?">
+                        </asp:FilteredTextBoxExtender>
+                        <asp:RequiredFieldValidator ID="rfvEditMenuItemName" runat="server" 
+                            ControlToValidate="txtEditMenuItem" Display="Dynamic" 
+                            ErrorMessage="Name is required" ForeColor="Red" ValidationGroup="EditMenuItem">*</asp:RequiredFieldValidator>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("MenuItemName") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Item Price" SortExpression="MenuItemPrice">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="txtEditMenuItemPrice" runat="server" 
+                            Text='<%# Bind("MenuItemPrice", "{0:#.##}") %>' ValidationGroup="EditMenuItem"></asp:TextBox>
+                        <asp:CompareValidator ID="cvEditMenuItemPrice" runat="server" 
+                            ControlToValidate="txtEditMenuItemPrice" Display="Dynamic" 
+                            ErrorMessage="Price must be a number" ForeColor="Red" Operator="DataTypeCheck" 
+                            Type="Currency" ValidationGroup="EditMenuItem">*</asp:CompareValidator>
+                        <asp:RequiredFieldValidator ID="rfvEditMenuItemPrice" runat="server" 
+                            ControlToValidate="txtEditMenuItemPrice" Display="Dynamic" 
+                            ErrorMessage="Price is required" ForeColor="Red" ValidationGroup="EditMenuItem">*</asp:RequiredFieldValidator>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("MenuItemPrice", "{0:#.##}") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField ShowHeader="False">
+                    <EditItemTemplate>
+                        <asp:Button ID="Button1" runat="server" CausesValidation="True" 
+                            CommandName="Update" Text="Update" ValidationGroup="EditMenuItem" />
+                        &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" 
+                            CommandName="Cancel" Text="Cancel" />
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Button ID="Button1" runat="server" CausesValidation="False" 
+                            CommandName="Edit" Text="Edit" />
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
+        <asp:ValidationSummary ID="ValidationSummary3" runat="server" ForeColor="Red" 
+            ValidationGroup="EditMenuItem" />
         <br />
         <br />
     <asp:Button ID="btnAddMenuItem" runat="server" Text="Add Item" 
@@ -198,6 +240,9 @@ Food"
                         InvalidChars="!@#$%^&amp;*()_+=[]{}\|;:'&quot;/,&lt;&gt;?`~" 
                         TargetControlID="txtAddMenuItemName">
                     </asp:FilteredTextBoxExtender>
+                    <asp:RequiredFieldValidator ID="rfvMenuItemName" runat="server" 
+                        ControlToValidate="txtAddMenuItemName" ErrorMessage="Name is required" 
+                        ForeColor="Red" ValidationGroup="MenuItem">*</asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>
@@ -219,12 +264,19 @@ Food"
                         runat="server" Enabled="True" TargetControlID="txtAddPrice" 
                         ValidChars="1234567890.">
                     </asp:FilteredTextBoxExtender>
+                    <asp:RequiredFieldValidator ID="rfvMenuItemPrice" runat="server" 
+                        ControlToValidate="txtAddPrice" ErrorMessage="Price is required" 
+                        ForeColor="Red" ValidationGroup="MenuItem">*</asp:RequiredFieldValidator>
+                    <asp:CompareValidator ID="cvMenuItemPrice" runat="server" 
+                        ControlToValidate="txtAddPrice" ErrorMessage="Price must be a number" 
+                        ForeColor="Red" Operator="DataTypeCheck" Type="Currency" 
+                        ValidationGroup="MenuItem">*</asp:CompareValidator>
                 </td>
             </tr>
             <tr>
                 <td style="width: 114px">
                     <asp:Button ID="btnAddSubmit" runat="server" onclick="btnAddSubmit_Click" 
-                        Text="Submit" Visible="False" />
+                        Text="Submit" Visible="False" ValidationGroup="MenuItem" />
                 </td>
                 <td>
                     <asp:Button ID="btnCancel" runat="server" onclick="btnCancel_Click" 
@@ -232,6 +284,8 @@ Food"
                 </td>
             </tr>
         </table>
+        <asp:ValidationSummary ID="ValidationSummary2" runat="server" 
+            ValidationGroup="MenuItem" />
         <br />
         <br />
     
@@ -290,6 +344,13 @@ Food"
             Purchase Price:</td>
         <td style="width: 312px">
             <asp:TextBox ID="txtPrice" runat="server" Width="94px" MaxLength="7"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvAddIngredientPurchasePrice" runat="server" 
+                ControlToValidate="txtPrice" ErrorMessage="Purchase price is required" 
+                ForeColor="Red" ValidationGroup="AddIngredient">*</asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="cvAddIngredientPurchasePrice" runat="server" 
+                ControlToValidate="txtPrice" ErrorMessage="Purchase Price must be a number" 
+                ForeColor="Red" Operator="DataTypeCheck" Type="Currency" 
+                ValidationGroup="AddIngredient">*</asp:CompareValidator>
         </td>
     </tr>
     <tr>
@@ -297,12 +358,20 @@ Food"
             Qty:</td>
         <td style="width: 312px">
             <asp:TextBox ID="txtQty" runat="server" Width="96px" MaxLength="4"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvAddIngredientQty" runat="server" 
+                ControlToValidate="txtQty" ErrorMessage="Qty is required" ForeColor="Red" 
+                ValidationGroup="AddIngredient">*</asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="cvAddIngredientQty" runat="server" 
+                ErrorMessage="Qty must be a number" ForeColor="Red" Type="Double" 
+                ValidationGroup="AddIngredient" ControlToValidate="txtQty" 
+                Operator="DataTypeCheck">*</asp:CompareValidator>
         </td>
     </tr>
     <tr>
         <td style="width: 144px">
             <asp:Button ID="btnAddItemToPurchase" runat="server" Text="Add Item to Purchase" 
-                Width="157px" onclick="btnAddItemToPurchase_Click" Height="21px" />
+                Width="157px" onclick="btnAddItemToPurchase_Click" Height="21px" 
+                ValidationGroup="AddIngredient" />
         </td>
         <td style="width: 312px">
             &nbsp;<asp:Button ID="btnSubmitPurchase" runat="server" Enabled="False" 
@@ -322,6 +391,9 @@ Food"
                  &nbsp;</td>
          </tr>
 </table>
+        <asp:ValidationSummary ID="vsAddIngredient" runat="server" 
+            ValidationGroup="AddIngredient" />
+        <br />
         <asp:GridView ID="gvshowIngredientPurchases" runat="server" 
             AutoGenerateColumns="False">
             <Columns>
