@@ -40,13 +40,13 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.Button btnEnterPurchase;
         
         /// <summary>
-        /// Button1 control.
+        /// btnIngredients control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnIngredients;
         
         /// <summary>
         /// ScriptManager1 control.
@@ -265,6 +265,15 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.GridView gvMenuItems;
         
         /// <summary>
+        /// ValidationSummary3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary3;
+        
+        /// <summary>
         /// btnAddMenuItem control.
         /// </summary>
         /// <remarks>
@@ -328,6 +337,15 @@ namespace TreasureLand.Admin {
         protected global::AjaxControlToolkit.FilteredTextBoxExtender txtAddMenuItemName_FilteredTextBoxExtender;
         
         /// <summary>
+        /// rfvMenuItemName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMenuItemName;
+        
+        /// <summary>
         /// lblAddCategory control.
         /// </summary>
         /// <remarks>
@@ -373,6 +391,24 @@ namespace TreasureLand.Admin {
         protected global::AjaxControlToolkit.FilteredTextBoxExtender txtAddPrice_FilteredTextBoxExtender;
         
         /// <summary>
+        /// rfvMenuItemPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMenuItemPrice;
+        
+        /// <summary>
+        /// cvMenuItemPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvMenuItemPrice;
+        
+        /// <summary>
         /// btnAddSubmit control.
         /// </summary>
         /// <remarks>
@@ -389,6 +425,15 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
+        
+        /// <summary>
+        /// ValidationSummary2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary2;
         
         /// <summary>
         /// createPurchaseView control.
@@ -508,6 +553,24 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtPrice;
         
         /// <summary>
+        /// rfvAddIngredientPurchasePrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAddIngredientPurchasePrice;
+        
+        /// <summary>
+        /// cvAddIngredientPurchasePrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvAddIngredientPurchasePrice;
+        
+        /// <summary>
         /// txtQty control.
         /// </summary>
         /// <remarks>
@@ -515,6 +578,24 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtQty;
+        
+        /// <summary>
+        /// rfvAddIngredientQty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvAddIngredientQty;
+        
+        /// <summary>
+        /// cvAddIngredientQty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvAddIngredientQty;
         
         /// <summary>
         /// btnAddItemToPurchase control.
@@ -542,6 +623,15 @@ namespace TreasureLand.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnClear;
+        
+        /// <summary>
+        /// vsAddIngredient control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary vsAddIngredient;
         
         /// <summary>
         /// gvshowIngredientPurchases control.

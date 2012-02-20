@@ -252,28 +252,8 @@ namespace TreasureLand.Admin
         /// </summary>
         protected void btnManageCategory_Click(object sender, EventArgs e)
         {
-            containerView.ActiveViewIndex = 0; 
-         /*   if (txtIngredient.Text != "")
-            {
-                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-                FoodDrinkCategory addFoodDrinkCat = new FoodDrinkCategory();//New item to be added to database
+            containerView.ActiveViewIndex = 1; 
 
-                Ingredient ingredient = new Ingredient();
-                addFoodDrinkCat.FoodDrinkCategoryName = txtIngredient.Text;//set name
-
-                //always true/drinks are hardcoded
-                addFoodDrinkCat.FoodDrinkCategoryIsMenuItem = true;//set to true
-
-                db.FoodDrinkCategories.InsertOnSubmit(addFoodDrinkCat);
-                db.SubmitChanges();
-
-                //refresh contents of dropdown
-                // TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-                var foodDrinkCat = from fdc in db.FoodDrinkCategories
-                                   select fdc.FoodDrinkCategoryName;
-                ddIngredient.DataSource = foodDrinkCat;
-                ddIngredient.DataBind();
-            }*/
         }
 
         /// <summary>
