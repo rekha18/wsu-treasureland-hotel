@@ -155,10 +155,10 @@ namespace TreasureLand.Admin
         /// </summary>
         private void getIngredientsDatabind()
         {            
-            ddlIngredients.DataSource = getAllIngredients();
+           /* ddlIngredients.DataSource = getAllIngredients();
             ddlIngredients.DataValueField = "IngredientID";
             ddlIngredients.DataTextField = "IngredientName";
-            ddlIngredients.DataBind();
+            ddlIngredients.DataBind();*/
         }
         #endregion
 
@@ -457,6 +457,8 @@ namespace TreasureLand.Admin
                 btnAddItemToPurchase.Enabled = true;
                 btnAddIngredientCancel.Visible = false;
                 ddlChooseItemForPurchase.Enabled = true;
+                txtPrice.Enabled = true;
+                txtQty.Enabled = true;
             }
             //make text box 
         }
@@ -697,6 +699,8 @@ namespace TreasureLand.Admin
             btnAddItemToPurchase.Enabled = true;
             btnAddIngredientCancel.Visible = false;
             ddlChooseItemForPurchase.Enabled = true;
+            txtPrice.Enabled = true;
+            txtQty.Enabled = true;
         }
 
         //Adds the selected Ingredient to the selected menu item
@@ -706,6 +710,7 @@ namespace TreasureLand.Admin
             MenuItemIngredient mii = new MenuItemIngredient();
             mii.IngredientID = Convert.ToInt16(ddlIngredients.SelectedValue);
             mii.MenuItemID = Convert.ToInt16(ddlMenuItemIngredients.SelectedValue);
+            mii.MenuItemIngredientQty = Convert.ToDecimal(txtMenuItemIngredientQty.Text);
             db.MenuItemIngredients.InsertOnSubmit(mii);
             db.SubmitChanges();
             lbMenuItems.DataBind();
@@ -731,8 +736,22 @@ namespace TreasureLand.Admin
         protected void btnIngredients_Click(object sender, EventArgs e)
         {
             containerView.ActiveViewIndex = 0;
+            ddlIngredients.DataBind();
         }
 
+        protected string GetItemName(string IngredientID)
+        {
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            var ingredientName = from items in db.Ingredients
+                                 where items.IngredientID == Convert.ToInt16(IngredientID)
+                                 select items;
+
+            foreach (var i in ingredientName)
+            {
+                return i.IngredientName;
+            }
+            return "";
+        }
 
   
     }
