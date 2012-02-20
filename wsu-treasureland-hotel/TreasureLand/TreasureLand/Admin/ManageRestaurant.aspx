@@ -40,8 +40,33 @@
                     </asp:LinqDataSource>
                 </td>
                 <td>
-                    <asp:DropDownList ID="ddlIngredients" runat="server">
+                    <asp:DropDownList ID="ddlIngredients" runat="server" 
+                        DataSourceID="ldsIngredients" DataTextField="IngredientName" 
+                        DataValueField="IngredientID">
                     </asp:DropDownList>
+                    <asp:LinqDataSource ID="ldsIngredients" runat="server" 
+                        ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
+                        EntityTypeName="" TableName="Ingredients">
+                    </asp:LinqDataSource>
+                    <asp:Label ID="lblIngredientQty" runat="server" Text="Qty"></asp:Label>
+                    <asp:TextBox ID="txtMenuItemIngredientQty" runat="server"></asp:TextBox>
+                    <asp:FilteredTextBoxExtender ID="txtMenuItemIngredientQty_FilteredTextBoxExtender" 
+                        runat="server" Enabled="True" TargetControlID="txtMenuItemIngredientQty" 
+                        ValidChars="1234567890.">
+                    </asp:FilteredTextBoxExtender>
+                    <asp:RequiredFieldValidator ID="rfvLinkIngredients" runat="server" 
+                        ControlToValidate="txtMenuItemIngredientQty" Display="Dynamic" 
+                        ErrorMessage="Qty is required" ForeColor="Red" ValidationGroup="LinkIngredient">*</asp:RequiredFieldValidator>
+                    <asp:CompareValidator ID="cvLinkIngredient" runat="server" 
+                        ControlToValidate="txtMenuItemIngredientQty" Display="Dynamic" 
+                        ErrorMessage="Qty must be a number" ForeColor="Red" Operator="DataTypeCheck" 
+                        Type="Double" ValidationGroup="LinkIngredient">*</asp:CompareValidator>
+                    <asp:CompareValidator ID="cvIngredientQtyAmount" runat="server" 
+                        ControlToValidate="txtMenuItemIngredientQty" Display="Dynamic" 
+                        ErrorMessage="Qty must be less than 100" ForeColor="Red" Operator="LessThan" 
+                        Type="Double" ValidationGroup="LinkIngredient" ValueToCompare="100">*</asp:CompareValidator>
+                    <asp:ValidationSummary ID="ValidationSummary4" runat="server" ForeColor="Red" 
+                        ValidationGroup="LinkIngredient" />
                 </td>
             </tr>
             <tr>
@@ -50,8 +75,9 @@
                         DataTextField="IngredientName" DataValueField="MenuItemIngredientID">
                     </asp:ListBox>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-                        ConnectionString="<%$ ConnectionStrings:TreasurelandDB %>" SelectCommand="SELECT * FROM MenuItemIngredient INNER JOIN Ingredient ON MenuItemIngredient.IngredientID = Ingredient.IngredientID
-WHERE ([MenuItemID] = @MenuItemID)">
+                        ConnectionString="<%$ ConnectionStrings:TreasurelandDB %>" 
+                        SelectCommand="SELECT MenuItemIngredient.MenuItemIngredientID, (Ingredient.IngredientName + ' ' + Cast(MenuItemIngredient.MenuItemIngredientQty as varchar(10))) AS IngredientName 
+FROM MenuItemIngredient INNER JOIN Ingredient ON MenuItemIngredient.IngredientID = Ingredient.IngredientID WHERE (MenuItemIngredient.MenuItemID = @MenuItemID)">
                         <SelectParameters>
                             <asp:ControlParameter ControlID="ddlMenuItemIngredients" Name="MenuItemID" 
                                 PropertyName="SelectedValue" />
@@ -69,7 +95,7 @@ WHERE ([MenuItemID] = @MenuItemID)">
                 <td>
                     <asp:Button ID="btnAddIngredientToMenuItem" runat="server" 
                         onclick="btnAddIngredientToMenuItem_Click" Text="Add Selected Ingredient" 
-                        Width="174px" />
+                        Width="174px" ValidationGroup="LinkIngredient" />
                 </td>
             </tr>
         </table>
@@ -397,7 +423,15 @@ Food"
         <asp:GridView ID="gvshowIngredientPurchases" runat="server" 
             AutoGenerateColumns="False">
             <Columns>
-                <asp:BoundField DataField="IngredientID" HeaderText="Ingredient" />
+                <asp:TemplateField HeaderText="Ingredient">
+                    <EditItemTemplate>
+                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("IngredientID") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" 
+                            Text='<%# GetItemName((Eval("IngredientID")).ToString()) %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:BoundField DataField="IngredientPurchaseHistoryQty" HeaderText="Qty" />
                 <asp:BoundField DataField="IngredientPurchaseHistoryPrice" HeaderText="Price" 
                     DataFormatString="{0:0.00}" />
