@@ -9,61 +9,7 @@ using Microsoft.Reporting.WebForms;
 
 namespace TreasureLand.Clerk
 {
-    public class reportData
-    {
-        private decimal lineItemAmount;
-        private int lineItemTransactionID;
-        private string drinkName;
-        private string menuItemName;
-
-
-        public int LineItemTransactionID
-        {
-            get
-            {
-               return lineItemTransactionID;
-            }
-            set
-            {
-                lineItemTransactionID=value;
-            }
-        }
-
-        public decimal LineItemAmount
-        {
-            get
-            {
-               return lineItemAmount;
-            }
-            set
-            {
-                lineItemAmount=value;
-            }
-        }
-        public string DrinkName
-        {
-            get
-            {
-               return drinkName;
-            }
-            set
-            {
-                drinkName=value;
-            }
-        }
-        public string MenuItemName
-        {
-        get
-        {
-        return MenuItemName;
-        }   
-        set
-        {
-        menuItemName=value;
-        }
-    }
-
-    }
+    
 
     public partial class WebForm8 : System.Web.UI.Page
     {
@@ -71,15 +17,15 @@ namespace TreasureLand.Clerk
         {
             if (!Page.IsPostBack)
             {                
+
                 txtBeginDate.Text = DateTime.Now.ToShortDateString();
-                txtEndDate_CalendarExtender.StartDate = DateTime.Now;
-                txtEndDate.Text = txtEndDate_CalendarExtender.StartDate.Value.ToShortDateString();
+                txtEndDate.Text = DateTime.Now.ToShortDateString();
             }
         }
 
         protected void btnCreateReport_Click(object sender, EventArgs e)
         {
-
+            /*
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
             IEnumerable <reportData> ds = from l in db.LineItems
                      join rd in db.ReservationDetailBillings
@@ -88,18 +34,35 @@ namespace TreasureLand.Clerk
                      on l.MenuItemID equals m.MenuItemID
                      join d in db.FoodDrinkCategories
                      on m.MenuItemID equals d.FoodDrinkCategoryID
-                     where (rd.BillingItemDate >= Convert.ToDateTime(txtBeginDate.Text) &
-                     rd.BillingItemDate <= Convert.ToDateTime(txtEndDate.Text))
+                     where rd.ReservationDetailBillingID == Convert.ToInt16(ddlTransactions.SelectedValue)
                      select new reportData{ LineItemAmount = l.LineItemAmount, LineItemTransactionID = l.LineItemTransactionID, MenuItemName = m.MenuItemName};
-           
-           
-            ReportDataSource rds = new ReportDataSource();
-            rds.Value=ds;
+            */
+            if(ddlTransactions.SelectedIndex>-1)
+            {
+            ReportViewer1.Visible = true;
+            ReportDataSource rds = new ReportDataSource("reportDatasource", sdsReport);
+            
 
             //Resets the ReportViewer, adds the new datasource, and changes the name of the report
-            ReportViewer1.Reset();
+            
             ReportViewer1.LocalReport.DataSources.Add(rds);
             ReportViewer1.LocalReport.DisplayName = "reportDatasource";
+            ReportViewer1.DataBind();
+            }
+        }
+
+        protected void btnGetTransactions_Click(object sender, EventArgs e)
+        {
+            if(Convert.ToDateTime(txtBeginDate.Text) <= Convert.ToDateTime(txtEndDate.Text))
+            {
+            ddlTransactions.DataSource = ldsTransactions;
+            ddlTransactions.DataValueField = "ReservationDetailBillingID";
+            ddlTransactions.DataTextField = String.Format("{0:C}", "BillingAmount");
+            ddlTransactions.DataBind();
+
+            ddlTransactions.Visible = true;
+            btnCreateReport.Visible = true;
+            }
         }
     }
 }
