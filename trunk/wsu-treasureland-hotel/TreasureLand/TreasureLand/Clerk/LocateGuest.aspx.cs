@@ -243,7 +243,13 @@ namespace TreasureLand.Clerk
                 txtIdCountry.Text, txtIdComments.Text, Convert.ToInt32(lblCustomerId.Text));
 
             //updates the roomStatus to checked in, and updates the reservationdetail to active
-            App_Code.GuestDB.updateRoomStatus('C', Convert.ToInt32(txtShowRoomNum.Text));
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            var id = from i in db.Rooms
+                     where i.RoomNumbers == txtShowRoomNum.Text
+                     select new { i.RoomID };
+            
+            
+            App_Code.GuestDB.updateRoomStatus('C', Convert.ToInt16(id.First().RoomID));
             App_Code.GuestDB.updateReservationDetail('A', Convert.ToInt16(lblReservationDetailID.Text));
             
             //Updates the Reservation status to Active if all reservation detail status associated with the reservation are set to active
