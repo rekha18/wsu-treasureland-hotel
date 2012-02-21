@@ -144,11 +144,11 @@
                         <asp:TemplateField HeaderText="Transaction ID">
                             <EditItemTemplate>
                                 <asp:Label ID="lblTransactionID" runat="server" 
-                                    Text='<%# Eval("ReservationBillingID") %>'></asp:Label>
+                                    Text='<%# Eval("ReservationDetailBillingID") %>'></asp:Label>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="lblTransactionID" runat="server" 
-                                    Text='<%# Bind("ReservationBillingID") %>'></asp:Label>
+                                    Text='<%# Bind("ReservationDetailBillingID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="BillingItemDate" HeaderText="Date" ReadOnly="True" />
@@ -196,7 +196,6 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="Comments" HeaderText="Comments" />
-                        <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                         <asp:CommandField ButtonType="Button" ShowEditButton="True" />
                         <asp:CommandField ButtonType="Button" ShowDeleteButton="True" />
                     </Columns>

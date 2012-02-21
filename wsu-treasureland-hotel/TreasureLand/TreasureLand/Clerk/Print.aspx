@@ -8,7 +8,7 @@
     <style type="text/css">
         .style1
         {
-            width: 85%;
+            width: 74%;
         }
         .style2
         {
@@ -16,15 +16,15 @@
         }
         .style3
         {
-            width: 99px;
+            width: 75px;
         }
         .style4
         {
             width: 111px;
         }
-        .style6
+        .style5
         {
-            width: 8px;
+            width: 80px;
         }
     </style>
 </head>
@@ -38,81 +38,77 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <strong>SUMMARY OF CHARGES&nbsp;</strong></td>
                 <td class="style4" rowspan="11">
-                    &nbsp;&nbsp;
-                    <asp:Label ID="lblBillTotal" runat="server" Font-Bold="True" Text="TOTAL DUE:"></asp:Label>
                     <br />
                     <br />
-                    <br />
-                    <asp:Label ID="lblTotalDue" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="style3">
                     Guest Name:</td>
-                <td class="style6">
+                <td class="style5">
                     <asp:Label ID="lblName" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="style3">
                     Guest Address</td>
-                <td class="style6">
+                <td class="style5">
                     <asp:Label ID="lblAddress" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="style3">
                     Guest City</td>
-                <td class="style6">
+                <td class="style5">
                     <asp:Label ID="lblCity" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="style3">
                     Reservation Number:</td>
-                <td class="style6">
+                <td class="style5">
                     <asp:Label ID="lblReservationNumber" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="style3">
                     Date:</td>
-                <td class="style6">
+                <td class="style5">
                     <asp:Label ID="lblDate" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="style3">
                     Room Number:</td>
-                <td class="style6">
+                <td class="style5">
                     <asp:Label ID="lblRoomNumber" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="style3">
                     Room Total:</td>
-                <td class="style6">
+                <td class="style5">
                     <asp:Label ID="lblRoomTotal" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="style3">
                     Services Total:</td>
-                <td class="style6">
+                <td class="style5">
                     <asp:Label ID="lblServicesTotal" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="style3">
                     Discount:</td>
-                <td class="style6">
+                <td class="style5">
                     <asp:Label ID="lblDiscount" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="style3">
                     <strong>Total:</strong></td>
-                <td class="style6">
+                <td class="style5">
                     <asp:Label ID="lblTotal" runat="server" style="font-weight: 700"></asp:Label>
                 </td>
             </tr>
@@ -136,11 +132,11 @@
                         <asp:TemplateField HeaderText="Transaction ID">
                             <EditItemTemplate>
                                 <asp:Label ID="lblTransactionID" runat="server" 
-                                    Text='<%# Eval("ReservationBillingID") %>'></asp:Label>
+                                    Text='<%# Eval("ReservationDetailBillingID") %>'></asp:Label>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="lblTransactionID0" runat="server" 
-                                    Text='<%# Bind("ReservationBillingID") %>'></asp:Label>
+                                    Text='<%# Bind("ReservationDetailBillingID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="BillingItemDate" HeaderText="Date" ReadOnly="True" />
