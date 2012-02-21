@@ -216,7 +216,7 @@ namespace TreasureLand.App_Code
             SqlConnection con = new SqlConnection(getConnectionString());
             string sel = "SELECT Reservation.ReservationID, ReservationDetail.Nights, ReservationDetail.QuotedRate, HotelRoomType.RoomType " +
                          "FROM Reservation INNER JOIN ReservationDetail ON Reservation.ReservationID = ReservationDetail.ReservationID INNER JOIN " +
-                         "Room ON ReservationDetail.RoomID = Room.RoomID INNER JOIN HotelRoomType ON Room.HotelRoomTypeID = HotelRoomType.HotelRoomTypeID WHERE Reservation.ReservationID = '" + reservationID + "' AND ReservationDetail.RoomID = '" + roomID + "' AND (ReservationDetail.Status = 'A' OR ReservationDetail.Status = 'F')";
+                         "Room ON ReservationDetail.RoomID = Room.RoomID INNER JOIN HotelRoomType ON Room.HotelRoomTypeID = HotelRoomType.HotelRoomTypeID WHERE Reservation.ReservationID = '" + reservationID + "' AND ReservationDetail.RoomID = '" + roomID + "' AND (ReservationDetail.ReservationStatus = 'A' OR ReservationDetail.ReservationStatus = 'F')";
             SqlCommand cmd =
             new SqlCommand(sel, con);
             con.Open();
@@ -462,10 +462,10 @@ namespace TreasureLand.App_Code
             try
             {
                 conn.Open(); //Open the connection
-                string update = "UPDATE [ReservationDetail] SET [Status] = @status " +
+                string update = "UPDATE [ReservationDetail] SET [ReservationStatus] = @ReservationStatus " +
                       "WHERE [ReservationDetailID] = @reservationID";
                 SqlCommand connCommand = new SqlCommand(update, conn);
-                connCommand.Parameters.AddWithValue("@status", status);
+                connCommand.Parameters.AddWithValue("@ReservationStatus", status);
                 connCommand.Parameters.AddWithValue("@reservationID", reservationID);
                 return connCommand.ExecuteNonQuery();
             }
@@ -579,7 +579,7 @@ namespace TreasureLand.App_Code
         {
 
             SqlConnection con = new SqlConnection(getConnectionString());
-            string sel = "SELECT * FROM ReservationDetail Where ReservationID = " + reservationID + " AND Status = 'C'";
+            string sel = "SELECT * FROM ReservationDetail Where ReservationID = " + reservationID + " AND ReservationStatus = 'C'";
 
             SqlCommand cmd = new SqlCommand(sel, con);
             con.Open();
@@ -602,7 +602,7 @@ namespace TreasureLand.App_Code
         {
 
             SqlConnection con = new SqlConnection(getConnectionString());
-            string sel = "SELECT * FROM ReservationDetail Where ReservationID = " + reservationID + " AND Status = 'C'";
+            string sel = "SELECT * FROM ReservationDetail Where ReservationID = " + reservationID + " AND ReservationStatus = 'C'";
 
             SqlCommand cmd = new SqlCommand(sel, con);
             con.Open();
