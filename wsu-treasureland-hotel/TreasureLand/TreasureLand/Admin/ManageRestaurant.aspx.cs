@@ -655,6 +655,7 @@ namespace TreasureLand.Admin
             btnEnterPurchase.Enabled = false;
             btnManageCategories.Enabled = false;
             btnManageMenuItems.Enabled = false;
+            btnIngredients.Enabled = false;
         }
 
 
@@ -670,6 +671,8 @@ namespace TreasureLand.Admin
             btnEnterPurchase.Enabled = true;
             btnManageCategories.Enabled = true;
             btnManageMenuItems.Enabled = true;
+            btnIngredients.Enabled = true;
+
         }
 
         /// <summary>
@@ -683,6 +686,8 @@ namespace TreasureLand.Admin
             btnEnterPurchase.Enabled = true;
             btnManageCategories.Enabled = true;
             btnManageMenuItems.Enabled = true;
+            btnIngredients.Enabled = true;
+
         }
 
         protected void btnAddIngredientCancel_Click(object sender, EventArgs e)
