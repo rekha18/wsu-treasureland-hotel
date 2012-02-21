@@ -232,7 +232,13 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void gvOpenRooms_DataBound(object sender, EventArgs e)
         {
-            checkSelectedRooms();
+            if (gvOpenRooms.Rows.Count > 0)
+            {
+                checkSelectedRooms();
+                lblNoOpenRooms.Text = String.Empty;
+            }
+            else
+                lblNoOpenRooms.Text = "There are no " + ddlRoomTypes.SelectedItem.Text + " rooms open.";
         }
 
         /// <summary>
@@ -302,7 +308,7 @@ namespace TreasureLand.Clerk
                 ((CheckBox)gvOpenRooms.Rows[i].FindControl("cbSelected")).Checked = false;
             }
 
-            checkSelectedRooms();
+            //checkSelectedRooms();
         }
 
         /// <summary>
@@ -339,7 +345,9 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void gvOpenRooms_PreRender(object sender, EventArgs e)
         {
-            if (gvOpenRooms.Rows.Count != 0 && 
+            checkSelectedRooms();
+            #region Old Code
+            /*if (gvOpenRooms.Rows.Count != 0 && 
                 Session["LastRoomType"].ToString() == ddlRoomTypes.SelectedValue)
                 return;
             
@@ -349,7 +357,7 @@ namespace TreasureLand.Clerk
                 conn.Open();
 
                 string command = "SELECT RoomID, RoomNumbers FROM Room " +
-                                   "WHERE RoomID !=" +
+                                   "WHERE RoomID NOT IN" +
                                    "( " +
                                       "SELECT r.RoomID FROM Room r " +
                                          "INNER JOIN HotelRoomType hrt ON hrt.HotelRoomTypeID = r.HotelRoomTypeID " +
@@ -364,15 +372,17 @@ namespace TreasureLand.Clerk
 
                 SqlCommand connCommand = new SqlCommand(command, conn);
 
-                connCommand.Parameters.AddWithValue("@StartDate", Convert.ToDateTime(Session["StartDate"].ToString()));
-                connCommand.Parameters.AddWithValue("@Nights", Convert.ToInt32(Session["Nights"].ToString()));
-                    connCommand.Parameters.AddWithValue("@HotelRoomType", ddlRoomTypes.SelectedValue.ToString());
+                connCommand.Parameters.AddWithValue("@StartDate", Session["StartDate"]);
+                connCommand.Parameters.AddWithValue("@Nights", Session["Nights"]);
+                connCommand.Parameters.AddWithValue("@HotelRoomType", ddlRoomTypes.SelectedValue);
 
                 using (SqlDataReader openRooms = connCommand.ExecuteReader())
                 {
-                    if (openRooms.HasRows)
-                        gvOpenRooms.DataSource = openRooms;
-                    else
+                    gvOpenRooms.DataSource = openRooms;
+                    gvOpenRooms.DataBind();
+
+
+                    /*if(gvOpenRooms.Rows.Count == 0)
                     {
                         openRooms.Close();
                         //A potential flaw in the above SQL is that no results will be returned if
@@ -388,11 +398,12 @@ namespace TreasureLand.Clerk
                         connCommand.Parameters.AddWithValue("@HotelRoomType", ddlRoomTypes.SelectedValue.ToString());
 
                         gvOpenRooms.DataSource = connCommand.ExecuteReader();
-                    }
 
-                    gvOpenRooms.DataBind();
+                        gvOpenRooms.DataBind();
+                    }
                 }
-            }
+            }*/
+            #endregion
         }
 
         /// <summary>
