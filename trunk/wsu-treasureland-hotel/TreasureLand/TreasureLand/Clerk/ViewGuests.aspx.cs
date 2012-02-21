@@ -250,8 +250,13 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void gvGuestServices_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            gvGuestServices.EditIndex = e.NewEditIndex;
-            gvGuestServiesDataBind();
+            GridViewRow row = gvGuestServices.Rows[e.NewEditIndex];
+            if (row.Cells[2].Text != "food &amp; drink purchase")
+            {
+                gvGuestServices.EditIndex = e.NewEditIndex;
+                gvGuestServiesDataBind();
+            }
+            e.Cancel = true;
         }
 
         /// <summary>
@@ -299,10 +304,12 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void gvGuestServices_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
+            GridViewRow row = gvGuestServices.Rows[e.RowIndex];
+            if(row.Cells[2].Text!="food &amp; drink purchase")
+            {
             try
             {
-                GridViewRow row = gvGuestServices.Rows[e.RowIndex];
+                
                 int transactionID = Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text);
                 App_Code.GuestDB.deleteService(transactionID);
 
@@ -313,6 +320,7 @@ namespace TreasureLand.Clerk
             {
                 lblErrorGuest.Text = "Deletion Failed";
             }
+        }
         }
 
         /// <summary>

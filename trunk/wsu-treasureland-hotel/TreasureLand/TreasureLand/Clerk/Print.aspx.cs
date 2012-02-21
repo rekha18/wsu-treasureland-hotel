@@ -97,7 +97,7 @@ namespace TreasureLand.Clerk
             {
                 lblAddress.Text = guests.GuestAddress;
                 lblCity.Text = guests.GuestCity;
-                lblTotalDue.Text = list[6];
+                
             }
         }
     }
