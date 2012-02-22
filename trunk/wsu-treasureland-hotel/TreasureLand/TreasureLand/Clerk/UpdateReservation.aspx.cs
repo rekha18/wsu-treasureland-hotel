@@ -7,27 +7,33 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using TreasureLand.DBM;
+using TreasureLand.App_Code;
 
 namespace TreasureLand.Clerk
 {
     public partial class UpdateReservation : System.Web.UI.Page
     {
-        public App_Code.Reserve reserving = new App_Code.Reserve();
+        public App_Code.Reserve reserving;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["Room"] != null)
+                reserving = (Reserve)Session["Room"];
+            else
+            {
+                reserving = new Reserve();
+                Session.Add("Room", reserving);
+            }
+            
             if (!IsPostBack)
             {
                 reserving.roomID = -1;
+                mvUpdateReservation.ActiveViewIndex = reserving.returnView;
                 reserving.returnView = 0;
                 lblReservationNumber.Text = reserving.roomID.ToString();
-                mvUpdateReservation.ActiveViewIndex = reserving.returnView;
             }
 
-            reserving = GetRoomNumber();
-            
-            
-            
+            reserving = GetRoomNumber();   
         }
 
         protected void btnLocateReservation_Click(object sender, EventArgs e)
@@ -51,7 +57,10 @@ namespace TreasureLand.Clerk
             gvGuest.DataBind();
 
             if (gvGuest.Rows.Count == 0)
+            {
                 lblNothingSelected.Text = "No records were found";
+                btnSelectReservation.Enabled = false;
+            }
         }
 
         protected void btnSelectReservation_Click(object sender, EventArgs e)
@@ -126,8 +135,11 @@ namespace TreasureLand.Clerk
         protected void btnModifyReservation_Click(object sender, EventArgs e)
         {
             reserving.returnView = 1;
+            reserving.firstName = lblFirstName.Text;
+            reserving.surName = lblSurName.Text;
+            reserving.phone = lblPhone.Text;
             reserving.reservationID = Convert.ToInt16(lblReservationNumber.Text);
-            reserving.reservationDetailID = (int) gvReservationDetails.DataKeys[gvReservationDetails.SelectedIndex].Value;
+            reserving.reservationDetailID = Convert.ToInt32(gvReservationDetails.DataKeys[gvReservationDetails.SelectedIndex].Value.ToString());
             reserving.reserveDate = gvReservationDetails.SelectedRow.Cells[2].Text;
             reserving.daysStaying = Convert.ToInt32(gvReservationDetails.SelectedRow.Cells[3].Text);
             Response.Redirect("ModifyReservation.aspx");
@@ -147,6 +159,27 @@ namespace TreasureLand.Clerk
         protected void btnBack_Click(object sender, EventArgs e)
         {
      
+        }
+
+        /// <summary>
+        /// Enables the ModifyReservation button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void gvRoom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnModifyReservation.Enabled = true;
+        }
+
+        protected void btnRoomChangedFinished_Click(object sender, EventArgs e)
+        {
+            Reserve res = (Reserve)Session["Room"];
+            
+            mvUpdateReservation.ActiveViewIndex = 1;
+            lblReservationNumber.Text = res.reservationID + String.Empty;
+            lblSurName.Text = res.surName;
+            lblFirstName.Text = res.firstName;
+            lblPhone.Text = res.phone;
         }
     }
 }

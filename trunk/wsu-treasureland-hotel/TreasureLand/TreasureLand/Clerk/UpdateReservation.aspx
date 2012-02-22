@@ -112,39 +112,18 @@
                     <Columns>
                         <asp:BoundField DataField="RoomID" HeaderText="ID" />
                         <asp:BoundField DataField="QuotedRate" 
-                            HeaderText="QuotedRate" SortExpression="QuotedRate">
-                        <HeaderStyle HorizontalAlign="Center" />
-                        <ItemStyle HorizontalAlign="Center" />
-                        </asp:BoundField>
+                            HeaderText="QuotedRate" SortExpression="QuotedRate"><HeaderStyle HorizontalAlign="Center" /><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                         <asp:BoundField DataField="CheckinDate" DataFormatString="{0:d}" 
-                            HeaderText="CheckinDate" SortExpression="CheckinDate">
-                        <HeaderStyle HorizontalAlign="Center" />
-                        <ItemStyle HorizontalAlign="Center" />
-                        </asp:BoundField>
-                        <asp:BoundField DataField="Nights" HeaderText="Nights" SortExpression="Nights">
-                        <HeaderStyle HorizontalAlign="Center" />
-                        <ItemStyle HorizontalAlign="Center" />
-                        </asp:BoundField>
+                            HeaderText="CheckinDate" SortExpression="CheckinDate"><HeaderStyle HorizontalAlign="Center" /><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                        <asp:BoundField DataField="Nights" HeaderText="Nights" SortExpression="Nights"><HeaderStyle HorizontalAlign="Center" /><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                         <asp:BoundField DataField="ReservationStatus" HeaderText="Status" 
-                            SortExpression="ReservationStatus">
-                        <HeaderStyle HorizontalAlign="Center" />
-                        <ItemStyle HorizontalAlign="Center" />
-                        </asp:BoundField>
+                            SortExpression="ReservationStatus"><HeaderStyle HorizontalAlign="Center" /><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                         <asp:BoundField DataField="Comments" HeaderText="Comments" 
-                            SortExpression="Comments">
-                        <HeaderStyle HorizontalAlign="Center" />
-                        <ItemStyle HorizontalAlign="Left" Width="200px" />
-                        </asp:BoundField>
+                            SortExpression="Comments"><HeaderStyle HorizontalAlign="Center" /><ItemStyle HorizontalAlign="Left" Width="200px" /></asp:BoundField>
                         <asp:BoundField DataField="NumberOfAdults" HeaderText="Adults" 
-                            SortExpression="NumberOfAdults">
-                        <HeaderStyle HorizontalAlign="Center" />
-                        <ItemStyle HorizontalAlign="Center" />
-                        </asp:BoundField>
+                            SortExpression="NumberOfAdults"><HeaderStyle HorizontalAlign="Center" /><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                         <asp:BoundField DataField="NumberOfChildren" HeaderText="Children" 
-                            SortExpression="NumberOfChildren">
-                        <HeaderStyle HorizontalAlign="Center" />
-                        <ItemStyle HorizontalAlign="Center" />
-                        </asp:BoundField>
+                            SortExpression="NumberOfChildren"><HeaderStyle HorizontalAlign="Center" /><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                         <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                         <asp:BoundField DataField="ReservationDetailID" HeaderText="DetailID" 
                             SortExpression="ReservationDetailID" Visible="False" />
@@ -154,14 +133,13 @@
                 <asp:LinqDataSource ID="ldsReservations" runat="server" 
                     ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
                     EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" 
-                    TableName="ReservationDetails" Where="ReservationID == @ReservationID1">
-                    <WhereParameters>
-                        <asp:ControlParameter ControlID="lblReservationNumber" Name="ReservationID1" 
-                            PropertyName="Text" Type="Int16" />
-                    </WhereParameters>
+                    TableName="ReservationDetails" Where="ReservationID == @ReservationID1" >
+                    <WhereParameters><asp:ControlParameter ControlID="lblReservationNumber" Name="ReservationID1" 
+                            PropertyName="Text" Type="Int16" /></WhereParameters>
                 </asp:LinqDataSource>
                 <br />
-                <asp:GridView ID="gvRoom" runat="server" AutoGenerateColumns="False">
+                <asp:GridView ID="gvRoom" runat="server" AutoGenerateColumns="False" 
+                    onselectedindexchanged="gvRoom_SelectedIndexChanged">
                     <Columns>
                         <asp:BoundField DataField="RoomNumbers" HeaderText="Room Number" />
                         <asp:BoundField DataField="RoomDescription" HeaderText="Description" />
@@ -180,7 +158,8 @@
                         </td>
                         <td align="center">
                             <asp:Button ID="btnModifyReservation" runat="server" 
-                                onclick="btnModifyReservation_Click" Text="Modify Reservation" />
+                                onclick="btnModifyReservation_Click" Text="Modify Reservation" 
+                                Enabled="False" />
                         </td>
                         <td align="center">
                             <asp:Button ID="btnConfirmReservation" runat="server" CommandArgument="3" 
@@ -239,6 +218,28 @@
                         <td align="center">
                             <asp:Button ID="btnFinished2" runat="server" onclick="btnFinished2_Click" 
                                 style="height: 26px" Text="Finished" />
+                        </td>
+                        <td>
+                            &nbsp;</td>
+                    </tr>
+                </table>
+            </asp:View>
+            <asp:View ID="vRoomChanged" runat="server">
+                <table style="width:100%;">
+                    <tr>
+                        <td>
+                            &nbsp;</td>
+                        <td align="center">
+                            The room was successfully changed.</td>
+                        <td>
+                            &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;</td>
+                        <td align="center">
+                            <asp:Button ID="btnRoomChangedConfirm" runat="server" onclick="btnRoomChangedFinished_Click" 
+                                Text="Finished" Width="67px" />
                         </td>
                         <td>
                             &nbsp;</td>
