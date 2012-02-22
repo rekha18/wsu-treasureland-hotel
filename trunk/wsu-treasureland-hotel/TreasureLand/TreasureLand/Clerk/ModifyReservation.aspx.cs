@@ -17,9 +17,9 @@ namespace TreasureLand.Clerk
             Reserve res = (Reserve)Session["Room"];
 
             if (Session["StartDate"] == null)
-                Session.Add("StartDate", res.reserveDate);
+                Session.Add("StartDate", Convert.ToDateTime(res.reserveDate));
             else
-                Session["StartDate"] = res.reserveDate;
+                Session["StartDate"] = Convert.ToDateTime(res.reserveDate);
 
             if (Session["Nights"] == null)
                 Session.Add("Nights", res.daysStaying);
@@ -32,7 +32,7 @@ namespace TreasureLand.Clerk
                 Session["ResDetailID"] = res.reservationDetailID;
 
             if(Session["LastRoomType"] == null)
-                Session.Add("LastRooType", ddlRoomTypes.SelectedValue);
+                Session.Add("LastRoomType", ddlRoomTypes.SelectedValue);
         }
 
         /// <summary>
@@ -83,7 +83,9 @@ namespace TreasureLand.Clerk
             else
                 updateKeepDiscount(roomID);
 
-            ((Reserve)Session["Room"]).roomID = (short)roomID;
+            Reserve res = (Reserve)Session["Room"];
+            res.roomID = (short)roomID;
+            res.returnView = 4;
 
             Response.Redirect("~/Clerk/UpdateReservation.aspx");
         }
@@ -102,7 +104,7 @@ namespace TreasureLand.Clerk
                 conn.Open();
 
                 string command = "UPDATE [ReservationDetail] SET [RoomID] = @RoomID, " +
-                                    "[DiscountID] = @DiscountID " +
+                                    "[DiscountID] = @DiscountID, " +
                                     "[QuotedRate] = ( " +
                                        "SELECT [RoomTypeRackRate] FROM [HotelRoomType] " +
                                        "WHERE [HotelRoomTypeID] = @HotelRoomTypeID " +
@@ -112,7 +114,7 @@ namespace TreasureLand.Clerk
 
                 connCommand.Parameters.AddWithValue("@RoomID", roomID);
                 connCommand.Parameters.AddWithValue("@ReservationDetailID", Convert.ToInt32(Session["ResDetailID"].ToString()));
-                connCommand.Parameters.AddWithValue("@DiscountID", 2); //2 is assumed to be the "No Discount"
+                connCommand.Parameters.AddWithValue("@DiscountID", 1); //1 is assumed to be the "No Discount"
                 connCommand.Parameters.AddWithValue("@HotelRoomTypeID", Convert.ToInt32(ddlRoomTypes.SelectedValue));
 
                 connCommand.ExecuteNonQuery();
@@ -214,6 +216,19 @@ namespace TreasureLand.Clerk
                     gvOpenRooms.DataBind();
                 }
             }
+        }
+
+        /// <summary>
+        /// Displays a text message in case no rooms were found for the specified room type
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void gvOpenRooms_DataBound(object sender, EventArgs e)
+        {
+            if (gvOpenRooms.Rows.Count > 0)
+                lblNoOpenRooms.Text = String.Empty;
+            else
+                lblNoOpenRooms.Text = "There are no " + ddlRoomTypes.SelectedItem.Text + " rooms open. <br />";
         }
     }
 }
