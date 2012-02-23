@@ -34,36 +34,8 @@ namespace Restaurant
             wrapper_panel.Left = (this.ClientSize.Width - wrapper_panel.Width) / 2;
             wrapper_panel.Top = (this.ClientSize.Height - wrapper_panel.Height) / 2;
 
-            //Loads 24 buttons to a dictionary that are inside panel_buttons
-            loadButtonsToDictionary();
-
-            //gets/sets currently filled rooms from database
-            numberOfRooms = getFilledRoomCount();
-
-            //hides any buttons if room count is less than 24, 
-            //used later if room count is less than number of rooms
-            hideExtraButtons();
-
-            //Loads the room numbers to the buttons
-            loadRoomNumbers();
-
-            lbl_currentPage.Text = pageNumber.ToString();
-
-            //gets the max number of pages and sets it to a label
-            if (numberOfRooms != 0)
-            {
-                maxPageNumber = (int)(numberOfRooms / 24);
-                int mod = maxPageNumber % numberOfRooms;
-                if (mod > 0 || numberOfRooms <= 24)
-                {
-                    maxPageNumber++;
-                }
-                lbl_totalNumberOfPages.Text = maxPageNumber.ToString();
-            }
-            else
-            {
-                lbl_totalNumberOfPages.Text = "1";
-            }
+/////////
+            refreshScreen();
 
             LoginForm login = new LoginForm(0);
             login.ShowDialog();
@@ -180,6 +152,43 @@ namespace Restaurant
             int selectedRoom = Convert.ToInt32(arr[0]);
 
             new MenuSelection(selectedRoom, arr[1], LOGGED_IN_ID).Show();
+            refreshScreen();
+        }
+
+        private void refreshScreen()
+        {
+            System.Diagnostics.Debug.WriteLine("refreshScreen()");
+
+            //Loads 24 buttons to a dictionary that are inside panel_buttons
+            loadButtonsToDictionary();
+
+            //gets/sets currently filled rooms from database
+            numberOfRooms = getFilledRoomCount();
+
+            //hides any buttons if room count is less than 24, 
+            //used later if room count is less than number of rooms
+            hideExtraButtons();
+
+            //Loads the room numbers to the buttons
+            loadRoomNumbers();
+
+            lbl_currentPage.Text = pageNumber.ToString();
+
+            //gets the max number of pages and sets it to a label
+            if (numberOfRooms != 0)
+            {
+                maxPageNumber = (int)(numberOfRooms / 24);
+                int mod = maxPageNumber % numberOfRooms;
+                if (mod > 0 || numberOfRooms <= 24)
+                {
+                    maxPageNumber++;
+                }
+                lbl_totalNumberOfPages.Text = maxPageNumber.ToString();
+            }
+            else
+            {
+                lbl_totalNumberOfPages.Text = "1";
+            }
         }
 
         /// <summary>
@@ -189,6 +198,7 @@ namespace Restaurant
         {
             DataClassesDataContext db = new DataClassesDataContext();
 
+            //room number, surname
             var query = from r in db.Rooms
                         join rd in db.ReservationDetails
                         on r.RoomID equals rd.RoomID
@@ -198,6 +208,7 @@ namespace Restaurant
                         on rv.GuestID equals g.GuestID
                         where r.RoomStatus == 'C' & rv.ReservationStatus == 'A'
                         select new { r.RoomID, g.GuestSurName, r.RoomNumbers };
+
             if (query.Any())
             {
                 foreach (var q in query)
