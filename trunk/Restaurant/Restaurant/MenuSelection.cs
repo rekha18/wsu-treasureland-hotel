@@ -527,6 +527,7 @@ namespace Restaurant
                 }
             }
         }
+
         private int getDiscountsCount()
         {
             int count = 0;
@@ -594,23 +595,23 @@ namespace Restaurant
             setMaxNumberOfPagesForItems();
         }
 
-        private void menuItemSelected(object sender, EventArgs e)//*******************************
+        private void menuItemSelected(object sender, EventArgs e)
         {
             Button btn = sender as Button;
             String itemName = btn.Text.Trim();
             String itemPrice = getMoneyValueForItem(itemName);
-            createTotalItemButton(itemPrice, itemName);
 
-            //add to total
-            //String amount = getItemInfoFromButton(itemPrice + " - " + itemName, 0);
-            //System.Diagnostics.Debug.WriteLine("discount amount: " + amount);
             Decimal dec = Convert.ToDecimal(itemPrice);
 
             String totalLabel = lbl_grand_total.Text.ToString();
             Decimal total = Convert.ToDecimal(totalLabel);
-
+            //****************************************************************************************************************************************
             total = total + dec;
-            lbl_grand_total.Text = total.ToString();
+            if (total >= 0)
+            {
+                createTotalItemButton(itemPrice, itemName);
+                lbl_grand_total.Text = total.ToString();
+            }
         }
 
         #endregion
