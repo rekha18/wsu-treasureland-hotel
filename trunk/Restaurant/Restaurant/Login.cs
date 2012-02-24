@@ -147,8 +147,34 @@ namespace Restaurant
 
         private bool logOutCheckID()
         {
-            if (password == "1111")
+            DataClassesDataContext db = new DataClassesDataContext();
+            var logoutQuery = from l in db.aspnet_Memberships
+                              join m in db.aspnet_Users
+                              on l.UserId equals m.UserId
+                              join n in db.aspnet_UsersInRoles
+                              on m.UserId equals n.UserId
+                              join o in db.aspnet_Roles
+                              on n.RoleId equals o.RoleId
+                              where l.Pin == password & o.RoleName.ToString() == "Admin"
+                              select new { l.UserId };
+
+            if (logoutQuery.Any())
+            {
+                foreach (var q in logoutQuery)
+                {
+                    System.Diagnostics.Debug.WriteLine("UserID: " + q.UserId);
+                    
+                }
                 return true;
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("BAD BAD BAD!");
+            }
+
+
+            //if (password == "1111")
+            //    return true;
             return false;
         }
 

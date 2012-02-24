@@ -157,9 +157,9 @@
             // lblLoginPassword
             // 
             this.lblLoginPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 50F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLoginPassword.Location = new System.Drawing.Point(57, 360);
+            this.lblLoginPassword.Location = new System.Drawing.Point(60, 372);
             this.lblLoginPassword.Name = "lblLoginPassword";
-            this.lblLoginPassword.Size = new System.Drawing.Size(234, 76);
+            this.lblLoginPassword.Size = new System.Drawing.Size(231, 74);
             this.lblLoginPassword.TabIndex = 9;
             this.lblLoginPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
