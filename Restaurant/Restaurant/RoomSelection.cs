@@ -11,6 +11,8 @@ using System.Windows;
 
 namespace Restaurant
 {
+    public delegate void RefreshDelegateRoomSelection();
+
     //System.Diagnostics.Debug.WriteLine("");
     public partial class RoomSelectionForm : Form
     {
@@ -28,20 +30,43 @@ namespace Restaurant
         {
             InitializeComponent();
 
+
+
             WindowState = FormWindowState.Maximized;
             FormBorderStyle = FormBorderStyle.None;
 
             wrapper_panel.Left = (this.ClientSize.Width - wrapper_panel.Width) / 2;
             wrapper_panel.Top = (this.ClientSize.Height - wrapper_panel.Height) / 2;
 
-/////////
-            refreshScreen();
+            LoadDefaults();
 
             LoginForm login = new LoginForm(0);
             login.ShowDialog();
-            LOGGED_IN_ID = login.password;
 
-            System.Diagnostics.Debug.WriteLine("Password: " + LOGGED_IN_ID);
+
+
+
+            LOGGED_IN_ID = getLogInIDFromPassword(login.password);
+        }
+
+
+        private String getLogInIDFromPassword(String password)
+        {
+            DataClassesDataContext db = new DataClassesDataContext();
+
+            var query = from m in db.aspnet_Memberships
+                        where m.Password == password
+                        select new { m.UserId };
+
+            if (query.Any())
+            {
+                foreach (var q in query)
+                {
+                    password = q.UserId.ToString();
+                }
+            }
+
+            return password;
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -58,12 +83,12 @@ namespace Restaurant
             }
         }
 
-
         /// <summary>
         /// Loads the buttons to a dictionary for munipulation 
         /// </summary>
         private void loadButtonsToDictionary()
         {
+            buttonDict.Clear();
             foreach (Button control in panel_buttons.Controls)
             {
                 buttonDict.Add(Convert.ToInt32(control.Tag), control);
@@ -135,7 +160,9 @@ namespace Restaurant
         /// <param name="e"></param>
         private void btn_cash_Click(object sender, EventArgs e)
         {
-            new MenuSelection(0, "", LOGGED_IN_ID).Show();
+            MenuSelection ms = new MenuSelection(0, "", LOGGED_IN_ID);
+            ms.RefreshDelegateMenuSelection = new RefreshDelegateRoomSelection(this.LoadDefaults);
+            ms.Show();
         }
 
         /// <summary>
@@ -151,14 +178,13 @@ namespace Restaurant
             String[] arr = text.Split('\n');
             int selectedRoom = Convert.ToInt32(arr[0]);
 
-            new MenuSelection(selectedRoom, arr[1], LOGGED_IN_ID).Show();
-            refreshScreen();
+            MenuSelection ms = new MenuSelection(selectedRoom, arr[1], LOGGED_IN_ID);
+            ms.RefreshDelegateMenuSelection = new RefreshDelegateRoomSelection(this.LoadDefaults);
+            ms.Show();          
         }
 
-        private void refreshScreen()
+        private void LoadDefaults()
         {
-            System.Diagnostics.Debug.WriteLine("refreshScreen()");
-
             //Loads 24 buttons to a dictionary that are inside panel_buttons
             loadButtonsToDictionary();
 
@@ -211,6 +237,7 @@ namespace Restaurant
 
             if (query.Any())
             {
+                buttonInfoDict.Clear();
                 foreach (var q in query)
                 {
                     buttonInfoDict.Add(Convert.ToInt32(q.RoomNumbers), q.GuestSurName.ToString());

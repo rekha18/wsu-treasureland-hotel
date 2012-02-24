@@ -27,6 +27,8 @@ using System.Windows;
             lbl_current_item_page.Text = itemPageNumber.ToString();
             setMaxNumberOfPagesForItems();
             CURRENT_SELECTED_CATEGORY = btn_alcoholic_drinks.Text;
+ * 
+ * An after thought of how this is done is that datasets would have been a better approach.
  */
 
 
@@ -36,6 +38,7 @@ namespace Restaurant
     public partial class MenuSelection : Form
     {
         public static String LOGGED_IN_ID;
+        public RefreshDelegateRoomSelection RefreshDelegateMenuSelection;
 
         //private bool isSelectedCategoryDrink = true;
         int ROOMNUMBER = 0;
@@ -65,16 +68,15 @@ namespace Restaurant
             InitializeComponent();
         }
 
-        public MenuSelection(int selectedRoom, String guestSurname, String LoginPassword)
+        public MenuSelection(int selectedRoom, String guestSurname, String LoginID)
         {
             InitializeComponent();
-
             MinimizeBox = false;
             MaximizeBox = false;
             WindowState = FormWindowState.Maximized;
             FormBorderStyle = FormBorderStyle.None;
 
-            LOGGED_IN_ID = LoginPassword;
+            LOGGED_IN_ID = LoginID;
 
             if (selectedRoom != 0) // 0 means paying with cash
             {
@@ -605,13 +607,12 @@ namespace Restaurant
 
             String totalLabel = lbl_grand_total.Text.ToString();
             Decimal total = Convert.ToDecimal(totalLabel);
-            //****************************************************************************************************************************************
             total = total + dec;
             if (total >= 0)
             {
                 createTotalItemButton(itemPrice, itemName);
                 lbl_grand_total.Text = total.ToString();
-            }
+            }           
         }
 
         #endregion
@@ -871,6 +872,11 @@ namespace Restaurant
             loadItems();
             lbl_current_item_page.Text = itemPageNumber.ToString();
             setMaxNumberOfPagesForItems();
+        }
+
+        private void onClosing(object sender, FormClosingEventArgs e)
+        {
+            RefreshDelegateMenuSelection.Invoke();
         }
     }
 }
