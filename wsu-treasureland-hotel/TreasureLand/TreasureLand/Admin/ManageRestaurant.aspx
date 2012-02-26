@@ -10,7 +10,7 @@
         runat="server" Text="Create Purchase" 
         onclick="btnEnterPurchase_Click" Width="168px" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnIngredients" 
-        runat="server" onclick="btnIngredients_Click" Text="Manage Ingredients" />
+        runat="server" onclick="btnIngredients_Click" Text="Manage Recipes" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <br />
 <br />
@@ -25,7 +25,11 @@
     <asp:View ID="viewLinkIngredients" runat="server">
         <table class="style4">
             <tr>
-                <td style="width: 286px">
+                <td style="width: 286px" valign="top">
+                    <br />
+                    <asp:Label ID="lblChooseMenuItem" runat="server" Font-Bold="True" 
+                        Text="Choose Menu Item:"></asp:Label>
+                    <br />
                     <asp:DropDownList ID="ddlMenuItemIngredients" runat="server" 
                         AutoPostBack="True" DataSourceID="ldsMenuItemddl" DataTextField="MenuItemName" 
                         DataValueField="MenuItemID">
@@ -39,7 +43,11 @@
                         </WhereParameters>
                     </asp:LinqDataSource>
                 </td>
-                <td>
+                <td valign="top">
+                    <br />
+                    <asp:Label ID="lblChooseIngredient" runat="server" Font-Bold="True" 
+                        Text="Choose Ingredient:"></asp:Label>
+                    <br />
                     <asp:DropDownList ID="ddlIngredients" runat="server" 
                         DataSourceID="ldsIngredients" DataTextField="IngredientName" 
                         DataValueField="IngredientID">
@@ -98,6 +106,53 @@ FROM MenuItemIngredient INNER JOIN Ingredient ON MenuItemIngredient.IngredientID
                         Width="174px" ValidationGroup="LinkIngredient" />
                 </td>
             </tr>
+            <tr>
+                <td style="width: 286px">
+                    <br />
+                    <strong>Add new Ingredient<br /> </strong>
+                    <br />
+                    <asp:Label ID="lblAddIngredient" runat="server" Text="Name:"></asp:Label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:TextBox ID="txtIngredient" runat="server" MaxLength="20"></asp:TextBox>
+                    <asp:FilteredTextBoxExtender ID="txtIngredient_FilteredTextBoxExtender" 
+                        runat="server" Enabled="True" FilterMode="InvalidChars" 
+                        InvalidChars="!@#$%^&amp;*()_+-=[]{}\|;:'&quot;/.,&lt;&gt;?`~" 
+                        TargetControlID="txtIngredient">
+                    </asp:FilteredTextBoxExtender>
+                    <asp:RequiredFieldValidator ID="rfvAddIngredient" runat="server" 
+                        ControlToValidate="txtIngredient" Display="Dynamic" 
+                        ErrorMessage="Name is required" ForeColor="Red" 
+                        ValidationGroup="vgAddIngredient">*</asp:RequiredFieldValidator>
+                    <br />
+                    <br />
+                    <asp:Label ID="lblAddIngredientDescriptino" runat="server" Text="Description:"></asp:Label>
+                    <asp:TextBox ID="txtIngredientComments" runat="server" Height="46px" 
+                        MaxLength="200" TextMode="MultiLine"></asp:TextBox>
+                    <asp:FilteredTextBoxExtender ID="txtIngredientComments_FilteredTextBoxExtender" 
+                        runat="server" Enabled="True" FilterMode="InvalidChars" 
+                        InvalidChars="!@#$%^&amp;*()_+-=[]{}\|;:'&quot;/.,&lt;&gt;?`~" 
+                        TargetControlID="txtIngredientComments">
+                    </asp:FilteredTextBoxExtender>
+                    <br />
+                    <asp:Button ID="btnAddListItemIngredient" runat="server" 
+                        onclick="btnAddListItemIngredient_Click1" Text="Add New Ingredient" 
+                        ValidationGroup="vgAddIngredient" />
+                    <asp:Button ID="btnAddIngredientCancel" runat="server" 
+                        onclick="btnAddIngredientCancel_Click" Text="Cancel" Visible="False" />
+                    <asp:ValidationSummary ID="vsAddNewIngredient" runat="server" ForeColor="Red" 
+                        ValidationGroup="vgAddIngredient" />
+                </td>
+                <td>
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td style="width: 286px">
+                    <asp:Label ID="lblIngredientInsert" runat="server" ForeColor="Red" 
+                        Visible="False"></asp:Label>
+                </td>
+                <td>
+                    &nbsp;</td>
+            </tr>
         </table>
     </asp:View>
     <asp:View ID="manageCatView" runat="server">
@@ -105,6 +160,10 @@ FROM MenuItemIngredient INNER JOIN Ingredient ON MenuItemIngredient.IngredientID
     <tr>
     
         <td style="width: 248px">
+          
+            <asp:Label ID="lblCurrentCategories" runat="server" Font-Bold="True" 
+                Text="Current Categories"></asp:Label>
+            <br />
           
             <asp:DropDownList ID="ddlCategory" runat="server" >
              
@@ -131,6 +190,55 @@ FROM MenuItemIngredient INNER JOIN Ingredient ON MenuItemIngredient.IngredientID
             <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" 
                 ValidationGroup="vgAddCategory" />
           
+            <br />
+            <br />
+            <asp:Label ID="lblEditCategories" runat="server" Font-Bold="True" 
+                Text="Edit Categories"></asp:Label>
+            <asp:GridView ID="gvEditCategories" runat="server" AllowPaging="True" 
+                AllowSorting="True" AutoGenerateColumns="False" 
+                DataKeyNames="FoodDrinkCategoryID" DataSourceID="ldsCategories" PageSize="5">
+                <Columns>
+                    <asp:BoundField DataField="FoodDrinkCategoryID" HeaderText="ID" 
+                        InsertVisible="False" ReadOnly="True" SortExpression="FoodDrinkCategoryID" />
+                    <asp:TemplateField HeaderText="Name" SortExpression="FoodDrinkCategoryName">
+                        <EditItemTemplate>
+                            <asp:TextBox ID="txtEditCategories" runat="server" 
+                                Text='<%# Bind("FoodDrinkCategoryName") %>'></asp:TextBox>
+                            <asp:FilteredTextBoxExtender ID="txtEditCategories_FilteredTextBoxExtender" 
+                                runat="server" Enabled="True" FilterMode="InvalidChars" 
+                                InvalidChars="!~`@#$%^&amp;*-_=+[{]}\|';:&lt;&gt;?" 
+                                TargetControlID="txtEditCategories">
+                            </asp:FilteredTextBoxExtender>
+                            <asp:RequiredFieldValidator ID="rfvEditCategories" runat="server" 
+                                ControlToValidate="txtEditCategories" Display="Dynamic" 
+                                ErrorMessage="Name is required" ForeColor="Red" ValidationGroup="vgcategories">*</asp:RequiredFieldValidator>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label1" runat="server" 
+                                Text='<%# Bind("FoodDrinkCategoryName") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Type" SortExpression="FoodDrinkCategoryTypeID">
+                        <EditItemTemplate>
+                            <asp:Label ID="Label3" runat="server" 
+                                Text='<%# Eval("FoodDrinkCategoryTypeID") %>'></asp:Label>
+                        </EditItemTemplate>
+                        <ItemTemplate>
+                            <asp:Label ID="Label2" runat="server" 
+                                Text='<%# Bind("FoodDrinkCategoryTypeID") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:CommandField ButtonType="Button" ShowEditButton="True" 
+                        ValidationGroup="vgcategories" />
+                </Columns>
+            </asp:GridView>
+            <asp:ValidationSummary ID="vsCategories" runat="server" ForeColor="Red" 
+                ValidationGroup="vgcategories" />
+            <asp:LinqDataSource ID="ldsCategories" runat="server" 
+                ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
+                EnableUpdate="True" EntityTypeName="" TableName="FoodDrinkCategories">
+            </asp:LinqDataSource>
+          
         </td>
     </tr>
 
@@ -143,7 +251,7 @@ FROM MenuItemIngredient INNER JOIN Ingredient ON MenuItemIngredient.IngredientID
 
     <!--Begin View ActiveViewIndex[1]-->
     <asp:View ID="manageMenuItemsView" runat="server">
-        &nbsp;&nbsp;<asp:DropDownList ID="ddlChooseItem" runat="server" 
+        <strong>Choose a category type:&nbsp;</strong>&nbsp;<asp:DropDownList ID="ddlChooseItem" runat="server" 
             AutoPostBack="True" onselectedindexchanged="ddlChooseItem_SelectedIndexChanged">
             <asp:ListItem>Beverages</asp:ListItem>
             <asp:ListItem>Menu Items</asp:ListItem>
@@ -151,7 +259,8 @@ FROM MenuItemIngredient INNER JOIN Ingredient ON MenuItemIngredient.IngredientID
         </asp:DropDownList>
         <br />
         <br />
-        <asp:Label ID="lblCategory" runat="server" Text="Choose a category:"></asp:Label>
+        <asp:Label ID="lblCategory" runat="server" Text="Choose a category:" 
+            style="font-weight: 700"></asp:Label>
         &nbsp;
         <asp:DropDownList ID="ddlAddGetCategory" runat="server" AutoPostBack="True" 
             onselectedindexchanged="ddlAddGetCategory_SelectedIndexChanged">
@@ -288,7 +397,7 @@ Food"
                     <asp:TextBox ID="txtAddPrice" runat="server" Visible="False" MaxLength="7"></asp:TextBox>
                     <asp:FilteredTextBoxExtender ID="txtAddPrice_FilteredTextBoxExtender" 
                         runat="server" Enabled="True" TargetControlID="txtAddPrice" 
-                        ValidChars="1234567890.">
+                        ValidChars="1234567890.-">
                     </asp:FilteredTextBoxExtender>
                     <asp:RequiredFieldValidator ID="rfvMenuItemPrice" runat="server" 
                         ControlToValidate="txtAddPrice" ErrorMessage="Price is required" 
@@ -311,7 +420,7 @@ Food"
             </tr>
         </table>
         <asp:ValidationSummary ID="ValidationSummary2" runat="server" 
-            ValidationGroup="MenuItem" />
+            ValidationGroup="MenuItem" ForeColor="Red" />
         <br />
         <br />
     
@@ -321,15 +430,16 @@ Food"
     <asp:View ID="createPurchaseView" runat="server">
      <table class="style4">
     <tr>
-        <td style="width: 144px">
-            <asp:DropDownList ID="ddlChooseItemForPurchase" runat="server" 
-                AutoPostBack="True" 
+        <td style="width: 144px; height: 54px;">
+            <strong>Choose Category Type:<asp:DropDownList ID="ddlChooseItemForPurchase" 
+                runat="server" AutoPostBack="True" 
                 onselectedindexchanged="ddlChooseItemForPurchase_SelectedIndexChanged">
                 <asp:ListItem>Beverages</asp:ListItem>
                 <asp:ListItem>Menu Items</asp:ListItem>
             </asp:DropDownList>
+            </strong>
         </td>
-        <td style="width: 312px">
+        <td style="width: 312px; height: 54px;">
             &nbsp;</td>
     </tr>
          <tr>
@@ -339,35 +449,15 @@ Food"
              <td style="width: 312px">
                  <asp:DropDownList ID="ddlIngredientPurchase" runat="server">
                  </asp:DropDownList>
-                 <asp:Label ID="lblAddIngredient" runat="server" Text="Name:" Visible="False"></asp:Label>
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <asp:TextBox ID="txtIngredient2" runat="server" Visible="False" MaxLength="20"></asp:TextBox>
                  <br />
                  <br />
-                 <asp:Label ID="lblAddIngredientDescriptino" runat="server" Text="Description:" 
-                     Visible="False"></asp:Label>
-                 <asp:TextBox ID="txtIngredientComments" runat="server" Height="46px" 
-                     MaxLength="200" TextMode="MultiLine" Visible="False"></asp:TextBox>
-                 <asp:FilteredTextBoxExtender ID="txtIngredientComments_FilteredTextBoxExtender" 
-                     runat="server" Enabled="True" FilterMode="InvalidChars" 
-                     InvalidChars="!@#$%^&amp;*()_+-=[]{}\|;:'&quot;/.,&lt;&gt;?`~" 
-                     TargetControlID="txtIngredientComments">
-                 </asp:FilteredTextBoxExtender>
-                 <asp:FilteredTextBoxExtender ID="txtIngredient2_FilteredTextBoxExtender" 
-                     runat="server" Enabled="True" FilterMode="InvalidChars" 
-                     InvalidChars="!@#$%^&amp;*()_+-=[]{}\|;:'&quot;/.,&lt;&gt;?`~" 
-                     TargetControlID="txtIngredient2">
-                 </asp:FilteredTextBoxExtender>
-                 <asp:Button ID="btnAddListItemIngredient" runat="server" 
-                     onclick="btnAddListItemIngredient_Click1" Text="Add New Ingredient" 
-                     Visible="False" />
-                 <asp:Button ID="btnAddIngredientCancel" runat="server" 
-                     onclick="btnAddIngredientCancel_Click" Text="Cancel" Visible="False" />
+                 <br />
              </td>
          </tr>
     <tr>
         <td style="width: 144px">
-            Purchase Price:</td>
+            <asp:Label ID="lblPrice" runat="server" Text="Purchase Price:"></asp:Label>
+        </td>
         <td style="width: 312px">
             <asp:TextBox ID="txtPrice" runat="server" Width="94px" MaxLength="7"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvAddIngredientPurchasePrice" runat="server" 
@@ -381,7 +471,8 @@ Food"
     </tr>
     <tr>
         <td style="width: 144px">
-            Qty:</td>
+            <asp:Label ID="lblQty" runat="server" Text="Qty:"></asp:Label>
+        </td>
         <td style="width: 312px">
             <asp:TextBox ID="txtQty" runat="server" Width="96px" MaxLength="4"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rfvAddIngredientQty" runat="server" 
@@ -401,7 +492,8 @@ Food"
         </td>
         <td style="width: 312px">
             &nbsp;<asp:Button ID="btnSubmitPurchase" runat="server" Enabled="False" 
-                onclick="btnSubmitPurchase_Click" Text="Submit Purchase" Width="118px" />
+                onclick="btnSubmitPurchase_Click" Text="Submit Purchase" Width="118px" 
+                Visible="False" />
         </td>
         <td style="width: 248px">
             &nbsp;</td>
@@ -409,7 +501,8 @@ Food"
          <tr>
              <td style="width: 144px">
                  <asp:Button ID="btnClear" runat="server" Enabled="False" 
-                     onclick="btnClearPurchase" Text="Clear Purchase" Width="107px" />
+                     onclick="btnClearPurchase" Text="Clear Purchase" Width="107px" 
+                     Visible="False" />
              </td>
              <td style="width: 312px">
                  &nbsp;</td>
@@ -418,7 +511,7 @@ Food"
          </tr>
 </table>
         <asp:ValidationSummary ID="vsAddIngredient" runat="server" 
-            ValidationGroup="AddIngredient" />
+            ValidationGroup="AddIngredient" ForeColor="Red" />
         <br />
         <asp:GridView ID="gvshowIngredientPurchases" runat="server" 
             AutoGenerateColumns="False">
