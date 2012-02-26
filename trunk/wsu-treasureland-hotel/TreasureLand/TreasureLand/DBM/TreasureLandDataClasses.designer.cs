@@ -54,9 +54,6 @@ namespace TreasureLand.DBM
     partial void InsertHotelRoomType(HotelRoomType instance);
     partial void UpdateHotelRoomType(HotelRoomType instance);
     partial void DeleteHotelRoomType(HotelRoomType instance);
-    partial void InsertIngredient(Ingredient instance);
-    partial void UpdateIngredient(Ingredient instance);
-    partial void DeleteIngredient(Ingredient instance);
     partial void InsertIngredientPurchase(IngredientPurchase instance);
     partial void UpdateIngredientPurchase(IngredientPurchase instance);
     partial void DeleteIngredientPurchase(IngredientPurchase instance);
@@ -117,10 +114,13 @@ namespace TreasureLand.DBM
     partial void InsertRoom(Room instance);
     partial void UpdateRoom(Room instance);
     partial void DeleteRoom(Room instance);
+    partial void InsertIngredient(Ingredient instance);
+    partial void UpdateIngredient(Ingredient instance);
+    partial void DeleteIngredient(Ingredient instance);
     #endregion
 		
 		public TreasureLandDataClassesDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TreasurelandDB"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TreasureLandDBM"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -210,14 +210,6 @@ namespace TreasureLand.DBM
 			get
 			{
 				return this.GetTable<HotelRoomType>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Ingredient> Ingredients
-		{
-			get
-			{
-				return this.GetTable<Ingredient>();
 			}
 		}
 		
@@ -378,6 +370,14 @@ namespace TreasureLand.DBM
 			get
 			{
 				return this.GetTable<Room>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Ingredient> Ingredients
+		{
+			get
+			{
+				return this.GetTable<Ingredient>();
 			}
 		}
 	}
@@ -2280,148 +2280,6 @@ namespace TreasureLand.DBM
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ingredient")]
-	public partial class Ingredient : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _IngredientID;
-		
-		private string _IngredientName;
-		
-		private EntitySet<IngredientPurchaseHistory> _IngredientPurchaseHistories;
-		
-		private EntitySet<MenuItemIngredient> _MenuItemIngredients;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIngredientIDChanging(short value);
-    partial void OnIngredientIDChanged();
-    partial void OnIngredientNameChanging(string value);
-    partial void OnIngredientNameChanged();
-    #endregion
-		
-		public Ingredient()
-		{
-			this._IngredientPurchaseHistories = new EntitySet<IngredientPurchaseHistory>(new Action<IngredientPurchaseHistory>(this.attach_IngredientPurchaseHistories), new Action<IngredientPurchaseHistory>(this.detach_IngredientPurchaseHistories));
-			this._MenuItemIngredients = new EntitySet<MenuItemIngredient>(new Action<MenuItemIngredient>(this.attach_MenuItemIngredients), new Action<MenuItemIngredient>(this.detach_MenuItemIngredients));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public short IngredientID
-		{
-			get
-			{
-				return this._IngredientID;
-			}
-			set
-			{
-				if ((this._IngredientID != value))
-				{
-					this.OnIngredientIDChanging(value);
-					this.SendPropertyChanging();
-					this._IngredientID = value;
-					this.SendPropertyChanged("IngredientID");
-					this.OnIngredientIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientName", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string IngredientName
-		{
-			get
-			{
-				return this._IngredientName;
-			}
-			set
-			{
-				if ((this._IngredientName != value))
-				{
-					this.OnIngredientNameChanging(value);
-					this.SendPropertyChanging();
-					this._IngredientName = value;
-					this.SendPropertyChanged("IngredientName");
-					this.OnIngredientNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_IngredientPurchaseHistory", Storage="_IngredientPurchaseHistories", ThisKey="IngredientID", OtherKey="IngredientID")]
-		public EntitySet<IngredientPurchaseHistory> IngredientPurchaseHistories
-		{
-			get
-			{
-				return this._IngredientPurchaseHistories;
-			}
-			set
-			{
-				this._IngredientPurchaseHistories.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_MenuItemIngredient", Storage="_MenuItemIngredients", ThisKey="IngredientID", OtherKey="IngredientID")]
-		public EntitySet<MenuItemIngredient> MenuItemIngredients
-		{
-			get
-			{
-				return this._MenuItemIngredients;
-			}
-			set
-			{
-				this._MenuItemIngredients.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_IngredientPurchaseHistories(IngredientPurchaseHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.Ingredient = this;
-		}
-		
-		private void detach_IngredientPurchaseHistories(IngredientPurchaseHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.Ingredient = null;
-		}
-		
-		private void attach_MenuItemIngredients(MenuItemIngredient entity)
-		{
-			this.SendPropertyChanging();
-			entity.Ingredient = this;
-		}
-		
-		private void detach_MenuItemIngredients(MenuItemIngredient entity)
-		{
-			this.SendPropertyChanging();
-			entity.Ingredient = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.IngredientPurchase")]
 	public partial class IngredientPurchase : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2552,9 +2410,9 @@ namespace TreasureLand.DBM
 		
 		private short _IngredientPurchaseHistoryQty;
 		
-		private EntityRef<Ingredient> _Ingredient;
-		
 		private EntityRef<IngredientPurchase> _IngredientPurchase;
+		
+		private EntityRef<Ingredient> _Ingredient;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2574,8 +2432,8 @@ namespace TreasureLand.DBM
 		
 		public IngredientPurchaseHistory()
 		{
-			this._Ingredient = default(EntityRef<Ingredient>);
 			this._IngredientPurchase = default(EntityRef<IngredientPurchase>);
+			this._Ingredient = default(EntityRef<Ingredient>);
 			OnCreated();
 		}
 		
@@ -2687,40 +2545,6 @@ namespace TreasureLand.DBM
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_IngredientPurchaseHistory", Storage="_Ingredient", ThisKey="IngredientID", OtherKey="IngredientID", IsForeignKey=true)]
-		public Ingredient Ingredient
-		{
-			get
-			{
-				return this._Ingredient.Entity;
-			}
-			set
-			{
-				Ingredient previousValue = this._Ingredient.Entity;
-				if (((previousValue != value) 
-							|| (this._Ingredient.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Ingredient.Entity = null;
-						previousValue.IngredientPurchaseHistories.Remove(this);
-					}
-					this._Ingredient.Entity = value;
-					if ((value != null))
-					{
-						value.IngredientPurchaseHistories.Add(this);
-						this._IngredientID = value.IngredientID;
-					}
-					else
-					{
-						this._IngredientID = default(short);
-					}
-					this.SendPropertyChanged("Ingredient");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IngredientPurchase_IngredientPurchaseHistory", Storage="_IngredientPurchase", ThisKey="PurchaseID", OtherKey="PurchaseID", IsForeignKey=true)]
 		public IngredientPurchase IngredientPurchase
 		{
@@ -2751,6 +2575,40 @@ namespace TreasureLand.DBM
 						this._PurchaseID = default(short);
 					}
 					this.SendPropertyChanged("IngredientPurchase");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_IngredientPurchaseHistory", Storage="_Ingredient", ThisKey="IngredientID", OtherKey="IngredientID", IsForeignKey=true)]
+		public Ingredient Ingredient
+		{
+			get
+			{
+				return this._Ingredient.Entity;
+			}
+			set
+			{
+				Ingredient previousValue = this._Ingredient.Entity;
+				if (((previousValue != value) 
+							|| (this._Ingredient.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Ingredient.Entity = null;
+						previousValue.IngredientPurchaseHistories.Remove(this);
+					}
+					this._Ingredient.Entity = value;
+					if ((value != null))
+					{
+						value.IngredientPurchaseHistories.Add(this);
+						this._IngredientID = value.IngredientID;
+					}
+					else
+					{
+						this._IngredientID = default(short);
+					}
+					this.SendPropertyChanged("Ingredient");
 				}
 			}
 		}
@@ -3021,9 +2879,9 @@ namespace TreasureLand.DBM
 		
 		private decimal _MenuItemIngredientQty;
 		
-		private EntityRef<Ingredient> _Ingredient;
-		
 		private EntityRef<MenuItem> _MenuItem;
+		
+		private EntityRef<Ingredient> _Ingredient;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3041,8 +2899,8 @@ namespace TreasureLand.DBM
 		
 		public MenuItemIngredient()
 		{
-			this._Ingredient = default(EntityRef<Ingredient>);
 			this._MenuItem = default(EntityRef<MenuItem>);
+			this._Ingredient = default(EntityRef<Ingredient>);
 			OnCreated();
 		}
 		
@@ -3134,40 +2992,6 @@ namespace TreasureLand.DBM
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_MenuItemIngredient", Storage="_Ingredient", ThisKey="IngredientID", OtherKey="IngredientID", IsForeignKey=true)]
-		public Ingredient Ingredient
-		{
-			get
-			{
-				return this._Ingredient.Entity;
-			}
-			set
-			{
-				Ingredient previousValue = this._Ingredient.Entity;
-				if (((previousValue != value) 
-							|| (this._Ingredient.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Ingredient.Entity = null;
-						previousValue.MenuItemIngredients.Remove(this);
-					}
-					this._Ingredient.Entity = value;
-					if ((value != null))
-					{
-						value.MenuItemIngredients.Add(this);
-						this._IngredientID = value.IngredientID;
-					}
-					else
-					{
-						this._IngredientID = default(short);
-					}
-					this.SendPropertyChanged("Ingredient");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MenuItem_MenuItemIngredient", Storage="_MenuItem", ThisKey="MenuItemID", OtherKey="MenuItemID", IsForeignKey=true)]
 		public MenuItem MenuItem
 		{
@@ -3198,6 +3022,40 @@ namespace TreasureLand.DBM
 						this._MenuItemID = default(short);
 					}
 					this.SendPropertyChanged("MenuItem");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_MenuItemIngredient", Storage="_Ingredient", ThisKey="IngredientID", OtherKey="IngredientID", IsForeignKey=true)]
+		public Ingredient Ingredient
+		{
+			get
+			{
+				return this._Ingredient.Entity;
+			}
+			set
+			{
+				Ingredient previousValue = this._Ingredient.Entity;
+				if (((previousValue != value) 
+							|| (this._Ingredient.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Ingredient.Entity = null;
+						previousValue.MenuItemIngredients.Remove(this);
+					}
+					this._Ingredient.Entity = value;
+					if ((value != null))
+					{
+						value.MenuItemIngredients.Add(this);
+						this._IngredientID = value.IngredientID;
+					}
+					else
+					{
+						this._IngredientID = default(short);
+					}
+					this.SendPropertyChanged("Ingredient");
 				}
 			}
 		}
@@ -7380,6 +7238,172 @@ namespace TreasureLand.DBM
 		{
 			this.SendPropertyChanging();
 			entity.Room = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Ingredient")]
+	public partial class Ingredient : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _IngredientID;
+		
+		private string _IngredientName;
+		
+		private string _IngredientDescription;
+		
+		private EntitySet<IngredientPurchaseHistory> _IngredientPurchaseHistories;
+		
+		private EntitySet<MenuItemIngredient> _MenuItemIngredients;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIngredientIDChanging(short value);
+    partial void OnIngredientIDChanged();
+    partial void OnIngredientNameChanging(string value);
+    partial void OnIngredientNameChanged();
+    partial void OnIngredientDescriptionChanging(string value);
+    partial void OnIngredientDescriptionChanged();
+    #endregion
+		
+		public Ingredient()
+		{
+			this._IngredientPurchaseHistories = new EntitySet<IngredientPurchaseHistory>(new Action<IngredientPurchaseHistory>(this.attach_IngredientPurchaseHistories), new Action<IngredientPurchaseHistory>(this.detach_IngredientPurchaseHistories));
+			this._MenuItemIngredients = new EntitySet<MenuItemIngredient>(new Action<MenuItemIngredient>(this.attach_MenuItemIngredients), new Action<MenuItemIngredient>(this.detach_MenuItemIngredients));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public short IngredientID
+		{
+			get
+			{
+				return this._IngredientID;
+			}
+			set
+			{
+				if ((this._IngredientID != value))
+				{
+					this.OnIngredientIDChanging(value);
+					this.SendPropertyChanging();
+					this._IngredientID = value;
+					this.SendPropertyChanged("IngredientID");
+					this.OnIngredientIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientName", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
+		public string IngredientName
+		{
+			get
+			{
+				return this._IngredientName;
+			}
+			set
+			{
+				if ((this._IngredientName != value))
+				{
+					this.OnIngredientNameChanging(value);
+					this.SendPropertyChanging();
+					this._IngredientName = value;
+					this.SendPropertyChanged("IngredientName");
+					this.OnIngredientNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IngredientDescription", DbType="VarChar(MAX)")]
+		public string IngredientDescription
+		{
+			get
+			{
+				return this._IngredientDescription;
+			}
+			set
+			{
+				if ((this._IngredientDescription != value))
+				{
+					this.OnIngredientDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._IngredientDescription = value;
+					this.SendPropertyChanged("IngredientDescription");
+					this.OnIngredientDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_IngredientPurchaseHistory", Storage="_IngredientPurchaseHistories", ThisKey="IngredientID", OtherKey="IngredientID")]
+		public EntitySet<IngredientPurchaseHistory> IngredientPurchaseHistories
+		{
+			get
+			{
+				return this._IngredientPurchaseHistories;
+			}
+			set
+			{
+				this._IngredientPurchaseHistories.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Ingredient_MenuItemIngredient", Storage="_MenuItemIngredients", ThisKey="IngredientID", OtherKey="IngredientID")]
+		public EntitySet<MenuItemIngredient> MenuItemIngredients
+		{
+			get
+			{
+				return this._MenuItemIngredients;
+			}
+			set
+			{
+				this._MenuItemIngredients.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_IngredientPurchaseHistories(IngredientPurchaseHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ingredient = this;
+		}
+		
+		private void detach_IngredientPurchaseHistories(IngredientPurchaseHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ingredient = null;
+		}
+		
+		private void attach_MenuItemIngredients(MenuItemIngredient entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ingredient = this;
+		}
+		
+		private void detach_MenuItemIngredients(MenuItemIngredient entity)
+		{
+			this.SendPropertyChanging();
+			entity.Ingredient = null;
 		}
 	}
 }
