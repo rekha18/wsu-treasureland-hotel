@@ -20,39 +20,39 @@
     <table class="style4">
         <tr>
             <td align="center" class="style6"  height="35" valign="top">
-                <asp:Button ID="btnHome" runat="server" Text="Home" Width="125px" 
+                <asp:Button ID="btnHome" runat="server" Text="Home" Width="134px" 
                     onclick="btnHome_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
-                <asp:Button ID="btnReports" runat="server" Text="Reports" Width="125px" 
+                <asp:Button ID="btnReports" runat="server" Text="Reports" Width="134px" 
                     onclick="btnReports_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
                 <asp:Button ID="btnManageServicesFees" runat="server" 
-                    Text="Manage Services" Width="125px" 
+                    Text="Manage Services" Width="134px" 
                     onclick="btnManageBillingCategories_Click" UseSubmitBehavior="False"/>
                 <br />
                 <br />
                 <asp:Button ID="btnManageDiscounts" runat="server" Text="Manage Discounts" 
-                    Width="125px" onclick="btnManageDiscounts_Click" 
+                    Width="134px" onclick="btnManageDiscounts_Click" 
                     UseSubmitBehavior="False" />
                 <br />
                 <br />
                 <asp:Button ID="btnManageRooms" runat="server" Text="Manage Rooms" 
-                    Width="125px" onclick="btnManageRooms_Click" UseSubmitBehavior="False" />
+                    Width="134px" onclick="btnManageRooms_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
-                <asp:Button ID="btnManageRoomTypes" runat="server" Text="Manage Rates" Width="125px" 
+                <asp:Button ID="btnManageRoomTypes" runat="server" Text="Manage Rates" Width="134px" 
                 onclick="btnManageRoomTypes_Click" UseSubmitBehavior="False"/>
                 <br />
                 <br />
                 <asp:Button ID="btnManageStatuses" runat="server" Text="Manage Statuses" 
-                    Width="125px" onclick="btnManageStatuses_Click" 
+                    Width="134px" onclick="btnManageStatuses_Click" 
                     UseSubmitBehavior="False" />
                 <br />
                 <br />
                 <asp:Button ID="btnManageUsers" runat="server" Text="Manage Users" 
-                    Width="125px" onclick="btnManageUsers_Click" UseSubmitBehavior="False" />
+                    Width="134px" onclick="btnManageUsers_Click" UseSubmitBehavior="False" />
                 
                 <br />
                 <br />
@@ -63,7 +63,7 @@
                 <br />
                 <br />
                 <asp:Button ID="btnSwitchRoles" runat="server" Text="Switch Roles" 
-                    Width="125px" PostBackUrl="~/LoginRedirect.aspx" Font-Bold="True" 
+                    Width="134px" PostBackUrl="~/LoginRedirect.aspx" Font-Bold="True" 
                     UseSubmitBehavior="False"/>
                 
             </td>
