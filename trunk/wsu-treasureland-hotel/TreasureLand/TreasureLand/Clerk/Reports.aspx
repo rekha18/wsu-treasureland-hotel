@@ -41,6 +41,8 @@
         ValidationGroup="vgDate" />
     <asp:ValidationSummary ID="vsDates" runat="server" ForeColor="Red" 
         ValidationGroup="vgDate" />
+    <asp:Label ID="lblPrice" runat="server" Font-Bold="True" 
+        Text="Select Order to View:"></asp:Label>
     <br />
     <asp:DropDownList ID="ddlTransactions" runat="server" Visible="False">
     </asp:DropDownList>
