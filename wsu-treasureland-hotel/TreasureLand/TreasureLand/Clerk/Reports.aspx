@@ -7,9 +7,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
         </p> 
-    <asp:Label ID="lblChooseDate" runat="server" Text="ChooseDates:"></asp:Label>
+    <asp:Label ID="lblChooseDate" runat="server" Text="ChooseDates:" 
+        style="font-weight: 700"></asp:Label>
     <br />
-    <asp:Label ID="lblStartDate" runat="server" Text="Begin Date:"></asp:Label>
+    <br />
+    <asp:Label ID="lblStartDate" runat="server" Text="Begin Date:" 
+        style="font-weight: 700"></asp:Label>
     <asp:TextBox ID="txtBeginDate" runat="server"></asp:TextBox>
     <asp:CalendarExtender ID="txtBeginDate_CalendarExtender" runat="server" 
         Enabled="True" TargetControlID="txtBeginDate">
@@ -22,7 +25,8 @@
         ErrorMessage="Begin Date must be a date" ForeColor="Red" 
         Operator="DataTypeCheck" Type="Date" ValidationGroup="vgDate">*</asp:CompareValidator>
     &nbsp;
-    <asp:Label ID="lblEndDate" runat="server" Text="End Date:"></asp:Label>
+    <asp:Label ID="lblEndDate" runat="server" Text="End Date:" 
+        style="font-weight: 700"></asp:Label>
 &nbsp;<asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>
     <asp:RequiredFieldValidator ID="rfvEndDate" runat="server" 
         ControlToValidate="txtEndDate" Display="Dynamic" 
