@@ -166,9 +166,9 @@ namespace TreasureLand.Clerk
                 }
                 else
                 {
-                    btnAddService.Enabled = true;
-                    
-                    btnGoToCheckOut.Enabled = true;                }
+                    btnAddService.Enabled = true;                   
+                    btnGoToCheckOut.Enabled = true; 
+                }
 
                 print();
             }
@@ -308,8 +308,7 @@ namespace TreasureLand.Clerk
             if(row.Cells[2].Text!="food &amp; drink purchase")
             {
             try
-            {
-                
+            {                
                 int transactionID = Convert.ToInt32((row.FindControl("lblTransactionID") as Label).Text);
                 App_Code.GuestDB.deleteService(transactionID);
 
@@ -547,6 +546,11 @@ namespace TreasureLand.Clerk
             }
         }
 
+
+        /// <summary>
+        /// Opens the page in a new printer friendly window.  Saves all the information from the current
+        /// page in a session to be retrieved on the print page
+        /// </summary>
         private void print()
         {
             if (Session["GuestInfo"] != null)
