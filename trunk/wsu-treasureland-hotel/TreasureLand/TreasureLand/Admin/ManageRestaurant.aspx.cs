@@ -229,7 +229,8 @@ namespace TreasureLand.Admin
         {
             //Change View Over to ManageCategories View.
             //Set ManageCategoryView to visible
-            containerView.ActiveViewIndex = 2;   
+            containerView.ActiveViewIndex = 2;
+            lblIngredientInsert.Visible = false;
         }
 
         /// <summary>
@@ -243,7 +244,9 @@ namespace TreasureLand.Admin
             ddlIngredientPurchase.DataSource = getAllDrinks();
             ddlIngredientPurchase.DataValueField = "MenuItemID";
             ddlIngredientPurchase.DataTextField = "MenuItemName";
+            ddlIngredientPurchase.Items.Insert(0,new ListItem("Select an item"));
             ddlIngredientPurchase.DataBind();
+            lblIngredientInsert.Visible = false;
         }
 
 
@@ -252,8 +255,8 @@ namespace TreasureLand.Admin
         /// </summary>
         protected void btnManageCategory_Click(object sender, EventArgs e)
         {
-            containerView.ActiveViewIndex = 1; 
-
+            containerView.ActiveViewIndex = 1;
+            lblIngredientInsert.Visible = false;
         }
 
         /// <summary>
@@ -345,10 +348,11 @@ namespace TreasureLand.Admin
             btnSubmitPurchase.Enabled = false;
             gvshowIngredientPurchases.DataSource = null;
             gvshowIngredientPurchases.DataBind();
-            btnSubmitPurchase.Enabled = false;
+            btnSubmitPurchase.Visible = false;
             btnManageCategories.Enabled = true;
             btnManageMenuItems.Enabled = true;
             btnEnterPurchase.Enabled = true;
+            btnClear.Visible = false;
         }
 
         /// <summary>
@@ -356,111 +360,101 @@ namespace TreasureLand.Admin
         /// </summary>
         protected void btnAddItemToPurchase_Click(object sender, EventArgs e)
         {
-
-            if (ddlChooseItemForPurchase.SelectedIndex == 0)
+            if (ddlIngredientPurchase.SelectedIndex>-1)
             {
-                if (Session["drinklist"] == null)
+
+
+                if (ddlChooseItemForPurchase.SelectedIndex == 0)
                 {
-                    drinkPurchase = new List<IngredientPurchaseHistory>();
+                    if (Session["drinklist"] == null)
+                    {
+                        drinkPurchase = new List<IngredientPurchaseHistory>();
+                    }
+                    else
+                    {
+                        drinkPurchase = (List<IngredientPurchaseHistory>)Session["drinklist"];
+                    }
+
+                    IngredientPurchaseHistory dph = new IngredientPurchaseHistory();//This is the purchase history object
+
+                    dph.IngredientPurchaseHistoryPrice = System.Convert.ToDecimal(txtPrice.Text);//add price to iph = convert string to decimal
+                    dph.IngredientPurchaseHistoryQty = short.Parse(txtQty.Text);//add qty = convert to short/int16
+
+                    dph.IngredientID = Convert.ToSByte(ddlIngredientPurchase.SelectedValue);
+
+                    drinkPurchase.Add(dph);
+                    gvshowIngredientPurchases.Visible = false;
+                    Session["drinklist"] = drinkPurchase;
+
                 }
                 else
                 {
-                    drinkPurchase = (List<IngredientPurchaseHistory>)Session["drinklist"];
+                    if (Session["ingredientlist"] == null)
+                    {
+                        purchase = new List<IngredientPurchaseHistory>();
+                    }
+                    else
+                    {
+                        purchase = (List<IngredientPurchaseHistory>)Session["ingredientlist"];
+                    }
+
+                    IngredientPurchaseHistory iph = new IngredientPurchaseHistory();//This is the purchase history object
+
+                    iph.IngredientPurchaseHistoryPrice = System.Convert.ToDecimal(txtPrice.Text);//add price to iph = convert string to decimal
+                    iph.IngredientPurchaseHistoryQty = short.Parse(txtQty.Text);//add qty = convert to short/int16
+                    iph.IngredientID = Convert.ToSByte(ddlIngredientPurchase.SelectedValue);
+
+                    purchase.Add(iph);
+                    gvshowIngredientPurchases.DataSource = purchase;
+                    gvshowIngredientPurchases.DataBind();
+
+                    gvshowIngredientPurchases.Visible = true;
+                    Session["ingredientlist"] = purchase;
                 }
-
-                IngredientPurchaseHistory dph = new IngredientPurchaseHistory();//This is the purchase history object
-
-                dph.IngredientPurchaseHistoryPrice = System.Convert.ToDecimal(txtPrice.Text);//add price to iph = convert string to decimal
-                dph.IngredientPurchaseHistoryQty = short.Parse(txtQty.Text);//add qty = convert to short/int16
-
-                dph.IngredientID = Convert.ToSByte(ddlIngredientPurchase.SelectedValue);
-
-                drinkPurchase.Add(dph);
-                gvshowIngredientPurchases.Visible = false;
-                Session["drinklist"] = drinkPurchase;
-
+                btnSubmitPurchase.Visible = true;
+                //reset fields for new item to be added
+                txtQty.Text = "";
+                txtPrice.Text = "";
+                btnManageCategories.Enabled = false;
+                btnManageMenuItems.Enabled = false;
+                btnEnterPurchase.Enabled = false;
+                btnClear.Visible = true;
+                
             }
-            else
-            {
-                if (Session["ingredientlist"] == null)
-                {
-                    purchase = new List<IngredientPurchaseHistory>();
-                }
-                else
-                {
-                    purchase = (List<IngredientPurchaseHistory>)Session["ingredientlist"];
-                }
-
-                IngredientPurchaseHistory iph = new IngredientPurchaseHistory();//This is the purchase history object
-
-                iph.IngredientPurchaseHistoryPrice = System.Convert.ToDecimal(txtPrice.Text);//add price to iph = convert string to decimal
-                iph.IngredientPurchaseHistoryQty = short.Parse(txtQty.Text);//add qty = convert to short/int16
-                iph.IngredientID = Convert.ToSByte(ddlIngredientPurchase.SelectedValue);
-                                
-                purchase.Add(iph);
-                gvshowIngredientPurchases.DataSource = purchase;
-                gvshowIngredientPurchases.DataBind();
-
-                gvshowIngredientPurchases.Visible = true;
-                Session["ingredientlist"] = purchase;
-            }
-            btnSubmitPurchase.Enabled = true;
-            //reset fields for new item to be added
-            txtQty.Text = "";
-            txtPrice.Text = "";
-            btnManageCategories.Enabled = false;
-            btnManageMenuItems.Enabled = false;
-            btnEnterPurchase.Enabled = false;
-            btnClear.Enabled = true;
         }
-
 
         protected void btnAddListItemIngredient_Click1(object sender, EventArgs e)
         {
-            if (txtIngredient2.Visible == false)
+
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+
+            var ing = from fdc in db.Ingredients.Where(fdc => fdc.IngredientName == txtIngredient.Text)
+                      select fdc;
+
+            //checks to see if the item is in the database
+            if (ing.Any())
             {
-                txtIngredient2.Visible = true;
-                ddlIngredientPurchase.Visible = false;
-                lblAddIngredientDescriptino.Visible = true;
-                lblAddIngredient.Visible = true;
-                txtIngredientComments.Visible = true;
-                btnAddItemToPurchase.Enabled = false;
-                txtPrice.Enabled = false;
-                txtQty.Enabled = false;
-                disableButtons(false);
-                ddlChooseItemForPurchase.Enabled = false;
-                btnAddIngredientCancel.Visible = true;
+                //If something exists, then don't add
+                //print error message
+                lblIngredientInsert.Text = "Ingredient Is Already In the Hotel Restaurant";
+                lblIngredientInsert.Visible = true;
+                //reset txtIngredient to " "
+                txtCategory.Text = "";
             }
             else
             {
                 //add ingredient to database
-                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
                 Ingredient addIngredient = new Ingredient();
-                addIngredient.IngredientName = txtIngredient2.Text;
+                addIngredient.IngredientName = txtIngredient.Text;
                 addIngredient.IngredientDescription = txtIngredientComments.Text;
                 db.Ingredients.InsertOnSubmit(addIngredient);
                 db.SubmitChanges();
-
-                ddlIngredientPurchase.DataSource = getAllIngredients();
-                ddlIngredientPurchase.DataValueField = "IngredientID";
-                ddlIngredientPurchase.DataTextField = "IngredientName";
-                ddlIngredientPurchase.DataBind();
+                lblIngredientInsert.Text = "Insert Successful";
+                lblIngredientInsert.Visible = true;
+                ddlIngredients.DataBind();
                 //make text box invisible again.
-                txtIngredient2.Visible = false;
-                ddlIngredientPurchase.Visible = true;
-                txtIngredientComments.Text = "";
-                txtIngredient2.Text = "";
-                lblAddIngredientDescriptino.Visible = false;
-                lblAddIngredient.Visible = false;
-                txtIngredientComments.Visible = false;
-                disableButtons(true);
-                btnAddItemToPurchase.Enabled = true;
-                btnAddIngredientCancel.Visible = false;
-                ddlChooseItemForPurchase.Enabled = true;
-                txtPrice.Enabled = true;
-                txtQty.Enabled = true;
+                //make text box 
             }
-            //make text box 
         }
 
 
@@ -528,6 +522,7 @@ namespace TreasureLand.Admin
             }
 
             disableButtons(true);
+            gvMenuItems.DataBind();
         }
 
         /// <summary>
@@ -614,7 +609,7 @@ namespace TreasureLand.Admin
         {
             if (ddlChooseItemForPurchase.SelectedIndex == 0)
             {
-                lblPurchaseItemName.Text = "Beverage Name";
+                lblPurchaseItemName.Text = "Select Beverage";
                 btnAddListItemIngredient.Visible = false;
                 ddlIngredientPurchase.DataSource = getAllDrinks();
                 ddlIngredientPurchase.DataValueField = "MenuItemID";
@@ -625,7 +620,7 @@ namespace TreasureLand.Admin
             }
             else
             {
-                lblPurchaseItemName.Text = "Ingredient Name";
+                lblPurchaseItemName.Text = "Select Ingredient:";
                 btnAddListItemIngredient.Visible = true;
                 ddlIngredientPurchase.DataSource = getAllIngredients();
                 ddlIngredientPurchase.DataValueField = "IngredientID";
@@ -693,24 +688,29 @@ namespace TreasureLand.Admin
         protected void btnAddIngredientCancel_Click(object sender, EventArgs e)
         {
 
-            txtIngredient2.Visible = false;
+            txtIngredient.Visible = false;
             ddlIngredientPurchase.Visible = true;
             txtIngredientComments.Text = "";
-            txtIngredient2.Text = "";
+            txtIngredient.Text = "";
             lblAddIngredientDescriptino.Visible = false;
             lblAddIngredient.Visible = false;
             txtIngredientComments.Visible = false;
             disableButtons(true);
-            btnAddItemToPurchase.Enabled = true;
+            btnAddItemToPurchase.Visible = true;
             btnAddIngredientCancel.Visible = false;
             ddlChooseItemForPurchase.Enabled = true;
-            txtPrice.Enabled = true;
-            txtQty.Enabled = true;
+            txtPrice.Visible = true;
+            txtQty.Visible = true;
+            lblPrice.Visible = true;
+            lblQty.Visible = true;
+            btnIngredients.Enabled = true;
+            lblIngredientInsert.Visible = false;
         }
 
         //Adds the selected Ingredient to the selected menu item
         protected void btnAddIngredientToMenuItem_Click(object sender, EventArgs e)
         {
+            
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
             MenuItemIngredient mii = new MenuItemIngredient();
             mii.IngredientID = Convert.ToInt16(ddlIngredients.SelectedValue);
@@ -719,23 +719,28 @@ namespace TreasureLand.Admin
             db.MenuItemIngredients.InsertOnSubmit(mii);
             db.SubmitChanges();
             lbMenuItems.DataBind();
+            lblIngredientInsert.Visible = false;
         }
 
         protected void btnRemoveIngredient_Click(object sender, EventArgs e)
         {
-            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            var deleteMenuItemIngredient =
-                    from details in db.MenuItemIngredients
-                    where details.MenuItemIngredientID == Convert.ToInt16(lbMenuItems.SelectedValue)
-                    select details;
-
-            foreach (var detail in deleteMenuItemIngredient)
+            if (lbMenuItems.SelectedIndex>-1)
             {
-                db.MenuItemIngredients.DeleteOnSubmit(detail);
-            }
-            db.SubmitChanges();
-            lbMenuItems.DataBind();
 
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                var deleteMenuItemIngredient =
+                        from details in db.MenuItemIngredients
+                        where details.MenuItemIngredientID == Convert.ToInt16(lbMenuItems.SelectedValue)
+                        select details;
+
+                foreach (var detail in deleteMenuItemIngredient)
+                {
+                    db.MenuItemIngredients.DeleteOnSubmit(detail);
+                }
+                db.SubmitChanges();
+                lbMenuItems.DataBind();
+                lblIngredientInsert.Visible = false;
+            }
         }
 
         protected void btnIngredients_Click(object sender, EventArgs e)
