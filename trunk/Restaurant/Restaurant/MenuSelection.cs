@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows;
+using System.Reflection;
 
 
 /*
@@ -655,6 +656,11 @@ namespace Restaurant
 
             Button btn = new Button();
             btn.Click += new System.EventHandler(btn_remove_item_Click);
+
+            Bitmap bitmap = Restaurant.Properties.Resources.button_item_total;
+            btn.BackgroundImage = bitmap;
+            
+
             btn.Height = 36;
             btn.Width = 166;
             btn.Location = new Point(20, 4 + totalItemsPosition * 36);

@@ -88,6 +88,13 @@ namespace Restaurant.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap button_item_total {
+            get {
+                object obj = ResourceManager.GetObject("button_item_total", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap cedi {
             get {
                 object obj = ResourceManager.GetObject("cedi", resourceCulture);
