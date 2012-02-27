@@ -132,7 +132,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\background.jpg" />
-    <Content Include="Images\button.jpg" />
+    <EmbeddedResource Include="Images\button_item_total.jpg" />
+    <EmbeddedResource Include="Images\button.jpg" />
     <Content Include="Images\controls_button.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
