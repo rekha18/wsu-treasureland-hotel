@@ -30,6 +30,9 @@
                         <asp:TemplateField HeaderText="Rules" SortExpression="DiscountRules">
                             <EditItemTemplate>
                                 <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("DiscountRules") %>'></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                    ControlToValidate="TextBox2" ErrorMessage="Rules is a required field" 
+                                    ForeColor="Red" ValidationGroup="dateSummary">*</asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label2" runat="server" Text='<%# Bind("DiscountRules") %>'></asp:Label>
@@ -37,7 +40,7 @@
                         </asp:TemplateField>
                         <asp:BoundField DataField="DiscountAmount" 
                             HeaderText="Amount" SortExpression="DiscountAmount" ReadOnly="True" />
-                        <asp:CheckBoxField DataField="IsPrecentage" HeaderText="Precentage" 
+                        <asp:CheckBoxField DataField="IsPrecentage" HeaderText="Percentage" 
                             SortExpression="IsPrecentage" />
                         <asp:CommandField ButtonType="Button" ShowEditButton="True" 
                             ValidationGroup="dateSummary" />
