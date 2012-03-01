@@ -102,16 +102,23 @@ namespace Restaurant.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap CompanyLogo {
+        internal static System.Drawing.Bitmap controls_button {
             get {
-                object obj = ResourceManager.GetObject("CompanyLogo", resourceCulture);
+                object obj = ResourceManager.GetObject("controls_button", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap controls_button {
+        internal static System.Drawing.Bitmap st_martins_logo {
             get {
-                object obj = ResourceManager.GetObject("controls_button", resourceCulture);
+                object obj = ResourceManager.GetObject("st_martins_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap treasureland_logo {
+            get {
+                object obj = ResourceManager.GetObject("treasureland_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

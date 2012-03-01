@@ -74,6 +74,7 @@
             // wrapper_panel
             // 
             this.wrapper_panel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.wrapper_panel.BackColor = System.Drawing.Color.Transparent;
             this.wrapper_panel.BackgroundImage = global::Restaurant.Properties.Resources.background;
             this.wrapper_panel.Controls.Add(this.pictureBox1);
             this.wrapper_panel.Controls.Add(this.nav_panel);
@@ -90,13 +91,12 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::Restaurant.Properties.Resources.CompanyLogo;
-            this.pictureBox1.ImageLocation = "";
+            this.pictureBox1.BackgroundImage = global::Restaurant.Properties.Resources.st_martins_logo;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(661, 102);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
             // 
             // nav_panel
@@ -633,7 +633,6 @@
         private System.Windows.Forms.Button btn_cash;
         private System.Windows.Forms.Button btn_next;
         private System.Windows.Forms.Label lbl_currentPage;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lbl_totalNumberOfPages;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel_buttons;
@@ -665,6 +664,7 @@
         private System.Windows.Forms.Button btn_logOut;
         private System.Windows.Forms.Panel nav_panel;
         private System.Windows.Forms.Panel wrapper_panel;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
