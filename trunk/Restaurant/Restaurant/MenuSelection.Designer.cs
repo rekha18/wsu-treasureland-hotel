@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuSelection));
             this.wrapper_panel = new System.Windows.Forms.Panel();
-            this.btn_discount = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btn_discount = new System.Windows.Forms.Button();
             this.nav_panel_categories = new System.Windows.Forms.Panel();
             this.btn_next_categories = new System.Windows.Forms.Button();
             this.btn_previous_categories = new System.Windows.Forms.Button();
@@ -93,8 +93,8 @@
             this.wrapper_panel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.wrapper_panel.BackColor = System.Drawing.Color.Transparent;
             this.wrapper_panel.BackgroundImage = global::Restaurant.Properties.Resources.background;
-            this.wrapper_panel.Controls.Add(this.btn_discount);
             this.wrapper_panel.Controls.Add(this.pictureBox1);
+            this.wrapper_panel.Controls.Add(this.btn_discount);
             this.wrapper_panel.Controls.Add(this.nav_panel_categories);
             this.wrapper_panel.Controls.Add(this.lbl_selectedRoom);
             this.wrapper_panel.Controls.Add(this.nav_panel_items);
@@ -115,6 +115,16 @@
             this.wrapper_panel.Size = new System.Drawing.Size(1024, 768);
             this.wrapper_panel.TabIndex = 33;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::Restaurant.Properties.Resources.st_martins_logo;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(661, 102);
+            this.pictureBox1.TabIndex = 35;
+            this.pictureBox1.TabStop = false;
+            // 
             // btn_discount
             // 
             this.btn_discount.BackColor = System.Drawing.Color.Khaki;
@@ -127,18 +137,6 @@
             this.btn_discount.Text = "Discount";
             this.btn_discount.UseVisualStyleBackColor = false;
             this.btn_discount.Click += new System.EventHandler(this.btn_discount_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Image = global::Restaurant.Properties.Resources.CompanyLogo;
-            this.pictureBox1.ImageLocation = "";
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(661, 102);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
             // 
             // nav_panel_categories
             // 
@@ -813,7 +811,6 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lbl_selectedRoom;
         private System.Windows.Forms.Panel total_panel;
         private System.Windows.Forms.Button btn_submit_order;
@@ -864,5 +861,6 @@
         private System.Windows.Forms.Panel nav_panel_categories;
         private System.Windows.Forms.Panel wrapper_panel;
         private System.Windows.Forms.Button btn_discount;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

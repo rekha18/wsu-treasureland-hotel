@@ -125,13 +125,12 @@
     <None Include="Images\cedi.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\CompanyLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\background.jpg" />
+    <None Include="Images\treasureland_logo.png" />
+    <None Include="Images\st_martins_logo.png" />
     <EmbeddedResource Include="Images\button_item_total.jpg" />
     <EmbeddedResource Include="Images\button.jpg" />
     <Content Include="Images\controls_button.jpg" />

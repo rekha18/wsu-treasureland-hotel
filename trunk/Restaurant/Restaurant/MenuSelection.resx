@@ -118,34 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btn_alcoholic_drinks.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        /9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERET
-        FhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4e
-        Hh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCABIAEgDASIAAhEBAxEB/8QA
-        GAABAQADAAAAAAAAAAAAAAAAAAIDBAj/xAAmEAABAwEIAgMBAAAAAAAAAAAAAQIDMwQTFVNjcrHRkpQF
-        ESRB/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/
-        AOgoYo1hYqxsVVan8LuostniggoR7U4LAi6iy2eKC6iy2eKFgCLqLLZ4oLqLLZ4oWAIuostniguostni
-        hYAwzRRpC9UjYio1f4C56Em1eAAgoR7U4LIgoR7U4LAAAAAAAAAiehJtXgCehJtXgAIKEe1OCyIKEe1O
-        CwAAAAAAAAInoSbV4AnoSbV4ACChHtTgsiChHtTgsAAAAAAAACJ6Em1eAJ6Em1eABpRfJ2VsTGqk/wBo
-        1EX87+i8Usmv67+gAGKWTX9d/QxSya/rv6AAYpZNf139DFLJr+u/oABilk1/Xf0MUsmv67+gAIl+Tsro
-        ntRJ/tWqifnf0AAP/9k=
-</value>
-  </data>
-  <data name="btn_non_alcoholic_drinks.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        /9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERET
-        FhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4e
-        Hh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCABIAEgDASIAAhEBAxEB/8QA
-        GAABAQADAAAAAAAAAAAAAAAAAAIDBAj/xAAmEAABAwEIAgMBAAAAAAAAAAAAAQIDMwQTFVNjcrHRkpQF
-        ESRB/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/
-        AOgoYo1hYqxsVVan8LuostniggoR7U4LAi6iy2eKC6iy2eKFgCLqLLZ4oLqLLZ4oWAIuostniguostni
-        hYAwzRRpC9UjYio1f4C56Em1eAAgoR7U4LIgoR7U4LAAAAAAAAAiehJtXgCehJtXgAIKEe1OCyIKEe1O
-        CwAAAAAAAAInoSbV4AnoSbV4ACChHtTgsiChHtTgsAAAAAAAACJ6Em1eAJ6Em1eABpRfJ2VsTGqk/wBo
-        1EX87+i8Usmv67+gAGKWTX9d/QxSya/rv6AAYpZNf139DFLJr+u/oABilk1/Xf0MUsmv67+gAIl+Tsro
-        ntRJ/tWqifnf0AAP/9k=
-</value>
-  </data>
   <data name="btn_next_categories.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERET
@@ -511,6 +483,34 @@
 </value>
   </data>
   <data name="button1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        /9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERET
+        FhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4e
+        Hh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCABIAEgDASIAAhEBAxEB/8QA
+        GAABAQADAAAAAAAAAAAAAAAAAAIDBAj/xAAmEAABAwEIAgMBAAAAAAAAAAAAAQIDMwQTFVNjcrHRkpQF
+        ESRB/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/
+        AOgoYo1hYqxsVVan8LuostniggoR7U4LAi6iy2eKC6iy2eKFgCLqLLZ4oLqLLZ4oWAIuostniguostni
+        hYAwzRRpC9UjYio1f4C56Em1eAAgoR7U4LIgoR7U4LAAAAAAAAAiehJtXgCehJtXgAIKEe1OCyIKEe1O
+        CwAAAAAAAAInoSbV4AnoSbV4ACChHtTgsiChHtTgsAAAAAAAACJ6Em1eAJ6Em1eABpRfJ2VsTGqk/wBo
+        1EX87+i8Usmv67+gAGKWTX9d/QxSya/rv6AAYpZNf139DFLJr+u/oABilk1/Xf0MUsmv67+gAIl+Tsro
+        ntRJ/tWqifnf0AAP/9k=
+</value>
+  </data>
+  <data name="btn_alcoholic_drinks.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        /9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERET
+        FhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4e
+        Hh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCABIAEgDASIAAhEBAxEB/8QA
+        GAABAQADAAAAAAAAAAAAAAAAAAIDBAj/xAAmEAABAwEIAgMBAAAAAAAAAAAAAQIDMwQTFVNjcrHRkpQF
+        ESRB/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/
+        AOgoYo1hYqxsVVan8LuostniggoR7U4LAi6iy2eKC6iy2eKFgCLqLLZ4oLqLLZ4oWAIuostniguostni
+        hYAwzRRpC9UjYio1f4C56Em1eAAgoR7U4LIgoR7U4LAAAAAAAAAiehJtXgCehJtXgAIKEe1OCyIKEe1O
+        CwAAAAAAAAInoSbV4AnoSbV4ACChHtTgsiChHtTgsAAAAAAAACJ6Em1eAJ6Em1eABpRfJ2VsTGqk/wBo
+        1EX87+i8Usmv67+gAGKWTX9d/QxSya/rv6AAYpZNf139DFLJr+u/oABilk1/Xf0MUsmv67+gAIl+Tsro
+        ntRJ/tWqifnf0AAP/9k=
+</value>
+  </data>
+  <data name="btn_non_alcoholic_drinks.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERET
         FhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4e
