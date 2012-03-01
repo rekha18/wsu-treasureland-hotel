@@ -81,7 +81,7 @@
             this.wrapper_panel.Controls.Add(this.btn_logOut);
             this.wrapper_panel.Controls.Add(this.panel_buttons);
             this.wrapper_panel.Controls.Add(this.lblHeader);
-            this.wrapper_panel.Location = new System.Drawing.Point(40, 69);
+            this.wrapper_panel.Location = new System.Drawing.Point(29, 22);
             this.wrapper_panel.Margin = new System.Windows.Forms.Padding(0);
             this.wrapper_panel.Name = "wrapper_panel";
             this.wrapper_panel.Size = new System.Drawing.Size(1024, 768);
@@ -610,7 +610,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1084, 862);
+            this.ClientSize = new System.Drawing.Size(1084, 812);
             this.Controls.Add(this.wrapper_panel);
             this.MinimumSize = new System.Drawing.Size(1100, 850);
             this.Name = "RoomSelectionForm";

@@ -110,7 +110,7 @@
             this.wrapper_panel.Controls.Add(this.btn_non_alcoholic_drinks);
             this.wrapper_panel.Controls.Add(this.label3);
             this.wrapper_panel.Controls.Add(this.label4);
-            this.wrapper_panel.Location = new System.Drawing.Point(41, 67);
+            this.wrapper_panel.Location = new System.Drawing.Point(30, 21);
             this.wrapper_panel.Name = "wrapper_panel";
             this.wrapper_panel.Size = new System.Drawing.Size(1024, 768);
             this.wrapper_panel.TabIndex = 33;
@@ -789,9 +789,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1084, 862);
+            this.ClientSize = new System.Drawing.Size(1084, 812);
             this.Controls.Add(this.wrapper_panel);
-            this.MinimumSize = new System.Drawing.Size(1024, 766);
+            this.MinimumSize = new System.Drawing.Size(1100, 766);
             this.Name = "MenuSelection";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
