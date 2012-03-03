@@ -86,7 +86,7 @@
   </Table>
   <Table Name="dbo.HotelRoomType" Member="HotelRoomTypes">
     <Type Name="HotelRoomType">
-      <Column Name="HotelRoomTypeID" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HotelRoomTypeID" AutoSync="Never" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="HotelID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="RoomType" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="RoomTypeRackRate" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
