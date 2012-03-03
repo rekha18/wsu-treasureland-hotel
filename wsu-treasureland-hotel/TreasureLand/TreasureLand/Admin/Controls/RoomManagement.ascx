@@ -18,62 +18,33 @@
             OnSelectedIndexChanged="GridView_Rooms_SelectedIndexChanged" 
             ShowFooter="True" onrowediting="GridView_Rooms_RowEditing" 
             onrowupdated="GridView_Rooms_RowUpdated" 
-            onrowupdating="GridView_Rooms_RowUpdating">
+            onrowupdating="GridView_Rooms_RowUpdating" 
+            onrowdeleting="GridView_Rooms_RowDeleting">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
-                <asp:TemplateField HeaderText="Room Number" SortExpression="RoomNumbers">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox_RoomNumber" runat="server" 
-                            Text='<%# Bind("RoomNumbers") %>' MaxLength="5"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RFV_RoomNumber" runat="server" ControlToValidate="TextBox_RoomNumber" SetFocusOnError="true"
-                            ForeColor="Red">Required</asp:RequiredFieldValidator>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="Label_RoomNumber" runat="server" Text='<%# Bind("RoomNumbers") %>'></asp:Label></ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="Description" SortExpression="RoomDescription">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox_Description" runat="server" 
-                            Text='<%# Bind("RoomDescription") %>' MaxLength="200"></asp:TextBox>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("RoomDescription") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:CheckBoxField DataField="RoomSmoking" HeaderText="Non smoking" 
-                    SortExpression="RoomSmoking" />
-                <asp:TemplateField HeaderText="Bed Configuration" SortExpression="RoomBedConfiguration">
-                    <EditItemTemplate>
-                        <asp:TextBox ID="TextBox_RoomBedConfig" runat="server" 
-                            Text='<%# Bind("RoomBedConfiguration") %>' MaxLength="30"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RFV_BedConfig" runat="server" ControlToValidate="TextBox_RoomBedConfig" SetFocusOnError="true"
-                            ForeColor="Red">Required</asp:RequiredFieldValidator>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="Label_BedConfig" runat="server" Text='<%# Bind("RoomBedConfiguration") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:CheckBoxField DataField="RoomHandicap" HeaderText="Accessible" 
-                    SortExpression="RoomHandicap" />
-                <asp:TemplateField HeaderText="Status" SortExpression="RoomStatus">
-                    <EditItemTemplate>
-                        <asp:DropDownList ID="DropDownList1" runat="server" 
-                            DataSourceID="LinqDataSource_Statuses" DataTextField="Description" 
-                            DataValueField="Status" SelectedValue='<%# Bind("RoomStatus") %>'>
-                        </asp:DropDownList>
-                    </EditItemTemplate>
-                    <ItemTemplate>
-                        <asp:Label ID="Label_Status" runat="server" Text='<%# Bind("RoomStatus") %>'></asp:Label>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:CommandField ShowEditButton="True" ButtonType="Button" />
+                <asp:TemplateField HeaderText="Room Number" SortExpression="RoomNumbers"><EditItemTemplate><asp:Label ID="Lable_RoomNumbers" runat="server" 
+                            Text='<%# Bind("RoomNumbers") %>'></asp:Label></EditItemTemplate><ItemTemplate><asp:Label ID="Label_RoomNumber" runat="server" Text='<%# Bind("RoomNumbers") %>'></asp:Label></ItemTemplate></asp:TemplateField>
+                <asp:TemplateField HeaderText="Description" SortExpression="RoomDescription"><EditItemTemplate><asp:TextBox ID="TextBox_Description" runat="server" 
+                            Text='<%# Bind("RoomDescription") %>' MaxLength="200"></asp:TextBox></EditItemTemplate><ItemTemplate><asp:Label ID="Label1" runat="server" Text='<%# Bind("RoomDescription") %>'></asp:Label></ItemTemplate></asp:TemplateField>
+                <asp:TemplateField HeaderText="Bed Configuration" SortExpression="RoomBedConfiguration"><EditItemTemplate><asp:TextBox ID="TextBox_RoomBedConfig" runat="server" 
+                            Text='<%# Bind("RoomBedConfiguration") %>' MaxLength="30"></asp:TextBox><asp:RequiredFieldValidator 
+                        ID="RFV_BedConfig" runat="server" ControlToValidate="TextBox_RoomBedConfig" SetFocusOnError="true"
+                            ForeColor="Red" ErrorMessage="*">*</asp:RequiredFieldValidator></EditItemTemplate><ItemTemplate><asp:Label ID="Label_BedConfig" runat="server" Text='<%# Bind("RoomBedConfiguration") %>'></asp:Label></ItemTemplate></asp:TemplateField>
+                <asp:TemplateField HeaderText="Status" SortExpression="RoomStatus"><EditItemTemplate><asp:DropDownList ID="DropDownList1" runat="server" 
+                            DataSourceID="LinqDataSource_Statuses" DataTextField="RoomStatusDescription" 
+                            DataValueField="RoomStatus1" SelectedValue='<%# Bind("RoomStatus") %>'></asp:DropDownList></EditItemTemplate><ItemTemplate><asp:Label ID="Label_Status" runat="server" Text='<%# Bind("RoomStatus") %>'></asp:Label></ItemTemplate></asp:TemplateField>
+                <asp:CommandField ShowEditButton="True" ButtonType="Button" 
+                    ShowDeleteButton="True" />
             </Columns>
             <FooterStyle BackColor="#CCCC99" />
             <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
             <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
             <RowStyle BackColor="#F7F7DE" />
             <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#FBFBF2" />
+            <SortedAscendingHeaderStyle BackColor="#848384" />
+            <SortedDescendingCellStyle BackColor="#EAEAD3" />
+            <SortedDescendingHeaderStyle BackColor="#575357" />
             <SortedAscendingCellStyle BackColor="#FBFBF2" />
             <SortedAscendingHeaderStyle BackColor="#848384" />
             <SortedDescendingCellStyle BackColor="#EAEAD3" />
@@ -129,12 +100,12 @@
                 <td>
                     <!--
                     <asp:DropDownList ID="DropDownList_RoomStatuses" runat="server" DataSourceID="LinqDataSource_Statuses"
-                        DataTextField="Description" DataValueField="Status" 
+                        DataTextField="RoomStatusDescription" DataValueField="RoomStatus1" 
                         ValidationGroup="VG_NewRoomData">
                     </asp:DropDownList>-->
                     <asp:DropDownList ID="ddlStatus" runat="server" 
-                        DataSourceID="LinqDataSource_Statuses" DataTextField="Description" 
-                        DataValueField="Status">
+                        DataSourceID="LinqDataSource_Statuses" DataTextField="RoomStatusDescription" 
+                        DataValueField="RoomStatus1">
                     </asp:DropDownList>
                 </td>
             </tr>
@@ -189,7 +160,7 @@
         EntityTypeName="" TableName="HotelRoomTypes">
     </asp:LinqDataSource>
     <asp:LinqDataSource ID="LinqDataSource_Statuses" runat="server" ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext"
-        EntityTypeName="" Select="new (Status, Description)" TableName="RoomStatus">
+        EntityTypeName="" TableName="RoomStatus">
     </asp:LinqDataSource>
 </asp:Panel>
 <asp:Label ID="Label_StatusMsg" runat="server" ForeColor="Red" Font-Size="Large" />
