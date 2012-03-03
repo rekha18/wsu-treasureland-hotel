@@ -46,7 +46,6 @@ namespace TreasureLand.Clerk
 
                 ddlDiscounts.DataSource = discounts.ToList();
                 ddlDiscounts.DataBind();
-                ddlDiscounts.Items.Insert(0 , new ListItem("-No Discount-", "-1"));
             }
             //Changes date based on number of days changed
             lblDateTo.Text = calDateFrom.SelectedDate.Date.AddDays(Convert.ToInt32(ddlNumberOfDays.SelectedValue)).ToShortDateString();
