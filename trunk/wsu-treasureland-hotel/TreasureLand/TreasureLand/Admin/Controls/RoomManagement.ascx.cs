@@ -130,6 +130,27 @@ namespace TreasureLand.Admin.Controls
             Label_StatusMsg.Text = "";
         }
 
+        protected void GridView_Rooms_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            e.Keys.Values.AsQueryable().ToString();
+            var res = from r in db.Reservations
+                      join rd in db.ReservationDetails
+                      on r.ReservationID equals rd.ReservationID
+                      join ro in db.Rooms
+                      on rd.RoomID equals ro.RoomID
+                      where ro.RoomNumbers == GridView_Rooms.SelectedRow.Cells[0].Text
+                      select r;
+
+            if (res.ToList().Count != 0)
+            {
+                e.Cancel = true;
+                Label_StatusMsg.Text = "Room has Reservations Associated with it";
+
+            }
+
+
+        }
+
 
     }
 }
