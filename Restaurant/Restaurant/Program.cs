@@ -26,8 +26,8 @@ namespace Restaurant
         {
             if (e.KeyValue == 164 || e.KeyValue == 165 || e.KeyValue == 91)//alt, alt, windowsKey
             {
-               // e.SuppressKeyPress = true;
-               // e.Handled = true;
+                e.SuppressKeyPress = true;
+                e.Handled = true;
             }
         }
     }
