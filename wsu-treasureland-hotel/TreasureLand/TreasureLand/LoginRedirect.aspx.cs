@@ -47,7 +47,7 @@ namespace TreasureLand
 
         protected void btnManager_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Manager/ManageExpenses.aspx");
+            Response.Redirect("~/Manager/ManagerExpenses.aspx");
         }
 
         protected void btnClerk_Click(object sender, EventArgs e)
