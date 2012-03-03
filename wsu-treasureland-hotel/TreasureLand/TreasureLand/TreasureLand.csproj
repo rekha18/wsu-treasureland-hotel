@@ -114,7 +114,6 @@
     <Content Include="Maintenance\MaintenanceReports.aspx" />
     <Content Include="Maintenance\MaintenanceShortTermAsset.aspx" />
     <Content Include="Manager\Inventory.aspx" />
-    <Content Include="Manager\ManagerDefault.aspx" />
     <Content Include="Manager\ManagerExpenses.aspx" />
     <Content Include="Manager\ManagerReports.aspx" />
     <Content Include="Manager\ShortTermAsset.aspx" />
@@ -467,13 +466,6 @@
     </Compile>
     <Compile Include="Manager\Inventory.aspx.designer.cs">
       <DependentUpon>Inventory.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Manager\ManagerDefault.aspx.cs">
-      <DependentUpon>ManagerDefault.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Manager\ManagerDefault.aspx.designer.cs">
-      <DependentUpon>ManagerDefault.aspx</DependentUpon>
     </Compile>
     <Compile Include="Manager\ManagerExpenses.aspx.cs">
       <DependentUpon>ManagerExpenses.aspx</DependentUpon>
