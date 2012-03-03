@@ -63,7 +63,7 @@
 <br />
     <asp:SqlDataSource ID="sqlAccounting" runat="server"
       
-    ConnectionString = "<%$ ConnectionStrings:TreasureLandConnectionString %>" 
+    ConnectionString = "<%$ ConnectionStrings:TreasurelandDB %>" 
     
         SelectCommand="SELECT        ACCOUNTING.AccountingID, ACCOUNTING.AccountingDate, ACCOUNTING.AccountingCost, ACCOUNTINGTYPE.AccountingType,  ACCOUNTING.AccountingDescription
 FROM            ACCOUNTING INNER JOIN
@@ -74,7 +74,8 @@ ORDER BY ACCOUNTING.AccountingDate"
         OldValuesParameterFormatString="original_{0}" 
         
         
-        UpdateCommand="UPDATE    ACCOUNTING SET    [AccountingCost] = @AccountingCost, 
+        
+    UpdateCommand="UPDATE    ACCOUNTING SET    [AccountingCost] = @AccountingCost, 
                      [AccountingDescription] = @AccountingDescription WHERE [AccountingID] = @original_AccountingID"  >
         <DeleteParameters>
             <asp:Parameter Name="original_AccountingID" />
@@ -86,8 +87,9 @@ ORDER BY ACCOUNTING.AccountingDate"
         </UpdateParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="sqlTypes" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:TreasureLandConnectionString %>" 
-        SelectCommand="SELECT [AccountingTypeID], [AccountingType] FROM [ACCOUNTINGTYPE]">
+        ConnectionString="<%$ ConnectionStrings:TreasurelandDB %>" 
+        
+    SelectCommand="SELECT [AccountingTypeID], [AccountingType] FROM [ACCOUNTINGTYPE]">
     </asp:SqlDataSource>
 <br />
 <asp:GridView ID="gvExpenses" runat="server" AutoGenerateColumns="False" 
