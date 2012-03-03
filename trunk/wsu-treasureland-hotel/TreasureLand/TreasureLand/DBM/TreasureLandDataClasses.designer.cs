@@ -2096,7 +2096,7 @@ namespace TreasureLand.DBM
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HotelRoomTypeID", DbType="SmallInt NOT NULL", IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HotelRoomTypeID", DbType="SmallInt NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
 		public short HotelRoomTypeID
 		{
 			get
