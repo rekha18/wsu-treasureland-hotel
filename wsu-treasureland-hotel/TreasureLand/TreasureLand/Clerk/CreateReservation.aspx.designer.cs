@@ -193,15 +193,6 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.Label lblDateToday;
         
         /// <summary>
-        /// ddlAdults control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAdults;
-        
-        /// <summary>
         /// lblResSurName control.
         /// </summary>
         /// <remarks>
@@ -209,15 +200,6 @@ namespace TreasureLand.Clerk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblResSurName;
-        
-        /// <summary>
-        /// ddlChildren control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlChildren;
         
         /// <summary>
         /// lblResFirstName control.
@@ -398,6 +380,15 @@ namespace TreasureLand.Clerk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblFinalReservationNumber;
+        
+        /// <summary>
+        /// gvReserved control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvReserved;
         
         /// <summary>
         /// btnDone control.

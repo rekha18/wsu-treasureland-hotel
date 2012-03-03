@@ -63,8 +63,6 @@ namespace TreasureLand.Clerk
                     lblResFirstName.Text = reserving.firstName;
                     lblResSurName.Text = reserving.surName;
                     lblResPhone.Text = reserving.phone;
-                    ddlAdults.SelectedIndex = reserving.numAdults;
-                    ddlChildren.SelectedIndex = reserving.numChild;
                     ddlNumberOfDays.SelectedIndex = reserving.daysStaying - 1;
                     lblDateFrom.Text = reserving.reserveDate;
                     calDateFrom.SelectedDate = Convert.ToDateTime(reserving.reserveDate);
@@ -72,7 +70,7 @@ namespace TreasureLand.Clerk
                 }
                 mvReservation.ActiveViewIndex = reserving.returnView;
 
-               
+
 
                 
             }
@@ -107,12 +105,17 @@ namespace TreasureLand.Clerk
             }
             #endregion Discount Grid View Control
 
+            if (Session["RoomIDs"] != null && !IsPostBack)
+            {
+                #region Return From Select Room
+                if (Session["RoomIDs"] != null)
+                    RenderSelectedRoomsList();
+                #endregion
+                reserving.returnView = 3;
+                reserving.view = 3;
+            }
 
 
-            #region Return From Select Room
-            if (Session["RoomIDs"] != null)
-                RenderSelectedRoomsList();
-            #endregion
         }
 
         #region Locate Guest Button
@@ -200,8 +203,6 @@ namespace TreasureLand.Clerk
             reserving.firstName = lblResFirstName.Text;
             reserving.surName = lblResSurName.Text;
             reserving.phone = lblResPhone.Text;
-            reserving.numAdults = ddlAdults.SelectedIndex;
-            reserving.numChild = ddlChildren.SelectedIndex;
             reserving.Discount = ddlDiscounts.SelectedIndex;
        
             Response.Redirect("SelectRoom.aspx");
@@ -227,7 +228,7 @@ namespace TreasureLand.Clerk
                 Reservation res = new Reservation();
                 
                 res.GuestID = reserving.GuestID;
-                res.ReservationDate = calDateFrom.SelectedDate;
+                res.ReservationDate = DateTime.Today;
                 res.ReservationStatus = 'U';
                 db.Reservations.InsertOnSubmit(res);
                 db.SubmitChanges();
@@ -240,13 +241,15 @@ namespace TreasureLand.Clerk
                     ReservationDetail resDetail = new ReservationDetail();
                     gvRoomInfo.SelectRow(i);
                     resDetail.ReservationID = res.ReservationID;
-                    resDetail.CheckinDate = calDateFrom.SelectedDate;
+                    resDetail.CheckinDate = Convert.ToDateTime(reserving.reserveDate);
                     resDetail.RoomID = Convert.ToInt16(r.RoomID);
-                    resDetail.QuotedRate = Convert.ToByte(ddlNumberOfDays.SelectedValue) * Convert.ToDecimal(gvRoomInfo.SelectedRow.Cells[2].Text);
+                    resDetail.QuotedRate = Convert.ToByte(reserving.daysStaying) * Convert.ToDecimal(gvRoomInfo.SelectedRow.Cells[2].Text);
                     resDetail.ReservationStatus = 'A';
-                    resDetail.Nights = Convert.ToByte(ddlNumberOfDays.SelectedValue);
-                    resDetail.NumberOfAdults = Convert.ToByte(ddlAdults.SelectedValue);
-                    resDetail.NumberOfChildren = Convert.ToByte(ddlChildren.SelectedValue);
+                    resDetail.Nights = Convert.ToByte(reserving.daysStaying);
+                    DropDownList ddl = (DropDownList) gvRoomInfo.SelectedRow.Cells[3].FindControl("numAdults");
+                    resDetail.NumberOfAdults = Convert.ToByte(ddl.SelectedValue);
+                    ddl = (DropDownList)gvRoomInfo.SelectedRow.Cells[4].FindControl("numChild");
+                    resDetail.NumberOfChildren = Convert.ToByte(ddl.SelectedValue);
                     resDetail.DiscountID = 1;
                     db.ReservationDetails.InsertOnSubmit(resDetail);
                     db.SubmitChanges();
@@ -255,6 +258,20 @@ namespace TreasureLand.Clerk
 
                 
                 lblFinalReservationNumber.Text = res.ReservationID.ToString();
+
+                db = new TreasureLandDataClassesDataContext();
+                var resing = from  rv in db.Reservations
+                               join rd in db.ReservationDetails
+                               on rv.ReservationID equals rd.ReservationID
+                               join ro in db.Rooms
+                               on rd.RoomID equals ro.RoomID
+                               join hrt in db.HotelRoomTypes
+                               on ro.HotelRoomTypeID equals hrt.HotelRoomTypeID
+                               where rv.ReservationID == Convert.ToInt16(lblFinalReservationNumber.Text)
+                               select new { rd.ReservationDetailID, ro.RoomNumbers, rd.CheckinDate, hrt.RoomType };
+                gvReserved.DataSource = resing.ToList();
+                gvReserved.DataBind();
+                               
                 reserving.returnView = 4;
             }
             else
