@@ -5,18 +5,18 @@
             <asp:View ID="vStatuses" runat="server">
                 <asp:Panel ID="Panel1" runat="server" BackColor="Silver">
                     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
-                        DataKeyNames="Status" DataSourceID="ldsStatuses">
+                        DataKeyNames="RoomStatus1" DataSourceID="ldsStatuses">
                         <Columns>
-                            <asp:BoundField DataField="Status" HeaderText="Status" ReadOnly="True" 
-                                SortExpression="Status" />
-                            <asp:BoundField DataField="Description" HeaderText="Description" 
-                                SortExpression="Description" />
+                            <asp:BoundField DataField="RoomStatus1" HeaderText="RoomStatus1" ReadOnly="True" 
+                                SortExpression="RoomStatus1" />
+                            <asp:BoundField DataField="RoomStatusDescription" HeaderText="RoomStatusDescription" 
+                                SortExpression="RoomStatusDescription" />
                         </Columns>
                     </asp:GridView>
                     <asp:LinqDataSource ID="ldsStatuses" runat="server" 
                         ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
-                        EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" 
-                        OrderBy="Status" TableName="RoomStatus">
+                        EnableDelete="True" EnableInsert="True" EnableUpdate="True" 
+                        EntityTypeName="" TableName="RoomStatus">
                     </asp:LinqDataSource>
                     <asp:Button ID="btnAddStatusesPage" runat="server" CommandArgument="1" 
                         CommandName="SwitchViewByIndex" Text="Add Status" />
