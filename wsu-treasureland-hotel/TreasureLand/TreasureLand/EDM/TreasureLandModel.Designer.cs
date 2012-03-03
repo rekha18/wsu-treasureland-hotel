@@ -18,17 +18,31 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_ReservationDetailBilling_Must_Have_BillingCategoryID", "BillingCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.BillingCategory), "ReservationDetailBilling", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.ReservationDetailBilling), true)]
-[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_ReservationDetail_Must_Have_DiscountID", "Discount", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Discount), "ReservationDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.ReservationDetail), true)]
-[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_Reservation_Guest", "Guest", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Guest), "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.Reservation), true)]
-[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_HotelRoomType_Must_Have_HotelID", "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Hotel), "HotelRoomType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.HotelRoomType), true)]
-[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_Revenue_Must_Have_HotelID", "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Hotel), "Revenue", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.Revenue), true)]
-[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_Room_Must_Have_HotelRoomTypeID", "HotelRoomType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.HotelRoomType), "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.Room), true)]
-[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_ReservationDetail_Must_Have_ReservationID", "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Reservation), "ReservationDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.ReservationDetail), true)]
-[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_ReservationDetail_Must_Have_RoomID", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Room), "ReservationDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.ReservationDetail), true)]
-[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_ReservationDetailBilling_Must_Have_ReservationDetailID", "ReservationDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.ReservationDetail), "ReservationDetailBilling", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.ReservationDetailBilling), true)]
-[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_Revenue_Must_Have_RevenueCategoryID", "RevenueCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.RevenueCategory), "Revenue", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.Revenue), true)]
-[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_Room_RoomStatus", "RoomStatus", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.RoomStatu), "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.Room), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_AccountingTypeIdMustExistInAccountingTypeTableAccounting", "AccountingType", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(TreasureLand.EDM.AccountingType), "Accounting", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.Accounting), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_HotelIdMustExistInHotelTableAccounting", "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(TreasureLand.EDM.Hotel), "Accounting", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.Accounting), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_BillingCategoryIdMustExistInBillingCategroyTableReservationDetailBilling", "BillingCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.BillingCategory), "ReservationDetailBilling", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.ReservationDetailBilling), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_DepartmentIdMustExistInHotelOrderTableShortTermAssest", "Department", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Department), "ShortTermAsset", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.ShortTermAsset), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_DiscountIdMustExistInDiscountTableReservationDetail", "Discount", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Discount), "ReservationDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.ReservationDetail), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_FoodDrinkCategoryIdInMenuItemMustHaveUniqueId", "FoodDrinkCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.FoodDrinkCategory), "MenuItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.MenuItem), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_GuestIdMustExistInGuestTableReservation", "Guest", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Guest), "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.Reservation), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_HotelIdMustExistInHotelTableHotelOrder", "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Hotel), "HotelOrder", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.HotelOrder), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_HotelIdMustExistInHotelTableHotelRoomType", "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Hotel), "HotelRoomType", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.HotelRoomType), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_HotelIdMustExistInHotelTableRevenue", "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Hotel), "Revenue", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.Revenue), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_OrderIdMustExistInHotelOrderTableOrderShortTerm", "HotelOrder", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.HotelOrder), "OrderShortTerm", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.OrderShortTerm), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_HotelRoomTypeIdMustExistInHotelRoomTypeTableRoom", "HotelRoomType", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.HotelRoomType), "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.Room), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_IngredientIDinIngredientPurchaseHistoryMustHaveUniqueId", "Ingredient", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Ingredient), "IngredientPurchaseHistory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.IngredientPurchaseHistory), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_IngredientInMenuItemIngredientMustHaveUniqueId", "Ingredient", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Ingredient), "MenuItemIngredient", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.MenuItemIngredient), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_PurchaseIdInIngredientPurchaseHistoryMustHaveUniqueId", "IngredientPurchase", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.IngredientPurchase), "IngredientPurchaseHistory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.IngredientPurchaseHistory), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_FoodDrinkCategoryIdInLineItemMustHaveUniqueId", "MenuItem", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(TreasureLand.EDM.MenuItem), "LineItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.LineItem), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_ReservationDetailBillingMustHaveUniqueId", "ReservationDetailBilling", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.ReservationDetailBilling), "LineItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.LineItem), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_MenuItemIdInMenuItemIngredientMustHaveUniqueId", "MenuItem", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.MenuItem), "MenuItemIngredient", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.MenuItemIngredient), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_ShortTermAssetIdMustExistInHotelOrderTableOrderShortTerm", "ShortTermAsset", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.ShortTermAsset), "OrderShortTerm", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.OrderShortTerm), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_ReservationIdMustExistInReservationTableReservationDetail", "Reservation", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Reservation), "ReservationDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.ReservationDetail), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_ReservationDetailIdMustExistInReservationDetailTableReservationDetailBilling", "ReservationDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(TreasureLand.EDM.ReservationDetail), "ReservationDetailBilling", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.ReservationDetailBilling), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_RoomIdMustExistInRoomTableReservationDetail", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.Room), "ReservationDetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.ReservationDetail), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_RevenueCategoryIdMustExistInRevenueCategoryTableRevenue", "RevenueCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.RevenueCategory), "Revenue", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.Revenue), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "FK_RoomStatusMustExistInRoomTableRoomStatus", "RoomStatu", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TreasureLand.EDM.RoomStatu), "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.Room), true)]
+[assembly: EdmRelationshipAttribute("TreasureLandModel", "HotelLongTermAsset", "Hotel", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.Hotel), "LongTermAsset", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TreasureLand.EDM.LongTermAsset))]
 
 #endregion
 
@@ -83,6 +97,38 @@ namespace TreasureLand.EDM
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Accounting> Accountings
+        {
+            get
+            {
+                if ((_Accountings == null))
+                {
+                    _Accountings = base.CreateObjectSet<Accounting>("Accountings");
+                }
+                return _Accountings;
+            }
+        }
+        private ObjectSet<Accounting> _Accountings;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<AccountingType> AccountingTypes
+        {
+            get
+            {
+                if ((_AccountingTypes == null))
+                {
+                    _AccountingTypes = base.CreateObjectSet<AccountingType>("AccountingTypes");
+                }
+                return _AccountingTypes;
+            }
+        }
+        private ObjectSet<AccountingType> _AccountingTypes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<BillingCategory> BillingCategories
         {
             get
@@ -99,6 +145,22 @@ namespace TreasureLand.EDM
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Department> Departments
+        {
+            get
+            {
+                if ((_Departments == null))
+                {
+                    _Departments = base.CreateObjectSet<Department>("Departments");
+                }
+                return _Departments;
+            }
+        }
+        private ObjectSet<Department> _Departments;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Discount> Discounts
         {
             get
@@ -111,6 +173,22 @@ namespace TreasureLand.EDM
             }
         }
         private ObjectSet<Discount> _Discounts;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<FoodDrinkCategory> FoodDrinkCategories
+        {
+            get
+            {
+                if ((_FoodDrinkCategories == null))
+                {
+                    _FoodDrinkCategories = base.CreateObjectSet<FoodDrinkCategory>("FoodDrinkCategories");
+                }
+                return _FoodDrinkCategories;
+            }
+        }
+        private ObjectSet<FoodDrinkCategory> _FoodDrinkCategories;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -147,6 +225,22 @@ namespace TreasureLand.EDM
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<HotelOrder> HotelOrders
+        {
+            get
+            {
+                if ((_HotelOrders == null))
+                {
+                    _HotelOrders = base.CreateObjectSet<HotelOrder>("HotelOrders");
+                }
+                return _HotelOrders;
+            }
+        }
+        private ObjectSet<HotelOrder> _HotelOrders;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<HotelRoomType> HotelRoomTypes
         {
             get
@@ -159,6 +253,134 @@ namespace TreasureLand.EDM
             }
         }
         private ObjectSet<HotelRoomType> _HotelRoomTypes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Ingredient> Ingredients
+        {
+            get
+            {
+                if ((_Ingredients == null))
+                {
+                    _Ingredients = base.CreateObjectSet<Ingredient>("Ingredients");
+                }
+                return _Ingredients;
+            }
+        }
+        private ObjectSet<Ingredient> _Ingredients;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<IngredientPurchase> IngredientPurchases
+        {
+            get
+            {
+                if ((_IngredientPurchases == null))
+                {
+                    _IngredientPurchases = base.CreateObjectSet<IngredientPurchase>("IngredientPurchases");
+                }
+                return _IngredientPurchases;
+            }
+        }
+        private ObjectSet<IngredientPurchase> _IngredientPurchases;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<IngredientPurchaseHistory> IngredientPurchaseHistories
+        {
+            get
+            {
+                if ((_IngredientPurchaseHistories == null))
+                {
+                    _IngredientPurchaseHistories = base.CreateObjectSet<IngredientPurchaseHistory>("IngredientPurchaseHistories");
+                }
+                return _IngredientPurchaseHistories;
+            }
+        }
+        private ObjectSet<IngredientPurchaseHistory> _IngredientPurchaseHistories;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<LineItem> LineItems
+        {
+            get
+            {
+                if ((_LineItems == null))
+                {
+                    _LineItems = base.CreateObjectSet<LineItem>("LineItems");
+                }
+                return _LineItems;
+            }
+        }
+        private ObjectSet<LineItem> _LineItems;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<LongTermAsset> LongTermAssets
+        {
+            get
+            {
+                if ((_LongTermAssets == null))
+                {
+                    _LongTermAssets = base.CreateObjectSet<LongTermAsset>("LongTermAssets");
+                }
+                return _LongTermAssets;
+            }
+        }
+        private ObjectSet<LongTermAsset> _LongTermAssets;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<MenuItem> MenuItems
+        {
+            get
+            {
+                if ((_MenuItems == null))
+                {
+                    _MenuItems = base.CreateObjectSet<MenuItem>("MenuItems");
+                }
+                return _MenuItems;
+            }
+        }
+        private ObjectSet<MenuItem> _MenuItems;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<MenuItemIngredient> MenuItemIngredients
+        {
+            get
+            {
+                if ((_MenuItemIngredients == null))
+                {
+                    _MenuItemIngredients = base.CreateObjectSet<MenuItemIngredient>("MenuItemIngredients");
+                }
+                return _MenuItemIngredients;
+            }
+        }
+        private ObjectSet<MenuItemIngredient> _MenuItemIngredients;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<OrderShortTerm> OrderShortTerms
+        {
+            get
+            {
+                if ((_OrderShortTerms == null))
+                {
+                    _OrderShortTerms = base.CreateObjectSet<OrderShortTerm>("OrderShortTerms");
+                }
+                return _OrderShortTerms;
+            }
+        }
+        private ObjectSet<OrderShortTerm> _OrderShortTerms;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -271,9 +493,41 @@ namespace TreasureLand.EDM
             }
         }
         private ObjectSet<RoomStatu> _RoomStatus;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ShortTermAsset> ShortTermAssets
+        {
+            get
+            {
+                if ((_ShortTermAssets == null))
+                {
+                    _ShortTermAssets = base.CreateObjectSet<ShortTermAsset>("ShortTermAssets");
+                }
+                return _ShortTermAssets;
+            }
+        }
+        private ObjectSet<ShortTermAsset> _ShortTermAssets;
 
         #endregion
         #region AddTo Methods
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Accountings EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAccountings(Accounting accounting)
+        {
+            base.AddObject("Accountings", accounting);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the AccountingTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAccountingTypes(AccountingType accountingType)
+        {
+            base.AddObject("AccountingTypes", accountingType);
+        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the BillingCategories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -284,11 +538,27 @@ namespace TreasureLand.EDM
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Departments EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDepartments(Department department)
+        {
+            base.AddObject("Departments", department);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Discounts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToDiscounts(Discount discount)
         {
             base.AddObject("Discounts", discount);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the FoodDrinkCategories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToFoodDrinkCategories(FoodDrinkCategory foodDrinkCategory)
+        {
+            base.AddObject("FoodDrinkCategories", foodDrinkCategory);
         }
     
         /// <summary>
@@ -308,11 +578,83 @@ namespace TreasureLand.EDM
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the HotelOrders EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToHotelOrders(HotelOrder hotelOrder)
+        {
+            base.AddObject("HotelOrders", hotelOrder);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the HotelRoomTypes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToHotelRoomTypes(HotelRoomType hotelRoomType)
         {
             base.AddObject("HotelRoomTypes", hotelRoomType);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Ingredients EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToIngredients(Ingredient ingredient)
+        {
+            base.AddObject("Ingredients", ingredient);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the IngredientPurchases EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToIngredientPurchases(IngredientPurchase ingredientPurchase)
+        {
+            base.AddObject("IngredientPurchases", ingredientPurchase);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the IngredientPurchaseHistories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToIngredientPurchaseHistories(IngredientPurchaseHistory ingredientPurchaseHistory)
+        {
+            base.AddObject("IngredientPurchaseHistories", ingredientPurchaseHistory);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the LineItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToLineItems(LineItem lineItem)
+        {
+            base.AddObject("LineItems", lineItem);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the LongTermAssets EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToLongTermAssets(LongTermAsset longTermAsset)
+        {
+            base.AddObject("LongTermAssets", longTermAsset);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the MenuItems EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMenuItems(MenuItem menuItem)
+        {
+            base.AddObject("MenuItems", menuItem);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the MenuItemIngredients EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMenuItemIngredients(MenuItemIngredient menuItemIngredient)
+        {
+            base.AddObject("MenuItemIngredients", menuItemIngredient);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the OrderShortTerms EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToOrderShortTerms(OrderShortTerm orderShortTerm)
+        {
+            base.AddObject("OrderShortTerms", orderShortTerm);
         }
     
         /// <summary>
@@ -370,6 +712,14 @@ namespace TreasureLand.EDM
         {
             base.AddObject("RoomStatus", roomStatu);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ShortTermAssets EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToShortTermAssets(ShortTermAsset shortTermAsset)
+        {
+            base.AddObject("ShortTermAssets", shortTermAsset);
+        }
 
         #endregion
     }
@@ -378,6 +728,388 @@ namespace TreasureLand.EDM
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TreasureLandModel", Name="Accounting")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Accounting : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Accounting object.
+        /// </summary>
+        /// <param name="accountingID">Initial value of the AccountingID property.</param>
+        public static Accounting CreateAccounting(global::System.Int16 accountingID)
+        {
+            Accounting accounting = new Accounting();
+            accounting.AccountingID = accountingID;
+            return accounting;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 AccountingID
+        {
+            get
+            {
+                return _AccountingID;
+            }
+            set
+            {
+                if (_AccountingID != value)
+                {
+                    OnAccountingIDChanging(value);
+                    ReportPropertyChanging("AccountingID");
+                    _AccountingID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("AccountingID");
+                    OnAccountingIDChanged();
+                }
+            }
+        }
+        private global::System.Int16 _AccountingID;
+        partial void OnAccountingIDChanging(global::System.Int16 value);
+        partial void OnAccountingIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> AccountingDate
+        {
+            get
+            {
+                return _AccountingDate;
+            }
+            set
+            {
+                OnAccountingDateChanging(value);
+                ReportPropertyChanging("AccountingDate");
+                _AccountingDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AccountingDate");
+                OnAccountingDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _AccountingDate;
+        partial void OnAccountingDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnAccountingDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> AccountingTypeID
+        {
+            get
+            {
+                return _AccountingTypeID;
+            }
+            set
+            {
+                OnAccountingTypeIDChanging(value);
+                ReportPropertyChanging("AccountingTypeID");
+                _AccountingTypeID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AccountingTypeID");
+                OnAccountingTypeIDChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _AccountingTypeID;
+        partial void OnAccountingTypeIDChanging(Nullable<global::System.Int16> value);
+        partial void OnAccountingTypeIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> AccountingCost
+        {
+            get
+            {
+                return _AccountingCost;
+            }
+            set
+            {
+                OnAccountingCostChanging(value);
+                ReportPropertyChanging("AccountingCost");
+                _AccountingCost = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AccountingCost");
+                OnAccountingCostChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _AccountingCost;
+        partial void OnAccountingCostChanging(Nullable<global::System.Decimal> value);
+        partial void OnAccountingCostChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AccountingDescription
+        {
+            get
+            {
+                return _AccountingDescription;
+            }
+            set
+            {
+                OnAccountingDescriptionChanging(value);
+                ReportPropertyChanging("AccountingDescription");
+                _AccountingDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AccountingDescription");
+                OnAccountingDescriptionChanged();
+            }
+        }
+        private global::System.String _AccountingDescription;
+        partial void OnAccountingDescriptionChanging(global::System.String value);
+        partial void OnAccountingDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> HotelID
+        {
+            get
+            {
+                return _HotelID;
+            }
+            set
+            {
+                OnHotelIDChanging(value);
+                ReportPropertyChanging("HotelID");
+                _HotelID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HotelID");
+                OnHotelIDChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _HotelID;
+        partial void OnHotelIDChanging(Nullable<global::System.Int16> value);
+        partial void OnHotelIDChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_AccountingTypeIdMustExistInAccountingTypeTableAccounting", "AccountingType")]
+        public AccountingType AccountingType
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AccountingType>("TreasureLandModel.FK_AccountingTypeIdMustExistInAccountingTypeTableAccounting", "AccountingType").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AccountingType>("TreasureLandModel.FK_AccountingTypeIdMustExistInAccountingTypeTableAccounting", "AccountingType").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<AccountingType> AccountingTypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AccountingType>("TreasureLandModel.FK_AccountingTypeIdMustExistInAccountingTypeTableAccounting", "AccountingType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AccountingType>("TreasureLandModel.FK_AccountingTypeIdMustExistInAccountingTypeTableAccounting", "AccountingType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_HotelIdMustExistInHotelTableAccounting", "Hotel")]
+        public Hotel Hotel
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableAccounting", "Hotel").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableAccounting", "Hotel").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Hotel> HotelReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableAccounting", "Hotel");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableAccounting", "Hotel", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TreasureLandModel", Name="AccountingType")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class AccountingType : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new AccountingType object.
+        /// </summary>
+        /// <param name="accountingTypeID">Initial value of the AccountingTypeID property.</param>
+        public static AccountingType CreateAccountingType(global::System.Int16 accountingTypeID)
+        {
+            AccountingType accountingType = new AccountingType();
+            accountingType.AccountingTypeID = accountingTypeID;
+            return accountingType;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 AccountingTypeID
+        {
+            get
+            {
+                return _AccountingTypeID;
+            }
+            set
+            {
+                if (_AccountingTypeID != value)
+                {
+                    OnAccountingTypeIDChanging(value);
+                    ReportPropertyChanging("AccountingTypeID");
+                    _AccountingTypeID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("AccountingTypeID");
+                    OnAccountingTypeIDChanged();
+                }
+            }
+        }
+        private global::System.Int16 _AccountingTypeID;
+        partial void OnAccountingTypeIDChanging(global::System.Int16 value);
+        partial void OnAccountingTypeIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AccountingType1
+        {
+            get
+            {
+                return _AccountingType1;
+            }
+            set
+            {
+                OnAccountingType1Changing(value);
+                ReportPropertyChanging("AccountingType1");
+                _AccountingType1 = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AccountingType1");
+                OnAccountingType1Changed();
+            }
+        }
+        private global::System.String _AccountingType1;
+        partial void OnAccountingType1Changing(global::System.String value);
+        partial void OnAccountingType1Changed();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AccountingTypeDescription
+        {
+            get
+            {
+                return _AccountingTypeDescription;
+            }
+            set
+            {
+                OnAccountingTypeDescriptionChanging(value);
+                ReportPropertyChanging("AccountingTypeDescription");
+                _AccountingTypeDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AccountingTypeDescription");
+                OnAccountingTypeDescriptionChanged();
+            }
+        }
+        private global::System.String _AccountingTypeDescription;
+        partial void OnAccountingTypeDescriptionChanging(global::System.String value);
+        partial void OnAccountingTypeDescriptionChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_AccountingTypeIdMustExistInAccountingTypeTableAccounting", "Accounting")]
+        public EntityCollection<Accounting> Accountings
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Accounting>("TreasureLandModel.FK_AccountingTypeIdMustExistInAccountingTypeTableAccounting", "Accounting");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Accounting>("TreasureLandModel.FK_AccountingTypeIdMustExistInAccountingTypeTableAccounting", "Accounting", value);
+                }
+            }
+        }
+
+        #endregion
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -394,11 +1126,13 @@ namespace TreasureLand.EDM
         /// </summary>
         /// <param name="billingCategoryID">Initial value of the BillingCategoryID property.</param>
         /// <param name="billingCategoryDescription">Initial value of the BillingCategoryDescription property.</param>
-        public static BillingCategory CreateBillingCategory(global::System.Int16 billingCategoryID, global::System.String billingCategoryDescription)
+        /// <param name="billingCategoryTaxable">Initial value of the BillingCategoryTaxable property.</param>
+        public static BillingCategory CreateBillingCategory(global::System.Int16 billingCategoryID, global::System.String billingCategoryDescription, global::System.Boolean billingCategoryTaxable)
         {
             BillingCategory billingCategory = new BillingCategory();
             billingCategory.BillingCategoryID = billingCategoryID;
             billingCategory.BillingCategoryDescription = billingCategoryDescription;
+            billingCategory.BillingCategoryTaxable = billingCategoryTaxable;
             return billingCategory;
         }
 
@@ -459,9 +1193,9 @@ namespace TreasureLand.EDM
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> BillingCategoryTaxable
+        public global::System.Boolean BillingCategoryTaxable
         {
             get
             {
@@ -476,8 +1210,8 @@ namespace TreasureLand.EDM
                 OnBillingCategoryTaxableChanged();
             }
         }
-        private Nullable<global::System.Boolean> _BillingCategoryTaxable;
-        partial void OnBillingCategoryTaxableChanging(Nullable<global::System.Boolean> value);
+        private global::System.Boolean _BillingCategoryTaxable;
+        partial void OnBillingCategoryTaxableChanging(global::System.Boolean value);
         partial void OnBillingCategoryTaxableChanged();
 
         #endregion
@@ -490,18 +1224,124 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationDetailBilling_Must_Have_BillingCategoryID", "ReservationDetailBilling")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_BillingCategoryIdMustExistInBillingCategroyTableReservationDetailBilling", "ReservationDetailBilling")]
         public EntityCollection<ReservationDetailBilling> ReservationDetailBillings
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReservationDetailBilling>("TreasureLandModel.FK_ReservationDetailBilling_Must_Have_BillingCategoryID", "ReservationDetailBilling");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReservationDetailBilling>("TreasureLandModel.FK_BillingCategoryIdMustExistInBillingCategroyTableReservationDetailBilling", "ReservationDetailBilling");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReservationDetailBilling>("TreasureLandModel.FK_ReservationDetailBilling_Must_Have_BillingCategoryID", "ReservationDetailBilling", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReservationDetailBilling>("TreasureLandModel.FK_BillingCategoryIdMustExistInBillingCategroyTableReservationDetailBilling", "ReservationDetailBilling", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TreasureLandModel", Name="Department")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Department : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Department object.
+        /// </summary>
+        /// <param name="departmentID">Initial value of the DepartmentID property.</param>
+        /// <param name="departmentDescription">Initial value of the DepartmentDescription property.</param>
+        public static Department CreateDepartment(global::System.Int16 departmentID, global::System.String departmentDescription)
+        {
+            Department department = new Department();
+            department.DepartmentID = departmentID;
+            department.DepartmentDescription = departmentDescription;
+            return department;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 DepartmentID
+        {
+            get
+            {
+                return _DepartmentID;
+            }
+            set
+            {
+                if (_DepartmentID != value)
+                {
+                    OnDepartmentIDChanging(value);
+                    ReportPropertyChanging("DepartmentID");
+                    _DepartmentID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("DepartmentID");
+                    OnDepartmentIDChanged();
+                }
+            }
+        }
+        private global::System.Int16 _DepartmentID;
+        partial void OnDepartmentIDChanging(global::System.Int16 value);
+        partial void OnDepartmentIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String DepartmentDescription
+        {
+            get
+            {
+                return _DepartmentDescription;
+            }
+            set
+            {
+                OnDepartmentDescriptionChanging(value);
+                ReportPropertyChanging("DepartmentDescription");
+                _DepartmentDescription = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("DepartmentDescription");
+                OnDepartmentDescriptionChanged();
+            }
+        }
+        private global::System.String _DepartmentDescription;
+        partial void OnDepartmentDescriptionChanging(global::System.String value);
+        partial void OnDepartmentDescriptionChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_DepartmentIdMustExistInHotelOrderTableShortTermAssest", "ShortTermAsset")]
+        public EntityCollection<ShortTermAsset> ShortTermAssets
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ShortTermAsset>("TreasureLandModel.FK_DepartmentIdMustExistInHotelOrderTableShortTermAssest", "ShortTermAsset");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ShortTermAsset>("TreasureLandModel.FK_DepartmentIdMustExistInHotelOrderTableShortTermAssest", "ShortTermAsset", value);
                 }
             }
         }
@@ -525,16 +1365,16 @@ namespace TreasureLand.EDM
         /// <param name="discountID">Initial value of the DiscountID property.</param>
         /// <param name="discountDescription">Initial value of the DiscountDescription property.</param>
         /// <param name="discountExpiration">Initial value of the DiscountExpiration property.</param>
+        /// <param name="discountRules">Initial value of the DiscountRules property.</param>
         /// <param name="discountAmount">Initial value of the DiscountAmount property.</param>
-        /// <param name="isPrecentage">Initial value of the IsPrecentage property.</param>
-        public static Discount CreateDiscount(global::System.Int16 discountID, global::System.String discountDescription, global::System.DateTime discountExpiration, global::System.Decimal discountAmount, global::System.Boolean isPrecentage)
+        public static Discount CreateDiscount(global::System.Int16 discountID, global::System.String discountDescription, global::System.DateTime discountExpiration, global::System.String discountRules, global::System.Decimal discountAmount)
         {
             Discount discount = new Discount();
             discount.DiscountID = discountID;
             discount.DiscountDescription = discountDescription;
             discount.DiscountExpiration = discountExpiration;
+            discount.DiscountRules = discountRules;
             discount.DiscountAmount = discountAmount;
-            discount.IsPrecentage = isPrecentage;
             return discount;
         }
 
@@ -619,7 +1459,7 @@ namespace TreasureLand.EDM
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String DiscountRules
         {
@@ -631,7 +1471,7 @@ namespace TreasureLand.EDM
             {
                 OnDiscountRulesChanging(value);
                 ReportPropertyChanging("DiscountRules");
-                _DiscountRules = StructuralObject.SetValidValue(value, true);
+                _DiscountRules = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("DiscountRules");
                 OnDiscountRulesChanged();
             }
@@ -667,9 +1507,9 @@ namespace TreasureLand.EDM
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Boolean IsPrecentage
+        public Nullable<global::System.Boolean> IsPrecentage
         {
             get
             {
@@ -684,8 +1524,8 @@ namespace TreasureLand.EDM
                 OnIsPrecentageChanged();
             }
         }
-        private global::System.Boolean _IsPrecentage;
-        partial void OnIsPrecentageChanging(global::System.Boolean value);
+        private Nullable<global::System.Boolean> _IsPrecentage;
+        partial void OnIsPrecentageChanging(Nullable<global::System.Boolean> value);
         partial void OnIsPrecentageChanged();
 
         #endregion
@@ -698,18 +1538,150 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationDetail_Must_Have_DiscountID", "ReservationDetail")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_DiscountIdMustExistInDiscountTableReservationDetail", "ReservationDetail")]
         public EntityCollection<ReservationDetail> ReservationDetails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReservationDetail>("TreasureLandModel.FK_ReservationDetail_Must_Have_DiscountID", "ReservationDetail");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReservationDetail>("TreasureLandModel.FK_DiscountIdMustExistInDiscountTableReservationDetail", "ReservationDetail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReservationDetail>("TreasureLandModel.FK_ReservationDetail_Must_Have_DiscountID", "ReservationDetail", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReservationDetail>("TreasureLandModel.FK_DiscountIdMustExistInDiscountTableReservationDetail", "ReservationDetail", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TreasureLandModel", Name="FoodDrinkCategory")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class FoodDrinkCategory : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new FoodDrinkCategory object.
+        /// </summary>
+        /// <param name="foodDrinkCategoryID">Initial value of the FoodDrinkCategoryID property.</param>
+        /// <param name="foodDrinkCategoryName">Initial value of the FoodDrinkCategoryName property.</param>
+        /// <param name="foodDrinkCategoryTypeID">Initial value of the FoodDrinkCategoryTypeID property.</param>
+        public static FoodDrinkCategory CreateFoodDrinkCategory(global::System.Int16 foodDrinkCategoryID, global::System.String foodDrinkCategoryName, global::System.String foodDrinkCategoryTypeID)
+        {
+            FoodDrinkCategory foodDrinkCategory = new FoodDrinkCategory();
+            foodDrinkCategory.FoodDrinkCategoryID = foodDrinkCategoryID;
+            foodDrinkCategory.FoodDrinkCategoryName = foodDrinkCategoryName;
+            foodDrinkCategory.FoodDrinkCategoryTypeID = foodDrinkCategoryTypeID;
+            return foodDrinkCategory;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 FoodDrinkCategoryID
+        {
+            get
+            {
+                return _FoodDrinkCategoryID;
+            }
+            set
+            {
+                if (_FoodDrinkCategoryID != value)
+                {
+                    OnFoodDrinkCategoryIDChanging(value);
+                    ReportPropertyChanging("FoodDrinkCategoryID");
+                    _FoodDrinkCategoryID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("FoodDrinkCategoryID");
+                    OnFoodDrinkCategoryIDChanged();
+                }
+            }
+        }
+        private global::System.Int16 _FoodDrinkCategoryID;
+        partial void OnFoodDrinkCategoryIDChanging(global::System.Int16 value);
+        partial void OnFoodDrinkCategoryIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String FoodDrinkCategoryName
+        {
+            get
+            {
+                return _FoodDrinkCategoryName;
+            }
+            set
+            {
+                OnFoodDrinkCategoryNameChanging(value);
+                ReportPropertyChanging("FoodDrinkCategoryName");
+                _FoodDrinkCategoryName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FoodDrinkCategoryName");
+                OnFoodDrinkCategoryNameChanged();
+            }
+        }
+        private global::System.String _FoodDrinkCategoryName;
+        partial void OnFoodDrinkCategoryNameChanging(global::System.String value);
+        partial void OnFoodDrinkCategoryNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String FoodDrinkCategoryTypeID
+        {
+            get
+            {
+                return _FoodDrinkCategoryTypeID;
+            }
+            set
+            {
+                OnFoodDrinkCategoryTypeIDChanging(value);
+                ReportPropertyChanging("FoodDrinkCategoryTypeID");
+                _FoodDrinkCategoryTypeID = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FoodDrinkCategoryTypeID");
+                OnFoodDrinkCategoryTypeIDChanged();
+            }
+        }
+        private global::System.String _FoodDrinkCategoryTypeID;
+        partial void OnFoodDrinkCategoryTypeIDChanging(global::System.String value);
+        partial void OnFoodDrinkCategoryTypeIDChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_FoodDrinkCategoryIdInMenuItemMustHaveUniqueId", "MenuItem")]
+        public EntityCollection<MenuItem> MenuItems
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MenuItem>("TreasureLandModel.FK_FoodDrinkCategoryIdInMenuItemMustHaveUniqueId", "MenuItem");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MenuItem>("TreasureLandModel.FK_FoodDrinkCategoryIdInMenuItemMustHaveUniqueId", "MenuItem", value);
                 }
             }
         }
@@ -1168,18 +2140,18 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_Reservation_Guest", "Reservation")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_GuestIdMustExistInGuestTableReservation", "Reservation")]
         public EntityCollection<Reservation> Reservations
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Reservation>("TreasureLandModel.FK_Reservation_Guest", "Reservation");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Reservation>("TreasureLandModel.FK_GuestIdMustExistInGuestTableReservation", "Reservation");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Reservation>("TreasureLandModel.FK_Reservation_Guest", "Reservation", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Reservation>("TreasureLandModel.FK_GuestIdMustExistInGuestTableReservation", "Reservation", value);
                 }
             }
         }
@@ -1204,17 +2176,21 @@ namespace TreasureLand.EDM
         /// <param name="hotelName">Initial value of the HotelName property.</param>
         /// <param name="hotelAddress">Initial value of the HotelAddress property.</param>
         /// <param name="hotelCity">Initial value of the HotelCity property.</param>
+        /// <param name="hotelState">Initial value of the HotelState property.</param>
         /// <param name="hotelCountry">Initial value of the HotelCountry property.</param>
+        /// <param name="hotelRegion">Initial value of the HotelRegion property.</param>
         /// <param name="hotelPostalCode">Initial value of the HotelPostalCode property.</param>
         /// <param name="taxLocationID">Initial value of the TaxLocationID property.</param>
-        public static Hotel CreateHotel(global::System.Int16 hotelID, global::System.String hotelName, global::System.String hotelAddress, global::System.String hotelCity, global::System.String hotelCountry, global::System.String hotelPostalCode, global::System.Int16 taxLocationID)
+        public static Hotel CreateHotel(global::System.Int16 hotelID, global::System.String hotelName, global::System.String hotelAddress, global::System.String hotelCity, global::System.String hotelState, global::System.String hotelCountry, global::System.String hotelRegion, global::System.String hotelPostalCode, global::System.Int16 taxLocationID)
         {
             Hotel hotel = new Hotel();
             hotel.HotelID = hotelID;
             hotel.HotelName = hotelName;
             hotel.HotelAddress = hotelAddress;
             hotel.HotelCity = hotelCity;
+            hotel.HotelState = hotelState;
             hotel.HotelCountry = hotelCountry;
+            hotel.HotelRegion = hotelRegion;
             hotel.HotelPostalCode = hotelPostalCode;
             hotel.TaxLocationID = taxLocationID;
             return hotel;
@@ -1325,7 +2301,7 @@ namespace TreasureLand.EDM
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String HotelState
         {
@@ -1337,7 +2313,7 @@ namespace TreasureLand.EDM
             {
                 OnHotelStateChanging(value);
                 ReportPropertyChanging("HotelState");
-                _HotelState = StructuralObject.SetValidValue(value, true);
+                _HotelState = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("HotelState");
                 OnHotelStateChanged();
             }
@@ -1373,7 +2349,7 @@ namespace TreasureLand.EDM
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String HotelRegion
         {
@@ -1385,7 +2361,7 @@ namespace TreasureLand.EDM
             {
                 OnHotelRegionChanging(value);
                 ReportPropertyChanging("HotelRegion");
-                _HotelRegion = StructuralObject.SetValidValue(value, true);
+                _HotelRegion = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("HotelRegion");
                 OnHotelRegionChanged();
             }
@@ -1452,18 +2428,18 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_HotelRoomType_Must_Have_HotelID", "HotelRoomType")]
-        public EntityCollection<HotelRoomType> HotelRoomTypes
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_HotelIdMustExistInHotelTableAccounting", "Accounting")]
+        public EntityCollection<Accounting> Accountings
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<HotelRoomType>("TreasureLandModel.FK_HotelRoomType_Must_Have_HotelID", "HotelRoomType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Accounting>("TreasureLandModel.FK_HotelIdMustExistInHotelTableAccounting", "Accounting");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<HotelRoomType>("TreasureLandModel.FK_HotelRoomType_Must_Have_HotelID", "HotelRoomType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Accounting>("TreasureLandModel.FK_HotelIdMustExistInHotelTableAccounting", "Accounting", value);
                 }
             }
         }
@@ -1474,18 +2450,280 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_Revenue_Must_Have_HotelID", "Revenue")]
-        public EntityCollection<Revenue> Revenues
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_HotelIdMustExistInHotelTableHotelOrder", "HotelOrder")]
+        public EntityCollection<HotelOrder> HotelOrders
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Revenue>("TreasureLandModel.FK_Revenue_Must_Have_HotelID", "Revenue");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<HotelOrder>("TreasureLandModel.FK_HotelIdMustExistInHotelTableHotelOrder", "HotelOrder");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Revenue>("TreasureLandModel.FK_Revenue_Must_Have_HotelID", "Revenue", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<HotelOrder>("TreasureLandModel.FK_HotelIdMustExistInHotelTableHotelOrder", "HotelOrder", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_HotelIdMustExistInHotelTableHotelRoomType", "HotelRoomType")]
+        public EntityCollection<HotelRoomType> HotelRoomTypes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<HotelRoomType>("TreasureLandModel.FK_HotelIdMustExistInHotelTableHotelRoomType", "HotelRoomType");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<HotelRoomType>("TreasureLandModel.FK_HotelIdMustExistInHotelTableHotelRoomType", "HotelRoomType", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_HotelIdMustExistInHotelTableRevenue", "Revenue")]
+        public EntityCollection<Revenue> Revenues
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Revenue>("TreasureLandModel.FK_HotelIdMustExistInHotelTableRevenue", "Revenue");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Revenue>("TreasureLandModel.FK_HotelIdMustExistInHotelTableRevenue", "Revenue", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "HotelLongTermAsset", "LongTermAsset")]
+        public EntityCollection<LongTermAsset> LongTermAssets
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LongTermAsset>("TreasureLandModel.HotelLongTermAsset", "LongTermAsset");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LongTermAsset>("TreasureLandModel.HotelLongTermAsset", "LongTermAsset", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TreasureLandModel", Name="HotelOrder")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class HotelOrder : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new HotelOrder object.
+        /// </summary>
+        /// <param name="orderID">Initial value of the OrderID property.</param>
+        /// <param name="hotelID">Initial value of the HotelID property.</param>
+        /// <param name="orderDate">Initial value of the OrderDate property.</param>
+        /// <param name="orderTotalCost">Initial value of the OrderTotalCost property.</param>
+        public static HotelOrder CreateHotelOrder(global::System.Int16 orderID, global::System.Int16 hotelID, global::System.DateTime orderDate, global::System.Decimal orderTotalCost)
+        {
+            HotelOrder hotelOrder = new HotelOrder();
+            hotelOrder.OrderID = orderID;
+            hotelOrder.HotelID = hotelID;
+            hotelOrder.OrderDate = orderDate;
+            hotelOrder.OrderTotalCost = orderTotalCost;
+            return hotelOrder;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 OrderID
+        {
+            get
+            {
+                return _OrderID;
+            }
+            set
+            {
+                if (_OrderID != value)
+                {
+                    OnOrderIDChanging(value);
+                    ReportPropertyChanging("OrderID");
+                    _OrderID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("OrderID");
+                    OnOrderIDChanged();
+                }
+            }
+        }
+        private global::System.Int16 _OrderID;
+        partial void OnOrderIDChanging(global::System.Int16 value);
+        partial void OnOrderIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 HotelID
+        {
+            get
+            {
+                return _HotelID;
+            }
+            set
+            {
+                OnHotelIDChanging(value);
+                ReportPropertyChanging("HotelID");
+                _HotelID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HotelID");
+                OnHotelIDChanged();
+            }
+        }
+        private global::System.Int16 _HotelID;
+        partial void OnHotelIDChanging(global::System.Int16 value);
+        partial void OnHotelIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime OrderDate
+        {
+            get
+            {
+                return _OrderDate;
+            }
+            set
+            {
+                OnOrderDateChanging(value);
+                ReportPropertyChanging("OrderDate");
+                _OrderDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OrderDate");
+                OnOrderDateChanged();
+            }
+        }
+        private global::System.DateTime _OrderDate;
+        partial void OnOrderDateChanging(global::System.DateTime value);
+        partial void OnOrderDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal OrderTotalCost
+        {
+            get
+            {
+                return _OrderTotalCost;
+            }
+            set
+            {
+                OnOrderTotalCostChanging(value);
+                ReportPropertyChanging("OrderTotalCost");
+                _OrderTotalCost = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OrderTotalCost");
+                OnOrderTotalCostChanged();
+            }
+        }
+        private global::System.Decimal _OrderTotalCost;
+        partial void OnOrderTotalCostChanging(global::System.Decimal value);
+        partial void OnOrderTotalCostChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_HotelIdMustExistInHotelTableHotelOrder", "Hotel")]
+        public Hotel Hotel
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableHotelOrder", "Hotel").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableHotelOrder", "Hotel").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Hotel> HotelReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableHotelOrder", "Hotel");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableHotelOrder", "Hotel", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_OrderIdMustExistInHotelOrderTableOrderShortTerm", "OrderShortTerm")]
+        public EntityCollection<OrderShortTerm> OrderShortTerms
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderShortTerm>("TreasureLandModel.FK_OrderIdMustExistInHotelOrderTableOrderShortTerm", "OrderShortTerm");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderShortTerm>("TreasureLandModel.FK_OrderIdMustExistInHotelOrderTableOrderShortTerm", "OrderShortTerm", value);
                 }
             }
         }
@@ -1510,13 +2748,15 @@ namespace TreasureLand.EDM
         /// <param name="hotelID">Initial value of the HotelID property.</param>
         /// <param name="roomType">Initial value of the RoomType property.</param>
         /// <param name="roomTypeRackRate">Initial value of the RoomTypeRackRate property.</param>
-        public static HotelRoomType CreateHotelRoomType(global::System.Int16 hotelRoomTypeID, global::System.Int16 hotelID, global::System.String roomType, global::System.Decimal roomTypeRackRate)
+        /// <param name="roomTypeDescription">Initial value of the RoomTypeDescription property.</param>
+        public static HotelRoomType CreateHotelRoomType(global::System.Int16 hotelRoomTypeID, global::System.Int16 hotelID, global::System.String roomType, global::System.Decimal roomTypeRackRate, global::System.String roomTypeDescription)
         {
             HotelRoomType hotelRoomType = new HotelRoomType();
             hotelRoomType.HotelRoomTypeID = hotelRoomTypeID;
             hotelRoomType.HotelID = hotelID;
             hotelRoomType.RoomType = roomType;
             hotelRoomType.RoomTypeRackRate = roomTypeRackRate;
+            hotelRoomType.RoomTypeDescription = roomTypeDescription;
             return hotelRoomType;
         }
 
@@ -1625,7 +2865,7 @@ namespace TreasureLand.EDM
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String RoomTypeDescription
         {
@@ -1637,7 +2877,7 @@ namespace TreasureLand.EDM
             {
                 OnRoomTypeDescriptionChanging(value);
                 ReportPropertyChanging("RoomTypeDescription");
-                _RoomTypeDescription = StructuralObject.SetValidValue(value, true);
+                _RoomTypeDescription = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("RoomTypeDescription");
                 OnRoomTypeDescriptionChanged();
             }
@@ -1656,16 +2896,16 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_HotelRoomType_Must_Have_HotelID", "Hotel")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_HotelIdMustExistInHotelTableHotelRoomType", "Hotel")]
         public Hotel Hotel
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelRoomType_Must_Have_HotelID", "Hotel").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableHotelRoomType", "Hotel").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelRoomType_Must_Have_HotelID", "Hotel").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableHotelRoomType", "Hotel").Value = value;
             }
         }
         /// <summary>
@@ -1677,13 +2917,13 @@ namespace TreasureLand.EDM
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelRoomType_Must_Have_HotelID", "Hotel");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableHotelRoomType", "Hotel");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Hotel>("TreasureLandModel.FK_HotelRoomType_Must_Have_HotelID", "Hotel", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableHotelRoomType", "Hotel", value);
                 }
             }
         }
@@ -1694,18 +2934,1574 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_Room_Must_Have_HotelRoomTypeID", "Room")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_HotelRoomTypeIdMustExistInHotelRoomTypeTableRoom", "Room")]
         public EntityCollection<Room> Rooms
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Room>("TreasureLandModel.FK_Room_Must_Have_HotelRoomTypeID", "Room");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Room>("TreasureLandModel.FK_HotelRoomTypeIdMustExistInHotelRoomTypeTableRoom", "Room");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Room>("TreasureLandModel.FK_Room_Must_Have_HotelRoomTypeID", "Room", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Room>("TreasureLandModel.FK_HotelRoomTypeIdMustExistInHotelRoomTypeTableRoom", "Room", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TreasureLandModel", Name="Ingredient")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Ingredient : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Ingredient object.
+        /// </summary>
+        /// <param name="ingredientID">Initial value of the IngredientID property.</param>
+        /// <param name="ingredientName">Initial value of the IngredientName property.</param>
+        public static Ingredient CreateIngredient(global::System.Int16 ingredientID, global::System.String ingredientName)
+        {
+            Ingredient ingredient = new Ingredient();
+            ingredient.IngredientID = ingredientID;
+            ingredient.IngredientName = ingredientName;
+            return ingredient;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 IngredientID
+        {
+            get
+            {
+                return _IngredientID;
+            }
+            set
+            {
+                if (_IngredientID != value)
+                {
+                    OnIngredientIDChanging(value);
+                    ReportPropertyChanging("IngredientID");
+                    _IngredientID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("IngredientID");
+                    OnIngredientIDChanged();
+                }
+            }
+        }
+        private global::System.Int16 _IngredientID;
+        partial void OnIngredientIDChanging(global::System.Int16 value);
+        partial void OnIngredientIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String IngredientName
+        {
+            get
+            {
+                return _IngredientName;
+            }
+            set
+            {
+                OnIngredientNameChanging(value);
+                ReportPropertyChanging("IngredientName");
+                _IngredientName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("IngredientName");
+                OnIngredientNameChanged();
+            }
+        }
+        private global::System.String _IngredientName;
+        partial void OnIngredientNameChanging(global::System.String value);
+        partial void OnIngredientNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String IngredientDescription
+        {
+            get
+            {
+                return _IngredientDescription;
+            }
+            set
+            {
+                OnIngredientDescriptionChanging(value);
+                ReportPropertyChanging("IngredientDescription");
+                _IngredientDescription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("IngredientDescription");
+                OnIngredientDescriptionChanged();
+            }
+        }
+        private global::System.String _IngredientDescription;
+        partial void OnIngredientDescriptionChanging(global::System.String value);
+        partial void OnIngredientDescriptionChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_IngredientIDinIngredientPurchaseHistoryMustHaveUniqueId", "IngredientPurchaseHistory")]
+        public EntityCollection<IngredientPurchaseHistory> IngredientPurchaseHistories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<IngredientPurchaseHistory>("TreasureLandModel.FK_IngredientIDinIngredientPurchaseHistoryMustHaveUniqueId", "IngredientPurchaseHistory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<IngredientPurchaseHistory>("TreasureLandModel.FK_IngredientIDinIngredientPurchaseHistoryMustHaveUniqueId", "IngredientPurchaseHistory", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_IngredientInMenuItemIngredientMustHaveUniqueId", "MenuItemIngredient")]
+        public EntityCollection<MenuItemIngredient> MenuItemIngredients
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MenuItemIngredient>("TreasureLandModel.FK_IngredientInMenuItemIngredientMustHaveUniqueId", "MenuItemIngredient");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MenuItemIngredient>("TreasureLandModel.FK_IngredientInMenuItemIngredientMustHaveUniqueId", "MenuItemIngredient", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TreasureLandModel", Name="IngredientPurchase")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class IngredientPurchase : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new IngredientPurchase object.
+        /// </summary>
+        /// <param name="purchaseID">Initial value of the PurchaseID property.</param>
+        /// <param name="purchaseDate">Initial value of the PurchaseDate property.</param>
+        public static IngredientPurchase CreateIngredientPurchase(global::System.Int16 purchaseID, global::System.DateTime purchaseDate)
+        {
+            IngredientPurchase ingredientPurchase = new IngredientPurchase();
+            ingredientPurchase.PurchaseID = purchaseID;
+            ingredientPurchase.PurchaseDate = purchaseDate;
+            return ingredientPurchase;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 PurchaseID
+        {
+            get
+            {
+                return _PurchaseID;
+            }
+            set
+            {
+                if (_PurchaseID != value)
+                {
+                    OnPurchaseIDChanging(value);
+                    ReportPropertyChanging("PurchaseID");
+                    _PurchaseID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("PurchaseID");
+                    OnPurchaseIDChanged();
+                }
+            }
+        }
+        private global::System.Int16 _PurchaseID;
+        partial void OnPurchaseIDChanging(global::System.Int16 value);
+        partial void OnPurchaseIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime PurchaseDate
+        {
+            get
+            {
+                return _PurchaseDate;
+            }
+            set
+            {
+                OnPurchaseDateChanging(value);
+                ReportPropertyChanging("PurchaseDate");
+                _PurchaseDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PurchaseDate");
+                OnPurchaseDateChanged();
+            }
+        }
+        private global::System.DateTime _PurchaseDate;
+        partial void OnPurchaseDateChanging(global::System.DateTime value);
+        partial void OnPurchaseDateChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_PurchaseIdInIngredientPurchaseHistoryMustHaveUniqueId", "IngredientPurchaseHistory")]
+        public EntityCollection<IngredientPurchaseHistory> IngredientPurchaseHistories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<IngredientPurchaseHistory>("TreasureLandModel.FK_PurchaseIdInIngredientPurchaseHistoryMustHaveUniqueId", "IngredientPurchaseHistory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<IngredientPurchaseHistory>("TreasureLandModel.FK_PurchaseIdInIngredientPurchaseHistoryMustHaveUniqueId", "IngredientPurchaseHistory", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TreasureLandModel", Name="IngredientPurchaseHistory")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class IngredientPurchaseHistory : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new IngredientPurchaseHistory object.
+        /// </summary>
+        /// <param name="ingredientPurchaseHistoryID">Initial value of the IngredientPurchaseHistoryID property.</param>
+        /// <param name="ingredientID">Initial value of the IngredientID property.</param>
+        /// <param name="purchaseID">Initial value of the PurchaseID property.</param>
+        /// <param name="ingredientPurchaseHistoryPrice">Initial value of the IngredientPurchaseHistoryPrice property.</param>
+        /// <param name="ingredientPurchaseHistoryQty">Initial value of the IngredientPurchaseHistoryQty property.</param>
+        public static IngredientPurchaseHistory CreateIngredientPurchaseHistory(global::System.Int16 ingredientPurchaseHistoryID, global::System.Int16 ingredientID, global::System.Int16 purchaseID, global::System.Decimal ingredientPurchaseHistoryPrice, global::System.Int16 ingredientPurchaseHistoryQty)
+        {
+            IngredientPurchaseHistory ingredientPurchaseHistory = new IngredientPurchaseHistory();
+            ingredientPurchaseHistory.IngredientPurchaseHistoryID = ingredientPurchaseHistoryID;
+            ingredientPurchaseHistory.IngredientID = ingredientID;
+            ingredientPurchaseHistory.PurchaseID = purchaseID;
+            ingredientPurchaseHistory.IngredientPurchaseHistoryPrice = ingredientPurchaseHistoryPrice;
+            ingredientPurchaseHistory.IngredientPurchaseHistoryQty = ingredientPurchaseHistoryQty;
+            return ingredientPurchaseHistory;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 IngredientPurchaseHistoryID
+        {
+            get
+            {
+                return _IngredientPurchaseHistoryID;
+            }
+            set
+            {
+                if (_IngredientPurchaseHistoryID != value)
+                {
+                    OnIngredientPurchaseHistoryIDChanging(value);
+                    ReportPropertyChanging("IngredientPurchaseHistoryID");
+                    _IngredientPurchaseHistoryID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("IngredientPurchaseHistoryID");
+                    OnIngredientPurchaseHistoryIDChanged();
+                }
+            }
+        }
+        private global::System.Int16 _IngredientPurchaseHistoryID;
+        partial void OnIngredientPurchaseHistoryIDChanging(global::System.Int16 value);
+        partial void OnIngredientPurchaseHistoryIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 IngredientID
+        {
+            get
+            {
+                return _IngredientID;
+            }
+            set
+            {
+                OnIngredientIDChanging(value);
+                ReportPropertyChanging("IngredientID");
+                _IngredientID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IngredientID");
+                OnIngredientIDChanged();
+            }
+        }
+        private global::System.Int16 _IngredientID;
+        partial void OnIngredientIDChanging(global::System.Int16 value);
+        partial void OnIngredientIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 PurchaseID
+        {
+            get
+            {
+                return _PurchaseID;
+            }
+            set
+            {
+                OnPurchaseIDChanging(value);
+                ReportPropertyChanging("PurchaseID");
+                _PurchaseID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PurchaseID");
+                OnPurchaseIDChanged();
+            }
+        }
+        private global::System.Int16 _PurchaseID;
+        partial void OnPurchaseIDChanging(global::System.Int16 value);
+        partial void OnPurchaseIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal IngredientPurchaseHistoryPrice
+        {
+            get
+            {
+                return _IngredientPurchaseHistoryPrice;
+            }
+            set
+            {
+                OnIngredientPurchaseHistoryPriceChanging(value);
+                ReportPropertyChanging("IngredientPurchaseHistoryPrice");
+                _IngredientPurchaseHistoryPrice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IngredientPurchaseHistoryPrice");
+                OnIngredientPurchaseHistoryPriceChanged();
+            }
+        }
+        private global::System.Decimal _IngredientPurchaseHistoryPrice;
+        partial void OnIngredientPurchaseHistoryPriceChanging(global::System.Decimal value);
+        partial void OnIngredientPurchaseHistoryPriceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 IngredientPurchaseHistoryQty
+        {
+            get
+            {
+                return _IngredientPurchaseHistoryQty;
+            }
+            set
+            {
+                OnIngredientPurchaseHistoryQtyChanging(value);
+                ReportPropertyChanging("IngredientPurchaseHistoryQty");
+                _IngredientPurchaseHistoryQty = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IngredientPurchaseHistoryQty");
+                OnIngredientPurchaseHistoryQtyChanged();
+            }
+        }
+        private global::System.Int16 _IngredientPurchaseHistoryQty;
+        partial void OnIngredientPurchaseHistoryQtyChanging(global::System.Int16 value);
+        partial void OnIngredientPurchaseHistoryQtyChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_IngredientIDinIngredientPurchaseHistoryMustHaveUniqueId", "Ingredient")]
+        public Ingredient Ingredient
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ingredient>("TreasureLandModel.FK_IngredientIDinIngredientPurchaseHistoryMustHaveUniqueId", "Ingredient").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ingredient>("TreasureLandModel.FK_IngredientIDinIngredientPurchaseHistoryMustHaveUniqueId", "Ingredient").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Ingredient> IngredientReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ingredient>("TreasureLandModel.FK_IngredientIDinIngredientPurchaseHistoryMustHaveUniqueId", "Ingredient");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Ingredient>("TreasureLandModel.FK_IngredientIDinIngredientPurchaseHistoryMustHaveUniqueId", "Ingredient", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_PurchaseIdInIngredientPurchaseHistoryMustHaveUniqueId", "IngredientPurchase")]
+        public IngredientPurchase IngredientPurchase
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<IngredientPurchase>("TreasureLandModel.FK_PurchaseIdInIngredientPurchaseHistoryMustHaveUniqueId", "IngredientPurchase").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<IngredientPurchase>("TreasureLandModel.FK_PurchaseIdInIngredientPurchaseHistoryMustHaveUniqueId", "IngredientPurchase").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<IngredientPurchase> IngredientPurchaseReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<IngredientPurchase>("TreasureLandModel.FK_PurchaseIdInIngredientPurchaseHistoryMustHaveUniqueId", "IngredientPurchase");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<IngredientPurchase>("TreasureLandModel.FK_PurchaseIdInIngredientPurchaseHistoryMustHaveUniqueId", "IngredientPurchase", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TreasureLandModel", Name="LineItem")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class LineItem : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new LineItem object.
+        /// </summary>
+        /// <param name="lineItemTransactionID">Initial value of the LineItemTransactionID property.</param>
+        /// <param name="reservationDetailBillingID">Initial value of the ReservationDetailBillingID property.</param>
+        /// <param name="lineItemAmount">Initial value of the LineItemAmount property.</param>
+        public static LineItem CreateLineItem(global::System.Int32 lineItemTransactionID, global::System.Int16 reservationDetailBillingID, global::System.Decimal lineItemAmount)
+        {
+            LineItem lineItem = new LineItem();
+            lineItem.LineItemTransactionID = lineItemTransactionID;
+            lineItem.ReservationDetailBillingID = reservationDetailBillingID;
+            lineItem.LineItemAmount = lineItemAmount;
+            return lineItem;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LineItemTransactionID
+        {
+            get
+            {
+                return _LineItemTransactionID;
+            }
+            set
+            {
+                if (_LineItemTransactionID != value)
+                {
+                    OnLineItemTransactionIDChanging(value);
+                    ReportPropertyChanging("LineItemTransactionID");
+                    _LineItemTransactionID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("LineItemTransactionID");
+                    OnLineItemTransactionIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _LineItemTransactionID;
+        partial void OnLineItemTransactionIDChanging(global::System.Int32 value);
+        partial void OnLineItemTransactionIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 ReservationDetailBillingID
+        {
+            get
+            {
+                return _ReservationDetailBillingID;
+            }
+            set
+            {
+                OnReservationDetailBillingIDChanging(value);
+                ReportPropertyChanging("ReservationDetailBillingID");
+                _ReservationDetailBillingID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ReservationDetailBillingID");
+                OnReservationDetailBillingIDChanged();
+            }
+        }
+        private global::System.Int16 _ReservationDetailBillingID;
+        partial void OnReservationDetailBillingIDChanging(global::System.Int16 value);
+        partial void OnReservationDetailBillingIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int16> MenuItemID
+        {
+            get
+            {
+                return _MenuItemID;
+            }
+            set
+            {
+                OnMenuItemIDChanging(value);
+                ReportPropertyChanging("MenuItemID");
+                _MenuItemID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MenuItemID");
+                OnMenuItemIDChanged();
+            }
+        }
+        private Nullable<global::System.Int16> _MenuItemID;
+        partial void OnMenuItemIDChanging(Nullable<global::System.Int16> value);
+        partial void OnMenuItemIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal LineItemAmount
+        {
+            get
+            {
+                return _LineItemAmount;
+            }
+            set
+            {
+                OnLineItemAmountChanging(value);
+                ReportPropertyChanging("LineItemAmount");
+                _LineItemAmount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LineItemAmount");
+                OnLineItemAmountChanged();
+            }
+        }
+        private global::System.Decimal _LineItemAmount;
+        partial void OnLineItemAmountChanging(global::System.Decimal value);
+        partial void OnLineItemAmountChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_FoodDrinkCategoryIdInLineItemMustHaveUniqueId", "MenuItem")]
+        public MenuItem MenuItem
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MenuItem>("TreasureLandModel.FK_FoodDrinkCategoryIdInLineItemMustHaveUniqueId", "MenuItem").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MenuItem>("TreasureLandModel.FK_FoodDrinkCategoryIdInLineItemMustHaveUniqueId", "MenuItem").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<MenuItem> MenuItemReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MenuItem>("TreasureLandModel.FK_FoodDrinkCategoryIdInLineItemMustHaveUniqueId", "MenuItem");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MenuItem>("TreasureLandModel.FK_FoodDrinkCategoryIdInLineItemMustHaveUniqueId", "MenuItem", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationDetailBillingMustHaveUniqueId", "ReservationDetailBilling")]
+        public ReservationDetailBilling ReservationDetailBilling
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationDetailBilling>("TreasureLandModel.FK_ReservationDetailBillingMustHaveUniqueId", "ReservationDetailBilling").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationDetailBilling>("TreasureLandModel.FK_ReservationDetailBillingMustHaveUniqueId", "ReservationDetailBilling").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<ReservationDetailBilling> ReservationDetailBillingReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationDetailBilling>("TreasureLandModel.FK_ReservationDetailBillingMustHaveUniqueId", "ReservationDetailBilling");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ReservationDetailBilling>("TreasureLandModel.FK_ReservationDetailBillingMustHaveUniqueId", "ReservationDetailBilling", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TreasureLandModel", Name="LongTermAsset")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class LongTermAsset : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new LongTermAsset object.
+        /// </summary>
+        /// <param name="longTermAssetID">Initial value of the LongTermAssetID property.</param>
+        /// <param name="longTermAssetName">Initial value of the LongTermAssetName property.</param>
+        /// <param name="longTermAssetLocation">Initial value of the LongTermAssetLocation property.</param>
+        /// <param name="longTermAssetCost">Initial value of the LongTermAssetCost property.</param>
+        /// <param name="longTermAssetPurchaseDate">Initial value of the LongTermAssetPurchaseDate property.</param>
+        public static LongTermAsset CreateLongTermAsset(global::System.Int16 longTermAssetID, global::System.String longTermAssetName, global::System.String longTermAssetLocation, global::System.Decimal longTermAssetCost, global::System.DateTime longTermAssetPurchaseDate)
+        {
+            LongTermAsset longTermAsset = new LongTermAsset();
+            longTermAsset.LongTermAssetID = longTermAssetID;
+            longTermAsset.LongTermAssetName = longTermAssetName;
+            longTermAsset.LongTermAssetLocation = longTermAssetLocation;
+            longTermAsset.LongTermAssetCost = longTermAssetCost;
+            longTermAsset.LongTermAssetPurchaseDate = longTermAssetPurchaseDate;
+            return longTermAsset;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 LongTermAssetID
+        {
+            get
+            {
+                return _LongTermAssetID;
+            }
+            set
+            {
+                if (_LongTermAssetID != value)
+                {
+                    OnLongTermAssetIDChanging(value);
+                    ReportPropertyChanging("LongTermAssetID");
+                    _LongTermAssetID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("LongTermAssetID");
+                    OnLongTermAssetIDChanged();
+                }
+            }
+        }
+        private global::System.Int16 _LongTermAssetID;
+        partial void OnLongTermAssetIDChanging(global::System.Int16 value);
+        partial void OnLongTermAssetIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LongTermAssetName
+        {
+            get
+            {
+                return _LongTermAssetName;
+            }
+            set
+            {
+                OnLongTermAssetNameChanging(value);
+                ReportPropertyChanging("LongTermAssetName");
+                _LongTermAssetName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("LongTermAssetName");
+                OnLongTermAssetNameChanged();
+            }
+        }
+        private global::System.String _LongTermAssetName;
+        partial void OnLongTermAssetNameChanging(global::System.String value);
+        partial void OnLongTermAssetNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LongTermAssetLocation
+        {
+            get
+            {
+                return _LongTermAssetLocation;
+            }
+            set
+            {
+                OnLongTermAssetLocationChanging(value);
+                ReportPropertyChanging("LongTermAssetLocation");
+                _LongTermAssetLocation = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("LongTermAssetLocation");
+                OnLongTermAssetLocationChanged();
+            }
+        }
+        private global::System.String _LongTermAssetLocation;
+        partial void OnLongTermAssetLocationChanging(global::System.String value);
+        partial void OnLongTermAssetLocationChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal LongTermAssetCost
+        {
+            get
+            {
+                return _LongTermAssetCost;
+            }
+            set
+            {
+                OnLongTermAssetCostChanging(value);
+                ReportPropertyChanging("LongTermAssetCost");
+                _LongTermAssetCost = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LongTermAssetCost");
+                OnLongTermAssetCostChanged();
+            }
+        }
+        private global::System.Decimal _LongTermAssetCost;
+        partial void OnLongTermAssetCostChanging(global::System.Decimal value);
+        partial void OnLongTermAssetCostChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> LongTermAssetInUse
+        {
+            get
+            {
+                return _LongTermAssetInUse;
+            }
+            set
+            {
+                OnLongTermAssetInUseChanging(value);
+                ReportPropertyChanging("LongTermAssetInUse");
+                _LongTermAssetInUse = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LongTermAssetInUse");
+                OnLongTermAssetInUseChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _LongTermAssetInUse;
+        partial void OnLongTermAssetInUseChanging(Nullable<global::System.Boolean> value);
+        partial void OnLongTermAssetInUseChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime LongTermAssetPurchaseDate
+        {
+            get
+            {
+                return _LongTermAssetPurchaseDate;
+            }
+            set
+            {
+                OnLongTermAssetPurchaseDateChanging(value);
+                ReportPropertyChanging("LongTermAssetPurchaseDate");
+                _LongTermAssetPurchaseDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LongTermAssetPurchaseDate");
+                OnLongTermAssetPurchaseDateChanged();
+            }
+        }
+        private global::System.DateTime _LongTermAssetPurchaseDate;
+        partial void OnLongTermAssetPurchaseDateChanging(global::System.DateTime value);
+        partial void OnLongTermAssetPurchaseDateChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "HotelLongTermAsset", "Hotel")]
+        public EntityCollection<Hotel> Hotels
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Hotel>("TreasureLandModel.HotelLongTermAsset", "Hotel");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Hotel>("TreasureLandModel.HotelLongTermAsset", "Hotel", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TreasureLandModel", Name="MenuItem")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class MenuItem : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new MenuItem object.
+        /// </summary>
+        /// <param name="menuItemID">Initial value of the MenuItemID property.</param>
+        /// <param name="foodDrinkCategoryID">Initial value of the FoodDrinkCategoryID property.</param>
+        /// <param name="menuItemName">Initial value of the MenuItemName property.</param>
+        /// <param name="menuItemPrice">Initial value of the MenuItemPrice property.</param>
+        public static MenuItem CreateMenuItem(global::System.Int16 menuItemID, global::System.Int16 foodDrinkCategoryID, global::System.String menuItemName, global::System.Decimal menuItemPrice)
+        {
+            MenuItem menuItem = new MenuItem();
+            menuItem.MenuItemID = menuItemID;
+            menuItem.FoodDrinkCategoryID = foodDrinkCategoryID;
+            menuItem.MenuItemName = menuItemName;
+            menuItem.MenuItemPrice = menuItemPrice;
+            return menuItem;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 MenuItemID
+        {
+            get
+            {
+                return _MenuItemID;
+            }
+            set
+            {
+                if (_MenuItemID != value)
+                {
+                    OnMenuItemIDChanging(value);
+                    ReportPropertyChanging("MenuItemID");
+                    _MenuItemID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("MenuItemID");
+                    OnMenuItemIDChanged();
+                }
+            }
+        }
+        private global::System.Int16 _MenuItemID;
+        partial void OnMenuItemIDChanging(global::System.Int16 value);
+        partial void OnMenuItemIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 FoodDrinkCategoryID
+        {
+            get
+            {
+                return _FoodDrinkCategoryID;
+            }
+            set
+            {
+                OnFoodDrinkCategoryIDChanging(value);
+                ReportPropertyChanging("FoodDrinkCategoryID");
+                _FoodDrinkCategoryID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FoodDrinkCategoryID");
+                OnFoodDrinkCategoryIDChanged();
+            }
+        }
+        private global::System.Int16 _FoodDrinkCategoryID;
+        partial void OnFoodDrinkCategoryIDChanging(global::System.Int16 value);
+        partial void OnFoodDrinkCategoryIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String MenuItemName
+        {
+            get
+            {
+                return _MenuItemName;
+            }
+            set
+            {
+                OnMenuItemNameChanging(value);
+                ReportPropertyChanging("MenuItemName");
+                _MenuItemName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("MenuItemName");
+                OnMenuItemNameChanged();
+            }
+        }
+        private global::System.String _MenuItemName;
+        partial void OnMenuItemNameChanging(global::System.String value);
+        partial void OnMenuItemNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal MenuItemPrice
+        {
+            get
+            {
+                return _MenuItemPrice;
+            }
+            set
+            {
+                OnMenuItemPriceChanging(value);
+                ReportPropertyChanging("MenuItemPrice");
+                _MenuItemPrice = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MenuItemPrice");
+                OnMenuItemPriceChanged();
+            }
+        }
+        private global::System.Decimal _MenuItemPrice;
+        partial void OnMenuItemPriceChanging(global::System.Decimal value);
+        partial void OnMenuItemPriceChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_FoodDrinkCategoryIdInMenuItemMustHaveUniqueId", "FoodDrinkCategory")]
+        public FoodDrinkCategory FoodDrinkCategory
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FoodDrinkCategory>("TreasureLandModel.FK_FoodDrinkCategoryIdInMenuItemMustHaveUniqueId", "FoodDrinkCategory").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FoodDrinkCategory>("TreasureLandModel.FK_FoodDrinkCategoryIdInMenuItemMustHaveUniqueId", "FoodDrinkCategory").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<FoodDrinkCategory> FoodDrinkCategoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FoodDrinkCategory>("TreasureLandModel.FK_FoodDrinkCategoryIdInMenuItemMustHaveUniqueId", "FoodDrinkCategory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FoodDrinkCategory>("TreasureLandModel.FK_FoodDrinkCategoryIdInMenuItemMustHaveUniqueId", "FoodDrinkCategory", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_FoodDrinkCategoryIdInLineItemMustHaveUniqueId", "LineItem")]
+        public EntityCollection<LineItem> LineItems
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LineItem>("TreasureLandModel.FK_FoodDrinkCategoryIdInLineItemMustHaveUniqueId", "LineItem");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LineItem>("TreasureLandModel.FK_FoodDrinkCategoryIdInLineItemMustHaveUniqueId", "LineItem", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_MenuItemIdInMenuItemIngredientMustHaveUniqueId", "MenuItemIngredient")]
+        public EntityCollection<MenuItemIngredient> MenuItemIngredients
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MenuItemIngredient>("TreasureLandModel.FK_MenuItemIdInMenuItemIngredientMustHaveUniqueId", "MenuItemIngredient");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MenuItemIngredient>("TreasureLandModel.FK_MenuItemIdInMenuItemIngredientMustHaveUniqueId", "MenuItemIngredient", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TreasureLandModel", Name="MenuItemIngredient")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class MenuItemIngredient : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new MenuItemIngredient object.
+        /// </summary>
+        /// <param name="menuItemIngredientID">Initial value of the MenuItemIngredientID property.</param>
+        /// <param name="menuItemID">Initial value of the MenuItemID property.</param>
+        /// <param name="ingredientID">Initial value of the IngredientID property.</param>
+        /// <param name="menuItemIngredientQty">Initial value of the MenuItemIngredientQty property.</param>
+        public static MenuItemIngredient CreateMenuItemIngredient(global::System.Int16 menuItemIngredientID, global::System.Int16 menuItemID, global::System.Int16 ingredientID, global::System.Decimal menuItemIngredientQty)
+        {
+            MenuItemIngredient menuItemIngredient = new MenuItemIngredient();
+            menuItemIngredient.MenuItemIngredientID = menuItemIngredientID;
+            menuItemIngredient.MenuItemID = menuItemID;
+            menuItemIngredient.IngredientID = ingredientID;
+            menuItemIngredient.MenuItemIngredientQty = menuItemIngredientQty;
+            return menuItemIngredient;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 MenuItemIngredientID
+        {
+            get
+            {
+                return _MenuItemIngredientID;
+            }
+            set
+            {
+                if (_MenuItemIngredientID != value)
+                {
+                    OnMenuItemIngredientIDChanging(value);
+                    ReportPropertyChanging("MenuItemIngredientID");
+                    _MenuItemIngredientID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("MenuItemIngredientID");
+                    OnMenuItemIngredientIDChanged();
+                }
+            }
+        }
+        private global::System.Int16 _MenuItemIngredientID;
+        partial void OnMenuItemIngredientIDChanging(global::System.Int16 value);
+        partial void OnMenuItemIngredientIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 MenuItemID
+        {
+            get
+            {
+                return _MenuItemID;
+            }
+            set
+            {
+                OnMenuItemIDChanging(value);
+                ReportPropertyChanging("MenuItemID");
+                _MenuItemID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MenuItemID");
+                OnMenuItemIDChanged();
+            }
+        }
+        private global::System.Int16 _MenuItemID;
+        partial void OnMenuItemIDChanging(global::System.Int16 value);
+        partial void OnMenuItemIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 IngredientID
+        {
+            get
+            {
+                return _IngredientID;
+            }
+            set
+            {
+                OnIngredientIDChanging(value);
+                ReportPropertyChanging("IngredientID");
+                _IngredientID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IngredientID");
+                OnIngredientIDChanged();
+            }
+        }
+        private global::System.Int16 _IngredientID;
+        partial void OnIngredientIDChanging(global::System.Int16 value);
+        partial void OnIngredientIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Decimal MenuItemIngredientQty
+        {
+            get
+            {
+                return _MenuItemIngredientQty;
+            }
+            set
+            {
+                OnMenuItemIngredientQtyChanging(value);
+                ReportPropertyChanging("MenuItemIngredientQty");
+                _MenuItemIngredientQty = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MenuItemIngredientQty");
+                OnMenuItemIngredientQtyChanged();
+            }
+        }
+        private global::System.Decimal _MenuItemIngredientQty;
+        partial void OnMenuItemIngredientQtyChanging(global::System.Decimal value);
+        partial void OnMenuItemIngredientQtyChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_IngredientInMenuItemIngredientMustHaveUniqueId", "Ingredient")]
+        public Ingredient Ingredient
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ingredient>("TreasureLandModel.FK_IngredientInMenuItemIngredientMustHaveUniqueId", "Ingredient").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ingredient>("TreasureLandModel.FK_IngredientInMenuItemIngredientMustHaveUniqueId", "Ingredient").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Ingredient> IngredientReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Ingredient>("TreasureLandModel.FK_IngredientInMenuItemIngredientMustHaveUniqueId", "Ingredient");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Ingredient>("TreasureLandModel.FK_IngredientInMenuItemIngredientMustHaveUniqueId", "Ingredient", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_MenuItemIdInMenuItemIngredientMustHaveUniqueId", "MenuItem")]
+        public MenuItem MenuItem
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MenuItem>("TreasureLandModel.FK_MenuItemIdInMenuItemIngredientMustHaveUniqueId", "MenuItem").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MenuItem>("TreasureLandModel.FK_MenuItemIdInMenuItemIngredientMustHaveUniqueId", "MenuItem").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<MenuItem> MenuItemReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<MenuItem>("TreasureLandModel.FK_MenuItemIdInMenuItemIngredientMustHaveUniqueId", "MenuItem");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<MenuItem>("TreasureLandModel.FK_MenuItemIdInMenuItemIngredientMustHaveUniqueId", "MenuItem", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TreasureLandModel", Name="OrderShortTerm")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class OrderShortTerm : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new OrderShortTerm object.
+        /// </summary>
+        /// <param name="orderShortTermID">Initial value of the OrderShortTermID property.</param>
+        /// <param name="orderID">Initial value of the OrderID property.</param>
+        /// <param name="shortTermAssetID">Initial value of the ShortTermAssetID property.</param>
+        /// <param name="quantityOrdered">Initial value of the QuantityOrdered property.</param>
+        public static OrderShortTerm CreateOrderShortTerm(global::System.Int32 orderShortTermID, global::System.Int16 orderID, global::System.Int16 shortTermAssetID, global::System.Byte quantityOrdered)
+        {
+            OrderShortTerm orderShortTerm = new OrderShortTerm();
+            orderShortTerm.OrderShortTermID = orderShortTermID;
+            orderShortTerm.OrderID = orderID;
+            orderShortTerm.ShortTermAssetID = shortTermAssetID;
+            orderShortTerm.QuantityOrdered = quantityOrdered;
+            return orderShortTerm;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 OrderShortTermID
+        {
+            get
+            {
+                return _OrderShortTermID;
+            }
+            set
+            {
+                if (_OrderShortTermID != value)
+                {
+                    OnOrderShortTermIDChanging(value);
+                    ReportPropertyChanging("OrderShortTermID");
+                    _OrderShortTermID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("OrderShortTermID");
+                    OnOrderShortTermIDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _OrderShortTermID;
+        partial void OnOrderShortTermIDChanging(global::System.Int32 value);
+        partial void OnOrderShortTermIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 OrderID
+        {
+            get
+            {
+                return _OrderID;
+            }
+            set
+            {
+                OnOrderIDChanging(value);
+                ReportPropertyChanging("OrderID");
+                _OrderID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OrderID");
+                OnOrderIDChanged();
+            }
+        }
+        private global::System.Int16 _OrderID;
+        partial void OnOrderIDChanging(global::System.Int16 value);
+        partial void OnOrderIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 ShortTermAssetID
+        {
+            get
+            {
+                return _ShortTermAssetID;
+            }
+            set
+            {
+                OnShortTermAssetIDChanging(value);
+                ReportPropertyChanging("ShortTermAssetID");
+                _ShortTermAssetID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ShortTermAssetID");
+                OnShortTermAssetIDChanged();
+            }
+        }
+        private global::System.Int16 _ShortTermAssetID;
+        partial void OnShortTermAssetIDChanging(global::System.Int16 value);
+        partial void OnShortTermAssetIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte QuantityOrdered
+        {
+            get
+            {
+                return _QuantityOrdered;
+            }
+            set
+            {
+                OnQuantityOrderedChanging(value);
+                ReportPropertyChanging("QuantityOrdered");
+                _QuantityOrdered = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("QuantityOrdered");
+                OnQuantityOrderedChanged();
+            }
+        }
+        private global::System.Byte _QuantityOrdered;
+        partial void OnQuantityOrderedChanging(global::System.Byte value);
+        partial void OnQuantityOrderedChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_OrderIdMustExistInHotelOrderTableOrderShortTerm", "HotelOrder")]
+        public HotelOrder HotelOrder
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HotelOrder>("TreasureLandModel.FK_OrderIdMustExistInHotelOrderTableOrderShortTerm", "HotelOrder").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HotelOrder>("TreasureLandModel.FK_OrderIdMustExistInHotelOrderTableOrderShortTerm", "HotelOrder").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<HotelOrder> HotelOrderReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HotelOrder>("TreasureLandModel.FK_OrderIdMustExistInHotelOrderTableOrderShortTerm", "HotelOrder");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<HotelOrder>("TreasureLandModel.FK_OrderIdMustExistInHotelOrderTableOrderShortTerm", "HotelOrder", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ShortTermAssetIdMustExistInHotelOrderTableOrderShortTerm", "ShortTermAsset")]
+        public ShortTermAsset ShortTermAsset
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ShortTermAsset>("TreasureLandModel.FK_ShortTermAssetIdMustExistInHotelOrderTableOrderShortTerm", "ShortTermAsset").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ShortTermAsset>("TreasureLandModel.FK_ShortTermAssetIdMustExistInHotelOrderTableOrderShortTerm", "ShortTermAsset").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<ShortTermAsset> ShortTermAssetReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ShortTermAsset>("TreasureLandModel.FK_ShortTermAssetIdMustExistInHotelOrderTableOrderShortTerm", "ShortTermAsset");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ShortTermAsset>("TreasureLandModel.FK_ShortTermAssetIdMustExistInHotelOrderTableOrderShortTerm", "ShortTermAsset", value);
                 }
             }
         }
@@ -1876,16 +4672,16 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_Reservation_Guest", "Guest")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_GuestIdMustExistInGuestTableReservation", "Guest")]
         public Guest Guest
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Guest>("TreasureLandModel.FK_Reservation_Guest", "Guest").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Guest>("TreasureLandModel.FK_GuestIdMustExistInGuestTableReservation", "Guest").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Guest>("TreasureLandModel.FK_Reservation_Guest", "Guest").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Guest>("TreasureLandModel.FK_GuestIdMustExistInGuestTableReservation", "Guest").Value = value;
             }
         }
         /// <summary>
@@ -1897,13 +4693,13 @@ namespace TreasureLand.EDM
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Guest>("TreasureLandModel.FK_Reservation_Guest", "Guest");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Guest>("TreasureLandModel.FK_GuestIdMustExistInGuestTableReservation", "Guest");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Guest>("TreasureLandModel.FK_Reservation_Guest", "Guest", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Guest>("TreasureLandModel.FK_GuestIdMustExistInGuestTableReservation", "Guest", value);
                 }
             }
         }
@@ -1914,18 +4710,18 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationDetail_Must_Have_ReservationID", "ReservationDetail")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationIdMustExistInReservationTableReservationDetail", "ReservationDetail")]
         public EntityCollection<ReservationDetail> ReservationDetails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReservationDetail>("TreasureLandModel.FK_ReservationDetail_Must_Have_ReservationID", "ReservationDetail");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReservationDetail>("TreasureLandModel.FK_ReservationIdMustExistInReservationTableReservationDetail", "ReservationDetail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReservationDetail>("TreasureLandModel.FK_ReservationDetail_Must_Have_ReservationID", "ReservationDetail", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReservationDetail>("TreasureLandModel.FK_ReservationIdMustExistInReservationTableReservationDetail", "ReservationDetail", value);
                 }
             }
         }
@@ -1952,11 +4748,11 @@ namespace TreasureLand.EDM
         /// <param name="quotedRate">Initial value of the QuotedRate property.</param>
         /// <param name="checkinDate">Initial value of the CheckinDate property.</param>
         /// <param name="nights">Initial value of the Nights property.</param>
-        /// <param name="status">Initial value of the Status property.</param>
+        /// <param name="reservationStatus">Initial value of the ReservationStatus property.</param>
         /// <param name="discountID">Initial value of the DiscountID property.</param>
         /// <param name="numberOfAdults">Initial value of the NumberOfAdults property.</param>
         /// <param name="numberOfChildren">Initial value of the NumberOfChildren property.</param>
-        public static ReservationDetail CreateReservationDetail(global::System.Int16 reservationDetailID, global::System.Int16 roomID, global::System.Int16 reservationID, global::System.Decimal quotedRate, global::System.DateTime checkinDate, global::System.Byte nights, global::System.String status, global::System.Int16 discountID, global::System.Byte numberOfAdults, global::System.Byte numberOfChildren)
+        public static ReservationDetail CreateReservationDetail(global::System.Int16 reservationDetailID, global::System.Int16 roomID, global::System.Int16 reservationID, global::System.Decimal quotedRate, global::System.DateTime checkinDate, global::System.Byte nights, global::System.String reservationStatus, global::System.Int16 discountID, global::System.Byte numberOfAdults, global::System.Byte numberOfChildren)
         {
             ReservationDetail reservationDetail = new ReservationDetail();
             reservationDetail.ReservationDetailID = reservationDetailID;
@@ -1965,7 +4761,7 @@ namespace TreasureLand.EDM
             reservationDetail.QuotedRate = quotedRate;
             reservationDetail.CheckinDate = checkinDate;
             reservationDetail.Nights = nights;
-            reservationDetail.Status = status;
+            reservationDetail.ReservationStatus = reservationStatus;
             reservationDetail.DiscountID = discountID;
             reservationDetail.NumberOfAdults = numberOfAdults;
             reservationDetail.NumberOfChildren = numberOfChildren;
@@ -2127,24 +4923,24 @@ namespace TreasureLand.EDM
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Status
+        public global::System.String ReservationStatus
         {
             get
             {
-                return _Status;
+                return _ReservationStatus;
             }
             set
             {
-                OnStatusChanging(value);
-                ReportPropertyChanging("Status");
-                _Status = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Status");
-                OnStatusChanged();
+                OnReservationStatusChanging(value);
+                ReportPropertyChanging("ReservationStatus");
+                _ReservationStatus = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ReservationStatus");
+                OnReservationStatusChanged();
             }
         }
-        private global::System.String _Status;
-        partial void OnStatusChanging(global::System.String value);
-        partial void OnStatusChanged();
+        private global::System.String _ReservationStatus;
+        partial void OnReservationStatusChanging(global::System.String value);
+        partial void OnReservationStatusChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2252,16 +5048,16 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationDetail_Must_Have_DiscountID", "Discount")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_DiscountIdMustExistInDiscountTableReservationDetail", "Discount")]
         public Discount Discount
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Discount>("TreasureLandModel.FK_ReservationDetail_Must_Have_DiscountID", "Discount").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Discount>("TreasureLandModel.FK_DiscountIdMustExistInDiscountTableReservationDetail", "Discount").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Discount>("TreasureLandModel.FK_ReservationDetail_Must_Have_DiscountID", "Discount").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Discount>("TreasureLandModel.FK_DiscountIdMustExistInDiscountTableReservationDetail", "Discount").Value = value;
             }
         }
         /// <summary>
@@ -2273,13 +5069,13 @@ namespace TreasureLand.EDM
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Discount>("TreasureLandModel.FK_ReservationDetail_Must_Have_DiscountID", "Discount");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Discount>("TreasureLandModel.FK_DiscountIdMustExistInDiscountTableReservationDetail", "Discount");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Discount>("TreasureLandModel.FK_ReservationDetail_Must_Have_DiscountID", "Discount", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Discount>("TreasureLandModel.FK_DiscountIdMustExistInDiscountTableReservationDetail", "Discount", value);
                 }
             }
         }
@@ -2290,16 +5086,16 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationDetail_Must_Have_ReservationID", "Reservation")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationIdMustExistInReservationTableReservationDetail", "Reservation")]
         public Reservation Reservation
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reservation>("TreasureLandModel.FK_ReservationDetail_Must_Have_ReservationID", "Reservation").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reservation>("TreasureLandModel.FK_ReservationIdMustExistInReservationTableReservationDetail", "Reservation").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reservation>("TreasureLandModel.FK_ReservationDetail_Must_Have_ReservationID", "Reservation").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reservation>("TreasureLandModel.FK_ReservationIdMustExistInReservationTableReservationDetail", "Reservation").Value = value;
             }
         }
         /// <summary>
@@ -2311,13 +5107,13 @@ namespace TreasureLand.EDM
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reservation>("TreasureLandModel.FK_ReservationDetail_Must_Have_ReservationID", "Reservation");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Reservation>("TreasureLandModel.FK_ReservationIdMustExistInReservationTableReservationDetail", "Reservation");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Reservation>("TreasureLandModel.FK_ReservationDetail_Must_Have_ReservationID", "Reservation", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Reservation>("TreasureLandModel.FK_ReservationIdMustExistInReservationTableReservationDetail", "Reservation", value);
                 }
             }
         }
@@ -2328,16 +5124,38 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationDetail_Must_Have_RoomID", "Room")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationDetailIdMustExistInReservationDetailTableReservationDetailBilling", "ReservationDetailBilling")]
+        public EntityCollection<ReservationDetailBilling> ReservationDetailBillings
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReservationDetailBilling>("TreasureLandModel.FK_ReservationDetailIdMustExistInReservationDetailTableReservationDetailBilling", "ReservationDetailBilling");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReservationDetailBilling>("TreasureLandModel.FK_ReservationDetailIdMustExistInReservationDetailTableReservationDetailBilling", "ReservationDetailBilling", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_RoomIdMustExistInRoomTableReservationDetail", "Room")]
         public Room Room
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Room>("TreasureLandModel.FK_ReservationDetail_Must_Have_RoomID", "Room").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Room>("TreasureLandModel.FK_RoomIdMustExistInRoomTableReservationDetail", "Room").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Room>("TreasureLandModel.FK_ReservationDetail_Must_Have_RoomID", "Room").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Room>("TreasureLandModel.FK_RoomIdMustExistInRoomTableReservationDetail", "Room").Value = value;
             }
         }
         /// <summary>
@@ -2349,35 +5167,13 @@ namespace TreasureLand.EDM
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Room>("TreasureLandModel.FK_ReservationDetail_Must_Have_RoomID", "Room");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Room>("TreasureLandModel.FK_RoomIdMustExistInRoomTableReservationDetail", "Room");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Room>("TreasureLandModel.FK_ReservationDetail_Must_Have_RoomID", "Room", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationDetailBilling_Must_Have_ReservationDetailID", "ReservationDetailBilling")]
-        public EntityCollection<ReservationDetailBilling> ReservationDetailBillings
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReservationDetailBilling>("TreasureLandModel.FK_ReservationDetailBilling_Must_Have_ReservationDetailID", "ReservationDetailBilling");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReservationDetailBilling>("TreasureLandModel.FK_ReservationDetailBilling_Must_Have_ReservationDetailID", "ReservationDetailBilling", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Room>("TreasureLandModel.FK_RoomIdMustExistInRoomTableReservationDetail", "Room", value);
                 }
             }
         }
@@ -2398,18 +5194,16 @@ namespace TreasureLand.EDM
         /// <summary>
         /// Create a new ReservationDetailBilling object.
         /// </summary>
-        /// <param name="reservationBillingID">Initial value of the ReservationBillingID property.</param>
-        /// <param name="reservationDetailID">Initial value of the ReservationDetailID property.</param>
+        /// <param name="reservationDetailBillingID">Initial value of the ReservationDetailBillingID property.</param>
         /// <param name="billingCategoryID">Initial value of the BillingCategoryID property.</param>
         /// <param name="billingDescription">Initial value of the BillingDescription property.</param>
         /// <param name="billingAmount">Initial value of the BillingAmount property.</param>
         /// <param name="billingItemQty">Initial value of the BillingItemQty property.</param>
         /// <param name="billingItemDate">Initial value of the BillingItemDate property.</param>
-        public static ReservationDetailBilling CreateReservationDetailBilling(global::System.Int16 reservationBillingID, global::System.Int16 reservationDetailID, global::System.Int16 billingCategoryID, global::System.String billingDescription, global::System.Decimal billingAmount, global::System.Byte billingItemQty, global::System.DateTime billingItemDate)
+        public static ReservationDetailBilling CreateReservationDetailBilling(global::System.Int16 reservationDetailBillingID, global::System.Int16 billingCategoryID, global::System.String billingDescription, global::System.Decimal billingAmount, global::System.Byte billingItemQty, global::System.DateTime billingItemDate)
         {
             ReservationDetailBilling reservationDetailBilling = new ReservationDetailBilling();
-            reservationDetailBilling.ReservationBillingID = reservationBillingID;
-            reservationDetailBilling.ReservationDetailID = reservationDetailID;
+            reservationDetailBilling.ReservationDetailBillingID = reservationDetailBillingID;
             reservationDetailBilling.BillingCategoryID = billingCategoryID;
             reservationDetailBilling.BillingDescription = billingDescription;
             reservationDetailBilling.BillingAmount = billingAmount;
@@ -2426,34 +5220,34 @@ namespace TreasureLand.EDM
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int16 ReservationBillingID
+        public global::System.Int16 ReservationDetailBillingID
         {
             get
             {
-                return _ReservationBillingID;
+                return _ReservationDetailBillingID;
             }
             set
             {
-                if (_ReservationBillingID != value)
+                if (_ReservationDetailBillingID != value)
                 {
-                    OnReservationBillingIDChanging(value);
-                    ReportPropertyChanging("ReservationBillingID");
-                    _ReservationBillingID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ReservationBillingID");
-                    OnReservationBillingIDChanged();
+                    OnReservationDetailBillingIDChanging(value);
+                    ReportPropertyChanging("ReservationDetailBillingID");
+                    _ReservationDetailBillingID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ReservationDetailBillingID");
+                    OnReservationDetailBillingIDChanged();
                 }
             }
         }
-        private global::System.Int16 _ReservationBillingID;
-        partial void OnReservationBillingIDChanging(global::System.Int16 value);
-        partial void OnReservationBillingIDChanged();
+        private global::System.Int16 _ReservationDetailBillingID;
+        partial void OnReservationDetailBillingIDChanging(global::System.Int16 value);
+        partial void OnReservationDetailBillingIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int16 ReservationDetailID
+        public Nullable<global::System.Int16> ReservationDetailID
         {
             get
             {
@@ -2468,8 +5262,8 @@ namespace TreasureLand.EDM
                 OnReservationDetailIDChanged();
             }
         }
-        private global::System.Int16 _ReservationDetailID;
-        partial void OnReservationDetailIDChanging(global::System.Int16 value);
+        private Nullable<global::System.Int16> _ReservationDetailID;
+        partial void OnReservationDetailIDChanging(Nullable<global::System.Int16> value);
         partial void OnReservationDetailIDChanged();
     
         /// <summary>
@@ -2615,6 +5409,54 @@ namespace TreasureLand.EDM
         private global::System.String _Comments;
         partial void OnCommentsChanging(global::System.String value);
         partial void OnCommentsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String EmployeeID
+        {
+            get
+            {
+                return _EmployeeID;
+            }
+            set
+            {
+                OnEmployeeIDChanging(value);
+                ReportPropertyChanging("EmployeeID");
+                _EmployeeID = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("EmployeeID");
+                OnEmployeeIDChanged();
+            }
+        }
+        private global::System.String _EmployeeID;
+        partial void OnEmployeeIDChanging(global::System.String value);
+        partial void OnEmployeeIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TransEmployee
+        {
+            get
+            {
+                return _TransEmployee;
+            }
+            set
+            {
+                OnTransEmployeeChanging(value);
+                ReportPropertyChanging("TransEmployee");
+                _TransEmployee = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TransEmployee");
+                OnTransEmployeeChanged();
+            }
+        }
+        private global::System.String _TransEmployee;
+        partial void OnTransEmployeeChanging(global::System.String value);
+        partial void OnTransEmployeeChanged();
 
         #endregion
     
@@ -2626,16 +5468,16 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationDetailBilling_Must_Have_BillingCategoryID", "BillingCategory")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_BillingCategoryIdMustExistInBillingCategroyTableReservationDetailBilling", "BillingCategory")]
         public BillingCategory BillingCategory
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BillingCategory>("TreasureLandModel.FK_ReservationDetailBilling_Must_Have_BillingCategoryID", "BillingCategory").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BillingCategory>("TreasureLandModel.FK_BillingCategoryIdMustExistInBillingCategroyTableReservationDetailBilling", "BillingCategory").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BillingCategory>("TreasureLandModel.FK_ReservationDetailBilling_Must_Have_BillingCategoryID", "BillingCategory").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BillingCategory>("TreasureLandModel.FK_BillingCategoryIdMustExistInBillingCategroyTableReservationDetailBilling", "BillingCategory").Value = value;
             }
         }
         /// <summary>
@@ -2647,13 +5489,13 @@ namespace TreasureLand.EDM
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BillingCategory>("TreasureLandModel.FK_ReservationDetailBilling_Must_Have_BillingCategoryID", "BillingCategory");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<BillingCategory>("TreasureLandModel.FK_BillingCategoryIdMustExistInBillingCategroyTableReservationDetailBilling", "BillingCategory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<BillingCategory>("TreasureLandModel.FK_ReservationDetailBilling_Must_Have_BillingCategoryID", "BillingCategory", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<BillingCategory>("TreasureLandModel.FK_BillingCategoryIdMustExistInBillingCategroyTableReservationDetailBilling", "BillingCategory", value);
                 }
             }
         }
@@ -2664,16 +5506,38 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationDetailBilling_Must_Have_ReservationDetailID", "ReservationDetail")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationDetailBillingMustHaveUniqueId", "LineItem")]
+        public EntityCollection<LineItem> LineItems
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<LineItem>("TreasureLandModel.FK_ReservationDetailBillingMustHaveUniqueId", "LineItem");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<LineItem>("TreasureLandModel.FK_ReservationDetailBillingMustHaveUniqueId", "LineItem", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationDetailIdMustExistInReservationDetailTableReservationDetailBilling", "ReservationDetail")]
         public ReservationDetail ReservationDetail
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationDetail>("TreasureLandModel.FK_ReservationDetailBilling_Must_Have_ReservationDetailID", "ReservationDetail").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationDetail>("TreasureLandModel.FK_ReservationDetailIdMustExistInReservationDetailTableReservationDetailBilling", "ReservationDetail").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationDetail>("TreasureLandModel.FK_ReservationDetailBilling_Must_Have_ReservationDetailID", "ReservationDetail").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationDetail>("TreasureLandModel.FK_ReservationDetailIdMustExistInReservationDetailTableReservationDetailBilling", "ReservationDetail").Value = value;
             }
         }
         /// <summary>
@@ -2685,13 +5549,13 @@ namespace TreasureLand.EDM
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationDetail>("TreasureLandModel.FK_ReservationDetailBilling_Must_Have_ReservationDetailID", "ReservationDetail");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<ReservationDetail>("TreasureLandModel.FK_ReservationDetailIdMustExistInReservationDetailTableReservationDetailBilling", "ReservationDetail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ReservationDetail>("TreasureLandModel.FK_ReservationDetailBilling_Must_Have_ReservationDetailID", "ReservationDetail", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<ReservationDetail>("TreasureLandModel.FK_ReservationDetailIdMustExistInReservationDetailTableReservationDetailBilling", "ReservationDetail", value);
                 }
             }
         }
@@ -2890,16 +5754,16 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_Revenue_Must_Have_HotelID", "Hotel")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_HotelIdMustExistInHotelTableRevenue", "Hotel")]
         public Hotel Hotel
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_Revenue_Must_Have_HotelID", "Hotel").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableRevenue", "Hotel").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_Revenue_Must_Have_HotelID", "Hotel").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableRevenue", "Hotel").Value = value;
             }
         }
         /// <summary>
@@ -2911,13 +5775,13 @@ namespace TreasureLand.EDM
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_Revenue_Must_Have_HotelID", "Hotel");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableRevenue", "Hotel");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Hotel>("TreasureLandModel.FK_Revenue_Must_Have_HotelID", "Hotel", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Hotel>("TreasureLandModel.FK_HotelIdMustExistInHotelTableRevenue", "Hotel", value);
                 }
             }
         }
@@ -2928,16 +5792,16 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_Revenue_Must_Have_RevenueCategoryID", "RevenueCategory")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_RevenueCategoryIdMustExistInRevenueCategoryTableRevenue", "RevenueCategory")]
         public RevenueCategory RevenueCategory
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RevenueCategory>("TreasureLandModel.FK_Revenue_Must_Have_RevenueCategoryID", "RevenueCategory").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RevenueCategory>("TreasureLandModel.FK_RevenueCategoryIdMustExistInRevenueCategoryTableRevenue", "RevenueCategory").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RevenueCategory>("TreasureLandModel.FK_Revenue_Must_Have_RevenueCategoryID", "RevenueCategory").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RevenueCategory>("TreasureLandModel.FK_RevenueCategoryIdMustExistInRevenueCategoryTableRevenue", "RevenueCategory").Value = value;
             }
         }
         /// <summary>
@@ -2949,13 +5813,13 @@ namespace TreasureLand.EDM
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RevenueCategory>("TreasureLandModel.FK_Revenue_Must_Have_RevenueCategoryID", "RevenueCategory");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RevenueCategory>("TreasureLandModel.FK_RevenueCategoryIdMustExistInRevenueCategoryTableRevenue", "RevenueCategory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RevenueCategory>("TreasureLandModel.FK_Revenue_Must_Have_RevenueCategoryID", "RevenueCategory", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RevenueCategory>("TreasureLandModel.FK_RevenueCategoryIdMustExistInRevenueCategoryTableRevenue", "RevenueCategory", value);
                 }
             }
         }
@@ -2977,10 +5841,12 @@ namespace TreasureLand.EDM
         /// Create a new RevenueCategory object.
         /// </summary>
         /// <param name="revenueCategoryID">Initial value of the RevenueCategoryID property.</param>
-        public static RevenueCategory CreateRevenueCategory(global::System.Int16 revenueCategoryID)
+        /// <param name="revenueCategoryDescription">Initial value of the RevenueCategoryDescription property.</param>
+        public static RevenueCategory CreateRevenueCategory(global::System.Int16 revenueCategoryID, global::System.String revenueCategoryDescription)
         {
             RevenueCategory revenueCategory = new RevenueCategory();
             revenueCategory.RevenueCategoryID = revenueCategoryID;
+            revenueCategory.RevenueCategoryDescription = revenueCategoryDescription;
             return revenueCategory;
         }
 
@@ -3017,7 +5883,7 @@ namespace TreasureLand.EDM
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String RevenueCategoryDescription
         {
@@ -3029,7 +5895,7 @@ namespace TreasureLand.EDM
             {
                 OnRevenueCategoryDescriptionChanging(value);
                 ReportPropertyChanging("RevenueCategoryDescription");
-                _RevenueCategoryDescription = StructuralObject.SetValidValue(value, true);
+                _RevenueCategoryDescription = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("RevenueCategoryDescription");
                 OnRevenueCategoryDescriptionChanged();
             }
@@ -3048,18 +5914,18 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_Revenue_Must_Have_RevenueCategoryID", "Revenue")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_RevenueCategoryIdMustExistInRevenueCategoryTableRevenue", "Revenue")]
         public EntityCollection<Revenue> Revenues
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Revenue>("TreasureLandModel.FK_Revenue_Must_Have_RevenueCategoryID", "Revenue");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Revenue>("TreasureLandModel.FK_RevenueCategoryIdMustExistInRevenueCategoryTableRevenue", "Revenue");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Revenue>("TreasureLandModel.FK_Revenue_Must_Have_RevenueCategoryID", "Revenue", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Revenue>("TreasureLandModel.FK_RevenueCategoryIdMustExistInRevenueCategoryTableRevenue", "Revenue", value);
                 }
             }
         }
@@ -3083,21 +5949,15 @@ namespace TreasureLand.EDM
         /// <param name="roomID">Initial value of the RoomID property.</param>
         /// <param name="hotelRoomTypeID">Initial value of the HotelRoomTypeID property.</param>
         /// <param name="roomNumbers">Initial value of the RoomNumbers property.</param>
-        /// <param name="roomDescription">Initial value of the RoomDescription property.</param>
-        /// <param name="roomSmoking">Initial value of the RoomSmoking property.</param>
         /// <param name="roomBedConfiguration">Initial value of the RoomBedConfiguration property.</param>
-        /// <param name="roomHandicap">Initial value of the RoomHandicap property.</param>
         /// <param name="roomStatus">Initial value of the RoomStatus property.</param>
-        public static Room CreateRoom(global::System.Int16 roomID, global::System.Int16 hotelRoomTypeID, global::System.String roomNumbers, global::System.String roomDescription, global::System.Boolean roomSmoking, global::System.String roomBedConfiguration, global::System.Boolean roomHandicap, global::System.String roomStatus)
+        public static Room CreateRoom(global::System.Int16 roomID, global::System.Int16 hotelRoomTypeID, global::System.String roomNumbers, global::System.String roomBedConfiguration, global::System.String roomStatus)
         {
             Room room = new Room();
             room.RoomID = roomID;
             room.HotelRoomTypeID = hotelRoomTypeID;
             room.RoomNumbers = roomNumbers;
-            room.RoomDescription = roomDescription;
-            room.RoomSmoking = roomSmoking;
             room.RoomBedConfiguration = roomBedConfiguration;
-            room.RoomHandicap = roomHandicap;
             room.RoomStatus = roomStatus;
             return room;
         }
@@ -3183,7 +6043,7 @@ namespace TreasureLand.EDM
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String RoomDescription
         {
@@ -3195,7 +6055,7 @@ namespace TreasureLand.EDM
             {
                 OnRoomDescriptionChanging(value);
                 ReportPropertyChanging("RoomDescription");
-                _RoomDescription = StructuralObject.SetValidValue(value, false);
+                _RoomDescription = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("RoomDescription");
                 OnRoomDescriptionChanged();
             }
@@ -3207,9 +6067,9 @@ namespace TreasureLand.EDM
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Boolean RoomSmoking
+        public Nullable<global::System.Boolean> RoomSmoking
         {
             get
             {
@@ -3224,8 +6084,8 @@ namespace TreasureLand.EDM
                 OnRoomSmokingChanged();
             }
         }
-        private global::System.Boolean _RoomSmoking;
-        partial void OnRoomSmokingChanging(global::System.Boolean value);
+        private Nullable<global::System.Boolean> _RoomSmoking;
+        partial void OnRoomSmokingChanging(Nullable<global::System.Boolean> value);
         partial void OnRoomSmokingChanged();
     
         /// <summary>
@@ -3255,9 +6115,9 @@ namespace TreasureLand.EDM
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Boolean RoomHandicap
+        public Nullable<global::System.Boolean> RoomHandicap
         {
             get
             {
@@ -3272,8 +6132,8 @@ namespace TreasureLand.EDM
                 OnRoomHandicapChanged();
             }
         }
-        private global::System.Boolean _RoomHandicap;
-        partial void OnRoomHandicapChanging(global::System.Boolean value);
+        private Nullable<global::System.Boolean> _RoomHandicap;
+        partial void OnRoomHandicapChanging(Nullable<global::System.Boolean> value);
         partial void OnRoomHandicapChanged();
     
         /// <summary>
@@ -3310,16 +6170,16 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_Room_Must_Have_HotelRoomTypeID", "HotelRoomType")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_HotelRoomTypeIdMustExistInHotelRoomTypeTableRoom", "HotelRoomType")]
         public HotelRoomType HotelRoomType
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HotelRoomType>("TreasureLandModel.FK_Room_Must_Have_HotelRoomTypeID", "HotelRoomType").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HotelRoomType>("TreasureLandModel.FK_HotelRoomTypeIdMustExistInHotelRoomTypeTableRoom", "HotelRoomType").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HotelRoomType>("TreasureLandModel.FK_Room_Must_Have_HotelRoomTypeID", "HotelRoomType").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HotelRoomType>("TreasureLandModel.FK_HotelRoomTypeIdMustExistInHotelRoomTypeTableRoom", "HotelRoomType").Value = value;
             }
         }
         /// <summary>
@@ -3331,13 +6191,13 @@ namespace TreasureLand.EDM
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HotelRoomType>("TreasureLandModel.FK_Room_Must_Have_HotelRoomTypeID", "HotelRoomType");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<HotelRoomType>("TreasureLandModel.FK_HotelRoomTypeIdMustExistInHotelRoomTypeTableRoom", "HotelRoomType");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<HotelRoomType>("TreasureLandModel.FK_Room_Must_Have_HotelRoomTypeID", "HotelRoomType", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<HotelRoomType>("TreasureLandModel.FK_HotelRoomTypeIdMustExistInHotelRoomTypeTableRoom", "HotelRoomType", value);
                 }
             }
         }
@@ -3348,18 +6208,18 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ReservationDetail_Must_Have_RoomID", "ReservationDetail")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_RoomIdMustExistInRoomTableReservationDetail", "ReservationDetail")]
         public EntityCollection<ReservationDetail> ReservationDetails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReservationDetail>("TreasureLandModel.FK_ReservationDetail_Must_Have_RoomID", "ReservationDetail");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ReservationDetail>("TreasureLandModel.FK_RoomIdMustExistInRoomTableReservationDetail", "ReservationDetail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReservationDetail>("TreasureLandModel.FK_ReservationDetail_Must_Have_RoomID", "ReservationDetail", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ReservationDetail>("TreasureLandModel.FK_RoomIdMustExistInRoomTableReservationDetail", "ReservationDetail", value);
                 }
             }
         }
@@ -3370,16 +6230,16 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_Room_RoomStatus", "RoomStatus")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_RoomStatusMustExistInRoomTableRoomStatus", "RoomStatu")]
         public RoomStatu RoomStatu
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoomStatu>("TreasureLandModel.FK_Room_RoomStatus", "RoomStatus").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoomStatu>("TreasureLandModel.FK_RoomStatusMustExistInRoomTableRoomStatus", "RoomStatu").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoomStatu>("TreasureLandModel.FK_Room_RoomStatus", "RoomStatus").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoomStatu>("TreasureLandModel.FK_RoomStatusMustExistInRoomTableRoomStatus", "RoomStatu").Value = value;
             }
         }
         /// <summary>
@@ -3391,13 +6251,13 @@ namespace TreasureLand.EDM
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoomStatu>("TreasureLandModel.FK_Room_RoomStatus", "RoomStatus");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<RoomStatu>("TreasureLandModel.FK_RoomStatusMustExistInRoomTableRoomStatus", "RoomStatu");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RoomStatu>("TreasureLandModel.FK_Room_RoomStatus", "RoomStatus", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<RoomStatu>("TreasureLandModel.FK_RoomStatusMustExistInRoomTableRoomStatus", "RoomStatu", value);
                 }
             }
         }
@@ -3418,13 +6278,13 @@ namespace TreasureLand.EDM
         /// <summary>
         /// Create a new RoomStatu object.
         /// </summary>
-        /// <param name="status">Initial value of the Status property.</param>
-        /// <param name="description">Initial value of the Description property.</param>
-        public static RoomStatu CreateRoomStatu(global::System.String status, global::System.String description)
+        /// <param name="roomStatus">Initial value of the RoomStatus property.</param>
+        /// <param name="roomStatusDescription">Initial value of the RoomStatusDescription property.</param>
+        public static RoomStatu CreateRoomStatu(global::System.String roomStatus, global::System.String roomStatusDescription)
         {
             RoomStatu roomStatu = new RoomStatu();
-            roomStatu.Status = status;
-            roomStatu.Description = description;
+            roomStatu.RoomStatus = roomStatus;
+            roomStatu.RoomStatusDescription = roomStatusDescription;
             return roomStatu;
         }
 
@@ -3436,51 +6296,51 @@ namespace TreasureLand.EDM
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Status
+        public global::System.String RoomStatus
         {
             get
             {
-                return _Status;
+                return _RoomStatus;
             }
             set
             {
-                if (_Status != value)
+                if (_RoomStatus != value)
                 {
-                    OnStatusChanging(value);
-                    ReportPropertyChanging("Status");
-                    _Status = StructuralObject.SetValidValue(value, false);
-                    ReportPropertyChanged("Status");
-                    OnStatusChanged();
+                    OnRoomStatusChanging(value);
+                    ReportPropertyChanging("RoomStatus");
+                    _RoomStatus = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("RoomStatus");
+                    OnRoomStatusChanged();
                 }
             }
         }
-        private global::System.String _Status;
-        partial void OnStatusChanging(global::System.String value);
-        partial void OnStatusChanged();
+        private global::System.String _RoomStatus;
+        partial void OnRoomStatusChanging(global::System.String value);
+        partial void OnRoomStatusChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.String Description
+        public global::System.String RoomStatusDescription
         {
             get
             {
-                return _Description;
+                return _RoomStatusDescription;
             }
             set
             {
-                OnDescriptionChanging(value);
-                ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Description");
-                OnDescriptionChanged();
+                OnRoomStatusDescriptionChanging(value);
+                ReportPropertyChanging("RoomStatusDescription");
+                _RoomStatusDescription = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("RoomStatusDescription");
+                OnRoomStatusDescriptionChanged();
             }
         }
-        private global::System.String _Description;
-        partial void OnDescriptionChanging(global::System.String value);
-        partial void OnDescriptionChanged();
+        private global::System.String _RoomStatusDescription;
+        partial void OnRoomStatusDescriptionChanging(global::System.String value);
+        partial void OnRoomStatusDescriptionChanged();
 
         #endregion
     
@@ -3492,18 +6352,214 @@ namespace TreasureLand.EDM
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_Room_RoomStatus", "Room")]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_RoomStatusMustExistInRoomTableRoomStatus", "Room")]
         public EntityCollection<Room> Rooms
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Room>("TreasureLandModel.FK_Room_RoomStatus", "Room");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Room>("TreasureLandModel.FK_RoomStatusMustExistInRoomTableRoomStatus", "Room");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Room>("TreasureLandModel.FK_Room_RoomStatus", "Room", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Room>("TreasureLandModel.FK_RoomStatusMustExistInRoomTableRoomStatus", "Room", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="TreasureLandModel", Name="ShortTermAsset")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class ShortTermAsset : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new ShortTermAsset object.
+        /// </summary>
+        /// <param name="shortTermAssetID">Initial value of the ShortTermAssetID property.</param>
+        /// <param name="departmentID">Initial value of the DepartmentID property.</param>
+        /// <param name="shortTermItemName">Initial value of the ShortTermItemName property.</param>
+        /// <param name="shortTermTotalQuantity">Initial value of the ShortTermTotalQuantity property.</param>
+        public static ShortTermAsset CreateShortTermAsset(global::System.Int16 shortTermAssetID, global::System.Int16 departmentID, global::System.String shortTermItemName, global::System.Byte shortTermTotalQuantity)
+        {
+            ShortTermAsset shortTermAsset = new ShortTermAsset();
+            shortTermAsset.ShortTermAssetID = shortTermAssetID;
+            shortTermAsset.DepartmentID = departmentID;
+            shortTermAsset.ShortTermItemName = shortTermItemName;
+            shortTermAsset.ShortTermTotalQuantity = shortTermTotalQuantity;
+            return shortTermAsset;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 ShortTermAssetID
+        {
+            get
+            {
+                return _ShortTermAssetID;
+            }
+            set
+            {
+                if (_ShortTermAssetID != value)
+                {
+                    OnShortTermAssetIDChanging(value);
+                    ReportPropertyChanging("ShortTermAssetID");
+                    _ShortTermAssetID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ShortTermAssetID");
+                    OnShortTermAssetIDChanged();
+                }
+            }
+        }
+        private global::System.Int16 _ShortTermAssetID;
+        partial void OnShortTermAssetIDChanging(global::System.Int16 value);
+        partial void OnShortTermAssetIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int16 DepartmentID
+        {
+            get
+            {
+                return _DepartmentID;
+            }
+            set
+            {
+                OnDepartmentIDChanging(value);
+                ReportPropertyChanging("DepartmentID");
+                _DepartmentID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DepartmentID");
+                OnDepartmentIDChanged();
+            }
+        }
+        private global::System.Int16 _DepartmentID;
+        partial void OnDepartmentIDChanging(global::System.Int16 value);
+        partial void OnDepartmentIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ShortTermItemName
+        {
+            get
+            {
+                return _ShortTermItemName;
+            }
+            set
+            {
+                OnShortTermItemNameChanging(value);
+                ReportPropertyChanging("ShortTermItemName");
+                _ShortTermItemName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ShortTermItemName");
+                OnShortTermItemNameChanged();
+            }
+        }
+        private global::System.String _ShortTermItemName;
+        partial void OnShortTermItemNameChanging(global::System.String value);
+        partial void OnShortTermItemNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte ShortTermTotalQuantity
+        {
+            get
+            {
+                return _ShortTermTotalQuantity;
+            }
+            set
+            {
+                OnShortTermTotalQuantityChanging(value);
+                ReportPropertyChanging("ShortTermTotalQuantity");
+                _ShortTermTotalQuantity = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ShortTermTotalQuantity");
+                OnShortTermTotalQuantityChanged();
+            }
+        }
+        private global::System.Byte _ShortTermTotalQuantity;
+        partial void OnShortTermTotalQuantityChanging(global::System.Byte value);
+        partial void OnShortTermTotalQuantityChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_DepartmentIdMustExistInHotelOrderTableShortTermAssest", "Department")]
+        public Department Department
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Department>("TreasureLandModel.FK_DepartmentIdMustExistInHotelOrderTableShortTermAssest", "Department").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Department>("TreasureLandModel.FK_DepartmentIdMustExistInHotelOrderTableShortTermAssest", "Department").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Department> DepartmentReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Department>("TreasureLandModel.FK_DepartmentIdMustExistInHotelOrderTableShortTermAssest", "Department");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Department>("TreasureLandModel.FK_DepartmentIdMustExistInHotelOrderTableShortTermAssest", "Department", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("TreasureLandModel", "FK_ShortTermAssetIdMustExistInHotelOrderTableOrderShortTerm", "OrderShortTerm")]
+        public EntityCollection<OrderShortTerm> OrderShortTerms
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<OrderShortTerm>("TreasureLandModel.FK_ShortTermAssetIdMustExistInHotelOrderTableOrderShortTerm", "OrderShortTerm");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<OrderShortTerm>("TreasureLandModel.FK_ShortTermAssetIdMustExistInHotelOrderTableOrderShortTerm", "OrderShortTerm", value);
                 }
             }
         }
