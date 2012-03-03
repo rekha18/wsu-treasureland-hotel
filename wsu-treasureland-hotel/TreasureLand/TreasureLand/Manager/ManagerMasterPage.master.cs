@@ -16,7 +16,8 @@ namespace TreasureLand.Manager
 
         protected void btnHome_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("ManageExpenses.aspx");
+            Session.RemoveAll();
         }
 
         protected void btnInventory_Click(object sender, EventArgs e)

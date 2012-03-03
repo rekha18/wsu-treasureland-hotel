@@ -14,7 +14,7 @@
     <table style="width:100%;">
         <tr>
             <td class="style1" valign="top">
-                <asp:Button ID="btnHome" runat="server" Text="Home" Width="180px" 
+                <asp:Button ID="btnHome" runat="server" Text="Manage Expenses" Width="180px" 
                     onclick="btnHome_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
