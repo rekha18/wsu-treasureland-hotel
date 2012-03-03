@@ -40,6 +40,9 @@
                             <EditItemTemplate>
                                 <asp:TextBox ID="TextBox2" runat="server" MaxLength="200" 
                                     Text='<%# Bind("RoomTypeDescription") %>'></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                    ControlToValidate="TextBox2" ErrorMessage="Description is a required field" 
+                                    ForeColor="Red" ValidationGroup="vgSummary">*</asp:RequiredFieldValidator>
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label3" runat="server" Text='<%# Bind("RoomTypeDescription") %>'></asp:Label>
@@ -121,6 +124,9 @@
                             Description:</td>
                         <td style="width: 245px">
                             <asp:TextBox ID="txtDescription" runat="server" MaxLength="200"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="rvDescription" runat="server" 
+                                ControlToValidate="txtDescription" ErrorMessage="Description is required" 
+                                ForeColor="Red" ValidationGroup="vgAddRoom">*</asp:RequiredFieldValidator>
                         </td>
                         <td>
                             &nbsp;</td>
