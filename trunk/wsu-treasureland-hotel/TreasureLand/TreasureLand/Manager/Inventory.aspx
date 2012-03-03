@@ -91,15 +91,26 @@
         <Columns>
             <asp:CommandField ShowEditButton="True" />
             <asp:BoundField DataField="LongTermAssetName" HeaderText="Name" 
-                SortExpression="LongTermAssetName" />
-            <asp:BoundField DataField="LongTermAssetLocation" HeaderText="Location" 
-                SortExpression="LongTermAssetLocation" />
+                SortExpression="LongTermAssetName" ReadOnly="True" />
+            <asp:TemplateField HeaderText="Location" SortExpression="LongTermAssetLocation">
+                <EditItemTemplate>
+                    <asp:TextBox ID="TextBox1" runat="server" 
+                        Text='<%# Bind("LongTermAssetLocation") %>'></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                        ControlToValidate="TextBox1" ErrorMessage="Required" ForeColor="Red"></asp:RequiredFieldValidator>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label1" runat="server" 
+                        Text='<%# Bind("LongTermAssetLocation") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="LongTermAssetCost" HeaderText="Cost" 
-                SortExpression="LongTermAssetCost" />
+                SortExpression="LongTermAssetCost" ReadOnly="True" />
             <asp:CheckBoxField DataField="LongTermAssetInUse" HeaderText="In Use" 
                 SortExpression="LongTermAssetInUse" />
             <asp:BoundField DataField="LongTermAssetPurchaseDate" 
-                HeaderText="Purchase Date" SortExpression="LongTermAssetPurchaseDate" />
+                HeaderText="Purchase Date" SortExpression="LongTermAssetPurchaseDate" 
+                ReadOnly="True" />
         </Columns>
     </asp:GridView>
     <br />
