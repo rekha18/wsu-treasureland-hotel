@@ -109,16 +109,9 @@
                                 <asp:Label ID="lblDateToday" runat="server"></asp:Label>
                             </td>
                             <td style="width: 143px">
-                                Number of Adults:</td>
+                                &nbsp;</td>
                             <td colspan="2">
-                                <asp:DropDownList ID="ddlAdults" runat="server" 
-                                    >
-                                    <asp:ListItem Selected="True">1</asp:ListItem>
-                                    <asp:ListItem>2</asp:ListItem>
-                                    <asp:ListItem>3</asp:ListItem>
-                                    <asp:ListItem>4</asp:ListItem>
-                                </asp:DropDownList>
-                            </td>
+                                &nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 73px">
@@ -127,17 +120,9 @@
                                 <asp:Label ID="lblResSurName" runat="server"></asp:Label>
                             </td>
                             <td style="width: 143px">
-                                Number of Children:</td>
+                                &nbsp;</td>
                             <td colspan="2">
-                                <asp:DropDownList ID="ddlChildren" runat="server"           
-                                    >
-                                    <asp:ListItem Selected="True">0</asp:ListItem>
-                                    <asp:ListItem>1</asp:ListItem>
-                                    <asp:ListItem>2</asp:ListItem>
-                                    <asp:ListItem>3</asp:ListItem>
-                                    <asp:ListItem>4</asp:ListItem>
-                                </asp:DropDownList>
-                            </td>
+                                &nbsp;</td>
                         </tr>
                         <tr>
                             <td style="width: 73px">
@@ -239,7 +224,7 @@
                                     Text="Cancel" />
                             </td>
                             <td style="width: 239px">
-                                Select Room:</td>
+                                &nbsp;</td>
                             <td>
                                 <asp:Button ID="btnSelectRoom" runat="server" onclick="btnSelectRoom_Click" 
                                     Text="Select Room" />
@@ -291,6 +276,28 @@
                                             SortExpression="RoomType" />
                                         <asp:BoundField DataField="Rack Rate" HeaderText="Rack Rate" 
                                             SortExpression="Rack Rate" />
+                                        <asp:TemplateField HeaderText="Number if Adults">
+                                            <ItemTemplate>
+                                                <asp:DropDownList ID="numAdults" runat="server" AutoPostBack="True">
+                                                    <asp:ListItem Selected="True">1</asp:ListItem>
+                                                    <asp:ListItem>2</asp:ListItem>
+                                                    <asp:ListItem>3</asp:ListItem>
+                                                    <asp:ListItem>4</asp:ListItem>
+                                                    <asp:ListItem>5</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Number of Children">
+                                            <ItemTemplate>
+                                                <asp:DropDownList ID="numChild" runat="server" AutoPostBack="True">
+                                                    <asp:ListItem Selected="True">0</asp:ListItem>
+                                                    <asp:ListItem>1</asp:ListItem>
+                                                    <asp:ListItem>2</asp:ListItem>
+                                                    <asp:ListItem>3</asp:ListItem>
+                                                    <asp:ListItem>4</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
                             </td>
@@ -336,6 +343,16 @@
                             <td align="center">
                                 Your Reservation number is:
                                 <asp:Label ID="lblFinalReservationNumber" runat="server"></asp:Label>
+                            </td>
+                            <td>
+                                &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;</td>
+                            <td align="center">
+                                <asp:GridView ID="gvReserved" runat="server">
+                                </asp:GridView>
                             </td>
                             <td>
                                 &nbsp;</td>
