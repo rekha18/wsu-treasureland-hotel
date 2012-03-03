@@ -380,7 +380,7 @@ namespace TreasureLand.Clerk
             gvRoomInfo.DataSource = ds;
             gvRoomInfo.DataBind();
 
-            quotedPrice *= Convert.ToInt16(ddlNumberOfDays.SelectedValue);
+            quotedPrice *= Convert.ToInt16(reserving.daysStaying);
             mvReservation.ActiveViewIndex = 3;
 
             #region Quote Calculator
