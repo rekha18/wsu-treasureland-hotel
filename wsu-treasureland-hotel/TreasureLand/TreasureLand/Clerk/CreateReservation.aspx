@@ -238,14 +238,14 @@
                 <asp:Panel ID="Panel4" runat="server" BackColor="Silver">
                     <table style="width: 100%;">
                         <tr>
-                            <td style="width: 475px">
+                            <td style="width: 445px">
                                 &nbsp;Select any discounts:&nbsp;
                                 <asp:DropDownList ID="ddlDiscounts" runat="server" AppendDataBoundItems="True" 
                                     AutoPostBack="True" DataTextField="DiscountDescription" 
                                     DataValueField="DiscountID">
                                 </asp:DropDownList>
                             </td>
-                            <td style="width: 104px">
+                            <td style="width: 139px">
                                 &nbsp;</td>
                             <td>
                                 &nbsp;</td>
@@ -303,18 +303,18 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 475px">
+                            <td style="width: 445px">
                                 &nbsp;</td>
-                            <td style="width: 104px">
-                                Quoted Cost:</td>
+                            <td style="width: 139px">
+                                Total Quoted Cost:</td>
                             <td>
                                 <asp:Label ID="lblTotalCost" runat="server"></asp:Label>₵
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 475px">
+                            <td style="width: 445px">
                                 &nbsp;</td>
-                            <td style="width: 104px">
+                            <td style="width: 139px">
                                 <asp:Button ID="btnBack2" runat="server" onclick="btnBack2_Click" Text="Back" />
                             </td>
                             <td>
@@ -351,7 +351,14 @@
                             <td>
                                 &nbsp;</td>
                             <td align="center">
-                                <asp:GridView ID="gvReserved" runat="server">
+                                <asp:GridView ID="gvReserved" runat="server" AutoGenerateColumns="False">
+                                    <Columns>
+                                        <asp:BoundField DataField="ReservationDetailID" HeaderText="Detail ID" />
+                                        <asp:BoundField DataField="RoomNumbers" HeaderText="Room Number" />
+                                        <asp:BoundField DataField="CheckinDate" DataFormatString="{0:d}" 
+                                            HeaderText="Checkin Date" />
+                                        <asp:BoundField DataField="RoomType" HeaderText="Room Type" />
+                                    </Columns>
                                 </asp:GridView>
                             </td>
                             <td>
