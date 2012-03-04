@@ -10,11 +10,30 @@ namespace TreasureLand.Admin
 {
     public partial class UserStatusAndApproval : System.Web.UI.UserControl
     {
+        internal class RoleInfo
+        {
+            public string SelectedUserName;
+            public string RoleName;
+            public bool Checked;
+
+            public RoleInfo(string sun, string rn, bool c)
+            {
+                SelectedUserName = sun;
+                RoleName = rn;
+                Checked = c;
+            }
+        }
+        
         #region Events
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                if (Session["RoleChanges"] == null)
+                    Session.Add("RoleChanges", new LinkedList<RoleInfo>());
+                else
+                    Session["RoleChanges"] = new LinkedList<RoleInfo>();
+                
                 //if the querystring is empty, send back to ManageUsers
                 string userName = Request.QueryString["user"];
                 if (string.IsNullOrEmpty(userName))
@@ -51,6 +70,9 @@ namespace TreasureLand.Admin
                 //check off the roles that the user is already a member of
                 CheckRolesForSelectedUser();
             }
+
+            if (Page.User.Identity.Name.ToLower() == Label_UserName.Text.ToLower()) //If the admin is editing himself
+                ((CheckBox)Repeater_UsersRoleList.Items[0].FindControl("RoleCheckBox")).Enabled = false;
         }
         protected void CheckBox_IsEnabled_CheckedChanged(object sender, EventArgs e)
         {
@@ -111,25 +133,77 @@ namespace TreasureLand.Admin
         {
             CheckBox roleCheckBox = sender as CheckBox;
             string selectedUserName = Request.QueryString["user"];
-
             string roleName = roleCheckBox.Text;
 
-            //check if we need to add or remove the user from the role
-            if (roleCheckBox.Checked)
-            {
-                //add the user to the role
-                Roles.AddUserToRole(selectedUserName, roleName);
-                Label_StatusMsg.Text = string.Format("User {0} was added to role {1}.", selectedUserName, roleName);
-            }
+            LinkedList<RoleInfo> rc = (LinkedList<RoleInfo>)Session["RoleChanges"];
+            LinkedList<RoleInfo> roleDeletes = new LinkedList<RoleInfo>();
+            LinkedList<RoleInfo> roleInserts = new LinkedList<RoleInfo>();
+
+            if (rc.Count == 0)
+                rc.AddFirst(new RoleInfo(selectedUserName, roleName, roleCheckBox.Checked));
             else
             {
-                //remove the user from the role
-                Roles.RemoveUserFromRole(selectedUserName, roleName);
-                //update the status
-                Label_StatusMsg.Text = string.Format("User {0} was removed from role {1}.", selectedUserName, roleName);
+                bool foundMatch = false;
+                foreach (RoleInfo ri in rc)
+                {
+                    //If it repeats, that means a change was reverted
+                    if (ri.SelectedUserName == selectedUserName && ri.RoleName == roleName)
+                    {
+                        roleDeletes.AddFirst(ri);
+                        foundMatch = true;
+                        break;
+                    }
+                }
+                if(!foundMatch)
+                    roleInserts.AddFirst(new RoleInfo(selectedUserName, roleName, roleCheckBox.Checked));
             }
+
+            foreach (RoleInfo remi in roleDeletes)
+                rc.Remove(remi);
+
+            foreach (RoleInfo remi in roleInserts)
+                rc.AddFirst(remi);
+
+            if (rc.Count > 0)
+                btnSubmitRoleChanges.Enabled = true;
+            else
+                btnSubmitRoleChanges.Enabled = false;
         }
         #endregion Work methods
+
+        /// <summary>
+        /// Iterates through the repeater display and adds or removes roles in one block
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnSubmitRoleChanges_Click(object sender, EventArgs e)
+        {
+            LinkedList<RoleInfo> rc = (LinkedList<RoleInfo>)Session["RoleChanges"];
+            Label_StatusMsg.Text = String.Empty;
+
+            foreach (RoleInfo ri in rc)
+            {
+                //check if we need to add or remove the user from the role
+                if (ri.Checked)
+                {
+                    //add the user to the role
+                    Roles.AddUserToRole(ri.SelectedUserName, ri.RoleName);
+                    Label_StatusMsg.Text += string.Format("User {0} was added to role {1}.<br />", ri.SelectedUserName, ri.RoleName);
+                }
+                else
+                {
+                    //remove the user from the role
+                    Roles.RemoveUserFromRole(ri.SelectedUserName, ri.RoleName);
+                    //update the status
+                    Label_StatusMsg.Text += string.Format("User {0} was removed from role {1}.<br />", ri.SelectedUserName, ri.RoleName);
+                }
+            }
+
+            while (rc.Count > 0)
+                rc.RemoveFirst();
+
+            btnSubmitRoleChanges.Enabled = false;
+        }
 
 
     }
