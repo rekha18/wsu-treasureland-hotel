@@ -141,8 +141,10 @@ namespace TreasureLand.Clerk
                                 select new { r.ReservationID, rd.Nights, rd.QuotedRate, hrt.RoomType };
 
                 gvRoomCost.DataSource = guestRoom.ToList();
+               
                 gvRoomCost.DataBind();
                 HotelRoomType hotelRoomType = new HotelRoomType();
+
 
                 //gets the datasource for the services table 
                 gvGuestServiesDataBind();
@@ -384,9 +386,9 @@ namespace TreasureLand.Clerk
                 total += (rdb.BillingItemQty * rdb.BillingAmount);
             }
             txtServicesTotal.Text = total.ToString("0.00");
-  
+            Label TotalRoomCost = (Label)gvRoomCost.Rows[0].FindControl("Label1");
             //get the cost of the room
-            txtRoomTotal.Text = (Convert.ToDecimal(gvRoomCost.Rows[0].Cells[2].Text) * Convert.ToDecimal(gvRoomCost.Rows[0].Cells[1].Text)).ToString("0.00");
+            txtRoomTotal.Text = ((TotalRoomCost.Text));
             
             //get the discount
             var discount = from rd in db.ReservationDetails
@@ -472,6 +474,7 @@ namespace TreasureLand.Clerk
             txtCostofService.Visible = false;
             lblComments.Visible = false;
             txtComments.Visible = false;
+            btnCancelDiscount.Visible = true;
             ddlDiscount.Items.Clear();
             SqlDataReader sqlDiscounts = sqlDiscounts = (SqlDataReader)App_Code.GuestDB.getAllDiscounts();
    
@@ -520,7 +523,7 @@ namespace TreasureLand.Clerk
                 txtCostofService.Visible = true;
                 lblComments.Visible = true;
                 txtComments.Visible = true;
-
+                btnCancelDiscount.Visible = false;
                 try
                 {
                     if ((Convert.ToInt32((ddlDiscount.SelectedItem.Value)) == -1))
@@ -578,5 +581,30 @@ namespace TreasureLand.Clerk
             //Session["RoomInfo"] = (DataSet)gvRoomCost.DataSource;
             Session["Charges"] = gvGuest.SelectedRow.Cells[4].Text; 
         }
+
+        protected void btnCancelDiscount_Click(object sender, EventArgs e)
+        {
+
+            lblManagerUser.Visible = false;
+            lblPassword.Visible = false;
+            ddlDiscount.Visible = false;
+            txtMangerUname0.Visible = false;
+            txtManagerPword0.Visible = false;
+            btnApply0.Visible = false;
+            gvGuestServices.Visible = true;
+            gvRoomCost.Visible = true;
+
+            lblServies.Visible = true;
+            lblQty.Visible = true;
+            lblCost.Visible = true;
+            ddlQuantity.Visible = true;
+            ddlServices.Visible = true;
+            btnAddService.Visible = true;
+            txtCostofService.Visible = true;
+            lblComments.Visible = true;
+            txtComments.Visible = true;
+            btnCancelDiscount.Visible = false;
+        }
+
     }
 }

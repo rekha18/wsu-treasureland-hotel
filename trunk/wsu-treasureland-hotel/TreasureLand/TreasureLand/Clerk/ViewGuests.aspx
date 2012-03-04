@@ -127,8 +127,15 @@
                     <Columns>
                         <asp:BoundField DataField="RoomType" HeaderText="Room Type" />
                         <asp:BoundField DataField="Nights" HeaderText="Number of Nights" />
-                        <asp:BoundField DataField="QuotedRate" DataFormatString="{0:0.00}" 
-                            HeaderText="Price per night" />
+                        <asp:TemplateField HeaderText="Total Quoted Price">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("QuotedRate") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" 
+                                    Text='<%# Eval("QuotedRate", "{0:0.00}") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
                 <br />
@@ -229,7 +236,9 @@
                                 TextMode="Password"></asp:TextBox>
                         </td>
                         <td class="style19">
-                            &nbsp;</td>
+                            <asp:Button ID="btnCancelDiscount" runat="server" 
+                                onclick="btnCancelDiscount_Click" Text="Cancel" Visible="False" Width="88px" />
+                        </td>
                         <td class="style13">
                             <asp:Button ID="btnApply0" runat="server" onclick="btnApply0_Click" 
                                 Text="Apply Discount" Visible="False" />
