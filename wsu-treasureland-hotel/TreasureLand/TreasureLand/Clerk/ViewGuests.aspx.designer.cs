@@ -364,6 +364,15 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.TextBox txtManagerPword0;
         
         /// <summary>
+        /// btnCancelDiscount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCancelDiscount;
+        
+        /// <summary>
         /// btnApply0 control.
         /// </summary>
         /// <remarks>
