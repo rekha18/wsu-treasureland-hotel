@@ -22,7 +22,7 @@ namespace TreasureLand.DBM
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="TreasureLand")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="TreasureLand1")]
 	public partial class TreasureLandDataClassesDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -33,9 +33,6 @@ namespace TreasureLand.DBM
     partial void InsertAccountingType(AccountingType instance);
     partial void UpdateAccountingType(AccountingType instance);
     partial void DeleteAccountingType(AccountingType instance);
-    partial void InsertBillingCategory(BillingCategory instance);
-    partial void UpdateBillingCategory(BillingCategory instance);
-    partial void DeleteBillingCategory(BillingCategory instance);
     partial void InsertDepartment(Department instance);
     partial void UpdateDepartment(Department instance);
     partial void DeleteDepartment(Department instance);
@@ -117,10 +114,13 @@ namespace TreasureLand.DBM
     partial void InsertIngredient(Ingredient instance);
     partial void UpdateIngredient(Ingredient instance);
     partial void DeleteIngredient(Ingredient instance);
+    partial void InsertBillingCategory(BillingCategory instance);
+    partial void UpdateBillingCategory(BillingCategory instance);
+    partial void DeleteBillingCategory(BillingCategory instance);
     #endregion
 		
 		public TreasureLandDataClassesDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TreasureLandDBM"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TreasurelandDB"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -154,14 +154,6 @@ namespace TreasureLand.DBM
 			get
 			{
 				return this.GetTable<AccountingType>();
-			}
-		}
-		
-		public System.Data.Linq.Table<BillingCategory> BillingCategories
-		{
-			get
-			{
-				return this.GetTable<BillingCategory>();
 			}
 		}
 		
@@ -380,6 +372,14 @@ namespace TreasureLand.DBM
 				return this.GetTable<Ingredient>();
 			}
 		}
+		
+		public System.Data.Linq.Table<BillingCategory> BillingCategories
+		{
+			get
+			{
+				return this.GetTable<BillingCategory>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AccountingType")]
@@ -517,144 +517,6 @@ namespace TreasureLand.DBM
 		{
 			this.SendPropertyChanging();
 			entity.AccountingType = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BillingCategory")]
-	public partial class BillingCategory : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private short _BillingCategoryID;
-		
-		private string _BillingCategoryDescription;
-		
-		private byte _BillingCategoryTaxable;
-		
-		private EntitySet<ReservationDetailBilling> _ReservationDetailBillings;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnBillingCategoryIDChanging(short value);
-    partial void OnBillingCategoryIDChanged();
-    partial void OnBillingCategoryDescriptionChanging(string value);
-    partial void OnBillingCategoryDescriptionChanged();
-    partial void OnBillingCategoryTaxableChanging(byte value);
-    partial void OnBillingCategoryTaxableChanged();
-    #endregion
-		
-		public BillingCategory()
-		{
-			this._ReservationDetailBillings = new EntitySet<ReservationDetailBilling>(new Action<ReservationDetailBilling>(this.attach_ReservationDetailBillings), new Action<ReservationDetailBilling>(this.detach_ReservationDetailBillings));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingCategoryID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public short BillingCategoryID
-		{
-			get
-			{
-				return this._BillingCategoryID;
-			}
-			set
-			{
-				if ((this._BillingCategoryID != value))
-				{
-					this.OnBillingCategoryIDChanging(value);
-					this.SendPropertyChanging();
-					this._BillingCategoryID = value;
-					this.SendPropertyChanged("BillingCategoryID");
-					this.OnBillingCategoryIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingCategoryDescription", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string BillingCategoryDescription
-		{
-			get
-			{
-				return this._BillingCategoryDescription;
-			}
-			set
-			{
-				if ((this._BillingCategoryDescription != value))
-				{
-					this.OnBillingCategoryDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._BillingCategoryDescription = value;
-					this.SendPropertyChanged("BillingCategoryDescription");
-					this.OnBillingCategoryDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingCategoryTaxable", DbType="TinyInt NOT NULL")]
-		public byte BillingCategoryTaxable
-		{
-			get
-			{
-				return this._BillingCategoryTaxable;
-			}
-			set
-			{
-				if ((this._BillingCategoryTaxable != value))
-				{
-					this.OnBillingCategoryTaxableChanging(value);
-					this.SendPropertyChanging();
-					this._BillingCategoryTaxable = value;
-					this.SendPropertyChanged("BillingCategoryTaxable");
-					this.OnBillingCategoryTaxableChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BillingCategory_ReservationDetailBilling", Storage="_ReservationDetailBillings", ThisKey="BillingCategoryID", OtherKey="BillingCategoryID")]
-		public EntitySet<ReservationDetailBilling> ReservationDetailBillings
-		{
-			get
-			{
-				return this._ReservationDetailBillings;
-			}
-			set
-			{
-				this._ReservationDetailBillings.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_ReservationDetailBillings(ReservationDetailBilling entity)
-		{
-			this.SendPropertyChanging();
-			entity.BillingCategory = this;
-		}
-		
-		private void detach_ReservationDetailBillings(ReservationDetailBilling entity)
-		{
-			this.SendPropertyChanging();
-			entity.BillingCategory = null;
 		}
 	}
 	
@@ -4005,9 +3867,9 @@ namespace TreasureLand.DBM
 		
 		private EntitySet<LineItem> _LineItems;
 		
-		private EntityRef<BillingCategory> _BillingCategory;
-		
 		private EntityRef<ReservationDetail> _ReservationDetail;
+		
+		private EntityRef<BillingCategory> _BillingCategory;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -4038,8 +3900,8 @@ namespace TreasureLand.DBM
 		public ReservationDetailBilling()
 		{
 			this._LineItems = new EntitySet<LineItem>(new Action<LineItem>(this.attach_LineItems), new Action<LineItem>(this.detach_LineItems));
-			this._BillingCategory = default(EntityRef<BillingCategory>);
 			this._ReservationDetail = default(EntityRef<ReservationDetail>);
+			this._BillingCategory = default(EntityRef<BillingCategory>);
 			OnCreated();
 		}
 		
@@ -4264,40 +4126,6 @@ namespace TreasureLand.DBM
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BillingCategory_ReservationDetailBilling", Storage="_BillingCategory", ThisKey="BillingCategoryID", OtherKey="BillingCategoryID", IsForeignKey=true)]
-		public BillingCategory BillingCategory
-		{
-			get
-			{
-				return this._BillingCategory.Entity;
-			}
-			set
-			{
-				BillingCategory previousValue = this._BillingCategory.Entity;
-				if (((previousValue != value) 
-							|| (this._BillingCategory.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._BillingCategory.Entity = null;
-						previousValue.ReservationDetailBillings.Remove(this);
-					}
-					this._BillingCategory.Entity = value;
-					if ((value != null))
-					{
-						value.ReservationDetailBillings.Add(this);
-						this._BillingCategoryID = value.BillingCategoryID;
-					}
-					else
-					{
-						this._BillingCategoryID = default(short);
-					}
-					this.SendPropertyChanged("BillingCategory");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReservationDetail_ReservationDetailBilling", Storage="_ReservationDetail", ThisKey="ReservationDetailID", OtherKey="ReservationDetailID", IsForeignKey=true)]
 		public ReservationDetail ReservationDetail
 		{
@@ -4328,6 +4156,40 @@ namespace TreasureLand.DBM
 						this._ReservationDetailID = default(Nullable<short>);
 					}
 					this.SendPropertyChanged("ReservationDetail");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BillingCategory_ReservationDetailBilling", Storage="_BillingCategory", ThisKey="BillingCategoryID", OtherKey="BillingCategoryID", IsForeignKey=true)]
+		public BillingCategory BillingCategory
+		{
+			get
+			{
+				return this._BillingCategory.Entity;
+			}
+			set
+			{
+				BillingCategory previousValue = this._BillingCategory.Entity;
+				if (((previousValue != value) 
+							|| (this._BillingCategory.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._BillingCategory.Entity = null;
+						previousValue.ReservationDetailBillings.Remove(this);
+					}
+					this._BillingCategory.Entity = value;
+					if ((value != null))
+					{
+						value.ReservationDetailBillings.Add(this);
+						this._BillingCategoryID = value.BillingCategoryID;
+					}
+					else
+					{
+						this._BillingCategoryID = default(short);
+					}
+					this.SendPropertyChanged("BillingCategory");
 				}
 			}
 		}
@@ -7404,6 +7266,144 @@ namespace TreasureLand.DBM
 		{
 			this.SendPropertyChanging();
 			entity.Ingredient = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BillingCategory")]
+	public partial class BillingCategory : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _BillingCategoryID;
+		
+		private string _BillingCategoryDescription;
+		
+		private bool _BillingCategoryTaxable;
+		
+		private EntitySet<ReservationDetailBilling> _ReservationDetailBillings;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBillingCategoryIDChanging(short value);
+    partial void OnBillingCategoryIDChanged();
+    partial void OnBillingCategoryDescriptionChanging(string value);
+    partial void OnBillingCategoryDescriptionChanged();
+    partial void OnBillingCategoryTaxableChanging(bool value);
+    partial void OnBillingCategoryTaxableChanged();
+    #endregion
+		
+		public BillingCategory()
+		{
+			this._ReservationDetailBillings = new EntitySet<ReservationDetailBilling>(new Action<ReservationDetailBilling>(this.attach_ReservationDetailBillings), new Action<ReservationDetailBilling>(this.detach_ReservationDetailBillings));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingCategoryID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public short BillingCategoryID
+		{
+			get
+			{
+				return this._BillingCategoryID;
+			}
+			set
+			{
+				if ((this._BillingCategoryID != value))
+				{
+					this.OnBillingCategoryIDChanging(value);
+					this.SendPropertyChanging();
+					this._BillingCategoryID = value;
+					this.SendPropertyChanged("BillingCategoryID");
+					this.OnBillingCategoryIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingCategoryDescription", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string BillingCategoryDescription
+		{
+			get
+			{
+				return this._BillingCategoryDescription;
+			}
+			set
+			{
+				if ((this._BillingCategoryDescription != value))
+				{
+					this.OnBillingCategoryDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._BillingCategoryDescription = value;
+					this.SendPropertyChanged("BillingCategoryDescription");
+					this.OnBillingCategoryDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingCategoryTaxable", DbType="Bit NOT NULL")]
+		public bool BillingCategoryTaxable
+		{
+			get
+			{
+				return this._BillingCategoryTaxable;
+			}
+			set
+			{
+				if ((this._BillingCategoryTaxable != value))
+				{
+					this.OnBillingCategoryTaxableChanging(value);
+					this.SendPropertyChanging();
+					this._BillingCategoryTaxable = value;
+					this.SendPropertyChanged("BillingCategoryTaxable");
+					this.OnBillingCategoryTaxableChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="BillingCategory_ReservationDetailBilling", Storage="_ReservationDetailBillings", ThisKey="BillingCategoryID", OtherKey="BillingCategoryID")]
+		public EntitySet<ReservationDetailBilling> ReservationDetailBillings
+		{
+			get
+			{
+				return this._ReservationDetailBillings;
+			}
+			set
+			{
+				this._ReservationDetailBillings.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ReservationDetailBillings(ReservationDetailBilling entity)
+		{
+			this.SendPropertyChanging();
+			entity.BillingCategory = this;
+		}
+		
+		private void detach_ReservationDetailBillings(ReservationDetailBilling entity)
+		{
+			this.SendPropertyChanging();
+			entity.BillingCategory = null;
 		}
 	}
 }

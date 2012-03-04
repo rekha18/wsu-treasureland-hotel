@@ -1,19 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TreasureLand" Class="TreasureLandDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=&quot;titan.cs.weber.edu, 10433&quot;;Initial Catalog=TreasureLand1;User ID=4790Client" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TreasureLandDBM" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TreasureLand1" Class="TreasureLandDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=titan.cs.weber.edu,10433;Initial Catalog=TreasureLand1;Persist Security Info=True;User ID=4790Client" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TreasurelandDB" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AccountingType" Member="AccountingTypes">
     <Type Name="AccountingType">
       <Column Name="AccountingTypeID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="AccountingType" Member="AccountingType1" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="AccountingTypeDescription" Type="System.String" DbType="VarChar(120)" CanBeNull="true" />
       <Association Name="AccountingType_Accounting" Member="Accountings" ThisKey="AccountingTypeID" OtherKey="AccountingTypeID" Type="Accounting" />
-    </Type>
-  </Table>
-  <Table Name="dbo.BillingCategory" Member="BillingCategories">
-    <Type Name="BillingCategory">
-      <Column Name="BillingCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="BillingCategoryDescription" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="BillingCategoryTaxable" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="BillingCategory_ReservationDetailBilling" Member="ReservationDetailBillings" ThisKey="BillingCategoryID" OtherKey="BillingCategoryID" Type="ReservationDetailBilling" />
     </Type>
   </Table>
   <Table Name="dbo.Department" Member="Departments">
@@ -187,8 +179,8 @@
       <Column Name="EmployeeID" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
       <Column Name="TransEmployee" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
       <Association Name="ReservationDetailBilling_LineItem" Member="LineItems" ThisKey="ReservationDetailBillingID" OtherKey="ReservationDetailBillingID" Type="LineItem" />
-      <Association Name="BillingCategory_ReservationDetailBilling" Member="BillingCategory" ThisKey="BillingCategoryID" OtherKey="BillingCategoryID" Type="BillingCategory" IsForeignKey="true" />
       <Association Name="ReservationDetail_ReservationDetailBilling" Member="ReservationDetail" ThisKey="ReservationDetailID" OtherKey="ReservationDetailID" Type="ReservationDetail" IsForeignKey="true" />
+      <Association Name="BillingCategory_ReservationDetailBilling" Member="BillingCategory" ThisKey="BillingCategoryID" OtherKey="BillingCategoryID" Type="BillingCategory" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Revenue" Member="Revenues">
@@ -337,6 +329,14 @@
       <Column Name="IngredientDescription" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Association Name="Ingredient_IngredientPurchaseHistory" Member="IngredientPurchaseHistories" ThisKey="IngredientID" OtherKey="IngredientID" Type="IngredientPurchaseHistory" />
       <Association Name="Ingredient_MenuItemIngredient" Member="MenuItemIngredients" ThisKey="IngredientID" OtherKey="IngredientID" Type="MenuItemIngredient" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BillingCategory" Member="BillingCategories">
+    <Type Name="BillingCategory">
+      <Column Name="BillingCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BillingCategoryDescription" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BillingCategoryTaxable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="BillingCategory_ReservationDetailBilling" Member="ReservationDetailBillings" ThisKey="BillingCategoryID" OtherKey="BillingCategoryID" Type="ReservationDetailBilling" />
     </Type>
   </Table>
 </Database>
