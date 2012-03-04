@@ -37,4 +37,7 @@
     </ItemTemplate>
 </asp:Repeater>
 <br />
+<asp:Button ID="btnSubmitRoleChanges" runat="server" Enabled="False" 
+    onclick="btnSubmitRoleChanges_Click" Text="Submit Role Changes" />
+<br />
 <asp:Label ID="Label_StatusMsg" runat="server" ForeColor="Red" Font-Size="Large" />
