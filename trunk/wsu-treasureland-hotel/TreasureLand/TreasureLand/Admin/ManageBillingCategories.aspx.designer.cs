@@ -58,6 +58,15 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.LinqDataSource ldsBilling;
         
         /// <summary>
+        /// ValidationSummary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        
+        /// <summary>
         /// btnAddBillingCategory control.
         /// </summary>
         /// <remarks>
