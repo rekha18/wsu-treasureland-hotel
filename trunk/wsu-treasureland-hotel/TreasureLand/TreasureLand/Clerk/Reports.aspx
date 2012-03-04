@@ -39,10 +39,11 @@
     <asp:Button ID="btnGetTransactions" runat="server" 
         onclick="btnGetTransactions_Click" Text="Get Transactions" 
         ValidationGroup="vgDate" />
+    <br />
     <asp:ValidationSummary ID="vsDates" runat="server" ForeColor="Red" 
         ValidationGroup="vgDate" />
     <asp:Label ID="lblPrice" runat="server" Font-Bold="True" 
-        Text="Select Order to View:"></asp:Label>
+        Text="Select Order to View:" Visible="False"></asp:Label>
     <br />
     <asp:DropDownList ID="ddlTransactions" runat="server" Visible="False">
     </asp:DropDownList>
@@ -56,9 +57,14 @@
     <asp:LinqDataSource ID="ldsTransactions" runat="server" 
         ContextTypeName="TreasureLand.DBM.TreasureLandDataClassesDataContext" 
         EntityTypeName="" TableName="ReservationDetailBillings" 
-        Where="BillingCategoryID == @BillingCategoryID">
+        
+        Where="BillingCategoryID == @BillingCategoryID &amp;&amp; BillingItemDate &gt;= @BillingItemDate &amp;&amp; BillingItemDate &lt;= @BillingItemDate2">
         <WhereParameters>
             <asp:Parameter DefaultValue="1" Name="BillingCategoryID" Type="Int16" />
+            <asp:ControlParameter ControlID="txtBeginDate" Name="BillingItemDate" 
+                PropertyName="Text" Type="DateTime" />
+            <asp:ControlParameter ControlID="txtEndDate" Name="BillingItemDate2" 
+                PropertyName="Text" Type="DateTime" />
         </WhereParameters>
     </asp:LinqDataSource>
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" />

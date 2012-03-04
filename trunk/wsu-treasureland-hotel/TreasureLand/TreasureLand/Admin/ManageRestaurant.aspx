@@ -443,14 +443,12 @@ Food"
             &nbsp;</td>
     </tr>
          <tr>
-             <td style="width: 144px">
+             <td style="width: 144px; height: 34px;">
                  <asp:Label ID="lblPurchaseItemName" runat="server" Text="Beverage Name:"></asp:Label>
              </td>
-             <td style="width: 312px">
+             <td style="width: 312px; height: 34px;">
                  <asp:DropDownList ID="ddlIngredientPurchase" runat="server">
                  </asp:DropDownList>
-                 <br />
-                 <br />
                  <br />
              </td>
          </tr>
