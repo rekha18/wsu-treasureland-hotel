@@ -8,10 +8,30 @@
                     <Columns>
                         <asp:BoundField DataField="BillingCategoryID" HeaderText="ID" 
                             InsertVisible="False" ReadOnly="True" SortExpression="BillingCategoryID" />
-                        <asp:BoundField DataField="BillingCategoryDescription" HeaderText="Description" 
-                            SortExpression="BillingCategoryDescription" />
-                        <asp:BoundField DataField="BillingCategoryTaxable" HeaderText="Taxable" 
-                            SortExpression="BillingCategoryTaxable" />
+                        <asp:TemplateField HeaderText="Description" 
+                            SortExpression="BillingCategoryDescription">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server" 
+                                    Text='<%# Bind("BillingCategoryDescription") %>'></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                    ControlToValidate="TextBox1" ErrorMessage="Description is a required field" 
+                                    ForeColor="Red">*</asp:RequiredFieldValidator>
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" 
+                                    Text='<%# Bind("BillingCategoryDescription") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Taxable" SortExpression="BillingCategoryTaxable">
+                            <EditItemTemplate>
+                                <asp:CheckBox ID="cbCheckBox" runat="server"
+                                Checked='<%# Bind("BillingCategoryTaxable") %>' />
+                            </EditItemTemplate>
+                            <ItemTemplate>
+                                <asp:CheckBox ID="cbCheckBox" runat="server" Enabled="false"
+                                Checked='<%# Bind("BillingCategoryTaxable") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:CommandField ButtonType="Button" ShowDeleteButton="True" 
                             ShowEditButton="True" />
                     </Columns>
@@ -22,6 +42,7 @@
                     OrderBy="BillingCategoryID" TableName="BillingCategories" 
                     EnableDelete="True" EnableInsert="True">
                 </asp:LinqDataSource>
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" />
                 <br />
                 <asp:Button ID="btnAddBillingCategory" runat="server" CommandArgument="1" 
                     CommandName="SwitchViewByIndex" Text="Add Service or Fee" />

@@ -21,15 +21,8 @@ namespace TreasureLand.Admin
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
             BillingCategory addBilling = new BillingCategory();
             addBilling.BillingCategoryDescription = txtDesciption.Text;
-            
-            if (cbTaxable.Checked)
-            {
-                addBilling.BillingCategoryTaxable = Convert.ToByte(true);
-            }
-            else
-            {
-                addBilling.BillingCategoryTaxable = Convert.ToByte(false);
-            }
+            addBilling.BillingCategoryTaxable = cbTaxable.Checked;
+
             db.BillingCategories.InsertOnSubmit(addBilling);
             db.SubmitChanges();
             gvBilling.DataBind();
