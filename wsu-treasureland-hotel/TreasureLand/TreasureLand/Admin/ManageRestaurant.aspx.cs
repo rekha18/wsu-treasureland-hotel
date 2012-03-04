@@ -89,7 +89,13 @@ namespace TreasureLand.Admin
         private object getAllIngredients()
         {
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            return from i in db.Ingredients
+            return 
+                   from i in db.Ingredients
+                   join mii in db.MenuItemIngredients
+                   on i.IngredientID equals mii.IngredientID
+                   join mi in db.MenuItems
+                   on mii.MenuItemID equals mi.MenuItemID
+                   where mi.FoodDrinkCategoryID > 3
                    select new { i.IngredientName, i.IngredientID };
         }
 
@@ -242,8 +248,8 @@ namespace TreasureLand.Admin
             //Set ManageCategoryView to visible
             containerView.ActiveViewIndex = 3;
             ddlIngredientPurchase.DataSource = getAllDrinks();
-            ddlIngredientPurchase.DataValueField = "MenuItemID";
-            ddlIngredientPurchase.DataTextField = "MenuItemName";
+            ddlIngredientPurchase.DataValueField = "IngredientID";
+            ddlIngredientPurchase.DataTextField = "IngredientName";
             ddlIngredientPurchase.Items.Insert(0,new ListItem("Select an item"));
             ddlIngredientPurchase.DataBind();
             lblIngredientInsert.Visible = false;
@@ -612,8 +618,8 @@ namespace TreasureLand.Admin
                 lblPurchaseItemName.Text = "Select Beverage";
                 btnAddListItemIngredient.Visible = false;
                 ddlIngredientPurchase.DataSource = getAllDrinks();
-                ddlIngredientPurchase.DataValueField = "MenuItemID";
-                ddlIngredientPurchase.DataTextField = "MenuItemName";
+                ddlIngredientPurchase.DataValueField = "IngredientID";
+                ddlIngredientPurchase.DataTextField = "IngredientName";
                 ddlIngredientPurchase.DataBind();
 
 
