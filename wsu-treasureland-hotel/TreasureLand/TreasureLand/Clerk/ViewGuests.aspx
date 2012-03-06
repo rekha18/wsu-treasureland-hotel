@@ -290,7 +290,12 @@
                         </td>
                         <td style="width: 115px; height: 60px;">
                             <asp:TextBox ID="txtComments" runat="server" Height="45px" TextMode="MultiLine" 
+                                onKeyUp="javascript:Count('MainContent_ContentPlaceHolder1_txtComments');"
+                                onKeyDown="javascript:Count('MainContent_ContentPlaceHolder1_txtComments');" 
                                 Width="245px"></asp:TextBox>
+                            <div id="charsleft">
+                                &nbsp;
+                            </div>
                         </td>
                         <td style="width: 60px; height: 60px;">
                         </td>
@@ -347,4 +352,17 @@
             </asp:View>
         </asp:MultiView>
     </p>
+    <script type="text/javascript">
+        function Count(text) {
+            //asp.net textarea maxlength doesnt work; do it by hand
+            var maxlength = 200; //set your value here (or add a parm and pass it in)
+            var object = document.getElementById(text)  //get your object
+            var string = object.value;
+            if (string.length > maxlength) {
+                object.value = string.substring(0, maxlength); //truncate the value
+            }
+            if ((maxlength - string.length) >= 0)
+                document.getElementById("charsleft").innerHTML = (maxlength - string.length) + " chars left";
+        }
+    </script>
 </asp:Content>
