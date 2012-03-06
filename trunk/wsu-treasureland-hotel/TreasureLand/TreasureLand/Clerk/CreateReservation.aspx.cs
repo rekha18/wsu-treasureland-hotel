@@ -113,6 +113,44 @@ namespace TreasureLand.Clerk
                 reserving.returnView = 3;
                 reserving.view = 3;
             }
+            else if (Session["RoomIDs"] != null && IsPostBack)
+            {
+            foreach (GridViewRow row in gvRoomInfo.Rows)
+                {
+                    if (adjust == 0)
+                    {
+                        TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                        var rackrate = from rr in db.HotelRoomTypes
+                                       join ro in db.Rooms
+                                       on rr.HotelRoomTypeID equals ro.HotelRoomTypeID
+                                       where ro.RoomNumbers == row.Cells[0].Text
+                                       select new { rr.RoomTypeRackRate };
+                        row.Cells[2].Text = string.Format("{0:0.00}", rackrate.First().RoomTypeRackRate);
+               
+                    }
+
+                    if (isPercent)
+                    {
+                        adjust /= 100;
+                        row.Cells[2].Text = Convert.ToString(Convert.ToDecimal(row.Cells[2].Text) * adjust);
+                    }
+                    else
+                    {
+                        row.Cells[2].Text = Convert.ToString(Convert.ToDecimal(row.Cells[2].Text) - adjust);
+                    }
+
+                    quotedPrice += Convert.ToDecimal(row.Cells[2].Text);
+
+                }
+
+                quotedPrice *= Convert.ToInt16(reserving.daysStaying);
+
+
+
+
+                lblTotalCost.Text = string.Format("{0:0.00}", quotedPrice);
+
+            }
 
 
         }
