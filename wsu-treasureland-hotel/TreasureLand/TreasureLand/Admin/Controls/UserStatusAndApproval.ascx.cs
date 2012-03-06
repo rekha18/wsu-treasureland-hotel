@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using TreasureLand.DBM;
 
 namespace TreasureLand.Admin
 {
@@ -69,6 +70,22 @@ namespace TreasureLand.Admin
                 Bind_CheckBoxList_Roles();
                 //check off the roles that the user is already a member of
                 CheckRolesForSelectedUser();
+
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                var pin = from p in db.aspnet_Memberships
+                          join u in db.aspnet_Users
+                          on p.UserId equals u.UserId
+                          where u.UserName == Request.QueryString["user"]
+                          select new {p.Pin};
+
+                if (pin.Count() == 0)
+                {
+                    lblPin.Text = "No Pin";
+                }
+                else
+                {
+                    lblPin.Text = pin.First().Pin;
+                }
             }
 
             if (Page.User.Identity.Name.ToLower() == Label_UserName.Text.ToLower()) //If the admin is editing himself
@@ -204,6 +221,40 @@ namespace TreasureLand.Admin
 
             btnSubmitRoleChanges.Enabled = false;
         }
+
+        protected void btnUpdatePin_Click(object sender, EventArgs e)
+        {
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            var pin = from p in db.aspnet_Memberships
+                      where p.Pin == txtPin.Text
+                      select new { p.Pin };
+
+            if (pin.Count() != 0 && pin.First().Pin != lblPin.Text)
+            {
+                Label_StatusMsg.Text = "This is not a valid pin";
+
+            }
+            else if(pin.Count() != 0 && pin.First().Pin == lblPin.Text)
+            {
+                Label_StatusMsg.Text = "This is your current pin";
+            }
+            else
+            {
+                Label_StatusMsg.Text = "Pin Changed";
+                var query = from p in db.aspnet_Memberships
+                          join u in db.aspnet_Users
+                          on p.UserId equals u.UserId
+                          where u.UserName == Request.QueryString["user"]
+                          select p;
+                foreach (var result in query)
+                {
+                    result.Pin = txtPin.Text;
+                }
+                db.SubmitChanges();
+                txtPin.Text = "";
+            }
+        }
+
 
 
     }
