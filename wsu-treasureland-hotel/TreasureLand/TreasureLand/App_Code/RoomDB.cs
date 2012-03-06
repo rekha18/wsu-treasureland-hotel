@@ -137,7 +137,7 @@ namespace TreasureLand.App_Code
             {
                 conn.Open(); //Open the connection
 
-                string command = "SELECT g.GuestFirstName, g.GuestSurName, res.ReservationDate, res.ReservationStatus, rd.Nights, " +
+                string command = "SELECT g.GuestFirstName, g.GuestSurName, rd.CheckinDate, res.ReservationStatus, rd.Nights, " +
                                  "room.RoomID, room.RoomNumbers, res.ReservationID, " +
                                  "rtype.HotelRoomTypeID, rtype.RoomType, rd.ReservationDetailID " +
                                  "FROM Guest g " +
