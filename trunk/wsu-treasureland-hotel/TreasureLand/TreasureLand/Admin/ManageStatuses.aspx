@@ -7,6 +7,10 @@
                     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
                         DataKeyNames="RoomStatus1" DataSourceID="ldsStatuses">
                         <Columns>
+                            <asp:BoundField DataField="RoomStatus1" HeaderText="Room Status" ReadOnly="True" 
+                                SortExpression="RoomStatus1" />
+                            <asp:BoundField DataField="RoomStatusDescription" HeaderText="Description" 
+                                SortExpression="RoomStatusDescription" />
                             <asp:BoundField DataField="RoomStatus1" HeaderText="RoomStatus1" ReadOnly="True" 
                                 SortExpression="RoomStatus1" />
                             <asp:BoundField DataField="RoomStatusDescription" HeaderText="RoomStatusDescription" 
