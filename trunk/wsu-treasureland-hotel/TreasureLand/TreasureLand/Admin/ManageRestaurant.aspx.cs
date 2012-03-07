@@ -222,6 +222,8 @@ namespace TreasureLand.Admin
                 //repopulate dropdownlist
                 ddlCategory.DataSource = getAllCategories();
                 ddlCategory.DataBind();
+                gvEditCategories.DataBind();
+
 
                 txtCategory.Text = "";
             }
