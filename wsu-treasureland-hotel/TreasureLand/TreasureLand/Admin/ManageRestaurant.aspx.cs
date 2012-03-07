@@ -223,7 +223,7 @@ namespace TreasureLand.Admin
                 ddlCategory.DataSource = getAllCategories();
                 ddlCategory.DataBind();
                 gvEditCategories.DataBind();
-
+                ddlAddGetCategory.DataBind();
 
                 txtCategory.Text = "";
             }
@@ -535,6 +535,7 @@ namespace TreasureLand.Admin
 
             disableButtons(true);
             gvMenuItems.DataBind();
+            ddlMenuItemIngredients.DataBind();
         }
 
         /// <summary>
@@ -585,22 +586,30 @@ namespace TreasureLand.Admin
             }
             else
             {
-                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-                var foodDrinkCat = getCategories('F');
-                ddlAddGetCategory.DataSource = foodDrinkCat;
-                ddlAddGetCategory.DataValueField = "FoodDrinkCategoryID";
-                ddlAddGetCategory.DataTextField = "FoodDrinkCategoryName";
-                ddlAddGetCategory.DataBind();
-               
+                try
+                {
 
-                ddlAddCategory.DataSource = foodDrinkCat;
-                ddlAddCategory.DataValueField = "FoodDrinkCategoryID";
-                ddlAddCategory.DataTextField = "FoodDrinkCategoryName";
-                ddlAddCategory.DataBind();
-                
-                gvMenuItems.DataBind();
+                    TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                    var foodDrinkCat = getCategories('F');
+                    ddlAddGetCategory.DataSource = foodDrinkCat;
+                    ddlAddGetCategory.DataValueField = "FoodDrinkCategoryID";
+                    ddlAddGetCategory.DataTextField = "FoodDrinkCategoryName";
+                    ddlAddGetCategory.DataBind();
 
-                lblAddMenuItemName.Text = "Menu Item Name";
+                    ddlAddCategory.DataSource = foodDrinkCat;
+                    ddlAddCategory.DataValueField = "FoodDrinkCategoryID";
+                    ddlAddCategory.DataTextField = "FoodDrinkCategoryName";
+                    ddlAddCategory.DataBind();
+
+                    gvMenuItems.DataBind();
+
+                    lblAddMenuItemName.Text = "Menu Item Name";
+                }
+                catch (Exception)
+                {
+                    
+                    throw;
+                }
             }
         }
 
