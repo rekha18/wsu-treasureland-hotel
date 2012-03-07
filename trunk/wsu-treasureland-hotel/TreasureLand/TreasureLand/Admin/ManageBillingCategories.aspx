@@ -32,7 +32,7 @@
                                 Checked='<%# Bind("BillingCategoryTaxable") %>' />
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:CommandField ButtonType="Button" ShowDeleteButton="True" 
+                        <asp:CommandField ButtonType="Button" 
                             ShowEditButton="True" />
                     </Columns>
                 </asp:GridView>
