@@ -493,7 +493,7 @@ Food"
                 ValidationGroup="AddIngredient" />
         </td>
         <td style="width: 312px">
-            &nbsp;<asp:Button ID="btnSubmitPurchase" runat="server" Enabled="False" 
+            &nbsp;<asp:Button ID="btnSubmitPurchase" runat="server" 
                 onclick="btnSubmitPurchase_Click" Text="Submit Purchase" Width="118px" 
                 Visible="False" />
         </td>
@@ -502,7 +502,7 @@ Food"
     </tr>
          <tr>
              <td style="width: 144px">
-                 <asp:Button ID="btnClear" runat="server" Enabled="False" 
+                 <asp:Button ID="btnClear" runat="server" 
                      onclick="btnClearPurchase" Text="Clear Purchase" Width="107px" 
                      Visible="False" />
              </td>

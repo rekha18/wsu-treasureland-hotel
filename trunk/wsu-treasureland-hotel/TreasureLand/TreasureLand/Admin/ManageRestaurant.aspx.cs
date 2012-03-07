@@ -342,6 +342,8 @@ namespace TreasureLand.Admin
             btnManageCategories.Enabled = true;
             btnManageMenuItems.Enabled = true;
             btnEnterPurchase.Enabled = true;
+            btnIngredients.Enabled = true;
+
             btnClear.Enabled = false;
         }
 
@@ -360,6 +362,7 @@ namespace TreasureLand.Admin
             btnManageCategories.Enabled = true;
             btnManageMenuItems.Enabled = true;
             btnEnterPurchase.Enabled = true;
+            btnIngredients.Enabled = true;
             btnClear.Visible = false;
         }
 
@@ -426,6 +429,7 @@ namespace TreasureLand.Admin
                 btnManageCategories.Enabled = false;
                 btnManageMenuItems.Enabled = false;
                 btnEnterPurchase.Enabled = false;
+                btnIngredients.Enabled = false;
                 btnClear.Visible = true;
                 
             }
