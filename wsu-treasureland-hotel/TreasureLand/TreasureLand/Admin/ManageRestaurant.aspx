@@ -127,13 +127,17 @@ FROM MenuItemIngredient INNER JOIN Ingredient ON MenuItemIngredient.IngredientID
                     <br />
                     <asp:Label ID="lblAddIngredientDescriptino" runat="server" Text="Description:"></asp:Label>
                     <asp:TextBox ID="txtIngredientComments" runat="server" Height="46px" 
+                        onKeyUp="javascript:Count('MainContent_adminContentHolder_txtIngredientComments');"
+                        onKeyDown="javascript:Count('MainContent_adminContentHolder_txtIngredientComments');" 
                         MaxLength="200" TextMode="MultiLine"></asp:TextBox>
                     <asp:FilteredTextBoxExtender ID="txtIngredientComments_FilteredTextBoxExtender" 
                         runat="server" Enabled="True" FilterMode="InvalidChars" 
                         InvalidChars="!@#$%^&amp;*()_+-=[]{}\|;:'&quot;/.,&lt;&gt;?`~" 
                         TargetControlID="txtIngredientComments">
                     </asp:FilteredTextBoxExtender>
-                    <br />
+                    <div id="charsleft">
+                        &nbsp;
+                    </div>
                     <asp:Button ID="btnAddListItemIngredient" runat="server" 
                         onclick="btnAddListItemIngredient_Click1" Text="Add New Ingredient" 
                         ValidationGroup="vgAddIngredient" />
@@ -539,4 +543,17 @@ Food"
     
 <br />
 <br />
+<script type="text/javascript">
+    function Count(text) {
+        //asp.net textarea maxlength doesnt work; do it by hand
+        var maxlength = 200; //set your value here (or add a parm and pass it in)
+        var object = document.getElementById(text)  //get your object
+        var string = object.value;
+        if (string.length > maxlength) {
+            object.value = string.substring(0, maxlength); //truncate the value
+        }
+        if ((maxlength - string.length) >= 0)
+            document.getElementById("charsleft").innerHTML = (maxlength - string.length) + " chars left";
+    }
+</script>
 </asp:Content>

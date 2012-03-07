@@ -454,7 +454,7 @@ namespace TreasureLand.Admin
                 //add ingredient to database
                 Ingredient addIngredient = new Ingredient();
                 addIngredient.IngredientName = txtIngredient.Text;
-                addIngredient.IngredientDescription = txtIngredientComments.Text;
+                //addIngredient.IngredientDescription = txtIngredientComments.Text;
                 db.Ingredients.InsertOnSubmit(addIngredient);
                 db.SubmitChanges();
                 lblIngredientInsert.Text = "Insert Successful";
