@@ -339,7 +339,7 @@ namespace Restaurant
             var drinkQuery = from d in db.FoodDrinkCategories
                                 join m in db.MenuItems
                                 on d.FoodDrinkCategoryID equals m.FoodDrinkCategoryID
-                                where d.FoodDrinkCategoryTypeID == beverage
+                                where (d.FoodDrinkCategoryTypeID == beverage) && (m.IsCurrentItem==true)
                                 select new { m.MenuItemID};
 
             if (drinkQuery.Any())
@@ -360,7 +360,7 @@ namespace Restaurant
             var query = from m in db.MenuItems
                         join f in db.FoodDrinkCategories
                         on m.FoodDrinkCategoryID equals f.FoodDrinkCategoryID
-                        where f.FoodDrinkCategoryName == foodCategory
+                        where (f.FoodDrinkCategoryName == foodCategory) && (m.IsCurrentItem==true)
                         select new { m.MenuItemID };
 
             foreach (var d in query)
@@ -482,7 +482,7 @@ namespace Restaurant
                 var drinkQuery = from d in db.FoodDrinkCategories
                                  join m in db.MenuItems
                                  on d.FoodDrinkCategoryID equals m.FoodDrinkCategoryID
-                                 where d.FoodDrinkCategoryTypeID == beverage
+                                 where (d.FoodDrinkCategoryTypeID == beverage) && (m.IsCurrentItem ==true)
                                  select new { m.MenuItemID, m.MenuItemName };
 
                 if (drinkQuery.Any())
@@ -498,7 +498,7 @@ namespace Restaurant
                 var drinkQuery = from d in db.FoodDrinkCategories
                                  join m in db.MenuItems
                                  on d.FoodDrinkCategoryID equals m.FoodDrinkCategoryID
-                                 where d.FoodDrinkCategoryTypeID == beverage
+                                 where (d.FoodDrinkCategoryTypeID == beverage) && (m.IsCurrentItem == true)
                                  select new { m.MenuItemID, m.MenuItemName };
 
                 if (drinkQuery.Any())
@@ -556,7 +556,7 @@ namespace Restaurant
             var query = from m in db.MenuItems
                         join f in db.FoodDrinkCategories
                         on m.FoodDrinkCategoryID equals f.FoodDrinkCategoryID
-                        where f.FoodDrinkCategoryName == foodCategory
+                        where (f.FoodDrinkCategoryName == foodCategory) && (m.IsCurrentItem == true)
                         select new { m.MenuItemID, m.MenuItemName };
 
             if (query.Any())
