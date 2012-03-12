@@ -83,7 +83,7 @@
                         DataTextField="IngredientName" DataValueField="MenuItemIngredientID">
                     </asp:ListBox>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-                        ConnectionString="<%$ ConnectionStrings:TreasurelandDB %>" 
+                        ConnectionString="<%$ ConnectionStrings:HotelDB %>" 
                         SelectCommand="SELECT MenuItemIngredient.MenuItemIngredientID, (Ingredient.IngredientName + ' ' + Cast(MenuItemIngredient.MenuItemIngredientQty as varchar(10))) AS IngredientName 
 FROM MenuItemIngredient INNER JOIN Ingredient ON MenuItemIngredient.IngredientID = Ingredient.IngredientID WHERE (MenuItemIngredient.MenuItemID = @MenuItemID)">
                         <SelectParameters>
@@ -311,18 +311,17 @@ FROM MenuItemIngredient INNER JOIN Ingredient ON MenuItemIngredient.IngredientID
                         <asp:Label ID="Label2" runat="server" Text='<%# Bind("MenuItemPrice", "{0:#.##}") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField ShowHeader="False">
+                <asp:TemplateField HeaderText="Current Item">
                     <EditItemTemplate>
-                        <asp:Button ID="Button1" runat="server" CausesValidation="True" 
-                            CommandName="Update" Text="Update" ValidationGroup="EditMenuItem" />
-                        &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" 
-                            CommandName="Cancel" Text="Cancel" />
+                        <asp:CheckBox ID="CheckBox1" runat="server" 
+                            Checked='<%# Bind("IsCurrentItem") %>' Text="Current Item" />
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Button ID="Button1" runat="server" CausesValidation="False" 
-                            CommandName="Edit" Text="Edit" />
+                        <asp:CheckBox ID="CheckBox2" runat="server" 
+                            Checked='<%# Bind("IsCurrentItem") %>' Enabled="False" Text="Current Item" />
                     </ItemTemplate>
                 </asp:TemplateField>
+                <asp:CommandField ButtonType="Button" ShowEditButton="True"></asp:CommandField>
             </Columns>
         </asp:GridView>
         <asp:ValidationSummary ID="ValidationSummary3" runat="server" ForeColor="Red" 
