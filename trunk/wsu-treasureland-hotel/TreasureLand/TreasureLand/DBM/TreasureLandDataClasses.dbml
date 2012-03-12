@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TreasureLand1" Class="TreasureLandDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=titan.cs.weber.edu,10433;Initial Catalog=TreasureLand1;Persist Security Info=True;User ID=4790Client" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TreasurelandDB" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=TreasureLand1;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TreasureLand1ConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AccountingType" Member="AccountingTypes">
     <Type Name="AccountingType">
       <Column Name="AccountingTypeID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -105,25 +105,14 @@
       <Association Name="Ingredient_IngredientPurchaseHistory" Member="Ingredient" ThisKey="IngredientID" OtherKey="IngredientID" Type="Ingredient" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.MenuItem" Member="MenuItems">
-    <Type Name="MenuItem">
-      <Column Name="MenuItemID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="FoodDrinkCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
-      <Column Name="MenuItemName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="MenuItemPrice" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
-      <Association Name="MenuItem_MenuItemIngredient" Member="MenuItemIngredients" ThisKey="MenuItemID" OtherKey="MenuItemID" Type="MenuItemIngredient" />
-      <Association Name="MenuItem_LineItem" Member="LineItems" ThisKey="MenuItemID" OtherKey="MenuItemID" Type="LineItem" />
-      <Association Name="FoodDrinkCategory_MenuItem" Member="FoodDrinkCategory" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="FoodDrinkCategory" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.MenuItemIngredient" Member="MenuItemIngredients">
     <Type Name="MenuItemIngredient">
       <Column Name="MenuItemIngredientID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="MenuItemID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="IngredientID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="MenuItemIngredientQty" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Association Name="MenuItem_MenuItemIngredient" Member="MenuItem" ThisKey="MenuItemID" OtherKey="MenuItemID" Type="MenuItem" IsForeignKey="true" />
       <Association Name="Ingredient_MenuItemIngredient" Member="Ingredient" ThisKey="IngredientID" OtherKey="IngredientID" Type="Ingredient" IsForeignKey="true" />
+      <Association Name="MenuItem_MenuItemIngredient" Member="MenuItem" ThisKey="MenuItemID" OtherKey="MenuItemID" Type="MenuItem" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.OrderShortTerm" Member="OrderShortTerms">
@@ -256,8 +245,8 @@
       <Column Name="ReservationDetailBillingID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
       <Column Name="MenuItemID" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
       <Column Name="LineItemAmount" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
-      <Association Name="MenuItem_LineItem" Member="MenuItem" ThisKey="MenuItemID" OtherKey="MenuItemID" Type="MenuItem" IsForeignKey="true" />
       <Association Name="ReservationDetailBilling_LineItem" Member="ReservationDetailBilling" ThisKey="ReservationDetailBillingID" OtherKey="ReservationDetailBillingID" Type="ReservationDetailBilling" IsForeignKey="true" />
+      <Association Name="MenuItem_LineItem" Member="MenuItem" ThisKey="MenuItemID" OtherKey="MenuItemID" Type="MenuItem" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.FoodDrinkCategory" Member="FoodDrinkCategories">
@@ -337,6 +326,18 @@
       <Column Name="BillingCategoryDescription" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="BillingCategoryTaxable" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="BillingCategory_ReservationDetailBilling" Member="ReservationDetailBillings" ThisKey="BillingCategoryID" OtherKey="BillingCategoryID" Type="ReservationDetailBilling" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MenuItem" Member="MenuItems">
+    <Type Name="MenuItem">
+      <Column Name="MenuItemID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FoodDrinkCategoryID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="MenuItemName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="MenuItemPrice" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
+      <Column Name="IsCurrentItem" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="MenuItem_MenuItemIngredient" Member="MenuItemIngredients" ThisKey="MenuItemID" OtherKey="MenuItemID" Type="MenuItemIngredient" />
+      <Association Name="MenuItem_LineItem" Member="LineItems" ThisKey="MenuItemID" OtherKey="MenuItemID" Type="LineItem" />
+      <Association Name="FoodDrinkCategory_MenuItem" Member="FoodDrinkCategory" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="FoodDrinkCategory" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
