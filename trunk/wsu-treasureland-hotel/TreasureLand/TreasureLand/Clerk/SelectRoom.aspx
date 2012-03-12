@@ -42,6 +42,24 @@
                     ></asp:PlaceHolder>
                 <asp:Button ID="btnUpdateCheckedRoomsList" Visible="false" Text="Update Rooms"
                     OnClick="btnUpdateCheckedRoomsList_OnClick" runat="server"/>-->
+                    <p style="text-align:center;">Selected Rooms</p>
+                <asp:GridView ID="gvSelectedRooms" runat="server" AutoGenerateColumns="False">
+                    <Columns>
+                        <asp:BoundField DataField="RoomNumber" HeaderText="Room Number" 
+                            SortExpression="RoomNumber" />
+                        <asp:BoundField DataField="RoomType" HeaderText="Room Type" 
+                            SortExpression="RoomType" />
+                        <asp:TemplateField HeaderText="Deselect" SortExpression="Deselect">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="cbDeselect" runat="server" AutoPostBack="True" 
+                                    Checked="True" oncheckedchanged="cbDeselect_CheckedChanged" />
+                            </ItemTemplate>
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                            </EditItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
             </td>
         </tr>
     </table>
@@ -74,7 +92,7 @@
         <tr>
             <td style="width: 300px">Rooms selected: 
                 <asp:Label ID="lblTotalRooms" runat="server" Text="Label" ForeColor="Red">0</asp:Label></td>
-            <td><asp:Button ID="btnSelect" runat="server" Text="Select" Enabled="False" 
+            <td><asp:Button ID="btnSelect" runat="server" Text="Select Room(s)" Enabled="False" 
                     onclick="btnSelect_Click" /></td>
         </tr>
     </table>

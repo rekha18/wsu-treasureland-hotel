@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using TreasureLand.App_Code;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
 
 namespace TreasureLand.Clerk
 {
@@ -33,15 +34,18 @@ namespace TreasureLand.Clerk
             public int RowIndex;
             public int PageIndex;
             public string RoomNumber;
+            public string RoomTypeString;
             public CheckBox cb;
             private static ushort counter = 0;
 
-            public RowInfo(string RoomType, int RowIndex, int PageIndex, string RoomNumber)
+            public RowInfo(string RoomType, int RowIndex, int PageIndex,
+                string RoomNumber, string RoomTypeString)
             {
                 this.RoomType = RoomType;
                 this.RowIndex = RowIndex;
                 this.PageIndex = PageIndex;
                 this.RoomNumber = RoomNumber;
+                this.RoomTypeString = RoomTypeString;
 
                 cb = new CheckBox();
                 cb.Checked = true;
@@ -146,21 +150,64 @@ namespace TreasureLand.Clerk
                 return;
             
             Dictionary<int, RowInfo> rowInfos = (Dictionary<int, RowInfo>)Session["RowInfo"];
+
+            DataSet ds = new DataSet();
+            ds.Tables.Add("SelectedRooms");
+            ds.Tables["SelectedRooms"].Columns.Add("RoomNumber");
+            ds.Tables["SelectedRooms"].Columns.Add("RoomType");
+            ds.Tables["SelectedRooms"].Columns.Add("Deselect");
+
             foreach (KeyValuePair<int, RowInfo> kvp in rowInfos)
             {
-                Literal l = new Literal();
-                l.Text = " - Room #" + kvp.Value.RoomNumber + "<br />";
-                phSelectedRoomsList.Controls.Add(kvp.Value.cb);
-                phSelectedRoomsList.Controls.Add(l);
+                DataRow dr = ds.Tables["SelectedRooms"].NewRow();
+                dr["RoomNumber"] = kvp.Value.RoomNumber;
+                dr["RoomType"] = kvp.Value.RoomTypeString;
+
+                ds.Tables["SelectedRooms"].Rows.Add(dr);
             }
 
-            if (rowInfos.Count > 0)
+            gvSelectedRooms.DataSource = ds;
+            gvSelectedRooms.DataBind();
+        }
+
+        /// <summary>
+        /// Removes the selected checkbox from the selected rooms list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void cbDeselect_CheckedChanged(object sender, EventArgs e)
+        {
+            Dictionary<int, RowInfo> rowInfo = (Dictionary<int, RowInfo>)Session["RowInfo"];
+            GridViewRow r = null;
+            int rowID = 0;
+
+            foreach (GridViewRow gvr in gvSelectedRooms.Rows)
             {
-                btnUpdateCheckedRoomsList.Visible = true;
-                phSelectedRoomsList.DataBind();
+                if (gvr.Cells[2].FindControl("cbDeselect") == sender)
+                {
+                    r = gvr;
+                    break;
+                }
             }
-            else
-                btnUpdateCheckedRoomsList.Visible = false;
+
+            foreach (KeyValuePair<int, RowInfo> kvp in rowInfo)
+            {
+                if (kvp.Value.RoomNumber == r.Cells[0].Text)
+                {
+                    rowID = kvp.Value.RowIndex;
+                    rowInfo.Remove(kvp.Key);
+                    break;
+                }
+            }
+
+            colorRow(gvOpenRooms, rowID, System.Drawing.Color.White);
+
+            if (gvOpenRooms.Rows.Count > rowID)
+                ((CheckBox)gvOpenRooms.Rows[rowID].FindControl("cbSelected")).Checked = false;
+            renderCheckedRoomsList();
+            lblTotalRooms.Text = rowInfo.Count.ToString();
+            if (rowInfo.Count == 0)
+                btnSelect.Enabled = false;
         }
 
         /// <summary>
@@ -196,7 +243,7 @@ namespace TreasureLand.Clerk
             if (!rowInfo.ContainsKey(roomID))
             {
                 //Add it to the linked list
-                rowInfo.Add(roomID, new RowInfo(ddlRoomTypes.SelectedValue, rowID, gvOpenRooms.PageIndex, roomNumber));
+                rowInfo.Add(roomID, new RowInfo(ddlRoomTypes.SelectedValue, rowID, gvOpenRooms.PageIndex, roomNumber, ddlRoomTypes.SelectedItem.ToString()));
                 colorRow(gvOpenRooms, rowID, System.Drawing.Color.Yellow);
                 cb.Focus();
             }
@@ -209,6 +256,7 @@ namespace TreasureLand.Clerk
             }
 
             updatePageInfo(rowInfo.Count);
+            renderCheckedRoomsList();
         }
 
         /// <summary>
@@ -220,6 +268,9 @@ namespace TreasureLand.Clerk
         /// <param name="color">Color to set background color to</param>
         private void colorRow(GridView gv, int rowIndex, System.Drawing.Color color)
         {
+            if (gv.Rows.Count <= rowIndex)
+                return;
+            
             foreach (TableCell c in gv.Rows[rowIndex].Cells)
                 c.BackColor = color;
         }
