@@ -529,6 +529,7 @@ namespace TreasureLand.Admin
                 mi.FoodDrinkCategoryID = Convert.ToSByte(ddlAddCategory.SelectedIndex + 4);
                 mi.MenuItemName = txtAddMenuItemName.Text;
                 mi.MenuItemPrice = Convert.ToDecimal(txtAddPrice.Text);
+                mi.IsCurrentItem = true;
                 db.MenuItems.InsertOnSubmit(mi);
                 db.SubmitChanges();
             }
