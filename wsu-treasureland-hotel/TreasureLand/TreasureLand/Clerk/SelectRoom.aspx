@@ -90,7 +90,7 @@
     </asp:SqlDataSource>
     <table>
         <tr>
-            <td style="width: 300px">Rooms selected: 
+            <td style="width: 150px">Rooms selected: 
                 <asp:Label ID="lblTotalRooms" runat="server" Text="Label" ForeColor="Red">0</asp:Label></td>
             <td><asp:Button ID="btnSelect" runat="server" Text="Select Room(s)" Enabled="False" 
                     onclick="btnSelect_Click" /></td>
