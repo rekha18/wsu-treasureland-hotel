@@ -251,6 +251,26 @@ namespace TreasureLand.Admin
                     result.Pin = txtPin.Text;
                 }
                 db.SubmitChanges();
+
+
+                var pinrefresh = from p in db.aspnet_Memberships
+                          join u in db.aspnet_Users
+                          on p.UserId equals u.UserId
+                          where u.UserName == Request.QueryString["user"]
+                          select new { p.Pin };
+
+                if (pinrefresh.Count() == 0)
+                {
+                    lblPin.Text = "No Pin";
+                }
+                else
+                {
+                    lblPin.Text = pin.First().Pin;
+                }
+
+
+
+
                 txtPin.Text = "";
             }
         }

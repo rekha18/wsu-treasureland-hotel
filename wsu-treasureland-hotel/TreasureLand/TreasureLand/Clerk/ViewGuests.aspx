@@ -118,7 +118,8 @@
                             <asp:Label ID="lblTotal" runat="server" Text="Total Amount Owed:"></asp:Label>
                         </td>
                         <td class="style1" style="width: 236px">
-                            <asp:Label ID="txtTotal" runat="server"></asp:Label>
+                            <asp:Label ID="txtTotal" runat="server" ForeColor="Purple" 
+                                style="font-weight: 700"></asp:Label>
                         </td>
                     </tr>
                 </table>
@@ -145,7 +146,7 @@
                     onrowdeleting="gvGuestServices_RowDeleting" 
                     onrowediting="gvGuestServices_RowEditing" 
                     onrowupdated="gvGuestServices_RowUpdated" 
-                    onrowupdating="gvGuestServices_RowUpdating" PageSize="8" 
+                    onrowupdating="gvGuestServices_RowUpdating" PageSize="5" 
                     ShowHeaderWhenEmpty="True" Width="654px">
                     <Columns>
                         <asp:TemplateField HeaderText="Transaction ID">
@@ -247,17 +248,17 @@
                 </table>
                 <asp:Label ID="lblErrorMessage" runat="server" ForeColor="Red"></asp:Label>
                 <br />
-                <table style="width: 100%">
+                <table style="width: 641px">
                     <tr>
                         <td style="width: 126px">
-                            <asp:Label ID="lblServies" runat="server" Text="Services and Fees:"></asp:Label>
+                            <asp:Label ID="lblServies" runat="server" Text="Transactions:"></asp:Label>
                         </td>
                         <td style="width: 115px">
                             <asp:DropDownList ID="ddlServices" runat="server" TabIndex="-1">
                             </asp:DropDownList>
                         </td>
                         <td style="width: 60px">
-                            <asp:Label ID="lblQty" runat="server" Text="Quantity"></asp:Label>
+                            <asp:Label ID="lblQty" runat="server" Text="Quantity:"></asp:Label>
                         </td>
                         <td style="width: 135px; margin-left: 40px;">
                             <asp:DropDownList ID="ddlQuantity" runat="server">
@@ -276,12 +277,8 @@
                         <td style="width: 45px; margin-left: 40px;">
                             <asp:Label ID="lblCost" runat="server" Text="Cost:"></asp:Label>
                         </td>
-                        <td style="width: 94px">
-                            <asp:TextBox ID="txtCostofService" runat="server" MaxLength="10">0</asp:TextBox>
-                        </td>
-                        <td style="width: 177px">
-                            <asp:Button ID="btnAddService" runat="server" onclick="btnAddService_Click" 
-                                Text="Add Service" ValidationGroup="vgGuest" />
+                        <td style="width: 82px">
+                            <asp:TextBox ID="txtCostofService" runat="server" MaxLength="10" Width="25px">0</asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -298,14 +295,14 @@
                             </div>
                         </td>
                         <td style="width: 60px; height: 60px;">
+                            <asp:Button ID="btnAddService" runat="server" onclick="btnAddService_Click" 
+                                Text="Add Transaction" ValidationGroup="vgGuest" />
                         </td>
                         <td style="width: 135px; margin-left: 40px; height: 60px;">
                         </td>
                         <td style="width: 45px; margin-left: 40px; height: 60px;">
                         </td>
-                        <td style="width: 94px; height: 60px;">
-                        </td>
-                        <td style="width: 177px; height: 60px;">
+                        <td style="width: 82px; height: 60px;">
                         </td>
                     </tr>
                 </table>
@@ -320,7 +317,7 @@
                     ValidationGroup="vgGuest"></asp:RequiredFieldValidator>
                 <br />
                 <asp:Button ID="btnPrevious" runat="server" onclick="btnPrevious_Click" 
-                    Text="Previous" Width="100px" />
+                    Text="Cancel" Width="100px" />
                 &nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnAdjustDiscount" runat="server" 
                     onclick="btnAdjustDiscount_Click" Text="Adjust Discount" Width="110px" />

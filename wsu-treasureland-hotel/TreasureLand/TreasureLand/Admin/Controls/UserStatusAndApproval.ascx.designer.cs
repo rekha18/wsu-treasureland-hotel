@@ -94,6 +94,15 @@ namespace TreasureLand.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtPin;
         
         /// <summary>
+        /// txtPin_FilteredTextBoxExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender txtPin_FilteredTextBoxExtender;
+        
+        /// <summary>
         /// rfvPin control.
         /// </summary>
         /// <remarks>

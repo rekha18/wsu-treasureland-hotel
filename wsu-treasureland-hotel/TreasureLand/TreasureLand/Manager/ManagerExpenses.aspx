@@ -63,7 +63,7 @@
 <br />
     <asp:SqlDataSource ID="sqlAccounting" runat="server"
       
-    ConnectionString = "<%$ ConnectionStrings:TreasurelandDB %>" 
+    ConnectionString = "<%$ ConnectionStrings:HotelDB %>" 
     
         SelectCommand="SELECT        ACCOUNTING.AccountingID, ACCOUNTING.AccountingDate, ACCOUNTING.AccountingCost, ACCOUNTINGTYPE.AccountingType,  ACCOUNTING.AccountingDescription
 FROM            ACCOUNTING INNER JOIN
@@ -87,7 +87,7 @@ ORDER BY ACCOUNTING.AccountingDate"
         </UpdateParameters>
     </asp:SqlDataSource>
     <asp:SqlDataSource ID="sqlTypes" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:TreasurelandDB %>" 
+        ConnectionString="<%$ ConnectionStrings:HotelDB %>" 
         
     SelectCommand="SELECT [AccountingTypeID], [AccountingType] FROM [ACCOUNTINGTYPE]">
     </asp:SqlDataSource>

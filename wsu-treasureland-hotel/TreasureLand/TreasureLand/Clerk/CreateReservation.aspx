@@ -242,7 +242,8 @@
                                 &nbsp;Select any discounts:&nbsp;
                                 <asp:DropDownList ID="ddlDiscounts" runat="server" AppendDataBoundItems="True" 
                                     AutoPostBack="True" DataTextField="DiscountDescription" 
-                                    DataValueField="DiscountID">
+                                    DataValueField="DiscountID" 
+                                    onselectedindexchanged="ddlDiscounts_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </td>
                             <td style="width: 139px">

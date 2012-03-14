@@ -99,7 +99,7 @@ namespace TreasureLand.Clerk
         private void updateRemoveDiscount(int roomID)
         {
             using (SqlConnection conn = new SqlConnection(
-                ConfigurationManager.ConnectionStrings["TreasureLandDB"].ConnectionString))
+                ConfigurationManager.ConnectionStrings["HotelDB"].ConnectionString))
             {
                 conn.Open();
 
@@ -129,7 +129,7 @@ namespace TreasureLand.Clerk
         private void updateKeepDiscount(int roomID)
         {
             using (SqlConnection conn = new SqlConnection(
-                ConfigurationManager.ConnectionStrings["TreasureLandDB"].ConnectionString))
+                ConfigurationManager.ConnectionStrings["HotelDB"].ConnectionString))
             {
                 conn.Open();
 
@@ -167,7 +167,7 @@ namespace TreasureLand.Clerk
                 return;
 
             using (SqlConnection conn = new SqlConnection(
-                ConfigurationManager.ConnectionStrings["TreasureLandDB"].ConnectionString))
+                ConfigurationManager.ConnectionStrings["HotelDB"].ConnectionString))
             {
                 conn.Open();
 

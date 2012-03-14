@@ -11,6 +11,7 @@ using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
 using TreasureLand.DBM;
+using System.Drawing;
 
 namespace TreasureLand.Admin
 {
@@ -239,6 +240,10 @@ namespace TreasureLand.Admin
             //Set ManageCategoryView to visible
             containerView.ActiveViewIndex = 2;
             lblIngredientInsert.Visible = false;
+            btnManageCategories.BackColor = SystemColors.ButtonFace;
+            btnManageMenuItems.BackColor = Color.Yellow;
+            btnEnterPurchase.BackColor = SystemColors.ButtonFace;
+            btnIngredients.BackColor = SystemColors.ButtonFace;
         }
 
         /// <summary>
@@ -255,6 +260,10 @@ namespace TreasureLand.Admin
             ddlIngredientPurchase.Items.Insert(0,new ListItem("Select an item"));
             ddlIngredientPurchase.DataBind();
             lblIngredientInsert.Visible = false;
+            btnManageCategories.BackColor = SystemColors.ButtonFace;
+            btnManageMenuItems.BackColor = SystemColors.ButtonFace;
+            btnEnterPurchase.BackColor = Color.Yellow;
+            btnIngredients.BackColor = SystemColors.ButtonFace;
         }
 
 
@@ -265,6 +274,12 @@ namespace TreasureLand.Admin
         {
             containerView.ActiveViewIndex = 1;
             lblIngredientInsert.Visible = false;
+            btnManageCategories.BackColor = Color.Yellow;
+            btnManageMenuItems.BackColor = SystemColors.ButtonFace;
+            btnEnterPurchase.BackColor = SystemColors.ButtonFace;
+            btnIngredients.BackColor = SystemColors.ButtonFace;
+      
+
         }
 
         /// <summary>
@@ -464,6 +479,8 @@ namespace TreasureLand.Admin
                 lblIngredientInsert.Text = "Insert Successful";
                 lblIngredientInsert.Visible = true;
                 ddlIngredients.DataBind();
+                txtIngredient.Text = "";
+                txtIngredientComments.Text = "";
                 //make text box invisible again.
                 //make text box 
             }
@@ -504,20 +521,31 @@ namespace TreasureLand.Admin
                 TreasureLand.DBM.MenuItem d = new DBM.MenuItem();
                 d.MenuItemName = txtAddMenuItemName.Text;
                 d.MenuItemPrice = Convert.ToDecimal(txtAddPrice.Text);
+                d.IsCurrentItem = true;
                 d.FoodDrinkCategoryID = Convert.ToByte(ddlAddCategory.SelectedIndex + 1);
+
                 db.MenuItems.InsertOnSubmit(d);
                 db.SubmitChanges();
             }
             //the item to be added is a discount
             else if (ddlChooseItem.SelectedItem.Text=="Discounts")
             {
-                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-                TreasureLand.DBM.MenuItem d = new DBM.MenuItem();
-                d.MenuItemName = txtAddMenuItemName.Text;
-                d.MenuItemPrice = Convert.ToDecimal(txtAddPrice.Text);
-                d.FoodDrinkCategoryID = Convert.ToByte(3);
-                db.MenuItems.InsertOnSubmit(d);
-                db.SubmitChanges();
+                try
+                {
+                    TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                    TreasureLand.DBM.MenuItem d = new DBM.MenuItem();
+                    d.MenuItemName = txtAddMenuItemName.Text;
+                    d.MenuItemPrice = Convert.ToDecimal(txtAddPrice.Text);
+                    d.IsCurrentItem = true;
+                    d.FoodDrinkCategoryID = Convert.ToByte(3);
+                    db.MenuItems.InsertOnSubmit(d);
+                    db.SubmitChanges();
+                }
+                catch (Exception)
+                {
+                    
+                    throw;
+                }
             }
             else
             {
@@ -769,6 +797,10 @@ namespace TreasureLand.Admin
         {
             containerView.ActiveViewIndex = 0;
             ddlIngredients.DataBind();
+            btnManageCategories.BackColor = SystemColors.ButtonFace;
+            btnManageMenuItems.BackColor = SystemColors.ButtonFace;
+            btnEnterPurchase.BackColor = SystemColors.ButtonFace;
+            btnIngredients.BackColor = Color.Yellow;
         }
 
         protected string GetItemName(string IngredientID)

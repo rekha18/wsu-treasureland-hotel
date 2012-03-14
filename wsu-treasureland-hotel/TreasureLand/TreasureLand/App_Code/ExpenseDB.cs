@@ -17,7 +17,7 @@ namespace TreasureLand.App_Code
         {
             return ConfigurationManager.ConnectionStrings
 
-            ["TreasureLandDB"].ConnectionString;
+            ["HotelDB"].ConnectionString;
 
         }
 

@@ -27,6 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PackageAsSingleFile>false</PackageAsSingleFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -577,6 +578,16 @@
     <None Include="DBM\TreasureLandDataClasses.dbml.layout">
       <DependentUpon>TreasureLandDataClasses.dbml</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Clerk\Reports\RestaurantSales.rdlc" />
+    <EmbeddedResource Include="Manager\Reports\Deposits.rdlc" />
+    <EmbeddedResource Include="Manager\Reports\Dishes Containing Ingredient.rdlc" />
+    <EmbeddedResource Include="Manager\Reports\DrinkSales.rdlc" />
+    <EmbeddedResource Include="Manager\Reports\FoodSales.rdlc" />
+    <EmbeddedResource Include="Manager\Reports\Payments.rdlc" />
+    <EmbeddedResource Include="Manager\Reports\Revenue.rdlc" />
+    <EmbeddedResource Include="Manager\Reports\RoomsOccupied.rdlc" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

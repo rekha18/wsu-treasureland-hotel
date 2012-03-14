@@ -131,16 +131,30 @@ namespace TreasureLand.Clerk
 
                     if (isPercent)
                     {
+                        TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                        var rackrate = from rr in db.HotelRoomTypes
+                                       join ro in db.Rooms
+                                       on rr.HotelRoomTypeID equals ro.HotelRoomTypeID
+                                       where ro.RoomNumbers == row.Cells[0].Text
+                                       select new { rr.RoomTypeRackRate };
+                        row.Cells[2].Text = string.Format("{0:0.00}", rackrate.First().RoomTypeRackRate);
                         adjust /= 100;
-                        row.Cells[2].Text = Convert.ToString(Convert.ToDecimal(row.Cells[2].Text) * adjust);
+                        row.Cells[2].Text = Convert.ToString(Convert.ToDecimal(row.Cells[2].Text) * (1-adjust));
                     }
                     else
                     {
+                        TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                        var rackrate = from rr in db.HotelRoomTypes
+                                       join ro in db.Rooms
+                                       on rr.HotelRoomTypeID equals ro.HotelRoomTypeID
+                                       where ro.RoomNumbers == row.Cells[0].Text
+                                       select new { rr.RoomTypeRackRate };
+                        row.Cells[2].Text = string.Format("{0:0.00}", rackrate.First().RoomTypeRackRate);
                         row.Cells[2].Text = Convert.ToString(Convert.ToDecimal(row.Cells[2].Text) - adjust);
                     }
 
                     quotedPrice += Convert.ToDecimal(row.Cells[2].Text);
-
+                    
                 }
 
                 quotedPrice *= Convert.ToInt16(reserving.daysStaying);
@@ -183,14 +197,14 @@ namespace TreasureLand.Clerk
 
         protected void calDateFrom_SelectionChanged(object sender, EventArgs e)
         {
-            if (calDateFrom.SelectedDate.Date < DateTime.Today.Date)
+            /*if (calDateFrom.SelectedDate.Date < DateTime.Today.Date)
             {
                 lblError.Text = "Cannot select previous dates";
                 calDateFrom.SelectedDate = DateTime.Today.Date;
                 lblDateFrom.Text = calDateFrom.SelectedDate.Date.ToShortDateString();
                 lblDateTo.Text = calDateFrom.SelectedDate.Date.AddDays(Convert.ToInt32(ddlNumberOfDays.SelectedValue)).ToShortDateString();
             }
-            else
+            else*/
             {
                 //Shows Date From in label and calculates Date To based on Date from and days stayed
                 lblError.Text = "";
@@ -433,6 +447,11 @@ namespace TreasureLand.Clerk
             }
             lblTotalCost.Text = string.Format("{0:0.00}", quotedPrice);
             #endregion Quote Calculator
+        }
+
+        protected void ddlDiscounts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
 
     }

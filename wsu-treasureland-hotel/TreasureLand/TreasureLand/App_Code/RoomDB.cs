@@ -23,7 +23,7 @@ namespace TreasureLand.App_Code
         /// <returns></returns>
         private static string getConnectionString()
         {
-            return ConfigurationManager.ConnectionStrings["TreasureLandDB"].ConnectionString;
+            return ConfigurationManager.ConnectionStrings["HotelDB"].ConnectionString;
         }
 
         /// <summary>

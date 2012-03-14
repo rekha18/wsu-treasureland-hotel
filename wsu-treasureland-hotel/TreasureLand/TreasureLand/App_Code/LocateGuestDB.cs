@@ -40,7 +40,7 @@ public static class LocateGuestDB
 
         [
 
-        "TreasureLandDB"].ConnectionString;
+        "HotelDB"].ConnectionString;
 
     }
 
