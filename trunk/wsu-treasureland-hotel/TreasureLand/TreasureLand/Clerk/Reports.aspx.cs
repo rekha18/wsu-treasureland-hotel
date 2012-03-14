@@ -59,7 +59,7 @@ namespace TreasureLand.Clerk
                 ddlTransactions.DataSource = ldsTransactions;
                 ddlTransactions.DataValueField = "ReservationDetailBillingID";
                 ddlTransactions.DataTextField = String.Format("{0:0.00}", "BillingAmount");
-                ddlTransactions.DataTextFormatString = "{0:C}";
+                ddlTransactions.DataTextFormatString = "{0:0.00}";
                 ddlTransactions.DataBind();
 
             lblPrice.Visible = true;

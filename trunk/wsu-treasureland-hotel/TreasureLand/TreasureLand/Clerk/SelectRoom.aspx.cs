@@ -403,7 +403,7 @@ namespace TreasureLand.Clerk
                 return;
             
             using (SqlConnection conn = new SqlConnection(
-                ConfigurationManager.ConnectionStrings["TreasureLandDB"].ConnectionString))
+                ConfigurationManager.ConnectionStrings["HotelDB"].ConnectionString))
             {
                 conn.Open();
 

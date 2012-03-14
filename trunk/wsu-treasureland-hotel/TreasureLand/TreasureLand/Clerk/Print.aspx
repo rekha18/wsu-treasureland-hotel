@@ -35,12 +35,18 @@
         <table class="style1">
             <tr>
                 <td class="style2" colspan="2">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <strong>SUMMARY OF CHARGES&nbsp;</strong></td>
-                <td class="style8" rowspan="11">
+                    <asp:Image ID="Image1" runat="server" Height="66px" 
+                        ImageUrl="~/Images/CompanyLogo.png" Width="504px" />
+                </td>
+                <td class="style8" rowspan="12">
                     <br />
                     <br />
                 </td>
+            </tr>
+            <tr>
+                <td class="style2" colspan="2">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <strong>SUMMARY OF CHARGES&nbsp;</strong></td>
             </tr>
             <tr>
                 <td class="style6">

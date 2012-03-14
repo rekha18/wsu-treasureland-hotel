@@ -15,7 +15,7 @@ namespace TreasureLand.App_Code
         private static string GetConnectionString()
         {
             return ConfigurationManager.ConnectionStrings
-            ["TreasureLandDB"].ConnectionString;
+            ["HotelDB"].ConnectionString;
         }
 
         public static int AddTransaction(int DepartmentID, string ShortTermItemName, int ShortTermTotalQuantity)

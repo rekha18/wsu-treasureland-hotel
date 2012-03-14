@@ -31,7 +31,7 @@
     <!-- A SQL data source is necessary here due to the complex operation of comparing
     all records to ensure that a room is open for the specified date range -->
     <asp:SqlDataSource ID="sdsOpenRooms" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:TreasurelandDB %>" SelectCommand="SELECT RoomID, RoomNumbers FROM Room
+        ConnectionString="<%$ ConnectionStrings:HotelDB %>" SelectCommand="SELECT RoomID, RoomNumbers FROM Room
    WHERE RoomID NOT IN 
    (
       SELECT r.RoomID FROM Room r

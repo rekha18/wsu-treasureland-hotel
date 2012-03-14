@@ -32,7 +32,7 @@
                             </EditItemTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" 
-                                    Text='<%# Bind("RoomTypeRackRate", "{0:c}") %>'></asp:Label>
+                                    Text='<%# Bind("RoomTypeRackRate", "{0:0.00}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Description" 

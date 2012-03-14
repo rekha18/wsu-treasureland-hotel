@@ -65,6 +65,9 @@
                 <tr>
                     <td class="style2">
                         <asp:TextBox ID="txtPin" runat="server" MaxLength="4"></asp:TextBox>
+                        <ajaxToolkit:FilteredTextBoxExtender ID="txtPin_FilteredTextBoxExtender" 
+                            runat="server" Enabled="True" TargetControlID="txtPin" ValidChars="1234567890">
+                        </ajaxToolkit:FilteredTextBoxExtender>
                         <br />
                         <asp:RequiredFieldValidator ID="rfvPin" runat="server" 
                             ControlToValidate="txtPin" ErrorMessage="Field Required to change pin" 
@@ -73,7 +76,7 @@
                 </tr>
                 <tr>
                     <td class="style2">
-                        <asp:Button ID="btnUpdatePin" runat="server" Text="Change Pin" 
+                        <asp:Button ID="btnUpdatePin" runat="server" Text="Update Pin" 
                             onclick="btnUpdatePin_Click" ValidationGroup="vgPin" />
                     </td>
                 </tr>

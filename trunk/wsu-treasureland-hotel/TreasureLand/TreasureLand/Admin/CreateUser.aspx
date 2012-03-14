@@ -38,12 +38,9 @@
                                     ValidationGroup="RegisterUserValidationGroup">*</asp:RequiredFieldValidator>
                             </p>
                             <p>
-                                <asp:Label ID="EmailLabel" runat="server" AssociatedControlID="Email">E-mail:</asp:Label>
-                                <asp:TextBox ID="Email" runat="server" CssClass="textEntry"></asp:TextBox>
-                            </p>
-                            <p>
-                                <asp:Label ID="PinLabel1" runat="server" AssociatedControlID="Pin">Pin:</asp:Label>
-                                <asp:TextBox ID="Pin" runat="server" CssClass="textEntry"></asp:TextBox>
+                                <asp:Label ID="EmailLabel" runat="server" AssociatedControlID="Email" 
+                                    Visible="False">E-mail:</asp:Label>
+                                <asp:TextBox ID="Email" runat="server" CssClass="textEntry" Visible="False"></asp:TextBox>
                             </p>
                             <p>
                                 <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password">Password:</asp:Label>

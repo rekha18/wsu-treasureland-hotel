@@ -34,9 +34,7 @@ namespace TreasureLand.Admin
             
             aspnet_User u = db.aspnet_Users.Single(us => us.UserName == user.Text);
             aspnet_Membership mem = db.aspnet_Memberships.Single(m => m.UserId == u.UserId);
-            mem.Pin = pin.Text;
-
-            db.SubmitChanges();
+ 
        
             Response.Redirect("ManageUsers.aspx");
         }

@@ -15,7 +15,8 @@
         style="font-weight: 700"></asp:Label>
     <asp:TextBox ID="txtBeginDate" runat="server"></asp:TextBox>
     <asp:CalendarExtender ID="txtBeginDate_CalendarExtender" runat="server" 
-        Enabled="True" TargetControlID="txtBeginDate">
+        Enabled="True" TargetControlID="txtBeginDate" Format="d/MM/yyyy" 
+        TodaysDateFormat="d MMMM , yyyy">
     </asp:CalendarExtender>
 &nbsp;<asp:RequiredFieldValidator ID="rffBeginDate" runat="server" 
         ControlToValidate="txtBeginDate" Display="Dynamic" 
@@ -50,7 +51,8 @@
     <br />
     <br />
     <asp:CalendarExtender ID="txtEndDate_CalendarExtender" runat="server" 
-        Enabled="True" TargetControlID="txtEndDate">
+        Enabled="True" TargetControlID="txtEndDate" Format="d/MM/yyyy" 
+        TodaysDateFormat="d MMMM , yyyy">
     </asp:CalendarExtender>
     <asp:Button ID="btnCreateReport" runat="server" onclick="btnCreateReport_Click" 
         Text="Submit" style="height: 26px" Visible="False" />
@@ -69,7 +71,7 @@
     </asp:LinqDataSource>
     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" />
     <asp:SqlDataSource ID="sdsReport" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:TreasurelandDB %>" 
+        ConnectionString="<%$ ConnectionStrings:HotelDB %>" 
         SelectCommand="SELECT LineItem.LineItemAmount, MenuItem.MenuItemName, LineItem.LineItemTransactionID FROM LineItem INNER JOIN MenuItem ON LineItem.MenuItemID = MenuItem.MenuItemID WHERE (LineItem.ReservationDetailBillingID = @RDBID)">
         <SelectParameters>
             <asp:ControlParameter ControlID="ddlTransactions" Name="RDBID" 
