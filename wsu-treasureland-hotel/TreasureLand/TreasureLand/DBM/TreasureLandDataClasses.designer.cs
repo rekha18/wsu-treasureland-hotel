@@ -120,7 +120,7 @@ namespace TreasureLand.DBM
     #endregion
 		
 		public TreasureLandDataClassesDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TreasureLand1ConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["HotelDBM"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
