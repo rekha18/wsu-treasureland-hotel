@@ -11,7 +11,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder_RoleMenu" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-    <table style="width:100%;">
+    <table style="width:100%; height: 283px;">
         <tr>
             <td class="style1" valign="top">
                 <asp:Button ID="btnHome" runat="server" Text="Manage Expenses" Width="180px" 
@@ -33,6 +33,10 @@
                 <br />
                 <asp:Button ID="btnAccounting" runat="server" onclick="btnExpenses_Click" 
                     Text="Accounting" Width="180px" UseSubmitBehavior="False" />
+                <br />
+                <br />
+                <asp:Button ID="btnCollections" runat="server" onclick="btnCollections_Click1" 
+                    Text="Collections" Width="180px" />
                 <br />
                 <br />
                 <asp:Button ID="btnSwitchRoles" runat="server" Text="Switch Roles" 
