@@ -58,6 +58,15 @@ namespace TreasureLand.Manager {
         protected global::System.Web.UI.WebControls.Button btnAccounting;
         
         /// <summary>
+        /// btnCollections control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCollections;
+        
+        /// <summary>
         /// btnSwitchRoles control.
         /// </summary>
         /// <remarks>

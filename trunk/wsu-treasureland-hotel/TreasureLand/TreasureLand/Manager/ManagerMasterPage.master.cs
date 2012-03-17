@@ -49,5 +49,11 @@ namespace TreasureLand.Manager
             Response.Redirect("ShortTermAsset.aspx");
             Session.RemoveAll();
         }
+
+        protected void btnCollections_Click1(object sender, EventArgs e)
+        {
+            Response.Redirect("Collections.aspx");
+            Session.RemoveAll();
+        }
     }
 }
