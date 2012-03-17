@@ -7,6 +7,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
         </p> 
+    <asp:DropDownList ID="DropDownList1" runat="server">
+        <asp:ListItem>RestaurantSales</asp:ListItem>
+        <asp:ListItem>DailyCheckIn</asp:ListItem>
+        <asp:ListItem>DailyCheckOut</asp:ListItem>
+        <asp:ListItem>DailyRoomBookingStatus</asp:ListItem>
+    </asp:DropDownList>
+    <strong>
+    <br />
+    </strong>
+    <br />
     <asp:Label ID="lblChooseDate" runat="server" Text="ChooseDates:" 
         style="font-weight: 700"></asp:Label>
     <br />

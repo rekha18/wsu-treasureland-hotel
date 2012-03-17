@@ -300,6 +300,8 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void btnSelect_Click(object sender, EventArgs e)
         {
+            gvOpenRooms.Columns[0].Visible = true;
+            gvOpenRooms.DataBind();
             LinkedList<RoomInfo> roomIDs = new LinkedList<RoomInfo>();
 
             Dictionary<int, RowInfo> rowInfo = (Dictionary<int, RowInfo>)Session["RowInfo"];
@@ -310,7 +312,8 @@ namespace TreasureLand.Clerk
                 Session.Add("roomIDs", roomIDs);
             else
                 Session["roomIDs"] = roomIDs;
-
+            gvOpenRooms.Columns[0].Visible = false;
+            gvOpenRooms.DataBind();
             Response.Redirect("~/Clerk/CreateReservation.aspx");
         }
 

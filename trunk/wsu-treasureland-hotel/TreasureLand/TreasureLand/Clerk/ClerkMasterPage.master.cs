@@ -60,8 +60,20 @@ namespace TreasureLand.Clerk
         protected void btnViewGuest_Click(object sender, EventArgs e)
         {
             Session.RemoveAll();
+
+            bool ischeckout = false;
+            Session.Add("Checkout", ischeckout);
             Response.Redirect("ViewGuests.aspx");
             
+        }
+
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
+            Session.RemoveAll();
+            bool ischeckout = true;
+            Session.Add("Checkout", ischeckout);
+            Response.Redirect("ViewGuests.aspx");
+
         }
 
         protected void btnReports_Click(object sender, EventArgs e)

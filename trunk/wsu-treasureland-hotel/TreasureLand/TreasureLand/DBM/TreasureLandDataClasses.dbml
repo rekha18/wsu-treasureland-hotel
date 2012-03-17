@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TreasureLand1" Class="TreasureLandDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=TreasureLand1;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="HotelDBM" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="treasureland1" Class="TreasureLandDataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.\sqlExpress;Initial Catalog=treasureland1;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="HotelDBM" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AccountingType" Member="AccountingTypes">
     <Type Name="AccountingType">
       <Column Name="AccountingTypeID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -150,6 +150,7 @@
       <Column Name="NumberOfAdults" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="NumberOfChildren" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Association Name="ReservationDetail_ReservationDetailBilling" Member="ReservationDetailBillings" ThisKey="ReservationDetailID" OtherKey="ReservationDetailID" Type="ReservationDetailBilling" />
+      <Association Name="ReservationDetail_Collection" Member="Collections" ThisKey="ReservationDetailID" OtherKey="ReservationDetailID" Type="Collection" />
       <Association Name="Discount_ReservationDetail" Member="Discount" ThisKey="DiscountID" OtherKey="DiscountID" Type="Discount" IsForeignKey="true" />
       <Association Name="Reservation_ReservationDetail" Member="Reservation" ThisKey="ReservationID" OtherKey="ReservationID" Type="Reservation" IsForeignKey="true" />
       <Association Name="Room_ReservationDetail" Member="Room" ThisKey="RoomID" OtherKey="RoomID" Type="Room" IsForeignKey="true" />
@@ -338,6 +339,14 @@
       <Association Name="MenuItem_MenuItemIngredient" Member="MenuItemIngredients" ThisKey="MenuItemID" OtherKey="MenuItemID" Type="MenuItemIngredient" />
       <Association Name="MenuItem_LineItem" Member="LineItems" ThisKey="MenuItemID" OtherKey="MenuItemID" Type="LineItem" />
       <Association Name="FoodDrinkCategory_MenuItem" Member="FoodDrinkCategory" ThisKey="FoodDrinkCategoryID" OtherKey="FoodDrinkCategoryID" Type="FoodDrinkCategory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Collections" Member="Collections">
+    <Type Name="Collection">
+      <Column Name="CollectionsID" Type="System.Int16" DbType="SmallInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ReservationDetailID" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="CollectionsAmountOwed" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
+      <Association Name="ReservationDetail_Collection" Member="ReservationDetail" ThisKey="ReservationDetailID" OtherKey="ReservationDetailID" Type="ReservationDetail" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

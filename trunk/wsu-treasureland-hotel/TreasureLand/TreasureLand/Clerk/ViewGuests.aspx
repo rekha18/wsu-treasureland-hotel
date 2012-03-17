@@ -51,9 +51,13 @@
                         <asp:BoundField DataField="GuestSurName" HeaderText="SurName" />
                         <asp:BoundField DataField="RoomNumbers" HeaderText="Room Number" />
                         <asp:BoundField DataField="reservationDetailID" 
-                            HeaderText="ReservationDetailID" SortExpression="reservationDetailID" />
-                        <asp:BoundField DataField="ReservationStatus" HeaderText="Status" />
-                        <asp:BoundField DataField="RoomID" HeaderText="Room ID" />
+                            HeaderText="Reservation Detail" />
+                        <asp:BoundField DataField="reservationDetailID" 
+                            HeaderText="ReservationDetailID" SortExpression="reservationDetailID" 
+                            Visible="False" />
+                        <asp:BoundField DataField="ReservationStatus" HeaderText="Status" 
+                            Visible="False" />
+                        <asp:BoundField DataField="RoomID" HeaderText="Room ID" Visible="False" />
                         <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
                     </Columns>
                 </asp:GridView>
@@ -73,10 +77,10 @@
                             <asp:Label ID="txtShowReservation" runat="server"></asp:Label>
                         </td>
                         <td class="style1" style="width: 135px">
-                            <asp:Label ID="lblFirst0" runat="server" Text="First Name:"></asp:Label>
+                            <asp:Label ID="lblRoomTotal" runat="server" Text="Room Total:"></asp:Label>
                         </td>
                         <td class="style1" style="width: 236px">
-                            <asp:Label ID="txtShowFirstName" runat="server"></asp:Label>
+                            <asp:Label ID="txtRoomTotal" runat="server"></asp:Label>
                         </td>
                     </tr>
                     <tr>
@@ -87,18 +91,18 @@
                             <asp:Label ID="txtShowRoom" runat="server"></asp:Label>
                         </td>
                         <td class="style1" style="width: 135px">
-                            <asp:Label ID="lblSurName0" runat="server" Text="Surname:"></asp:Label>
+                            <asp:Label ID="lblServicesTotal" runat="server" Text="Transaction Total:"></asp:Label>
                         </td>
                         <td class="style1" style="width: 236px">
-                            <asp:Label ID="txtShowSurName" runat="server"></asp:Label>
+                            <asp:Label ID="txtServicesTotal" runat="server"></asp:Label>
                         </td>
                     </tr>
                     <tr>
                         <td class="style1" style="width: 133px">
-                            <asp:Label ID="lblRoomTotal" runat="server" Text="Room Total:"></asp:Label>
+                            <asp:Label ID="lblFirst0" runat="server" Text="First Name:"></asp:Label>
                         </td>
                         <td style="width: 177px">
-                            <asp:Label ID="txtRoomTotal" runat="server"></asp:Label>
+                            <asp:Label ID="txtShowFirstName" runat="server"></asp:Label>
                         </td>
                         <td class="style1" style="width: 135px">
                             <asp:Label ID="lblDiscount" runat="server" Text="Discount"></asp:Label>
@@ -109,10 +113,10 @@
                     </tr>
                     <tr>
                         <td class="style1" style="width: 133px">
-                            <asp:Label ID="lblServicesTotal" runat="server" Text="Services Total:"></asp:Label>
+                            <asp:Label ID="lblSurName0" runat="server" Text="Surname:"></asp:Label>
                         </td>
                         <td style="width: 177px">
-                            <asp:Label ID="txtServicesTotal" runat="server"></asp:Label>
+                            <asp:Label ID="txtShowSurName" runat="server"></asp:Label>
                         </td>
                         <td class="style1" style="width: 135px">
                             <asp:Label ID="lblTotal" runat="server" Text="Total Amount Owed:"></asp:Label>
@@ -122,9 +126,32 @@
                                 style="font-weight: 700"></asp:Label>
                         </td>
                     </tr>
+                    <tr>
+                        <td class="style1" style="width: 133px">
+                            Check-in Date:</td>
+                        <td style="width: 177px">
+                            <asp:Label ID="lblCheckInDate" runat="server" Text="Label"></asp:Label>
+                        </td>
+                        <td class="style1" style="width: 135px">
+                            <asp:Label ID="lblReservationDetailID" runat="server" Visible="False"></asp:Label>
+                        </td>
+                        <td class="style1" style="width: 236px">
+                            &nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="style1" style="width: 133px">
+                            Check-out Date:</td>
+                        <td style="width: 177px">
+                            <asp:Label ID="lblCheckOutDate" runat="server" Text="Label"></asp:Label>
+                        </td>
+                        <td class="style1" style="width: 135px">
+                            &nbsp;</td>
+                        <td class="style1" style="width: 236px">
+                            &nbsp;</td>
+                    </tr>
                 </table>
                 <asp:GridView ID="gvRoomCost" runat="server" AutoGenerateColumns="False" 
-                    Width="658px">
+                    Width="658px" Visible="False">
                     <Columns>
                         <asp:BoundField DataField="RoomType" HeaderText="Room Type" />
                         <asp:BoundField DataField="Nights" HeaderText="Number of Nights" />
@@ -137,6 +164,8 @@
                                     Text='<%# Eval("QuotedRate", "{0:0.00}") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:BoundField DataField="CheckinDate" HeaderText="Check in date" 
+                            SortExpression="CheckinDate" />
                     </Columns>
                 </asp:GridView>
                 <br />
@@ -258,7 +287,7 @@
                             </asp:DropDownList>
                         </td>
                         <td style="width: 60px">
-                            <asp:Label ID="lblQty" runat="server" Text="Quantity:"></asp:Label>
+                            <asp:Label ID="lblQty" runat="server" Text="Item Quantity:" Width="90px"></asp:Label>
                         </td>
                         <td style="width: 135px; margin-left: 40px;">
                             <asp:DropDownList ID="ddlQuantity" runat="server">
@@ -322,22 +351,20 @@
                 <asp:Button ID="btnAdjustDiscount" runat="server" 
                     onclick="btnAdjustDiscount_Click" Text="Adjust Discount" Width="110px" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="btnPrint" runat="server" onclientclick="Navigate()"  
-                    style="height: 26px" Text="Print Reciept" Width="100px" />
+                <asp:Button ID="btnPrint" runat="server"  
+                    style="height: 26px" Text="Check out" Width="100px" Visible="False" 
+                    onclick="btnPrint_Click" />
                 
                 <script language="javascript" type="text/javascript">
 
                     function Navigate() 
                     {
-                        javascript: window.open("Print.aspx");
-
+                        window.open("Print.aspx");
                     } 
                 </script>
 
                 
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="btnGoToCheckOut" runat="server" onclick="GoToCheckOut_Click" 
-                    Text="CheckOut" Width="100px" />
                 <br />
                 <br />
                 <asp:Label ID="lblErrorGuest" runat="server" ForeColor="Red"></asp:Label>

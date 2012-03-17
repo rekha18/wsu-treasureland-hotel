@@ -42,7 +42,6 @@ namespace TreasureLand.Clerk
             ReportViewer1.Visible = true;
             ReportDataSource rds = new ReportDataSource("reportDatasource", sdsReport);
             
-
             //Resets the ReportViewer, adds the new datasource, and changes the name of the report
             
             ReportViewer1.LocalReport.DataSources.Add(rds);
@@ -53,7 +52,7 @@ namespace TreasureLand.Clerk
 
         protected void btnGetTransactions_Click(object sender, EventArgs e)
         {
-            if (Convert.ToDateTime(txtBeginDate.Text) <= Convert.ToDateTime(txtEndDate.Text))
+            if (Convert.ToDateTime(txtBeginDate.Text) < Convert.ToDateTime(txtEndDate.Text))
             {
                 lblPrice.Visible = true;
                 ddlTransactions.DataSource = ldsTransactions;
@@ -65,6 +64,10 @@ namespace TreasureLand.Clerk
             lblPrice.Visible = true;
             ddlTransactions.Visible = true;
             btnCreateReport.Visible = true;
+            }
+            else if (Convert.ToDateTime(txtBeginDate.Text) == Convert.ToDateTime(txtEndDate.Text))
+            {
+                
             }
         }
     }

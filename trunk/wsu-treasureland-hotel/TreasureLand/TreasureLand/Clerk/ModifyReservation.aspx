@@ -20,7 +20,7 @@
         ondatabound="gvOpenRooms_DataBound">
         <Columns>
             <asp:BoundField DataField="RoomID" HeaderText="Room ID" 
-                SortExpression="RoomID" />
+                SortExpression="RoomID" Visible="False" />
             <asp:BoundField DataField="RoomNumbers" HeaderText="Room Number" 
                 SortExpression="RoomNumbers" />
             <asp:CommandField ButtonType="Button" ShowSelectButton="True" />

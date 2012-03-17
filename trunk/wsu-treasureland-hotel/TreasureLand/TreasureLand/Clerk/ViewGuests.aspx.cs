@@ -19,6 +19,22 @@ namespace TreasureLand.Clerk
         protected void Page_Load(object sender, EventArgs e)
         {
             btnLocate.Focus();
+            if (Session["Checkout"]!=null)
+            {
+                bool isCheckout = (Boolean)Session["Checkout"];
+                if (isCheckout)
+                {
+                    btnPrint.Visible = true;
+                }
+                else
+                {
+                    btnPrint.Visible = false;
+                }
+            }
+            else
+            {
+                btnPrint.Visible = false;
+            }
         }
 
         #region eventhandlers
@@ -107,13 +123,23 @@ namespace TreasureLand.Clerk
                 mvViewGuest.ActiveViewIndex = 1;
 
                 //Grabs the values from the gridview and populates the textboxes with the information
+                
                 txtShowReservation.Text = gvGuest.SelectedRow.Cells[0].Text;
                 txtShowFirstName.Text = gvGuest.SelectedRow.Cells[1].Text;
                 txtShowSurName.Text = gvGuest.SelectedRow.Cells[2].Text;
-                txtShowRoom.Text = gvGuest.SelectedRow.Cells[6].Text;
+                lblReservationDetailID.Text = gvGuest.SelectedRow.Cells[4].Text;
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                var roomnumber = from rs in db.Reservations
+                                 join rd in db.ReservationDetails
+                                 on rs.ReservationID equals rd.ReservationID
+                                 join r in db.Rooms
+                                 on rd.RoomID equals r.RoomID
+                                 where (rd.ReservationDetailID == Convert.ToSByte(lblReservationDetailID.Text)) 
+                                 select new { r.RoomNumbers };
+                
+                txtShowRoom.Text = gvGuest.SelectedRow.Cells[3].Text;
 
                 //gets the data for the drop down list
-                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
                 TreasureLand.DBM.BillingCategory billingCategory = new TreasureLand.DBM.BillingCategory();
                 IEnumerable<TreasureLand.DBM.BillingCategory> bill =
                             from g in db.BillingCategories
@@ -137,8 +163,8 @@ namespace TreasureLand.Clerk
                             on rd.RoomID equals ro.RoomID
                             join hrt in db.HotelRoomTypes
                             on ro.HotelRoomTypeID equals hrt.HotelRoomTypeID
-                                where r.ReservationID == (short)Convert.ToInt32(txtShowReservation.Text) && ro.RoomID == Convert.ToInt32(txtShowRoom.Text)
-                                select new { r.ReservationID, rd.Nights, rd.QuotedRate, hrt.RoomType };
+                                where r.ReservationID == (short)Convert.ToInt32(txtShowReservation.Text)
+                                select new { r.ReservationID, rd.Nights, rd.QuotedRate, hrt.RoomType, rd.CheckinDate};
 
                 gvRoomCost.DataSource = guestRoom.ToList();
                
@@ -149,7 +175,9 @@ namespace TreasureLand.Clerk
                 //gets the datasource for the services table 
                 gvGuestServiesDataBind();
                 updateGuestPriceTotals();
-
+                lblCheckInDate.Text = (Convert.ToDateTime(gvRoomCost.Rows[0].Cells[3].Text)).ToShortDateString();
+                lblCheckOutDate.Text= (((Convert.ToDateTime(gvRoomCost.Rows[0].Cells[3].Text)).AddDays(Convert.ToDouble(gvRoomCost.Rows[0].Cells[1].Text))).ToShortDateString());
+                    
                 //Shows the delete and edit button if the user is admin
                 if (Roles.IsUserInRole("Admin") == true||Roles.IsUserInRole("Manager")==true)
                 {
@@ -161,18 +189,24 @@ namespace TreasureLand.Clerk
                 lblError.Text = "";
 
                 //disables the check out, add service, and adjust discount buttons if the reservation is not active
-                if (gvGuest.SelectedRow.Cells[5].Text.ToString() != "A")
-                {
-                    btnAddService.Enabled = false;                    
-                    btnGoToCheckOut.Enabled = false;
+                var status = from a in db.ReservationDetails
+                                 where a.ReservationDetailID == Convert.ToSByte(gvGuest.SelectedRow.Cells[4].Text)
+                                 select new{a.ReservationStatus};
+
+                string reservationStatus = status.First().ReservationStatus.ToString(); 
+                if (reservationStatus != "A")
+                {   
+                    btnAddService.Enabled = false;   
                 }
                 else
                 {
-                    btnAddService.Enabled = true;                   
-                    btnGoToCheckOut.Enabled = true; 
+                    btnAddService.Enabled = true;   
                 }
 
                 print();
+                gvGuest.Columns[5].Visible = false;
+                gvGuest.Columns[6].Visible = false;
+                
             }
             else
             {
@@ -217,10 +251,35 @@ namespace TreasureLand.Clerk
 
             //adds the entered service into the database
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            db = new TreasureLandDataClassesDataContext();
+            
             ReservationDetailBilling bill = new ReservationDetailBilling();
-            bill.ReservationDetailID = Convert.ToInt16(gvGuest.SelectedRow.Cells[4].Text);
-            bill.BillingAmount = Convert.ToDecimal(txtCostofService.Text);
+            bill.ReservationDetailID = Convert.ToInt16(lblReservationDetailID.Text);
+            if (ddlServices.SelectedItem.Text=="Deposit" || ddlServices.SelectedItem.Text=="Payment")
+            {
+                if (Convert.ToDecimal(txtCostofService.Text)>0)
+                {                 
+                bill.BillingAmount = Convert.ToDecimal(txtCostofService.Text)*-1;   
+                }
+                else
+                {
+                    bill.BillingAmount = Convert.ToDecimal(txtCostofService.Text);
+                }
+            }
+            else if ( ddlServices.SelectedItem.Text=="Refund")
+            {
+                if (Convert.ToDecimal(txtCostofService.Text)>0)
+                {                 
+                bill.BillingAmount = Convert.ToDecimal(txtCostofService.Text);   
+                }
+                else
+                {
+                    bill.BillingAmount = Convert.ToDecimal(txtCostofService.Text)*-1;
+                }
+            }
+            else
+            {
+                bill.BillingAmount = Convert.ToDecimal(txtCostofService.Text);
+            }
             bill.BillingItemQty = Convert.ToByte(ddlQuantity.SelectedValue);
             bill.BillingCategoryID = Convert.ToByte(ddlServices.SelectedValue);
             bill.BillingDescription = ddlServices.SelectedItem.ToString();
@@ -361,7 +420,7 @@ namespace TreasureLand.Clerk
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
             IEnumerable<TreasureLand.DBM.ReservationDetailBilling> guest =
                         from g in db.ReservationDetailBillings
-                        where g.ReservationDetailID == Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text)
+                        where g.ReservationDetailID == Convert.ToInt32(lblReservationDetailID.Text)
                         select g;
             gvGuestServices.DataSource = guest;
             gvGuestServices.DataBind();
@@ -379,12 +438,13 @@ namespace TreasureLand.Clerk
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
             IEnumerable<TreasureLand.DBM.ReservationDetailBilling> guest =
                         from g in db.ReservationDetailBillings
-                        where g.ReservationDetailID == Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text)
+                        where g.ReservationDetailID == Convert.ToInt32(lblReservationDetailID.Text)
                         select g;
             foreach (ReservationDetailBilling rdb in guest)
             {
                 total += (rdb.BillingItemQty * rdb.BillingAmount);
             }
+            gvRoomCost.Visible = true;
             txtServicesTotal.Text = total.ToString("0.00");
             Label TotalRoomCost = (Label)gvRoomCost.Rows[0].FindControl("Label1");
             //get the cost of the room
@@ -394,7 +454,7 @@ namespace TreasureLand.Clerk
             var discount = from rd in db.ReservationDetails
                         join d in db.Discounts
                         on rd.DiscountID equals d.DiscountID
-                           where (rd.ReservationDetailID == Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text))
+                           where (rd.ReservationDetailID == Convert.ToInt32(lblReservationDetailID.Text))
                         select new {DiscountID = rd.DiscountID, DiscountAmount = d.DiscountAmount, IsPercent = d.IsPrecentage};
 
             txtDiscount.Text = "0";
@@ -418,25 +478,13 @@ namespace TreasureLand.Clerk
             //Displays the total cost
             txtTotal.Text = ((Convert.ToDecimal(txtServicesTotal.Text) + Convert.ToDecimal(txtRoomTotal.Text) - Convert.ToDecimal(txtDiscount.Text))).ToString("0.00");
             print();
+
+
+            gvRoomCost.Visible = false;
         }
         #endregion
 
-        /// <summary>
-        /// Checks out the guest.  Changes the ReservationDetail status, Reservation status and updateStatus.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void GoToCheckOut_Click(object sender, EventArgs e)
-        {
-            GuestDB.updateReservationDetail('F', Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
-
-            if (App_Code.GuestDB.countActiveReservationDetail(Convert.ToInt32(gvGuest.SelectedRow.Cells[0].Text)) == 0)
-            {
-                App_Code.GuestDB.updateReservationStatus('F', Convert.ToInt32(gvGuest.SelectedRow.Cells[0].Text));
-            }
-                GuestDB.updateRoomStatus('H', Convert.ToInt32(txtShowRoom.Text));
-                mvViewGuest.ActiveViewIndex = 2;
-        }
+     
 
         /// <summary>
         /// goes back to the choose guest page
@@ -532,7 +580,7 @@ namespace TreasureLand.Clerk
                     }
                     else
                     {
-                        GuestDB.addDiscount(Convert.ToInt32(ddlDiscount.SelectedItem.Value), Convert.ToInt32(gvGuest.SelectedRow.Cells[4].Text));
+                        GuestDB.addDiscount(Convert.ToInt32(ddlDiscount.SelectedItem.Value), Convert.ToInt32(lblReservationDetailID.Text));
                         updateGuestPriceTotals();
                         lblErrorMessage.Text = "";
                     }
@@ -567,15 +615,18 @@ namespace TreasureLand.Clerk
             guestInfo.Add(gvGuest.SelectedRow.Cells[0].Text);
             guestInfo.Add(gvGuest.SelectedRow.Cells[1].Text);
             guestInfo.Add(gvGuest.SelectedRow.Cells[2].Text);
-            guestInfo.Add(gvGuest.SelectedRow.Cells[6].Text);
+            guestInfo.Add(txtShowRoom.Text);
             guestInfo.Add(txtRoomTotal.Text);
             guestInfo.Add(txtServicesTotal.Text);
             guestInfo.Add(txtTotal.Text);
             guestInfo.Add(txtDiscount.Text);
+            guestInfo.Add(lblCheckInDate.Text);
+            guestInfo.Add(lblCheckOutDate.Text);
+            guestInfo.Add(gvGuest.SelectedRow.Cells[4].Text);
 
             List<int> roomInfo = new List<int>();
             roomInfo.Add((short)Convert.ToInt32(txtShowReservation.Text));
-            roomInfo.Add(Convert.ToInt32(txtShowRoom.Text));
+            roomInfo.Add((short)Convert.ToInt32(txtShowRoom.Text));
             Session["RoomInfo"] = roomInfo;
             Session["GuestInfo"] = guestInfo;
             //Session["RoomInfo"] = (DataSet)gvRoomCost.DataSource;
@@ -604,6 +655,11 @@ namespace TreasureLand.Clerk
             lblComments.Visible = true;
             txtComments.Visible = true;
             btnCancelDiscount.Visible = false;
+        }
+
+        protected void btnPrint_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Print.aspx");
         }
 
     }

@@ -74,31 +74,93 @@ namespace TreasureLand.Clerk
         /// </summary>
         private void databindGuestInfo()
         {
-            
-
-
             List<string> list = (List<string>)Session["GuestInfo"];
             lblReservationNumber.Text = list[0];
             lblName.Text = list[1] + " " + list[2];
-            lblRoomNumber.Text = list[3];
-            lblDate.Text = DateTime.Now.ToShortDateString();
+            lblRoomNumber.Text = list[3];            
             lblRoomTotal.Text = list[4];
             lblServicesTotal.Text = list[5];
             lblTotal.Text = list[6];
             lblDiscount.Text = list[7];
-            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            IEnumerable<TreasureLand.DBM.Guest> guest =
-                        from g in db.Guests
-                        join r in db.Reservations
-                        on g.GuestID equals r.GuestID
-                        where r.ReservationID == Convert.ToInt32(list[0])
-                        select g;
-            foreach (var guests in guest)
+            lblCheckinDate.Text = list[8];
+            lblCheckoutDate.Text = list[9];
+            lblReservationDetailID.Text = list[10];
+            
+            
+        }
+        private void checkout()
+        {
+            try
             {
-                lblAddress.Text = guests.GuestAddress;
-                lblCity.Text = guests.GuestCity;
-                
+                List<string> list = (List<string>)Session["GuestInfo"];
+                string resdetailID = list[10];
+                GuestDB.updateReservationDetail('F', Convert.ToInt32(resdetailID));
+
+                if (App_Code.GuestDB.countActiveReservationDetail(Convert.ToInt32(lblReservationNumber.Text)) == 0)
+                {
+                    App_Code.GuestDB.updateReservationStatus('F', Convert.ToInt32(lblReservationNumber.Text));
+                }
+                TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+                var roomID = from r in db.Rooms
+                             where r.RoomNumbers == lblRoomNumber.Text
+                             select new { r.RoomID };
+
+              
+                GuestDB.updateRoomStatus('H', roomID.First().RoomID);
+
             }
+            catch (Exception)
+            {                
+                throw;
+            }
+        }
+        /// <summary>
+        /// Checks out the guest.  Changes the ReservationDetail status, Reservation status and updateStatus.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void GoToCheckOut_Click(object sender, EventArgs e)
+        {
+
+            if (Convert.ToDouble(lblTotal.Text)==0)
+            {
+                PnCollections.Visible = false;
+                PnGuestOwedMoney.Visible = false;
+                pnCheckout.Visible = true;
+                checkout();
+                btnGoToCheckOut.Visible = false;
+            }
+            else if (Convert.ToDouble(lblTotal.Text)>0)
+            {
+                PnGuestOwedMoney.Visible = false;
+                PnCollections.Visible = true;
+                pnCheckout.Visible = false;
+            }
+            else
+            {
+                PnGuestOwedMoney.Visible = true;
+                pnCheckout.Visible = false;
+                PnCollections.Visible = false;
+            }
+        }
+
+        protected void btnSendToCollections_Click(object sender, EventArgs e)
+        {
+            TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
+            Collection addCollection = new Collection();
+            addCollection.CollectionsAmountOwed = Convert.ToDecimal(lblTotal.Text);
+            addCollection.ReservationDetailID = Convert.ToSByte(lblReservationDetailID.Text);
+            db.Collections.InsertOnSubmit(addCollection);
+            db.SubmitChanges();
+            checkout();
+            pnCheckout.Visible = true;
+            PnCollections.Visible = false;
+            btnGoToCheckOut.Visible = false;
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ClerkDefault.aspx");
         }
     }
 }
