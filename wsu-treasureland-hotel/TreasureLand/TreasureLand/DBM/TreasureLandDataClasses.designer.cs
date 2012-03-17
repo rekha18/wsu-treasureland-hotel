@@ -22,7 +22,7 @@ namespace TreasureLand.DBM
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="TreasureLand1")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="treasureland1")]
 	public partial class TreasureLandDataClassesDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -117,6 +117,9 @@ namespace TreasureLand.DBM
     partial void InsertMenuItem(MenuItem instance);
     partial void UpdateMenuItem(MenuItem instance);
     partial void DeleteMenuItem(MenuItem instance);
+    partial void InsertCollection(Collection instance);
+    partial void UpdateCollection(Collection instance);
+    partial void DeleteCollection(Collection instance);
     #endregion
 		
 		public TreasureLandDataClassesDataContext() : 
@@ -378,6 +381,14 @@ namespace TreasureLand.DBM
 			get
 			{
 				return this.GetTable<MenuItem>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Collection> Collections
+		{
+			get
+			{
+				return this.GetTable<Collection>();
 			}
 		}
 	}
@@ -3185,6 +3196,8 @@ namespace TreasureLand.DBM
 		
 		private EntitySet<ReservationDetailBilling> _ReservationDetailBillings;
 		
+		private EntitySet<Collection> _Collections;
+		
 		private EntityRef<Discount> _Discount;
 		
 		private EntityRef<Reservation> _Reservation;
@@ -3222,6 +3235,7 @@ namespace TreasureLand.DBM
 		public ReservationDetail()
 		{
 			this._ReservationDetailBillings = new EntitySet<ReservationDetailBilling>(new Action<ReservationDetailBilling>(this.attach_ReservationDetailBillings), new Action<ReservationDetailBilling>(this.detach_ReservationDetailBillings));
+			this._Collections = new EntitySet<Collection>(new Action<Collection>(this.attach_Collections), new Action<Collection>(this.detach_Collections));
 			this._Discount = default(EntityRef<Discount>);
 			this._Reservation = default(EntityRef<Reservation>);
 			this._Room = default(EntityRef<Room>);
@@ -3473,6 +3487,19 @@ namespace TreasureLand.DBM
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReservationDetail_Collection", Storage="_Collections", ThisKey="ReservationDetailID", OtherKey="ReservationDetailID")]
+		public EntitySet<Collection> Collections
+		{
+			get
+			{
+				return this._Collections;
+			}
+			set
+			{
+				this._Collections.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Discount_ReservationDetail", Storage="_Discount", ThisKey="DiscountID", OtherKey="DiscountID", IsForeignKey=true)]
 		public Discount Discount
 		{
@@ -3602,6 +3629,18 @@ namespace TreasureLand.DBM
 		}
 		
 		private void detach_ReservationDetailBillings(ReservationDetailBilling entity)
+		{
+			this.SendPropertyChanging();
+			entity.ReservationDetail = null;
+		}
+		
+		private void attach_Collections(Collection entity)
+		{
+			this.SendPropertyChanging();
+			entity.ReservationDetail = this;
+		}
+		
+		private void detach_Collections(Collection entity)
 		{
 			this.SendPropertyChanging();
 			entity.ReservationDetail = null;
@@ -7428,6 +7467,157 @@ namespace TreasureLand.DBM
 		{
 			this.SendPropertyChanging();
 			entity.MenuItem = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Collections")]
+	public partial class Collection : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private short _CollectionsID;
+		
+		private short _ReservationDetailID;
+		
+		private decimal _CollectionsAmountOwed;
+		
+		private EntityRef<ReservationDetail> _ReservationDetail;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCollectionsIDChanging(short value);
+    partial void OnCollectionsIDChanged();
+    partial void OnReservationDetailIDChanging(short value);
+    partial void OnReservationDetailIDChanged();
+    partial void OnCollectionsAmountOwedChanging(decimal value);
+    partial void OnCollectionsAmountOwedChanged();
+    #endregion
+		
+		public Collection()
+		{
+			this._ReservationDetail = default(EntityRef<ReservationDetail>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CollectionsID", AutoSync=AutoSync.OnInsert, DbType="SmallInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public short CollectionsID
+		{
+			get
+			{
+				return this._CollectionsID;
+			}
+			set
+			{
+				if ((this._CollectionsID != value))
+				{
+					this.OnCollectionsIDChanging(value);
+					this.SendPropertyChanging();
+					this._CollectionsID = value;
+					this.SendPropertyChanged("CollectionsID");
+					this.OnCollectionsIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservationDetailID", DbType="SmallInt NOT NULL")]
+		public short ReservationDetailID
+		{
+			get
+			{
+				return this._ReservationDetailID;
+			}
+			set
+			{
+				if ((this._ReservationDetailID != value))
+				{
+					if (this._ReservationDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnReservationDetailIDChanging(value);
+					this.SendPropertyChanging();
+					this._ReservationDetailID = value;
+					this.SendPropertyChanged("ReservationDetailID");
+					this.OnReservationDetailIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CollectionsAmountOwed", DbType="SmallMoney NOT NULL")]
+		public decimal CollectionsAmountOwed
+		{
+			get
+			{
+				return this._CollectionsAmountOwed;
+			}
+			set
+			{
+				if ((this._CollectionsAmountOwed != value))
+				{
+					this.OnCollectionsAmountOwedChanging(value);
+					this.SendPropertyChanging();
+					this._CollectionsAmountOwed = value;
+					this.SendPropertyChanged("CollectionsAmountOwed");
+					this.OnCollectionsAmountOwedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ReservationDetail_Collection", Storage="_ReservationDetail", ThisKey="ReservationDetailID", OtherKey="ReservationDetailID", IsForeignKey=true)]
+		public ReservationDetail ReservationDetail
+		{
+			get
+			{
+				return this._ReservationDetail.Entity;
+			}
+			set
+			{
+				ReservationDetail previousValue = this._ReservationDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._ReservationDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ReservationDetail.Entity = null;
+						previousValue.Collections.Remove(this);
+					}
+					this._ReservationDetail.Entity = value;
+					if ((value != null))
+					{
+						value.Collections.Add(this);
+						this._ReservationDetailID = value.ReservationDetailID;
+					}
+					else
+					{
+						this._ReservationDetailID = default(short);
+					}
+					this.SendPropertyChanged("ReservationDetail");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

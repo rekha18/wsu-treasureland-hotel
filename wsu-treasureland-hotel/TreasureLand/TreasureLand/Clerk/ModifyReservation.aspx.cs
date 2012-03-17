@@ -76,6 +76,8 @@ namespace TreasureLand.Clerk
         /// <param name="e"></param>
         protected void btnSelect_Click(object sender, EventArgs e)
         {
+            gvOpenRooms.Columns[0].Visible = true;
+            gvOpenRooms.DataBind();
             int roomID = Convert.ToInt32(gvOpenRooms.SelectedRow.Cells[0].Text);
             
             if (cbRemoveDiscount.Checked)
@@ -86,7 +88,8 @@ namespace TreasureLand.Clerk
             Reserve res = (Reserve)Session["Room"];
             res.roomID = (short)roomID;
             res.returnView = 4;
-
+            gvOpenRooms.Columns[0].Visible = false;
+            gvOpenRooms.DataBind();
             Response.Redirect("~/Clerk/UpdateReservation.aspx");
         }
 

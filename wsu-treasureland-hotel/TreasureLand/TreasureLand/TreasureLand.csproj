@@ -260,6 +260,11 @@
     <Compile Include="Clerk\Print.aspx.designer.cs">
       <DependentUpon>Print.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HotelReportData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelReportData.xsd</DependentUpon>
+    </Compile>
     <Compile Include="HouseKeeping\HousekeepingLongTermAsset.aspx.cs">
       <DependentUpon>HousekeepingLongTermAsset.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -573,6 +578,17 @@
     <Content Include="Restaurant.Master" />
     <Content Include="Restaurant\Web.config" />
     <Content Include="packages.config" />
+    <None Include="HotelReportData.xsc">
+      <DependentUpon>HotelReportData.xsd</DependentUpon>
+    </None>
+    <None Include="HotelReportData.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HotelReportData.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="HotelReportData.xss">
+      <DependentUpon>HotelReportData.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="DBM\TreasureLandDataClasses.dbml.layout">
@@ -580,7 +596,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Clerk\Reports\AmountOwedByRoom.rdlc" />
+    <EmbeddedResource Include="Clerk\Reports\DailyCheckin.rdlc" />
+    <EmbeddedResource Include="Clerk\Reports\DailyCheckout.rdlc" />
+    <EmbeddedResource Include="Clerk\Reports\DailyRoomBookingStatus.rdlc" />
     <EmbeddedResource Include="Clerk\Reports\RestaurantSales.rdlc" />
+    <EmbeddedResource Include="Clerk\Reports\Transactions.rdlc" />
     <EmbeddedResource Include="Manager\Reports\Deposits.rdlc" />
     <EmbeddedResource Include="Manager\Reports\Dishes Containing Ingredient.rdlc" />
     <EmbeddedResource Include="Manager\Reports\DrinkSales.rdlc" />

@@ -157,22 +157,22 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.Label txtShowReservation;
         
         /// <summary>
-        /// lblFirst0 control.
+        /// lblRoomTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFirst0;
+        protected global::System.Web.UI.WebControls.Label lblRoomTotal;
         
         /// <summary>
-        /// txtShowFirstName control.
+        /// txtRoomTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtShowFirstName;
+        protected global::System.Web.UI.WebControls.Label txtRoomTotal;
         
         /// <summary>
         /// lblRoom0 control.
@@ -193,40 +193,40 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.Label txtShowRoom;
         
         /// <summary>
-        /// lblSurName0 control.
+        /// lblServicesTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSurName0;
+        protected global::System.Web.UI.WebControls.Label lblServicesTotal;
         
         /// <summary>
-        /// txtShowSurName control.
+        /// txtServicesTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtShowSurName;
+        protected global::System.Web.UI.WebControls.Label txtServicesTotal;
         
         /// <summary>
-        /// lblRoomTotal control.
+        /// lblFirst0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRoomTotal;
+        protected global::System.Web.UI.WebControls.Label lblFirst0;
         
         /// <summary>
-        /// txtRoomTotal control.
+        /// txtShowFirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtRoomTotal;
+        protected global::System.Web.UI.WebControls.Label txtShowFirstName;
         
         /// <summary>
         /// lblDiscount control.
@@ -247,22 +247,22 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.Label txtDiscount;
         
         /// <summary>
-        /// lblServicesTotal control.
+        /// lblSurName0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblServicesTotal;
+        protected global::System.Web.UI.WebControls.Label lblSurName0;
         
         /// <summary>
-        /// txtServicesTotal control.
+        /// txtShowSurName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtServicesTotal;
+        protected global::System.Web.UI.WebControls.Label txtShowSurName;
         
         /// <summary>
         /// lblTotal control.
@@ -281,6 +281,33 @@ namespace TreasureLand.Clerk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label txtTotal;
+        
+        /// <summary>
+        /// lblCheckInDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCheckInDate;
+        
+        /// <summary>
+        /// lblReservationDetailID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReservationDetailID;
+        
+        /// <summary>
+        /// lblCheckOutDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCheckOutDate;
         
         /// <summary>
         /// gvRoomCost control.
@@ -515,15 +542,6 @@ namespace TreasureLand.Clerk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnPrint;
-        
-        /// <summary>
-        /// btnGoToCheckOut control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGoToCheckOut;
         
         /// <summary>
         /// lblErrorGuest control.

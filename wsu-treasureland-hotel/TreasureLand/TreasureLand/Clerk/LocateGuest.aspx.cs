@@ -248,7 +248,7 @@ namespace TreasureLand.Clerk
                      where i.RoomNumbers == txtShowRoomNum.Text
                      select new { i.RoomID };
             
-            
+            Int16 a = Convert.ToInt16(id.First().RoomID);
             App_Code.GuestDB.updateRoomStatus('C', Convert.ToInt16(id.First().RoomID));
             App_Code.GuestDB.updateReservationDetail('A', Convert.ToInt16(lblReservationDetailID.Text));
             

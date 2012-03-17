@@ -43,6 +43,10 @@
                         Width="180px" onclick="btnViewGuest_Click" UseSubmitBehavior="False" />
                 <br />
                 <br />
+                <asp:Button ID="btnViewGuest0" runat="server" Text="Check-out" 
+                        Width="180px" onclick="btnCheckout_Click" UseSubmitBehavior="False" />
+                <br />
+                <br />
                 <asp:Button ID="btnReports" runat="server" Text="Reports" Width="180px" 
                     onclick="btnReports_Click" UseSubmitBehavior="False" />
                 <br />

@@ -1,10 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Print.aspx.cs" Inherits="TreasureLand.Clerk.Print" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head runat="server">
     <title></title>
+    
     <style type="text/css">
         .style1
         {
@@ -31,14 +34,14 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    
+     <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" />
         <table class="style1">
             <tr>
                 <td class="style2" colspan="2">
                     <asp:Image ID="Image1" runat="server" Height="66px" 
                         ImageUrl="~/Images/CompanyLogo.png" Width="504px" />
                 </td>
-                <td class="style8" rowspan="12">
+                <td class="style8" rowspan="11">
                     <br />
                     <br />
                 </td>
@@ -57,20 +60,6 @@
             </tr>
             <tr>
                 <td class="style6">
-                    Guest Address</td>
-                <td class="style7">
-                    <asp:Label ID="lblAddress" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="style6">
-                    Guest City</td>
-                <td class="style7">
-                    <asp:Label ID="lblCity" runat="server"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="style6">
                     Reservation Number:</td>
                 <td class="style7">
                     <asp:Label ID="lblReservationNumber" runat="server"></asp:Label>
@@ -78,9 +67,16 @@
             </tr>
             <tr>
                 <td class="style6">
-                    Date:</td>
+                    Check-in Date:</td>
                 <td class="style7">
-                    <asp:Label ID="lblDate" runat="server"></asp:Label>
+                    <asp:Label ID="lblCheckinDate" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td class="style6">
+                    Check-out Date:</td>
+                <td class="style7">
+                    <asp:Label ID="lblCheckoutDate" runat="server"></asp:Label>
                 </td>
             </tr>
             <tr>
@@ -196,7 +192,32 @@
                         <asp:BoundField DataField="Comments" HeaderText="Comments" />
                     </Columns>
                 </asp:GridView>
-                <input type="button"  value="Print"  onclick="window.print();" />
+                <input type="button"  value="Print"  onclick="window.print();" />&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="btnGoToCheckOut" runat="server" onclick="GoToCheckOut_Click" 
+                    Text="CheckOut" Width="100px" />
+                <asp:Label ID="lblReservationDetailID" runat="server" 
+        Visible="False"></asp:Label>
+    <br />
+    <asp:Panel ID="pnCheckout" runat="server" Visible="False">
+        <asp:Label ID="lblCheckout" runat="server" Text="Guest has been Checked out." 
+            Font-Size="X-Large" ForeColor="Red"></asp:Label>
+        <br />
+        <asp:Button ID="Button1" runat="server" onclick="Button1_Click" 
+            Text="Continue" />
+    </asp:Panel>
+    <asp:Panel ID="PnGuestOwedMoney" runat="server" Visible="False">
+        <asp:Label ID="lblRefund" runat="server" 
+            Text="Cannot check out.  Guest is owed a refund." Font-Size="X-Large" 
+            ForeColor="Red"></asp:Label>
+    </asp:Panel>
+    <asp:Panel ID="PnCollections" runat="server" Visible="False">
+        <asp:Label ID="lblCheckoutMessage" runat="server" 
+            Text="This guest still has a balance due.  Send to collections?" 
+            Font-Size="X-Large" ForeColor="Red"></asp:Label>
+        <br />
+        <asp:Button ID="btnSendToCollections" runat="server" 
+            onclick="btnSendToCollections_Click" Text="Send to Collections" />
+    </asp:Panel>
     </form>
 </body>
 </html>
