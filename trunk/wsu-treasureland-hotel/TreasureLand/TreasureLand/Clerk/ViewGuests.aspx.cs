@@ -72,7 +72,7 @@ namespace TreasureLand.Clerk
                             on r.ReservationID equals rd.ReservationID
                             join ro in db.Rooms
                             on rd.RoomID equals ro.RoomID
-                            where (ro.RoomNumbers == txtRoom.Text || g.GuestFirstName == txtFirstName.Text || g.GuestSurName == txtSurName.Text) && (r.ReservationStatus == 'A' || r.ReservationStatus == 'F')
+                            where ((ro.RoomNumbers == txtRoom.Text || g.GuestFirstName == txtFirstName.Text || g.GuestSurName == txtSurName.Text)) && (r.ReservationStatus == 'A')
                             select new { r.ReservationID, ro.RoomNumbers, g.GuestFirstName, g.GuestSurName, rd.ReservationDetailID, r.ReservationStatus, ro.RoomID };
 
                 gvGuest.DataSource = guest.ToList();
@@ -188,20 +188,20 @@ namespace TreasureLand.Clerk
                 //clears the error label
                 lblError.Text = "";
 
-                //disables the check out, add service, and adjust discount buttons if the reservation is not active
-                var status = from a in db.ReservationDetails
-                                 where a.ReservationDetailID == Convert.ToSByte(gvGuest.SelectedRow.Cells[4].Text)
-                                 select new{a.ReservationStatus};
+                ////disables the check out, add service, and adjust discount buttons if the reservation is not active
+                //var status = from a in db.ReservationDetails
+                //                 where a.ReservationDetailID == Convert.ToSByte(gvGuest.SelectedRow.Cells[4].Text)
+                //                 select new{a.ReservationStatus};
 
-                string reservationStatus = status.First().ReservationStatus.ToString(); 
-                if (reservationStatus != "A")
-                {   
-                    btnAddService.Enabled = false;   
-                }
-                else
-                {
-                    btnAddService.Enabled = true;   
-                }
+                //char reservationStatus = status.First().ReservationStatus; 
+                //if (reservationStatus != 'A')
+                //{   
+                //    btnAddService.Enabled = false;   
+                //}
+                //else
+                //{
+                //    btnAddService.Enabled = true;   
+                //}
 
                 print();
                 gvGuest.Columns[5].Visible = false;

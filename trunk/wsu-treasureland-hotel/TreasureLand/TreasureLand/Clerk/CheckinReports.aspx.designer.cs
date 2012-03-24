@@ -10,16 +10,16 @@
 namespace TreasureLand.Clerk {
     
     
-    public partial class WebForm8 {
+    public partial class WebForm2 {
         
         /// <summary>
-        /// DropDownList1 control.
+        /// lblDailyCheckin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.Label lblDailyCheckin;
         
         /// <summary>
         /// lblChooseDate control.
@@ -94,6 +94,15 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.TextBox txtEndDate;
         
         /// <summary>
+        /// txtEndDate_CalendarExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender txtEndDate_CalendarExtender;
+        
+        /// <summary>
         /// rfvEndDate control.
         /// </summary>
         /// <remarks>
@@ -112,13 +121,13 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.CompareValidator cvEndDate;
         
         /// <summary>
-        /// btnGetTransactions control.
+        /// btnGetcheckins control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGetTransactions;
+        protected global::System.Web.UI.WebControls.Button btnGetcheckins;
         
         /// <summary>
         /// vsDates control.
@@ -130,49 +139,22 @@ namespace TreasureLand.Clerk {
         protected global::System.Web.UI.WebControls.ValidationSummary vsDates;
         
         /// <summary>
-        /// lblPrice control.
+        /// sdsCheckIn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPrice;
+        protected global::System.Web.UI.WebControls.SqlDataSource sdsCheckIn;
         
         /// <summary>
-        /// ddlTransactions control.
+        /// sdsCheckInBetween control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTransactions;
-        
-        /// <summary>
-        /// txtEndDate_CalendarExtender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtEndDate_CalendarExtender;
-        
-        /// <summary>
-        /// btnCreateReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreateReport;
-        
-        /// <summary>
-        /// ldsTransactions control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource ldsTransactions;
+        protected global::System.Web.UI.WebControls.SqlDataSource sdsCheckInBetween;
         
         /// <summary>
         /// ToolkitScriptManager1 control.
@@ -182,15 +164,6 @@ namespace TreasureLand.Clerk {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
-        
-        /// <summary>
-        /// sdsReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource sdsReport;
         
         /// <summary>
         /// ReportViewer1 control.

@@ -156,7 +156,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Total.Value</Value>
-                              <Style />
+                              <Style>
+                                <Format>0.00'GH';(0.00'GH')</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -199,7 +201,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.03528cm</Top>
         <Height>1.2cm</Height>
-        <Width>5.55563cm</Width>
+        <Width>5.55561cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -213,8 +215,10 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>= "Total Owed : " &amp; Sum(Fields!Total.Value)</Value>
-                <Style />
+                <Value>=Sum(Fields!Total.Value)</Value>
+                <Style>
+                  <Format>0.00'GH';(0.00'GH')</Format>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
@@ -222,10 +226,40 @@
         </Paragraphs>
         <rd:DefaultName>Textbox9</rd:DefaultName>
         <Top>1.34111cm</Top>
-        <Left>2.5cm</Left>
+        <Left>2.49999cm</Left>
         <Height>0.6cm</Height>
         <Width>3.05563cm</Width>
         <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox4">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Total Owed:</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox4</rd:DefaultName>
+        <Top>1.34111cm</Top>
+        <Left>0cm</Left>
+        <Height>0.6cm</Height>
+        <Width>2.5cm</Width>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -296,7 +330,7 @@
           <rd:DefaultName>Textbox2</rd:DefaultName>
           <Top>1.90472cm</Top>
           <Height>0.6cm</Height>
-          <Width>2.5cm</Width>
+          <Width>5.55561cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>

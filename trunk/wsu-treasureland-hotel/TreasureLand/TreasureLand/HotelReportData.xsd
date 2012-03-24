@@ -50,7 +50,7 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="RoomNumbers" msprop:Generator_ColumnVarNameInTable="columnRoomNumbers" msprop:Generator_ColumnPropNameInRow="RoomNumbers" msprop:Generator_ColumnPropNameInTable="RoomNumbersColumn" msprop:Generator_UserColumnName="RoomNumbers" type="xs:string" minOccurs="0" />
-              <xs:element name="RoomStatus" msprop:Generator_ColumnVarNameInTable="columnRoomStatus" msprop:Generator_ColumnPropNameInRow="RoomStatus" msprop:Generator_ColumnPropNameInTable="RoomStatusColumn" msprop:Generator_UserColumnName="RoomStatus" type="xs:string" minOccurs="0" />
+              <xs:element name="CheckoutDate" msprop:Generator_ColumnVarNameInTable="columnCheckoutDate" msprop:Generator_ColumnPropNameInRow="CheckoutDate" msprop:Generator_ColumnPropNameInTable="CheckoutDateColumn" msprop:Generator_UserColumnName="CheckoutDate" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -68,15 +68,15 @@
     <!-- A SQL data source is necessary here due to the complex operation of comparing
     all records to ensure that a room is open for the specified date range -->
     <asp:SqlDataSource ID="sdsOpenRooms" runat="server" 
-        ConnectionString="<%$ ConnectionStrings:HotelDB %>" SelectCommand="SELECT RoomID, RoomNumbers FROM Room
+        ConnectionString="<%$ ConnectionStrings:StMartinConnectionString %>" SelectCommand="SELECT RoomID, RoomNumbers FROM Room
    WHERE RoomID NOT IN 
    (
       SELECT r.RoomID FROM Room r
          INNER JOIN HotelRoomType hrt ON hrt.HotelRoomTypeID = r.HotelRoomTypeID 
          INNER JOIN ReservationDetail rd ON rd.RoomID = r.RoomID 
          INNER JOIN Reservation res ON res.ReservationID = rd.ReservationID
-         WHERE (@StartDate &lt;= (DATEADD(day, rd.Nights, res.ReservationDate)) AND
-               (DATEADD(day, @Nights, @StartDate)) &gt;= res.ReservationDate )
+         WHERE (@StartDate &lt;= (DATEADD(day, rd.Nights, rd.CheckinDate)) AND
+               (DATEADD(day, @Nights, @StartDate)) &gt;= rd.CheckinDate)
    )
    AND HotelRoomTypeID = @HotelRoomType
    AND RoomStatus != 'M'

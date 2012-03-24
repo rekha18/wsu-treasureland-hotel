@@ -1,21 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Clerk/ClerkMasterPage.master" AutoEventWireup="true" CodeBehind="Reports.aspx.cs" Inherits="TreasureLand.Clerk.WebForm8" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Clerk/Clerkreports.master" AutoEventWireup="true" CodeBehind="RestaurantSalesReport.aspx.cs" Inherits="TreasureLand.Clerk.WebForm8" %>
 <%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
 <%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
 
 
 
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <p>
+        <asp:Label ID="lblRestaurantSales" runat="server" Font-Size="X-Large" 
+            Text="Restaurant Cash Transaction Report"></asp:Label>
         </p> 
-    <asp:DropDownList ID="DropDownList1" runat="server">
-        <asp:ListItem>RestaurantSales</asp:ListItem>
-        <asp:ListItem>DailyCheckIn</asp:ListItem>
-        <asp:ListItem>DailyCheckOut</asp:ListItem>
-        <asp:ListItem>DailyRoomBookingStatus</asp:ListItem>
-    </asp:DropDownList>
-    <strong>
-    <br />
-    </strong>
     <br />
     <asp:Label ID="lblChooseDate" runat="server" Text="ChooseDates:" 
         style="font-weight: 700"></asp:Label>

@@ -1,0 +1,49 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Clerk/ClerkMasterPage.master" AutoEventWireup="true" CodeBehind="Clerkreports.master.cs" Inherits="TreasureLand.Clerk.Reports.Clerkreports" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <table style="width: 100%">
+        <tr>
+            <td class="style1" style="width: 142px" valign="top">
+                <asp:Button ID="btnDailyCheckIn" runat="server" Text="Daily Check In" 
+                    Width="142px" onclick="btnDailyCheckIn_Click" />
+                <br />
+                <br />
+                <asp:Button ID="btnDailyCheckOut" runat="server" Text="Daily Check Out" 
+                    Width="142px" onclick="btnDailyCheckOut_Click" />
+                <br />
+                <br />
+                <asp:Button ID="btnRoomStatus" runat="server" Text="Daily Room Status" 
+                    Width="142px" onclick="btnRoomStatus_Click" />
+                <br />
+                <br />
+                <asp:Button ID="btnOwedByRoom" runat="server" onclick="btnOwedByRoom_Click" 
+                    Text="Amt Owed By Room" Width="142px" />
+                <br />
+                <br />
+                <asp:Button ID="btnRestaurantSales" runat="server" Text="Rest. Cash Sales" 
+                    Width="141px" onclick="btnRestaurantSales_Click" />
+                <br />
+                <br />
+                <asp:Button ID="btnAllRestaurantSales0" runat="server" 
+                    Text="Rest. Credit Sales" Width="142px" 
+                    onclick="btnCreditRestaurantSales_Click" />
+                <br />
+                <br />
+                <asp:Button ID="btnRestaurantReceipt" runat="server" 
+                    onclick="btnRestaurantReceipt_Click" Text="Rest. Cash Receipt" Width="145px" />
+                <br />
+                <br />
+                <asp:Button ID="btnAllRestaurantSales" runat="server" 
+                    Text="Rest. All Sales" Width="142px" onclick="btnRestaurantReceipt_Click" 
+                    Visible="False" />
+                <br />
+                <br />
+            </td>
+            <td valign="top">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                    <p>
+                        &nbsp;</p>
+                </asp:ContentPlaceHolder>
+            </td>
+        </tr>
+    </table>
+</asp:Content>
