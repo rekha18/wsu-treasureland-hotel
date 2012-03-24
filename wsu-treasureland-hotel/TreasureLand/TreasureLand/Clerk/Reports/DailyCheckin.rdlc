@@ -63,10 +63,10 @@
               <Width>1.24691in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.98425in</Width>
+              <Width>1.17176in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.98425in</Width>
+              <Width>1.17175in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.98425in</Width>
@@ -420,8 +420,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=DateAdd("d",Fields!Nights.Value, Fields!CheckinDate.Value)</Value>
-                              <Style />
+                              <Value>=DateAdd(DateInterval.Day, Fields!Nights.Value, Fields!CheckinDate.Value)</Value>
+                              <Style>
+                                <Format>d</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -450,8 +452,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=(Fields!QuotedRate.Value)/Fields!QuotedRate.Value</Value>
-                              <Style />
+                              <Value>=Fields!QuotedRate.Value</Value>
+                              <Style>
+                                <Format>0.00'GH';(0.00'GH')</Format>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -469,6 +473,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -498,7 +503,7 @@
         <DataSetName>DataSet1</DataSetName>
         <Top>0.07056cm</Top>
         <Height>1.62334cm</Height>
-        <Width>15.13289cm</Width>
+        <Width>16.08541cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -556,7 +561,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Today()</Value>
+                  <Value>=DateString()</Value>
                   <Style>
                     <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
@@ -568,9 +573,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox8</rd:DefaultName>
           <Top>1.56167cm</Top>
-          <Left>4.93924cm</Left>
+          <Left>5.54778cm</Left>
           <Height>0.85549cm</Height>
-          <Width>5.41042cm</Width>
+          <Width>4.32563cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>

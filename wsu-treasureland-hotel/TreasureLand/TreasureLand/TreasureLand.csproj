@@ -93,6 +93,7 @@
     <Content Include="Admin\Controls\UserStatusAndApproval.ascx" />
     <Content Include="Admin\ManageBillingCategories.aspx" />
     <Content Include="Admin\ManageRoomTypes.aspx" />
+    <Content Include="Clerk\CheckoutReports.aspx" />
     <Content Include="Clerk\ClerkDefault.aspx" />
     <Content Include="Clerk\CreateReservation.aspx" />
     <Content Include="Clerk\LocateGuest.aspx" />
@@ -100,11 +101,17 @@
     <Content Include="Clerk\LocateReservation.aspx" />
     <Content Include="Clerk\ModifyReservation.aspx" />
     <Content Include="Clerk\Print.aspx" />
-    <Content Include="Clerk\Reports.aspx" />
+    <Content Include="Clerk\ReportDefault.aspx" />
+    <Content Include="Clerk\RestaurantSalesReport.aspx" />
     <Content Include="Clerk\SelectRoom.aspx" />
     <Content Include="Clerk\UpdateGuestFolio.aspx" />
     <Content Include="Clerk\UpdateReservation.aspx" />
     <Content Include="Clerk\ViewGuests.aspx" />
+    <Content Include="Clerk\CheckinReports.aspx" />
+    <Content Include="Clerk\RestaurantCreditSalesReport.aspx" />
+    <Content Include="Clerk\RestaurantCashSalesReport.aspx" />
+    <Content Include="Clerk\OwedByRoomReport.aspx" />
+    <Content Include="Clerk\DailyRoomStatusReport.aspx" />
     <Content Include="HouseKeeping\HouseKeepingDefault.aspx" />
     <Content Include="HouseKeeping\HousekeepingLongTermAsset.aspx" />
     <Content Include="HouseKeeping\HouseKeepingReports.aspx" />
@@ -114,6 +121,7 @@
     <Content Include="Maintenance\MaintenanceInventory.aspx" />
     <Content Include="Maintenance\MaintenanceReports.aspx" />
     <Content Include="Maintenance\MaintenanceShortTermAsset.aspx" />
+    <Content Include="Manager\Collections.aspx" />
     <Content Include="Manager\Inventory.aspx" />
     <Content Include="Manager\ManagerExpenses.aspx" />
     <Content Include="Manager\ManagerReports.aspx" />
@@ -246,6 +254,13 @@
     <Compile Include="App_Code\LongTermAssetDB.cs" />
     <Compile Include="App_Code\ShortTermAssetDB.cs" />
     <Compile Include="App_Code\ShortTermInventoryDB.cs" />
+    <Compile Include="Clerk\CheckoutReports.aspx.cs">
+      <DependentUpon>CheckoutReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\CheckoutReports.aspx.designer.cs">
+      <DependentUpon>CheckoutReports.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Clerk\ModifyReservation.aspx.cs">
       <DependentUpon>ModifyReservation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -259,6 +274,55 @@
     </Compile>
     <Compile Include="Clerk\Print.aspx.designer.cs">
       <DependentUpon>Print.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\Clerkreports.master.cs">
+      <DependentUpon>Clerkreports.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\Clerkreports.master.designer.cs">
+      <DependentUpon>Clerkreports.master</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\CheckinReports.aspx.cs">
+      <DependentUpon>CheckinReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\CheckinReports.aspx.designer.cs">
+      <DependentUpon>CheckinReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\ReportDefault.aspx.cs">
+      <DependentUpon>ReportDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\ReportDefault.aspx.designer.cs">
+      <DependentUpon>ReportDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\RestaurantCreditSalesReport.aspx.cs">
+      <DependentUpon>RestaurantCreditSalesReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\RestaurantCreditSalesReport.aspx.designer.cs">
+      <DependentUpon>RestaurantCreditSalesReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\RestaurantCashSalesReport.aspx.cs">
+      <DependentUpon>RestaurantCashSalesReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\RestaurantCashSalesReport.aspx.designer.cs">
+      <DependentUpon>RestaurantCashSalesReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\OwedByRoomReport.aspx.cs">
+      <DependentUpon>OwedByRoomReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\OwedByRoomReport.aspx.designer.cs">
+      <DependentUpon>OwedByRoomReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Clerk\DailyRoomStatusReport.aspx.cs">
+      <DependentUpon>DailyRoomStatusReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clerk\DailyRoomStatusReport.aspx.designer.cs">
+      <DependentUpon>DailyRoomStatusReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="HotelReportData.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -352,12 +416,12 @@
     <Compile Include="Clerk\LocateReservation.aspx.designer.cs">
       <DependentUpon>LocateReservation.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Clerk\Reports.aspx.cs">
-      <DependentUpon>Reports.aspx</DependentUpon>
+    <Compile Include="Clerk\RestaurantSalesReport.aspx.cs">
+      <DependentUpon>RestaurantSalesReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Clerk\Reports.aspx.designer.cs">
-      <DependentUpon>Reports.aspx</DependentUpon>
+    <Compile Include="Clerk\RestaurantSalesReport.aspx.designer.cs">
+      <DependentUpon>RestaurantSalesReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Clerk\SelectRoom.aspx.cs">
       <DependentUpon>SelectRoom.aspx</DependentUpon>
@@ -466,6 +530,13 @@
     <Compile Include="Maintenance\MaintenanceShortTermAsset.aspx.designer.cs">
       <DependentUpon>MaintenanceShortTermAsset.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Manager\Collections.aspx.cs">
+      <DependentUpon>Collections.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manager\Collections.aspx.designer.cs">
+      <DependentUpon>Collections.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Manager\Inventory.aspx.cs">
       <DependentUpon>Inventory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -563,6 +634,7 @@
     <Content Include="Maintenance\Web.config" />
     <Content Include="Manager\Web.config" />
     <Content Include="HouseKeeping\Web.config" />
+    <Content Include="Clerk\Clerkreports.master" />
     <None Include="DBM\TreasureLandDataClasses.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>TreasureLandDataClasses.designer.cs</LastGenOutput>
@@ -597,10 +669,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Clerk\Reports\AmountOwedByRoom.rdlc" />
+    <EmbeddedResource Include="Clerk\Reports\TotalRestaurantSales.rdlc" />
     <EmbeddedResource Include="Clerk\Reports\DailyCheckin.rdlc" />
     <EmbeddedResource Include="Clerk\Reports\DailyCheckout.rdlc" />
     <EmbeddedResource Include="Clerk\Reports\DailyRoomBookingStatus.rdlc" />
     <EmbeddedResource Include="Clerk\Reports\RestaurantSales.rdlc" />
+    <EmbeddedResource Include="Clerk\Reports\DailyRoomStatus.rdlc" />
     <EmbeddedResource Include="Clerk\Reports\Transactions.rdlc" />
     <EmbeddedResource Include="Manager\Reports\Deposits.rdlc" />
     <EmbeddedResource Include="Manager\Reports\Dishes Containing Ingredient.rdlc" />
@@ -618,7 +692,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>12238</DevelopmentServerPort>
+          <DevelopmentServerPort>4372</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

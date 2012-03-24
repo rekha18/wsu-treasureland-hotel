@@ -1344,7 +1344,7 @@ namespace TreasureLand {
             
             private global::System.Data.DataColumn columnRoomNumbers;
             
-            private global::System.Data.DataColumn columnRoomStatus;
+            private global::System.Data.DataColumn columnCheckoutDate;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1389,9 +1389,9 @@ namespace TreasureLand {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn RoomStatusColumn {
+            public global::System.Data.DataColumn CheckoutDateColumn {
                 get {
-                    return this.columnRoomStatus;
+                    return this.columnCheckoutDate;
                 }
             }
             
@@ -1432,11 +1432,11 @@ namespace TreasureLand {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DailyRoomBookingRow AddDailyRoomBookingRow(string RoomNumbers, string RoomStatus) {
+            public DailyRoomBookingRow AddDailyRoomBookingRow(string RoomNumbers, string CheckoutDate) {
                 DailyRoomBookingRow rowDailyRoomBookingRow = ((DailyRoomBookingRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         RoomNumbers,
-                        RoomStatus};
+                        CheckoutDate};
                 rowDailyRoomBookingRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDailyRoomBookingRow);
                 return rowDailyRoomBookingRow;
@@ -1460,7 +1460,7 @@ namespace TreasureLand {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnRoomNumbers = base.Columns["RoomNumbers"];
-                this.columnRoomStatus = base.Columns["RoomStatus"];
+                this.columnCheckoutDate = base.Columns["CheckoutDate"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1468,8 +1468,8 @@ namespace TreasureLand {
             private void InitClass() {
                 this.columnRoomNumbers = new global::System.Data.DataColumn("RoomNumbers", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRoomNumbers);
-                this.columnRoomStatus = new global::System.Data.DataColumn("RoomStatus", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRoomStatus);
+                this.columnCheckoutDate = new global::System.Data.DataColumn("CheckoutDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCheckoutDate);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2386,17 +2386,17 @@ namespace TreasureLand {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string RoomStatus {
+            public string CheckoutDate {
                 get {
                     try {
-                        return ((string)(this[this.tableDailyRoomBooking.RoomStatusColumn]));
+                        return ((string)(this[this.tableDailyRoomBooking.CheckoutDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'RoomStatus\' in table \'DailyRoomBooking\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CheckoutDate\' in table \'DailyRoomBooking\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDailyRoomBooking.RoomStatusColumn] = value;
+                    this[this.tableDailyRoomBooking.CheckoutDateColumn] = value;
                 }
             }
             
@@ -2414,14 +2414,14 @@ namespace TreasureLand {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsRoomStatusNull() {
-                return this.IsNull(this.tableDailyRoomBooking.RoomStatusColumn);
+            public bool IsCheckoutDateNull() {
+                return this.IsNull(this.tableDailyRoomBooking.CheckoutDateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetRoomStatusNull() {
-                this[this.tableDailyRoomBooking.RoomStatusColumn] = global::System.Convert.DBNull;
+            public void SetCheckoutDateNull() {
+                this[this.tableDailyRoomBooking.CheckoutDateColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -79,7 +79,7 @@ namespace TreasureLand.Clerk
         protected void btnReports_Click(object sender, EventArgs e)
         {
             Session.RemoveAll();
-            Response.Redirect("Reports.aspx");
+            Response.Redirect("ReportDefault.aspx");
             
         }
     }

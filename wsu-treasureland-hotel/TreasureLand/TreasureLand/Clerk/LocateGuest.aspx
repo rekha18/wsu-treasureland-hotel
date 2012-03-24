@@ -257,6 +257,11 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="btnCheckIn" runat="server" Text="Check in" 
                 onclick="btnCheckIn_Click" />
+            <br />
+            <asp:Label ID="lblRoomcheckedin" runat="server" Font-Size="Large" 
+                ForeColor="Red" 
+                Text="Cannot check in, room already has a guest. Please check out current guest." 
+                Visible="False"></asp:Label>
         </asp:View>
         <asp:View ID="vCheckedIn" runat="server">
             <asp:Label ID="lblGuestCheckedIn" runat="server" Font-Size="Large" 

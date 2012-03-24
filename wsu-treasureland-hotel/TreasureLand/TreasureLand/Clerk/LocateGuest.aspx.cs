@@ -236,28 +236,41 @@ namespace TreasureLand.Clerk
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void btnCheckIn_Click(object sender, EventArgs e)
-        {   
-            //SQL command to update the guests entered information
-            App_Code.GuestDB.updateGuestInformation(txtCompany.Text, txtAddress.Text, txtCity.Text, txtRegion.Text, 
-                txtPostalCode.Text, txtCountry.Text, txtFax.Text, txtEmail.Text, txtComments.Text, txtIdNumber.Text, 
-                txtIdCountry.Text, txtIdComments.Text, Convert.ToInt32(lblCustomerId.Text));
-
-            //updates the roomStatus to checked in, and updates the reservationdetail to active
+        {
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
-            var id = from i in db.Rooms
-                     where i.RoomNumbers == txtShowRoomNum.Text
-                     select new { i.RoomID };
-            
-            Int16 a = Convert.ToInt16(id.First().RoomID);
-            App_Code.GuestDB.updateRoomStatus('C', Convert.ToInt16(id.First().RoomID));
-            App_Code.GuestDB.updateReservationDetail('A', Convert.ToInt16(lblReservationDetailID.Text));
-            
-            //Updates the Reservation status to Active if all reservation detail status associated with the reservation are set to active
-            if(App_Code.GuestDB.countConfirmedReservationDetail(Convert.ToInt32(txtShowReservationNum.Text))==0)
+            var room = from rd in db.ReservationDetails
+                         join r in db.Rooms
+                         on rd.RoomID equals r.RoomID
+                         where (r.RoomNumbers == txtShowRoomNum.Text) && (r.RoomStatus == 'C') 
+                         select new { r.RoomNumbers };
+
+            if (room.Count()==0)
             {
-                App_Code.GuestDB.updateReservationStatus('A', Convert.ToInt32(txtShowReservationNum.Text));
+                //SQL command to update the guests entered information
+                App_Code.GuestDB.updateGuestInformation(txtCompany.Text, txtAddress.Text, txtCity.Text, txtRegion.Text,
+                    txtPostalCode.Text, txtCountry.Text, txtFax.Text, txtEmail.Text, txtComments.Text, txtIdNumber.Text,
+                    txtIdCountry.Text, txtIdComments.Text, Convert.ToInt32(lblCustomerId.Text));
+
+                //updates the roomStatus to checked in, and updates the reservationdetail to active
+                var id = from i in db.Rooms
+                         where i.RoomNumbers == txtShowRoomNum.Text
+                         select new { i.RoomID };
+
+                Int16 a = Convert.ToInt16(id.First().RoomID);
+                App_Code.GuestDB.updateRoomStatus('C', Convert.ToInt16(id.First().RoomID));
+                App_Code.GuestDB.updateReservationDetail('A', Convert.ToInt16(lblReservationDetailID.Text));
+
+                //Updates the Reservation status to Active if all reservation detail status associated with the reservation are set to active
+                if (App_Code.GuestDB.countConfirmedReservationDetail(Convert.ToInt32(txtShowReservationNum.Text)) == 0)
+                {
+                    App_Code.GuestDB.updateReservationStatus('A', Convert.ToInt32(txtShowReservationNum.Text));
+                }
+                mvLocateGuest.ActiveViewIndex = 2; 
             }
-            mvLocateGuest.ActiveViewIndex = 2;
+            else
+            {
+                lblRoomcheckedin.Visible = true;
+            }
         }
 
         protected void btnBack_Click(object sender, EventArgs e)

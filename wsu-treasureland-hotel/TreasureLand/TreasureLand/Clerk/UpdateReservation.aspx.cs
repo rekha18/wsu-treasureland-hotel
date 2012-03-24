@@ -51,7 +51,7 @@ namespace TreasureLand.Clerk
             var guest = from g in db.Guests
                         join r in db.Reservations
                         on g.GuestID equals r.GuestID
-                        where ((r.ReservationID.ToString() == txtResNumber.Text || g.GuestFirstName == txtFirstName.Text || g.GuestSurName == txtSurName.Text || g.GuestPhone == txtPhone.Text) && (r.ReservationStatus == 'U' || r.ReservationStatus == 'C'))
+                        where ((r.ReservationID.ToString() == txtResNumber.Text || g.GuestFirstName == txtFirstName.Text || g.GuestSurName == txtSurName.Text || g.GuestPhone == txtPhone.Text) && (r.ReservationStatus == 'U' || r.ReservationStatus == 'C' || r.ReservationStatus == 'A'))
                         select new {r.ReservationID, g.GuestFirstName, g.GuestSurName, g.GuestPhone};
             gvGuest.DataSource = guest.ToList();
             gvGuest.DataBind();
