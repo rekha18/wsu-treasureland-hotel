@@ -116,6 +116,7 @@
     <Content Include="HouseKeeping\HousekeepingLongTermAsset.aspx" />
     <Content Include="HouseKeeping\HouseKeepingReports.aspx" />
     <Content Include="HouseKeeping\Inventory.aspx" />
+    <Content Include="Images\CompanyLogo1.png" />
     <Content Include="Images\CompanyLogo.png" />
     <Content Include="Maintenance\MaintenanceDefault.aspx" />
     <Content Include="Maintenance\MaintenanceInventory.aspx" />

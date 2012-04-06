@@ -149,7 +149,7 @@ namespace TreasureLand.Clerk
             TreasureLandDataClassesDataContext db = new TreasureLandDataClassesDataContext();
             Collection addCollection = new Collection();
             addCollection.CollectionsAmountOwed = Convert.ToDecimal(lblTotal.Text);
-            addCollection.ReservationDetailID = Convert.ToSByte(lblReservationDetailID.Text);
+            addCollection.ReservationDetailID = Convert.ToInt16(lblReservationDetailID.Text);
             db.Collections.InsertOnSubmit(addCollection);
             db.SubmitChanges();
             checkout();
